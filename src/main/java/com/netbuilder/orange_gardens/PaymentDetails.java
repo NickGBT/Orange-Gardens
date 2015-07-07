@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class PaymentDetails {
 
-	public enum CardType { 
+	private enum CardType { 
 		VISA, VISADEBIT,VISAELECTRON, MAESTRO, MASTERCARD;
 	}
-	CardType cardType;
-	int cardNumber;
-	String nameOnCard;
-	int securityNumber;
-	Date expiryDate;
-	int customerId;
+	private CardType cardType;
+	private int cardNumber;
+	private String nameOnCard;
+	private int securityNumber;
+	private Date expiryDate;
+	private int customerId;
 	
 	/**
 	 * @return the cardType
