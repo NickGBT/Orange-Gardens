@@ -1,4 +1,4 @@
-package com.netbuilder.jhn;
+package com.netbuilder.orange_gardens;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
