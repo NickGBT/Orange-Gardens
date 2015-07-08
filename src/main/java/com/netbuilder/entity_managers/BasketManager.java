@@ -3,6 +3,12 @@ package com.netbuilder.entity_managers;
 import java.util.ArrayList;
 import com.netbuilder.entities.Basket;
 
+/**
+ * 
+ * @author llew
+ *
+ */
+
 public interface BasketManager {
 
 	//CREATE
