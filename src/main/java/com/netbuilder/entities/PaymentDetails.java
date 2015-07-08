@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
+import com.netbuilder.enums.CardType;
+
 /**
  * 
  * @author mwatson
@@ -21,17 +23,13 @@ import javax.validation.constraints.Size;
 
 public class PaymentDetails {
 
-	private enum CardType {
-		VISA, VISADEBIT, VISAELECTRON, MAESTRO, MASTERCARD, AMERICANEXPRESS;
-	}
-
 	@Column(name = "card_type", nullable = false)
 	@NotNull
 	private CardType cardType;
 
 	@Column(name = "card_number", nullable = false)
 	@NotNull
-	private int cardNumber;
+	private String cardNumber;
 
 	@Column(name = "name_on_card", nullable = false)
 	@NotNull
@@ -47,19 +45,17 @@ public class PaymentDetails {
 	private String expiryDate;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id", 
-	nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int customerId;
+	private Customer customerId;
 
 	@OneToOne
-	@JoinColumn(name = "order_id", 
-	nullable = true)
+	@JoinColumn(name = "order_id", nullable = true)
 	@Null
-	private int orderId;
-	
-	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			int customerId, int orderId) {
+	private Order orderId;
+
+	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+			Customer customerId, Order orderId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -69,9 +65,9 @@ public class PaymentDetails {
 		this.customerId = customerId;
 		this.orderId = orderId;
 	}
-	
-	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			int customerId) {
+
+	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+			Customer customerId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -80,8 +76,6 @@ public class PaymentDetails {
 		this.expiryDate = expiryDate;
 		this.customerId = customerId;
 	}
-
-
 
 	/**
 	 * @return the cardType
@@ -101,7 +95,7 @@ public class PaymentDetails {
 	/**
 	 * @return the cardNumber
 	 */
-	public int getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
@@ -109,7 +103,7 @@ public class PaymentDetails {
 	 * @param cardNumber
 	 *            the cardNumber to set
 	 */
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
@@ -161,7 +155,7 @@ public class PaymentDetails {
 	/**
 	 * @return the customerId
 	 */
-	public int getCustomerId() {
+	public Customer getCustomerId() {
 		return customerId;
 	}
 
@@ -169,7 +163,7 @@ public class PaymentDetails {
 	 * @param customerId
 	 *            the customerId to set
 	 */
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Customer customerId) {
 		this.customerId = customerId;
 	}
 

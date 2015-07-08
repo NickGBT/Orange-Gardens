@@ -20,15 +20,14 @@ import javax.validation.constraints.NotNull;
 public class Wishlist {
 
 	@OneToOne
-	@JoinColumn(name = "customer_id", 
-	nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
 	private int customerID;
-	private ArrayList<Product> product;
-	
-	public Wishlist(int customerID, ArrayList<Product> product) {
+	private ArrayList<WishlistLine> wishListLine;
+
+	public Wishlist(int customerID, ArrayList<WishlistLine> wishListLine) {
 		this.customerID = customerID;
-		this.product = product;
+		this.wishListLine = wishListLine;
 	}
 
 	/**
@@ -47,17 +46,18 @@ public class Wishlist {
 	}
 
 	/**
-	 * @return the product
+	 * @return the wishListLine
 	 */
-	public ArrayList<Product> getProduct() {
-		return product;
+	public ArrayList<WishlistLine> getWishListLine() {
+		return wishListLine;
 	}
 
 	/**
-	 * @param product
-	 *            the product to set
+	 * @param wishListLine the wishListLine to set
 	 */
-	public void setProduct(ArrayList<Product> product) {
-		this.product = product;
+	public void setWishListLine(ArrayList<WishlistLine> wishListLine) {
+		this.wishListLine = wishListLine;
 	}
+
+	
 }

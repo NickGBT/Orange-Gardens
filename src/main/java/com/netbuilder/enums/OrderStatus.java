@@ -1,5 +1,12 @@
 package com.netbuilder.enums;
 
-public enum Status {
+/**
+ * 
+ * @author llew
+ *
+ */
+
+public enum OrderStatus 
+{
 	placed, processing, awaitingDispatch, dispached, delivered, cancelled, returned, refunded
 }

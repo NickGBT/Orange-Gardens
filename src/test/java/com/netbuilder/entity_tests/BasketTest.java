@@ -10,6 +10,12 @@ import com.netbuilder.entities.BasketLine;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author llew
+ *
+ */
+
 public class BasketTest {
 	
 	Basket basket;
