@@ -27,7 +27,7 @@ public class PaymentDetails {
 
 	@Column(name = "card_number", nullable = false)
 	@NotNull
-	private int cardNumber;
+	private String cardNumber;
 
 	@Column(name = "name_on_card", nullable = false)
 	@NotNull
@@ -52,7 +52,7 @@ public class PaymentDetails {
 	@Null
 	private Order orderId;
 
-	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
 			Customer customerId, Order orderId) {
 		super();
 		this.cardType = cardType;
@@ -64,7 +64,7 @@ public class PaymentDetails {
 		this.orderId = orderId;
 	}
 
-	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
 			Customer customerId) {
 		super();
 		this.cardType = cardType;
@@ -93,7 +93,7 @@ public class PaymentDetails {
 	/**
 	 * @return the cardNumber
 	 */
-	public int getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
@@ -101,7 +101,7 @@ public class PaymentDetails {
 	 * @param cardNumber
 	 *            the cardNumber to set
 	 */
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
