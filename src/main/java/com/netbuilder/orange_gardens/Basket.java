@@ -19,11 +19,11 @@ public class Basket {
 		this.customerID = customerID;
 	}
 	
-	public Product getProducts(){
+	public ArrayList<Product> getProducts(){
 		return product;
 	}
 	
-	public void setProducts(Product product){
+	public void setProducts(ArrayList<Product> product){
 		this.product = product;
 	}
 	

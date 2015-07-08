@@ -1,4 +1,4 @@
-package src.main.java.com.netbuilder.orange_gardens;
+package com.netbuilder.orange_gardens;
 
 import java.util.ArrayList;
 
