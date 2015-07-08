@@ -1,5 +1,4 @@
 package com.netbuilder.orange_gardens;
-<<<<<<< HEAD
 
 /**
  * 
@@ -8,12 +7,8 @@ package com.netbuilder.orange_gardens;
  */
 
 =======
-/**
- * 
- * @author llew
- *
- */
->>>>>>> 01d17e2ee266baaf7fbb5ba3dc3dfa610234462e
+
+
 public class Product {
 
 	private String imageLocation;
