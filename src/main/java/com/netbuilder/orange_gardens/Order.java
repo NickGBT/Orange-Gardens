@@ -31,7 +31,7 @@ public class Order {
 	
 	@Column (name = "status", nullable = false)
 	@NotNull	
-	private Status status;
+	private OrderStatus status;
 	
 	@Column (name = "date_placed", nullable = false)
 	@NotNull
@@ -52,7 +52,7 @@ public class Order {
 	private boolean refundAvailable;
 	
 		
-	public Order(int customerID, int handlerID, Status status,
+	public Order(int customerID, int handlerID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable) {
 		this.customerID = customerID;
