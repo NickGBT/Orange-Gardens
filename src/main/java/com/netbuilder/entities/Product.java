@@ -37,7 +37,7 @@ public class Product {
 	@Column(name = "product_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private Product productId;
+	private int productId;
 
 	@Column(name = "product_name", nullable = false, length = 45)
 	@NotNull
@@ -110,7 +110,7 @@ public class Product {
 	/**
 	 * @return the productId
 	 */
-	public Product getProductId() {
+	public int getProductId() {
 		return productId;
 	}
 
@@ -118,7 +118,7 @@ public class Product {
 	 * @param productId
 	 *            the productId to set
 	 */
-	public void setProductId(Product productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 

@@ -18,6 +18,7 @@ import com.netbuilder.enums.EmployeePermissions;
 @Table(name = "employee")
 
 public class Employee {
+	
 
 	@Column(name = "department", nullable = false)
 	@NotNull
@@ -37,7 +38,7 @@ public class Employee {
 	@Column(name = "employee_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private Employee employeeId;
+	private int employeeId;
 
 	@Column(name = "password", nullable = false)
 	@NotNull
@@ -104,7 +105,7 @@ public class Employee {
 	/**
 	 * @return the employeeId
 	 */
-	public Employee getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
@@ -112,7 +113,7 @@ public class Employee {
 	 * @param employeeId
 	 *            the employeeId to set
 	 */
-	public void setEmployeeId(Employee employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
