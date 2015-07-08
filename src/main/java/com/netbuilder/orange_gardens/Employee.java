@@ -53,12 +53,11 @@ public class Employee {
 	@NotNull
 	private Permission permission;
 	
-	public Employee(Department department, String fName, String lName, int employeeId, String password,
+	public Employee(Department department, String fName, String lName, String password,
 			Permission permission) {
 		this.department = department;
 		this.fName = fName;
 		this.lName = lName;
-		this.employeeId = employeeId;
 		this.password = password;
 		this.permission = permission;
 	}

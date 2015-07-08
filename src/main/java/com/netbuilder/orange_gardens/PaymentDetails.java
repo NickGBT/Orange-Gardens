@@ -69,7 +69,7 @@ public class PaymentDetails {
 		this.customerId = customerId;
 		this.orderId = orderId;
 	}
-
+	
 	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
 			int customerId) {
 		super();

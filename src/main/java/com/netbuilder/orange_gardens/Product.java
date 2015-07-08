@@ -63,10 +63,9 @@ public class Product {
 	@Size(min = 20, max = 1000)
 	private String description;
 
-	public Product(String imageLocation, int productId, String productName, double productPrice, int width, int height,
+	public Product(String imageLocation, String productName, double productPrice, int width, int height,
 			int length, double weight, String description) {
 		this.imageLocation = imageLocation;
-		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;
@@ -76,9 +75,8 @@ public class Product {
 		this.description = description;
 	}
 	
-	public Product(int productId, String productName, double productPrice, int width, int height,
+	public Product(String productName, double productPrice, int width, int height,
 			int length, double weight, String description) {
-		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;
