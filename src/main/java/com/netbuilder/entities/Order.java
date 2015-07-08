@@ -108,7 +108,4 @@ public class Order {
 	public int getHandlerID(){
 		return handlerID;
 	}
-
-	
-	
 }
