@@ -42,7 +42,7 @@ public class Employee {
 	@Column(name = "employee_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int employeeId;
+	private Employee employeeId;
 
 	@Column(name = "password", nullable = false)
 	@NotNull
@@ -109,7 +109,7 @@ public class Employee {
 	/**
 	 * @return the employeeId
 	 */
-	public int getEmployeeId() {
+	public Employee getEmployeeId() {
 		return employeeId;
 	}
 
@@ -117,7 +117,7 @@ public class Employee {
 	 * @param employeeId
 	 *            the employeeId to set
 	 */
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Employee employeeId) {
 		this.employeeId = employeeId;
 	}
 

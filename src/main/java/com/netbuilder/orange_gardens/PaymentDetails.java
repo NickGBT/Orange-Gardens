@@ -47,19 +47,17 @@ public class PaymentDetails {
 	private String expiryDate;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id", 
-	nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int customerId;
+	private Customer customerId;
 
 	@OneToOne
-	@JoinColumn(name = "order_id", 
-	nullable = true)
+	@JoinColumn(name = "order_id", nullable = true)
 	@Null
-	private int orderId;
-	
+	private Order orderId;
+
 	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			int customerId, int orderId) {
+			Customer customerId, Order orderId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -69,9 +67,9 @@ public class PaymentDetails {
 		this.customerId = customerId;
 		this.orderId = orderId;
 	}
-	
+
 	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			int customerId) {
+			Customer customerId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -80,8 +78,6 @@ public class PaymentDetails {
 		this.expiryDate = expiryDate;
 		this.customerId = customerId;
 	}
-
-
 
 	/**
 	 * @return the cardType
@@ -161,7 +157,7 @@ public class PaymentDetails {
 	/**
 	 * @return the customerId
 	 */
-	public int getCustomerId() {
+	public Customer getCustomerId() {
 		return customerId;
 	}
 
@@ -169,7 +165,7 @@ public class PaymentDetails {
 	 * @param customerId
 	 *            the customerId to set
 	 */
-	public void setCustomerId(int customerId) {
+	public void setCustomerId(Customer customerId) {
 		this.customerId = customerId;
 	}
 

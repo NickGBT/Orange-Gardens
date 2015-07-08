@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -19,8 +21,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "product")
-
+@NamedQueries({
+	@NamedQuery(name = Product.FIND_BY_OUT_STOCK, query = "SELECT p FROM Product p WHERE ")
+})
 public class Product {
+	
+	public static final String FIND_BY_OUT_STOCK = "Product.findByOutStock";
 
 	@Column(name = "image_location", nullable = true, length = 100)
 	@Null
@@ -31,7 +37,7 @@ public class Product {
 	@Column(name = "product_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int productId;
+	private Product productId;
 
 	@Column(name = "product_name", nullable = false, length = 45)
 	@NotNull
@@ -63,8 +69,8 @@ public class Product {
 	@Size(min = 20, max = 1000)
 	private String description;
 
-	public Product(String imageLocation, String productName, double productPrice, int width, int height,
-			int length, double weight, String description) {
+	public Product(String imageLocation, String productName, double productPrice, int width, int height, int length,
+			double weight, String description) {
 		this.imageLocation = imageLocation;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -74,9 +80,9 @@ public class Product {
 		this.weight = weight;
 		this.description = description;
 	}
-	
-	public Product(String productName, double productPrice, int width, int height,
-			int length, double weight, String description) {
+
+	public Product(String productName, double productPrice, int width, int height, int length, double weight,
+			String description) {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;
@@ -104,7 +110,7 @@ public class Product {
 	/**
 	 * @return the productId
 	 */
-	public int getProductId() {
+	public Product getProductId() {
 		return productId;
 	}
 
@@ -112,7 +118,7 @@ public class Product {
 	 * @param productId
 	 *            the productId to set
 	 */
-	public void setProductId(int productId) {
+	public void setProductId(Product productId) {
 		this.productId = productId;
 	}
 
