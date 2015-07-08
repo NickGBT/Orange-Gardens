@@ -11,10 +11,8 @@ import javax.validation.constraints.Size;
  *
  */
 
-
 @Entity
 @Table(name = "employee")
-
 
 public class Employee {
 
@@ -36,7 +34,6 @@ public class Employee {
 		MANAGER, WORKER;
 	}
 
-	
 	@Column(name = "department", nullable = false)
 	@NotNull
 	private Department department;
@@ -56,12 +53,12 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int employeeId;
-	
+
 	@Column(name = "password", nullable = false)
 	@NotNull
-	@Size(min = 6, max =16)
+	@Size(min = 6, max = 16)
 	private String password;
-	
+
 	@Column(name = "permissions", nullable = false)
 	@NotNull
 	private Permission permission;
