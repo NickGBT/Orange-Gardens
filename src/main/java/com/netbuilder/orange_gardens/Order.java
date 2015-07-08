@@ -8,7 +8,7 @@ public class Order {
 	
 	private int customerID;
 	private enum status{
-		
+		placed, processing, awaitingDispatch, dispached, delivered, cancelled, returned, refunded
 	};
 	private String datePlaced;
 	private String timeToDeliver;

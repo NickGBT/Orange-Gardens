@@ -1,5 +1,12 @@
 package com.netbuilder.orange_gardens;
 
+/**
+ * 
+ * @author mwatson
+ *
+ */
+
+
 import java.util.ArrayList;
 
 public class Wishlist {

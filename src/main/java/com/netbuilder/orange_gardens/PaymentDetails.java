@@ -2,6 +2,12 @@ package com.netbuilder.orange_gardens;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author mwatson
+ *
+ */
+
 public class PaymentDetails {
 
 	private enum CardType { 
