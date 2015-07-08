@@ -16,16 +16,6 @@ import javax.validation.constraints.Size;
 
 public class Employee {
 
-	public Employee(Department department, String fName, String lName, int employeeId, String password,
-			Permission permission) {
-		this.department = department;
-		this.fName = fName;
-		this.lName = lName;
-		this.employeeId = employeeId;
-		this.password = password;
-		this.permission = permission;
-	}
-
 	private enum Department {
 		SALES, WAREHOUSE;
 	}
@@ -62,7 +52,17 @@ public class Employee {
 	@Column(name = "permissions", nullable = false)
 	@NotNull
 	private Permission permission;
-
+	
+	public Employee(Department department, String fName, String lName, int employeeId, String password,
+			Permission permission) {
+		this.department = department;
+		this.fName = fName;
+		this.lName = lName;
+		this.employeeId = employeeId;
+		this.password = password;
+		this.permission = permission;
+	}
+	
 	/**
 	 * @return the department
 	 */

@@ -20,15 +20,16 @@ import javax.validation.constraints.NotNull;
 
 public class Wishlist {
 
-	public Wishlist(ArrayList<Product> product) {
-		this.product = product;
-	}
-
 	@Column(name = "customer_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int customerID;
 	private ArrayList<Product> product;
+	
+	public Wishlist(int customerID, ArrayList<Product> product) {
+		this.customerID = customerID;
+		this.product = product;
+	}
 
 	/**
 	 * @return the customerID

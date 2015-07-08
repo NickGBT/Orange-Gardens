@@ -22,9 +22,46 @@ import javax.validation.constraints.Size;
 
 public class Product {
 
+	@Column(name = "image_location", nullable = true, length = 100)
+	@Null
+	@Size(min = 1, max = 100)
+	private String imageLocation;
 
+	@Id
+	@Column(name = "product_id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private int productId;
 
+	@Column(name = "product_name", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 4, max = 45)
+	private String productName;
 
+	@Column(name = "product_price", nullable = false)
+	@NotNull
+	private double productPrice;
+
+	@Column(name = "width", nullable = false)
+	@NotNull
+	private int width;
+
+	@Column(name = "height", nullable = false)
+	@NotNull
+	private int height;
+
+	@Column(name = "length", nullable = false)
+	@NotNull
+	private int length;
+
+	@Column(name = "weight", nullable = false)
+	@NotNull
+	private double weight;
+
+	@Column(name = "description", nullable = false, length = 1000)
+	@NotNull
+	@Size(min = 20, max = 1000)
+	private String description;
 
 	public Product(String imageLocation, int productId, String productName, double productPrice, int width, int height,
 			int length, double weight, String description) {
@@ -38,48 +75,6 @@ public class Product {
 		this.weight = weight;
 		this.description = description;
 	}
-
-	@Column(name = "image_location", nullable = true, length = 100)
-	@Null
-	@Size(min = 1, max = 100)
-	private String imageLocation;
-	
-	@Id
-	@Column(name = "product_id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private int productId;
-	
-	@Column(name = "product_name", nullable = false, length = 45)
-	@NotNull
-	@Size(min = 4, max = 45)
-	private String productName;
-	
-	@Column(name = "product_price", nullable = false)
-	@NotNull
-	private double productPrice;
-	
-	@Column(name = "width", nullable = false)
-	@NotNull
-	private int width;
-	
-	@Column(name = "height", nullable = false)
-	@NotNull
-	private int height;
-	
-	@Column(name = "length", nullable = false)
-	@NotNull
-	private int length;
-	
-	@Column(name = "weight", nullable = false)
-	@NotNull
-	private double weight;
-	
-	@Column(name = "description", nullable = false, length = 1000)
-	@NotNull
-	@Size(min = 20, max = 1000)
-	private String description;
-	
 
 	/**
 	 * @return the imageLocation

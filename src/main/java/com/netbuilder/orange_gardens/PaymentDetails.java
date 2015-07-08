@@ -1,7 +1,5 @@
 package com.netbuilder.orange_gardens;
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +19,36 @@ import javax.validation.constraints.Size;
 
 public class PaymentDetails {
 
+	private enum CardType {
+		VISA, VISADEBIT, VISAELECTRON, MAESTRO, MASTERCARD, AMERICANEXPRESS;
+	}
+
+	@Column(name = "card_type", nullable = false)
+	@NotNull
+	private CardType cardType;
+
+	@Column(name = "card_number", nullable = false)
+	@NotNull
+	private int cardNumber;
+
+	@Column(name = "name_on_card", nullable = false)
+	@NotNull
+	@Size(min = 2, max = 45)
+	private String nameOnCard;
+
+	@Column(name = "security_number", nullable = false)
+	@NotNull
+	private int securityNumber;
+
+	@Column(name = "expiry_date", nullable = false)
+	@NotNull
+	private String expiryDate;
+
+	@Column(name = "employee_id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private int customerId;
+
 	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate) {
 
 		this.cardType = cardType;
@@ -29,36 +57,6 @@ public class PaymentDetails {
 		this.securityNumber = securityNumber;
 		this.expiryDate = expiryDate;
 	}
-
-	private enum CardType {
-		VISA, VISADEBIT, VISAELECTRON, MAESTRO, MASTERCARD;
-	}
-
-	@Column(name = "card_type", nullable = false)
-	@NotNull
-	private CardType cardType;
-	
-	@Column(name = "card_number", nullable = false)
-	@NotNull
-	private int cardNumber;
-	
-	@Column(name = "name_on_card", nullable = false)
-	@NotNull
-	@Size(min = 2, max = 45)
-	private String nameOnCard;
-	
-	@Column(name = "security_number" , nullable = false)
-	@NotNull
-	private int securityNumber;
-	
-	@Column(name = "expiry_date", nullable = false)
-	@NotNull
-	private String expiryDate;
-	
-	@Column(name = "employee_id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
-	private int customerId;
 
 	/**
 	 * @return the cardType
