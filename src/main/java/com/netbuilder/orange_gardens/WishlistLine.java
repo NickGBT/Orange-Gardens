@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Nick Gilbert
+ * @author ngilbert
  */
 @Entity
 @Table
@@ -24,17 +24,16 @@ public class WishlistLine {
 	@OneToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
-	private int productID;
+	private Product product;
 
 	public WishlistLine() {
 
 	}
 
-	public WishlistLine(int quantity, boolean porousware, int customerID,
-			int productID) {
+	public WishlistLine(int quantity, int customerID, Product product) {
 		this.quantity = quantity;
 		this.customerID = customerID;
-		this.productID = productID;
+		this.product = product;
 	}
 
 	/**
@@ -62,8 +61,8 @@ public class WishlistLine {
 	/**
 	 * @return the productID
 	 */
-	public int getProductID() {
-		return productID;
+	public Product getProductID() {
+		return product;
 	}
 
 }
