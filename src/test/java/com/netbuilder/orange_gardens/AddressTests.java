@@ -14,7 +14,7 @@ public class AddressTests extends TestCase {
 	
 	String addressLabel = "Test Address";
 	
-	int customerId = 4672;
+	Customer testCustomer;
 	
 	String lineOne = "5 Orange Garden";
 	String lineTwo = "Ochre Business Park";
@@ -28,11 +28,13 @@ public class AddressTests extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		testAddress = new Address(customerId, addressLabel, lineOne, lineTwo, lineThree, city, county, postcode, false);
+		testCustomer = new Customer("foo", "bar", "foobar", "barfoo", "foo@bar.fb", false);
+		
+		testAddress = new Address(testCustomer, addressLabel, lineOne, lineTwo, lineThree, city, county, postcode, false);
 	}
 
 	public void testGetCustomerID() {
-		assertEquals(testAddress.getCustomerID(), customerId);
+		assertEquals(testAddress.getCustomerID(), testCustomer);
 	}
 
 	public void testGetAddressLabel() {
