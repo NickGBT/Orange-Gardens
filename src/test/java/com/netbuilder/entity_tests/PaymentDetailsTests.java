@@ -1,10 +1,15 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.Order;
+import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.enums.CardType;
 
 
 /**
@@ -33,7 +38,7 @@ public class PaymentDetailsTests {
 		security = 123;
 		expiry = "08/18";
 		customerId = new Customer("foo", "bar", "barfoo", "foobar", "foo@bar.fb", false);
-		orderId = 211475;
+		orderId = null;
 		
 		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customerId, orderId);
 	}
