@@ -1,24 +1,28 @@
 package com.netbuilder.orange_gardens;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by Nick Gilbert
  */
+@Entity
+@Table
 public class WishlistLine {
 
 	@Column(name = "quantity", nullable = false)
 	@NotNull
 	private int quantity;
-	@Column(name = "orderID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToOne
+	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int orderID;
-	@Column(name = "productID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int customerID;
+	@OneToOne
+	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
 	private int productID;
 
@@ -26,10 +30,10 @@ public class WishlistLine {
 
 	}
 
-	public WishlistLine(int quantity, boolean porousware, int orderID,
+	public WishlistLine(int quantity, boolean porousware, int customerID,
 			int productID) {
 		this.quantity = quantity;
-		this.orderID = orderID;
+		this.customerID = customerID;
 		this.productID = productID;
 	}
 
@@ -49,10 +53,10 @@ public class WishlistLine {
 	}
 
 	/**
-	 * @return the orderID
+	 * @return the customerID
 	 */
-	public int getOrderID() {
-		return orderID;
+	public int getCustomerID() {
+		return customerID;
 	}
 
 	/**
