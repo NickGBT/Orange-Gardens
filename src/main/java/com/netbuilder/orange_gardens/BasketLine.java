@@ -30,6 +30,14 @@ public class BasketLine {
 
 	}
 
+	public BasketLine(int quantity, boolean porousware, int orderID,
+			int productID) {
+		this.quantity = quantity;
+		this.porousware = porousware;
+		this.orderID = orderID;
+		this.productID = productID;
+	}
+
 	/**
 	 * @param set
 	 *            the quantity
@@ -61,26 +69,10 @@ public class BasketLine {
 	}
 
 	/**
-	 * @param set
-	 *            the orderID
-	 */
-	public void setOrderID(int orderID) {
-		this.orderID = orderID;
-	}
-
-	/**
 	 * @return the orderID
 	 */
 	public int getOrderID() {
 		return orderID;
-	}
-
-	/**
-	 * @param set
-	 *            the productID
-	 */
-	public void setProductID(int productID) {
-		this.productID = productID;
 	}
 
 	/**
