@@ -6,9 +6,6 @@ package com.netbuilder.orange_gardens;
  *
  */
 
-=======
-
-
 public class Product {
 
 	private String imageLocation;
