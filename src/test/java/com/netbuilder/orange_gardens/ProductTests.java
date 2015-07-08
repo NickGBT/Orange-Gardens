@@ -88,6 +88,33 @@ public class ProductTests extends TestCase {
 		assertEquals(testProduct.getDescription(), description);
 	}
 	
+	public void testUnderlengthName(){
+		String testName = "a";
+		
+		testProduct.setProductName(testName);
+		
+		assertTrue("Name requires length control. Length is: " + testProduct.getProductName().length()
+				,testProduct.getProductName().length() >= 4);
+	}
+	
+	public void testOverlengthName(){
+		String testName = "a";
+		
+		for(int i = 0; i < 46; i++) testName = testName + "a";
+		
+		testProduct.setProductName(testName);
+		
+		assertTrue("Name requires length control. Length is: " + testProduct.getProductName().length()
+				,testProduct.getProductName().length() <= 45);
+	}
+	
+	public void testNullName(){
+		testProduct.setProductName(null);
+		
+		assertTrue("productName has been allowed to be null.", testProduct.getProductName() != null);
+	}
+	
+	
 	public void testOverlengthDescription(){
 		String testString = "a";
 		for(int i = 0; i < 1001; i++) testString = testString + "a";
