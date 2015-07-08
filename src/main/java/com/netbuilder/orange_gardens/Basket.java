@@ -6,15 +6,32 @@ package com.netbuilder.orange_gardens;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table (name = "basket")
 public class Basket {
 	
+	@OneToOne
+	@JoinColumn(name = "customer_id", nullable = false)
+	@NotNull
 	private int customerID;
+	
+	
 	private ArrayList<BasketLine> basketLine;
 	
-	public Basket(){
-		basketLine = new ArrayList<BasketLine>();
-	}
+
 	
+	public Basket(int customerID, ArrayList<BasketLine> basketLine) {
+		this.customerID = customerID;
+		this.basketLine = basketLine;
+	}
+
 	public int getCustomerID(){
 		return customerID;
 	}
