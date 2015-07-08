@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Basket {
 	
 	private int customerID;
-	private ArrayList<Product> product;
+	private ArrayList<BasketLine> basketLine;
 	
 	public Basket(){
-		product = new ArrayList<Product>();
+		basketLine = new ArrayList<BasketLine>();
 	}
 	
 	public int getCustomerID(){
@@ -23,12 +23,12 @@ public class Basket {
 		this.customerID = customerID;
 	}
 	
-	public ArrayList<Product> getProducts(){
-		return product;
+	public ArrayList<BasketLine> getProducts(){
+		return basketLine;
 	}
 	
-	public void setProducts(ArrayList<Product> product){
-		this.product = product;
+	public void setProducts(ArrayList<BasketLine> product){
+		this.basketLine = product;
 	}
 	
 	

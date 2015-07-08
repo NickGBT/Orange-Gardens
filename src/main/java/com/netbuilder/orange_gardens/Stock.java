@@ -1,30 +1,61 @@
 package com.netbuilder.orange_gardens;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+
 /**
  * 
  * @author JustinMabbutt
  *
  */
 
+@Entity
+@Table(name = "stock")
 public class Stock 
 {
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = false)
+	@NotNull
 	private int productID;
+	@Column(name = "stock_level", nullable = false)
+	@NotNull
 	private int stockLevel;
+	@Column(name = "stock_available", nullable = false)
+	@NotNull
 	private int stockAvailable;
-	private boolean hasPorousware;
+	@Column(name = "location", nullable = true, length = 20)
+	@Null
+	@Size(min = 2, max = 20)
 	private String location;
+	@Column(name = "maximum_stock", nullable = false)
+	@NotNull
 	private int maxStock;
+	@Column(name = "critical_threshold", nullable = false)
+	@NotNull
 	private int criticalThreshold;
+	@Column(name = "required_stock", nullable = false)
+	@NotNull
 	private int requiredStock;
+	
+	public Stock(int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
+	{
+		this.stockLevel = stockLevel;
+		this.stockAvailable = stockAvailable;
+		this.location = location;
+		this.maxStock = maxStock;
+		this.criticalThreshold = criticalThreshold;
+		this.requiredStock = requiredStock;
+	}
 	
 	public int getProductID()
 	{
 		return productID;
-	}
-	
-	public boolean getPorousware()
-	{
-		return hasPorousware;
 	}
 	
 	public int getStockLevel()

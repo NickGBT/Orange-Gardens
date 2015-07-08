@@ -1,9 +1,14 @@
 package com.netbuilder.orange_gardens;
+<<<<<<< HEAD
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 /**
@@ -13,42 +18,69 @@ import javax.validation.constraints.Size;
  *
  */
 
+@Entity
+@Table(name = "product")
+
 public class Product {
 
 
 
-	public Product(String imageLocation, int productId, String productName, double productPrice,
-			Boolean isPorouswareable, int width, int height, int length, double weight, String description,
-			double porouswarePrice) {
+
+
+	public Product(String imageLocation, int productId, String productName, double productPrice, int width, int height,
+			int length, double weight, String description) {
 		this.imageLocation = imageLocation;
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
-		this.isPorouswareable = isPorouswareable;
 		this.width = width;
 		this.height = height;
 		this.length = length;
 		this.weight = weight;
 		this.description = description;
-		this.porouswarePrice = porouswarePrice;
 	}
 
-	@Column(name = "image_location", nullable = false)
-	@NotNull
+	@Column(name = "image_location", nullable = true, length = 100)
+	@Null
 	@Size(min = 1, max = 100)
 	private String imageLocation;
 	
-	
+	@Id
+	@Column(name = "product_id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int productId;
+	
+	@Column(name = "product_name", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 4, max = 45)
 	private String productName;
+	
+	@Column(name = "product_price", nullable = false)
+	@NotNull
 	private double productPrice;
-	private Boolean isPorouswareable;
+	
+	@Column(name = "width", nullable = false)
+	@NotNull
 	private int width;
+	
+	@Column(name = "height", nullable = false)
+	@NotNull
 	private int height;
+	
+	@Column(name = "length", nullable = false)
+	@NotNull
 	private int length;
+	
+	@Column(name = "weight", nullable = false)
+	@NotNull
 	private double weight;
+	
+	@Column(name = "description", nullable = false, length = 1000)
+	@NotNull
+	@Size(min = 20, max = 1000)
 	private String description;
-	private double porouswarePrice;
+	
 
 	/**
 	 * @return the imageLocation
@@ -108,21 +140,6 @@ public class Product {
 	 */
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
-	}
-
-	/**
-	 * @return the isPorouswareable
-	 */
-	public Boolean getIsPorouswareable() {
-		return isPorouswareable;
-	}
-
-	/**
-	 * @param isPorouswareable
-	 *            the isPorouswareable to set
-	 */
-	public void setIsPorouswareable(Boolean isPorouswareable) {
-		this.isPorouswareable = isPorouswareable;
 	}
 
 	/**
@@ -198,21 +215,6 @@ public class Product {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	/**
-	 * @return the porouswarePrice
-	 */
-	public double getPorouswarePrice() {
-		return porouswarePrice;
-	}
-
-	/**
-	 * @param porouswarePrice
-	 *            the porouswarePrice to set
-	 */
-	public void setPorouswarePrice(double porouswarePrice) {
-		this.porouswarePrice = porouswarePrice;
 	}
 
 }

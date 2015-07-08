@@ -8,12 +8,25 @@ package com.netbuilder.orange_gardens;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "wishlist")
+
 public class Wishlist {
 
 	public Wishlist(ArrayList<Product> product) {
 		this.product = product;
 	}
 
+	@Column(name = "customer_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int customerID;
 	private ArrayList<Product> product;
 
