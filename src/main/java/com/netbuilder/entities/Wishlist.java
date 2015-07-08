@@ -22,10 +22,10 @@ public class Wishlist {
 	@OneToOne
 	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int customerID;
+	private Customer customerID;
 	private ArrayList<WishlistLine> wishListLine;
 
-	public Wishlist(int customerID, ArrayList<WishlistLine> wishListLine) {
+	public Wishlist(Customer customerID, ArrayList<WishlistLine> wishListLine) {
 		this.customerID = customerID;
 		this.wishListLine = wishListLine;
 	}
@@ -33,7 +33,7 @@ public class Wishlist {
 	/**
 	 * @return the customerID
 	 */
-	public int getCustomerID() {
+	public Customer getCustomerID() {
 		return customerID;
 	}
 
@@ -41,7 +41,7 @@ public class Wishlist {
 	 * @param customerID
 	 *            the customerID to set
 	 */
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(Customer customerID) {
 		this.customerID = customerID;
 	}
 
