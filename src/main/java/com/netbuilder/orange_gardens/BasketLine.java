@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Nick Gilbert
+ * @author ngilbert
  */
 @Entity
 @Table
@@ -20,17 +20,16 @@ public class BasketLine {
 	@OneToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
-	private int productID;
+	private Product product;
 
 	public BasketLine() {
 
 	}
 
-	public BasketLine(int quantity, boolean porousware, int customerID,
-			int productID) {
+	public BasketLine(int quantity, int customerID, Product product) {
 		this.quantity = quantity;
 		this.customerID = customerID;
-		this.productID = productID;
+		this.product = product;
 	}
 
 	/**
@@ -58,8 +57,8 @@ public class BasketLine {
 	/**
 	 * @return the productID
 	 */
-	public int getProductID() {
-		return productID;
+	public Product getProductID() {
+		return product;
 	}
 
 }
