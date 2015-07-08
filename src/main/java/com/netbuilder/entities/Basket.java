@@ -47,6 +47,10 @@ public class Basket {
 		this.basketLine = product;
 	}
 	
+	public Basket getBasket(){
+		return this;
+	}
+	
 	
 
 }

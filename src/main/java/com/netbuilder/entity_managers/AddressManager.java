@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import com.netbuilder.entities.Address;
 
+/**
+ * 
+ * @author JustinMabbutt
+ *
+ */
+
 public interface AddressManager 
 {
 	//CREATE
@@ -12,6 +18,8 @@ public interface AddressManager
 	
 	//READ
 	public Address findByPostcode(String postcode);
+	public Address findByLabel(String label);
+	public Address findByCustomerID(int customerID);
 	public ArrayList<Address> getAddresses();
 	
 	//UPDATE
