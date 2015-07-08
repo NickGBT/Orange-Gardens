@@ -1,23 +1,79 @@
 package com.netbuilder.orange_gardens;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+
 /**
  * 
  * @author JustinMabbutt
  *
  */
 
+@Entity
+@Table(name = "address")
 public class Address 
 {
+	@ManyToOne
+	@JoinColumn(name = "customer_id", nullable = false)
+	@NotNull
 	private int customerID;
+	@Id
+	@Column(name = "address_label", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int addressLabel;
+	@ManyToOne
+	@JoinColumn(name = "orderID", nullable = true)
+	@Null
 	private int orderID;
+	@Column(name = "line1", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 2, max = 45)
 	private String addressLine1;
+	@Column(name = "line2", nullable = true, length = 45)
+	@Null
+	@Size(min = 2, max = 45)
 	private String addressLine2;
+	@Column(name = "line3", nullable = true, length = 45)
+	@Null
+	@Size(min = 2, max = 45)
 	private String addressLine3;
+	@Column(name = "city", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 2, max = 45)
+	private String city;
+	@Column(name = "county", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 2, max = 45)
 	private String county;
-	private String postcode;
-	private String country;
+	@Column(name = "postcode", nullable = false, length = 45)
+	@NotNull
+	@Size(min = 6, max = 8)
+	private String postcode;	
+	@Column(name = "is_billing_address", nullable = false)
+	@NotNull
 	private boolean isBillingAddress;
+	
+	public Address(int addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
+	{
+		this.addressLabel = addressLabel;
+		this.addressLine1 = addressLine1;
+		this.addressLine2 = addressLine2;
+		this.addressLine3 = addressLine3;
+		this.city = city;
+		this.county = county;
+		this.postcode = postcode;
+		this.isBillingAddress = isBillingAddress;
+	}
 	
 	public int getCustomerID()
 	{
@@ -63,6 +119,16 @@ public class Address
 	{
 		this.addressLine3 = addressLine3;
 	}
+	
+	public String getCity() 
+	{
+		return city;
+	}
+
+	public void setCity(String city) 
+	{
+		this.city = city;
+	}
 
 	public String getCounty()
 	{
@@ -82,16 +148,6 @@ public class Address
 	public void setPostcode(String postcode) 
 	{
 		this.postcode = postcode;
-	}
-
-	public String getCountry() 
-	{
-		return country;
-	}
-
-	public void setCountry(String country) 
-	{
-		this.country = country;
 	}
 
 	public boolean isBillingAddress()
