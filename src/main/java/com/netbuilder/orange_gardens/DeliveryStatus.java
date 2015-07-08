@@ -1,6 +1,6 @@
 package com.netbuilder.orange_gardens;
 
-public enum DeliveryStatus 
+public enum DeliveryStatus
 {
 	Dispatched, Processing, Delivered
 }
