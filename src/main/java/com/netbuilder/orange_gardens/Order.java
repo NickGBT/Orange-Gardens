@@ -52,12 +52,12 @@ public class Order {
 	private String timeToDeliver;
 	
 	@Column (name = "refund_available")
-	private boolean refundAvaiable;
+	private boolean refundAvailable;
 	
 		
 	public Order(int customerID, int handlerID, Status status,
 			String datePlaced, String dateDispatched, String dateDelivered,
-			String timeToDeliver, boolean refundAvaiable) {
+			String timeToDeliver, boolean refundAvailable) {
 		this.customerID = customerID;
 		this.handlerID = handlerID;
 		this.status = status;
@@ -65,7 +65,7 @@ public class Order {
 		this.dateDispatched = dateDispatched;
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
-		this.refundAvaiable = refundAvaiable;
+		this.refundAvailable = refundAvailable;
 	}
 
 	public int getCustomerID() {
@@ -84,11 +84,11 @@ public class Order {
 	public void setTimeToDeliver(String timeToDeliver) {
 		this.timeToDeliver = timeToDeliver;
 	}
-	public boolean isRefundAvaiable() {
-		return refundAvaiable;
+	public boolean isRefundAvailable() {
+		return refundAvailable;
 	}
-	public void setRefundAvaiable(boolean refundAvaiable) {
-		this.refundAvaiable = refundAvaiable;
+	public void setRefundAvailable(boolean refundAvailable) {
+		this.refundAvailable = refundAvailable;
 	}
 	public String getDateDispatched() {
 		return dateDispatched;
