@@ -58,7 +58,8 @@ public class Delivery
 		return deliveryID;
 	}
 
-	public String getDatePlaced() {
+	public String getDatePlaced()
+	{
 		return datePlaced;
 	}
 
@@ -92,7 +93,8 @@ public class Delivery
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(BigDecimal price) 
+	{
 		this.price = price;
 	}
 }

@@ -5,9 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author llew
+ *
+ */
+
 public class ProductLineTest {
 	
-	ProductLine productLine;
+	ProductLine productLine; 
 	
 	private int orderID = 45321;
 	private int productID = 12345;

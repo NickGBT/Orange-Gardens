@@ -47,8 +47,8 @@ public class Customer {
 	@NotNull
 	private boolean isBlackListed;
 
-	public Customer(String fName, String lName, String username,
-			String password, String emailAddress, boolean isBlackListed) {
+	public Customer(String fName, String lName, String username, String password, String emailAddress, boolean isBlackListed) 
+	{
 		this.fName = fName;
 		this.lName = lName;
 		this.username = username;
@@ -57,55 +57,68 @@ public class Customer {
 		this.isBlackListed = isBlackListed;
 	}
 
-	public int getCustomerID() {
+	public int getCustomerID() 
+	{
 		return customerID;
 	}
 
-	public String getfName() {
+	public String getfName()
+	{
 		return fName;
 	}
 
-	public void setfName(String fName) {
+	public void setfName(String fName)
+	{
 		this.fName = fName;
 	}
 
-	public String getlName() {
+	public String getlName()
+	{
 		return lName;
 	}
 
-	public void setlName(String lName) {
+	public void setlName(String lName)
+	{
 		this.lName = lName;
 	}
 
-	public String getUsername() {
+	public String getUsername()
+	{
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(String username)
+	{
 		this.username = username;
 	}
 
-	public String getPassword() {
+	public String getPassword() 
+	{
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
 
-	public String getEmailAddress() {
+	public String getEmailAddress()
+	{
 		return emailAddress;
 	}
 
-	public void setEmailAddress(String emailAddress) {
+	public void setEmailAddress(String emailAddress)
+	{
 		this.emailAddress = emailAddress;
 	}
 
-	public boolean isBlackListed() {
+	public boolean isBlackListed()
+	{
 		return isBlackListed;
 	}
 
-	public void setBlackListed(boolean isBlackListed) {
+	public void setBlackListed(boolean isBlackListed)
+	{
 		this.isBlackListed = isBlackListed;
 	}
 }
