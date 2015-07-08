@@ -1,5 +1,12 @@
 package com.netbuilder.orange_gardens;
 
+/**
+ * 
+ * @author mwatson
+ *
+ */
+
+
 public class Employee {
 	
 	private enum Department {
