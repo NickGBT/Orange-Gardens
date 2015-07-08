@@ -43,8 +43,9 @@ public class Stock
 	@NotNull
 	private int requiredStock;
 	
-	public Stock(int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
+	public Stock(int productID, int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
 	{
+		this.productID = productID;
 		this.stockLevel = stockLevel;
 		this.stockAvailable = stockAvailable;
 		this.location = location;

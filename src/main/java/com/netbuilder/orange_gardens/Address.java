@@ -63,8 +63,9 @@ public class Address
 	@NotNull
 	private boolean isBillingAddress;
 	
-	public Address(int addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
+	public Address(int customerID, int addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
 	{
+		this.customerID = customerID;
 		this.addressLabel = addressLabel;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
