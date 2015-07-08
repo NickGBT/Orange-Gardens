@@ -27,10 +27,11 @@ public class Address
 	@NotNull
 	private int customerID;
 	@Id
-	@Column(name = "address_label", nullable = false)
+	@Column(name = "address_label", nullable = false, length = 45)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int addressLabel;
+	@Size(min = 2, max = 45)
+	private String addressLabel;
 	@ManyToOne
 	@JoinColumn(name = "orderID", nullable = true)
 	@Null
@@ -63,7 +64,7 @@ public class Address
 	@NotNull
 	private boolean isBillingAddress;
 	
-	public Address(int customerID, int addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
+	public Address(int customerID, String addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
 	{
 		this.customerID = customerID;
 		this.addressLabel = addressLabel;
@@ -81,7 +82,7 @@ public class Address
 		return customerID;
 	}
 	
-	public int getAddressLabel()
+	public String getAddressLabel()
 	{
 		return addressLabel;
 	}
