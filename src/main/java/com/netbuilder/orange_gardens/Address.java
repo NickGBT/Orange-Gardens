@@ -25,7 +25,7 @@ public class Address
 	@ManyToOne
 	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int customerID;
+	private Customer customer;
 	@Id
 	@Column(name = "address_label", nullable = false, length = 45)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,9 @@ public class Address
 	@Size(min = 2, max = 45)
 	private String addressLabel;
 	@ManyToOne
-	@JoinColumn(name = "orderID", nullable = true)
+	@JoinColumn(name = "order_id", nullable = true)
 	@Null
-	private int orderID;
+	private Order order;
 	@Column(name = "line1", nullable = false, length = 45)
 	@NotNull
 	@Size(min = 2, max = 45)
@@ -64,9 +64,9 @@ public class Address
 	@NotNull
 	private boolean isBillingAddress;
 	
-	public Address(int customerID, String addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
+	public Address(Customer customer, String addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
 	{
-		this.customerID = customerID;
+		this.customer = customer;
 		this.addressLabel = addressLabel;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
@@ -77,9 +77,9 @@ public class Address
 		this.isBillingAddress = isBillingAddress;
 	}
 	
-	public int getCustomerID()
+	public Customer getCustomerID()
 	{
-		return customerID;
+		return customer;
 	}
 	
 	public String getAddressLabel()
@@ -87,9 +87,9 @@ public class Address
 		return addressLabel;
 	}
 	
-	public int getOrderID()
+	public Order getOrder()
 	{
-		return orderID;
+		return order;
 	}
 
 	public String getAddressLine1() 
