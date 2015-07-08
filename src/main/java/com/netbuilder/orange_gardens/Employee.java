@@ -1,13 +1,11 @@
 package com.netbuilder.orange_gardens;
-<<<<<<< HEAD
 
 /**
  * 
  * @author mwatson
  *
  */
-=======
->>>>>>> 01d17e2ee266baaf7fbb5ba3dc3dfa610234462e
+
 
 public class Employee {
 	
