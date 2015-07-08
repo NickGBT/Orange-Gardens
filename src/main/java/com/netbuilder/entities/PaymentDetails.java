@@ -1,4 +1,4 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

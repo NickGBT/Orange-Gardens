@@ -1,6 +1,10 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -8,7 +12,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table
-public class BasketLine {
+public class WishlistLine {
 
 	@Column(name = "quantity", nullable = false)
 	@NotNull
@@ -22,11 +26,11 @@ public class BasketLine {
 	@NotNull
 	private int productID;
 
-	public BasketLine() {
+	public WishlistLine() {
 
 	}
 
-	public BasketLine(int quantity, boolean porousware, int customerID,
+	public WishlistLine(int quantity, boolean porousware, int customerID,
 			int productID) {
 		this.quantity = quantity;
 		this.customerID = customerID;

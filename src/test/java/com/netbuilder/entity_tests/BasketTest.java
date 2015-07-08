@@ -1,9 +1,13 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.netbuilder.entities.Basket;
+import com.netbuilder.entities.BasketLine;
+
 import java.util.ArrayList;
 
 public class BasketTest {

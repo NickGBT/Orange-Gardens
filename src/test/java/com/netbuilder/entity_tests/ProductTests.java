@@ -1,4 +1,6 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entity_tests;
+
+import com.netbuilder.entities.Product;
 
 import junit.framework.TestCase;
 

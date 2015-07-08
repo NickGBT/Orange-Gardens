@@ -1,9 +1,12 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entity_tests;
 
 import java.math.BigDecimal;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.netbuilder.entities.Delivery;
+import com.netbuilder.enums.DeliveryStatus;
 
 import static org.junit.Assert.*;
 

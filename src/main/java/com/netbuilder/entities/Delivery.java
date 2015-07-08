@@ -1,4 +1,4 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.entities;
 
 import java.math.BigDecimal;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.netbuilder.enums.DeliveryStatus;
 
 /**
  * 
