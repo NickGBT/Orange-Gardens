@@ -58,6 +58,10 @@ public class Wishlist {
 	public void setWishListLine(ArrayList<WishlistLine> wishListLine) {
 		this.wishListLine = wishListLine;
 	}
+	
+	public Wishlist getWishList(){
+		return this;
+	}
 
 	
 }
