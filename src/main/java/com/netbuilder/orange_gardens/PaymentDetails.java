@@ -21,10 +21,6 @@ import javax.validation.constraints.Size;
 
 public class PaymentDetails {
 
-	private enum CardType {
-		VISA, VISADEBIT, VISAELECTRON, MAESTRO, MASTERCARD, AMERICANEXPRESS;
-	}
-
 	@Column(name = "card_type", nullable = false)
 	@NotNull
 	private CardType cardType;
