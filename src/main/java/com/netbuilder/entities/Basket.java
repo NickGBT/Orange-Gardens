@@ -13,44 +13,39 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "basket")
+@Table(name = "basket")
 public class Basket {
-	
+
 	@OneToOne
 	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
 	private int customerID;
-	
-	
-	private ArrayList<BasketLine> basketLine;
-	
 
-	
+	private ArrayList<BasketLine> basketLine;
+
 	public Basket(int customerID, ArrayList<BasketLine> basketLine) {
 		this.customerID = customerID;
 		this.basketLine = basketLine;
 	}
 
-	public int getCustomerID(){
+	public int getCustomerID() {
 		return customerID;
 	}
-	
-	public void setCustomerID(int customerID){
+
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
-	
-	public ArrayList<BasketLine> getProducts(){
+
+	public ArrayList<BasketLine> getProducts() {
 		return basketLine;
 	}
-	
-	public void setProducts(ArrayList<BasketLine> product){
+
+	public void setProducts(ArrayList<BasketLine> product) {
 		this.basketLine = product;
 	}
-	
-	public Basket getBasket(){
+
+	public Basket getBasket() {
 		return this;
 	}
-	
-	
 
 }

@@ -4,19 +4,20 @@ import java.util.ArrayList;
 
 import com.netbuilder.entities.Address;
 
-public interface AddressManager 
-{
-	//CREATE
+public interface AddressManager {
+	// CREATE
 	public void persistAddress(Address address);
+
 	public void persistAddresses(ArrayList<Address> addresses);
-	
-	//READ
+
+	// READ
 	public Address findByPostcode(String postcode);
+
 	public ArrayList<Address> getAddresses();
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateAddress(Address address);
-	
-	//DELETE
+
+	// DELETE
 	public void removeAddress(Address address);
 }

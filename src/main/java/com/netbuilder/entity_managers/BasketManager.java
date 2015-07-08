@@ -11,17 +11,19 @@ import com.netbuilder.entities.Basket;
 
 public interface BasketManager {
 
-	//CREATE
+	// CREATE
 	public void persistBasket(Basket basket);
+
 	public void persistBasket(ArrayList<Basket> baskets);
-	
-	//READ
+
+	// READ
 	public Basket findByCustomerID(int customerID);
+
 	public Basket getBasket();
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateBasket(Basket basket);
-	
-	//DELETE
+
+	// DELETE
 	public void removeBasket(Basket basket);
 }
