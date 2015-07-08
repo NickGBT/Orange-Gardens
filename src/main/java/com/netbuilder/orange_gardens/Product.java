@@ -1,5 +1,9 @@
 package com.netbuilder.orange_gardens;
-
+/**
+ * 
+ * @author llew
+ *
+ */
 public class Product {
 
 	private String imageLocation;

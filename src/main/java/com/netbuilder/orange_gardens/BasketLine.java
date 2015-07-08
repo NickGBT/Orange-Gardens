@@ -4,6 +4,10 @@ package com.netbuilder.orange_gardens;
  */
 public class BasketLine {
 	
+	/**
+	 * @author llew
+	 */
+	
 	private int quantity;
 	private boolean porousware;
 	private int orderID;

@@ -2,6 +2,10 @@ package com.netbuilder.orange_gardens;
 
 public class Order {
 	
+	/**
+	 * @author llew
+	 */
+	
 	private int customerID;
 	private enum status{
 		
