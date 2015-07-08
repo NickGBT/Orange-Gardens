@@ -1,7 +1,6 @@
 package com.netbuilder.orange_gardens;
 
 import javax.persistence.*;
-import javax.validation.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,12 +13,12 @@ public class BasketLine {
 	@Column(name = "quantity", nullable = false)
 	@NotNull
 	private int quantity;
-	@Column(name = "orderID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToOne
+	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int orderID;
-	@Column(name = "productID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int customerID;
+	@OneToOne
+	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
 	private int productID;
 
@@ -27,10 +26,10 @@ public class BasketLine {
 
 	}
 
-	public BasketLine(int quantity, boolean porousware, int orderID,
+	public BasketLine(int quantity, boolean porousware, int customerID,
 			int productID) {
 		this.quantity = quantity;
-		this.orderID = orderID;
+		this.customerID = customerID;
 		this.productID = productID;
 	}
 
@@ -50,10 +49,10 @@ public class BasketLine {
 	}
 
 	/**
-	 * @return the orderID
+	 * @return the customerID
 	 */
-	public int getOrderID() {
-		return orderID;
+	public int getCustomerID() {
+		return customerID;
 	}
 
 	/**

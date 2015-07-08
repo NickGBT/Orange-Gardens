@@ -22,7 +22,7 @@ public class Stock
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
-	private int productID;
+	private Product product;
 	@Column(name = "stock_level", nullable = false)
 	@NotNull
 	private int stockLevel;
@@ -43,9 +43,9 @@ public class Stock
 	@NotNull
 	private int requiredStock;
 	
-	public Stock(int productID, int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
+	public Stock(Product product, int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
 	{
-		this.productID = productID;
+		this.product = product;
 		this.stockLevel = stockLevel;
 		this.stockAvailable = stockAvailable;
 		this.location = location;
@@ -54,9 +54,9 @@ public class Stock
 		this.requiredStock = requiredStock;
 	}
 	
-	public int getProductID()
+	public Product getProductID()
 	{
-		return productID;
+		return product;
 	}
 	
 	public int getStockLevel()
