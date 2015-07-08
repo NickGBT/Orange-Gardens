@@ -52,16 +52,15 @@ public class Employee {
 	@Column(name = "permissions", nullable = false)
 	@NotNull
 	private Permission permission;
-	
-	public Employee(Department department, String fName, String lName, String password,
-			Permission permission) {
+
+	public Employee(Department department, String fName, String lName, String password, Permission permission) {
 		this.department = department;
 		this.fName = fName;
 		this.lName = lName;
 		this.password = password;
 		this.permission = permission;
 	}
-	
+
 	/**
 	 * @return the department
 	 */
