@@ -16,17 +16,9 @@ import javax.validation.constraints.Size;
 
 public class Employee {
 
-	private enum Department {
-		SALES, WAREHOUSE;
-	}
-
-	private enum Permission {
-		MANAGER, WORKER;
-	}
-
 	@Column(name = "department", nullable = false)
 	@NotNull
-	private Department department;
+	private EmployeeDepartment employeeDepartment;
 
 	@Column(name = "fname", nullable = false, length = 20)
 	@NotNull
@@ -51,29 +43,29 @@ public class Employee {
 
 	@Column(name = "permissions", nullable = false)
 	@NotNull
-	private Permission permission;
+	private EmployeePermissions employeePermission;
 
-	public Employee(Department department, String fName, String lName, String password, Permission permission) {
-		this.department = department;
+	public Employee(EmployeeDepartment employeeDepartment, String fName, String lName, String password, EmployeePermissions employeePermission) {
+		this.employeeDepartment = employeeDepartment;
 		this.fName = fName;
 		this.lName = lName;
 		this.password = password;
-		this.permission = permission;
+		this.employeePermission = employeePermission;
 	}
 
 	/**
 	 * @return the department
 	 */
-	public Department getDepartment() {
-		return department;
+	public EmployeeDepartment getDepartment() {
+		return employeeDepartment;
 	}
 
 	/**
 	 * @param department
 	 *            the department to set
 	 */
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDepartment(EmployeeDepartment employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
 	}
 
 	/**
@@ -139,16 +131,16 @@ public class Employee {
 	/**
 	 * @return the permission
 	 */
-	public Permission getPermission() {
-		return permission;
+	public EmployeePermissions getPermission() {
+		return employeePermission;
 	}
 
 	/**
 	 * @param permission
 	 *            the permission to set
 	 */
-	public void setPermission(Permission permission) {
-		this.permission = permission;
+	public void setPermission(EmployeePermissions employeePermission) {
+		this.employeePermission = employeePermission;
 	}
 
 }

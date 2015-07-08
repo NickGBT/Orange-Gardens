@@ -7,19 +7,16 @@ import org.junit.Test;
 
 public class EmployeeTest {
 
-	private enum Department {
-		SALES, WAREHOUSE;
-	}
+	private EmployeeDepartment department;
+	private String fName;
+	private String lName;
+	private Employee employeeId;
+	private String password;
+	private EmployeePermissions permission;
 
-	private enum Permission {
-		MANAGER, WORKER;
-	}
-	
-	
-	
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@Test
