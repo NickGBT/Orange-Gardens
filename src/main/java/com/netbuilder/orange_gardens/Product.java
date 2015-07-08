@@ -75,6 +75,18 @@ public class Product {
 		this.weight = weight;
 		this.description = description;
 	}
+	
+	public Product(int productId, String productName, double productPrice, int width, int height,
+			int length, double weight, String description) {
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.weight = weight;
+		this.description = description;
+	}
 
 	/**
 	 * @return the imageLocation

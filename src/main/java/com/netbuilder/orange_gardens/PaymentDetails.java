@@ -2,10 +2,12 @@ package com.netbuilder.orange_gardens;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 /**
@@ -44,19 +46,42 @@ public class PaymentDetails {
 	@NotNull
 	private String expiryDate;
 
-	@Column(name = "employee_id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ManyToOne
+	@JoinColumn(name = "customer_id", 
+	nullable = false)
 	@NotNull
 	private int customerId;
 
-	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate) {
-
+	@OneToOne
+	@JoinColumn(name = "order_id", 
+	nullable = true)
+	@Null
+	private int orderId;
+	
+	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+			int customerId, int orderId) {
+		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
 		this.nameOnCard = nameOnCard;
 		this.securityNumber = securityNumber;
 		this.expiryDate = expiryDate;
+		this.customerId = customerId;
+		this.orderId = orderId;
 	}
+
+	public PaymentDetails(CardType cardType, int cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+			int customerId) {
+		super();
+		this.cardType = cardType;
+		this.cardNumber = cardNumber;
+		this.nameOnCard = nameOnCard;
+		this.securityNumber = securityNumber;
+		this.expiryDate = expiryDate;
+		this.customerId = customerId;
+	}
+
+
 
 	/**
 	 * @return the cardType

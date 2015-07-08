@@ -8,10 +8,9 @@ package com.netbuilder.orange_gardens;
 
 import java.util.ArrayList;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,8 +19,9 @@ import javax.validation.constraints.NotNull;
 
 public class Wishlist {
 
-	@Column(name = "customer_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToOne
+	@JoinColumn(name = "customer_id", 
+	nullable = false)
 	@NotNull
 	private int customerID;
 	private ArrayList<Product> product;
