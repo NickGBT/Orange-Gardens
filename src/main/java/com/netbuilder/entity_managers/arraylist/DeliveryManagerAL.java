@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entity_managers.interfaces.DeliveryManager;
 
@@ -11,6 +13,7 @@ import com.netbuilder.entity_managers.interfaces.DeliveryManager;
  *
  */
 
+@Alternative
 public class DeliveryManagerAL implements DeliveryManager
 {
 	private ArrayList<Delivery> deliveries = new ArrayList<Delivery>();

@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 
@@ -11,6 +13,7 @@ import com.netbuilder.entity_managers.interfaces.AddressManager;
  *
  */
 
+@Alternative
 public class AddressManagerAL implements AddressManager
 {
 	private ArrayList<Address> addresses = new ArrayList<Address>();

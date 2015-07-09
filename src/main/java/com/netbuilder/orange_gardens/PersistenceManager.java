@@ -32,7 +32,7 @@ public class PersistenceManager
 		}
 	}
 	
-	public void CloseEntityManager(EntityManager em)
+	public void closeEntityManager(EntityManager em)
 	{
 		em.close();
 		emf.close();
