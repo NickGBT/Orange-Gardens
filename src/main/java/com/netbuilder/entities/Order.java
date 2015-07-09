@@ -105,7 +105,11 @@ public class Order {
 		return orderID;
 	}
 	
-	public Employee getHandlerID(){
+	public OrderStatus getOrderStatus(){
+		return status;
+	}
+	
+	public Employee getEmployee(){
 		return employeeID;
 	}
 }
