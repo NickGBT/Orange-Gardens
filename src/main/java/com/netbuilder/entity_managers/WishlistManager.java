@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers;
 
 import java.util.ArrayList;
 
+import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Wishlist;
 
 /**
@@ -19,7 +20,7 @@ public interface WishlistManager {
 	public void persistWishlist(ArrayList<Wishlist> wishList);
 	
 	//READ
-	public Wishlist findByCustomerID(int customerID);
+	public Wishlist findByCustomerID(Customer customerID);
 	
 	public Wishlist getWishList(); 
 	
