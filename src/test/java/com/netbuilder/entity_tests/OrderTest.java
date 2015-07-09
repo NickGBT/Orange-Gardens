@@ -1,12 +1,14 @@
 package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import com.netbuilder.entities.Order;
 import com.netbuilder.enums.OrderStatus;
+
+/**
+ * @author ngilbert
+ */
 
 public class OrderTest {
 	
