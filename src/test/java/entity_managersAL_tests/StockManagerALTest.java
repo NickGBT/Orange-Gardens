@@ -4,6 +4,7 @@ import org.junit.Assert.*;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
+import com.netbuilder.entity_managers.arraylist.StockManagerAL;
 
 import static org.junit.Assert.*;
 
@@ -24,10 +25,12 @@ public class StockManagerALTest
 	private Product testProduct, testProduct2;
 	private Stock testStock, testStock2;
 	private int testVariable;
+	private StockManagerAL stockManager;
 	
 	@Before
 	public void setUp() throws Exception
 	{
+		stockManager = new StockManagerAL();
 		testArrayStock = new ArrayList<Stock>();
 		testArrayStock2 = new ArrayList<Stock>();
 		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom");
@@ -40,55 +43,59 @@ public class StockManagerALTest
 	@Test
 	public void testPersistStock() 
 	{
-		testArrayStock.clear();
-		testArrayStock2.clear();
-		testArrayStock.add(testStock);
-		assertEquals(testArrayStock.size(), 1);			
+		stockManager.persistStock(testStock);
+		testArrayStock = stockManager.getStock();
+		assertEquals(testArrayStock.size(), 1);
 	}
 	@Test
 	public void testPersistArrayStock()
 	{
-		testArrayStock.clear();
-		testArrayStock2.clear();
-		testArrayStock2.add(testStock);
-		testArrayStock2.add(testStock2);
-		testArrayStock.addAll(testArrayStock2);
+
+		testArrayStock.add(testStock);
+		testArrayStock.add(testStock2);
+		stockManager.persistStock(testArrayStock);
+		testArrayStock2 = stockManager.getStock();
 		assertEquals(testArrayStock2.size(), 2);	
 	}
 
 	@Test
 	public void testFindByCriticalThreshold() 
 	{
-		testVariable = testStock.getCriticalThreshold();
-		assertEquals(testVariable, 2);
+		testArrayStock.add(testStock);
+		stockManager.persistStock(testStock);
+		assertEquals(stockManager.findByCriticalThreshold(2), testArrayStock);
 	}
 
 	@Test
 	public void testFindByRequiredStock()
 	{
-		testVariable = testStock.getRequiredStock();
-		assertEquals(testVariable, 5);
+		testArrayStock.add(testStock);
+		stockManager.persistStock(testStock);
+		assertEquals(stockManager.findByRequiredStock(5), testArrayStock);
 	}
 
 	@Test
 	public void testFindByStockLevel() 
 	{
-		testVariable = testStock.getStockLevel();
-		assertEquals(testVariable, 4);
+		testArrayStock.add(testStock);
+		stockManager.persistStock(testStock);
+		assertEquals(stockManager.findByStockLevel(4), testArrayStock);
 	}
 
 	@Test
 	public void testFindByStockAvailable() 
 	{
-		testVariable = testStock.getStockAvailable();
-		assertEquals(testVariable, 3);
+		testArrayStock.add(testStock);
+		stockManager.persistStock(testStock);
+		assertEquals(stockManager.findByStockAvailable(3), testArrayStock);
 	}
 
 	@Test
 	public void testFindByMaxStock()
 	{
-		testVariable = testStock.getMaxStock();
-		assertEquals(testVariable, 10);
+		testArrayStock.add(testStock);
+		stockManager.persistStock(testStock);
+		assertEquals(stockManager.findByMaximumStock(10), testArrayStock);
 	}
 	
 	/*@Test
@@ -101,30 +108,30 @@ public class StockManagerALTest
 	@Test
 	public void testGetStock()
 	{
-		testArrayStock.clear();
-		testArrayStock2.clear();
 		testArrayStock.add(testStock);
 		testArrayStock.add(testStock2);
-		assertEquals(testArrayStock.size(), 2);
+		stockManager.persistStock(testArrayStock);
+		testArrayStock2 = stockManager.getStock();
+		assertEquals(stockManager.getStock(), testArrayStock2);
 	}
 	
 	@Test
 	public void testUpdateStock()
 	{
-		testArrayStock.clear();
-		testArrayStock2.clear();
 		testArrayStock.add(testStock);
-		testArrayStock.set(1, testStock2);
-		assertEquals(testArrayStock.indexOf(testStock2), 1);
+		stockManager.persistStock(testArrayStock);
+		stockManager.updateStock(testStock);
+		assertEquals(stockManager.getStock(), testArrayStock);
 	}
 	
 	@Test
 	public void testRemoveStock()
 	{
-		testArrayStock.clear();
-		testArrayStock2.clear();
 		testArrayStock.add(testStock);
-		testArrayStock.remove(1);
-		assertEquals(testArrayStock.isEmpty(), true); 
+		testArrayStock.add(testStock2);
+		testArrayStock2.add(testStock);
+		stockManager.persistStock(testArrayStock);
+		stockManager.removeStock(testStock2);
+		assertEquals(stockManager.getStock(), testArrayStock);
 	}
 }
