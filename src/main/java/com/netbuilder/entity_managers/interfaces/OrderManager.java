@@ -29,9 +29,8 @@ public interface OrderManager {
 		public ArrayList<Order> findByTwoDatesOrderDespatched(String firstDate, String secondDate);
 		public ArrayList<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate);
 		
-		public ArrayList<Order> findByRefundAvailable(Boolean refundAvailable);
-		public ArrayList<Order> findByCustomerId(int customerId);
-		public ArrayList<Order> findByEmployeeId(int employeeId);
+		public Order findByCustomerId(int customerId);
+		public Order findByEmployeeId(int employeeId);
 		
 		public Order getOrder();
 		
