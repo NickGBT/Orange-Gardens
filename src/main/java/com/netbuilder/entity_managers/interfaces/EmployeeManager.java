@@ -17,7 +17,7 @@ public interface EmployeeManager {
 	public void persistEmployees(ArrayList<Employee> employees);
 	
 	//READ
-	public Employee getEmployeeById(int EmployeeId);
+	public Employee getEmployeeById(int employeeId);
 	public ArrayList<Employee> getEmployeesBySurname(String surname);
 	public ArrayList<Employee> getEmployeesByForename(String forename);
 	public ArrayList<Employee> getEmployeesByNames(String forename, String surname);
