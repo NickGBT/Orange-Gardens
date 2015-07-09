@@ -1,4 +1,4 @@
-package com.netbuilder.entity_managers;
+package com.netbuilder.entity_managers.interfaces;
 
 import java.util.ArrayList;
 import com.netbuilder.entities.BasketLine;

@@ -1,4 +1,4 @@
-package com.netbuilder.entity_managers;
+package com.netbuilder.entity_managers.arraylist;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 
 /**
  * 

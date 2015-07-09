@@ -1,9 +1,10 @@
-package com.netbuilder.entity_managers;
+package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 
 /**
  * 

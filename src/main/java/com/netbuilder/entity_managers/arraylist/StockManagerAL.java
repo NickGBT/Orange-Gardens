@@ -1,8 +1,9 @@
-package com.netbuilder.entity_managers;
+package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
 import com.netbuilder.entities.Stock;
+import com.netbuilder.entity_managers.interfaces.StockManager;
 
 /**
  * 
