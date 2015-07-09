@@ -37,7 +37,7 @@ public class DeliveryLine {
 		this.quantity = quantity;
 	}
 
-	public Product getProductID() {
+	public Product getProduct() {
 		return productID;
 	}
 
@@ -53,7 +53,7 @@ public class DeliveryLine {
 		this.quantity = quantity;
 	}
 	
-	public Delivery getDeliveryID() {
+	public Delivery getDelivery() {
 		return deliveryID;
 	}
 
