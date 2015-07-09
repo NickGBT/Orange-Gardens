@@ -69,6 +69,18 @@ public class Order {
 		this.timeToDeliver = timeToDeliver;
 		this.refundAvailable = refundAvailable;
 	}
+	
+	public Order(Customer customerID, OrderStatus status,
+			String datePlaced, String dateDispatched, String dateDelivered,
+			String timeToDeliver, boolean refundAvailable) {
+		this.customerID = customerID;
+		this.status = status;
+		this.datePlaced = datePlaced;
+		this.dateDispatched = dateDispatched;
+		this.dateDelivered = dateDelivered;
+		this.timeToDeliver = timeToDeliver;
+		this.refundAvailable = refundAvailable;
+	}
 
 	public Customer getCustomer() {
 		return customerID;
@@ -106,6 +118,10 @@ public class Order {
 	}
 	public int getOrderID() {
 		return orderID;
+	}
+	
+	public void setOrderID(int id){
+		orderID = id;
 	}
 	
 	public OrderStatus getOrderStatus(){

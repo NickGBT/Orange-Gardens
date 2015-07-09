@@ -61,6 +61,10 @@ public class Customer {
 	{
 		return customerID;
 	}
+	
+	public void setCustomerID(int customerId){
+		this.customerID = customerId;
+	}
 
 	public String getfName()
 	{
