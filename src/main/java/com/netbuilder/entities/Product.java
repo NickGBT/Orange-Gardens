@@ -22,11 +22,15 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "product")
 @NamedQueries({
-	@NamedQuery(name = Product.FIND_BY_OUT_STOCK, query = "SELECT p FROM Product p WHERE ")
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE p.product_name LIKE ':name';"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
 })
 public class Product {
 	
-	public static final String FIND_BY_OUT_STOCK = "Product.findByOutStock";
+	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";
+	public static final String FIND_BY_PRODUCT_NAME = "Product.findByProductName";
+	public static final String FIND_BY_PRODUCT_PRICE = "Product.findByProductPrice";
 
 	@Column(name = "image_location", nullable = true, length = 100)
 	@Null
