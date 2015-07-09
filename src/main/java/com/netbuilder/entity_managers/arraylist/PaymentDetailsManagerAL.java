@@ -22,7 +22,7 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 @Stateless
 public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 	
-	List<PaymentDetails> paymentDetails = new ArrayList<PaymentDetails>();
+	private List<PaymentDetails> paymentDetails = new ArrayList<PaymentDetails>();
 	
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
 		this.paymentDetails.add(paymentDetails);
