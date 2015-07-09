@@ -16,7 +16,7 @@ public interface OrderManager {
 		//CREATE
 		public void persistOrder(Order order);
 		
-		public void persistOrder(ArrayList<Order> order);
+		//public void persistOrder(ArrayList<Order> order);
 		
 		//READ
 		public Order findByOrderID(int OrderID);
@@ -26,15 +26,12 @@ public interface OrderManager {
 		public ArrayList<Order> findByDateDispatched(String dateDispatched);
 		public ArrayList<Order> findByDateDelivered(String dateDelivered);
 		public ArrayList<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate);
-		public ArrayList<Order> findByTwoDatesOrderDespatched(String firstDate, String secondDate);
+		public ArrayList<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate);
 		public ArrayList<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate);
-		
-		public Order findByCustomerId(int customerId);
-		public Order findByEmployeeId(int employeeId);
-		
-		public Order getOrder();
+		public ArrayList<Order> findByCustomerId(int customerId);
+		public ArrayList<Order> findByEmployeeId(int employeeId);
 		
 		//UPDATE
-		public void updateWishList(Order order);
+		public void updateOrder(Order order);
 	
 }

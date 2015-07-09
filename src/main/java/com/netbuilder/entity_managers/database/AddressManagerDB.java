@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -26,6 +27,7 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 				@NamedQuery(name = "FindByCustomerID", query = "SELECT a FROM address WHERE a.customer_id = :customer_id")})
 
 @Default
+@Stateless
 public class AddressManagerDB implements AddressManager 
 {
 	@Inject
@@ -58,19 +60,17 @@ public class AddressManagerDB implements AddressManager
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Address> tq = em.createNamedQuery("FindByPostcode", Address.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("critical_stock", postcode);
+		tq.setParameter("postcode", postcode);
 		try
 		{
 			addresses = (ArrayList<Address>)tq.getResultList();
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return addresses;
-		}
+		return addresses;
 	}
 
 	public Address findByLabel(String label) 
@@ -85,6 +85,7 @@ public class AddressManagerDB implements AddressManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
 	}
@@ -101,6 +102,7 @@ public class AddressManagerDB implements AddressManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
 	}

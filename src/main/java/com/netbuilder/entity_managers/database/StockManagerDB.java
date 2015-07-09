@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -30,6 +31,7 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 				@NamedQuery(name = "FindByProductID", query = "SELECT a FROM stock WHERE a.product_id = :product_id"),})
 
 @Default
+@Stateless
 public class StockManagerDB implements StockManager
 {
 	@Inject
@@ -69,12 +71,10 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return stock;
-		}
+		return stock;
 	}
 
 	public ArrayList<Stock> findByRequiredStock(int requiredStock)
@@ -90,12 +90,10 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return stock;
-		}
+		return stock;
 	}
 
 	public ArrayList<Stock> findByStockLevel(int stockLevel)
@@ -111,12 +109,10 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return stock;
-		}
+		return stock;
 	}
 
 	public ArrayList<Stock> findByStockAvailable(int stockAvailable) 
@@ -132,12 +128,10 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return stock;
-		}
+		return stock;
 	}
 
 	public ArrayList<Stock> findByMaximumStock(int maxStock) 
@@ -153,12 +147,10 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return stock;
-		}
+		return stock;
 	}
 
 	public Stock findByProductID(int productID)
@@ -173,6 +165,7 @@ public class StockManagerDB implements StockManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
 	}

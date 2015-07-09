@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
 
 import com.netbuilder.entities.Stock;
@@ -14,6 +15,7 @@ import com.netbuilder.entity_managers.interfaces.StockManager;
  */
 
 @Alternative
+@Stateless
 public class StockManagerAL implements StockManager
 {
 	private ArrayList<Stock> stock = new ArrayList<Stock>();
