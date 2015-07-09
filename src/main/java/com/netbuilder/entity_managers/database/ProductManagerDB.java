@@ -60,7 +60,7 @@ public class ProductManagerDB implements ProductManager {
 		}
 	}
 
-	public ArrayList<Product> getProductsByName(String name) {
+	public ArrayList<Product> findProductsByName(String name) {
 		
 		ArrayList<Product> results = null;
 		
@@ -78,7 +78,7 @@ public class ProductManagerDB implements ProductManager {
 		
 	}
 
-	public ArrayList<Product> getProductsByPriceBetween(double lowPrice, double highPrice) {
+	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
 		
 		ArrayList<Product> results = null;
 		

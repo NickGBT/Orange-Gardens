@@ -34,14 +34,14 @@ public class EmployeeManagerAL implements EmployeeManager {
 		
 	}
 
-	public Employee getEmployeeById(int employeeId) {
+	public Employee findEmployeeById(int employeeId) {
 		for(Employee e: employees){
 			if(e.getEmployeeId() == employeeId) return e;
 		}
 		return null;
 	}
 
-	public ArrayList<Employee> getEmployeesBySurname(String surname) {
+	public ArrayList<Employee> findEmployeesBySurname(String surname) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
@@ -50,7 +50,7 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByNames(String forename, String surname) {
+	public ArrayList<Employee> findEmployeesByNames(String forename, String surname) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
@@ -60,7 +60,7 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByDepartment(EmployeeDepartment department) {
+	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
@@ -70,7 +70,7 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){

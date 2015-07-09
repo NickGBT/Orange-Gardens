@@ -39,7 +39,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return null;
 	}
 
-	public ArrayList<PaymentDetails> getCustomerPaymentDetails(int customerId) {
+	public ArrayList<PaymentDetails> findCustomerPaymentDetails(int customerId) {
 		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		
 		for(PaymentDetails pd: paymentDetails){
@@ -48,7 +48,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return results;
 	}
 
-	public ArrayList<PaymentDetails> getExpiredDetails(int customerId) {
+	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {
 		
 		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		
@@ -74,7 +74,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 
 	}
 
-	public PaymentDetails getPaymentDetailsForOrder(int orderId) {
+	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
 
 		for(PaymentDetails pd: paymentDetails){
 			if(pd.getOrderId().getOrderID() == orderId) return pd;

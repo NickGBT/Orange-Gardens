@@ -17,11 +17,11 @@ public interface EmployeeManager {
 	public void persistEmployees(ArrayList<Employee> employees);
 	
 	//READ
-	public Employee getEmployeeById(int employeeId);
-	public ArrayList<Employee> getEmployeesBySurname(String surname);
-	public ArrayList<Employee> getEmployeesByNames(String forename, String surname);
-	public ArrayList<Employee> getEmployeesByDepartment(EmployeeDepartment department);
-	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission);
+	public Employee findEmployeeById(int employeeId);
+	public ArrayList<Employee> findEmployeesBySurname(String surname);
+	public ArrayList<Employee> findEmployeesByNames(String forename, String surname);
+	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department);
+	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission);
 	
 	//UPDATE
 	public void updateEmployee(Employee employee);

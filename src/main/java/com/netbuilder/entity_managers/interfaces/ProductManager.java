@@ -18,8 +18,8 @@ public interface ProductManager{
 	
 	//READ
 	public Product findByProductId(int productId);
-	public ArrayList<Product> getProductsByName(String name);
-	public ArrayList<Product> getProductsByPriceBetween(double lowPrice, double highPrice);
+	public ArrayList<Product> findProductsByName(String name);
+	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice);
 	
 	//UPDATE
 	public void updateProduct(Product product);

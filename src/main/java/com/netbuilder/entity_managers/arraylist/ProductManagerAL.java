@@ -39,7 +39,7 @@ public class ProductManagerAL implements ProductManager {
 		return null;
 	}
 
-	public ArrayList<Product> getProductsByName(String name) {
+	public ArrayList<Product> findProductsByName(String name) {
 		ArrayList<Product> results = new ArrayList<Product>();
 		
 		for(Product p: products){
@@ -48,7 +48,7 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 
-	public ArrayList<Product> getProductsByPriceBetween(double lowPrice, double highPrice) {
+	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
 		ArrayList<Product> results = new ArrayList<Product>();
 		
 		for(Product p: products){

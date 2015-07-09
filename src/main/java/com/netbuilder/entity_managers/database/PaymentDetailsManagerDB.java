@@ -62,7 +62,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		}
 	}
 
-	public ArrayList<PaymentDetails> getCustomerPaymentDetails(int customerId) {
+	public ArrayList<PaymentDetails> findCustomerPaymentDetails(int customerId) {
 
 		ArrayList<PaymentDetails> results = null;
 		
@@ -79,7 +79,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		return results;
 	}
 
-	public ArrayList<PaymentDetails> getExpiredDetails(int customerId) {
+	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {
 
 		ArrayList<PaymentDetails> results = null;
 		
@@ -96,7 +96,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		return results;
 	}
 
-	public PaymentDetails getPaymentDetailsForOrder(int orderId) {
+	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_ORDER, PaymentDetails.class);

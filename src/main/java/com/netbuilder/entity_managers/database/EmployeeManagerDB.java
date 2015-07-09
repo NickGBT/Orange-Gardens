@@ -44,7 +44,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 	}
 
-	public Employee getEmployeeById(int employeeId) {
+	public Employee findEmployeeById(int employeeId) {
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_EMPLOYEE_ID, Employee.class);
@@ -58,7 +58,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		}
 	}
 
-	public ArrayList<Employee> getEmployeesBySurname(String surname) {
+	public ArrayList<Employee> findEmployeesBySurname(String surname) {
 
 		ArrayList<Employee> results = null;
 		
@@ -75,7 +75,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByNames(String forename, String surname) {
+	public ArrayList<Employee> findEmployeesByNames(String forename, String surname) {
 		
 		ArrayList<Employee> results = null;
 		
@@ -93,7 +93,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByDepartment(EmployeeDepartment department) {
+	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
 
 		ArrayList<Employee> results = null;
 		
@@ -111,7 +111,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
 
 		ArrayList<Employee> results = null;
 		
