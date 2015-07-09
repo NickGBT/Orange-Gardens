@@ -62,7 +62,14 @@ public class CustomerManagerAL implements CustomerManager
 				results.add(c);
 			}
 		}
-		return results;
+		if(results.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return results;
+		}	
 	}
 
 	public ArrayList<Customer> findByLName(String lName)
@@ -75,7 +82,14 @@ public class CustomerManagerAL implements CustomerManager
 				results.add(c);
 			}
 		}
-		return results;
+		if(results.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return results;
+		}	
 	}
 
 	public Customer findByCustomerID(int customerID)
