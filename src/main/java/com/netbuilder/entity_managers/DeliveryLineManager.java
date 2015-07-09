@@ -18,7 +18,7 @@ public interface DeliveryLineManager {
 	public void persistDeliveryLine(ArrayList<DeliveryLine> deliveryLines);
 
 	// READ
-	public DeliveryLine findByProductID(int postcode);
+	public DeliveryLine findByProductID(int productID);
 	public DeliveryLine findByDeliveryID(int deliveryID);
 	public DeliveryLine findByQuantity(int quantity);
 

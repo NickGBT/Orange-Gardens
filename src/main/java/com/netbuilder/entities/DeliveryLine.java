@@ -19,29 +19,29 @@ public class DeliveryLine {
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
-	private int productID;
+	private Product productID;
 	
 	@ManyToOne
 	@JoinColumn(name = "deliveryID", nullable = false)
 	@NotNull
-	private int deliveryID;
+	private Delivery deliveryID;
 	
 	@Column (name = "quantity", nullable = false)
 	@NotNull
 	private int quantity;
 	
 
-	public DeliveryLine(int productID, int deliveryID, int quantity) {
+	public DeliveryLine(Product productID, Delivery deliveryID, int quantity) {
 		this.productID = productID;
 		this.deliveryID = deliveryID;
 		this.quantity = quantity;
 	}
 
-	public int getProductID() {
+	public Product getProductID() {
 		return productID;
 	}
 
-	public void setProductID(int productID) {
+	public void setProductID(Product productID) {
 		this.productID = productID;
 	}
 
@@ -53,11 +53,11 @@ public class DeliveryLine {
 		this.quantity = quantity;
 	}
 	
-	public int getDeliveryID() {
+	public Delivery getDeliveryID() {
 		return deliveryID;
 	}
 
-	public void setDeliveryID(int deliveryID) {
+	public void setDeliveryID(Delivery deliveryID) {
 		this.deliveryID = deliveryID;
 	}
 	

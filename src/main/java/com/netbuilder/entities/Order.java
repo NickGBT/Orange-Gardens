@@ -21,15 +21,15 @@ public class Order {
 	@Id
 	@Column(name = "order_id", nullable = false)
 	@NotNull
-	private int orderID;
+	private Order orderID;
 	
 	@OneToMany
 	@JoinColumn (name = "customer_id", nullable = false)
-	private int customerID;
+	private Customer customerID;
 	
 	@OneToMany
-	@JoinColumn (name = "handler_id")
-	private int handlerID;
+	@JoinColumn (name = "employee_id")
+	private Employee employeeID;
 	
 	@Column (name = "status", nullable = false)
 	@NotNull	
@@ -54,11 +54,11 @@ public class Order {
 	private boolean refundAvailable;
 	
 		
-	public Order(int customerID, int handlerID, OrderStatus status,
+	public Order(Customer customerID, Employee employeeID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable) {
 		this.customerID = customerID;
-		this.handlerID = handlerID;
+		this.employeeID = employeeID;
 		this.status = status;
 		this.datePlaced = datePlaced;
 		this.dateDispatched = dateDispatched;
@@ -67,7 +67,7 @@ public class Order {
 		this.refundAvailable = refundAvailable;
 	}
 
-	public int getCustomerID() {
+	public Customer getCustomerID() {
 		return customerID;
 	}
 
@@ -101,11 +101,11 @@ public class Order {
 	public void setDateDelivered(String dateDelivered) {
 		this.dateDelivered = dateDelivered;
 	}
-	public int getOrderID() {
+	public Order getOrderID() {
 		return orderID;
 	}
 	
-	public int getHandlerID(){
-		return handlerID;
+	public Employee getHandlerID(){
+		return employeeID;
 	}
 }
