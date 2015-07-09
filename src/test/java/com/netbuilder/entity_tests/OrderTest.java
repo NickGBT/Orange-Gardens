@@ -12,6 +12,12 @@ import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 
+/**
+ * 
+ * @author llew
+ *
+ */
+
 public class OrderTest {
 	
 	private Order testOrder;
