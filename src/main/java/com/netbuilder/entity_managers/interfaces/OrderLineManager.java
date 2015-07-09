@@ -11,7 +11,7 @@ import com.netbuilder.entities.OrderLine;
  *
  */
 
-public interface ProductLineManager {
+public interface OrderLineManager {
 
 		// CREATE
 		public void persistProductLine(OrderLine productLine);

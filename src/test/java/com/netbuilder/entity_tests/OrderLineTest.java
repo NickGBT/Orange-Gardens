@@ -20,7 +20,7 @@ import com.netbuilder.enums.OrderStatus;
  *
  */
 
-public class ProductLineTest {
+public class OrderLineTest {
 	
 	private Order testOrder;
 	private String datePlaced = "AR/VB/HSJA";
