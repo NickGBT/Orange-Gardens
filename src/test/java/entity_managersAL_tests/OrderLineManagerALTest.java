@@ -13,6 +13,12 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 
+/**
+ * 
+ * @author llew
+ *
+ */
+
 public class OrderLineManagerALTest {
 	
 	private ArrayList<OrderLine> testArrayOrderLine, testArrayOrderLine2;
