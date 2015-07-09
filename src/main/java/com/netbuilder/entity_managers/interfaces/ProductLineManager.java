@@ -2,7 +2,7 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.ArrayList;
 
-import com.netbuilder.entities.ProductLine;
+import com.netbuilder.entities.OrderLine;
 
 
 /**
@@ -14,18 +14,18 @@ import com.netbuilder.entities.ProductLine;
 public interface ProductLineManager {
 
 		// CREATE
-		public void persistProductLine(ProductLine productLine);
+		public void persistProductLine(OrderLine productLine);
 
-		public void persistProductLine(ArrayList<ProductLine> productLine);
+		public void persistProductLine(ArrayList<OrderLine> productLine);
 
 		// READ
-		public ProductLine findByProductId(int productID);
-		public ProductLine findByOrderId(int orderId); 
-		public ProductLine getProductLine();
+		public OrderLine findByProductId(int productID);
+		public OrderLine findByOrderId(int orderId); 
+		public OrderLine getProductLine();
 
 		// UPDATE
-		public void updateProductLine(ProductLine productLine);
+		public void updateProductLine(OrderLine productLine);
 
 		// DELETE
-		public void removeProductLine(ProductLine productLine);
+		public void removeProductLine(OrderLine productLine);
 }

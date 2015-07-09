@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table (name = "product_line")
-public class ProductLine {
+public class OrderLine {
 	
 		
 	@ManyToOne
@@ -34,7 +34,7 @@ public class ProductLine {
 	private int quantity;
 
 	
-	public ProductLine(Order orderID, Product productID, int quantity) {
+	public OrderLine(Order orderID, Product productID, int quantity) {
 		
 		this.orderID = orderID;
 		this.productID = productID;

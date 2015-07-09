@@ -9,7 +9,7 @@ import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entities.ProductLine;
+import com.netbuilder.entities.OrderLine;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
@@ -51,7 +51,7 @@ public class ProductLineTest {
 	private double weight = 3;
 	private String description = "A gnome for testing, should never exist";
 	
-	private ProductLine productLine;
+	private OrderLine productLine;
 	
 	private int quantity = 50;
 
@@ -68,7 +68,7 @@ public class ProductLineTest {
 		
 		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description);
 		
-		productLine = new ProductLine(testOrder, testProduct, quantity);
+		productLine = new OrderLine(testOrder, testProduct, quantity);
 	}
 
 	@Test
