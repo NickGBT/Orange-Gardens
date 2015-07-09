@@ -1,6 +1,8 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -9,6 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
+
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entity_managers.interfaces.DeliveryManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -23,6 +26,7 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 		@NamedQuery(name = "FindByDatePlaced", query = "SELECT a FROM delivery WHERE a.datePlaced = :datePlaced"),
 		@NamedQuery(name = "FindByDeliveryId", query = "SELECT a FROM delivery WHERE a.delivery_id = :delivery_id"), })
 @Default
+@Stateless
 public class DeliveryManagerDB implements DeliveryManager {
 	@Inject
 	private PersistenceManager pm;
