@@ -17,11 +17,14 @@ public interface PaymentDetailsManager {
 	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails);
 	
 	//READ
-	public PaymentDetails findByNumber(String cardNumber, int customerId);
-	public ArrayList<PaymentDetails> getProductsCustomer(int customerId);
+	public PaymentDetails findCardByNumber(String cardNumber, int customerId);
+	public ArrayList<PaymentDetails> getCustomerPaymentDetails(int customerId);
+	public ArrayList<PaymentDetails> getExpiredDetails(int customerId, String date);
+	public PaymentDetails getPaymentDetailsForOrder(int orderId);
+	
 		
 	//UPDATE
-	public void updatePaymentDetails(PaymentDetails paymentDetails);
+	//public void updatePaymentDetails(PaymentDetails paymentDetails);
 	
 	//DELETE
 	public void removePaymentDetails(PaymentDetails paymentDetails);
