@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -28,6 +29,7 @@ import com.netbuilder.entity_managers.interfaces.CustomerManager;
 				@NamedQuery(name = "FindByCustomerID", query = "SELECT a FROM customer WHERE a.customer_id = :customer_id"),})
 
 @Default
+@Stateless
 public class CustomerManagerDB implements CustomerManager
 {
 	@Inject
@@ -66,6 +68,7 @@ public class CustomerManagerDB implements CustomerManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
 	}
@@ -82,6 +85,7 @@ public class CustomerManagerDB implements CustomerManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
 	}
@@ -99,12 +103,10 @@ public class CustomerManagerDB implements CustomerManager
 		}
 		catch(NoResultException nre)
 		{
+			nre.printStackTrace();
 			return null;
 		}
-		finally
-		{
-			return customers;
-		}
+		return customers;
 	}
 
 	public ArrayList<Customer> findByLName(String lName)
@@ -122,10 +124,7 @@ public class CustomerManagerDB implements CustomerManager
 		{
 			return null;
 		}
-		finally
-		{
-			return customers;
-		}
+		return customers;
 	}
 
 	public Customer findByCustomerID(int customerID)

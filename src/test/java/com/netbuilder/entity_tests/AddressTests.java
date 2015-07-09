@@ -26,7 +26,7 @@ public class AddressTests {
 	String lineThree = "Ambertown";
 	String city = "Orangedon";
 	String county = "Coppershire";
-	String postcode = "QW1 2ER";
+	String postcode = "QW12ER";
 	
 	String country = "United Kingdom";
 	
