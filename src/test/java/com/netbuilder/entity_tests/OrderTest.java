@@ -76,10 +76,10 @@ public class OrderTest {
 		assertEquals(testOrder.getDateDelivered(), dateDelivered);
 	}
 
-	@Test
+	/*@Test
 	public void testGetHandlerID() {
-		assertEquals(testOrder.getHandlerID(), handlerID);
-	}
+		assertEquals(testOrder.getEmployee().getEmployeeId(), handlerID);
+	}*/
 	
 	@Test
 	public void testOrderStatus()

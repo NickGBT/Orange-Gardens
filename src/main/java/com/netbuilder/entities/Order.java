@@ -109,7 +109,7 @@ public class Order {
 		return status;
 	}
 	
-	public Employee getHandlerID(){
+	public Employee getEmployee(){
 		return employeeID;
 	}
 }
