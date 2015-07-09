@@ -25,16 +25,17 @@ public class AddressManagerAL implements AddressManager
 		addresses.addAll(addresses);
 	}
 
-	public Address findByPostcode(String postcode) 
+	public ArrayList<Address> findByPostcode(String postcode) 
 	{
+		ArrayList<Address> results = new ArrayList<Address>();
 		for(Address a: addresses)
 		{
-			if(a.getPostcode() == postcode)
+			if(a.getPostcode().contains(postcode))
 			{
-				return a;
+				results.add(a);
 			}
 		}
-		return null;
+		return results;
 	}
 
 	public Address findByLabel(String label)
@@ -64,7 +65,8 @@ public class AddressManagerAL implements AddressManager
 	public ArrayList<Address> getAddresses()
 	{
 		ArrayList<Address> results = new ArrayList<Address>();
-		return null;
+		results.addAll(addresses);
+		return results;
 	}
 
 	public void updateAddress(Address address)

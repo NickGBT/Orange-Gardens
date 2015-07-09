@@ -17,11 +17,11 @@ public interface StockManager
 	public void persistStock(ArrayList<Stock> stock);
 	
 	//READ
-	public Stock findByCriticalThreshold(int criticalThreshold);
-	public Stock findByRequiredStock(int requiredStock);
-	public Stock findByStockLevel(int stockLevel);
-	public Stock findByStockAvailable(int stockAvailable);
-	public Stock findByMaximumStock(int maxStock);
+	public ArrayList<Stock> findByCriticalThreshold(int criticalThreshold);
+	public ArrayList<Stock> findByRequiredStock(int requiredStock);
+	public ArrayList<Stock> findByStockLevel(int stockLevel);
+	public ArrayList<Stock> findByStockAvailable(int stockAvailable);
+	public ArrayList<Stock> findByMaximumStock(int maxStock);
 	public Stock findByProductID(int productID);
 	public ArrayList<Stock> getStock();
 	

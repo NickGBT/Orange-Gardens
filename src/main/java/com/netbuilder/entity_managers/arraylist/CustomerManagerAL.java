@@ -43,28 +43,30 @@ public class CustomerManagerAL implements CustomerManager
 		return null;
 	}
 
-	public Customer findByFName(String fName)
+	public ArrayList<Customer> findByFName(String fName)
 	{
+		ArrayList<Customer> results = new ArrayList<Customer>();
 		for(Customer c: customers)
 		{
-			if(c.getfName() == fName)
+			if(c.getfName().contains(fName))
 			{
-				return c;
+				results.add(c);
 			}
 		}
-		return null;
+		return results;
 	}
 
-	public Customer findByLName(String lName)
+	public ArrayList<Customer> findByLName(String lName)
 	{
+		ArrayList<Customer> results = new ArrayList<Customer>();
 		for(Customer c: customers)
 		{
-			if(c.getlName() == lName)
+			if(c.getlName().contains(lName))
 			{
-				return c;
+				results.add(c);
 			}
 		}
-		return null;
+		return results;
 	}
 
 	public Customer findByCustomerID(int customerID)
@@ -82,8 +84,8 @@ public class CustomerManagerAL implements CustomerManager
 	public ArrayList<Customer> getCustomers()
 	{
 		ArrayList<Customer> results = new ArrayList<Customer>();
-		
-		return null;
+		results.addAll(customers);
+		return results;
 	}
 
 	public void updateCustomer(Customer customer) 

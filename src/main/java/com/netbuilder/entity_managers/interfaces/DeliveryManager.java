@@ -17,7 +17,7 @@ public interface DeliveryManager
 	public void persistDeliveries(ArrayList<Delivery> deliveries);
 	
 	//READ
-	public Delivery findByDatePlaced(String datePlaced);
+	public ArrayList<Delivery> findByDatePlaced(String datePlaced);
 	public Delivery findByDeliveryID(int deliveryID);
 	public ArrayList<Delivery> getDeliveries();
 	

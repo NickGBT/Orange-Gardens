@@ -20,8 +20,8 @@ public interface CustomerManager
 	//READ
 	public Customer findByUsername(String username);
 	public Customer findByEmail(String email);
-	public Customer findByFName(String fName);
-	public Customer findByLName(String lName);
+	public ArrayList<Customer> findByFName(String fName);
+	public ArrayList<Customer> findByLName(String lName);
 	public Customer findByCustomerID(int customerID);
 	public ArrayList<Customer> getCustomers();
 	

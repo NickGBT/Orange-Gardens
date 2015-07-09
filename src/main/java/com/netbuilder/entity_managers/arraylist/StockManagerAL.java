@@ -25,64 +25,69 @@ public class StockManagerAL implements StockManager
 		this.stock.addAll(stock);
 	}
 
-	public Stock findByCriticalThreshold(int criticalThreshold) 
+	public ArrayList<Stock> findByCriticalThreshold(int criticalThreshold) 
 	{
+		ArrayList<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getCriticalThreshold() == criticalThreshold)
 			{
-				return s;
+				results.add(s);
 			}
 		}
-		return null;
+		return results;
 	}
 
-	public Stock findByRequiredStock(int requiredStock) 
+	public ArrayList<Stock> findByRequiredStock(int requiredStock) 
 	{
+		ArrayList<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getRequiredStock() == requiredStock)
 			{
-				return s;
+				results.add(s);
 			}
 		}
-		return null;
+		return results;
 	}
 
-	public Stock findByStockLevel(int stockLevel)
+	public ArrayList<Stock> findByStockLevel(int stockLevel)
 	{
+		ArrayList<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getStockLevel() == stockLevel)
 			{
-				return s;
+				results.add(s);
 			}
 		}
-		return null;
+		return results;
 	}
 
-	public Stock findByStockAvailable(int stockAvailable)
+	public ArrayList<Stock> findByStockAvailable(int stockAvailable)
 	{
+		ArrayList<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getStockAvailable() == stockAvailable)
 			{
-				return s;
+				results.add(s);
 			}
 		}
-		return null;
+		return results;
 	}
 
-	public Stock findByMaximumStock(int maxStock)
+	public ArrayList<Stock> findByMaximumStock(int maxStock)
 	{
+		ArrayList<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getMaxStock() == maxStock)
 			{
-				return s;
+				results.add(s);
 			}
 		}
-		return null;
+		return results;
 	}
 	
 	public Stock findByProductID(int productID)
@@ -100,6 +105,7 @@ public class StockManagerAL implements StockManager
 	public ArrayList<Stock> getStock() 
 	{
 		ArrayList<Stock> results = new ArrayList<Stock>();
+		results.addAll(stock);
 		return null;
 	}
 

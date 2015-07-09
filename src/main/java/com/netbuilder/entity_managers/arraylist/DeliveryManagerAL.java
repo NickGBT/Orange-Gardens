@@ -25,16 +25,17 @@ public class DeliveryManagerAL implements DeliveryManager
 		deliveries.addAll(deliveries);
 	}
 
-	public Delivery findByDatePlaced(String datePlaced)
+	public ArrayList<Delivery> findByDatePlaced(String datePlaced)
 	{
+		ArrayList<Delivery> results = new ArrayList<Delivery>();
 		for(Delivery d: deliveries)
 		{
-			if(d.getDatePlaced() == datePlaced)
+			if(d.getDatePlaced().contains(datePlaced))
 			{
-				return d;
+				results.add(d);
 			}
 		}
-		return null;
+		return results;
 	}
 
 	public Delivery findByDeliveryID(int deliveryID) 
@@ -52,6 +53,7 @@ public class DeliveryManagerAL implements DeliveryManager
 	public ArrayList<Delivery> getDeliveries()
 	{
 		ArrayList<Delivery> results = new ArrayList<Delivery>();
+		results.addAll(deliveries);
 		return null;
 	}
 

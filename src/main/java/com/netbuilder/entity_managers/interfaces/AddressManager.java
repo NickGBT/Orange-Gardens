@@ -17,7 +17,7 @@ public interface AddressManager
 	public void persistAddresses(ArrayList<Address> addresses);
 
 	// READ
-	public Address findByPostcode(String postcode);
+	public ArrayList<Address> findByPostcode(String postcode);
 	public Address findByLabel(String label);
 	public Address findByCustomerID(int customerID);
 	public ArrayList<Address> getAddresses();
