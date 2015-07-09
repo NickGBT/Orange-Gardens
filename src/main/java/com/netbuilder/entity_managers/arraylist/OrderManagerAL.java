@@ -1,5 +1,9 @@
 package com.netbuilder.entity_managers.arraylist;
 
+/**
+ * @author mwatson
+ */
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

@@ -22,13 +22,13 @@ public interface DeliveryLineManager {
 
 	public DeliveryLine findByDeliveryID(int deliveryID);
 
-	public DeliveryLine findByQuantity(int quantity);
+	public ArrayList<DeliveryLine> findByQuantity(int quantity);
 
 	public ArrayList<DeliveryLine> getDeliveryLine();
 
 	// UPDATE
-	public void updateDeliveryLine(DeliveryLine deliveryLines);
+	public void updateDeliveryLine(DeliveryLine deliveryLine);
 
 	// DELETE
-	public void removeDeliveryLine(DeliveryLine deliveryLines);
+	public void removeDeliveryLine(DeliveryLine deliveryLine);
 }
