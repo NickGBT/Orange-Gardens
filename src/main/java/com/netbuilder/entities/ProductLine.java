@@ -53,7 +53,7 @@ public class ProductLine {
 		this.orderID = orderID;
 	}
 	
-	public Order getOrderID(){
+	public Order getOrder(){
 		return orderID;
 	}
 	
@@ -61,7 +61,7 @@ public class ProductLine {
 		this.productID = productID;
 	}
 	
-	public Product getProductID(){
+	public Product getProduct(){
 		return productID;
 	}
 
