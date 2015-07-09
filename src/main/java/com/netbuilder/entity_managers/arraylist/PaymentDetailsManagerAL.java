@@ -5,16 +5,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
  * 
  * @author Alexander Neil
  *
  */
+@Alternative
+@Stateless
 public class PaymentDetailsManagerAL implements PaymentDetailsManager {
-
+	
 	List<PaymentDetails> paymentDetails = new ArrayList<PaymentDetails>();
 	
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
@@ -25,9 +32,9 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		this.paymentDetails.addAll(paymentDetails);
 	}
 
-	public PaymentDetails findCardByNumber(String cardNumber, int customerId) {
+	public PaymentDetails findCardByNumber(String cardNumber) {
 		for(PaymentDetails pd: paymentDetails){
-			if((pd.getCardNumber() == cardNumber)&&(pd.getCustomerId().getCustomerID() == customerId)) return pd;
+			if(pd.getCardNumber() == cardNumber) return pd;
 		}
 		return null;
 	}
@@ -41,7 +48,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return results;
 	}
 
-	public ArrayList<PaymentDetails> getExpiredDetails(int customerId, String date) {
+	public ArrayList<PaymentDetails> getExpiredDetails(int customerId) {
 		
 		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		

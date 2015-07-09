@@ -5,11 +5,22 @@ import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import javax.validation.ValidationException;
 
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
 
+
+/**
+ * 
+ * @author Alexander Neil
+ *
+ */
 @Default
 @Stateless
 public class PaymentDetailsManagerDB implements PaymentDetailsManager {
@@ -17,38 +28,96 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 	private PersistenceManager pm;
 	
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
-		// TODO Auto-generated method stub
-
+		
+		EntityManager em = pm.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(paymentDetails);
+		em.getTransaction().commit();
+		pm.closeEntityManager(em);
+		
 	}
 
 	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails) {
-		// TODO Auto-generated method stub
-
+		
+		EntityManager em = pm.createEntityManager();
+		em.getTransaction().begin();
+		for(PaymentDetails p: paymentDetails){
+			em.persist(p);
+		}
+		em.getTransaction().commit();
+		pm.closeEntityManager(em);
 	}
 
-	public PaymentDetails findCardByNumber(String cardNumber, int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+	public PaymentDetails findCardByNumber(String cardNumber) {
+
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CARD_NUMBER, PaymentDetails.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("cardNo", cardNumber);
+		try{
+			return tq.getSingleResult();
+		}
+		catch(NoResultException nre){
+			return null;
+		}
 	}
 
 	public ArrayList<PaymentDetails> getCustomerPaymentDetails(int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ArrayList<PaymentDetails> results = null;
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CUSTOMER, PaymentDetails.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("id", customerId);
+		try{
+			results = new ArrayList<PaymentDetails>(tq.getResultList());
+		}
+		catch(NoResultException nre){
+			
+		}
+		return results;
 	}
 
 	public ArrayList<PaymentDetails> getExpiredDetails(int customerId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ArrayList<PaymentDetails> results = null;
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_EXPIRED, PaymentDetails.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("id", customerId);
+		try{
+			results = new ArrayList<PaymentDetails>(tq.getResultList());
+		}
+		catch(NoResultException nre){
+			
+		}
+		return results;
 	}
 
 	public PaymentDetails getPaymentDetailsForOrder(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_ORDER, PaymentDetails.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("oId", orderId);
+		try{
+			return tq.getSingleResult();
+		}
+		catch(NoResultException nre){
+			return null;
+		}
 	}
 
 	public void removePaymentDetails(PaymentDetails paymentDetails) {
-		// TODO Auto-generated method stub
 
+		if(paymentDetails == null){
+			throw new ValidationException("Null product passed!");
+		}
+		EntityManager em = pm.createEntityManager();
+		em.remove(paymentDetails);
+		pm.closeEntityManager(em);
 	}
 
 }

@@ -17,9 +17,9 @@ public interface PaymentDetailsManager {
 	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails);
 	
 	//READ
-	public PaymentDetails findCardByNumber(String cardNumber, int customerId);
+	public PaymentDetails findCardByNumber(String cardNumber);
 	public ArrayList<PaymentDetails> getCustomerPaymentDetails(int customerId);
-	public ArrayList<PaymentDetails> getExpiredDetails(int customerId, String date);
+	public ArrayList<PaymentDetails> getExpiredDetails(int customerId);
 	public PaymentDetails getPaymentDetailsForOrder(int orderId);
 	
 		
