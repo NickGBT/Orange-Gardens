@@ -23,7 +23,6 @@ import com.netbuilder.enums.OrderStatus;
 public class ProductLineTest {
 	
 	private Order testOrder;
-	private int handlerID = 23758725;
 	private String datePlaced = "AR/VB/HSJA";
 	private String dateDispatched = "AY/YY/LMAO";
 	private String dateDelivered = "BS/TI/ARHG";
@@ -44,7 +43,6 @@ public class ProductLineTest {
 	private Product testProduct;
 	
 	private String imageLocation = "res/products/img/2412.jpg";
-	private int productId = 2412;
 	private String productName = "Test Gnome";
 	private double productPrice = 29.99;
 	private int width = 20;

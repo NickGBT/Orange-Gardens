@@ -21,7 +21,6 @@ import com.netbuilder.enums.OrderStatus;
 public class OrderTest {
 	
 	private Order testOrder;
-	private int handlerID = 23758725;
 	private String datePlaced = "AR/VB/HSJA";
 	private String dateDispatched = "AY/YY/LMAO";
 	private String dateDelivered = "BS/TI/ARHG";

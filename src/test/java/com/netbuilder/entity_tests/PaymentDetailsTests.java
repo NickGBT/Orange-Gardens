@@ -3,7 +3,6 @@ package com.netbuilder.entity_tests;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;

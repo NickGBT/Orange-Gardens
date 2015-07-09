@@ -13,7 +13,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		customers.add(customer);
 	}
-
+ 
 	public void persistCustomer(ArrayList<Customer> customers)
 	{
 		customers.addAll(customers);
