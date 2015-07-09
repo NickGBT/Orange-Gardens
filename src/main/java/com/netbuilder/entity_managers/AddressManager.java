@@ -14,7 +14,6 @@ public interface AddressManager
 {
 	//CREATE
 	public void persistAddress(Address address);
-
 	public void persistAddresses(ArrayList<Address> addresses);
 
 	// READ
