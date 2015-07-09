@@ -19,20 +19,20 @@ public class Basket {
 	@OneToOne
 	@JoinColumn(name = "customer_id", nullable = false)
 	@NotNull
-	private int customerID;
+	private Customer customerID;
 
 	private ArrayList<BasketLine> basketLine;
 
-	public Basket(int customerID, ArrayList<BasketLine> basketLine) {
+	public Basket(Customer customerID, ArrayList<BasketLine> basketLine) {
 		this.customerID = customerID;
 		this.basketLine = basketLine;
 	}
 
-	public int getCustomerID() {
+	public Customer getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(Customer customerID) {
 		this.customerID = customerID;
 	}
 

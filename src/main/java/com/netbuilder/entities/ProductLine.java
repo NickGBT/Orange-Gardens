@@ -22,19 +22,19 @@ public class ProductLine {
 	@ManyToOne
 	@JoinColumn(name = "order_id", nullable = false)
 	@NotNull
-	private int orderID;
+	private Order orderID;
 	
 	@OneToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
-	private int productID;
+	private Product productID;
 
 	@Column (name = "quantity", nullable = false)
 	@NotNull
 	private int quantity;
 
 	
-	public ProductLine(int orderID, int productID, int quantity) {
+	public ProductLine(Order orderID, Product productID, int quantity) {
 		
 		this.orderID = orderID;
 		this.productID = productID;
@@ -49,19 +49,19 @@ public class ProductLine {
 		return quantity;
 	}
 
-	public void setOrderID(int orderID){
+	public void setOrderID(Order orderID){
 		this.orderID = orderID;
 	}
 	
-	public int getOrderID(){
+	public Order getOrderID(){
 		return orderID;
 	}
 	
-	public void setProductID(int productID){
+	public void setProductID(Product productID){
 		this.productID = productID;
 	}
 	
-	public int getProductID(){
+	public Product getProductID(){
 		return productID;
 	}
 
