@@ -3,6 +3,7 @@ package com.netbuilder.entity_managers.database;
 import java.util.ArrayList;
 
 import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -31,7 +32,9 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 @Default
 public class StockManagerDB implements StockManager
 {
+	@Inject
 	private PersistenceManager pm;
+	
 	public void persistStock(Stock stock)
 	{
 		EntityManager em = pm.createEntityManager();
