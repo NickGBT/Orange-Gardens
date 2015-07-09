@@ -167,4 +167,18 @@ public class PaymentDetails {
 		this.customerId = customerId;
 	}
 
+	/**
+	 * @return the orderId
+	 */
+	public Order getOrderId() {
+		return orderId;
+	}
+
+	/**
+	 * @param orderId the orderId to set
+	 */
+	public void setOrderId(Order orderId) {
+		this.orderId = orderId;
+	}
+
 }

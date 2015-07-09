@@ -14,15 +14,15 @@ import com.netbuilder.enums.OrderStatus;
 public interface OrderManager {
 
 		//CREATE
-		public void persistWishlist(Order order);
+		public void persistOrder(Order order);
 		
-		public void persistWishlist(ArrayList<Order> order);
+		public void persistOrder(ArrayList<Order> order);
 		
 		//READ
 		public Order findByOrderID(int OrderID);
 		public ArrayList<Order> findByStatus(OrderStatus status);
 		
-		public ArrayList<Order> findByDatePlace(String datePlaced);
+		public ArrayList<Order> findByDatePlaced(String datePlaced);
 		public ArrayList<Order> findByDateDispatched(String dateDispatched);
 		public ArrayList<Order> findByDateDelivered(String dateDelivered);
 		public ArrayList<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate);
