@@ -38,7 +38,14 @@ public class AddressManagerAL implements AddressManager
 				results.add(a);
 			}
 		}
-		return results;
+		if(results.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return results;
+		}	
 	}
 
 	public Address findByLabel(String label)

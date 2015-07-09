@@ -90,7 +90,14 @@ public class StockManagerAL implements StockManager
 				results.add(s);
 			}
 		}
-		return results;
+		if(results.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return results;
+		}	
 	}
 	
 	public Stock findByProductID(int productID)

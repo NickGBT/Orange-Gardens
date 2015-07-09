@@ -38,7 +38,14 @@ public class DeliveryManagerAL implements DeliveryManager
 				results.add(d);
 			}
 		}
-		return results;
+		if(results.isEmpty())
+		{
+			return null;
+		}
+		else
+		{
+			return results;
+		}	
 	}
 
 	public Delivery findByDeliveryID(int deliveryID) 
