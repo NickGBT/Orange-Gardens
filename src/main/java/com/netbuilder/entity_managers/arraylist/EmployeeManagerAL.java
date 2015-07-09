@@ -9,7 +9,7 @@ import com.netbuilder.enums.EmployeePermissions;
 
 /**
  * 
- * @author mwatson
+ * @author Alexander Neil
  *
  */
 
@@ -27,44 +27,73 @@ public class EmployeeManagerAL implements EmployeeManager {
 		
 	}
 
-	public Employee getEmployeeById(int EmployeeId) {
-		// TODO Auto-generated method stub
+	public Employee getEmployeeById(int employeeId) {
+		for(Employee e: employees){
+			if(e.getEmployeeId() == employeeId) return e;
+		}
 		return null;
 	}
 
 	public ArrayList<Employee> getEmployeesBySurname(String surname) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Employee> results = new ArrayList<Employee>();
+		
+		for(Employee e: employees){
+			if(e.getlName().equals(surname)) results.add(e);
+		}
+		return results;
 	}
 
 	public ArrayList<Employee> getEmployeesByForename(String forename) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Employee> results = new ArrayList<Employee>();
+		
+		for(Employee e: employees){
+			if(e.getfName().equals(forename)) results.add(e);
+		}
+		
+		return results;
 	}
 
 	public ArrayList<Employee> getEmployeesByNames(String forename, String surname) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Employee> results = new ArrayList<Employee>();
+		
+		for(Employee e: employees){
+			if(e.getfName().equals(forename)&&e.getlName().equals(surname)) results.add(e);
+		}
+		
+		return results;
 	}
 
 	public ArrayList<Employee> getEmployeesByDepartment(EmployeeDepartment department) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Employee> results = new ArrayList<Employee>();
+		
+		for(Employee e: employees){
+			if(e.getDepartment() == department) results.add(e);
+		}
+		
+		return results;
 	}
 
 	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions position) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Employee> results = new ArrayList<Employee>();
+		
+		for(Employee e: employees){
+			if((e.getDepartment() == department)&&(e.getPermission() == position)) results.add(e);
+		}
+		
+		return results;
 	}
 
 	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		
+		for(Employee e: employees){
+			if(e.getEmployeeId() == employee.getEmployeeId()){
+				employees.set(employees.indexOf(e), employee);
+				return;
+			}
+		}
 	}
 
 	public void removeEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		
+		employees.remove(employee);
 	}
 
 	
