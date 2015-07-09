@@ -3,15 +3,21 @@ package com.netbuilder.entity_managers.arraylist;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
  * 
  * @author Alexander Neil
  *
  */
-
+@Alternative
+@Stateless
 public class ProductManagerAL implements ProductManager {
 
 	private List<Product> products = new ArrayList<Product>();
