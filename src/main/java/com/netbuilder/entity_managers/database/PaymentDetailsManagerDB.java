@@ -2,10 +2,20 @@ package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.orange_gardens.PersistenceManager;
 
-public class PaymentDetailsManager implements com.netbuilder.entity_managers.interfaces.PaymentDetailsManager {
-
+@Default
+@Stateless
+public class PaymentDetailsManagerDB implements PaymentDetailsManager {
+	@Inject
+	private PersistenceManager pm;
+	
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
 		// TODO Auto-generated method stub
 
@@ -26,7 +36,7 @@ public class PaymentDetailsManager implements com.netbuilder.entity_managers.int
 		return null;
 	}
 
-	public ArrayList<PaymentDetails> getExpiredDetails(int customerId, String date) {
+	public ArrayList<PaymentDetails> getExpiredDetails(int customerId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

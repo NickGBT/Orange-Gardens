@@ -2,13 +2,22 @@ package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
+import com.netbuilder.orange_gardens.PersistenceManager;
 
+@Default
+@Stateless
 public class EmployeeManagerDB implements EmployeeManager {
-
+	@Inject
+	private PersistenceManager pm;
+	
 	public void persistEmployee(Employee employee) {
 		// TODO Auto-generated method stub
 
