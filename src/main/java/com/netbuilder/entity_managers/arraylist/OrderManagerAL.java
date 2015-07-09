@@ -45,6 +45,9 @@ public class OrderManagerAL implements OrderManager {
 			}
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -57,6 +60,9 @@ public class OrderManagerAL implements OrderManager {
 			}
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -69,6 +75,9 @@ public class OrderManagerAL implements OrderManager {
 			}
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -80,6 +89,9 @@ public class OrderManagerAL implements OrderManager {
 				orderResults.add(o);
 			}
 		}
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -105,6 +117,9 @@ public class OrderManagerAL implements OrderManager {
 			//Error
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -131,6 +146,9 @@ public class OrderManagerAL implements OrderManager {
 			//Error
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
@@ -157,6 +175,9 @@ public class OrderManagerAL implements OrderManager {
 			//Error
 		}
 		
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
 		return orderResults;
 	}
 
