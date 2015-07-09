@@ -54,6 +54,8 @@ public class ProductLineTest {
 	private String description = "A gnome for testing, should never exist";
 	
 	private ProductLine productLine;
+	
+	private int quantity = 50;
 
 	@Before
 	public void setUp() throws Exception {
@@ -68,22 +70,23 @@ public class ProductLineTest {
 		
 		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description);
 		
-		productLine = new ProductLine()
+		productLine = new ProductLine(testOrder, testProduct, quantity);
 	}
 
 	@Test
 	public void testGetQuantity() {
 		assertEquals(productLine.getQuantity(), quantity);
 	}
-
+	
+	/*
 	@Test
 	public void testGetOrderID() {
-		assertEquals(productLine.getOrderID(), orderID);
-	}
+		assertEquals(productLine.getOrder().getOrderID(), orderID);
+	}*/
 
-	@Test
+	/*@Test
 	public void testGetProductID() {
-		assertEquals(productLine.getProductID(), productID);
-	}
+		assertEquals(productLine.getProduct().getProductId(), productID);
+	}*/
 
 }
