@@ -29,7 +29,7 @@ public class Employee {
 	@Size(min = 1, max = 20)
 	private String fName;
 
-	@Column(name = "sname", nullable = false, length = 45)
+	@Column(name = "lname", nullable = false, length = 45)
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String lName;
