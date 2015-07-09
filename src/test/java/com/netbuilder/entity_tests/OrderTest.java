@@ -1,39 +1,55 @@
 package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
-import com.netbuilder.entities.Order;
-import com.netbuilder.enums.OrderStatus;
 
-/**
- * @author ngilbert
- */
+import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.Order;
+import com.netbuilder.enums.EmployeeDepartment;
+import com.netbuilder.enums.EmployeePermissions;
+import com.netbuilder.enums.OrderStatus;
 
 public class OrderTest {
 	
 	private Order testOrder;
-	private int customerID = 75658;
 	private int handlerID = 23758725;
-	private OrderStatus status;
 	private String datePlaced = "AR/VB/HSJA";
 	private String dateDispatched = "AY/YY/LMAO";
 	private String dateDelivered = "BS/TI/ARHG";
 	private String timeToDeliver = "YU:NB";
 	private boolean refundAvailable = false;
 
+	private Customer customerID;
+	
+	private EmployeeDepartment empDept;
+	private String fName = "Test";
+	private String lName = "Employee";
+	private String password = "test";
+	private EmployeePermissions empPermisions;
+	private Employee employee;
+	
+	private OrderStatus orderStatus;
+	
 	@Before
 	public void setUp() throws Exception {
-			status = OrderStatus.cancelled;
-			testOrder = new Order(customerID, handlerID, status,
+		
+		    customerID  = new Customer("Absolutely", "Fantastic", "fantastic3", "absfan", "fantastic@absolutely.com", true);
+		    employee = new Employee(empDept.WAREHOUSE, fName, lName, password, empPermisions.WORKER);
+		    
+		    orderStatus = OrderStatus.cancelled;
+		    
+			testOrder = new Order(customerID, employee, orderStatus,
 			datePlaced, dateDispatched, dateDelivered,
 			timeToDeliver, refundAvailable);
 	}
 
-	@Test
+	/*@Test
 	public void testGetCustomerID() {
-		assertEquals(testOrder.getCustomerID(), customerID);
-	}
+		assertEquals(testOrder.getCustomer(), customerID);
+	}*/
 
 	@Test
 	public void testGetDatePlaced() {
@@ -60,15 +76,15 @@ public class OrderTest {
 		assertEquals(testOrder.getDateDelivered(), dateDelivered);
 	}
 
-	@Test
+	/*@Test
 	public void testGetHandlerID() {
-		assertEquals(testOrder.getHandlerID(), handlerID);
-	}
+		assertEquals(testOrder.getEmployee().getEmployeeId(), handlerID);
+	}*/
 	
 	@Test
 	public void testOrderStatus()
 	{
-		assertEquals(OrderStatus.cancelled, status);
+		assertEquals(testOrder.getOrderStatus(), orderStatus);
 	}
 
 }

@@ -21,7 +21,7 @@ public class Order {
 	@Id
 	@Column(name = "order_id", nullable = false)
 	@NotNull
-	private Order orderID;
+	private int orderID;
 	
 	@OneToMany
 	@JoinColumn (name = "customer_id", nullable = false)
@@ -67,7 +67,7 @@ public class Order {
 		this.refundAvailable = refundAvailable;
 	}
 
-	public Customer getCustomerID() {
+	public Customer getCustomer() {
 		return customerID;
 	}
 
@@ -101,11 +101,15 @@ public class Order {
 	public void setDateDelivered(String dateDelivered) {
 		this.dateDelivered = dateDelivered;
 	}
-	public Order getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 	
-	public Employee getHandlerID(){
+	public OrderStatus getOrderStatus(){
+		return status;
+	}
+	
+	public Employee getEmployee(){
 		return employeeID;
 	}
 }

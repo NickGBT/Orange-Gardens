@@ -1,7 +1,9 @@
 package com.netbuilder.entity_managers;
 
 import java.util.ArrayList;
+
 import com.netbuilder.entities.Basket;
+import com.netbuilder.entities.Customer;
 
 /**
  * 
@@ -17,7 +19,7 @@ public interface BasketManager {
 	public void persistBasket(ArrayList<Basket> baskets);
 
 	// READ
-	public Basket findByCustomerID(int customerID);
+	public Basket findByCustomerID(Customer customerID);
 
 	public Basket getBasket();
 
