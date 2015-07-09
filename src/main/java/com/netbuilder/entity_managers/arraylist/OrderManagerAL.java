@@ -8,23 +8,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 
+
+@Alternative
 public class OrderManagerAL implements OrderManager {
 
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	
 	public void persistOrder(Order order) {
 		this.orders.add(order);
-		
-	}
-
-	public void persistOrder(ArrayList<Order> order) {
-		this.orders.addAll(order);
 		
 	}
 
@@ -127,7 +126,7 @@ public class OrderManagerAL implements OrderManager {
 		return orderResults;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderDespatched(String firstDate, String secondDate) {
+	public ArrayList<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
 		ArrayList<Order> orderResults = new ArrayList<Order>(); 
 		
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -185,31 +184,35 @@ public class OrderManagerAL implements OrderManager {
 		return orderResults;
 	}
 
-	public Order findByCustomerId(int customerId) {
-		for(Order o : orders) {
-			
+	public ArrayList<Order> findByCustomerId(int customerId) {
+ArrayList<Order> orderResults = new ArrayList<Order>(); 
+		
+		for (Order o : orders) {
 			if(o.getCustomer().getCustomerID() == customerId) {
-				return o;
+				orderResults.add(o);
 			}
 		}
 		
-		return null;
+		if(orderResults.isEmpty()) { 
+			return null; 
+		} else 
+		return orderResults;
 	}
 
-	public Order findByEmployeeId(int employeeId) {
+	public ArrayList<Order> findByEmployeeId(int employeeId) {
 		
-		for(Order o : orders) {
+		ArrayList<Order> orderResults = new ArrayList<Order>(); 
+		
+		for (Order o : orders) {
 			if(o.getEmployee().getEmployeeId() == employeeId) {
-				return o;
+				orderResults.add(o);
 			}
 		}
 		
-		return null;
-	}
-
-	public Order getOrder() {
-		// TODO Auto-generated method stub
-		return null;
+		if(orderResults.isEmpty()) { 
+			return null;
+		} else 
+		return orderResults;
 	}
 
 	
@@ -220,6 +223,11 @@ public class OrderManagerAL implements OrderManager {
 				return;
 			}
 		}
+	}
+
+	public void updateOrder(Order order) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
