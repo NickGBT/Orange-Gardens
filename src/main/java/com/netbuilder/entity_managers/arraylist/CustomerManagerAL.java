@@ -2,9 +2,18 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 
+/**
+ * 
+ * @author JustinMabbutt
+ *
+ */
+
+@Alternative
 public class CustomerManagerAL implements CustomerManager
 {
 	ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -23,7 +32,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getUsername() == username)
+			if(c.getUsername().equals(username))
 			{
 				return c;
 			}
@@ -35,7 +44,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getEmailAddress() == email)
+			if(c.getEmailAddress().equals(email))
 			{
 				return c;
 			}
@@ -83,9 +92,7 @@ public class CustomerManagerAL implements CustomerManager
 
 	public ArrayList<Customer> getCustomers()
 	{
-		ArrayList<Customer> results = new ArrayList<Customer>();
-		results.addAll(customers);
-		return results;
+		return customers;
 	}
 
 	public void updateCustomer(Customer customer) 

@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.interfaces.StockManager;
 
@@ -11,6 +13,7 @@ import com.netbuilder.entity_managers.interfaces.StockManager;
  *
  */
 
+@Alternative
 public class StockManagerAL implements StockManager
 {
 	private ArrayList<Stock> stock = new ArrayList<Stock>();
@@ -104,9 +107,7 @@ public class StockManagerAL implements StockManager
 
 	public ArrayList<Stock> getStock() 
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
-		results.addAll(stock);
-		return null;
+		return stock;
 	}
 
 	public void updateStock(Stock stock) 
