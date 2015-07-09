@@ -2,6 +2,7 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 
@@ -41,6 +42,21 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return null;
 	}
 
+	public ArrayList<OrderLine> findByQuantity(int quantity) {
+		ArrayList<OrderLine> orderLine = new ArrayList<OrderLine>(); 
+		for(OrderLine o : orderLine){
+			if(o.getQuantity() == quantity){
+				orderLine.add(o);
+			}
+		}
+		
+		if(orderLine.isEmpty())
+			return orderLine;
+		else
+			return null;
+		
+	}
+	
 	public ArrayList<OrderLine> getProductLine() {
 		return orderLines;
 	}

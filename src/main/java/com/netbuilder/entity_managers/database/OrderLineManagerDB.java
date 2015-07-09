@@ -52,7 +52,6 @@ public class OrderLineManagerDB implements OrderLineManager{
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
-		
 	}
 
 	public OrderLine findByProductId(int productID) {
