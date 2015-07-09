@@ -54,7 +54,7 @@ public class Stock
 		this.requiredStock = requiredStock;
 	}
 	
-	public Product getProductID()
+	public Product getProduct()
 	{
 		return product;
 	}

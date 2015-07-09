@@ -23,7 +23,7 @@ public interface CustomerManager
 	public Customer findByFName(String fName);
 	public Customer findByLName(String lName);
 	public Customer findByCustomerID(int customerID);
-	public ArrayList<Customer> getCustomer();
+	public ArrayList<Customer> getCustomers();
 	
 	//UPDATE
 	public void updateCustomer(Customer customer);

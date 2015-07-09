@@ -22,7 +22,7 @@ public interface StockManager
 	public Stock findByStockLevel(int stockLevel);
 	public Stock findByStockAvailable(int stockAvailable);
 	public Stock findByMaximumStock(int maxStock);
-	public Stock findByStockID(int StockID);
+	public Stock findByProductID(int productID);
 	public ArrayList<Stock> getStock();
 	
 	//UPDATE

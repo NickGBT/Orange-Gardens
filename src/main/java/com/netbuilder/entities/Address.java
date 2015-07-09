@@ -77,7 +77,7 @@ public class Address
 		this.isBillingAddress = isBillingAddress;
 	}
 	
-	public Customer getCustomerID()
+	public Customer getCustomer()
 	{
 		return customer;
 	}

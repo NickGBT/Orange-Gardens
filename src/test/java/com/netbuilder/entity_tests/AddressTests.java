@@ -40,7 +40,7 @@ public class AddressTests {
 
 	@Test
 	public void testGetCustomerID() {
-		assertEquals(testAddress.getCustomerID(), testCustomer);
+		assertEquals(testAddress.getCustomer().getCustomerID(), testCustomer);
 	}
 
 	@Test
