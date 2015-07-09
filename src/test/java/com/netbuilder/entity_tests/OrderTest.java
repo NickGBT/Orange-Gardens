@@ -16,7 +16,6 @@ public class OrderTest {
 	
 	private Order testOrder;
 	private int handlerID = 23758725;
-	private OrderStatus status;
 	private String datePlaced = "AR/VB/HSJA";
 	private String dateDispatched = "AY/YY/LMAO";
 	private String dateDelivered = "BS/TI/ARHG";
@@ -85,7 +84,7 @@ public class OrderTest {
 	@Test
 	public void testOrderStatus()
 	{
-		assertEquals(testOrder.getOrderID(), status);
+		assertEquals(testOrder.getOrderStatus(), orderStatus);
 	}
 
 }
