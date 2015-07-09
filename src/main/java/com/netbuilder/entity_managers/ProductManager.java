@@ -19,7 +19,6 @@ public interface ProductManager{
 	//READ
 	public Product findByProductId(int productId);
 	public ArrayList<Product> getProductsByName(String name);
-	public ArrayList<Product> getProductsByLowStock();
 	public ArrayList<Product> getProductsByPriceBetween(double lowPrice, double highPrice);
 	
 	//UPDATE
