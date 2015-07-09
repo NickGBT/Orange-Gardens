@@ -52,9 +52,7 @@ public class DeliveryManagerAL implements DeliveryManager
 
 	public ArrayList<Delivery> getDeliveries()
 	{
-		ArrayList<Delivery> results = new ArrayList<Delivery>();
-		results.addAll(deliveries);
-		return null;
+		return deliveries;
 	}
 
 	public void updateDelivery(Delivery delivery)

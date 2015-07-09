@@ -42,7 +42,7 @@ public class AddressManagerAL implements AddressManager
 	{
 		for(Address a: addresses)
 		{
-			if(a.getAddressLabel() == label)
+			if(a.getAddressLabel().equals(label))
 			{
 				return a;
 			}
@@ -64,16 +64,14 @@ public class AddressManagerAL implements AddressManager
 
 	public ArrayList<Address> getAddresses()
 	{
-		ArrayList<Address> results = new ArrayList<Address>();
-		results.addAll(addresses);
-		return results;
+		return addresses;
 	}
 
 	public void updateAddress(Address address)
 	{
 		for(Address a: addresses)
 		{
-			if(a.getAddressLabel() == address.getAddressLabel())
+			if(a.getAddressLabel().equals(address.getAddressLabel()))
 			{
 				addresses.set(addresses.indexOf(a), address);
 			}
@@ -84,7 +82,7 @@ public class AddressManagerAL implements AddressManager
 	{
 		for(Address a: addresses)
 		{
-			if(a.getAddressLabel() == address.getAddressLabel())
+			if(a.getAddressLabel().equals(address.getAddressLabel()))
 			{
 				addresses.remove(addresses.indexOf(a));
 			}
