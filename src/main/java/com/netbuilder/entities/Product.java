@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 @Table(name = "product")
 @NamedQueries({
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE p.product_name LIKE ':name';"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
 })
 public class Product {

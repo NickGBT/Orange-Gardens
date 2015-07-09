@@ -16,9 +16,22 @@ import com.netbuilder.enums.EmployeePermissions;
 
 @Entity
 @Table(name = "employee")
+@NamedQueries({
+	@NamedQuery(name = Employee.FIND_BY_EMPLOYEE_ID, query= "SELECT e FROM employee e WHERE e.employee_id = :id;"),
+	@NamedQuery(name = Employee.FIND_BY_SURNAME, query= "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
+	@NamedQuery(name = Employee.FIND_BY_NAMES, query= "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
+	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query= "SELECT e from employee e WHERE e.departent = :department;"),
+	@NamedQuery(name = Employee.FIND_BY_ROLE, query= "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
+	
+})
 
 public class Employee {
 	
+	public static final String FIND_BY_EMPLOYEE_ID = "Employee.findByEmployeeId";
+	public static final String FIND_BY_SURNAME = "Employee.findBySurname";
+	public static final String FIND_BY_NAMES = "Employee.findByNames";
+	public static final String FIND_BY_DEPARTMENT = "Employee.findByDepartment";
+	public static final String FIND_BY_ROLE = "Employee.findByDepartment";
 
 	@Column(name = "department", nullable = false)
 	@NotNull
