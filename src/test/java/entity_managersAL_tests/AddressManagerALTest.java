@@ -51,10 +51,8 @@ public class AddressManagerALTest
 	{
 		testArrayAddress2.add(testAddress);
 		testArrayAddress2.add(testAddress2);
-		testArrayAddress.addAll(testArrayAddress2);
-		addressManager.persistAddresses(testArrayAddress);
-		testArrayAddress2.clear();
-		testArrayAddress2 = addressManager.getAddresses();
+		addressManager.persistAddresses(testArrayAddress2);
+		testArrayAddress = addressManager.getAddresses();
 		assertEquals(testArrayAddress.size(), 2);
 	}
 	
@@ -85,15 +83,30 @@ public class AddressManagerALTest
 	@Test
 	public void testGetAddresses() 
 	{
+		testArrayAddress.add(testAddress);
+		testArrayAddress.add(testAddress2);
+		addressManager.persistAddresses(testArrayAddress);
+		testArrayAddress2 = addressManager.getAddresses();
+		assertEquals(addressManager.getAddresses(), testArrayAddress2);
 	}
 	
 	@Test
 	public void updateAddress() 
 	{
+		testArrayAddress.add(testAddress);
+		addressManager.persistAddresses(testArrayAddress);
+		addressManager.updateAddress(testAddress);
+		assertEquals(addressManager.getAddresses(), testArrayAddress);
 	}
 	
 	@Test
 	public void removeAddress() 
 	{
+		testArrayAddress.add(testAddress);
+		testArrayAddress.add(testAddress2);
+		testArrayAddress2.add(testAddress);
+		addressManager.persistAddresses(testArrayAddress);
+		addressManager.removeAddress(testAddress2);
+		assertEquals(addressManager.getAddresses(), testArrayAddress2);
 	}
 }
