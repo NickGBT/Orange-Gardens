@@ -19,10 +19,9 @@ public interface EmployeeManager {
 	//READ
 	public Employee getEmployeeById(int employeeId);
 	public ArrayList<Employee> getEmployeesBySurname(String surname);
-	public ArrayList<Employee> getEmployeesByForename(String forename);
 	public ArrayList<Employee> getEmployeesByNames(String forename, String surname);
 	public ArrayList<Employee> getEmployeesByDepartment(EmployeeDepartment department);
-	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions position);
+	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission);
 	
 	//UPDATE
 	public void updateEmployee(Employee employee);

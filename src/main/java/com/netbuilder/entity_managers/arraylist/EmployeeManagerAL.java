@@ -2,10 +2,15 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
+import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
  * 
@@ -13,6 +18,8 @@ import com.netbuilder.enums.EmployeePermissions;
  *
  */
 
+@Alternative
+@Stateless
 public class EmployeeManagerAL implements EmployeeManager {
 
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
@@ -43,16 +50,6 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByForename(String forename) {
-		ArrayList<Employee> results = new ArrayList<Employee>();
-		
-		for(Employee e: employees){
-			if(e.getfName().equals(forename)) results.add(e);
-		}
-		
-		return results;
-	}
-
 	public ArrayList<Employee> getEmployeesByNames(String forename, String surname) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
@@ -73,11 +70,11 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions position) {
+	public ArrayList<Employee> getEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
 		ArrayList<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
-			if((e.getDepartment() == department)&&(e.getPermission() == position)) results.add(e);
+			if((e.getDepartment() == department)&&(e.getPermission() == permission)) results.add(e);
 		}
 		
 		return results;
