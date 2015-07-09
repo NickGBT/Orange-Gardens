@@ -21,7 +21,7 @@ public interface WishlistManager {
 	//READ
 	public Wishlist findByCustomerID(int customerID);
 	
-	public ArrayList<Wishlist> getWishList(); 
+	public Wishlist getWishList(); 
 	
 	//UPDATE
 	public void updateWishList(Wishlist wishList);
