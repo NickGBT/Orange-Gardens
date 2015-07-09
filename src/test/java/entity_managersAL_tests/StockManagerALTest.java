@@ -24,7 +24,6 @@ public class StockManagerALTest
 	private ArrayList<Stock> testArrayStock, testArrayStock2;
 	private Product testProduct, testProduct2;
 	private Stock testStock, testStock2;
-	private int testVariable;
 	private StockManagerAL stockManager;
 	
 	@Before
@@ -37,7 +36,6 @@ public class StockManagerALTest
 		testProduct2 = new Product("the other thing", "gnome", 44.00, 8, 5, 2, 320.00, "A gnome");
 		testStock = new Stock(testProduct, 4, 3, "Over there", 10, 2, 5);
 		testStock2 = new Stock(testProduct2, 5, 4, "Right here", 12, 5, 9);
-		testVariable = 0;
 	}
 	
 	@Test
