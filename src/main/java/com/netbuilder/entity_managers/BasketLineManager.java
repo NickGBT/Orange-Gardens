@@ -17,7 +17,7 @@ public interface BasketLineManager {
 	// READ
 	public BasketLine findByCustomerID(int customerID);
 
-	public BasketLine getBasket();
+	public BasketLine getBasketLine();
 
 	// UPDATE
 	public void updateBasket(BasketLine basketLine);
