@@ -28,7 +28,7 @@ public class Basket {
 		this.basketLine = basketLine;
 	}
 
-	public Customer getCustomerID() {
+	public Customer getCustomer() {
 		return customerID;
 	}
 

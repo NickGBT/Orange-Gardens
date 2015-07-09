@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Basket;
 import com.netbuilder.entities.BasketLine;
+import com.netbuilder.entities.Customer;
 
 import java.util.ArrayList;
 
@@ -20,17 +21,18 @@ public class BasketTest {
 	
 	Basket basket;
 	
-	private int customerID  = 1254;
 	private ArrayList<BasketLine> basketLine = new ArrayList<BasketLine>();
+	private Customer customerID;
 
 	@Before
 	public void setUp() throws Exception {
+		customerID  = new Customer("Absolutely", "Fantastic", "fantastic3", "absfan", "fantastic@absolutely.com", true);
 		basket = new Basket(customerID, basketLine);
 	}
 
 	@Test
 	public void testGetCustomerID() {
-		assertEquals(customerID, basket.getCustomerID());
+		assertEquals(customerID.getCustomerID(), basket.getCustomer().getCustomerID());
 	}
 
 	@Test

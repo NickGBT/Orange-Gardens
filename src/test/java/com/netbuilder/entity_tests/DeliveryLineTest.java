@@ -2,10 +2,14 @@ package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import com.netbuilder.entities.Delivery;
 import com.netbuilder.entities.DeliveryLine;
+import com.netbuilder.entities.Product;
 
 /**
  * 
@@ -15,21 +19,41 @@ import com.netbuilder.entities.DeliveryLine;
 
 public class DeliveryLineTest {
 	
-	DeliveryLine deliveryLine;
+	private DeliveryLine deliveryLine;
 	
-	private int productID = 45632;
-	private int deliveryID = 4264;
-	private int quantity = 250;
-
+	private String imageLocation = "res/products/img/2412.jpg";	
+	private String productName = "Test Gnome";
+	private double productPrice = 29.99;
+	private int width = 20;
+	private int length = 20;
+	private int height = 35;
+	private double weight = 3;
+	private String description = "A gnome for testing, should never exist";	
+	private Product testProduct;
+	
+	private String datePlaced = "15/01/2015";
+	private String dateToBeDelivered = "18/01/2015";
+	private String supplier = "GnomeM8";
+	private BigDecimal price = new BigDecimal(50.00);
+	private Delivery delivery;
+	
+	private int quantity = 10;
+	
 	@Before
 	public void setUp() throws Exception {
-		deliveryLine = new DeliveryLine(productID, deliveryID, quantity);
+		
+		testProduct = new Product (imageLocation, productName,
+				productPrice, width, length, height, weight, description);
+		
+		delivery = new Delivery(datePlaced, dateToBeDelivered, supplier, price);
+		
+		deliveryLine = new DeliveryLine(testProduct, delivery, quantity);
 	}
 
-	@Test
+	/*@Test
 	public void testGetProductID() {
-		assertEquals(productID, deliveryLine.getProductID());;
-	}
+		assertEquals(testProduct.getProductId(), deliveryLine.getProductID());;
+	}*/
 
 
 	@Test
@@ -38,9 +62,9 @@ public class DeliveryLineTest {
 	}
 
 
-	@Test
+	/*@Test
 	public void testGetDeliveryID() {
-		assertEquals(deliveryID, deliveryLine.getDeliveryID());;
-	}
+		assertEquals(delivery.getDeliveryID(), deliveryLine.getDeliveryID());;
+	}*/
 
 }
