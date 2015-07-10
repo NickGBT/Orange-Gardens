@@ -25,7 +25,7 @@ public class DeliveryManagerAL implements DeliveryManager
 
 	public void persistDeliveries(ArrayList<Delivery> deliveries)
 	{
-		deliveries.addAll(deliveries);
+		this.deliveries.addAll(deliveries);
 	}
 
 	public ArrayList<Delivery> findByDatePlaced(String datePlaced)
