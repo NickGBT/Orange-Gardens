@@ -47,9 +47,9 @@ public class PaymentDetailsManagerALTests {
 		o1 = new Order(c2, OrderStatus.placed, "2015-07-07", "2015-07-08", "2015-07-09", "3", true);
 		o1.setOrderID(1);
 		
-		p1 = new PaymentDetails(CardType.AMERICANEXPRESS, "12345678912345", "N B Gardens", 123, "03/17", c1);
-		p2 = new PaymentDetails(CardType.VISADEBIT, "9876543219876543", "B Back", 987, "04/14", c1);
-		p3 = new PaymentDetails(CardType.MASTERCARD, "1478963214789632", "D U Mmy", 456, "06/18", c2, o1);
+		p1 = new PaymentDetails(CardType.AMERICANEXPRESS, "12345678912345", "N B Gardens", 123, "03-17", c1);
+		p2 = new PaymentDetails(CardType.VISADEBIT, "9876543219876543", "B Back", 987, "04-14", c1);
+		p3 = new PaymentDetails(CardType.MASTERCARD, "1478963214789632", "D U Mmy", 456, "06-18", c2, o1);
 
 		detailsInput = new ArrayList<PaymentDetails>();
 		detailsInput.add(p1);
