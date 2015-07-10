@@ -26,7 +26,7 @@ public class DeliveryTest
 	private BigDecimal price = new BigDecimal(11.5);
 	
 	@Before
-	protected void setUp() throws Exception 
+	public void setUp() throws Exception 
 	{
 		deliveryStatus = DeliveryStatus.Processing;
 		testDelivery = new Delivery(datePlaced, dateToBeDelivered, supplier, price);
