@@ -16,6 +16,11 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 
+/**
+ * 
+ * @author Alexander Neil
+ *
+ */
 public class PaymentDetailsManagerALTests {
 
 	PaymentDetailsManager paymentDetailsManager;
