@@ -58,6 +58,14 @@ public class ProductManagerALTests {
 	}
 
 	@Test
+	public void testPersistProductsAndGetAll(){
+		
+		productManager.persistProducts(testInput);
+		
+		assertEquals(testInput.size(), productManager.getAll().size());
+	}
+	
+	@Test
 	public void testPersistProductsAndFindByName() {
 
 		productManager.persistProducts(testInput);

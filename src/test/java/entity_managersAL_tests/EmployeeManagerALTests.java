@@ -63,6 +63,14 @@ public class EmployeeManagerALTests {
 	}
 
 	@Test
+	public void testMultiplePersistAndGetAll(){
+		
+		employeeManager.persistEmployees(testInput);
+		
+		assertEquals(testInput.size(), employeeManager.getAll().size());
+	}
+	
+	@Test
 	public void testMultiplePersistAndFindByDepartment(){
 		
 		employeeManager.persistEmployees(testInput);
