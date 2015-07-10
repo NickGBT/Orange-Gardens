@@ -52,7 +52,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		
 		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-yy");
 		
 		try{
 			Date currentDate = new Date();
@@ -77,7 +77,12 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
 
 		for(PaymentDetails pd: paymentDetails){
-			if(pd.getOrderId().getOrderID() == orderId) return pd;
+			try{
+				if(pd.getOrderId().getOrderID() == orderId) return pd;
+			}
+			catch(NullPointerException npe){
+				//No orderId for these payment details
+			}
 		}
 		return null;
 	}
