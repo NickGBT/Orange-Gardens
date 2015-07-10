@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -45,6 +46,23 @@ public class ProductManagerDB implements ProductManager {
 		pm.closeEntityManager(em);
 
 	}
+	
+	public ArrayList<Product> getAll(){
+		
+		ArrayList<Product> results = null;
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
+		pm.closeEntityManager(em);
+		try{
+			results = new ArrayList<Product>(tq.getResultList());
+		}
+		catch(NoResultException nre){
+			
+		}
+		return results;
+	}
+
 
 	public Product findByProductId(int productId) {
 

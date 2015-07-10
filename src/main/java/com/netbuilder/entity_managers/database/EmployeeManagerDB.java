@@ -43,6 +43,21 @@ public class EmployeeManagerDB implements EmployeeManager {
 		pm.closeEntityManager(em);
 
 	}
+	
+	public ArrayList<Employee> getAll(){
+ArrayList<Employee> results = null;
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL, Employee.class);
+		pm.closeEntityManager(em);
+		try{
+			results = new ArrayList<Employee>(tq.getResultList());
+		}
+		catch(NoResultException nre){
+			
+		}
+		return results;
+	}
 
 	public Employee findEmployeeById(int employeeId) {
 		
