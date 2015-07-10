@@ -55,6 +55,7 @@ public class AddressManagerALTest
 		testArrayAddress = addressManager.getAddresses();
 		assertEquals(testArrayAddress.size(), 2);
 	}
+	 
 	
 	@Test
 	public void testFindByPostcode() 

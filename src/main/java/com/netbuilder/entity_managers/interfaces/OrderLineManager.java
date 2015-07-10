@@ -14,15 +14,15 @@ import com.netbuilder.entities.OrderLine;
 public interface OrderLineManager {
 
 		// CREATE
-		public void persistProductLine(OrderLine orderLine);
+		public void persistOrderLine(OrderLine orderLine);
 
-		public void persistProductLine(ArrayList<OrderLine> orderLine);
+		public void persistOrderLine(ArrayList<OrderLine> orderLine);
 
 		// READ
 		public OrderLine findByProductId(int productID);
 		public OrderLine findByOrderId(int orderId); 
 		public ArrayList<OrderLine> findByQuantity(int quantity); 
-		public ArrayList<OrderLine> getProductLine();
+		public ArrayList<OrderLine> getOrderLine();
 
 		// UPDATE
 		public void updateProductLine(OrderLine orderLine);

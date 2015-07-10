@@ -9,9 +9,15 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.enums.EmployeeDepartment;
+import com.netbuilder.enums.EmployeePermissions;
+import com.netbuilder.enums.OrderStatus;
 
 /**
  * 
@@ -22,51 +28,112 @@ import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 public class OrderLineManagerALTest {
 	
 	private ArrayList<OrderLine> testArrayOrderLine, testArrayOrderLine2;
-
+	private OrderLineManagerAL orderLineManager;
+	private Order order;
+	private Customer testCustomer1;
+	private Customer testCustomer2;
+	private Employee employee;
+	private EmployeeDepartment employeeDepartment;
+	private EmployeePermissions employeePermission;
+	private OrderStatus orderStatus;
+	private OrderLine orderLine;
+	private OrderLine orderLine1;
+	private Product product;
+	private ArrayList<OrderLine> orderlineAL;
+	
 	@Before
 	public void setUp() throws Exception {
-		OrderLineManagerAL orderLine = new OrderLineManagerAL();
-
+		
+		orderlineAL = new ArrayList<OrderLine>();
+		
+		testCustomer1 = new Customer("test", "name", "absfan1", "testtst", "test@test.com", true);
+		employee = new Employee(EmployeeDepartment.SALES, "test", "name", "absfan1", EmployeePermissions.MANAGER);
+		
+		orderLineManager = new OrderLineManagerAL();	
+		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
+				"10/10/15", "12/10/15", "13/10/15",
+				"40", true);
+		
+		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product");
+		
+		orderLine = new OrderLine(order , product, 50);
+		orderLine1 = new OrderLine(order , product, 50);
+		
 	}
 
 	@Test
 	public void testPersistProductLineOrderLine() {
-		fail("Not yet implemented");
+		orderLineManager.persistOrderLine(orderLine);
+		orderlineAL = orderLineManager.getOrderLine();
+		assertEquals(1, orderlineAL.size());
+		
 	}
+	
 
 	@Test
 	public void testPersistProductLineArrayListOfOrderLine() {
-		fail("Not yet implemented");
+		orderlineAL.clear();
+		orderlineAL.add(orderLine);
+		orderlineAL.add(orderLine1);
+		orderLineManager.persistOrderLine(orderlineAL);
+		orderlineAL = orderLineManager.getOrderLine();
+		assertEquals(2, orderlineAL.size());
+		
 	}
 
-	@Test
+	/*@Test
 	public void testFindByProductId() {
-		fail("Not yet implemented");
-	}
+		orderlineAL.clear();	
+		orderlineAL.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		assertEquals(orderLineManager.findByProductId(2123), orderLine);
+	}*/
 
-	@Test
+	/*@Test
 	public void testFindByOrderId() {
-		fail("Not yet implemented");
-	}
+		orderlineAL.clear();	
+		orderlineAL.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		assertEquals(orderLineManager.findByOrderId(321), orderLine);
+	}*/
 
 	@Test
 	public void testFindByQuantity() {
-		fail("Not yet implemented");
+		orderlineAL.clear();	
+		orderlineAL.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		assertEquals(orderLineManager.findByQuantity(50), orderLine);
 	}
 
 	@Test
 	public void testGetProductLine() {
-		fail("Not yet implemented");
+		orderlineAL.clear();
+		orderlineAL.add(orderLine);
+		orderlineAL.add(orderLine1);
+		orderLineManager.persistOrderLine(orderlineAL);
+		orderlineAL = orderLineManager.getOrderLine();
+		assertEquals(orderLineManager.getOrderLine(), orderlineAL);
 	}
 
 	@Test
 	public void testUpdateProductLine() {
-		fail("Not yet implemented");
+		orderlineAL.clear();	
+		orderlineAL.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		orderLineManager.updateProductLine(orderLine);
+		assertEquals(orderLineManager.getOrderLine(), orderLine);
 	}
 
 	@Test
 	public void testRemoveProductLine() {
-		fail("Not yet implemented");
+		ArrayList<OrderLine> oLine = new ArrayList<OrderLine>();
+		orderlineAL.clear();
+		orderlineAL.add(orderLine);
+		orderlineAL.add(orderLine1);
+		oLine.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		orderLineManager.removeProductLine(orderLine1);
+		assertEquals(orderLineManager.getOrderLine(), oLine);
 	}
 
 }

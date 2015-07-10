@@ -16,15 +16,15 @@ public class OrderLineManagerAL implements OrderLineManager{
 
 	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
 	
-	public void persistProductLine(OrderLine orderLine) {
+	public void persistOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
 	}
 
-	public void persistProductLine(ArrayList<OrderLine> orderLine) {
+	public void persistOrderLine(ArrayList<OrderLine> orderLine) {
 		orderLines.addAll(orderLine);		
 	}
 
-	public OrderLine findByProductId(int productID) {
+	public OrderLine findByProductId(int productID) { 
 		for(OrderLine o : orderLines){
 			if(o.getProduct().getProductId() == productID){
 				return o;
@@ -57,7 +57,7 @@ public class OrderLineManagerAL implements OrderLineManager{
 		
 	}
 	
-	public ArrayList<OrderLine> getProductLine() {
+	public ArrayList<OrderLine> getOrderLine() {
 		return orderLines;
 	}
 
