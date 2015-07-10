@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Delivery;
+import com.netbuilder.entity_managers.arraylist.DeliveryManagerAL;
 import com.netbuilder.enums.DeliveryStatus;
 
 /**
@@ -19,34 +20,44 @@ import com.netbuilder.enums.DeliveryStatus;
 
 public class DeliveryManagerALTest {
 	
-	private Delivery testDelivery;
+	private Delivery testDelivery, testDelivery2,testDelivery3, testDelivery4;
 	private DeliveryStatus deliveryStatus;
-	private String datePlaced = "Today";
-	private String dateToBeDelivered = "Tomorrow";
-	private String supplier = "MC Gardens";
-	private BigDecimal price = new BigDecimal(11.5);
-	private ArrayList<Delivery> testArrayDelivery;
+	private DeliveryManagerAL deliveryManager;
+	private ArrayList<Delivery> testArrayDelivery, testArrayDelivery2; 
 
 	@Before
 	public void setUp() throws Exception {
+
 		deliveryStatus = DeliveryStatus.Processing;
-		testDelivery = new Delivery(datePlaced, dateToBeDelivered, supplier, price);
-		testArrayDelivery= new ArrayList<Delivery>();
+		testDelivery = new Delivery("AB/BC/CDEF", "BC/DE/EFGH", "Gnome Depot", new BigDecimal(110.5));
+		testDelivery2 = new Delivery("14/04/2015", "17/05/2015", "Gnomes 'r' Us", new BigDecimal(340.7));
+		testDelivery3 = new Delivery("RQ/VD/2018", "VA/AR/2020", "Gnarly Gnomes", new BigDecimal(230.15));
+		testDelivery4 = new Delivery("18/06/2014", "30/07/2015", "Gnome Boutique", new BigDecimal(280.66));
+		testArrayDelivery = new ArrayList<Delivery>();
+		testArrayDelivery2 = new ArrayList<Delivery>();
 	}
 
 	@Test
 	public void testPersistDelivery() {
-		fail("Not yet implemented");
+		deliveryManager.persistDelivery(testDelivery);
+		testArrayDelivery = deliveryManager.getDeliveries();
+		assertEquals(testArrayDelivery.size(), 1);;
 	}
 
 	@Test
 	public void testPersistDeliveries() {
-		fail("Not yet implemented");
+		testArrayDelivery2.add(testDelivery);
+		testArrayDelivery2.add(testDelivery2);
+		deliveryManager.persistDeliveries(testArrayDelivery2);
+		testArrayDelivery = deliveryManager.getDeliveries();
+		assertEquals(testArrayDelivery.size(), 2);;
 	}
 
 	@Test
 	public void testFindByDatePlaced() {
-		fail("Not yet implemented");
+		testArrayDelivery.add(testDelivery3);
+		deliveryManager.persistDelivery(testDelivery3);
+		assertEquals(deliveryManager.findByDatePlaced("RQ/VD/2018"), testArrayDelivery);
 	}
 
 	@Test
