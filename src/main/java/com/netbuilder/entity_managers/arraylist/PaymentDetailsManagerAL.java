@@ -7,11 +7,8 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
-import javax.inject.Inject;
-
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
-import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
  * 
