@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
-import javax.inject.Inject;
-
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
-import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
  * 
@@ -34,6 +31,10 @@ public class EmployeeManagerAL implements EmployeeManager {
 		
 	}
 
+	public ArrayList<Employee> getAll(){
+		return employees;
+	}
+	
 	public Employee findEmployeeById(int employeeId) {
 		for(Employee e: employees){
 			if(e.getEmployeeId() == employeeId) return e;
