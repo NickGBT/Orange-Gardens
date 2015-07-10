@@ -230,4 +230,8 @@ ArrayList<Order> orderResults = new ArrayList<Order>();
 		
 	}
 
+	public ArrayList<Order> getAllOrders() {
+		return orders;
+	}
+
 }

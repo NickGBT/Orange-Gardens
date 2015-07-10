@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -237,6 +238,14 @@ public class OrderManagerDB implements OrderManager {
 		em.merge(order);
 		pm.closeEntityManager(em);
 		
+	}
+
+	public ArrayList<Order> getAllOrders() {
+		EntityManager em = pm.createEntityManager();
+		ArrayList<Order> order= 
+				(ArrayList<Order>) em.createQuery("select d from order d", Order.class).getResultList();
+		pm.closeEntityManager(em);
+		return order;
 	}
 
 }

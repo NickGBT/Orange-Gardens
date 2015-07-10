@@ -30,6 +30,7 @@ public interface OrderManager {
 		public ArrayList<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate);
 		public ArrayList<Order> findByCustomerId(int customerId);
 		public ArrayList<Order> findByEmployeeId(int employeeId);
+		public ArrayList<Order> getAllOrders();
 		
 		//UPDATE
 		public void updateOrder(Order order);

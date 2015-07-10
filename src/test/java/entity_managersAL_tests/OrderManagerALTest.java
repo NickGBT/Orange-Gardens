@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.enums.EmployeeDepartment;
+import com.netbuilder.enums.EmployeePermissions;
+import com.netbuilder.enums.OrderStatus;
 
 /**
  * 
@@ -18,77 +24,78 @@ import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 
 public class OrderManagerALTest {
 
-	OrderManagerAL orderManagerAL;
+	OrderManagerAL orderManager;
+	private ArrayList<Order> testArrayOrder;
+	private Order testOrder, testOrder2;
+	private Customer testCustomer, testCustomer2;
+	private Employee testEmployee, testEmployee2;
 	
-	private ArrayList<Order> testArrayOrder, testArrayOrder2;
 	
 	@Before
 	public void setUp() throws Exception {
+		orderManager = new OrderManagerAL();
+		testArrayOrder = new ArrayList<Order>();
+		testCustomer = new Customer("James", "Morpheus", "jmo", "netbuilder", "jmo@netbuilder.com", false);
+		testEmployee = new Employee(EmployeeDepartment.SALES, "Matt", "Watson", "hello", EmployeePermissions.MANAGER);
+		testCustomer2 = new Customer("Phil", "Chivers", "pchi", "germany", "pchi@netbuilder.com", false);
+		testEmployee2 = new Employee(EmployeeDepartment.SALES, "Alex", "Neil", "aneil@netbuilder.com", EmployeePermissions.WORKER);
+		
+		testOrder = new Order(testCustomer, testEmployee, OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO", "AB/CD/HJKS", "AR/VB/HSJA", false);
+		testOrder2 = new Order(testCustomer2, testEmployee2, OrderStatus.awaitingDispatch, "03/04/2015", "AR/VB/1999", "AB/CD/4321", "AR/VB/2001", false);
+		testOrder.setOrderID(5);
+		testOrder2.setOrderID(10);
 	}
 
 	@Test
 	public void testPersistOrder() {
-		fail("Not yet implemented");
+		orderManager.persistOrder(testOrder);
+		testArrayOrder = orderManager.getAllOrders();
+		assertEquals(testArrayOrder.size(), 1);
 	}
 
 	@Test
 	public void testFindByOrderID() {
-		fail("Not yet implemented");
+		orderManager.persistOrder(testOrder);
+		assertEquals(testOrder, orderManager.findByOrderID(5));
 	}
 
 	@Test
 	public void testFindByStatus() {
-		fail("Not yet implemented");
+		testArrayOrder.add(testOrder);
+		orderManager.persistOrder(testOrder);
+		assertEquals(testArrayOrder, orderManager.findByStatus(OrderStatus.cancelled) );
 	}
 
 	@Test
 	public void testFindByDatePlaced() {
-		fail("Not yet implemented");
+		testArrayOrder.add(testOrder);
+		orderManager.persistOrder(testOrder);
+		assertEquals(testArrayOrder, orderManager.findByDatePlaced("AR/VB/HSJA"));
 	}
 
 	@Test
 	public void testFindByDateDispatched() {
-		fail("Not yet implemented");
+		testArrayOrder.add(testOrder);
+		orderManager.persistOrder(testOrder);
+		assertEquals(testArrayOrder, orderManager.findByDateDispatched("AR/VB/HELLO"));
 	}
 
 	@Test
 	public void testFindByDateDelivered() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByTwoDatesOrderPlaced() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByTwoDatesOrderDispatched() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByTwoDatesOrderDelivered() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByCustomerId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByEmployeeId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdateWishList() {
-		fail("Not yet implemented");
+		testArrayOrder.add(testOrder);
+		orderManager.persistOrder(testOrder);
+		assertEquals(testArrayOrder, orderManager.findByDateDelivered("AB/CD/HJKS"));
 	}
 
 	@Test
 	public void testUpdateOrder() {
-		fail("Not yet implemented");
+		orderManager.persistOrder(testOrder);
+		
+		testOrder2.setOrderID(1);
+		
+		orderManager.updateOrder(testOrder2);
+		
+		assertNotEquals(testOrder2, orderManager.findByOrderID(testOrder.getOrderID()));
 	}
 
 }
