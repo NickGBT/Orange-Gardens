@@ -22,12 +22,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "product")
 @NamedQueries({
+	@NamedQuery(name = Product.GET_ALL, query= "SELECT p FROM products p"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
 })
 public class Product {
 	
+	public static final String GET_ALL = "Product.getAll";
 	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";
 	public static final String FIND_BY_PRODUCT_NAME = "Product.findByProductName";
 	public static final String FIND_BY_PRODUCT_PRICE = "Product.findByProductPrice";
