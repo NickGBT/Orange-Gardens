@@ -17,6 +17,7 @@ public interface ProductManager{
 	public void persistProducts(ArrayList<Product> products);
 	
 	//READ
+	public ArrayList<Product> getAll();
 	public Product findByProductId(int productId);
 	public ArrayList<Product> findProductsByName(String name);
 	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice);
