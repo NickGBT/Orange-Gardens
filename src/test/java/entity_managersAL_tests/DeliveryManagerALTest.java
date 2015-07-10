@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Delivery;
+import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.arraylist.DeliveryManagerAL;
 import com.netbuilder.enums.DeliveryStatus;
 
@@ -87,12 +88,14 @@ public class DeliveryManagerALTest {
 
 	@Test
 	public void testRemoveDelivery() {
-		testArrayDelivery.add(testDelivery);
-		testArrayDelivery.add(testDelivery2);
-		testArrayDelivery2.add(testDelivery);
-		deliveryManager.persistDeliveries(testArrayDelivery);
+		
+		deliveryManager.persistDelivery(testDelivery2);
+		
 		deliveryManager.removeDelivery(testDelivery2);
-		assertEquals(testArrayDelivery, deliveryManager.getDeliveries());
+		
+		ArrayList<Delivery> output = deliveryManager.findByDatePlaced(testDelivery2.getDatePlaced());
+		
+		assertNull(output);
 	}
 
 }
