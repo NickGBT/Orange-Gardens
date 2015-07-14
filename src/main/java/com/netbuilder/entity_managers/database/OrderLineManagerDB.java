@@ -34,7 +34,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 	@Inject
 	private PersistenceManager pm;
 	
-	public void persistProductLine(OrderLine orderLine) {
+	public void persistOrderLine(OrderLine orderLine) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(orderLine);
@@ -43,7 +43,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		
 	}
 
-	public void persistProductLine(ArrayList<OrderLine> orderLine) {
+	public void persistOrderLine(ArrayList<OrderLine> orderLine) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		for(OrderLine c : orderLine)
@@ -95,7 +95,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		return orderLine;
 	}
 	
-	public ArrayList<OrderLine> getProductLine() {
+	public ArrayList<OrderLine> getOrderLine() {
 		EntityManager em = pm.createEntityManager();
 		ArrayList<OrderLine> orderLine = 
 				(ArrayList<OrderLine>) em.createQuery("select d from order_line d", OrderLine.class).getResultList();
