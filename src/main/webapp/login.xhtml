@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/exampletemplate.xhtml">
+<ui:define name="pageTitle">Login</ui:define>
+<ui:define name="content">
+	<div id="login">
+		<h:form>
+			<h2>Login</h2>
+			<h:panelGrid>
+				<h:outputLabel value="Username" for="logindetails"/><br/>
+				<h:inputText id="logindetails" value="#{userDetails.username}" maxlength="45" size="20"/><br/>
+				<br/>
+				<h:outputLabel value="Password" for="password"/><br/>
+				<h:inputSecret id="password" value="#{userDetails.password}" maxlength="45" size="20"/><br/>
+				<br/>
+				<f:facet name="loginsubmit">
+					<h:commandButton class="button" value="Submit" action="#{loginController.login}"/>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<div id="register">
+	
+	</div>
+</ui:define>
+</html>
