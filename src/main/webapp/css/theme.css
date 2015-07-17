@@ -1,0 +1,107 @@
+html{
+	width: 70%;
+	margin: 0 auto;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#header{
+	background-color: #195603;
+	text-align: center;
+	padding: 11px;
+}
+
+#logo{
+	float: left;
+}
+
+#controls{
+	padding-top: 100px;
+}
+
+#basket{
+	float:right;
+}
+
+#basket:hover{
+	background-color: #374409;
+	border-radius: 10px;
+}
+
+.headFootLinks{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.headFootLinks:hover{
+	color: #487C7F;
+}
+
+.headFootLinks:active{
+	color: #487C7F;
+}
+
+.headerButton{
+	
+	color: #FFFFFF;
+	font-weight: bold;
+	border: 3px solid #15494C;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+.headerButton:hover{
+	background-color: #15494C;
+}
+
+.headerButton:active{
+	background-color: #035638;
+	position:relative;
+	top:1px;
+}
+
+#searchText{
+	width: 325px;
+	color: #FFFFFF;
+	font-weight: bold;
+	background-color: #195603;
+	border: none;
+	outline: none;
+	border-bottom: 4px solid #FFFFFF;
+	height: 25px;
+	font-size: 16px;
+ }
+ 
+#searchText:focus{
+	background-color: #035638;
+}
+ 
+#searchButton{
+	background-color:rgba(0, 0, 0, 0);
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+	font-weight: bold;
+	border-radius: 5px 10px 10px 5px;
+}
+ 
+#searchButton:hover{
+	background-color: #15494C;
+}
+ 
+#searchButton:active{
+	background-color: #035638;
+}
+ 
+#footer{
+	background-color: #195603;
+	font-size: 14px;
+	color: #FFFFFF;
+	padding-bottom: 5px;
+}
+
+#copyright{
+	float:right;
+}
+
+#footerLinks{
+
+}
