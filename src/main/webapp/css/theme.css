@@ -18,8 +18,11 @@ html{
 	padding-top: 100px;
 }
 
-#basket{
+#buyingInfo{
 	float:right;
+}
+
+#basket{
 }
 
 #basket:hover{
