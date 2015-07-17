@@ -1,0 +1,34 @@
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/exampletemplate.xhtml">
+		
+<!-- author: JustinMabbutt -->
+
+<ui:define name="pageTitle">NB Gardens - Customer Feedback</ui:define>
+
+<ui:define name="content">
+<div id="MainContent">
+	<H1>Give us your feedback</H1>
+	
+	<H4>What specific area do you wish to address?</H4>
+	
+	<select>
+		<option>Customer Support</option>
+		<option>Technical Support</option>
+	</select>
+	
+	<H4>Tell us what you think:</H4>
+	
+	<div id="Feedback">
+		<textarea name="feedback" rows="10" cols="50"></textarea>
+	</div>
+	
+	<br />
+	<button type="button">Send Feedback</button>
+	<button type="button">Cancel</button>
+</div>
+</ui:define>
+
+</html>	
