@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/exampletemplate.xhtml">
+		
+<!-- author: llew -->
+
+<ui:define name="pageTitle">NB Gardens - Your Account</ui:define>
+
+<ui:define name="content">
+<CENTER>
+<div class = "title">
+<h1>NB GARDENS</h1>
+</div>
+<div id="homeImg">
+<img src="NBGardens.jpg" alt="" style="width:600px;height:600px;" />
+</div>
+
+<div id="specialOffers">
+<h2>New Products</h2>
+<table id="homepageProducts" style="width:80%">
+  <c:forEach var="newProduct" items="${Product}">
+	<tr>
+		<td><img src=${newProduct.imageLocation} alt="" style="width:200px;height:200px;"></td>
+
+	</tr>
+	<tr>
+		<td>${newProduct.productName}</td>
+		<td>${newProduct.description}</td>
+		<td>${newProduct.price}</td>
+	</tr>
+	</c:forEach>
+</table>
+<br><br><br>
+<table id ="contactInfo" style="width:50%" >
+  <tr>
+    <td>Email : cccc@xxxx.com</td>
+    <td>Email : cccc@xxxx.com</td>
+    <td>Email : cccc@xxxx.com</td>
+  </tr>
+</table>
+</div>
+
+
+</html>
