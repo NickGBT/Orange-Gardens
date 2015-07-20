@@ -17,21 +17,25 @@
 
 	<H4>What is your username or email address?</H4>
 
-	<form>
-		<input type = "text" username = "username">
-	</form>
+	<h:form>
+		<h:inputText id="loginDetails" value="#{userDetails.username}" maxlength="45" size="20">
+	</h:form>
 
 	<H4>What is your password?</H4>
 
-	<form>
-		<input type = "password" password = "password">
-	</form>
+	<h:form>
+		<h:inputSecret id="password" value="#{userDetails.password}" maxlength="45" size="20">
+	</h:form>
 
-	<br />
-	<button type="button">Sign In</button>
-	<br />
-	<br />
-	<button type="button">Register an account</button>
+	<br/>
+	<f:facet name="loginSubmit">
+		<h:commandbutton class="button" value="Sign In" action="#{loginController.login}"/>
+	</f:facet>
+	<br/>
+	<br/>
+	<f:facet name="accountCreate">
+		<h:commandbutton class="button" value="Register an account" action="#{loginController.createAccount}"/>
+	</f:facet>
 </div>
 </ui:define>
 
