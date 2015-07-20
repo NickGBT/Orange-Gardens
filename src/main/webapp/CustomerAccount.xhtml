@@ -26,19 +26,29 @@
 	</div>
 	<div id="MainBlock">
 		<p>First Name:</p>
-		<button type="button">Change</button><br />
+		<f:facet name="firstNameChange">
+			<h:commandbutton class="button" value="Change" action="#{}"/><br />
+		</f:facet>
 		
 		<p>Last Name:</p>
-		<button type="button">Change</button><br />
+		<f:facet name="lastNameChange">
+			<h:commandbutton class="button" value="Change" action="#{}"/><br />
+		</f:facet>
 
 		<p>Email Address:</p>
-		<button type="button">Change</button><br />
+		<f:facet name="emailChange">
+			<h:commandbutton class="button" value="Change" action="#{}"/><br />
+		</f:facet>
 
-		<p class = "padding">Contact Number:</p>
-		<button type="button">Change</button><br />
+		<p>Contact Number:</p>
+		<f:facet name="contactNumberChange">
+			<h:commandbutton class="button" value="Change" action="#{}"/><br />
+		</f:facet>
 
 		<p>Username:</p>
-		<button type="button">Change</button><br />
+		<f:facet name="usernameChange">
+			<h:commandbutton class="button" value="Change" action="#{}"/><br />
+		</f:facet>
 		
 		<p>Payment Methods:</p>
 		<select>
@@ -55,12 +65,16 @@
 			<p>County</p>
 			<p>Postcode</p>
 		</div>
-		<button type="button">Change</button><br />
+		<f:facet name="addressChange">
+			<h:commandbutton class="button" value="Change"" action="#{}"/><br />
+		</f:facet>
 	</div>
 
 	<div id="PasswordBlock">
 		<p>Want to change your password?</p>
-		<button type="button">Reset Password</button><br />
+		<f:facet name="addressChange">
+			<h:commandbutton class="button" value="Reset Password"" action="#{}"/><br />
+		</f:facet>
 	</div>
 </div>
 </ui:define>
