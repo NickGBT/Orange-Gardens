@@ -17,8 +17,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table (name = "product_line")
 public class OrderLine {
-	
-		
+			
 	@ManyToOne
 	@JoinColumn(name = "order_id", nullable = false)
 	@NotNull
@@ -33,7 +32,6 @@ public class OrderLine {
 	@NotNull
 	private int quantity;
 
-	
 	public OrderLine(Order orderID, Product productID, int quantity) {
 		
 		this.orderID = orderID;
@@ -64,5 +62,4 @@ public class OrderLine {
 	public Product getProduct(){
 		return productID;
 	}
-
 }
