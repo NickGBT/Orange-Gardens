@@ -26,11 +26,11 @@ public class Order {
 	private int orderID;
 	
 	@OneToMany
-	@JoinColumn (name = "customer_id", nullable = false)
+	@JoinColumn (name = "user_id", nullable = false)
 	private LoginDetails customerID;
 	
 	@OneToMany
-	@JoinColumn (name = "employee_id")
+	@JoinColumn (name = "user_id")
 	private LoginDetails employeeID;
 	
 	@Column (name = "status", nullable = false)
