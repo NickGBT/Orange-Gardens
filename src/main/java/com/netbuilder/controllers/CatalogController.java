@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 
 /**
@@ -19,7 +20,7 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 @RequestScoped
 public class CatalogController {
 	@Inject
-	private ProductManager productManager;
+	private ProductManagerAL productManager;
 	private ArrayList<Product> products = new ArrayList<Product>();
 	
 	public CatalogController(){
