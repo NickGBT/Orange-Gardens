@@ -1,11 +1,16 @@
 package com.netbuilder.util;
 
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
 /**
  * 
  * @author JustinMabbutt
  *
  */
 
+@Named
+@RequestScoped
 public class CustomerFeedback 
 {
 	private String userFeedback;
