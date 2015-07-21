@@ -2,7 +2,6 @@ package com.netbuilder.controllers;
 
 import javax.inject.Inject;
 
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.util.StoreFrontProducts;
 
 /**
@@ -14,9 +13,12 @@ import com.netbuilder.util.StoreFrontProducts;
 public class StoreFrontController 
 {
 	@Inject
-	private StoreFrontProducts storeFrontProducts;
-	@Inject
-	private ProductManagerAL productManager;
+	private StoreFrontProducts storeFrontProducts;	
+	
+	public StoreFrontController()
+	{
+		
+	}
 	
 	public String productClick()
 	{
