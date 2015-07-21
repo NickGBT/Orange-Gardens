@@ -29,12 +29,12 @@
 
 	<br/>
 	<f:facet name="loginSubmit">
-		<h:commandbutton class="button" value="Sign In" action="#{loginController.login}"/>
+		<h:commandbutton class="button" value="Sign In" action="#{LoginController.checkSignInMethod}"/>
 	</f:facet>
 	<br/>
 	<br/>
 	<f:facet name="accountCreate">
-		<h:commandbutton class="button" value="Register an account" action="#{loginController.createAccount}"/>
+		<h:commandbutton class="button" value="Register an account" action="#{RegistrationController.registerCustomer}"/>
 	</f:facet>
 </div>
 </ui:define>
