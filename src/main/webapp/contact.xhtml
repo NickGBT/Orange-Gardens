@@ -7,7 +7,11 @@
 		
 		<!-- author: ngilbert -->
 
-		<ui:define name="pageTitle">ContactUs</ui:define>
+		<ui:define name="pageTitle">
+			<h1>
+				ContactUs
+			</h1>				
+		</ui:define>
 		
 		<ui:define name"content">
 		
@@ -17,7 +21,14 @@
 			
 			<div id="Contact Details">
 				<ui:insert name="NBGardensContactDetails">
+				<h:outputLabel class="telephone" value="#{contactUsDetails.getTelephone()"/>
+				<h:outputLabel class="mailAddress1" value="#{contactUsDetails.getMailAddress1()"/>
+				<h:outputLabel class="mailAddress2" value="#{contactUsDetails.getMailAddress2()"/>
+				<h:outputLabel class="mailAddress3" value="#{contactUsDetails.getMailAddress3()"/>
+				<h:outputLabel class="mailAddress4" value="#{contactUsDetails.getMailAddress4()"/>
+				<h:outputLabel class="mailAddress5" value="#{contactUsDetails.getMailAddress5()"/>
 				<f:facet name="emailUs">
+					<h:outputLabel class="email" value="#{contactUsDetails.getEmail()"/>
 					<--! Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
 				</f:facet>
 			</div>

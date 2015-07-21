@@ -30,4 +30,33 @@ public class ContactUsDetails {
 		this.mailAddress5 = "ST00BL";
 		this.email = "NBGardens@hotmail.com";
 	}
+	
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public String getMailAddress1() {
+		return mailAddress1;
+	}
+
+	public String getMailAddress2() {
+		return mailAddress2;
+	}
+
+	public String getMailAddress3() {
+		return mailAddress3;
+	}
+
+	public String getMailAddress4() {
+		return mailAddress4;
+	}
+
+	public String getMailAddress5() {
+		return mailAddress5;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
 }
