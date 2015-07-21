@@ -1,5 +1,7 @@
 package com.netbuilder.controllers;
 
+
+import javax.inject.Inject;
 /**
  * 
  * @author ngilbert
@@ -8,5 +10,7 @@ package com.netbuilder.controllers;
 
 
 public class CatalogController {
-
+	@inject
+	private ProductManagerAL productManager;
+	
 }
