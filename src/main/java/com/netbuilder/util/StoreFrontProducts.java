@@ -36,28 +36,11 @@ public class StoreFrontProducts
 	public ArrayList<Product> getNewProducts()
 	{
 		allProducts = productManager.getAll();
-		
+		for(int i = 0; i < 4; i++)
+		{
+			newProducts.add(allProducts.get(allProducts.size() - i));
+		}
 		return newProducts;
-	}
-
-	public void setNewProducts(ArrayList<Product> newProducts)
-	{
-		this.newProducts = newProducts;
-	}
-
-	public void setSpecialOffers(ArrayList<Product> specialOffers) 
-	{
-		this.specialOffers = specialOffers;
-	}
-
-	public void setCatalogueExclusives(ArrayList<Product> catalogueExclusives)
-	{
-		this.catalogueExclusives = catalogueExclusives;
-	}
-
-	public void setAllProducts(ArrayList<Product> allProducts)
-	{
-		this.allProducts = allProducts;
 	}
 
 	public ArrayList<Product> getSpecialOffers()
@@ -72,6 +55,7 @@ public class StoreFrontProducts
 
 	public ArrayList<Product> getAllProducts() 
 	{
+		allProducts = productManager.getAll();
 		return allProducts;
 	}
 }
