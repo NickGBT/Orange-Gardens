@@ -61,7 +61,7 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return orderLines;
 	}
 
-	public void updateProductLine(OrderLine orderLine) {
+	public void updateOrderLine(OrderLine orderLine) {
 		for (OrderLine o : orderLines){
 			if(o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()){
 				orderLines.set(orderLines.indexOf(o), orderLine);
