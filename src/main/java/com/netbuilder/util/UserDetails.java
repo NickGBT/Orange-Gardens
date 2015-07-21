@@ -11,16 +11,17 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class UserDetails {
+public class UserDetails
+{
+	private String tempStorage;
 	private String username;
 	private String password;
 	private String email;
 	
-	public UserDetails(String username, String password, String email) 
+	public UserDetails(String tempStorage, String password) 
 	{
-		this.setUsername(username);
+		this.setTempStorage(tempStorage);
 		this.setPassword(password);
-		this.setEmail(email);
 	}
 
 	public String getUsername()
@@ -51,5 +52,15 @@ public class UserDetails {
 	public void setEmail(String email)
 	{
 		this.email = email;
+	}
+
+	public String getTempStorage() 
+	{
+		return tempStorage;
+	}
+
+	public void setTempStorage(String tempStorage)
+	{
+		this.tempStorage = tempStorage;
 	}
 }

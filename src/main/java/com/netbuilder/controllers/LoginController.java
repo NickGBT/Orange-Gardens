@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
+import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
 
 /**
@@ -18,19 +19,35 @@ public class LoginController
 	private CustomerManagerAL customerManager;
 	@Inject
 	private UserDetails userDetails;
-	public String errormsg;
+	private String errorMsg;
+	@Inject
+	private RegistrationDetails registrationDetails;
+	
+	public void checkSignInMethod()
+	{
+		if(userDetails.getTempStorage().contains("@"))
+		{
+			userDetails.setEmail(userDetails.getTempStorage());
+			loginWithEmail();
+		}
+		else
+		{
+			userDetails.setUsername(userDetails.getTempStorage());
+			loginWithUsername();
+		}
+	}
 	
 	public String loginWithUsername()
 	{
 		if (userDetails.getUsername().isEmpty() || userDetails.getPassword().isEmpty()) 
 		{
-			errormsg = "please enter details";
+			errorMsg = "please enter details";
 			return "login";
 		}
 		Long uid = customerManager.checkUsernameDetails(userDetails.getUsername(), userDetails.getPassword());
 		if(uid == -1)
 		{
-			errormsg = "Incorrect details";
+			errorMsg = "Incorrect details";
 			return "login";
 		}
 		return "account/uid";
@@ -40,13 +57,13 @@ public class LoginController
 	{
 		if (userDetails.getEmail().isEmpty() || userDetails.getPassword().isEmpty()) 
 		{
-			errormsg = "please enter details";
+			errorMsg = "please enter details";
 			return "login";
 		}
 		Long uid = customerManager.checkEmailDetails(userDetails.getEmail(), userDetails.getPassword());
 		if(uid == -1)
 		{
-			errormsg = "Incorrect details";
+			errorMsg = "Incorrect details";
 			return "login";
 		}
 		return "account/uid";
@@ -54,7 +71,16 @@ public class LoginController
 	
 	public String registerCustomer()
 	{
-		return "account/uid";
+		if(registrationDetails.checkAllUserEntries())
+		{
+			
+			return "account/uid";
+		}
+		else
+		{
+			errorMsg = "Invalid entries";
+			return "login";
+		}
 	}
 	
 	public String logout() throws LoginException
@@ -62,5 +88,10 @@ public class LoginController
 		userDetails.setUsername(null);
 		userDetails.setPassword(null);
 		return "home";
+	}
+
+	public String getErrorMsg() 
+	{
+		return errorMsg;
 	}
 }
