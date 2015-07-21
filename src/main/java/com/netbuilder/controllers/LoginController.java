@@ -31,6 +31,7 @@ public class LoginController
 		uid = loginManager.checkPassword(userDetails.getName(), userDetails.getPassword());
 		if(uid == -1)
 		{
+			userDetails.setUid(uid);
 			errorMsg = "Incorrect details";
 			return "login";
 		}

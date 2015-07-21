@@ -36,13 +36,12 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return null;
 	}
 
-	public ArrayList<PaymentDetails> findCustomerPaymentDetails(int customerId) {
-		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
+	public PaymentDetails findCustomerPaymentDetails(int userId) {
 		
 		for(PaymentDetails pd: paymentDetails){
-			if(pd.getCustomerId().getUserId() == customerId) results.add(pd);
+			if(pd.getCustomerId().getUserId() == userId) return pd;
 		}
-		return results;
+		return null;
 	}
 
 	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {
