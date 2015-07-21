@@ -20,8 +20,6 @@ public class LoginController
 	@Inject
 	private UserDetails userDetails;
 	private String errorMsg;
-	@Inject
-	private RegistrationDetails registrationDetails;
 	
 	public void checkSignInMethod()
 	{
@@ -67,20 +65,6 @@ public class LoginController
 			return "login";
 		}
 		return "account/uid";
-	}
-	
-	public String registerCustomer()
-	{
-		if(registrationDetails.checkAllUserEntries())
-		{
-			
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid entries";
-			return "login";
-		}
 	}
 	
 	public String logout() throws LoginException
