@@ -15,7 +15,7 @@ public interface LoginDetailsManager {
 	public LoginDetails findByUsername(String username);
 	public LoginDetails findByEmail(String email);
 	public LoginDetails findByUserId(int userId);
-	public boolean checkPassword(String name, String password);
+	public int checkPassword(String name, String password);
 	
 	//UPDATE
 	public void updateLoginDetails(LoginDetails details);
