@@ -19,10 +19,10 @@ import javax.validation.constraints.Size;
 @Table(name = "customer")
 public class Customer {
 	@Id
-	@Column(name = "customer_id")
+	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int customerID;
+	private int userId;
 	@Column(name = "fname", nullable = false, length = 20)
 	@NotNull
 	@Size(min = 1, max = 20)
@@ -31,39 +31,25 @@ public class Customer {
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String lName;
-	@Column(name = "username", nullable = false, length = 25)
-	@NotNull
-	@Size(min = 6, max = 25)
-	private String username;
-	@Column(name = "password", nullable = false, length = 16)
-	@NotNull
-	@Size(min = 6, max = 16)
-	private String password;
-	@Column(name = "email_address", nullable = false, length = 45)
-	@NotNull
-	@Size(min = 2, max = 45)
-	private String emailAddress;
 	@Column(name = "is_blacklisted", nullable = false)
 	@NotNull
 	private boolean isBlackListed;
 
-	public Customer(String fName, String lName, String username, String password, String emailAddress, boolean isBlackListed) 
+	public Customer(String fName, String lName, boolean isBlackListed) 
 	{
 		this.fName = fName;
 		this.lName = lName;
-		this.username = username;
-		this.password = password;
-		this.emailAddress = emailAddress;
 		this.isBlackListed = isBlackListed;
 	}
-
-	public int getCustomerID() 
+	
+	public int getUserId()
 	{
-		return customerID;
+		return userId;
 	}
 	
-	public void setCustomerID(int customerId){
-		this.customerID = customerId;
+	public void setUserId(int userId)
+	{
+		this.userId = userId;
 	}
 
 	public String getfName()
@@ -84,36 +70,6 @@ public class Customer {
 	public void setlName(String lName)
 	{
 		this.lName = lName;
-	}
-
-	public String getUsername()
-	{
-		return username;
-	}
-
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-
-	public String getPassword() 
-	{
-		return password;
-	}
-
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
-
-	public String getEmailAddress()
-	{
-		return emailAddress;
-	}
-
-	public void setEmailAddress(String emailAddress)
-	{
-		this.emailAddress = emailAddress;
 	}
 
 	public boolean isBlackListed()
