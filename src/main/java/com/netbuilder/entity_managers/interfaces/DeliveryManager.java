@@ -18,7 +18,7 @@ public interface DeliveryManager
 	
 	//READ
 	public ArrayList<Delivery> findByDatePlaced(String datePlaced);
-	public Delivery findByDeliveryID(int deliveryID);
+	public Delivery findByDeliveryId(int deliveryId);
 	public ArrayList<Delivery> getDeliveries();
 	
 	//UPDATE
