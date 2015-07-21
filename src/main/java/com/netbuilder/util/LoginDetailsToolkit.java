@@ -37,14 +37,23 @@ public class LoginDetailsToolkit {
 	
 	/**
 	 * Generates a unique key to be used in the password reset URL.
-	 * Uses the userId, current date to seconds accuracy and username and converts it to an md5 hash to use as the URL key.
+	 * Uses the userId and a 8 secure random bytes and converts it to an md5 hash to use as the URL key.
 	 * @param details User details requiring a password reset
 	 */
 	public static void generateResetKey(LoginDetails details){
 		
 		Date currDate = new Date();
-		DateFormat df = new SimpleDateFormat("MMddyyHHmmss");
-		String input = details.getUserId() + df.format(currDate) + details.getUsername();		
+		SecureRandom random;
+		byte[] randomBytes = {};
+		try {
+			random = SecureRandom.getInstance("SHA1PRNG");
+			 randomBytes = new byte[8];
+			random.nextBytes(randomBytes);
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}
+		
+		String input = "" + randomBytes + details.getUserId();	
 		
 		try {
 			
@@ -98,12 +107,15 @@ public class LoginDetailsToolkit {
 			
 			details.setNewPasswordAndSalt(newHashedPassword, newSalt);
 			
+			details.setResetDetails(null,  null);
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Compares a password pre-hashed with PBKDF2 Hmac SHA-1 with a new password.
