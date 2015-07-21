@@ -34,14 +34,14 @@ public class AddressTests {
 	@Before
 	protected void setUp() throws Exception {
 		
-		testCustomer = new Customer("foo", "bar", "foobar", "barfoo", "foo@bar.fb", false);
+		testCustomer = new Customer("foo", "bar", false);
 		
 		testAddress = new Address(testCustomer, addressLabel, lineOne, lineTwo, lineThree, city, county, postcode, false);
 	}
 
 	@Test
 	public void testGetCustomerID() {
-		assertEquals(testAddress.getCustomer().getCustomerID(), testCustomer);
+		assertEquals(testAddress.getCustomer().getUserId(), testCustomer);
 	}
 
 	@Test
