@@ -19,12 +19,17 @@ import com.netbuilder.enums.CardType;
 @RequestScoped
 public class RegistrationDetails 
 {
-	private String username;
+	//Customer
 	private String fName;
 	private String lName;
-	private String email;
 	private boolean isBlackListed = false;
 	
+	//LoginDetails
+	private String username;
+	private String email;
+	private String password;
+	
+	//Address
 	private String addressLabel;
 	private String addressLine1;
 	private String addressLine2;
@@ -34,6 +39,7 @@ public class RegistrationDetails
 	private String postcode;
 	private boolean isBillingAddress;
 	
+	//PaymentDetails
 	private CardType cardType;
 	private String cardNumber;
 	private String nameOnCard;
@@ -42,14 +48,16 @@ public class RegistrationDetails
 	
 	ArrayList<Object> data = new ArrayList<Object>();
 	
-	public RegistrationDetails(String username, String fName, String lName, String email, String addressLabel,
+	public RegistrationDetails(String username, String password, String fName, String lName, String email, String addressLabel,
 			String addressLine1, String addressLine2, String addressLine3, String city, String county, String postcode,
 			boolean isBillingAddress, CardType cardType, String cardNumber, String nameOnCard, int securityNumber,
 			Date expiryDate) {
-		this.username = username; data.add(username);
 		this.fName = fName; data.add(fName);
 		this.lName = lName; data.add(lName);
+		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
+		this.username = username; data.add(username);
 		this.email = email; data.add(email);
+		this.password = password; data.add(password);
 		this.addressLabel = addressLabel; data.add(addressLabel);
 		this.addressLine1 = addressLine1; data.add(addressLine1);
 		this.addressLine2 = addressLine2; data.add(addressLine2);
@@ -57,7 +65,6 @@ public class RegistrationDetails
 		this.city = city; data.add(city);
 		this.county = county; data.add(county);
 		this.postcode = postcode; data.add(postcode);
-		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
 		this.cardType = cardType; data.add(cardType);
 		this.cardNumber = cardNumber; data.add(cardNumber);
 		this.nameOnCard = nameOnCard; data.add(nameOnCard);
