@@ -12,11 +12,11 @@ public interface LoginDetailsManager {
 	public void persistLoginDetails(LoginDetails details);
 	
 	//READ
-	public void findByUsername(String username);
-	public void findByEmail(String email);
-	public void findByUserId(int userId);
-	public boolean checkPassword(String username, String password);
-	public int getIdForResetString(String resetKey);
+	public LoginDetails findByUsername(String username);
+	public LoginDetails findByEmail(String email);
+	public LoginDetails findByUserId(int userId);
+	public boolean checkPassword(String name, String password);
+	public LoginDetails getIdForResetString(String resetKey);
 	
 	//UPDATE
 	public void setNewPassword(int userId, String oldPassword, String newPassword);
