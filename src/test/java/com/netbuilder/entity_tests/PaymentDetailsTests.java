@@ -36,7 +36,7 @@ public class PaymentDetailsTests {
 		name = "N B Gardens";
 		security = 123;
 		expiry = "08/18";
-		customerId = new Customer("foo", "bar", "barfoo", "foobar", "foo@bar.fb", false);
+		customerId = new Customer("foo", "bar", false);
 		orderId = null;
 		
 		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customerId, orderId);

@@ -40,7 +40,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		
 		for(PaymentDetails pd: paymentDetails){
-			if(pd.getCustomerId().getCustomerID() == customerId) results.add(pd);
+			if(pd.getCustomerId().getUserId() == customerId) results.add(pd);
 		}
 		return results;
 	}

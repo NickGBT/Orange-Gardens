@@ -57,7 +57,7 @@ public class OrderLineTest {
 
 	@Before
 	public void setUp() throws Exception {
-		customerID  = new Customer("Absolutely", "Fantastic", "fantastic3", "absfan", "fantastic@absolutely.com", true);
+		customerID  = new Customer("Absolutely", "Fantastic", true);
 	    employee = new Employee(empDept.WAREHOUSE, fName, lName, password, empPermisions.WORKER);
 	    
 	    orderStatus = OrderStatus.cancelled;

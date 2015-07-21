@@ -28,8 +28,8 @@ public class CustomerManagerALTest
 		customerManager = new CustomerManagerAL();
 		testArrayCustomer = new ArrayList<Customer>();
 		testArrayCustomer2 = new ArrayList<Customer>();
-		testCustomer = new Customer("Absolutely", "Fantastic", "bounce", "EnterpriseArchitecture", "absolutely.fantastic@mailmail.mail", false);
-		testCustomer2 = new Customer("Billy", "Bob", "bilbo", "baggins", "billy.bob@mailmail.mail", false);
+		testCustomer = new Customer("Absolutely", "Fantastic", false);
+		testCustomer2 = new Customer("Billy", "Bob", false);
 	}
 	
 	@Test
@@ -66,21 +66,6 @@ public class CustomerManagerALTest
 		assertEquals(customerManager.findByLName("Fantastic"), testArrayCustomer);
 	}
 	
-	@Test 
-	void testFindByUsername()
-	{
-		testArrayCustomer.add(testCustomer);
-		customerManager.persistCustomer(testCustomer);
-		assertEquals(customerManager.findByUsername("bounce"), testArrayCustomer);
-	}
-	
-	@Test
-	void testFindByEmail()
-	{
-		testArrayCustomer.add(testCustomer);
-		customerManager.persistCustomer(testCustomer);
-		assertEquals(customerManager.findByEmail("absolutely.fantastic@mailmail.mail"), testArrayCustomer);
-	}
 	
 	@Test
 	void testGetCustomers()

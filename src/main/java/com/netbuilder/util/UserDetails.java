@@ -13,25 +13,23 @@ import javax.inject.Named;
 @RequestScoped
 public class UserDetails
 {
-	private String tempStorage;
-	private String username;
+	private String name;
 	private String password;
-	private String email;
 	
-	public UserDetails(String tempStorage, String password) 
+	public UserDetails(String name, String password) 
 	{
-		this.setTempStorage(tempStorage);
+		this.setName(name);
 		this.setPassword(password);
 	}
 
-	public String getUsername()
+	public String getName()
 	{
-		return username;
+		return name;
 	}
 
-	public void setUsername(String username)
+	public void setName(String name)
 	{
-		this.username = username;
+		this.name = name;
 	}
 
 	public String getPassword() 
@@ -42,25 +40,5 @@ public class UserDetails
 	public void setPassword(String password) 
 	{
 		this.password = password;
-	}
-
-	public String getEmail() 
-	{
-		return email;
-	}
-
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
-
-	public String getTempStorage() 
-	{
-		return tempStorage;
-	}
-
-	public void setTempStorage(String tempStorage)
-	{
-		this.tempStorage = tempStorage;
 	}
 }

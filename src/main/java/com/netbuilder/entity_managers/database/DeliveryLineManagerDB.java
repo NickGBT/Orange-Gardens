@@ -22,8 +22,8 @@ import com.netbuilder.orange_gardens.PersistenceManager;
  * @author llew
  *
  */
-@NamedQueries ({@NamedQuery(name = "FindByProductID", query = "SELECT d FROM delivery_line WHERE d.product_id = :product_id"),
-				@NamedQuery(name = "FindByDeliveryID", query = "SELECT d FROM delivery_line WHERE d.delivery_id = :delivery_id"),
+@NamedQueries ({@NamedQuery(name = "FindByProductId", query = "SELECT d FROM delivery_line WHERE d.product_id = :product_id"),
+				@NamedQuery(name = "FindByDeliveryId", query = "SELECT d FROM delivery_line WHERE d.delivery_id = :delivery_id"),
 				@NamedQuery(name = "FindByQuantity", query = "SELECT d FROM delivery_line WHERE d.quantity = :quantity")})
 
 @Default
@@ -54,11 +54,11 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 		
 	}
 
-	public DeliveryLine findByProductID(int productID) {
+	public DeliveryLine findByProductId(int productId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByProductID", DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByProductId", DeliveryLine.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("product_id", productID);
+		tq.setParameter("product_id", productId);
 		try{
 			return tq.getSingleResult();
 		}catch(NoResultException e){
@@ -68,11 +68,11 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 		
 	}
 
-	public DeliveryLine findByDeliveryID(int deliveryID) {
+	public DeliveryLine findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryID", DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("delivery_id", deliveryID);
+		tq.setParameter("delivery_id", deliveryId);
 		try{
 			return tq.getSingleResult();
 		}catch(NoResultException e){
@@ -84,7 +84,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 	public ArrayList<DeliveryLine> findByQuantity(int quantity) {
 		ArrayList<DeliveryLine> delLine = new ArrayList<DeliveryLine>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryID", DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
 		try{
