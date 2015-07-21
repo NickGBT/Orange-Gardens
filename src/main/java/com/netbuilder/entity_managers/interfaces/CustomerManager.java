@@ -17,14 +17,10 @@ public interface CustomerManager
 	public void persistCustomer(ArrayList<Customer> customers);
 	
 	//READ
-	public Customer findByUsername(String username);
-	public Customer findByEmail(String email);
 	public ArrayList<Customer> findByFName(String fName);
 	public ArrayList<Customer> findByLName(String lName);
-	public Customer findByCustomerID(int customerID);
+	public Customer findByUserId(int userId);
 	public ArrayList<Customer> getCustomers();
-	public long checkUsernameDetails(String username, String password);
-	public long checkEmailDetails(String email, String password);
 	
 	//UPDATE
 	public void updateCustomer(Customer customer);

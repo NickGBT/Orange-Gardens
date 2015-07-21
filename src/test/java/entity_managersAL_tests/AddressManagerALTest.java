@@ -34,8 +34,8 @@ public class AddressManagerALTest
 		testArrayAddress2 = new ArrayList<Address>();
 		testAddress = new Address(testCustomer, "house", "absolutely", "fantastic", "pull", "bounce", "cheese", "LEY76R", false);
 		testAddress2 = new Address(testCustomer2, "shed", "banter", "hell", "earth", "junit", "java", "ABCDEF", false);
-		testCustomer = new Customer("foo", "bar", "foobar", "barfoo", "foo@bar.fb", false);
-		testCustomer2 = new Customer("food", "barn", "foobarn", "barfoon", "foon@barn.fbn", false);
+		testCustomer = new Customer("foo", "bar", false);
+		testCustomer2 = new Customer("food", "barn", false);
 	}
 	
 	@Test

@@ -22,11 +22,9 @@ import com.netbuilder.entity_managers.interfaces.CustomerManager;
  *
  */
 
-@NamedQueries ({@NamedQuery(name = "FindByUsername", query = "SELECT a FROM customer WHERE a.username = :username"), 
-				@NamedQuery(name = "FindByEmail", query = "SELECT a FROM customer WHERE a.email_address = :email_address"),
-				@NamedQuery(name = "FindByfName", query = "SELECT a FROM customer WHERE a.fname = :fname"), 
+@NamedQueries ({@NamedQuery(name = "FindByfName", query = "SELECT a FROM customer WHERE a.fname = :fname"), 
 				@NamedQuery(name = "FindBylName", query = "SELECT a FROM customer WHERE a.lname = :lname"),
-				@NamedQuery(name = "FindByCustomerID", query = "SELECT a FROM customer WHERE a.customer_id = :customer_id"),})
+				@NamedQuery(name = "FindByUserId", query = "SELECT a FROM customer WHERE a.user_id = :user_id"),})
 
 @Default
 @Stateless
@@ -54,40 +52,6 @@ public class CustomerManagerDB implements CustomerManager
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
-	}
-
-	public Customer findByUsername(String username) 
-	{
-		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByUsername", Customer.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("username", username);
-		try
-		{
-			return tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
-			nre.printStackTrace();
-			return null;
-		}
-	}
-
-	public Customer findByEmail(String email) 
-	{
-		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByEmail", Customer.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("email_address", email);
-		try
-		{
-			return tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
-			nre.printStackTrace();
-			return null;
-		}
 	}
 
 	public ArrayList<Customer> findByFName(String fName)
@@ -127,12 +91,12 @@ public class CustomerManagerDB implements CustomerManager
 		return customers;
 	}
 
-	public Customer findByCustomerID(int customerID)
+	public Customer findByUserId(int userId)
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByCustomerID", Customer.class);
+		TypedQuery<Customer> tq = em.createNamedQuery("FindByUserId", Customer.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("customer_id", customerID);
+		tq.setParameter("user_id", userId);
 		try
 		{
 			return tq.getSingleResult();
@@ -173,53 +137,4 @@ public class CustomerManagerDB implements CustomerManager
 		pm.closeEntityManager(em);
 	}
 
-	public long checkUsernameDetails(String username, String password)
-	{
-		Customer temp;
-		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByUsername", Customer.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("username", username);
-		try
-		{
-			temp =  tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
-			return -1;
-		}
-		if(temp.getPassword() == password)
-		{
-			return temp.getCustomerID();
-		}
-		else
-		{
-			return -1;
-		}
-	}
-
-	public long checkEmailDetails(String email, String password) 
-	{
-		Customer temp;
-		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByEmail", Customer.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("email", email);
-		try
-		{
-			temp =  tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
-			return -1;
-		}
-		if(temp.getPassword() == password)
-		{
-			return temp.getCustomerID();
-		}
-		else
-		{
-			return -1;
-		}
-	}
 }

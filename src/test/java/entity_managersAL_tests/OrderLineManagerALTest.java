@@ -46,7 +46,7 @@ public class OrderLineManagerALTest {
 		
 		orderlineAL = new ArrayList<OrderLine>();
 		
-		testCustomer1 = new Customer("test", "name", "absfan1", "testtst", "test@test.com", true);
+		testCustomer1 = new Customer("test", "name", true);
 		employee = new Employee(EmployeeDepartment.SALES, "test", "name", "absfan1", EmployeePermissions.MANAGER);
 		
 		orderLineManager = new OrderLineManagerAL();	

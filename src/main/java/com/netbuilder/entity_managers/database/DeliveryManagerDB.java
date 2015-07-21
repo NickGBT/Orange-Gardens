@@ -70,12 +70,12 @@ public class DeliveryManagerDB implements DeliveryManager {
 		}
 	}
 
-	public Delivery findByDeliveryID(int deliveryID) {
+	public Delivery findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Delivery> tq = em.createNamedQuery("FindByDeliveryId",
 				Delivery.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("delivery_id", deliveryID);
+		tq.setParameter("delivery_id", deliveryId);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {

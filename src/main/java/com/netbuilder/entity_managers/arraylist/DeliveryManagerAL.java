@@ -40,9 +40,9 @@ public class DeliveryManagerAL implements DeliveryManager {
 		}
 	}
 
-	public Delivery findByDeliveryID(int deliveryID) {
+	public Delivery findByDeliveryId(int deliveryId) {
 		for (Delivery d : deliveries) {
-			if (d.getDeliveryID() == deliveryID) {
+			if (d.getDeliveryId() == deliveryId) {
 				return d;
 			}
 		}
@@ -55,7 +55,7 @@ public class DeliveryManagerAL implements DeliveryManager {
 
 	public void updateDelivery(Delivery delivery) {
 		for (Delivery d : deliveries) {
-			if (d.getDeliveryID() == delivery.getDeliveryID()) {
+			if (d.getDeliveryId() == delivery.getDeliveryId()) {
 				deliveries.set(deliveries.indexOf(d), delivery);
 			}
 		}

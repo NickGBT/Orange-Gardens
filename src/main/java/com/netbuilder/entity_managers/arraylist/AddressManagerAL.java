@@ -64,7 +64,7 @@ public class AddressManagerAL implements AddressManager
 	{
 		for(Address a: addresses)
 		{
-			if(a.getCustomer().getCustomerID() == userId)
+			if(a.getCustomer().getUserId() == userId)
 			{
 				return a;
 			}
