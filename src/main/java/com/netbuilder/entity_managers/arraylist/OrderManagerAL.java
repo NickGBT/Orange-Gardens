@@ -188,7 +188,7 @@ public class OrderManagerAL implements OrderManager {
 ArrayList<Order> orderResults = new ArrayList<Order>(); 
 		
 		for (Order o : orders) {
-			if(o.getCustomer().getCustomerID() == customerId) {
+			if(o.getCustomer().getUserId() == customerId) {
 				orderResults.add(o);
 			}
 		}
