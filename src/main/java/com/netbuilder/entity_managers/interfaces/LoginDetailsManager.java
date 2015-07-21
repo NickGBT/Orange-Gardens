@@ -16,13 +16,10 @@ public interface LoginDetailsManager {
 	public LoginDetails findByEmail(String email);
 	public LoginDetails findByUserId(int userId);
 	public boolean checkPassword(String name, String password);
-	public LoginDetails getIdForResetString(String resetKey);
 	
 	//UPDATE
-	public void setNewPassword(int userId, String oldPassword, String newPassword);
-	public void setForgottenPassword(String resetKey, String password);
-	public void generateForgottenPasswordKey(String email);
+	public void updateLoginDetails(LoginDetails details);
 	
 	//DELETE
-	public void deleteDetails(LoginDetails details);
+	public void deleteLoginDetails(LoginDetails details);
 }
