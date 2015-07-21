@@ -25,7 +25,7 @@ public interface OrderLineManager {
 		public ArrayList<OrderLine> getOrderLine();
 
 		// UPDATE
-		public void updateProductLine(OrderLine orderLine);
+		public void updateOrderLine(OrderLine orderLine);
 
 		// DELETE
 		public void removeProductLine(OrderLine orderLine);
