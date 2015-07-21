@@ -26,31 +26,7 @@ public class CustomerManagerAL implements CustomerManager
 	public void persistCustomer(ArrayList<Customer> customers)
 	{
 		customers.addAll(customers);
-	}
-
-	public Customer findByUsername(String username) 
-	{
-		for(Customer c: customers)
-		{
-			if(c.getUsername().equals(username))
-			{
-				return c;
-			}
-		}
-		return null;
-	}
-
-	public Customer findByEmail(String email)
-	{
-		for(Customer c: customers)
-		{
-			if(c.getEmailAddress().equals(email))
-			{
-				return c;
-			}
-		}
-		return null;
-	}
+	}		
 
 	public ArrayList<Customer> findByFName(String fName)
 	{
@@ -92,11 +68,11 @@ public class CustomerManagerAL implements CustomerManager
 		}	
 	}
 
-	public Customer findByCustomerID(int customerID)
+	public Customer findByUserId(int userId)
 	{
 		for(Customer c: customers)
 		{
-			if(c.getCustomerID() == customerID)
+			if(c.getUserId() == userId)
 			{
 				return c;
 			}
@@ -113,7 +89,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getCustomerID() == customer.getCustomerID())
+			if(c.getUserId() == customer.getUserId())
 			{
 				customers.set(customers.indexOf(c), customer);
 			}
@@ -124,10 +100,11 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getCustomerID() == customer.getCustomerID())
+			if(c.getUserId() == customer.getUserId())
 			{
 				customers.remove(customers.indexOf(c));
 			}
 		}
 	}
+
 }
