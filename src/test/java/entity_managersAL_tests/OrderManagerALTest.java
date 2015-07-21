@@ -35,9 +35,9 @@ public class OrderManagerALTest {
 	public void setUp() throws Exception {
 		orderManager = new OrderManagerAL();
 		testArrayOrder = new ArrayList<Order>();
-		testCustomer = new Customer("James", "Morpheus", "jmo", "netbuilder", "jmo@netbuilder.com", false);
+		testCustomer = new Customer("James", "Morpheus", false);
 		testEmployee = new Employee(EmployeeDepartment.SALES, "Matt", "Watson", "hello", EmployeePermissions.MANAGER);
-		testCustomer2 = new Customer("Phil", "Chivers", "pchi", "germany", "pchi@netbuilder.com", false);
+		testCustomer2 = new Customer("Phil", "Chivers", false);
 		testEmployee2 = new Employee(EmployeeDepartment.SALES, "Alex", "Neil", "aneil@netbuilder.com", EmployeePermissions.WORKER);
 		
 		testOrder = new Order(testCustomer, testEmployee, OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO", "AB/CD/HJKS", "AR/VB/HSJA", false);

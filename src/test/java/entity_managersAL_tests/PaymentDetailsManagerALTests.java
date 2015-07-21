@@ -43,11 +43,11 @@ public class PaymentDetailsManagerALTests {
 	public void setUp() throws Exception {
 		paymentDetailsManager = new PaymentDetailsManagerAL();
 		
-		c1 = new Customer("Absolutely", "Fantastic", "bounce", "EnterpriseArchitecture", "absolutely.fantastic@mailmail.mail", false);
-		c2 = new Customer("Billy", "Bob", "bilbo", "baggins", "billy.bob@mailmail.mail", false);
+		c1 = new Customer("Absolutely", "Fantastic", false);
+		c2 = new Customer("Billy", "Bob", false);
 		
-		c1.setCustomerID(1);
-		c2.setCustomerID(2);
+		c1.setUserId(1);
+		c2.setUserId(2);
 		
 		o1 = new Order(c2, OrderStatus.placed, "2015-07-07", "2015-07-08", "2015-07-09", "3", true);
 		o1.setOrderID(1);
@@ -75,7 +75,7 @@ public class PaymentDetailsManagerALTests {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
 		
-		ArrayList<PaymentDetails> output = paymentDetailsManager.findCustomerPaymentDetails(c1.getCustomerID());
+		ArrayList<PaymentDetails> output = paymentDetailsManager.findCustomerPaymentDetails(c1.getUserId());
 		
 		assertTrue(output.size()==2);
 	}
@@ -85,7 +85,7 @@ public class PaymentDetailsManagerALTests {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
 		
-		ArrayList<PaymentDetails> output = paymentDetailsManager.findExpiredDetails(c1.getCustomerID());
+		ArrayList<PaymentDetails> output = paymentDetailsManager.findExpiredDetails(c1.getUserId());
 		
 		if(output.size()>0){
 			PaymentDetails sample = output.get(0);
