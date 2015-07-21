@@ -35,9 +35,9 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return employees;
 	}
 	
-	public Employee findEmployeeById(int employeeId) {
+	public Employee findEmployeeById(int userId) {
 		for(Employee e: employees){
-			if(e.getEmployeeId() == employeeId) return e;
+			if(e.getEmployee().getUserId() == userId) return e;
 		}
 		return null;
 	}
@@ -81,11 +81,13 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public void updateEmployee(Employee employee) {
-		for(Employee e: employees){
-			if(e.getEmployeeId() == employee.getEmployeeId()){
+	public void updateEmployee(Employee employee) 
+	{
+		for(Employee e: employees)
+		{
+			if(e.getEmployee().getUserId() == employee.getEmployee().getUserId())
+			{
 				employees.set(employees.indexOf(e), employee);
-				return;
 			}
 		}
 	}
