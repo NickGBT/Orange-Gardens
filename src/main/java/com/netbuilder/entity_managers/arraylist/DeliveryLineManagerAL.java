@@ -25,18 +25,18 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 		
 	}
 
-	public DeliveryLine findByProductID(int productID) {
+	public DeliveryLine findByProductId(int productId) {
 		for (DeliveryLine dl : deliveryLines){		
-			if(dl.getProduct().getProductId() == productID){
+			if(dl.getProduct().getProductId() == productId){
 				return dl;
 			}
 		}
 		return null;
 	}
 
-	public DeliveryLine findByDeliveryID(int deliveryID) {
+	public DeliveryLine findByDeliveryId(int deliveryId) {
 		for (DeliveryLine dl : deliveryLines){		
-			if(dl.getDelivery().getDeliveryID() == deliveryID){
+			if(dl.getDelivery().getDeliveryId() == deliveryId){
 				return dl;
 			}
 		}
@@ -64,7 +64,7 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 
 	public void updateDeliveryLine(DeliveryLine deliveryLine) {
 		for(DeliveryLine dl : deliveryLines){
-			if(dl.getDelivery().getDeliveryID() == deliveryLine.getDelivery().getDeliveryID()){
+			if(dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery().getDeliveryId()){
 				deliveryLines.set(deliveryLines.indexOf(dl), deliveryLine);
 			}
 		}
@@ -73,7 +73,7 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 
 	public void removeDeliveryLine(DeliveryLine deliveryLine) {
 		for(DeliveryLine dl : deliveryLines){
-			if(dl.getDelivery().getDeliveryID() == deliveryLine.getDelivery().getDeliveryID()){
+			if(dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery().getDeliveryId()){
 				deliveryLines.remove(deliveryLines.indexOf(dl));
 			}
 		}
