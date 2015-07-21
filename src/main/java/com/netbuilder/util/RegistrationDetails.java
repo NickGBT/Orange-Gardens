@@ -57,7 +57,7 @@ public class RegistrationDetails
 		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
 		this.username = username; data.add(username);
 		this.email = email; data.add(email);
-		this.password = password; data.add(password);
+		this.setPassword(password); data.add(password);
 		this.addressLabel = addressLabel; data.add(addressLabel);
 		this.addressLine1 = addressLine1; data.add(addressLine1);
 		this.addressLine2 = addressLine2; data.add(addressLine2);
@@ -82,11 +82,6 @@ public class RegistrationDetails
 			}
 		}
 		return true;
-	}
-	
-	public void registerCustomer()
-	{
-		
 	}
 	
 	public String getUsername() 
@@ -256,5 +251,25 @@ public class RegistrationDetails
 	public void setExpiryDate(Date expiryDate) 
 	{
 		this.expiryDate = expiryDate;
+	}
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+	public boolean isBlackListed() 
+	{
+		return isBlackListed;
+	}
+
+	public void setBlackListed(boolean isBlackListed) 
+	{
+		this.isBlackListed = isBlackListed;
 	}
 }

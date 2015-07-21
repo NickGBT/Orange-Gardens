@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 
 /**
  * 
@@ -17,6 +18,8 @@ import com.netbuilder.entities.Product;
 @RequestScoped
 public class StoreFrontProducts
 {
+	private ProductManagerAL productManager;
+	
 	private ArrayList<Product> newProducts;
 	private ArrayList<Product> specialOffers;
 	private ArrayList<Product> catalogueExclusives;
@@ -32,7 +35,29 @@ public class StoreFrontProducts
 	
 	public ArrayList<Product> getNewProducts()
 	{
+		allProducts = productManager.getAll();
+		
 		return newProducts;
+	}
+
+	public void setNewProducts(ArrayList<Product> newProducts)
+	{
+		this.newProducts = newProducts;
+	}
+
+	public void setSpecialOffers(ArrayList<Product> specialOffers) 
+	{
+		this.specialOffers = specialOffers;
+	}
+
+	public void setCatalogueExclusives(ArrayList<Product> catalogueExclusives)
+	{
+		this.catalogueExclusives = catalogueExclusives;
+	}
+
+	public void setAllProducts(ArrayList<Product> allProducts)
+	{
+		this.allProducts = allProducts;
 	}
 
 	public ArrayList<Product> getSpecialOffers()

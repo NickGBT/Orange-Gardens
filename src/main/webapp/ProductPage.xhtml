@@ -31,21 +31,21 @@
 						<div id = "Attributes"> 
 							
 							<f:facet name "productId"> 
-								<p>ID : <h:outputText value = "#{}"/> <!-- Product ID Here -->	</p>
+								<p>ID : <h:outputText value = "#{ProductPageController.getProduct().getProductId()}"/> <!-- Product ID Here -->	</p>
 							</f:facet>
 							
 							<f:facet name "productSize"> 
-								<p>Size : <h:outputText	value = "#{}"/>	Length <!-- Product Size Here --> </p>
+								<p>Size : <h:outputText	value = "#{ProductPageController.getProduct().getWidth()}"/>	Length <!-- Product Size Here --> </p>
 							</f:facet> 
 							
 							<f:facet name "productWeight"> 
-								<p>Weight :	<h:outputText value = "#{}"/> <!-- Product Weight Here --> </p>
+								<p>Weight :	<h:outputText value = "#{ProductPageController.getProduct().getWeight}"/> <!-- Product Weight Here --> </p>
 							</f:facet> 	
 							
 							<f:facet name "productDescription"> 
 								<p id = "Product Description">Description: 
 								<br> 
-									<h:outputText value = "#{}"/> <!-- Product Description Here --> </p> 					
+									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> </p> 					
 							</f:facet> 		
 									
 						</div>	
@@ -54,18 +54,17 @@
 					<div id = "Buttons"> 
 						
 						<f:facet name="buttonBasket">
-							<h:commandbutton class = "button" value = "Add to Basket" action =#{}/>
+							<h:commandbutton class = "button" value = "Add to Basket" action =  #{}/>
 						</f:facet>
 						
 						Qty : 
 						
-						<select name = "Add">
+						<select name = "add">
 							<option value = "One"> 1 </option>   
 							<option value = "Two"> 2  </option>   
 							<option value = "Three"> 3 </option>   
 							<option value = "Four"> 4  </option>  
 							<option value = "Five"> 5  </option>
-							<option value = "More"> More </option>  
 						</select>
 
 						<f:facet name="buttonWishlist"> 

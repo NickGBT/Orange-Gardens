@@ -48,23 +48,21 @@ public class LoginDetailsManagerAL implements LoginDetailsManager {
 	}
 
 	public int checkPassword(String name, String password) {
+		
+		LoginDetails result;
+		
 		if(LoginDetailsToolkit.isEmail(name)){
-			for(LoginDetails ld: loginDetails){
-				if(name == ld.getEmail()){
-					if(LoginDetailsToolkit.checkPassword(ld, password)) return ld.getUserId();
-					else return -1;
-				}
-			}
+			result = findByEmail(name);
 		}
 		else{
-			for(LoginDetails ld: loginDetails){
-				if(name == ld.getUsername()){
-					if(LoginDetailsToolkit.checkPassword(ld, password)) return ld.getUserId();
-					else return -1;
-				}
-			}
+			result = findByUsername(name);
+		}
+		
+		if(result != null){
+			if(LoginDetailsToolkit.checkPassword(result, password)) return result.getUserId();
 		}
 		return -1;
+
 	}
 
 	public void updateLoginDetails(LoginDetails details){
