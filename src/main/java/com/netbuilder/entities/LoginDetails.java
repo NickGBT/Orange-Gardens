@@ -36,6 +36,10 @@ public class LoginDetails {
 	@NotNull
 	@Size(min=5, max=25)
 	private String username;
+	@Column(name="email", nullable = false, length=254)
+	@NotNull
+	@Size(min=6, max=254)
+	private String email;
 	@Column(name="password", nullable = false, length = 160)
 	@NotNull
 	@Size(min=160, max=160)
@@ -93,6 +97,16 @@ public class LoginDetails {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 	public byte[] getPassword() {
 		return password;
