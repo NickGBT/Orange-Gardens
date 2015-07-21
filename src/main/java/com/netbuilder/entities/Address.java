@@ -25,7 +25,7 @@ public class Address
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
-	private Customer customer;
+	private LoginDetails customer;
 	@Id
 	@Column(name = "address_label", nullable = false, length = 45)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,7 +60,7 @@ public class Address
 	@NotNull
 	private boolean isBillingAddress;
 	
-	public Address(Customer customer, String addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
+	public Address(LoginDetails customer, String addressLabel, String addressLine1, String addressLine2, String addressLine3, String city,String county, String postcode, boolean isBillingAddress)
 	{
 		this.customer = customer;
 		this.addressLabel = addressLabel;
@@ -73,7 +73,7 @@ public class Address
 		this.isBillingAddress = isBillingAddress;
 	}
 	
-	public Customer getCustomer()
+	public LoginDetails getCustomer()
 	{
 		return customer;
 	}

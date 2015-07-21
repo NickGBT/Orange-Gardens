@@ -72,7 +72,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getUserId() == userId)
+			if(c.getCustomer().getUserId() == userId)
 			{
 				return c;
 			}
@@ -89,7 +89,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getUserId() == customer.getUserId())
+			if(c.getCustomer().getUserId() == customer.getCustomer().getUserId())
 			{
 				customers.set(customers.indexOf(c), customer);
 			}
@@ -100,7 +100,7 @@ public class CustomerManagerAL implements CustomerManager
 	{
 		for(Customer c: customers)
 		{
-			if(c.getUserId() == customer.getUserId())
+			if(c.getCustomer().getUserId() == customer.getCustomer().getUserId())
 			{
 				customers.remove(customers.indexOf(c));
 			}
