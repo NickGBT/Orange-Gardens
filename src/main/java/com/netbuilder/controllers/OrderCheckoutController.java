@@ -46,10 +46,20 @@ public class OrderCheckoutController {
 	private AddressManager addressManager;
 	
 	private PaymentDetailsManager paymentDetailsManager;
+	
+	private ArrayList<Product> productsInOrder = new ArrayList<Product>();
 
 	public OrderCheckoutController(){
 		
-		customer = 
+		customer = customerManager.findByUserId(); //cookie persisted customer reference
+				
+		order = orderManager.//persisted basket order, to be changed to a different status when checkout is finished
+		
+		address = addressManager.findByUserId();//customers registered address, possibly add a checkbox for a different address.
+		
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails();//customers registered payment details, possibly add a checkbox for alternate payment details.
+		
+		productsInOrder = orderManager.findBasket(); //find order by customer id and basket status.
 		
 	}
 }
