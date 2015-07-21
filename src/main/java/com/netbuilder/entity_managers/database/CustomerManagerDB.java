@@ -172,4 +172,14 @@ public class CustomerManagerDB implements CustomerManager
 		em.remove(customer);
 		pm.closeEntityManager(em);
 	}
+
+	public long checkUsernameDetails(String username, String password)
+	{
+		return 0;
+	}
+
+	public long checkEmailDetails(String email, String password) 
+	{
+		return 0;
+	}
 }
