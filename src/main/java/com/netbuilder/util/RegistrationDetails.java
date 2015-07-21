@@ -262,4 +262,14 @@ public class RegistrationDetails
 	{
 		this.password = password;
 	}
+
+	public boolean isBlackListed() 
+	{
+		return isBlackListed;
+	}
+
+	public void setBlackListed(boolean isBlackListed) 
+	{
+		this.isBlackListed = isBlackListed;
+	}
 }
