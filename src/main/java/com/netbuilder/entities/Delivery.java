@@ -27,7 +27,7 @@ public class Delivery
 	@Column(name = "delivery_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int deliveryID;
+	private int deliveryId;
 	@Column(name = "status", nullable = false)
 	@NotNull
 	private DeliveryStatus deliveryStatus;
@@ -55,9 +55,9 @@ public class Delivery
 		this.price = price;
 	}
 	
-	public int getDeliveryID()
+	public int getDeliveryId()
 	{
-		return deliveryID;
+		return deliveryId;
 	}
 
 	public String getDatePlaced()
