@@ -48,11 +48,11 @@ public class AddressManagerAL implements AddressManager
 		}	
 	}
 
-	public Address findByLabel(String label)
+	public Address findByAddressLabel(String addressLabel)
 	{
 		for(Address a: addresses)
 		{
-			if(a.getAddressLabel().equals(label))
+			if(a.getAddressLabel().equals(addressLabel))
 			{
 				return a;
 			}
@@ -60,11 +60,11 @@ public class AddressManagerAL implements AddressManager
 		return null;
 	}
 
-	public Address findByCustomerID(int customerID)
+	public Address findByUserId(int userId)
 	{
 		for(Address a: addresses)
 		{
-			if(a.getCustomer().getCustomerID() == customerID)
+			if(a.getCustomer().getCustomerID() == userId)
 			{
 				return a;
 			}
