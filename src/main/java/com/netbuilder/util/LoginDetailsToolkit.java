@@ -9,6 +9,8 @@ import java.security.spec.KeySpec;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -135,6 +137,21 @@ public class LoginDetailsToolkit {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	/**
+	 * Checks to see if the input string is in the format of an email address or not.
+	 * Very basic check, used to differentiate for login search purposes.
+	 * @param input String to check against basic email format
+	 * @return true if it is email format or false if not
+	 */
+	public static boolean isEmail(String input){
+		
+		Pattern pattern = Pattern.compile("/.+@.+\\..+/i");
+		Matcher matcher = pattern.matcher(input);
+		
+		if(matcher.matches()) return true;
+		return false;
 	}
 }
 
