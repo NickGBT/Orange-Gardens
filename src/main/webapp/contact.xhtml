@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/exampletemplate.xhtml">
+		
+		<!-- author: ngilbert -->
+
+		<ui:define name="pageTitle">ContactUs</ui:define>
+		
+		<ui:define name"content">
+		
+			<div id="title">
+				<h1>Contact Us</h1>
+			</div>
+			
+			<div id="Contact Details">
+				<ui:insert name="NBGardensContactDetails">
+				<f:facet name="emailUs">
+					<--! Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
+				</f:facet>
+			</div>
+			
+		</ui:define>
+</html>
