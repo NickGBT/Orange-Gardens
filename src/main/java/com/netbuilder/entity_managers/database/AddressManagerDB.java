@@ -23,8 +23,8 @@ import com.netbuilder.orange_gardens.PersistenceManager;
  */
 
 @NamedQueries ({@NamedQuery(name = "FindByPostcode", query = "SELECT a FROM address WHERE a.postcode = :postcode"), 
-				@NamedQuery(name = "FindByLabel", query = "SELECT a FROM address WHERE a.address_label = :address_label"),
-				@NamedQuery(name = "FindByCustomerID", query = "SELECT a FROM address WHERE a.customer_id = :customer_id")})
+				@NamedQuery(name = "FindByAddressLabel", query = "SELECT a FROM address WHERE a.address_label = :address_label"),
+				@NamedQuery(name = "FindByUserId", query = "SELECT a FROM address WHERE a.user_id = :user_id")})
 
 @Default
 @Stateless
@@ -73,12 +73,12 @@ public class AddressManagerDB implements AddressManager
 		return addresses;
 	}
 
-	public Address findByLabel(String label) 
+	public Address findByAddressLabel(String addressLabel) 
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByLabel", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery("FindByAddressLabel", Address.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("address_label", label);
+		tq.setParameter("address_label", addressLabel);
 		try
 		{
 			return tq.getSingleResult();
@@ -90,12 +90,12 @@ public class AddressManagerDB implements AddressManager
 		}
 	}
 
-	public Address findByCustomerID(int customerID)
+	public Address findByUserId(int userId)
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByCustomerID", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery("FindByUserId", Address.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("customer_id", customerID);
+		tq.setParameter("user_id", userId);
 		try
 		{
 			return tq.getSingleResult();

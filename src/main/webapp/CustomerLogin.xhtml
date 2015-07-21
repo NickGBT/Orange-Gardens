@@ -9,7 +9,7 @@
 		
 <!-- author: JustinMabbutt -->
 
-<ui:define name="pageTitle">NB Gardens - Customer Feedback</ui:define>
+<ui:define name="pageTitle">NB Gardens - Sign In</ui:define>
 
 <ui:define name="content">
 <div id="MainContent">
@@ -18,13 +18,13 @@
 	<H4>What is your username or email address?</H4>
 
 	<h:form>
-		<h:inputText id="loginDetails" value="#{userDetails.username}" maxlength="45" size="20">
+		<h:inputText id="loginDetails" value="#{UserDetails.tempStorage}" maxlength="45" size="20">
 	</h:form>
 
 	<H4>What is your password?</H4>
 
 	<h:form>
-		<h:inputSecret id="password" value="#{userDetails.password}" maxlength="45" size="20">
+		<h:inputSecret id="password" value="#{UserDetails.password}" maxlength="45" size="20">
 	</h:form>
 
 	<br/>

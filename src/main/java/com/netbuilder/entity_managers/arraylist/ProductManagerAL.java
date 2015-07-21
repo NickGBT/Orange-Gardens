@@ -55,6 +55,16 @@ public class ProductManagerAL implements ProductManager {
 		}
 		return results;
 	}
+	
+	public ArrayList<Product> findNewProducts(){
+		ArrayList<Product> results = new ArrayList<Product>();
+		
+		for(int i = 0; i < 4 ; i++){
+			results.add(products.get(products.size() - i));
+		}
+		
+		return results;
+	}
 
 	public void updateProduct(Product product) {
 		for(Product p: products){

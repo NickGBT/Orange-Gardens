@@ -172,4 +172,54 @@ public class CustomerManagerDB implements CustomerManager
 		em.remove(customer);
 		pm.closeEntityManager(em);
 	}
+
+	public long checkUsernameDetails(String username, String password)
+	{
+		Customer temp;
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Customer> tq = em.createNamedQuery("FindByUsername", Customer.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("username", username);
+		try
+		{
+			temp =  tq.getSingleResult();
+		}
+		catch(NoResultException nre)
+		{
+			return -1;
+		}
+		if(temp.getPassword() == password)
+		{
+			return temp.getCustomerID();
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	public long checkEmailDetails(String email, String password) 
+	{
+		Customer temp;
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Customer> tq = em.createNamedQuery("FindByEmail", Customer.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("email", email);
+		try
+		{
+			temp =  tq.getSingleResult();
+		}
+		catch(NoResultException nre)
+		{
+			return -1;
+		}
+		if(temp.getPassword() == password)
+		{
+			return temp.getCustomerID();
+		}
+		else
+		{
+			return -1;
+		}
+	}
 }

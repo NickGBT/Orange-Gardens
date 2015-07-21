@@ -1,0 +1,22 @@
+Orange Gardens Java Style Document
+Variable Naming Convention
+•	camelCase - userId
+Method Naming Convention
+•	camelCase - findByUserId
+Class Naming Convention
+•	CamelCase - OrderLine
+Package Naming Convention
+•	Lower case – com.netbuilder.util
+Always
+•	Author your code
+•	Javadoc methods and at top of class
+•	Comment if necessary
+•	Use descriptive variable/method names except in for loops and exceptions
+•	Indent code
+•	White space in between methods
+•	Always private variables
+•	Declare class variables at the top of the class
+•	Only static or final initialisation at the top of the class
+•	Initialise everything else in the constructor
+•	Check there are no unused imports and if so remove them
+http://www.java-success.com/30-java-code-review-checklist-items/

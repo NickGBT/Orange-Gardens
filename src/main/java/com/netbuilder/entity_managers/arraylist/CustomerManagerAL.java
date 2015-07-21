@@ -130,4 +130,30 @@ public class CustomerManagerAL implements CustomerManager
 			}
 		}
 	}
+
+	public long checkUsernameDetails(String username, String password)
+	{
+		Customer c = findByUsername(username);
+		if(c.getPassword() == password)
+		{
+			return c.getCustomerID();
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	public long checkEmailDetails(String email, String password) 
+	{
+		Customer c = findByEmail(email);
+		if(c.getPassword() == password)
+		{
+			return c.getCustomerID();
+		}
+		else
+		{
+			return -1;
+		}
+	}
 }
