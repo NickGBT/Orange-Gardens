@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Register</title>
+<h:/head>
+<h:body>
+
+<div id="title">
+	<h2>Register</h2>
+</div>
+
+<div id="registerForm"
+<h:form style="display:inline; padding-left=10%">
+	First Name : <h:inputText type="text" name="#{customer.fname}"><br /><br />
+	Last Name : <h:inputText type="text" name="#{customer.lname}"><br /><br />
+	Email : <h:inputText type="text" name="#{customer.email_address}"><br/><br/>
+	Phone Number : <h:inputText type="text" name="#{customer.phoneNumber}"><br /><br />
+	Password : <h:inputText type="password" name="#{customer.password}"><br /><br />
+	Password Confirmation : <h:inputText type="password" name="#{customer.password}"><br /><br />
+	<h2>Address</h2>
+	Home Number : <h:inputText type="text" name="#{address.addressLine1}"><br /><br />
+	Street : <h:inputText type="text" name="#{address.addressLine2}"><br /><br />
+	County : <h:inputText type="text" name="#{address.county}"><br /><br />
+	Post Code : <h:inputText type="text" name="#{address.postcode}"><br /><br />
+	<h2>Payment Method</h2>
+	Card Type : <h:select>
+		<h:option value="#{paymentDetails.cardType.visa}">Visa</option>
+		<h:option value="#{paymentDetails.cardType.masterCard}">MasterCard</option>
+	<h:/select>
+	<br /><br />
+	Name on Card : <h:inputText type="text" name="#{paymentDetails.nameOnCard}"><br /><br />
+	Card Number : <h:inputText type="text" name="#{paymentDetails.cardNumber}"><br /><br />
+	Expiry Date : <h:inputText type="text" name="#{paymentDetails.expiryDate}"><br /><br />
+	Issue Number : <h:inputText type="text" name="#{paymentDetails.issueNumber}"><br /><br />	
+	<h:commandButton id = "submit" value = "Submit">
+<h:/form>
+</div>
+
+<h:/body>
+
+</html>

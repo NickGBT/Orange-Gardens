@@ -1,27 +1,66 @@
 package com.netbuilder.controllers;
 
 import javax.inject.Inject;
+import javax.security.auth.login.LoginException;
 
+import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 import com.netbuilder.util.UserDetails;
 
-public class LoginController {
+/**
+ * 
+ * @author JustinMabbutt
+ *
+ */
+
+public class LoginController
+{
 	@Inject
-	private CustomerLoginManager clm;
+	private CustomerManagerAL customerManager;
 	@Inject
-	private UserDetails ud;
+	private UserDetails userDetails;
 	public String errormsg;
 	
-	public String login() {
-		if (ud.username.isEmpty() || ud.password.isEmpty()) {
+	public String loginWithUsername()
+	{
+		if (userDetails.getUsername().isEmpty() || userDetails.getPassword().isEmpty()) 
+		{
 			errormsg = "please enter details";
 			return "login";
 		}
-		Long uid = clm.checkDetails(ud.username, ud.password);
-		if(uid == null)
+		Long uid = customerManager.checkUsernameDetails(userDetails.getUsername(), userDetails.getPassword());
+		if(uid == -1)
 		{
 			errormsg = "Incorrect details";
 			return "login";
 		}
 		return "account/uid";
+	}
+	
+	public String loginWithEmail()
+	{
+		if (userDetails.getEmail().isEmpty() || userDetails.getPassword().isEmpty()) 
+		{
+			errormsg = "please enter details";
+			return "login";
+		}
+		Long uid = customerManager.checkEmailDetails(userDetails.getEmail(), userDetails.getPassword());
+		if(uid == -1)
+		{
+			errormsg = "Incorrect details";
+			return "login";
+		}
+		return "account/uid";
+	}
+	
+	public String registerCustomer()
+	{
+		return "account/uid";
+	}
+	
+	public String logout() throws LoginException
+	{
+		userDetails.setUsername(null);
+		userDetails.setPassword(null);
+		return "home";
 	}
 }

@@ -70,7 +70,7 @@ public class AddressManagerALTest
 	{
 		testArrayAddress.add(testAddress);
 		addressManager.persistAddress(testAddress);
-		assertEquals(addressManager.findByLabel("house"), testArrayAddress);
+		assertEquals(addressManager.findByAddressLabel("house"), testArrayAddress);
 	}
 	
 	/*

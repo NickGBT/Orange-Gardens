@@ -18,8 +18,8 @@ public interface AddressManager
 
 	// READ
 	public ArrayList<Address> findByPostcode(String postcode);
-	public Address findByLabel(String label);
-	public Address findByCustomerID(int customerID);
+	public Address findByAddressLabel(String addressLabel);
+	public Address findByUserId(int userId);
 	public ArrayList<Address> getAddresses();
 
 	// UPDATE

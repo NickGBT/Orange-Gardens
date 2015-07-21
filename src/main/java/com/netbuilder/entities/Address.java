@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 public class Address 
 {
 	@ManyToOne
-	@JoinColumn(name = "customer_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
 	private Customer customer;
 	@Id
@@ -32,10 +32,6 @@ public class Address
 	@NotNull
 	@Size(min = 2, max = 45)
 	private String addressLabel;
-	@ManyToOne
-	@JoinColumn(name = "order_id", nullable = true)
-	@Null
-	private Order order;
 	@Column(name = "line1", nullable = false, length = 45)
 	@NotNull
 	@Size(min = 2, max = 45)
@@ -87,11 +83,6 @@ public class Address
 		return addressLabel;
 	}
 	
-	public Order getOrder()
-	{
-		return order;
-	}
-
 	public String getAddressLine1() 
 	{
 		return addressLine1;
