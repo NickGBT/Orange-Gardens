@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/exampletemplate.xhtml">
+
+<ui:define name="pageTitle">NB Gardens - Wishlist</ui:define>
+
+<!-- author: ngilbert -->
+
+<ui:define name="content">
+
+<div id="wishlistContent">
+<h1>Wishlist</h1>
+<div><p>Items currently on wishlist</p></div>
+
+	<f:facet>
+		<button type="button">Move all items on wishlist to Basket</button></br>
+	</f:facet>
+	
+	<div>
+		<div id="tableContainer">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+					<div id="productDetailsSmall" style="
+					height: 200px;
+					width: 500px;
+					padding: 10px;
+					border: 2px solid black;
+					margin: 0; 
+					">
+						<div id="productImage" style="float: left; width: 200px;">
+							<f:facet name="productImage">
+								<h:graphicImage value="#{productImage.productController}"/>
+							</f:facet>
+						</div>
+						
+						<div id="productDetails" style="float: left; width: 200px;">
+							<f:facet name="productName">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+							<f:facet name="productDescription">
+								<p><h:outputText value="#{productDescription.productController}"/></p>
+							</f:facet>
+							<f:facet name="productPrice">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+						</div>
+						
+						<div id="productLinks" style="float: right; width: 100px;">
+							<f:facet name="productPageRef">
+								<button type="button">Product Page</button><br><br><!-- should take you to the product page of the product in question -->
+							</f:facet>
+							<f:facet name="addProductToBasket">
+								<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+							</f:facet>
+							<f:facet name="removeProductFromWishlist">
+								<button type="button">Remove from Wishlist</button><br><br><!-- JSF to be implemented -->
+							</f:facet>
+						</div>
+					
+					</div>
+					</td>
+					<td>
+					<div id="productDetailsSmall" style="
+					height: 200px;
+					width: 500px;
+					padding: 10px;
+					border: 2px solid black;
+					margin: 0; 
+					">
+						<div id="productImage" style="float: left; width: 200px;">
+							<f:facet name="productImage">
+								<h:graphicImage value="#{productImage.productController}"/>
+							</f:facet>
+						</div>
+						
+						<div id="productDetails" style="float: left; width: 200px;">
+							<f:facet name="productName">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+							<f:facet name="productDescription">
+								<p><h:outputText value="#{productDescription.productController}"/></p>
+							</f:facet>
+							<f:facet name="productPrice">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+						</div>
+						
+						<div id="productLinks" style="float: right; width: 100px;">
+							<f:facet name="productPageRef">
+								<button type="button">Product Page</button><br><br><!-- should take you to the product page of the product in question -->
+							</f:facet>
+							<f:facet name="addProductToBasket">
+								<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+							</f:facet>
+							<f:facet name="removeProductFromWishlist">
+								<button type="button">Remove from Wishlist</button><br><br><!-- JSF to be implemented -->
+							</f:facet>
+						</div>
+					
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<div id="productDetailsSmall" style="
+					height: 200px;
+					width: 500px;
+					padding: 10px;
+					border: 2px solid black;
+					margin: 0; 
+					">
+						<div id="productImage" style="float: left; width: 200px;">
+							<f:facet name="productImage">
+								<h:graphicImage value="#{productImage.productController}"/>
+							</f:facet>
+						</div>
+						
+						<div id="productDetails" style="float: left; width: 200px;">
+							<f:facet name="productName">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+							<f:facet name="productDescription">
+								<p><h:outputText value="#{productDescription.productController}"/></p>
+							</f:facet>
+							<f:facet name="productPrice">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+						</div>
+						
+						<div id="productLinks" style="float: right; width: 100px;">
+							<f:facet name="productPageRef">
+								<button type="button">Product Page</button><br><br><!-- should take you to the product page of the product in question -->
+							</f:facet>
+							<f:facet name="addProductToBasket">
+								<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+							</f:facet>
+							<f:facet name="removeProductFromWishlist">
+								<button type="button">Remove from Wishlist</button><br><br><!-- JSF to be implemented -->
+							</f:facet>
+						</div>
+					
+					</div>
+					</td>
+					<td>
+					<div id="productDetailsSmall" style="
+					height: 200px;
+					width: 500px;
+					padding: 10px;
+					border: 2px solid black;
+					margin: 0; 
+					">
+						<div id="productImage" style="float: left; width: 200px;">
+							<f:facet name="productImage">
+								<h:graphicImage value="#{productImage.productController}"/>
+							</f:facet>
+						</div>
+						
+						<div id="productDetails" style="float: left; width: 200px;">
+							<f:facet name="productName">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+							<f:facet name="productDescription">
+								<p><h:outputText value="#{productDescription.productController}"/></p>
+							</f:facet>
+							<f:facet name="productPrice">
+								<p><h:outputText value="#{productName.productController}"/></p>
+							</f:facet>
+						</div>
+						
+						<div id="productLinks" style="float: right; width: 100px;">
+							<f:facet name="productPageRef">
+								<button type="button">Product Page</button><br><br><!-- should take you to the product page of the product in question -->
+							</f:facet>
+							<f:facet name="addProductToBasket">
+								<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+							</f:facet>
+							<f:facet name="removeProductFromWishlist">
+								<button type="button">Remove from Wishlist</button><br><br><!-- JSF to be implemented -->
+							</f:facet>
+						</div>
+					
+					</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
+</br>
+
+<ui:define>
+
+</html>

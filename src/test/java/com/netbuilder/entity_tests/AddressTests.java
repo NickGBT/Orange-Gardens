@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
 /**
  * 
  * @author Alexander Neil
@@ -54,7 +55,6 @@ public class AddressTests {
 */
 	@Test
 	public void testGetAddressLine1() {
-		
 	
 		assertEquals(testAddress.getAddressLine1(), lineOne);
 	}
@@ -62,7 +62,6 @@ public class AddressTests {
 	@Test
 	public void testGetAddressLine2() {
 		
-
 		assertEquals(testAddress.getAddressLine2(), lineTwo);
 	}
 
