@@ -23,6 +23,8 @@ public interface CustomerManager
 	public ArrayList<Customer> findByLName(String lName);
 	public Customer findByCustomerID(int customerID);
 	public ArrayList<Customer> getCustomers();
+	public long checkUsernameDetails(String username, String password);
+	public long checkEmailDetails(String email, String password);
 	
 	//UPDATE
 	public void updateCustomer(Customer customer);
