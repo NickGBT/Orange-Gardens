@@ -1,7 +1,6 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
-
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -11,8 +10,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
-
-import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -39,8 +36,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		em.getTransaction().begin();
 		em.persist(orderLine);
 		em.getTransaction().commit();
-		pm.closeEntityManager(em);
-		
+		pm.closeEntityManager(em);		
 	}
 
 	public void persistOrderLine(ArrayList<OrderLine> orderLine) {
