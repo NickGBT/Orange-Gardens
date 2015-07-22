@@ -1,7 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 /**
- * @author mwatson
+ * @author mwatson llew
  */
 
 import java.text.SimpleDateFormat;
@@ -253,4 +253,17 @@ public class OrderManagerAL implements OrderManager {
 		return null;
 	}
 
+	
+	public ArrayList<Order> findPreviousOrders(OrderStatus status, int customerId) {
+		ArrayList<Order> prevOrders = new ArrayList<Order>();
+		
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
+			{
+				prevOrders.add(o);
+			}
+		}
+		return prevOrders;
+	}
 }
