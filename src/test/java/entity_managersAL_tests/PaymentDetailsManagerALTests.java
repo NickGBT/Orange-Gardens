@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
@@ -30,8 +31,10 @@ public class PaymentDetailsManagerALTests {
 	
 	ArrayList<PaymentDetails> detailsInput;
 	
-	Customer c1;
-	Customer c2;
+	LoginDetails c1;
+	LoginDetails c2;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
 	
 	Order o1;
 	
@@ -43,8 +46,8 @@ public class PaymentDetailsManagerALTests {
 	public void setUp() throws Exception {
 		paymentDetailsManager = new PaymentDetailsManagerAL();
 		
-		c1 = new Customer("Absolutely", "Fantastic", false);
-		c2 = new Customer("Billy", "Bob", false);
+		c1 = new LoginDetails("fooUser", password, salt);
+		c2 = new LoginDetails("fooUser2", password, salt);
 		
 		c1.setUserId(1);
 		c2.setUserId(2);
@@ -75,9 +78,12 @@ public class PaymentDetailsManagerALTests {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
 		
-		ArrayList<PaymentDetails> output = paymentDetailsManager.findCustomerPaymentDetails(c1.getUserId());
+		PaymentDetails output = paymentDetailsManager.findCustomerPaymentDetails(c1.getUserId());
 		
-		assertTrue(output.size()==2);
+		ArrayList<PaymentDetails> paymentDetailsTest = new ArrayList<PaymentDetails>();
+		paymentDetailsTest.add(output);
+		
+		assertTrue(output.equals(detailsInput));
 	}
 
 	@Test
