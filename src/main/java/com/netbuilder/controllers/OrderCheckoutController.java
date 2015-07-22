@@ -76,4 +76,11 @@ public class OrderCheckoutController {
 		productsInOrder = orderManager.findBasket(); //find order by customer id and basket status.
 		
 	}
+	public PaymentDetails getPaymentDetails(){
+		return paymentDetails;
+	}
+	
+	public Address getAddress(){
+		return address;
+	}
 }
