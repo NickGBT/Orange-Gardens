@@ -36,14 +36,11 @@ public class EmployeeManagerALTests {
 	public void setUp() throws Exception {
 		employeeManager = new EmployeeManagerAL();
 		
-		e1 = new Employee(EmployeeDepartment.WAREHOUSE, "Ware", "House", "warehouse", EmployeePermissions.MANAGER);
-		e2 = new Employee(EmployeeDepartment.WAREHOUSE, "Slave", "Labor", "null", EmployeePermissions.WORKER);
-		e3 = new Employee(EmployeeDepartment.WAREHOUSE, "Shelf", "Picker", "stacky", EmployeePermissions.WORKER);
-		e4 = new Employee(EmployeeDepartment.SALES, "Telephone", "House", "ringring", EmployeePermissions.MANAGER);
-		e1.setEmployeeId(1);
-		e2.setEmployeeId(2);
-		e3.setEmployeeId(3);
-		e4.setEmployeeId(4);
+		e1 = new Employee(EmployeeDepartment.WAREHOUSE, "Ware", "House", EmployeePermissions.MANAGER);
+		e2 = new Employee(EmployeeDepartment.WAREHOUSE, "Slave", "Labor", EmployeePermissions.WORKER);
+		e3 = new Employee(EmployeeDepartment.WAREHOUSE, "Shelf", "Picker", EmployeePermissions.WORKER);
+		e4 = new Employee(EmployeeDepartment.SALES, "Telephone", "House", EmployeePermissions.MANAGER);
+		
 		
 		testInput = new ArrayList<Employee>();
 		
@@ -57,7 +54,7 @@ public class EmployeeManagerALTests {
 	public void testPersistAndRetrieve() {
 		employeeManager.persistEmployee(e1);
 		
-		Employee testE = employeeManager.findEmployeeById(e1.getEmployeeId());
+		Employee testE = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
 		
 		assertEquals(testE, e1);
 	}
@@ -83,12 +80,10 @@ public class EmployeeManagerALTests {
 	@Test
 	public void testUpdateEmployeeAndRetrieve(){
 		employeeManager.persistEmployee(e1);
-				
-		e3.setEmployeeId(1);
 		
 		employeeManager.updateEmployee(e3);
 		
-		Employee sample = employeeManager.findEmployeeById(e1.getEmployeeId());
+		Employee sample = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
 		
 		assertNotEquals(e1, sample);
 	}
@@ -100,7 +95,7 @@ public class EmployeeManagerALTests {
 		
 		employeeManager.removeEmployee(e1);
 		
-		Employee output = employeeManager.findEmployeeById(e1.getEmployeeId());
+		Employee output = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
 		
 		assertNull(output);
 	}

@@ -38,7 +38,7 @@ public class AddressManagerALTest
 		testAddress = new Address(testCustomer, "house", "absolutely", "fantastic", "pull", "bounce", "cheese", "LEY76R", false);
 		testAddress2 = new Address(testCustomer2, "shed", "banter", "hell", "earth", "junit", "java", "ABCDEF", false);
 		testCustomer = new LoginDetails("fooUser", password, salt);
-		testCustomer2 = new LoginDetails("fooUser", password, salt);
+		testCustomer2 = new LoginDetails("fooUser2", password, salt);
 	}
 	
 	@Test

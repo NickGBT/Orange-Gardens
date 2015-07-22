@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
@@ -30,9 +31,8 @@ public class OrderLineManagerALTest {
 	private ArrayList<OrderLine> testArrayOrderLine, testArrayOrderLine2;
 	private OrderLineManagerAL orderLineManager;
 	private Order order;
-	private Customer testCustomer1;
-	private Customer testCustomer2;
-	private Employee employee;
+	private LoginDetails testCustomer1;
+	private LoginDetails employee;
 	private EmployeeDepartment employeeDepartment;
 	private EmployeePermissions employeePermission;
 	private OrderStatus orderStatus;
@@ -40,14 +40,17 @@ public class OrderLineManagerALTest {
 	private OrderLine orderLine1;
 	private Product product;
 	private ArrayList<OrderLine> orderlineAL;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
+	
 	
 	@Before
 	public void setUp() throws Exception {
 		
 		orderlineAL = new ArrayList<OrderLine>();
 		
-		testCustomer1 = new Customer("test", "name", true);
-		employee = new Employee(EmployeeDepartment.SALES, "test", "name", "absfan1", EmployeePermissions.MANAGER);
+		testCustomer1 = new LoginDetails("fooUser", password, salt);
+		employee = new LoginDetails("fooUser2", password, salt);
 		
 		orderLineManager = new OrderLineManagerAL();	
 		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,

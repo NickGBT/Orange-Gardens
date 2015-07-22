@@ -20,10 +20,9 @@ import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 public class CustomerManagerALTest
 {
 	private CustomerManagerAL customerManager;
-	private LoginDetails testCustomer, testCustomer2;
+	private Customer testCustomer, testCustomer2;
 	private ArrayList<Customer> testArrayCustomer, testArrayCustomer2;
-	byte[] password = {1,2,3};
-	byte[] salt = {1,2,3};
+	
 	
 	@Before
 	public void setUp() throws Exception
@@ -31,8 +30,8 @@ public class CustomerManagerALTest
 		customerManager = new CustomerManagerAL();
 		testArrayCustomer = new ArrayList<Customer>();
 		testArrayCustomer2 = new ArrayList<Customer>();
-		testCustomer = new LoginDetails("fooUser", password, salt);
-		testCustomer2 = new LoginDetails("fooUser", password, salt);
+		testCustomer = new Customer("fName1", "lName1", "contactNumber1", true);
+		testCustomer2 = new Customer("fName2", "lName2", "contactNumber2", true);
 	}
 	
 	@Test

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
@@ -27,18 +28,20 @@ public class OrderManagerALTest {
 	OrderManagerAL orderManager;
 	private ArrayList<Order> testArrayOrder;
 	private Order testOrder, testOrder2;
-	private Customer testCustomer, testCustomer2;
-	private Employee testEmployee, testEmployee2;
+	private LoginDetails testCustomer, testCustomer2;
+	private LoginDetails testEmployee, testEmployee2;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
 	
 	
 	@Before
 	public void setUp() throws Exception {
 		orderManager = new OrderManagerAL();
 		testArrayOrder = new ArrayList<Order>();
-		testCustomer = new Customer("James", "Morpheus", false);
-		testEmployee = new Employee(EmployeeDepartment.SALES, "Matt", "Watson", "hello", EmployeePermissions.MANAGER);
-		testCustomer2 = new Customer("Phil", "Chivers", false);
-		testEmployee2 = new Employee(EmployeeDepartment.SALES, "Alex", "Neil", "aneil@netbuilder.com", EmployeePermissions.WORKER);
+		testCustomer = new LoginDetails("fooUser", password, salt);
+		testEmployee = new LoginDetails("fooUser2", password, salt);
+		testCustomer2 = new LoginDetails("fooUser3", password, salt);
+		testEmployee2 = new LoginDetails("fooUser4", password, salt);
 		
 		testOrder = new Order(testCustomer, testEmployee, OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO", "AB/CD/HJKS", "AR/VB/HSJA", false);
 		testOrder2 = new Order(testCustomer2, testEmployee2, OrderStatus.awaitingDispatch, "03/04/2015", "AR/VB/1999", "AB/CD/4321", "AR/VB/2001", false);
