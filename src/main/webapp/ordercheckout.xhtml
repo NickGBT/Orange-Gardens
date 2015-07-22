@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
@@ -11,156 +11,157 @@
 <ui:define name="pageTitle">NB Gardens - OrderCheckout</ui:define>
 
 <div id="MainContent">
-<div>
-<h1>Checkout</h1>
-</div>
-
-<div id="orderDetails">
-<p>Order Details </p>
-
-	<div id="orderLine">
-
-		<p>Orderline in this div</p>
-			
-		<f:facet name="orderLinePopulator">
-		<!-- facet populates the orderline with the relevant order -->	
-			</br>
-					<div id="productDetailsSmall" style="
-						height: 200px;
-						width: 500px;
-						padding: 10px;
-						border: 2px solid black;
-						margin: 0; 
-					">
-						<div id="productImage" style="float: left; width: 200px;">
-							<f:facet name="productImage">
-								<h:graphicImage value="#{productImage.productController}"/>
-							</f:facet>
-						</div>
-						
-						<div id="productDetails" style="float: left; width: 200px;">
-							<f:facet name="productName">
-								<p><h:outputText value="#{productName.productController}"/></p>
-							</f:facet>
-							<f:facet name="productDescription">
-								<p><h:outputText value="#{productDescription.productController}"/></p>
-							</f:facet>
-							<f:facet name="productPrice">
-								<p><h:outputText value="#{productName.productController}"/></p>
-							</f:facet>
-						</div>
-						
-						<div id="productLinks" style="float: right; width: 100px;">
-							<f:facet name="productPageRef">
-								<button type="button">Product Page</button><br><br><!-- should take you to the product page of the product in question -->
-							</f:facet>
-							<f:facet name="addProductToWishlist">
-								<button type="button">Add to Wishlist</button><br><br><!-- JSF to be implemented -->
-							</f:facet>
-							<f:facet name="addProductToBasket">
-								<button type="button">Add to Basket</button><!-- JSF to be implemented -->
-							</f:facet>
-						</div>
-						
-					</div>
-	</f:facet>				
-	</div>
-</div>
-
-<div id="paymentDetails">
-
 	<div>
-	<p>Payment Details</p>
-	
-	<div id="registeredPaymentDetails">
-			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
+	<h1>Checkout</h1>
 	</div>
 	
-	<!--  </div>
+	<div id="orderDetails">
+	<p>Order Details </p>
 	
-		<div id="cardDetails">
-			<p>Please select your card type</p>
-				<div id="cardType">
-					<select>
-						<option value="cardtype">cardtype</option>
-					</select>
-				</div>
-			</br>
-			<p>Please enter your card number</p>
-				<div id="cardNumber">
-					<form id="cardNumber">
-						<f:facet name="cardNumber">
-							<h:inputText value="card number" maxlength="16"/>
-						</f:facet>	
-					</form>
-				</div>
-			</br>
-			<p>Please enter the name on the card</p>
-				<div id="nameOnCard">
-					<form id="nameOnCard">
-						<f:facet name="nameOnCard">
-							<h:inputText value="name on card" maxlength="70"/>
-						</f:facet>	
-					</form>
-				</div>
-			</br>
-			<p>Please select your expiry date</p>
-				<div id="expiryDate">
-					<select>
-						<option value="expirydate">expirydate</option>
-					</select>
-				</div>
-			</br>
-			<p>Please enter the 3 digit card security number</p>
-				<div id="securityNumber">
-					<form id="securityNumber">
-						<f:facet name="securityNumber">
-							<h:inputHidden value="security number" maxlength="3"/>
-						</f:facet>	
-					</form>
-				</div> -->
+		<div id="orderLine">
+	
+			<p>Orderline in this div</p>
+				
+			<f:facet name="orderLinePopulator">
+			<!-- facet populates the orderline with the relevant order -->	
+				<br/>
+						<div id="productDetailsSmall" style="
+							height: 200px;
+							width: 500px;
+							padding: 10px;
+							border: 2px solid black;
+							margin: 0; 
+						">
+							<div id="productImage" style="float: left; width: 200px;">
+								<f:facet name="productImage">
+									<h:graphicImage value="#{productImage.productController}"/>
+								</f:facet>
+							</div>
+							
+							<div id="productDetails" style="float: left; width: 200px;">
+								<f:facet name="productName">
+									<p><h:outputText value="#{productName.productController}"/></p>
+								</f:facet>
+								<f:facet name="productDescription">
+									<p><h:outputText value="#{productDescription.productController}"/></p>
+								</f:facet>
+								<f:facet name="productPrice">
+									<p><h:outputText value="#{productName.productController}"/></p>
+								</f:facet>
+							</div>
+							
+							<div id="productLinks" style="float: right; width: 100px;">
+								<f:facet name="productPageRef">
+									<button type="button">Product Page</button><!-- should take you to the product page of the product in question --><br><br>
+								</f:facet>
+								<f:facet name="addProductToWishlist">
+									<button type="button">Add to Wishlist</button><!-- JSF to be implemented -->
+								</f:facet><br><br>
+								<f:facet name="addProductToBasket">
+									<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+								</f:facet>
+							</div>
+							
+						</div>
+		</f:facet>				
+		</div>
+	</div>
+	
+	<div id="paymentDetails">
+	
+		<div>
+		<p>Payment Details</p>
+		
+		<div id="registeredPaymentDetails">
+				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
 		</div>
 		
-<div id="UseAlternatePaymentDetails">
-	<h:selectBooleanCheckbox value="Use alternate payment details" id="checkToUseAlternatePaymentDetails" />
-</div>
- 
-</div>
-<div id="billingAddress">
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getCity()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getCounty()}"/>
-			<h:outputtext value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
-</div>
-
-<p>Please check if post address is different from billing address</p></br>
-
-<div id="PostAddressNeeded">
-
-	<h:selectBooleanCheckbox value="Post address is different" id="checkToEnterPostAddress" />
+		<!--  </div>
+		
+			<div id="cardDetails">
+				<p>Please select your card type</p>
+					<div id="cardType">
+						<select>
+							<option value="cardtype">cardtype</option>
+						</select>
+					</div>
+				</br>
+				<p>Please enter your card number</p>
+					<div id="cardNumber">
+						<form id="cardNumber">
+							<f:facet name="cardNumber">
+								<h:inputText value="card number" maxlength="16"/>
+							</f:facet>	
+						</form>
+					</div>
+				</br>
+				<p>Please enter the name on the card</p>
+					<div id="nameOnCard">
+						<form id="nameOnCard">
+							<f:facet name="nameOnCard">
+								<h:inputText value="name on card" maxlength="70"/>
+							</f:facet>	
+						</form>
+					</div>
+				</br>
+				<p>Please select your expiry date</p>
+					<div id="expiryDate">
+						<select>
+							<option value="expirydate">expirydate</option>
+						</select>
+					</div>
+				</br>
+				<p>Please enter the 3 digit card security number</p>
+					<div id="securityNumber">
+						<form id="securityNumber">
+							<f:facet name="securityNumber">
+								<h:inputHidden value="security number" maxlength="3"/>
+							</f:facet>	
+						</form>
+					</div> -->
+			</div>
+			
+	<div id="UseAlternatePaymentDetails">
+		<h:selectBooleanCheckbox value="Use alternate payment details" id="checkToUseAlternatePaymentDetails" />
+	</div>
+	 
+	</div>
+	<div id="billingAddress">
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getCity()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getCounty()}"/>
+				<h:outputtext value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
+	</div>
 	
-</div>
-
-<div id="PostAddress"> <!--Should be hidden if billing address is the same as post address-->
-	<p>Address:</p>
-		<div id="AddressText">
-			<p>Address Line 1</p>
-			<p>Address Line 2</p>
-			<p>Address Line 3</p>
-			<p>City</p>
-			<p>County</p>
-			<p>Postcode</p>
-		</div>
-		<f:facet name="postAddressSubmit">
-			<h:commandbutton class="button" value="submit"" action="#{}"/><br/>
-		</f:facet>
-	</br>
+	<p>Please check if post address is different from billing address</p><br/>
+	
+	<div id="PostAddressNeeded">
+	
+		<h:selectBooleanCheckbox value="Post address is different" id="checkToEnterPostAddress" />
+		
+	</div>
+	
+	<div id="PostAddress"> <!--Should be hidden if billing address is the same as post address-->
+		<p>Address:</p>
+			<div id="AddressText">
+				<p>Address Line 1</p>
+				<p>Address Line 2</p>
+				<p>Address Line 3</p>
+				<p>City</p>
+				<p>County</p>
+				<p>Postcode</p>
+			</div>
+			<f:facet name="postAddressSubmit">
+				<h:commandbutton class="button" value="submit" action="#{}"/><!-- to submit alternate post address --><br/>
+			</f:facet>
+		<br/>
+	</div>
 </div>
 
 </ui:define>
