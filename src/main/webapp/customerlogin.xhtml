@@ -4,8 +4,7 @@
 <html	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/exampletemplate.xhtml">
+		xmlns:f="http://java.sun.com/jsf/core">
 		
 <!-- author: JustinMabbutt -->
 
@@ -13,18 +12,18 @@
 
 <ui:define name="content">
 <div id="MainContent">
-	<H1>Sign In</H1>
+	<h1>Sign In</h1>
 
-	<H4>What is your username or email address?</H4>
+	<h4>What is your user name or email address?</h4>
 
 	<h:form>
-		<h:inputText id="loginDetails" value="#{UserDetails.}" maxlength="45" size="20">
+		<h:inputText id="loginDetails" value="#{UserDetails.}" maxlength="45" size="20"></h:inputText>
 	</h:form>
 
-	<H4>What is your password?</H4>
+	<h4>What is your password?</h4>
 
 	<h:form>
-		<h:inputSecret id="password" value="#{UserDetails.password}" maxlength="45" size="20">
+		<h:inputSecret id="password" value="#{UserDetails.password}" maxlength="45" size="20"></h:inputSecret>
 	</h:form>
 
 	<br/>

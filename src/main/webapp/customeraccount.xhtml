@@ -4,8 +4,7 @@
 <html	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/exampletemplate.xhtml">
+		xmlns:f="http://java.sun.com/jsf/core">
 		
 <!-- author: JustinMabbutt -->
 		
@@ -15,13 +14,13 @@
 <div id = "MainContent">
 	<div id="TitleBar">
 		<div id="TitleImageLeft">
-			<h:graphicImage value="/images/rad.jpg" width = "100px" height = "100px"/>
+			<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
 		</div>
 		<div id="TitleText">
-			<H1>Your Account</H1>
+			<h1>Your Account</h1>
 		</div>
 		<div id="TitleImageRight">
-			<h:graphicImage value="/images/rad.jpg" width = "100px" height = "100px"/>
+			<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
 		</div>
 	</div>
 	<div id="MainBlock">
@@ -70,14 +69,14 @@
 			<h:outputtext value="#{AccountManagementController.getAddress().getPostcode()}"/>
 		</div>
 		<f:facet name="addressChange">
-			<h:commandbutton class="button" value="Change"" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 	</div>
 
 	<div id="PasswordBlock">
 		<p>Want to change your password?</p>
 		<f:facet name="addressChange">
-			<h:commandbutton class="button" value="Reset Password"" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Reset Password" action="#{}"/><br/>
 		</f:facet>
 	</div>
 </div>
