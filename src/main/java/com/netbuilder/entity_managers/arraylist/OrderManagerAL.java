@@ -182,14 +182,8 @@ public class OrderManagerAL implements OrderManager {
 		ArrayList<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
-<<<<<<< HEAD
-			if (o.getCustomer().getCustomerID() == customerId) {
 
-			if(o.getCustomer().getUserId() == customerId) {
-
-=======
-			if(o.getCustomer().getUserId() == customerId) {
->>>>>>> 47667f05c3f252ad3474bb6e4e8d2037b997d3d0
+			if (o.getCustomer().getUserId() == customerId) {
 				orderResults.add(o);
 			}
 		}
@@ -197,7 +191,8 @@ public class OrderManagerAL implements OrderManager {
 		if (orderResults.isEmpty()) {
 			return null;
 		} else
-			return orderResults;
+		return orderResults;
+		
 	}
 
 	public ArrayList<Order> findByEmployeeId(int employeeId) {
