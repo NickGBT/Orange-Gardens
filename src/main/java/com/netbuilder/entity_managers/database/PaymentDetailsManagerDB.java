@@ -62,21 +62,18 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		}
 	}
 
-	public ArrayList<PaymentDetails> findCustomerPaymentDetails(int customerId) {
-
-		ArrayList<PaymentDetails> results = null;
+	public PaymentDetails findCustomerPaymentDetails(int userId) {
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CUSTOMER, PaymentDetails.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("id", customerId);
+		tq.setParameter("userid", userId);
 		try{
-			results = new ArrayList<PaymentDetails>(tq.getResultList());
+			return tq.getSingleResult();
 		}
 		catch(NoResultException nre){
-			
+			return null;
 		}
-		return results;
 	}
 
 	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {

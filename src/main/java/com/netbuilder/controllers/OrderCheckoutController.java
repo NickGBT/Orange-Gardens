@@ -17,6 +17,12 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
+import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
+import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 /**
@@ -35,21 +41,31 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 @RequestScoped
 public class OrderCheckoutController {
 	@Inject
-	private ProductManager productManager;
+	private ProductManagerAL productManager;
+	@Inject
+	private OrderManagerAL orderManager;
+	@Inject
+	private OrderLineManagerAL orderLineManager;
+	@Inject
+	private CustomerManagerAL customerManager;
 	
-	private OrderManager orderManager;
+	private AddressManagerAL addressManager;
 	
-	private OrderLineManager orderLineManager;
+	private PaymentDetailsManagerAL paymentDetailsManager;
 	
-	private CustomerManager customerManager;
-	
-	private AddressManager addressManager;
-	
-	private PaymentDetailsManager paymentDetailsManager;
+	private ArrayList<Product> productsInOrder = new ArrayList<Product>();
 
 	public OrderCheckoutController(){
 		
-		customer = 
+		customer = customerManager.findByUserId(); //cookie persisted customer reference
+				
+		order = orderManager.//persisted basket order, to be changed to a different status when checkout is finished
+		
+		address = addressManager.findByUserId();//customers registered address, possibly add a checkbox for a different address.
+		
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails();//customers registered payment details, possibly add a checkbox for alternate payment details.
+		
+		productsInOrder = orderManager.findBasket(); //find order by customer id and basket status.
 		
 	}
 }

@@ -22,6 +22,7 @@ public class RegistrationDetails
 	//Customer
 	private String fName;
 	private String lName;
+	private String contactNumber;
 	private boolean isBlackListed = false;
 	
 	//LoginDetails
@@ -44,20 +45,21 @@ public class RegistrationDetails
 	private String cardNumber;
 	private String nameOnCard;
 	private int securityNumber;
-	private Date expiryDate;
+	private String expiryDate;
 	
 	ArrayList<Object> data = new ArrayList<Object>();
 	
-	public RegistrationDetails(String username, String password, String fName, String lName, String email, String addressLabel,
+	public RegistrationDetails(String username, String password, String fName, String lName, String contactNumber, String email, String addressLabel,
 			String addressLine1, String addressLine2, String addressLine3, String city, String county, String postcode,
 			boolean isBillingAddress, CardType cardType, String cardNumber, String nameOnCard, int securityNumber,
-			Date expiryDate) {
+			String expiryDate) {
 		this.fName = fName; data.add(fName);
 		this.lName = lName; data.add(lName);
+		this.contactNumber = contactNumber; data.add(contactNumber);
 		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
 		this.username = username; data.add(username);
 		this.email = email; data.add(email);
-		this.password = password; data.add(password);
+		this.setPassword(password); data.add(password);
 		this.addressLabel = addressLabel; data.add(addressLabel);
 		this.addressLine1 = addressLine1; data.add(addressLine1);
 		this.addressLine2 = addressLine2; data.add(addressLine2);
@@ -82,11 +84,6 @@ public class RegistrationDetails
 			}
 		}
 		return true;
-	}
-	
-	public void registerCustomer()
-	{
-		
 	}
 	
 	public String getUsername() 
@@ -248,13 +245,41 @@ public class RegistrationDetails
 		this.securityNumber = securityNumber;
 	}
 	
-	public Date getExpiryDate()
+	public String getExpiryDate()
 	{
 		return expiryDate;
 	}
 	
-	public void setExpiryDate(Date expiryDate) 
+	public void setExpiryDate(String expiryDate) 
 	{
 		this.expiryDate = expiryDate;
+	}
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+	public boolean isBlackListed() 
+	{
+		return isBlackListed;
+	}
+
+	public void setBlackListed(boolean isBlackListed) 
+	{
+		this.isBlackListed = isBlackListed;
+	}
+	
+	public void setContactNumber(String contactNum){
+		this.contactNumber = contactNum;
+	}
+	
+	public String getContactNumber(){
+		return contactNumber;
 	}
 }

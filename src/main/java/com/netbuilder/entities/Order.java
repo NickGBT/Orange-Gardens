@@ -1,5 +1,4 @@
 package com.netbuilder.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,12 +26,12 @@ public class Order {
 	private int orderID;
 	
 	@OneToMany
-	@JoinColumn (name = "customer_id", nullable = false)
-	private Customer customerID;
+	@JoinColumn (name = "user_id", nullable = false)
+	private LoginDetails customerID;
 	
 	@OneToMany
-	@JoinColumn (name = "employee_id")
-	private Employee employeeID;
+	@JoinColumn (name = "user_id")
+	private LoginDetails employeeID;
 	
 	@Column (name = "status", nullable = false)
 	@NotNull	
@@ -57,7 +56,7 @@ public class Order {
 	private boolean refundAvailable;
 	
 		
-	public Order(Customer customerID, Employee employeeID, OrderStatus status,
+	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable) {
 		this.customerID = customerID;
@@ -70,7 +69,7 @@ public class Order {
 		this.refundAvailable = refundAvailable;
 	}
 	
-	public Order(Customer customerID, OrderStatus status,
+	public Order(LoginDetails customerID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable) {
 		this.customerID = customerID;
@@ -82,7 +81,7 @@ public class Order {
 		this.refundAvailable = refundAvailable;
 	}
 
-	public Customer getCustomer() {
+	public LoginDetails getCustomer() {
 		return customerID;
 	}
 
@@ -128,7 +127,7 @@ public class Order {
 		return status;
 	}
 	
-	public Employee getEmployee(){
+	public LoginDetails getEmployee(){
 		return employeeID;
 	}
 }

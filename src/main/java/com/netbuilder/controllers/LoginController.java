@@ -19,6 +19,7 @@ public class LoginController
 	@Inject
 	private UserDetails userDetails;
 	private String errorMsg;
+	private int uid;
 	
 	public String login()
 	{
@@ -27,9 +28,10 @@ public class LoginController
 			errorMsg = "please enter details";
 			return "login";
 		}
-		int uid = loginManager.checkPassword(userDetails.getName(), userDetails.getPassword());
+		uid = loginManager.checkPassword(userDetails.getName(), userDetails.getPassword());
 		if(uid == -1)
 		{
+			userDetails.setUid(uid);
 			errorMsg = "Incorrect details";
 			return "login";
 		}

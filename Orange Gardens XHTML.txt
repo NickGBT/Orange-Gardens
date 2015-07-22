@@ -1,7 +1,7 @@
 Orange Gardens XHTML/CSS Style Document
 •	Divs (camelCase):
-o	content: for background div
-o	pageTitle: for contents of <head>
+•	content: for background div
+•	pageTitle: for contents of <head>
 •	Anything that submits a form is of class button
 •	Everything else is a link (can be made to look like a button)
 •	Buttons: class=“button”
@@ -11,3 +11,4 @@ o	pageTitle: for contents of <head>
 •	Invisible Table: class=”hiddenTable”
 •	Visible Table: class=”visibleTable”
 •	Indent every tag
+•	Use XHTML 1.1

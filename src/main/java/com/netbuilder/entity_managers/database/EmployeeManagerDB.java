@@ -59,12 +59,12 @@ ArrayList<Employee> results = null;
 		return results;
 	}
 
-	public Employee findEmployeeById(int employeeId) {
+	public Employee findEmployeeById(int userId) {
 		
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_EMPLOYEE_ID, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID, Employee.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("id", employeeId);
+		tq.setParameter("id", userId);
 		try{
 			return tq.getSingleResult();
 		}

@@ -18,7 +18,7 @@ public interface EmployeeManager {
 	
 	//READ
 	public ArrayList<Employee> getAll();
-	public Employee findEmployeeById(int employeeId);
+	public Employee findEmployeeById(int userId);
 	public ArrayList<Employee> findEmployeesBySurname(String surname);
 	public ArrayList<Employee> findEmployeesByNames(String forename, String surname);
 	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department);
