@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
     <wb-module deploy-name="orange-gardens">
+=======
+    <wb-module deploy-name="Orange-Gardens">
+>>>>>>> b7ea9c1b79ecae2f2f1d45c5edbed9ce19dfb3ee
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <property name="context-root" value="orange-gardens"/>
+<<<<<<< HEAD
         <property name="java-output-path" value="/orange-gardens/target/classes"/>
+=======
+        <property name="java-output-path" value="/Orange-Gardens/target/classes"/>
+>>>>>>> b7ea9c1b79ecae2f2f1d45c5edbed9ce19dfb3ee
     </wb-module>
 </project-modules>
