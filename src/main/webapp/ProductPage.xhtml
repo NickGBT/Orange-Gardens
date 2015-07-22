@@ -68,16 +68,14 @@
 						</select>
 
 						<f:facet name="buttonWishlist"> 
-							<h:commandbutton class = "button" value = "Add to Wishlist" action =#{}/> 
+							<h:commandbutton class = "button" value = "Add to Wishlist" action = #{}/> 
 						</f:facet> 
 					
-					
 					</div> 
-					
 				</div> 
 				
 					<div id = "productImage"> 	
-						<h:graphicImage id = "productImage src = "Gnome.jpg" alt  = "Gnome" > 
+						<h:graphicImage id = "productImage src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" > 
 						</h:graphicImage>
 						<!-- Image is here --> 
 					</div> 

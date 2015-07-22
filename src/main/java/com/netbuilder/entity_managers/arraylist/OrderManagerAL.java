@@ -182,11 +182,10 @@ public class OrderManagerAL implements OrderManager {
 		ArrayList<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
-<<<<<<< HEAD
 			if (o.getCustomer().getCustomerID() == customerId) {
-=======
+
 			if(o.getCustomer().getUserId() == customerId) {
->>>>>>> 1b41724ebb8ab03338a1aa86d1117613f14b0575
+
 				orderResults.add(o);
 			}
 		}
