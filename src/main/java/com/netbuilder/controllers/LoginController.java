@@ -43,6 +43,7 @@ public class LoginController
 	{
 		userDetails.setName(null);
 		userDetails.setPassword(null);
+		CustomerUserId.setUid(0);
 		return "home";
 	}
 
