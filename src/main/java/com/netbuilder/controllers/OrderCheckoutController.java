@@ -1,145 +1,86 @@
 package com.netbuilder.controllers;
 
-import com.netbuilder.entities.Address;
+import java.util.ArrayList;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import com.netbuilder.entities.Product;
+import com.netbuilder.entities.Order;
+import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.LoginDetails;
+import com.netbuilder.entities.Address;
 import com.netbuilder.entities.PaymentDetails;
+
+import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
-import com.netbuilder.util.AccountManagement;
-import com.netbuilder.util.UserDetails;
-
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+import com.netbuilder.entity_managers.interfaces.AddressManager;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 /**
  * 
- * @author JustinMabbutt
+ * @author ngilbert
  *
  */
 
-public class AccountManagementController 
-{
-	private String errorMsg;
-	private UserDetails userDetails;
-	private AccountManagement accountManagement;
-	private LoginDetails loginDetails;
-	private LoginDetailsManagerAL loginDetailsManager;
-	private Customer customer;
+/**
+ * 
+ * why did i agree to do this class, i'm a fucking idiot.
+ *
+ */
+
+@Named
+@RequestScoped
+public class OrderCheckoutController {
+	@Inject
+	private ProductManagerAL productManager;
+	@Inject
+	private OrderManagerAL orderManager;
+	@Inject
+	private OrderLineManagerAL orderLineManager;
+	@Inject
 	private CustomerManagerAL customerManager;
-	private Address address;
+	
 	private AddressManagerAL addressManager;
-	private PaymentDetails paymentDetails;
+	
 	private PaymentDetailsManagerAL paymentDetailsManager;
 	
-	public AccountManagementController()
-	{
-		loginDetails = loginDetailsManager.findByUserId(userDetails.getUid());
-		customer = customerManager.findByUserId(userDetails.getUid());
-		address = addressManager.findByUserId(userDetails.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(userDetails.getUid());
-	}
+	private ArrayList<Product> productsInOrder = new ArrayList<Product>();
 	
-	public LoginDetails getLoginDetails()
-	{
-		return loginDetails;
-	}
+	private Customer customer;
+	
+	private Order order;
+	
+	private Address address;
+	
+	private PaymentDetails paymentDetails;
 
-	public Customer getCustomer() 
-	{
-		return customer;
+	public OrderCheckoutController(){
+		
+		customer = customerManager.findByUserId(); //cookie persisted customer reference
+				
+		//order = orderManager.;//persisted basket order, to be changed to a different status when checkout is finished
+		
+		address = addressManager.findByUserId();//customers registered address, possibly add a checkbox for a different address.
+		
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails();//customers registered payment details, possibly add a checkbox for alternate payment details.
+		
+		productsInOrder = orderManager.findBasket(); //find order by customer id and basket status.
+		
 	}
-
-	public Address getAddress() 
-	{
-		return address;
-	}
-
-	public PaymentDetails getPaymentDetails() 
-	{
+	public PaymentDetails getPaymentDetails(){
 		return paymentDetails;
 	}
 	
-	public String changeFName()
-	{
-		if(accountManagement.getfName() != null)
-		{
-			customer.setfName(accountManagement.getfName());
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-	
-	public String changeLName()
-	{
-		if(accountManagement.getlName() != null)
-		{
-			customer.setlName(accountManagement.getlName());
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-	
-	public String changeEmail()
-	{
-		if(accountManagement.getEmail() != null)
-		{
-			loginDetails.setEmail(accountManagement.getEmail());
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-	
-	public String changeContactNo()
-	{
-		if(accountManagement.getContactNo() != null)
-		{
-			customer.setContactNumber(accountManagement.getContactNo());
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-	
-	public String changeUsername()
-	{
-		if(accountManagement.getUsername() != null)
-		{
-			loginDetails.setUsername(accountManagement.getUsername());
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-	
-	public String changePaymentMethod()
-	{
-		if(accountManagement.getCardType() != null)
-		{
-			paymentDetails.setCardType((accountManagement.getCardType()));
-			return "account/uid";
-		}
-		else
-		{
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
+	public Address getAddress(){
+		return address;
 	}
 }

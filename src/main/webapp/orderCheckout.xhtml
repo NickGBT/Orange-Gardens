@@ -72,6 +72,13 @@
 	<div>
 	<p>Payment Details</p>
 	
+	<div id="registeredPaymentDetails">
+			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
+	</div>
 	
 	<!--  </div>
 	
