@@ -78,5 +78,10 @@ public class OrderLineManagerAL implements OrderLineManager{
 		
 	}
 
+	public void updateProductLine(OrderLine orderLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

@@ -16,13 +16,10 @@
 		</div>
 		
 		<div id="controlsList">
-			<a href="">View Customer List</a><br />
-			<f:facet name="cIdSearch">
-				<form id=""><a href="" onclick="form.submit();">Get Customer By ID</a><h:inputText id="customerId" value="#{customer.customerId}" maxlength="6" size="8"/></form>
-			</f:facet>
-			<a href="">Show Recent Orders</a><br />
-			<a href="">Show EMail Orders</a><br />
-			<a href="">Show Blacklist</a><br />
+			<a href="customerlist.xhtml">View Customer List</a><br />
+			<a href="previousorders.xhtml">Show Recent Orders</a><br />
+			<!--<a href="">Show EMail Orders</a><br />   Tentatively removes, potentially removing viewing of email orders. -->
+			<a href="customerlist.xhtml">Show Blacklist</a><br /><!-- Needs changing to link to customer list w/ blacklist filter -->
 		</div>
 	</ui:define>
 </html>

@@ -26,10 +26,9 @@ public class EmployeeTest {
 		employeeDepartment = EmployeeDepartment.SALES;
 		fName = "Matthew";
 		lName = "Watson";
-		password = "netbuilder";
 		employeePermission = EmployeePermissions.MANAGER;
 		
-		testEmployee = new Employee(employeeDepartment, fName, lName, password, employeePermission);
+		testEmployee = new Employee(employeeDepartment, fName, lName, employeePermission);
 	}
 
 	@Test
@@ -49,12 +48,12 @@ public class EmployeeTest {
 
 	@Test
 	public void testGetEmployeeId() {
-		assertEquals(testEmployee.getEmployeeId(), employeeId);
+		assertEquals(testEmployee.getEmployee().getUserId(), employeeId);
 	}
 
 	@Test
 	public void testGetPassword() {
-		assertEquals(testEmployee.getPassword(), password);
+		assertEquals(testEmployee.getEmployee().getPassword(), password);
 	}
 
 	@Test

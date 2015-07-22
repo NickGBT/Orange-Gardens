@@ -12,12 +12,13 @@ public class CustomerTest
 	private Customer testCustomer;
 	private String fName = "Absolutely";
 	private String lName = "Fantastic";
+	private String contactNumber = "075";
 	private boolean isBlackListed = false;	
 	
 	@Before
 	protected void setUp() throws Exception 
 	{
-		testCustomer = new Customer(fName, lName, isBlackListed);
+		testCustomer = new Customer(fName, lName, contactNumber, isBlackListed);
 	}
 	
 	@Test

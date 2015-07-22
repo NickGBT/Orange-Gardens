@@ -2,6 +2,7 @@ package com.netbuilder.entity_tests;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +21,7 @@ public class AddressTests {
 	
 	String addressLabel = "Test Address";
 	
-	Customer testCustomer;
+	LoginDetails testCustomer;
 	
 	String lineOne = "5 Orange Garden";
 	String lineTwo = "Ochre Business Park";
@@ -30,11 +31,14 @@ public class AddressTests {
 	String postcode = "QW12ER";
 	
 	String country = "United Kingdom";
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
+	
 	
 	@Before
 	protected void setUp() throws Exception {
 		
-		testCustomer = new Customer("foo", "bar", false);
+		testCustomer = new LoginDetails("fooUser", password, salt);
 		
 		testAddress = new Address(testCustomer, addressLabel, lineOne, lineTwo, lineThree, city, county, postcode, false);
 	}
