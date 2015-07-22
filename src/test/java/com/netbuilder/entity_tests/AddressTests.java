@@ -36,7 +36,7 @@ public class AddressTests {
 	
 	
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		
 		testCustomer = new LoginDetails("fooUser", password, salt);
 		

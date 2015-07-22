@@ -16,7 +16,7 @@ public class CustomerTest
 	private boolean isBlackListed = false;	
 	
 	@Before
-	protected void setUp() throws Exception 
+	public void setUp() throws Exception 
 	{
 		testCustomer = new Customer(fName, lName, contactNumber, isBlackListed);
 	}

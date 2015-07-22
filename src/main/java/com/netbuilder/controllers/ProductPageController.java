@@ -27,18 +27,14 @@ public class ProductPageController {
 	private Order order;
 	
 	public Product getProduct() {
-		product = productManager.findByProductId(productId);
-		
 		return product;
 	}
 	
 	public void addToBasket() { 
-		orderManager.updateOrderLine(orderLine);
 	}
 	
 	
 	public void addToWishlist() {
-		orderManager.updateOrderLine(orderLine);
 	}
 	
 }

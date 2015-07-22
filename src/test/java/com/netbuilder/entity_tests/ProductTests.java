@@ -28,7 +28,7 @@ public class ProductTests {
 	String description;
 	
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		
 		imageLocation = "res/products/img/2412.jpg";
 		productId = 2412;
