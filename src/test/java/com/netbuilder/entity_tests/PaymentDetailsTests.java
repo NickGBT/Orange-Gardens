@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.enums.CardType;
@@ -24,8 +25,10 @@ public class PaymentDetailsTests {
 	String name;
 	int security;
 	String expiry;
-	Customer customerId;
+	LoginDetails customer;
 	Order orderId;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
 	
 	PaymentDetails testPaymentDetails;
 
@@ -36,10 +39,10 @@ public class PaymentDetailsTests {
 		name = "N B Gardens";
 		security = 123;
 		expiry = "08/18";
-		customerId = new Customer("foo", "bar", false);
+		customer = new LoginDetails("fooUser", password, salt);
 		orderId = null;
 		
-		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customerId, orderId);
+		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customer, orderId);
 	}
 
 	@Test
