@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -42,7 +43,7 @@ public class AddressManagerDB implements AddressManager
 		pm.closeEntityManager(em);
 	}
 
-	public void persistAddresses(ArrayList<Address> addresses)
+	public void persistAddresses(List<Address> addresses)
 	{
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
@@ -54,9 +55,9 @@ public class AddressManagerDB implements AddressManager
 		pm.closeEntityManager(em);
 	}
 
-	public ArrayList<Address> findByPostcode(String postcode)
+	public List<Address> findByPostcode(String postcode)
 	{
-		ArrayList<Address> addresses = new ArrayList<Address>();
+		List<Address> addresses = new ArrayList<Address>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Address> tq = em.createNamedQuery("FindByPostcode", Address.class);
 		pm.closeEntityManager(em);
@@ -107,10 +108,10 @@ public class AddressManagerDB implements AddressManager
 		}
 	}
 
-	public ArrayList<Address> getAddresses()
+	public List<Address> getAddresses()
 	{
 		EntityManager em = pm.createEntityManager();
-		ArrayList<Address> addresses = (ArrayList<Address>)em.createQuery("SELECT a FROM address a", Address.class).getResultList();
+		List<Address> addresses = (ArrayList<Address>)em.createQuery("SELECT a FROM address a", Address.class).getResultList();
 		pm.closeEntityManager(em);
 		return addresses;
 	}

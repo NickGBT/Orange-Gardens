@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -65,9 +66,9 @@ public class OrderManagerDB implements OrderManager {
 		}
 	}
 
-	public ArrayList<Order> findByStatus(OrderStatus status) {
+	public List<Order> findByStatus(OrderStatus status) {
 		
-		ArrayList<Order> orders = new ArrayList<Order>();
+		List<Order> orders = new ArrayList<Order>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery("FindByStatus", Order.class);
 		pm.closeEntityManager(em);
@@ -82,8 +83,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByDatePlaced(String datePlaced) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByDatePlaced(String datePlaced) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -100,8 +101,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByDateDispatched(String dateDispatched) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByDateDispatched(String dateDispatched) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -118,8 +119,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByDateDelivered(String dateDelivered) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByDateDelivered(String dateDelivered) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -136,8 +137,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -155,8 +156,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -174,8 +175,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -193,8 +194,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByCustomerId(int customerId) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByCustomerId(int customerId) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -211,8 +212,8 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public ArrayList<Order> findByEmployeeId(int employeeId) {
-		ArrayList<Order> orders = new ArrayList<Order>();
+	public List<Order> findByEmployeeId(int employeeId) {
+		List<Order> orders = new ArrayList<Order>();
 		
 		
 		EntityManager em = pm.createEntityManager();
@@ -240,13 +241,16 @@ public class OrderManagerDB implements OrderManager {
 		
 	}
 
-	public ArrayList<Order> getAllOrders() {
+	public List<Order> getAllOrders() {
 		EntityManager em = pm.createEntityManager();
-		ArrayList<Order> order= 
+		List<Order> order= 
 				(ArrayList<Order>) em.createQuery("select d from order d", Order.class).getResultList();
 		pm.closeEntityManager(em);
 		return order;
 	}
+
+	
+	// ?
 
 	@Override
 	public Order findWishlist(OrderStatus status, int customerId) {
@@ -261,7 +265,7 @@ public class OrderManagerDB implements OrderManager {
 	}
 
 	@Override
-	public ArrayList<Order> findPreviousOrders(OrderStatus status,
+	public List<Order> findPreviousOrders(OrderStatus status,
 			int customerId) {
 		// TODO Auto-generated method stub
 		return null;

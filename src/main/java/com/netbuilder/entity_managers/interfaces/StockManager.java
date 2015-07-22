@@ -1,6 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Stock;
 
@@ -14,16 +14,16 @@ public interface StockManager
 {
 	//CREATE
 	public void persistStock(Stock stock);
-	public void persistStock(ArrayList<Stock> stock);
+	public void persistStock(List<Stock> stock);
 	
 	//READ
-	public ArrayList<Stock> findByCriticalThreshold(int criticalThreshold);
-	public ArrayList<Stock> findByRequiredStock(int requiredStock);
-	public ArrayList<Stock> findByStockLevel(int stockLevel);
-	public ArrayList<Stock> findByStockAvailable(int stockAvailable);
-	public ArrayList<Stock> findByMaximumStock(int maxStock);
+	public List<Stock> findByCriticalThreshold(int criticalThreshold);
+	public List<Stock> findByRequiredStock(int requiredStock);
+	public List<Stock> findByStockLevel(int stockLevel);
+	public List<Stock> findByStockAvailable(int stockAvailable);
+	public List<Stock> findByMaximumStock(int maxStock);
 	public Stock findByProductID(int productID);
-	public ArrayList<Stock> getStock();
+	public List<Stock> getStock();
 	
 	//UPDATE
 	public void updateStock(Stock stock);

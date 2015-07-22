@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -25,14 +26,14 @@ public class StockManagerAL implements StockManager
 		this.stock.add(stock);
 	}
 
-	public void persistStock(ArrayList<Stock> stock)
+	public void persistStock(List<Stock> stock)
 	{
 		this.stock.addAll(stock);
 	}
 
-	public ArrayList<Stock> findByCriticalThreshold(int criticalThreshold) 
+	public List<Stock> findByCriticalThreshold(int criticalThreshold) 
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
+		List<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getCriticalThreshold() == criticalThreshold)
@@ -43,9 +44,9 @@ public class StockManagerAL implements StockManager
 		return results;
 	}
 
-	public ArrayList<Stock> findByRequiredStock(int requiredStock) 
+	public List<Stock> findByRequiredStock(int requiredStock) 
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
+		List<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getRequiredStock() == requiredStock)
@@ -56,9 +57,9 @@ public class StockManagerAL implements StockManager
 		return results;
 	}
 
-	public ArrayList<Stock> findByStockLevel(int stockLevel)
+	public List<Stock> findByStockLevel(int stockLevel)
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
+		List<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getStockLevel() == stockLevel)
@@ -69,9 +70,9 @@ public class StockManagerAL implements StockManager
 		return results;
 	}
 
-	public ArrayList<Stock> findByStockAvailable(int stockAvailable)
+	public List<Stock> findByStockAvailable(int stockAvailable)
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
+		List<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getStockAvailable() == stockAvailable)
@@ -82,9 +83,9 @@ public class StockManagerAL implements StockManager
 		return results;
 	}
 
-	public ArrayList<Stock> findByMaximumStock(int maxStock)
+	public List<Stock> findByMaximumStock(int maxStock)
 	{
-		ArrayList<Stock> results = new ArrayList<Stock>();
+		List<Stock> results = new ArrayList<Stock>();
 		for(Stock s: stock)
 		{
 			if(s.getMaxStock() == maxStock)
@@ -114,7 +115,7 @@ public class StockManagerAL implements StockManager
 		return null;
 	}
 
-	public ArrayList<Stock> getStock() 
+	public List<Stock> getStock() 
 	{
 		return stock;
 	}

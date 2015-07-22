@@ -1,9 +1,11 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
@@ -26,12 +28,12 @@ public class EmployeeManagerAL implements EmployeeManager {
 		
 	}
 
-	public void persistEmployees(ArrayList<Employee> employees) {
+	public void persistEmployees(List<Employee> employees) {
 		this.employees.addAll(employees);
 		
 	}
 
-	public ArrayList<Employee> getAll(){
+	public List<Employee> getAll(){
 		return employees;
 	}
 	
@@ -42,8 +44,8 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return null;
 	}
 
-	public ArrayList<Employee> findEmployeesBySurname(String surname) {
-		ArrayList<Employee> results = new ArrayList<Employee>();
+	public List<Employee> findEmployeesBySurname(String surname) {
+		List<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
 			if(e.getlName().equals(surname)) results.add(e);
@@ -51,8 +53,8 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByNames(String forename, String surname) {
-		ArrayList<Employee> results = new ArrayList<Employee>();
+	public List<Employee> findEmployeesByNames(String forename, String surname) {
+		List<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
 			if(e.getfName().equals(forename)&&e.getlName().equals(surname)) results.add(e);
@@ -61,8 +63,8 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
-		ArrayList<Employee> results = new ArrayList<Employee>();
+	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
+		List<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
 			if(e.getDepartment() == department) results.add(e);
@@ -71,8 +73,8 @@ public class EmployeeManagerAL implements EmployeeManager {
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
-		ArrayList<Employee> results = new ArrayList<Employee>();
+	public List<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+		List<Employee> results = new ArrayList<Employee>();
 		
 		for(Employee e: employees){
 			if((e.getDepartment() == department)&&(e.getPermission() == permission)) results.add(e);

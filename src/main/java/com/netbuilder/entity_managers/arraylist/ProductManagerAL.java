@@ -1,8 +1,11 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 
@@ -22,7 +25,7 @@ public class ProductManagerAL implements ProductManager {
 
 	}
 
-	public void persistProducts(ArrayList<Product> products) {
+	public void persistProducts(List<Product> products) {
 		this.products.addAll(products);
 	}
 
@@ -34,12 +37,12 @@ public class ProductManagerAL implements ProductManager {
 		return null;
 	}
 
-	public ArrayList<Product> getAll(){
+	public List<Product> getAll(){
 		return products;
 	}
 	
-	public ArrayList<Product> findProductsByName(String name) {
-		ArrayList<Product> results = new ArrayList<Product>();
+	public List<Product> findProductsByName(String name) {
+		List<Product> results = new ArrayList<Product>();
 		
 		for(Product p: products){
 			if(p.getProductName().contains(name)) results.add(p);
@@ -47,8 +50,8 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 
-	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
-		ArrayList<Product> results = new ArrayList<Product>();
+	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
+		List<Product> results = new ArrayList<Product>();
 		
 		for(Product p: products){
 			if((lowPrice < p.getProductPrice())&&(p.getProductPrice() < highPrice)) results.add(p);
@@ -56,8 +59,8 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 	
-	public ArrayList<Product> findNewProducts(){
-		ArrayList<Product> results = new ArrayList<Product>();
+	public List<Product> findNewProducts(){
+		List<Product> results = new ArrayList<Product>();
 		
 		for(int i = 0; i < 4 ; i++){
 			results.add(products.get(products.size() - i));

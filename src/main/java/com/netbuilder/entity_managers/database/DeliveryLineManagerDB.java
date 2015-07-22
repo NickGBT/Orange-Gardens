@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -12,7 +13,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
-import com.netbuilder.entities.Address;
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entity_managers.interfaces.DeliveryLineManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -42,7 +42,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 		
 	}
 
-	public void persistDeliveryLine(ArrayList<DeliveryLine> deliveryLines) {
+	public void persistDeliveryLine(List<DeliveryLine> deliveryLines) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		for(DeliveryLine c : deliveryLines)
@@ -81,8 +81,8 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 		}
 	}
 
-	public ArrayList<DeliveryLine> findByQuantity(int quantity) {
-		ArrayList<DeliveryLine> delLine = new ArrayList<DeliveryLine>();
+	public List<DeliveryLine> findByQuantity(int quantity) {
+		List<DeliveryLine> delLine = new ArrayList<DeliveryLine>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
 		pm.closeEntityManager(em);
@@ -96,9 +96,9 @@ public class DeliveryLineManagerDB implements DeliveryLineManager{
 		return delLine;
 	}
 
-	public ArrayList<DeliveryLine> getDeliveryLine() {
+	public List<DeliveryLine> getDeliveryLine() {
 		EntityManager em = pm.createEntityManager();
-		ArrayList<DeliveryLine> delLine = 
+		List<DeliveryLine> delLine = 
 				(ArrayList<DeliveryLine>) em.createQuery("select d from delivery_line d", DeliveryLine.class).getResultList();
 		pm.closeEntityManager(em);
 		return delLine;

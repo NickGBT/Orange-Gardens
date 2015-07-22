@@ -1,6 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Address;
 
@@ -14,13 +14,13 @@ public interface AddressManager
 {
 	//CREATE
 	public void persistAddress(Address address);
-	public void persistAddresses(ArrayList<Address> addresses);
+	public void persistAddresses(List<Address> addresses);
 
 	// READ
-	public ArrayList<Address> findByPostcode(String postcode);
+	public List<Address> findByPostcode(String postcode);
 	public Address findByAddressLabel(String addressLabel);
 	public Address findByUserId(int userId);
-	public ArrayList<Address> getAddresses();
+	public List<Address> getAddresses();
 
 	// UPDATE
 	public void updateAddress(Address address);

@@ -1,11 +1,11 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.inject.Alternative;
 
 import com.netbuilder.entities.Delivery;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.interfaces.DeliveryManager;
 
 /**
@@ -22,12 +22,12 @@ public class DeliveryManagerAL implements DeliveryManager {
 		deliveries.add(delivery);
 	}
 
-	public void persistDeliveries(ArrayList<Delivery> deliveries) {
+	public void persistDeliveries(List<Delivery> deliveries) {
 		this.deliveries.addAll(deliveries);
 	}
 
-	public ArrayList<Delivery> findByDatePlaced(String datePlaced) {
-		ArrayList<Delivery> results = new ArrayList<Delivery>();
+	public List<Delivery> findByDatePlaced(String datePlaced) {
+		List<Delivery> results = new ArrayList<Delivery>();
 		for (Delivery d : deliveries) {
 			if (d.getDatePlaced().contains(datePlaced)) {
 				results.add(d);
@@ -49,7 +49,7 @@ public class DeliveryManagerAL implements DeliveryManager {
 		return null;
 	}
 
-	public ArrayList<Delivery> getDeliveries() {
+	public List<Delivery> getDeliveries() {
 		return deliveries;
 	}
 

@@ -7,11 +7,10 @@ package com.netbuilder.entity_managers.arraylist;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.inject.Alternative;
 
-import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
@@ -37,9 +36,9 @@ public class OrderManagerAL implements OrderManager {
 		return null;
 	}
 
-	public ArrayList<Order> findByStatus(OrderStatus status) {
+	public List<Order> findByStatus(OrderStatus status) {
 
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getOrderStatus() == status) {
@@ -53,8 +52,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByDatePlaced(String datePlaced) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByDatePlaced(String datePlaced) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getDatePlaced().equals(datePlaced)) {
@@ -68,8 +67,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByDateDispatched(String dateDispatched) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByDateDispatched(String dateDispatched) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getDateDispatched().equals(dateDispatched)) {
@@ -83,8 +82,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByDateDelivered(String dateDelivered) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByDateDelivered(String dateDelivered) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getDateDelivered().equals(dateDelivered)) {
@@ -97,8 +96,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -124,8 +123,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -151,8 +150,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -178,8 +177,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public ArrayList<Order> findByCustomerId(int customerId) {
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+	public List<Order> findByCustomerId(int customerId) {
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 
@@ -195,9 +194,9 @@ public class OrderManagerAL implements OrderManager {
 		
 	}
 
-	public ArrayList<Order> findByEmployeeId(int employeeId) {
+	public List<Order> findByEmployeeId(int employeeId) {
 
-		ArrayList<Order> orderResults = new ArrayList<Order>();
+		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getEmployee().getUserId() == employeeId) {
@@ -225,7 +224,7 @@ public class OrderManagerAL implements OrderManager {
 
 	}
 
-	public ArrayList<Order> getAllOrders() {
+	public List<Order> getAllOrders() {
 		return orders;
 	}
 
@@ -254,8 +253,8 @@ public class OrderManagerAL implements OrderManager {
 	}
 
 	
-	public ArrayList<Order> findPreviousOrders(OrderStatus status, int customerId) {
-		ArrayList<Order> prevOrders = new ArrayList<Order>();
+	public List<Order> findPreviousOrders(OrderStatus status, int customerId) {
+		List<Order> prevOrders = new ArrayList<Order>();
 		
 		for (Order o : orders)
 		{

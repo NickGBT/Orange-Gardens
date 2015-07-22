@@ -25,7 +25,7 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		this.paymentDetails.add(paymentDetails);
 	}
 
-	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails) {
+	public void persistPaymentDetails(List<PaymentDetails> paymentDetails) {
 		this.paymentDetails.addAll(paymentDetails);
 	}
 
@@ -44,9 +44,9 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return null;
 	}
 
-	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {
+	public List<PaymentDetails> findExpiredDetails(int customerId) {
 		
-		ArrayList<PaymentDetails> results = new ArrayList<PaymentDetails>();
+		List<PaymentDetails> results = new ArrayList<PaymentDetails>();
 		
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-yy");
 		

@@ -1,6 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.PaymentDetails;
 
@@ -14,12 +14,12 @@ public interface PaymentDetailsManager {
 	
 	//CREATE
 	public void persistPaymentDetails(PaymentDetails paymentDetails);
-	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails);
+	public void persistPaymentDetails(List<PaymentDetails> paymentDetails);
 	
 	//READ
 	public PaymentDetails findCardByNumber(String cardNumber);
 	public PaymentDetails findCustomerPaymentDetails(int userId);
-	public ArrayList<PaymentDetails> findExpiredDetails(int userId);
+	public List<PaymentDetails> findExpiredDetails(int userId);
 	public PaymentDetails findPaymentDetailsForOrder(int orderId);
 	
 		

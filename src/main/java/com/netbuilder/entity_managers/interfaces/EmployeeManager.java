@@ -1,6 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Employee;
 import com.netbuilder.enums.EmployeeDepartment;
@@ -14,15 +14,15 @@ public interface EmployeeManager {
 	
 	//CREATE
 	public void persistEmployee(Employee employee);
-	public void persistEmployees(ArrayList<Employee> employees);
+	public void persistEmployees(List<Employee> employees);
 	
 	//READ
-	public ArrayList<Employee> getAll();
+	public List<Employee> getAll();
 	public Employee findEmployeeById(int userId);
-	public ArrayList<Employee> findEmployeesBySurname(String surname);
-	public ArrayList<Employee> findEmployeesByNames(String forename, String surname);
-	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department);
-	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission);
+	public List<Employee> findEmployeesBySurname(String surname);
+	public List<Employee> findEmployeesByNames(String forename, String surname);
+	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department);
+	public List<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission);
 	
 	//UPDATE
 	public void updateEmployee(Employee employee);

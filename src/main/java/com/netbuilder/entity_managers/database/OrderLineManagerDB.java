@@ -1,6 +1,8 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
+
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -39,7 +42,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		pm.closeEntityManager(em);		
 	}
 
-	public void persistOrderLine(ArrayList<OrderLine> orderLine) {
+	public void persistOrderLine(List<OrderLine> orderLine) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		for(OrderLine c : orderLine)
@@ -76,8 +79,8 @@ public class OrderLineManagerDB implements OrderLineManager{
 		}
 	}
 
-	public ArrayList<OrderLine> findByQuantity(int quantity) {
-		ArrayList<OrderLine> orderLine = new ArrayList<OrderLine>();
+	public List<OrderLine> findByQuantity(int quantity) {
+		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByDeliveryID", OrderLine.class);
 		pm.closeEntityManager(em);
@@ -91,9 +94,9 @@ public class OrderLineManagerDB implements OrderLineManager{
 		return orderLine;
 	}
 	
-	public ArrayList<OrderLine> getOrderLine() {
+	public List<OrderLine> getOrderLine() {
 		EntityManager em = pm.createEntityManager();
-		ArrayList<OrderLine> orderLine = 
+		List<OrderLine> orderLine = 
 				(ArrayList<OrderLine>) em.createQuery("select d from order_line d", OrderLine.class).getResultList();
 		pm.closeEntityManager(em);
 		return orderLine;

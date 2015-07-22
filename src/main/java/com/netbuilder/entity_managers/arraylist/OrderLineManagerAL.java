@@ -1,8 +1,8 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 
@@ -20,7 +20,7 @@ public class OrderLineManagerAL implements OrderLineManager{
 		orderLines.add(orderLine);
 	}
 
-	public void persistOrderLine(ArrayList<OrderLine> orderLine) {
+	public void persistOrderLine(List<OrderLine> orderLine) {
 		orderLines.addAll(orderLine);		
 	}
 
@@ -33,8 +33,8 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return null;
 	}
 
-	public ArrayList<OrderLine> findByOrderId(int orderId) {
-		ArrayList<OrderLine> orderLine = new ArrayList<OrderLine>();
+	public List<OrderLine> findByOrderId(int orderId) {
+		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		for(OrderLine o : orderLines){
 			if(o.getOrder().getOrderID() == orderId){
 				orderLine.add(o);
@@ -43,8 +43,8 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return orderLine;
 	}
 
-	public ArrayList<OrderLine> findByQuantity(int quantity) {
-		ArrayList<OrderLine> orderLine = new ArrayList<OrderLine>(); 
+	public List<OrderLine> findByQuantity(int quantity) {
+		List<OrderLine> orderLine = new ArrayList<OrderLine>(); 
 		for(OrderLine o : orderLine){
 			if(o.getQuantity() == quantity){
 				orderLine.add(o);
@@ -58,7 +58,7 @@ public class OrderLineManagerAL implements OrderLineManager{
 		
 	}
 	
-	public ArrayList<OrderLine> getOrderLine() {
+	public List<OrderLine> getOrderLine() {
 		return orderLines;
 	}
 

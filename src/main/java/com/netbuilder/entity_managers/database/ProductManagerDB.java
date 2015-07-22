@@ -1,6 +1,8 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -9,7 +11,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -35,7 +36,7 @@ public class ProductManagerDB implements ProductManager {
 		
 	}
 
-	public void persistProducts(ArrayList<Product> products) {
+	public void persistProducts(List<Product> products) {
 
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
@@ -47,9 +48,9 @@ public class ProductManagerDB implements ProductManager {
 
 	}
 	
-	public ArrayList<Product> getAll(){
+	public List<Product> getAll(){
 		
-		ArrayList<Product> results = null;
+		List<Product> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
@@ -78,9 +79,9 @@ public class ProductManagerDB implements ProductManager {
 		}
 	}
 
-	public ArrayList<Product> findProductsByName(String name) {
+	public List<Product> findProductsByName(String name) {
 		
-		ArrayList<Product> results = null;
+		List<Product> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_NAME, Product.class);
@@ -96,9 +97,9 @@ public class ProductManagerDB implements ProductManager {
 		
 	}
 
-	public ArrayList<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
+	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
 		
-		ArrayList<Product> results = null;
+		List<Product> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);

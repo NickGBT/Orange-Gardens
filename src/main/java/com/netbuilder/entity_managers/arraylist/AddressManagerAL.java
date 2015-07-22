@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.inject.Alternative;
 
@@ -23,14 +24,14 @@ public class AddressManagerAL implements AddressManager
 		addresses.add(address);
 	}
 
-	public void persistAddresses(ArrayList<Address> addresses) 
+	public void persistAddresses(List<Address> addresses) 
 	{
 		addresses.addAll(addresses);
 	}
 
-	public ArrayList<Address> findByPostcode(String postcode) 
+	public List<Address> findByPostcode(String postcode) 
 	{
-		ArrayList<Address> results = new ArrayList<Address>();
+		List<Address> results = new ArrayList<Address>();
 		for(Address a: addresses)
 		{
 			if(a.getPostcode().contains(postcode))
@@ -72,7 +73,7 @@ public class AddressManagerAL implements AddressManager
 		return null;
 	}
 
-	public ArrayList<Address> getAddresses()
+	public List<Address> getAddresses()
 	{
 		return addresses;
 	}
