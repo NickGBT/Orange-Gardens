@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Employee;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.OrderLine;
@@ -29,14 +30,13 @@ public class OrderLineTest {
 	private String timeToDeliver = "YU:NB";
 	private boolean refundAvailable = false;
 
-	private Customer customerID;
+	private LoginDetails customer;
 	
 	private EmployeeDepartment empDept;
 	private String fName = "Test";
 	private String lName = "Employee";
-	private String password = "test";
 	private EmployeePermissions empPermisions;
-	private Employee employee;
+	private LoginDetails employee;
 	
 	private OrderStatus orderStatus;
 	
@@ -54,15 +54,17 @@ public class OrderLineTest {
 	private OrderLine productLine;
 	
 	private int quantity = 50;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
 
 	@Before
 	public void setUp() throws Exception {
-		customerID  = new Customer("Absolutely", "Fantastic", true);
-	    employee = new Employee(empDept.WAREHOUSE, fName, lName, password, empPermisions.WORKER);
+		customer  = new LoginDetails("customer123", password, salt);
+	    employee = new LoginDetails("employee123", password, salt);
 	    
 	    orderStatus = OrderStatus.cancelled;
 	    
-		testOrder = new Order(customerID, employee, orderStatus,
+		testOrder = new Order(customer, employee, orderStatus,
 		datePlaced, dateDispatched, dateDelivered,
 		timeToDeliver, refundAvailable);
 		
