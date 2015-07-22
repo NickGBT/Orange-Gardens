@@ -26,27 +26,27 @@
 	<div id="MainBlock">
 		<h:outputtext value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
 		<f:facet name="firstNameChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/><br/>
 		</f:facet>
 		
 		<h:outputtext value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
 		<f:facet name="lastNameChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
 		</f:facet>
 
 		<h:outputtext value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
 		<f:facet name="emailChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/><br/>
 		</f:facet>
 
 		<h:outputtext value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
 		<f:facet name="contactNumberChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeContactNo())}"/><br/>
 		</f:facet>
 
 		<h:outputtext value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
 		<f:facet name="usernameChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/><br/>
 		</f:facet>
 		
 		<p>Payment Methods:</p>
