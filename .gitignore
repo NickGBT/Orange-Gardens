@@ -1,7 +1,7 @@
 /bin/
+
 .classpath
+
 /target/
+
 database_model.mwb.bak
-/target/
-.settings/
-.project
