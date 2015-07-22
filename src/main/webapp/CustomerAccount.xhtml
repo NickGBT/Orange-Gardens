@@ -25,45 +25,49 @@
 		</div>
 	</div>
 	<div id="MainBlock">
-		<p>First Name:</p>
+		<h:outputtext value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
 		<f:facet name="firstNameChange">
 			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 		
-		<p>Last Name:</p>
+		<h:outputtext value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
 		<f:facet name="lastNameChange">
 			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 
-		<p>Email Address:</p>
+		<h:outputtext value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
 		<f:facet name="emailChange">
 			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 
-		<p>Contact Number:</p>
+		<h:outputtext value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
 		<f:facet name="contactNumberChange">
 			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 
-		<p>Username:</p>
+		<h:outputtext value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
 		<f:facet name="usernameChange">
 			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 		
 		<p>Payment Methods:</p>
-		<select>
-			<option>VISA</option>
-			<option>MASTERCARD</option>
-		</select>
+		<h:selectOneMenu>
+			<f:selectitem value="#{CardType.VISA}"/>
+			<f:selectitem value="#{CardType.VISADEBIT}"/>
+			<f:selectitem value="#{CardType.VISAELECTRON}"/>
+			<f:selectitem value="#{CardType.MAESTRO}"/>
+			<f:selectitem value="#{CardType.MASTERCARD}"/>
+			<f:selectitem value="#{CardType.AMERICANEXPRESS}"/>
+		</h:selectOneMenu>
 		
 		<p>Address:</p>
 		<div id="AddressText">
-			<p>Address Line 1</p>
-			<p>Address Line 2</p>
-			<p>Address Line 3</p>
-			<p>City</p>
-			<p>County</p>
-			<p>Postcode</p>
+			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine1()}"/>
+			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine2()}"/>
+			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine3()}"/>
+			<h:outputtext value="#{AccountManagementController.getAddress().getCity()}"/>
+			<h:outputtext value="#{AccountManagementController.getAddress().getCounty()}"/>
+			<h:outputtext value="#{AccountManagementController.getAddress().getPostcode()}"/>
 		</div>
 		<f:facet name="addressChange">
 			<h:commandbutton class="button" value="Change"" action="#{}"/><br/>
