@@ -32,14 +32,18 @@ public class Customer {
 	@NotNull
 	@Size(min = 1, max = 45)
 	private String lName;
+	@Column(name = "contact_number", nullable = false)
+	@NotNull
+	private String contactNumber;
 	@Column(name = "is_blacklisted", nullable = false)
 	@NotNull
 	private boolean isBlackListed;
 
-	public Customer(String fName, String lName, boolean isBlackListed) 
+	public Customer(String fName, String lName,String contactNumber,  boolean isBlackListed) 
 	{
 		this.fName = fName;
 		this.lName = lName;
+		this.contactNumber = contactNumber;
 		this.isBlackListed = isBlackListed;
 	}
 	
@@ -76,5 +80,13 @@ public class Customer {
 	public void setBlackListed(boolean isBlackListed)
 	{
 		this.isBlackListed = isBlackListed;
+	}
+	
+	public void setContactNumber(String contactNum){
+		this.contactNumber = contactNum;
+	}
+
+	public String getContactNumber(){
+		return contactNumber;
 	}
 }

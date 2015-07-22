@@ -1,7 +1,6 @@
 package com.netbuilder.entities;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,7 +17,7 @@ import com.netbuilder.enums.EmployeePermissions;
 @Table(name = "employee")
 @NamedQueries({
 	@NamedQuery(name = Employee.GET_ALL, query= "SELECT e FROM employee e"),
-	@NamedQuery(name = Employee.FIND_BY_EMPLOYEE_ID, query= "SELECT e FROM employee e WHERE e.employee_id = :id;"),
+	@NamedQuery(name = Employee.FIND_BY_USER_ID, query= "SELECT e FROM employee e WHERE e.user_id = :id;"),
 	@NamedQuery(name = Employee.FIND_BY_SURNAME, query= "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
 	@NamedQuery(name = Employee.FIND_BY_NAMES, query= "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
 	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query= "SELECT e from employee e WHERE e.departent = :department;"),
@@ -29,7 +28,7 @@ import com.netbuilder.enums.EmployeePermissions;
 public class Employee {
 	
 	public static final String GET_ALL = "Employee.getAll";
-	public static final String FIND_BY_EMPLOYEE_ID = "Employee.findByEmployeeId";
+	public static final String FIND_BY_USER_ID = "Employee.findByEmployeeId";
 	public static final String FIND_BY_SURNAME = "Employee.findBySurname";
 	public static final String FIND_BY_NAMES = "Employee.findByNames";
 	public static final String FIND_BY_DEPARTMENT = "Employee.findByDepartment";
@@ -49,26 +48,19 @@ public class Employee {
 	@Size(min = 1, max = 45)
 	private String lName;
 
-	@Id
-	@Column(name = "employee_id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
-	private int employeeId;
-
-	@Column(name = "password", nullable = false)
-	@NotNull
-	@Size(min = 6, max = 16)
-	private String password;
+	private LoginDetails employee;
 
 	@Column(name = "permissions", nullable = false)
 	@NotNull
 	private EmployeePermissions employeePermission;
 
-	public Employee(EmployeeDepartment employeeDepartment, String fName, String lName, String password, EmployeePermissions employeePermission) {
+	public Employee(EmployeeDepartment employeeDepartment, String fName, String lName, EmployeePermissions employeePermission) {
 		this.employeeDepartment = employeeDepartment;
 		this.fName = fName;
 		this.lName = lName;
-		this.password = password;
 		this.employeePermission = employeePermission;
 	}
 
@@ -118,33 +110,11 @@ public class Employee {
 	}
 
 	/**
-	 * @return the employeeId
+	 * @return the employee's userID
 	 */
-	public int getEmployeeId() {
-		return employeeId;
-	}
-
-	/**
-	 * @param employeeId
-	 *            the employeeId to set
-	 */
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public LoginDetails getEmployee()
+	{
+		return employee;
 	}
 
 	/**

@@ -17,6 +17,12 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
+import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
+import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 /**
@@ -35,17 +41,17 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 @RequestScoped
 public class OrderCheckoutController {
 	@Inject
-	private ProductManager productManager;
+	private ProductManagerAL productManager;
+	@Inject
+	private OrderManagerAL orderManager;
+	@Inject
+	private OrderLineManagerAL orderLineManager;
+	@Inject
+	private CustomerManagerAL customerManager;
 	
-	private OrderManager orderManager;
+	private AddressManagerAL addressManager;
 	
-	private OrderLineManager orderLineManager;
-	
-	private CustomerManager customerManager;
-	
-	private AddressManager addressManager;
-	
-	private PaymentDetailsManager paymentDetailsManager;
+	private PaymentDetailsManagerAL paymentDetailsManager;
 	
 	private ArrayList<Product> productsInOrder = new ArrayList<Product>();
 

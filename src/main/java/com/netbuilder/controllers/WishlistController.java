@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 
 /**
@@ -19,7 +20,7 @@ import com.netbuilder.entity_managers.interfaces.OrderManager;
 @RequestScoped
 public class WishlistController {
 		@Inject
-		private OrderManager orderManager;
+		private OrderManagerAL orderManager;
 		public ArrayList<Product> productsInWishlist = new ArrayList<Product>();
 		
 		public WishlistController(){

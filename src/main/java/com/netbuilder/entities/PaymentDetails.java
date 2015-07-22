@@ -57,9 +57,9 @@ public class PaymentDetails {
 	private String expiryDate;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
-	private Customer customerId;
+	private LoginDetails customerId;
 
 	@OneToOne
 	@JoinColumn(name = "order_id", nullable = true)
@@ -67,7 +67,7 @@ public class PaymentDetails {
 	private Order orderId;
 
 	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			Customer customerId, Order orderId) {
+			LoginDetails customerId, Order orderId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -79,7 +79,7 @@ public class PaymentDetails {
 	}
 
 	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
-			Customer customerId) {
+			LoginDetails customerId) {
 		super();
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
@@ -167,17 +167,10 @@ public class PaymentDetails {
 	/**
 	 * @return the customerId
 	 */
-	public Customer getCustomerId() {
+	public LoginDetails getCustomerId() {
 		return customerId;
 	}
 
-	/**
-	 * @param customerId
-	 *            the customerId to set
-	 */
-	public void setCustomerId(Customer customerId) {
-		this.customerId = customerId;
-	}
 
 	/**
 	 * @return the orderId

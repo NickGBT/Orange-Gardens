@@ -45,11 +45,21 @@ public class StoreFrontProducts
 
 	public ArrayList<Product> getSpecialOffers()
 	{
+		allProducts = productManager.getAll();
+		for(int i = 0; i < 4; i++)
+		{
+			specialOffers.add(allProducts.get(i));
+		}
 		return specialOffers;
 	}
 
 	public ArrayList<Product> getCatalogueExclusives()
 	{
+		allProducts = productManager.getAll();
+		for(int i = 8; i < 12; i++)
+		{
+			specialOffers.add(allProducts.get(i));
+		}
 		return catalogueExclusives;
 	}
 
