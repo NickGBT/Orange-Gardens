@@ -50,7 +50,7 @@ public class OrderLineManagerALTest {
 		orderlineAL = new ArrayList<OrderLine>();
 		
 		testCustomer1 = new LoginDetails("fooUser", password, salt);
-		employee = new LoginDetails("fooUser", password, salt);
+		employee = new LoginDetails("fooUser2", password, salt);
 		
 		orderLineManager = new OrderLineManagerAL();	
 		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
