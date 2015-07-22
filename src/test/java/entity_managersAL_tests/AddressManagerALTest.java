@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
@@ -23,8 +24,10 @@ public class AddressManagerALTest
 {
 	private ArrayList<Address> testArrayAddress, testArrayAddress2;
 	private Address testAddress, testAddress2;
-	private Customer testCustomer, testCustomer2;
+	private LoginDetails testCustomer, testCustomer2;
 	private AddressManagerAL addressManager;
+	byte[] password = {1,2,3};
+	byte[] salt = {1,2,3};
 	
 	@Before
 	public void setUp() throws Exception
@@ -34,8 +37,8 @@ public class AddressManagerALTest
 		testArrayAddress2 = new ArrayList<Address>();
 		testAddress = new Address(testCustomer, "house", "absolutely", "fantastic", "pull", "bounce", "cheese", "LEY76R", false);
 		testAddress2 = new Address(testCustomer2, "shed", "banter", "hell", "earth", "junit", "java", "ABCDEF", false);
-		testCustomer = new Customer("foo", "bar", false);
-		testCustomer2 = new Customer("food", "barn", false);
+		testCustomer = new LoginDetails("fooUser", password, salt);
+		testCustomer2 = new LoginDetails("fooUser", password, salt);
 	}
 	
 	@Test

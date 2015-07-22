@@ -26,7 +26,7 @@ public class StockTest
 	private int requiredStock = 5;
 	
 	@Before
-	protected void setUp() throws Exception 
+	public void setUp() throws Exception 
 	{
 		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom");
 		testStock = new Stock(testProduct, stockLevel, stockAvailable, location, maxStock, criticalThreshold, requiredStock);
