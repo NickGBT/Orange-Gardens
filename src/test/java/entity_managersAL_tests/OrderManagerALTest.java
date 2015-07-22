@@ -116,7 +116,7 @@ public class OrderManagerALTest {
 		orderManager.persistOrder(testOrder2);
 		orderManager.persistOrder(testOrder3);
 		
-		assertEquals(orderManager.findWishlist(status, tempUserId), testOrder3);
+		assertEquals(orderManager.findWishlist(status, tempUserId), testOrder3.getOrderID());
 		
 	}
 	

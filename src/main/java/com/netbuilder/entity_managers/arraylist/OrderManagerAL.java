@@ -230,15 +230,15 @@ public class OrderManagerAL implements OrderManager {
 	}
 
 	@Override
-	public Order findWishlist(OrderStatus status, int customerId) {
+	public int findWishlist(OrderStatus status, int customerId) {
 		for (Order o : orders)
 		{
 			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
 			{
-				return o;
+				return o.getOrderID();
 			}
 		}
-		return null;
+		return 0;
 	}
 
 	@Override
