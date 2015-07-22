@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -41,7 +42,7 @@ public class DeliveryManagerDB implements DeliveryManager {
 		pm.closeEntityManager(em);
 	}
 
-	public void persistDeliveries(ArrayList<Delivery> deliveries) {
+	public void persistDeliveries(List<Delivery> deliveries) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		for (Delivery delivery : deliveries) {
@@ -54,8 +55,8 @@ public class DeliveryManagerDB implements DeliveryManager {
 
 	// //////// READ ///////////////
 	@SuppressWarnings("finally")
-	public ArrayList<Delivery> findByDatePlaced(String datePlaced) {
-		ArrayList<Delivery> deliveries = new ArrayList<Delivery>();
+	public List<Delivery> findByDatePlaced(String datePlaced) {
+		List<Delivery> deliveries = new ArrayList<Delivery>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Delivery> tq = em.createNamedQuery("FindByDatePlaced",
 				Delivery.class);
@@ -83,9 +84,9 @@ public class DeliveryManagerDB implements DeliveryManager {
 		}
 	}
 
-	public ArrayList<Delivery> getDeliveries() {
+	public List<Delivery> getDeliveries() {
 		EntityManager em = pm.createEntityManager();
-		ArrayList<Delivery> deliveries = (ArrayList<Delivery>) em.createQuery(
+		List<Delivery> deliveries = (ArrayList<Delivery>) em.createQuery(
 				"SELECT a FROM delivery a", Delivery.class).getResultList();
 		pm.closeEntityManager(em);
 		return deliveries;

@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entity_managers.interfaces.DeliveryLineManager;
@@ -20,7 +21,7 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 		
 	}
 
-	public void persistDeliveryLine(ArrayList<DeliveryLine> deliveryLines) {
+	public void persistDeliveryLine(List<DeliveryLine> deliveryLines) {
 		this.deliveryLines.addAll(deliveryLines);
 		
 	}
@@ -43,8 +44,8 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 		return null;
 	}
 
-	public ArrayList<DeliveryLine> findByQuantity(int quantity) {
-		ArrayList<DeliveryLine> dLines = new ArrayList<DeliveryLine>();
+	public List<DeliveryLine> findByQuantity(int quantity) {
+		List<DeliveryLine> dLines = new ArrayList<DeliveryLine>();
 		for (DeliveryLine dl : deliveryLines){		
 			if(dl.getQuantity() == quantity){
 				dLines.add(dl);
@@ -58,7 +59,7 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 		
 	}
 
-	public ArrayList<DeliveryLine> getDeliveryLine() {
+	public List<DeliveryLine> getDeliveryLine() {
 		return deliveryLines;
 	}
 

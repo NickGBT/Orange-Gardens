@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -11,7 +12,6 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
 
@@ -37,7 +37,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		
 	}
 
-	public void persistPaymentDetails(ArrayList<PaymentDetails> paymentDetails) {
+	public void persistPaymentDetails(List<PaymentDetails> paymentDetails) {
 		
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
@@ -76,9 +76,9 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		}
 	}
 
-	public ArrayList<PaymentDetails> findExpiredDetails(int customerId) {
+	public List<PaymentDetails> findExpiredDetails(int customerId) {
 
-		ArrayList<PaymentDetails> results = null;
+		List<PaymentDetails> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_EXPIRED, PaymentDetails.class);

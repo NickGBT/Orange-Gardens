@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/exampletemplate.xhtml">
+		xmlns:f="http://java.sun.com/jsf/core">
 		
 		
 <!-- Author: Matthew Watson -->
@@ -20,7 +19,7 @@
 					<div id = "ProductDescription">
 						<div id = "ProductHeader">
 							<h1> 
-								<f:facet name "productName">
+								<f:facet name = "productName">
 									<h:outputLabel for = "product">
 										<h:outputText id = "productLabel" value = "#{}"/>
 											<!-- Add Product Name String Here -->
@@ -30,21 +29,21 @@
 						</div>
 						<div id = "Attributes"> 
 							
-							<f:facet name "productId"> 
+							<f:facet name = "productId"> 
 								<p>ID : <h:outputText value = "#{ProductPageController.getProduct().getProductId()}"/> <!-- Product ID Here -->	</p>
 							</f:facet>
 							
-							<f:facet name "productSize"> 
+							<f:facet name = "productSize"> 
 								<p>Size : <h:outputText	value = "#{ProductPageController.getProduct().getWidth()}"/>	Length <!-- Product Size Here --> </p>
 							</f:facet> 
 							
-							<f:facet name "productWeight"> 
+							<f:facet name = "productWeight"> 
 								<p>Weight :	<h:outputText value = "#{ProductPageController.getProduct().getWeight}"/> <!-- Product Weight Here --> </p>
 							</f:facet> 	
 							
-							<f:facet name "productDescription"> 
-								<p id = "Product Description">Description: 
-								<br> 
+							<f:facet name = "productDescription"> 
+								<p> id = "Product Description">Description: 
+								
 									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> </p> 					
 							</f:facet> 		
 									
@@ -75,7 +74,7 @@
 				</div> 
 				
 					<div id = "productImage"> 	
-						<h:graphicImage id = "productImage src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" > 
+						<h:graphicImage id = "productImage" src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" /> 
 						</h:graphicImage>
 						<!-- Image is here --> 
 					</div> 

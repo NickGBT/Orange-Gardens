@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -11,12 +12,17 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Employee;
-import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.orange_gardens.PersistenceManager;
 
+
+/**
+ * 
+ * @author Alexander Neil
+ *
+ */
 @Default
 @Stateless
 public class EmployeeManagerDB implements EmployeeManager {
@@ -32,7 +38,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		pm.closeEntityManager(em);
 	}
 
-	public void persistEmployees(ArrayList<Employee> employees) {
+	public void persistEmployees(List<Employee> employees) {
 		
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
@@ -44,8 +50,8 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 	}
 	
-	public ArrayList<Employee> getAll(){
-ArrayList<Employee> results = null;
+	public List<Employee> getAll(){
+List<Employee> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL, Employee.class);
@@ -73,9 +79,9 @@ ArrayList<Employee> results = null;
 		}
 	}
 
-	public ArrayList<Employee> findEmployeesBySurname(String surname) {
+	public List<Employee> findEmployeesBySurname(String surname) {
 
-		ArrayList<Employee> results = null;
+		List<Employee> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME, Employee.class);
@@ -90,9 +96,9 @@ ArrayList<Employee> results = null;
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByNames(String forename, String surname) {
+	public List<Employee> findEmployeesByNames(String forename, String surname) {
 		
-		ArrayList<Employee> results = null;
+		List<Employee> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
@@ -108,9 +114,9 @@ ArrayList<Employee> results = null;
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
+	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
 
-		ArrayList<Employee> results = null;
+		List<Employee> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_DEPARTMENT, Employee.class);
@@ -126,9 +132,9 @@ ArrayList<Employee> results = null;
 		return results;
 	}
 
-	public ArrayList<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+	public List<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
 
-		ArrayList<Employee> results = null;
+		List<Employee> results = null;
 		
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);

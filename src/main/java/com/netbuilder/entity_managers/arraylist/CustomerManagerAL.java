@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.inject.Alternative;
 
@@ -23,14 +24,14 @@ public class CustomerManagerAL implements CustomerManager
 		customers.add(customer);
 	}
  
-	public void persistCustomer(ArrayList<Customer> customers)
+	public void persistCustomer(List<Customer> customers)
 	{
 		customers.addAll(customers);
 	}		
 
-	public ArrayList<Customer> findByFName(String fName)
+	public List<Customer> findByFName(String fName)
 	{
-		ArrayList<Customer> results = new ArrayList<Customer>();
+		List<Customer> results = new ArrayList<Customer>();
 		for(Customer c: customers)
 		{
 			if(c.getfName().contains(fName))
@@ -48,9 +49,9 @@ public class CustomerManagerAL implements CustomerManager
 		}	
 	}
 
-	public ArrayList<Customer> findByLName(String lName)
+	public List<Customer> findByLName(String lName)
 	{
-		ArrayList<Customer> results = new ArrayList<Customer>();
+		List<Customer> results = new ArrayList<Customer>();
 		for(Customer c: customers)
 		{
 			if(c.getlName().contains(lName))
@@ -80,7 +81,7 @@ public class CustomerManagerAL implements CustomerManager
 		return null;
 	}
 
-	public ArrayList<Customer> getCustomers()
+	public List<Customer> getCustomers()
 	{
 		return customers;
 	}

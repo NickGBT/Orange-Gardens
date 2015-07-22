@@ -1,6 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -42,7 +43,7 @@ public class CustomerManagerDB implements CustomerManager
 		pm.closeEntityManager(em);
 	}
 
-	public void persistCustomer(ArrayList<Customer> customers) 
+	public void persistCustomer(List<Customer> customers) 
 	{
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
@@ -54,9 +55,9 @@ public class CustomerManagerDB implements CustomerManager
 		pm.closeEntityManager(em);
 	}
 
-	public ArrayList<Customer> findByFName(String fName)
+	public List<Customer> findByFName(String fName)
 	{
-		ArrayList<Customer> customers = new ArrayList<Customer>();
+		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery("FindByfName", Customer.class);
 		pm.closeEntityManager(em);
@@ -73,9 +74,9 @@ public class CustomerManagerDB implements CustomerManager
 		return customers;
 	}
 
-	public ArrayList<Customer> findByLName(String lName)
+	public List<Customer> findByLName(String lName)
 	{
-		ArrayList<Customer> customers = new ArrayList<Customer>();
+		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery("FindBylName", Customer.class);
 		pm.closeEntityManager(em);
@@ -107,10 +108,10 @@ public class CustomerManagerDB implements CustomerManager
 		}
 	}
 
-	public ArrayList<Customer> getCustomers() 
+	public List<Customer> getCustomers() 
 	{
 		EntityManager em = pm.createEntityManager();
-		ArrayList<Customer> customers = (ArrayList<Customer>)em.createQuery("SELECT a FROM customer a", Customer.class).getResultList();
+		List<Customer> customers = (ArrayList<Customer>)em.createQuery("SELECT a FROM customer a", Customer.class).getResultList();
 		pm.closeEntityManager(em);
 		return customers;
 	}

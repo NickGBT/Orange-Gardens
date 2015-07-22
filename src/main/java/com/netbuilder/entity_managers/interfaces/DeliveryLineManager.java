@@ -1,6 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.DeliveryLine;
 
@@ -15,16 +15,16 @@ public interface DeliveryLineManager {
 	// CREATE
 	public void persistDeliveryLine(DeliveryLine deliveryLine);
 
-	public void persistDeliveryLine(ArrayList<DeliveryLine> deliveryLines);
+	public void persistDeliveryLine(List<DeliveryLine> deliveryLines);
 
 	// READ
 	public DeliveryLine findByProductId(int productId);
 
 	public DeliveryLine findByDeliveryId(int deliveryId);
 
-	public ArrayList<DeliveryLine> findByQuantity(int quantity);
+	public List<DeliveryLine> findByQuantity(int quantity);
 
-	public ArrayList<DeliveryLine> getDeliveryLine();
+	public List<DeliveryLine> getDeliveryLine();
 
 	// UPDATE
 	public void updateDeliveryLine(DeliveryLine deliveryLine);
