@@ -1,7 +1,7 @@
 package com.netbuilder.entity_managers.arraylist;
 
 /**
- * @author mwatson
+ * @author mwatson llew
  */
 
 import java.text.SimpleDateFormat;
@@ -229,4 +229,41 @@ public class OrderManagerAL implements OrderManager {
 		return orders;
 	}
 
+	@Override
+	public int findWishlist(OrderStatus status, int customerId) {
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
+			{
+				return o.getOrderID();
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public Order findBasket(OrderStatus status, int customerId) {
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
+			{
+				return o;
+			}
+		}
+		return null;
+	}
+
+	
+	public ArrayList<Order> findPreviousOrders(OrderStatus status, int customerId) {
+		ArrayList<Order> prevOrders = new ArrayList<Order>();
+		
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
+			{
+				prevOrders.add(o);
+			}
+		}
+		return prevOrders;
+	}
 }

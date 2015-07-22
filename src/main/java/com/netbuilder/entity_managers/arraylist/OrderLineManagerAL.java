@@ -33,13 +33,14 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return null;
 	}
 
-	public OrderLine findByOrderId(int orderId) {
+	public ArrayList<OrderLine> findByOrderId(int orderId) {
+		ArrayList<OrderLine> orderLine = new ArrayList<OrderLine>();
 		for(OrderLine o : orderLines){
 			if(o.getOrder().getOrderID() == orderId){
-				return o;
+				orderLine.add(o);
 			}
 		}
-		return null;
+		return orderLine;
 	}
 
 	public ArrayList<OrderLine> findByQuantity(int quantity) {

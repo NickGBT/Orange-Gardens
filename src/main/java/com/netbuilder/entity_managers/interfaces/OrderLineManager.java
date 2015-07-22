@@ -20,7 +20,7 @@ public interface OrderLineManager {
 
 		// READ
 		public OrderLine findByProductId(int productID);
-		public OrderLine findByOrderId(int orderId); 
+		public ArrayList<OrderLine> findByOrderId(int orderId); 
 		public ArrayList<OrderLine> findByQuantity(int quantity); 
 		public ArrayList<OrderLine> getOrderLine();
 

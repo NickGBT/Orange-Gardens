@@ -248,4 +248,22 @@ public class OrderManagerDB implements OrderManager {
 		return order;
 	}
 
+	@Override
+	public Order findWishlist(OrderStatus status, int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order findBasket(OrderStatus status, int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Order> findPreviousOrders(OrderStatus status,
+			int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
