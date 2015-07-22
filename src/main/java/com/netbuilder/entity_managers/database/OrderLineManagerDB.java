@@ -117,5 +117,10 @@ public class OrderLineManagerDB implements OrderLineManager{
 		
 	}
 
+	public void updateOrderLine(OrderLine orderLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
