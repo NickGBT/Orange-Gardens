@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Delivery;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entity_managers.arraylist.DeliveryManagerAL;
 import com.netbuilder.enums.DeliveryStatus;
 
@@ -24,7 +24,7 @@ public class DeliveryManagerALTest {
 	private Delivery testDelivery, testDelivery2,testDelivery3, testDelivery4;
 	private DeliveryStatus deliveryStatus;
 	private DeliveryManagerAL deliveryManager;
-	private ArrayList<Delivery> testArrayDelivery, testArrayDelivery2; 
+	private List<Delivery> testArrayDelivery, testArrayDelivery2; 
 
 	@Before
 	public void setUp() throws Exception {
@@ -93,7 +93,7 @@ public class DeliveryManagerALTest {
 		
 		deliveryManager.removeDelivery(testDelivery2);
 		
-		ArrayList<Delivery> output = deliveryManager.findByDatePlaced(testDelivery2.getDatePlaced());
+		List<Delivery> output = deliveryManager.findByDatePlaced(testDelivery2.getDatePlaced());
 		
 		assertNull(output);
 	}

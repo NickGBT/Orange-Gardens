@@ -1,7 +1,5 @@
 package entity_managersAL_tests;
 
-import org.junit.Assert.*;
-
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.arraylist.StockManagerAL;
@@ -9,6 +7,7 @@ import com.netbuilder.entity_managers.arraylist.StockManagerAL;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +20,7 @@ import org.junit.Test;
 
 public class StockManagerALTest 
 {
-	private ArrayList<Stock> testArrayStock, testArrayStock2;
+	private List<Stock> testArrayStock, testArrayStock2;
 	private Product testProduct, testProduct2;
 	private Stock testStock, testStock2;
 	private StockManagerAL stockManager;

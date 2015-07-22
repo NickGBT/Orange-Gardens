@@ -3,12 +3,12 @@ package entity_managersAL_tests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 
 /**
@@ -21,7 +21,7 @@ public class CustomerManagerALTest
 {
 	private CustomerManagerAL customerManager;
 	private Customer testCustomer, testCustomer2;
-	private ArrayList<Customer> testArrayCustomer, testArrayCustomer2;
+	private List<Customer> testArrayCustomer, testArrayCustomer2;
 	
 	
 	@Before

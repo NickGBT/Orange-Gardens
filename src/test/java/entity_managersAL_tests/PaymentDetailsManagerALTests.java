@@ -3,12 +3,12 @@ package entity_managersAL_tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
@@ -91,7 +91,7 @@ public class PaymentDetailsManagerALTests {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
 		
-		ArrayList<PaymentDetails> output = paymentDetailsManager.findExpiredDetails(c1.getUserId());
+		List<PaymentDetails> output = paymentDetailsManager.findExpiredDetails(c1.getUserId());
 		
 		if(output.size()>0){
 			PaymentDetails sample = output.get(0);

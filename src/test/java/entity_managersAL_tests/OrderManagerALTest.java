@@ -3,18 +3,14 @@ package entity_managersAL_tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.enums.EmployeeDepartment;
-import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 
 /**
@@ -26,7 +22,7 @@ import com.netbuilder.enums.OrderStatus;
 public class OrderManagerALTest {
 
 	OrderManagerAL orderManager;
-	private ArrayList<Order> testArrayOrder;
+	private List<Order> testArrayOrder;
 	private Order testOrder, testOrder2, testOrder3, testOrder4;
 	private LoginDetails testCustomer, testCustomer2, testCustomer3, testCustomer4;
 	private LoginDetails testEmployee, testEmployee2;

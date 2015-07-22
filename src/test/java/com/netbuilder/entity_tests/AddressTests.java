@@ -1,7 +1,6 @@
 package com.netbuilder.entity_tests;
 
 import com.netbuilder.entities.Address;
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 
 import static org.junit.Assert.*;

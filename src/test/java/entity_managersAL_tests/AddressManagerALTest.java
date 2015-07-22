@@ -3,15 +3,13 @@ package entity_managersAL_tests;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Address;
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
-import com.netbuilder.entities.Product;
-import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 
 /**
@@ -22,7 +20,7 @@ import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 
 public class AddressManagerALTest
 {
-	private ArrayList<Address> testArrayAddress, testArrayAddress2;
+	private List<Address> testArrayAddress, testArrayAddress2;
 	private Address testAddress, testAddress2;
 	private LoginDetails testCustomer, testCustomer2;
 	private AddressManagerAL addressManager;

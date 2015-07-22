@@ -3,6 +3,7 @@ package entity_managersAL_tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -70,7 +71,7 @@ public class ProductManagerALTests {
 
 		productManager.persistProducts(testInput);
 		
-		ArrayList<Product> output = productManager.findProductsByName("Gnome");
+		List<Product> output = productManager.findProductsByName("Gnome");
 		
 		assertEquals(2, output.size());
 	}
@@ -80,7 +81,7 @@ public class ProductManagerALTests {
 
 		productManager.persistProducts(testInput);
 		
-		ArrayList<Product> output = productManager.findProductsByPriceBetween(2.00, 6.99);
+		List<Product> output = productManager.findProductsByPriceBetween(2.00, 6.99);
 		
 		assertEquals(1, output.size());
 	}

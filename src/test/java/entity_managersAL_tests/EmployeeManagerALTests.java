@@ -3,6 +3,7 @@ package entity_managersAL_tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -72,7 +73,7 @@ public class EmployeeManagerALTests {
 		
 		employeeManager.persistEmployees(testInput);
 		
-		ArrayList<Employee> output = employeeManager.findEmployeesByDepartment(EmployeeDepartment.WAREHOUSE);
+		List<Employee> output = employeeManager.findEmployeesByDepartment(EmployeeDepartment.WAREHOUSE);
 		
 		assertTrue((output.contains(e1))&&(output.contains(e2))&&!(output.contains(e4)));
 	}
@@ -105,7 +106,7 @@ public class EmployeeManagerALTests {
 		
 		employeeManager.persistEmployees(testInput);
 		
-		ArrayList<Employee> output = employeeManager.findEmployeesBySurname("House");
+		List<Employee> output = employeeManager.findEmployeesBySurname("House");
 		
 		assertTrue(output.size()==2);
 	}
@@ -115,7 +116,7 @@ public class EmployeeManagerALTests {
 		
 		employeeManager.persistEmployees(testInput);
 		
-		ArrayList<Employee> output = employeeManager.findEmployeesByRole(EmployeeDepartment.WAREHOUSE, EmployeePermissions.WORKER);
+		List<Employee> output = employeeManager.findEmployeesByRole(EmployeeDepartment.WAREHOUSE, EmployeePermissions.WORKER);
 		
 		assertTrue(output.size()==2);
 	}

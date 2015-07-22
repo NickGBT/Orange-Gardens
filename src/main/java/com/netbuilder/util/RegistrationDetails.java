@@ -1,12 +1,10 @@
 package com.netbuilder.util;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import com.netbuilder.entities.Customer;
 import com.netbuilder.enums.CardType;
 
 /**

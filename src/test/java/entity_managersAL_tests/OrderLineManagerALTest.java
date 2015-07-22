@@ -3,18 +3,15 @@ package entity_managersAL_tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.netbuilder.entities.Address;
-import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
@@ -28,7 +25,7 @@ import com.netbuilder.enums.OrderStatus;
 
 public class OrderLineManagerALTest {
 	
-	private ArrayList<OrderLine> testArrayOrderLine, testArrayOrderLine2;
+	private List<OrderLine> testArrayOrderLine, testArrayOrderLine2;
 	private OrderLineManagerAL orderLineManager;
 	private Order order;
 	private LoginDetails testCustomer1;
@@ -39,7 +36,7 @@ public class OrderLineManagerALTest {
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
 	private Product product;
-	private ArrayList<OrderLine> orderlineAL;
+	private List<OrderLine> orderlineAL;
 	byte[] password = {1,2,3};
 	byte[] salt = {1,2,3};
 	

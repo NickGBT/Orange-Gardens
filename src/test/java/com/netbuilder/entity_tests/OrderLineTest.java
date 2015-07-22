@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.Product;

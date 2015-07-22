@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entities.DeliveryLine;
-import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.DeliveryLineManagerAL;
 
@@ -22,9 +22,9 @@ public class DeliveryLineManagerALTest {
 	private DeliveryLine deliveryLine;
 	private DeliveryLine deliveryLine1;
 	private DeliveryLineManagerAL deliveryLineManager;
-	private ArrayList<DeliveryLine> deliveryLineAL;
-	private ArrayList<DeliveryLine> deliveryLineAL1;
-	private ArrayList<DeliveryLine> testAL;
+	private List<DeliveryLine> deliveryLineAL;
+	private List<DeliveryLine> deliveryLineAL1;
+	private List<DeliveryLine> testAL;
 	
 	@Before
 	public void setUp() throws Exception {
