@@ -27,8 +27,8 @@ public class OrderManagerALTest {
 
 	OrderManagerAL orderManager;
 	private ArrayList<Order> testArrayOrder;
-	private Order testOrder, testOrder2;
-	private LoginDetails testCustomer, testCustomer2;
+	private Order testOrder, testOrder2, testOrder3;
+	private LoginDetails testCustomer, testCustomer2, testCustomer3;
 	private LoginDetails testEmployee, testEmployee2;
 	byte[] password = {1,2,3};
 	byte[] salt = {1,2,3};
@@ -42,9 +42,11 @@ public class OrderManagerALTest {
 		testEmployee = new LoginDetails("fooUser2", password, salt);
 		testCustomer2 = new LoginDetails("fooUser3", password, salt);
 		testEmployee2 = new LoginDetails("fooUser4", password, salt);
+		testCustomer3 = new LoginDetails("fooUser5", password, salt);
 		
 		testOrder = new Order(testCustomer, testEmployee, OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO", "AB/CD/HJKS", "AR/VB/HSJA", false);
 		testOrder2 = new Order(testCustomer2, testEmployee2, OrderStatus.awaitingDispatch, "03/04/2015", "AR/VB/1999", "AB/CD/4321", "AR/VB/2001", false);
+		testOrder3 = new Order(testCustomer3, testEmployee2, OrderStatus.wishlist, "03/04/2015", "AR/VB/1999", "AB/CD/4321", "AR/VB/2001", false);
 		testOrder.setOrderID(5);
 		testOrder2.setOrderID(10);
 	}
@@ -99,6 +101,21 @@ public class OrderManagerALTest {
 		orderManager.updateOrder(testOrder2);
 		
 		assertNotEquals(testOrder2, orderManager.findByOrderID(testOrder.getOrderID()));
+	}
+	
+	@Test
+	public void testFindWishlist()
+	{
+		int tempUserId = testCustomer3.getUserId();
+		testArrayOrder.clear();
+		OrderStatus status =OrderStatus.wishlist;
+
+		orderManager.persistOrder(testOrder);
+		orderManager.persistOrder(testOrder2);
+		orderManager.persistOrder(testOrder3);
+		
+		assertEquals(orderManager.findWishlist(status, tempUserId), testOrder3);
+		
 	}
 
 }
