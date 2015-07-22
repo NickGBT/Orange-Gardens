@@ -9,7 +9,7 @@ import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
 import com.netbuilder.util.AccountManagement;
-import com.netbuilder.util.UserDetails;
+import com.netbuilder.util.CustomerUserId;
 
 /**
  * 
@@ -20,7 +20,6 @@ import com.netbuilder.util.UserDetails;
 public class AccountManagementController 
 {
 	private String errorMsg;
-	private UserDetails userDetails;
 	private AccountManagement accountManagement;
 	private LoginDetails loginDetails;
 	private LoginDetailsManagerAL loginDetailsManager;
@@ -33,10 +32,10 @@ public class AccountManagementController
 	
 	public AccountManagementController()
 	{
-		loginDetails = loginDetailsManager.findByUserId(userDetails.getUid());
-		customer = customerManager.findByUserId(userDetails.getUid());
-		address = addressManager.findByUserId(userDetails.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(userDetails.getUid());
+		loginDetails = loginDetailsManager.findByUserId(CustomerUserId.getUid());
+		customer = customerManager.findByUserId(CustomerUserId.getUid());
+		address = addressManager.findByUserId(CustomerUserId.getUid());
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(CustomerUserId.getUid());
 	}
 	
 	public LoginDetails getLoginDetails()
