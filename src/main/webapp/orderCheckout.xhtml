@@ -71,7 +71,9 @@
 
 	<div>
 	<p>Payment Details</p>
-	</div>
+	
+	
+	<!--  </div>
 	
 		<div id="cardDetails">
 			<p>Please select your card type</p>
@@ -113,27 +115,29 @@
 							<h:inputHidden value="security number" maxlength="3"/>
 						</f:facet>	
 					</form>
-				</div>
+				</div> -->
 		</div>
+		
+<div id="UseAlternatePaymentDetails">
+	<h:selectBooleanCheckbox value="Use alternate payment details" id="checkToUseAlternatePaymentDetails" />
+</div>
+ 
 </div>
 <div id="billingAddress">
-	<p>Address:</p>
-		<div id="AddressText">
-			<p>Address Line 1</p>
-			<p>Address Line 2</p>
-			<p>Address Line 3</p>
-			<p>City</p>
-			<p>County</p>
-			<p>Postcode</p>
-		</div>
-		<f:facet name="billingAddressSubmit">
-			<h:commandbutton class="button" value="submit"" action="#{}"/><br/>
-		</f:facet>
-	</br>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getCity()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getCounty()}"/>
+			<h:outputtext value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
 </div>
+
 <p>Please check if post address is different from billing address</p></br>
+
 <div id="PostAddressNeeded">
+
 	<h:selectBooleanCheckbox value="Post address is different" id="checkToEnterPostAddress" />
+	
 </div>
 
 <div id="PostAddress"> <!--Should be hidden if billing address is the same as post address-->
