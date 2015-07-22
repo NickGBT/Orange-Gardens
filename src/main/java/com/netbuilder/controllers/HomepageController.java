@@ -14,7 +14,6 @@ import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
  *
  */
 
- 
 public class HomepageController {
 	
 	@Inject
