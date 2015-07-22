@@ -1,6 +1,6 @@
 package com.netbuilder.controllers;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
@@ -18,7 +18,7 @@ public class PreviousOrderController {
 	private OrderManager orderMan;
 	private OrderStatus orderStatus = OrderStatus.placed;
 	
-	public ArrayList<Order> getPreviousOrders(){
+	public List<Order> getPreviousOrders(){
 		
 		return orderMan.findPreviousOrders(orderStatus, CustomerUserId.getUid());
 	}

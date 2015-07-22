@@ -1,6 +1,6 @@
 package com.netbuilder.util;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -20,20 +20,12 @@ public class StoreFrontProducts
 {
 	private ProductManagerAL productManager;
 	
-	private ArrayList<Product> newProducts;
-	private ArrayList<Product> specialOffers;
-	private ArrayList<Product> catalogueExclusives;
-	private ArrayList<Product> allProducts;
-	
-	public StoreFrontProducts()
-	{
-		newProducts = new ArrayList<Product>();
-		specialOffers = new ArrayList<Product>();
-		catalogueExclusives = new ArrayList<Product>();
-		allProducts = new ArrayList<Product>();
-	}
-	
-	public ArrayList<Product> getNewProducts()
+	private List<Product> newProducts;
+	private List<Product> specialOffers;
+	private List<Product> catalogueExclusives;
+	private List<Product> allProducts;
+
+	public List<Product> getNewProducts()
 	{
 		allProducts = productManager.getAll();
 		for(int i = 0; i < 4; i++)
@@ -43,7 +35,7 @@ public class StoreFrontProducts
 		return newProducts;
 	}
 
-	public ArrayList<Product> getSpecialOffers()
+	public List<Product> getSpecialOffers()
 	{
 		allProducts = productManager.getAll();
 		for(int i = 0; i < 4; i++)
@@ -53,7 +45,7 @@ public class StoreFrontProducts
 		return specialOffers;
 	}
 
-	public ArrayList<Product> getCatalogueExclusives()
+	public List<Product> getCatalogueExclusives()
 	{
 		allProducts = productManager.getAll();
 		for(int i = 8; i < 12; i++)
@@ -63,7 +55,7 @@ public class StoreFrontProducts
 		return catalogueExclusives;
 	}
 
-	public ArrayList<Product> getAllProducts() 
+	public List<Product> getAllProducts() 
 	{
 		allProducts = productManager.getAll();
 		return allProducts;

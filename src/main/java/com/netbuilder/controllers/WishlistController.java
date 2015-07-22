@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ public class WishlistController {
 		private OrderManagerAL orderManager;
 		private OrderLineManagerAL orderLineManager;
 		public ArrayList<Product> productsInWishlist = new ArrayList<Product>();
-		public ArrayList<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
+		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 				
 		public WishlistController(){
 			
@@ -37,4 +38,5 @@ public class WishlistController {
 			associatedOrderLines = orderLineManager.findByOrderId(wishlist);
 			
 			productsInWishlist = ;
+		}
 }

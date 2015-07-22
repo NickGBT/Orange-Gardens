@@ -253,9 +253,9 @@ public class OrderManagerDB implements OrderManager {
 	// ?
 
 	@Override
-	public Order findWishlist(OrderStatus status, int customerId) {
+	public int findWishlist(OrderStatus status, int customerId) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override

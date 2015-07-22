@@ -66,7 +66,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		}
 	}
 
-	public OrderLine findByOrderId(int orderId) {
+	public List<OrderLine> findByOrderId(int orderId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID", OrderLine.class);
 		pm.closeEntityManager(em);
