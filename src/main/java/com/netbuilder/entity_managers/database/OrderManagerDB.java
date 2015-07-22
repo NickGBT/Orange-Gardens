@@ -260,4 +260,10 @@ public class OrderManagerDB implements OrderManager {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Order> findPreviousOrders(OrderStatus status,
+			int customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
