@@ -24,6 +24,7 @@ public interface OrderManager {
 		
 		public ArrayList<Order> findByDatePlaced(String datePlaced);
 		public Order findWishlist (OrderStatus status, int customerId);
+		public Order findBasket (OrderStatus status, int customerId);
 		public ArrayList<Order> findByDateDispatched(String dateDispatched);
 		public ArrayList<Order> findByDateDelivered(String dateDelivered);
 		public ArrayList<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate);

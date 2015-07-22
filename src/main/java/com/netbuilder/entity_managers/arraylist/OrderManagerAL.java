@@ -241,4 +241,16 @@ public class OrderManagerAL implements OrderManager {
 		return null;
 	}
 
+	@Override
+	public Order findBasket(OrderStatus status, int customerId) {
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
+			{
+				return o;
+			}
+		}
+		return null;
+	}
+
 }
