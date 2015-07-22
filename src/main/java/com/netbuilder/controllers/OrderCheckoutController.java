@@ -12,7 +12,7 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.PaymentDetails;
-
+import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
@@ -30,6 +30,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
  * @author ngilbert
  *
  */
+import com.netbuilder.util.CustomerUserId;
 
 /**
  * 
@@ -65,15 +66,15 @@ public class OrderCheckoutController {
 
 	public OrderCheckoutController(){
 		
-		customer = customerManager.findByUserId(); //cookie persisted customer reference
+		customer = customerManager.findByUserId(CustomerUserId.getUid()); //cookie persisted customer reference
 				
-		//order = orderManager.;//persisted basket order, to be changed to a different status when checkout is finished
+		order = orderManager.findBasket(basket, CustomerUserId.getUid());
 		
-		address = addressManager.findByUserId();//customers registered address, possibly add a checkbox for a different address.
+		address = addressManager.findByUserId(CustomerUserId.getUid());//customers registered address, possibly add a checkbox for a different address.
 		
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails();//customers registered payment details, possibly add a checkbox for alternate payment details.
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(CustomerUserId.getUid());//customers registered payment details, possibly add a checkbox for alternate payment details.
 		
-		productsInOrder = orderManager.findBasket(); //find order by customer id and basket status.
+		productsInOrder = orderManager.findBasket(basket, CustomerUserId.getUid()); //find order by customer id and basket status.
 		
 	}
 	public PaymentDetails getPaymentDetails(){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
@@ -13,7 +13,7 @@
 			</h1>				
 		</ui:define>
 		
-		<ui:define name"content">
+		<ui:define name="content">
 		
 			<div id="title">
 				<h1>Contact Us</h1>
@@ -29,7 +29,7 @@
 				<h:outputLabel class="mailAddress5" value="#{contactUsDetails.getMailAddress5()"/>
 				<f:facet name="emailUs">
 					<h:outputLabel class="email" value="#{contactUsDetails.getEmail()"/>
-					<--! Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
+					<!-- Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
 				</f:facet>
 			</div>
 			

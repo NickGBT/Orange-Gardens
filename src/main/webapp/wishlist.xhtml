@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:t="http://myfaces.apache.org/tomahawk"
-		template="templates/exampletemplate.xhtml">
+		template="templates/template.xhtml">
 
 <ui:define name="pageTitle"><h1>NB Gardens - Wishlist</h1></ui:define>
 
@@ -17,7 +17,7 @@
 <div><p>Items currently on wishlist</p></div>
 
 	<f:facet>
-		<button type="button">Move all items on wishlist to Basket</button></br>
+		<button type="button">Move all items on wishlist to Basket</button><br/>
 		<!-- logic is to convert the order status from wishlist to basket -->
 	</f:facet>
 	
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 </div>
-</br>
+<br/>
 
 <ui:define>
 
