@@ -28,7 +28,7 @@ public class OrderLine {
 	@NotNull
 	private Product productID;
 
-	@Column (name = "quantity", nullable = false)
+	@Column (name = "quantity", nullable = true)
 	@NotNull
 	private int quantity;
 
@@ -37,6 +37,11 @@ public class OrderLine {
 		this.orderID = orderID;
 		this.productID = productID;
 		this.quantity = quantity;
+	}
+	
+	public OrderLine(Order orderId, Product productId) {
+		this.orderID = orderId;
+		this.productID = productId;
 	}
 
 	public void setQuantity(int quantity){

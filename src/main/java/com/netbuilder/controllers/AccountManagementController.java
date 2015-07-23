@@ -48,6 +48,26 @@ public class AccountManagementController
 		address = addressManager.findByUserId(UserId.getUid());
 		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
 	}
+
+	public void changeAddress()
+	{
+		address.setAddressLabel(accountManagement.getAddressLabel());
+		address.setAddressLine1(accountManagement.getAddressLine1());
+		address.setAddressLine2(accountManagement.getAddressLine2());
+		address.setAddressLine3(accountManagement.getAddressLine3());	
+		address.setCity(accountManagement.getCity());
+		address.setCounty(accountManagement.getCounty());
+		address.setPostcode(accountManagement.getPostcode());
+		address.setBillingAddress(accountManagement.isBillingAddress());
+	}
+	
+	public void changePayment()
+	{
+		paymentDetails.setCardType(accountManagement.getCardType());
+		paymentDetails.setCardNumber(accountManagement.getCardNumber());
+		paymentDetails.setExpiryDate(accountManagement.getCardExpiryDate());
+		paymentDetails.setNameOnCard(accountManagement.getNameOnCard());
+	}
 	
 	public LoginDetails getLoginDetails()
 	{

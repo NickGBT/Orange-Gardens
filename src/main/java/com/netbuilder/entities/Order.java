@@ -26,12 +26,17 @@ public class Order {
 	private int orderID;
 	
 	@OneToMany
+	@NotNull
 	@JoinColumn (name = "user_id", nullable = false)
 	private LoginDetails customerID;
 	
 	@OneToMany
 	@JoinColumn (name = "user_id")
 	private LoginDetails employeeID;
+	
+	@OneToMany
+	@JoinColumn
+	private PaymentDetails paymentDetails;
 	
 	@Column (name = "status", nullable = false)
 	@NotNull	
@@ -58,7 +63,7 @@ public class Order {
 		
 	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
-			String timeToDeliver, boolean refundAvailable) {
+			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.employeeID = employeeID;
 		this.status = status;
@@ -67,11 +72,12 @@ public class Order {
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
 		this.refundAvailable = refundAvailable;
+		this.paymentDetails = paymentDetails;
 	}
 	
 	public Order(LoginDetails customerID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
-			String timeToDeliver, boolean refundAvailable) {
+			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.status = status;
 		this.datePlaced = datePlaced;
@@ -79,6 +85,7 @@ public class Order {
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
 		this.refundAvailable = refundAvailable;
+		this.paymentDetails = paymentDetails;
 	}
 
 	public LoginDetails getCustomer() {
@@ -129,5 +136,9 @@ public class Order {
 	
 	public LoginDetails getEmployee(){
 		return employeeID;
+	}
+	
+	public PaymentDetails getPaymentDetails(){
+		return paymentDetails;
 	}
 }

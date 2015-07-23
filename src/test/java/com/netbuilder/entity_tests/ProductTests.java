@@ -97,7 +97,7 @@ public class ProductTests {
 	@Test
 	public void testGetWeight() {
 
-		assertEquals(testProduct.getWeight(), weight);
+		assertEquals(testProduct.getWeight(), weight, 0.01);
 	}
 
 	@Test

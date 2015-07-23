@@ -6,33 +6,19 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.netbuilder.entities.Product;
-import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.enums.OrderStatus;
-import com.netbuilder.entity_managers.interfaces.ProductManager;
-import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
-import com.netbuilder.entity_managers.interfaces.CustomerManager;
-import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
-import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.util.UserId;
+import com.netbuilder.util.OrderDetails;
 /**
  * 
  * @author ngilbert
  *
- */
-import com.netbuilder.util.UserId;
-import com.netbuilder.util.OrderDetails;
+ *
+ **/
 
 @Named
 @RequestScoped

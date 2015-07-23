@@ -38,4 +38,10 @@ public class CustomerTest
 	{
 		assertEquals(testCustomer.isBlackListed(), isBlackListed);
 	}
+	
+	@Test
+	public void testGetContactNumber()
+	{
+		assertEquals(testCustomer.getContactNumber(), contactNumber);
+	}
 }
