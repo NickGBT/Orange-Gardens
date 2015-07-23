@@ -8,6 +8,7 @@ import javax.enterprise.inject.Alternative;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -59,11 +60,12 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 	
-	public List<Product> findNewProducts(){
+	public List<Product> findByCategory(ProductCategory category){
+		
 		List<Product> results = new ArrayList<Product>();
 		
-		for(int i = 0; i < 4 ; i++){
-			results.add(products.get(products.size() - i));
+		for(Product p: products){
+			if(category == p.getCategory()) results.add(p);
 		}
 		
 		return results;
@@ -81,5 +83,4 @@ public class ProductManagerAL implements ProductManager {
 	public void removeProduct(Product product) {
 		products.remove(product);
 	}
-
 }

@@ -3,6 +3,7 @@ package com.netbuilder.entity_managers.interfaces;
 import java.util.List;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -21,6 +22,7 @@ public interface ProductManager{
 	public Product findByProductId(int productId);
 	public List<Product> findProductsByName(String name);
 	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice);
+	public List<Product> findByCategory(ProductCategory category);
 	
 	//UPDATE
 	public void updateProduct(Product product);
