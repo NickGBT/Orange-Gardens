@@ -28,7 +28,6 @@ public class Address
 	private LoginDetails customer;
 	@Id
 	@Column(name = "address_label", nullable = false, length = 45)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	@Size(min = 2, max = 45)
 	private String addressLabel;
@@ -83,6 +82,11 @@ public class Address
 		return addressLabel;
 	}
 	
+	public void setAddressLabel(String addressLabel) 
+	{
+		this.addressLabel = addressLabel;
+	}
+
 	public String getAddressLine1() 
 	{
 		return addressLine1;
