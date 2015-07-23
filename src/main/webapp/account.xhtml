@@ -14,7 +14,7 @@
 	<ui:define name="content">
 		<div id="content">
 		
-			<h1>Welcome <!-- get user's name for here --></h1>
+			<h1>Welcome <h:outputLabel value="#{customer.getCustomerName()"/></h1>
 			<div id="productScroller">
 				<!-- Load popular products using JS or similar -->
 				<f:facet name="popularScroller">
