@@ -21,6 +21,7 @@ import com.netbuilder.entities.Product;
 @RequestScoped
 public class CatalogController {
 
+	@Inject
 	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();	
 	
 	
