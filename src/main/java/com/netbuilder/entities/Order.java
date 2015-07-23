@@ -60,7 +60,6 @@ public class Order {
 	@Column (name = "refund_available")
 	private boolean refundAvailable;
 	
-		
 	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
@@ -75,16 +74,9 @@ public class Order {
 		this.paymentDetails = paymentDetails;
 	}
 	
-	public Order(LoginDetails customerID, OrderStatus status,
-			String datePlaced, String dateDispatched, String dateDelivered,
-			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
+	public Order(LoginDetails customerID, OrderStatus status, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.status = status;
-		this.datePlaced = datePlaced;
-		this.dateDispatched = dateDispatched;
-		this.dateDelivered = dateDelivered;
-		this.timeToDeliver = timeToDeliver;
-		this.refundAvailable = refundAvailable;
 		this.paymentDetails = paymentDetails;
 	}
 
