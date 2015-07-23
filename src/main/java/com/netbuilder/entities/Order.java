@@ -60,7 +60,6 @@ public class Order {
 	@Column (name = "refund_available")
 	private boolean refundAvailable;
 	
-		
 	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
 			String datePlaced, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
