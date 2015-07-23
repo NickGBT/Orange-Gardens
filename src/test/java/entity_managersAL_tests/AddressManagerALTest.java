@@ -35,8 +35,8 @@ public class AddressManagerALTest
 		testArrayAddress2 = new ArrayList<Address>();
 		testAddress = new Address(testCustomer, "house", "absolutely", "fantastic", "pull", "bounce", "cheese", "LEY76R", false);
 		testAddress2 = new Address(testCustomer2, "shed", "banter", "hell", "earth", "junit", "java", "ABCDEF", false);
-		testCustomer = new LoginDetails("fooUser", password, salt);
-		testCustomer2 = new LoginDetails("fooUser2", password, salt);
+		testCustomer = new LoginDetails("fooUser", "testEmail1", password, salt);
+		testCustomer2 = new LoginDetails("fooUser2", "testEmail2", password, salt);
 	}
 	
 	@Test

@@ -33,8 +33,8 @@ public class LoginDetailsManagerALTest
 	{
 		loginDetailsManager = new LoginDetailsManagerAL();
 		testArrayLoginDetails = new ArrayList<LoginDetails>();
-		loginDetailsTest1 = new LoginDetails(123, "testUser1", testPassword1, testSalt1);
-		loginDetailsTest2 = new LoginDetails(456, "testUser2", testPassword2, testSalt2);
+		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail1", testPassword1, testSalt1);
+		loginDetailsTest2 = new LoginDetails(456, "testUser2", "testEmail2", testPassword2, testSalt2);
 	}
 	
 	@Test

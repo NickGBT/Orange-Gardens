@@ -37,12 +37,12 @@ public class OrderManagerALTest {
 	public void setUp() throws Exception {
 		orderManager = new OrderManagerAL();
 		testArrayOrder = new ArrayList<Order>();
-		testCustomer = new LoginDetails("fooUser", password, salt);
-		testEmployee = new LoginDetails("fooUser2", password, salt);
-		testCustomer2 = new LoginDetails("fooUser3", password, salt);
-		testEmployee2 = new LoginDetails("fooUser4", password, salt);
-		testCustomer3 = new LoginDetails("fooUser5", password, salt);
-		testCustomer4 = new LoginDetails("fooUser6", password, salt);
+		testCustomer = new LoginDetails("fooUser", "testEmail1", password, salt);
+		testEmployee = new LoginDetails("fooUser2", "testEmail2", password, salt);
+		testCustomer2 = new LoginDetails("fooUser3", "testEmail3", password, salt);
+		testEmployee2 = new LoginDetails("fooUser4", "testEmail4", password, salt);
+		testCustomer3 = new LoginDetails("fooUser5", "testEmail5", password, salt);
+		testCustomer4 = new LoginDetails("fooUser6", "testEmail6", password, salt);
 		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", testCustomer);
 		testOrder = new Order(testCustomer, testEmployee, OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO", "AB/CD/HJKS", "AR/VB/HSJA", false, paymentDetails);
 		testOrder2 = new Order(testCustomer2, testEmployee2, OrderStatus.awaitingDispatch, "03/04/2015", "AR/VB/1999", "AB/CD/4321", "AR/VB/2001", false, paymentDetails);
