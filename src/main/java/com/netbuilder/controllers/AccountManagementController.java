@@ -1,5 +1,7 @@
 package com.netbuilder.controllers;
 
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
@@ -20,14 +22,23 @@ import com.netbuilder.util.CustomerUserId;
 public class AccountManagementController 
 {
 	private String errorMsg;
+	@Inject
 	private AccountManagement accountManagement;
+	@Inject
 	private LoginDetails loginDetails;
+	@Inject
 	private LoginDetailsManagerAL loginDetailsManager;
+	@Inject
 	private Customer customer;
+	@Inject
 	private CustomerManagerAL customerManager;
+	@Inject
 	private Address address;
+	@Inject
 	private AddressManagerAL addressManager;
+	@Inject
 	private PaymentDetails paymentDetails;
+	@Inject
 	private PaymentDetailsManagerAL paymentDetailsManager;
 	
 	public AccountManagementController()
