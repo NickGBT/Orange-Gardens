@@ -24,7 +24,7 @@ import com.netbuilder.enums.OrderStatus;
  */
 public class PaymentDetailsManagerALTests {
 
-	PaymentDetailsManager paymentDetailsManager;
+	PaymentDetailsManagerAL paymentDetailsManager;
 	PaymentDetails p1;
 	PaymentDetails p2;
 	PaymentDetails p3;

@@ -8,7 +8,7 @@ Class Naming Convention
 Package Naming Convention
 •	Lower case – com.netbuilder.util
 Always
-•	Author your code
+•	Author your classes and methods
 •	Javadoc methods and at top of class
 •	Comment if necessary
 •	Use descriptive variable/method names except in for loops and exceptions
