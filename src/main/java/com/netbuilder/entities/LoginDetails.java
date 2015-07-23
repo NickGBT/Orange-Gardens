@@ -66,8 +66,9 @@ public class LoginDetails {
 	 * @param password Hash of the user's password
 	 * @param salt Salt used to hash the user's password
 	 */
-	public LoginDetails(String username, byte[] password, byte[] salt){
+	public LoginDetails(String username, String email, byte[] password, byte[] salt){
 		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.salt = salt;
 	}
@@ -80,9 +81,10 @@ public class LoginDetails {
 	 * @param password Hash of the user's password
 	 * @param salt Salt used to hash the user's password
 	 */
-	public LoginDetails(int userId, String username, byte[] password, byte[] salt){
+	public LoginDetails(int userId, String username, String email, byte[] password, byte[] salt){
 		this.userId = userId;
 		this.username = username;
+		this.email = email;
 		this.password = password;
 		this.salt = salt;
 	}

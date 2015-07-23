@@ -21,7 +21,7 @@ public class LoginDetailsManagerALTest
 {
 	private LoginDetailsManagerAL loginDetailsManager;
 	private LoginDetails loginDetailsTest1, loginDetailsTest2;
-	private List<LoginDetails> testArrayLoginDetails;
+	private List<LoginDetails> testArrayLoginDetails, testArrayLoginDetails2;
 	byte[] testPassword1 = {1,2,3};
 	byte[] testSalt1 = {1,2,3};
 	byte[] testPassword2 = {2,3,4};
@@ -46,12 +46,36 @@ public class LoginDetailsManagerALTest
 	}
 	
 	@Test 
-	void testFindByUserName()
+	public void testFindByUsername()
 	{
 		testArrayLoginDetails.clear();
 		testArrayLoginDetails.add(loginDetailsTest1);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
-		assertEquals(loginDetailsManager.findByUsername("testUser1"), testArrayLoginDetails);
+		assertEquals(loginDetailsManager.findByUsername("testUser1"), testArrayLoginDetails.get(0));
+	}
+	
+	@Test 
+	public void testFindByUserId()
+	{
+		testArrayLoginDetails.clear();
+		testArrayLoginDetails.add(loginDetailsTest1);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
+		assertEquals(loginDetailsManager.findByUserId(123), testArrayLoginDetails.get(0));
+	}
+	
+	@Test 
+	public void testFindByEmail()
+	{
+		testArrayLoginDetails.clear();
+		testArrayLoginDetails.add(loginDetailsTest1);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
+		assertEquals(loginDetailsManager.findByEmail("testEmail1"), testArrayLoginDetails.get(0));
+	}
+	
+	@Test
+	public void testCheckPassword()
+	{
+		
 	}
 	
 }
