@@ -1,6 +1,4 @@
 package com.netbuilder.controllers;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
@@ -24,6 +22,7 @@ import com.netbuilder.enums.ProductCategory;
 public class ProductController {
 	@Inject 
 	private ProductManagerAL productManager; 
+	
 	@Inject
 	private OrderLineManagerAL orderManager;
 	
@@ -37,13 +36,10 @@ public class ProductController {
 	
 	public void addToBasket() { 
 	}
-	
-	
+		
 	public void addToWishlist() {
 	}
-	
-
-	
+		
 	public void addToCatalog(){
 		ProductCategory categorySelected;
 		if (categorySelected == null){
@@ -51,10 +47,10 @@ public class ProductController {
 		}
 		
 		else{
-			products = productManager.findByCategory();
+			products = productManager.findByCategory(categorySelected);
 			
 			
 		}
 	}
 }
-}
+
