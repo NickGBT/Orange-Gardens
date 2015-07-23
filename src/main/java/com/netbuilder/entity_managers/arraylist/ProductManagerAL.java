@@ -23,7 +23,6 @@ public class ProductManagerAL implements ProductManager {
 	
 	public void persistProduct(Product product) {
 		products.add(product);
-
 	}
 
 	public void persistProducts(List<Product> products) {
