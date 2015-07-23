@@ -3,7 +3,7 @@ package com.netbuilder.controllers;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.LoginDetailsManager;
 import com.netbuilder.util.UserId;
 import com.netbuilder.util.UserDetails;
 
@@ -16,7 +16,7 @@ import com.netbuilder.util.UserDetails;
 public class LoginController
 {
 	@Inject
-	private LoginDetailsManagerAL loginManager;
+	private LoginDetailsManager loginManager;
 	@Inject
 	private UserDetails userDetails;
 	private String errorMsg;

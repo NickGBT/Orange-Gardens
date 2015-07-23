@@ -12,7 +12,7 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
  *
  */
 
-public class OrderLineManagerAL implements OrderLineManager{
+public class OrderLineManager implements OrderLineManager{
 
 	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
 	

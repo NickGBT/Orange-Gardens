@@ -16,7 +16,7 @@ import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 
 @Alternative
-public class OrderManagerAL implements OrderManager {
+public class OrderManager implements OrderManager {
 
 	private ArrayList<Order> orders = new ArrayList<Order>();
 

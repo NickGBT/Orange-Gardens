@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 
@@ -23,7 +23,7 @@ import com.netbuilder.enums.OrderStatus;
 
 public class OrderManagerALTest {
 
-	OrderManagerAL orderManager;
+	OrderManager orderManager;
 	private List<Order> testArrayOrder;
 	private Order testOrder, testOrder2, testOrder3, testOrder4;
 	private LoginDetails testCustomer, testCustomer2, testCustomer3, testCustomer4;
@@ -35,7 +35,7 @@ public class OrderManagerALTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		orderManager = new OrderManagerAL();
+		orderManager = new OrderManager();
 		testArrayOrder = new ArrayList<Order>();
 		testCustomer = new LoginDetails("fooUser", password, salt);
 		testEmployee = new LoginDetails("fooUser2", password, salt);

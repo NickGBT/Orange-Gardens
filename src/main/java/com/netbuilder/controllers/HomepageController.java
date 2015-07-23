@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+import com.netbuilder.entity_managers.arraylist.ProductManager;
 
 /*
  * 
@@ -15,7 +15,7 @@ import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 public class HomepageController {
 	
 	@Inject
-	private ProductManagerAL pmal;
+	private ProductManager pmal;
 	
 	public List<Product> getNewProducts(){
 		return pmal.findNewProducts();

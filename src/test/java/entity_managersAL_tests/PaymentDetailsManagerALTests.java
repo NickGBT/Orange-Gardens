@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.PaymentDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
@@ -44,7 +44,7 @@ public class PaymentDetailsManagerALTests {
 
 	@Before
 	public void setUp() throws Exception {
-		paymentDetailsManager = new PaymentDetailsManagerAL();
+		paymentDetailsManager = new PaymentDetailsManager();
 		
 		c1 = new LoginDetails("fooUser", password, salt);
 		c2 = new LoginDetails("fooUser2", password, salt);
