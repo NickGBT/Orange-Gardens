@@ -5,16 +5,16 @@ import java.util.List;
 
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.util.UserId;
 
 public class OrderDetails {
 	
 		int customerUserId;
 		
-		private OrderManagerAL orderManager;
-		private OrderLineManagerAL orderLineManager;
+		private OrderManager orderManager;
+		private OrderLineManager orderLineManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 				
 		public List<OrderLine> getWishlist(){

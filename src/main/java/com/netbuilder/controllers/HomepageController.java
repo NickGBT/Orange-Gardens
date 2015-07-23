@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.util.StoreFrontProducts;
 
 /*

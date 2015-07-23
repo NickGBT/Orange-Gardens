@@ -8,12 +8,11 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -27,15 +26,15 @@ public class ProductDetails {
 	private int orderId;
 	private ProductCategory category;
 	private OrderStatus status;
-	private ProductManagerAL productMan;
+	private ProductManager productMan;
 	private PaymentDetails paymentD;
-	private PaymentDetailsManagerAL paymentMan;
-	private OrderManagerAL orderMan;
-	private OrderLineManagerAL orderLineMan;
+	private PaymentDetailsManager paymentMan;
+	private OrderManager orderMan;
+	private OrderLineManager orderLineMan;
 	private Product product;
 	private Order order;
 	private OrderLine orderLine;
-	private LoginDetailsManagerAL loginMan;
+	private LoginDetailsManager loginMan;
 	private LoginDetails loginD;
 	
 	

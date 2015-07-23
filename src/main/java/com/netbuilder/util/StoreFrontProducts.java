@@ -6,7 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 
 /**
  * 
@@ -18,7 +18,7 @@ import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 @RequestScoped
 public class StoreFrontProducts
 {
-	private ProductManagerAL productManager;
+	private ProductManager productManager;
 	
 	private List<Product> newProducts;
 	private List<Product> specialOffers;

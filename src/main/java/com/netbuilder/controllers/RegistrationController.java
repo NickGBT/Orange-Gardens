@@ -43,7 +43,7 @@ public class RegistrationController
 				e.printStackTrace();
 			}			
 			
-			loginDetails = new LoginDetails(registrationDetails.getUsername(), hashedPassword, salt);
+			loginDetails = new LoginDetails(registrationDetails.getUsername(), loginDetails.getEmail(), hashedPassword, salt);
 			address = new Address(loginDetails, registrationDetails.getAddressLabel(), registrationDetails.getAddressLine1(), 
 					registrationDetails.getAddressLine2(), registrationDetails.getAddressLine3(), 
 					registrationDetails.getCity(), registrationDetails.getCounty(), 

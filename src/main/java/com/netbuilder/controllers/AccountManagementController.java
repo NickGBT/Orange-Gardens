@@ -6,10 +6,10 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
-import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
+import com.netbuilder.entity_managers.interfaces.AddressManager;
+import com.netbuilder.entity_managers.interfaces.CustomerManager;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.UserId;
 
@@ -27,19 +27,19 @@ public class AccountManagementController
 	@Inject
 	private LoginDetails loginDetails;
 	@Inject
-	private LoginDetailsManagerAL loginDetailsManager;
+	private LoginDetailsManager loginDetailsManager;
 	@Inject
 	private Customer customer;
 	@Inject
-	private CustomerManagerAL customerManager;
+	private CustomerManager customerManager;
 	@Inject
 	private Address address;
 	@Inject
-	private AddressManagerAL addressManager;
+	private AddressManager addressManager;
 	@Inject
 	private PaymentDetails paymentDetails;
 	@Inject
-	private PaymentDetailsManagerAL paymentDetailsManager;
+	private PaymentDetailsManager paymentDetailsManager;
 	
 	public AccountManagementController()
 	{
