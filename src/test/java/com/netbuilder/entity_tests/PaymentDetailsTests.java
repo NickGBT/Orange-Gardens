@@ -38,7 +38,7 @@ public class PaymentDetailsTests {
 		name = "N B Gardens";
 		security = 123;
 		expiry = "08/18";
-		customer = new LoginDetails("fooUser", password, salt);
+		customer = new LoginDetails("fooUser", "testEmail1",password, salt);
 		orderId = null;
 		
 		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customer, orderId);

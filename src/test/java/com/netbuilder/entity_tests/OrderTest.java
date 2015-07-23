@@ -44,8 +44,8 @@ public class OrderTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		    customer  = new LoginDetails("customer123", password, salt);
-		    employee = new LoginDetails("customer123", password, salt);
+		    customer  = new LoginDetails("customer123", "testEmail1",password, salt);
+		    employee = new LoginDetails("customer123", "testEmail1",password, salt);
 		    
 		    orderStatus = OrderStatus.cancelled;
 		    paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", customer);
