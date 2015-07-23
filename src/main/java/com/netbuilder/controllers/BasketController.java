@@ -16,7 +16,6 @@ public class BasketController {
 	private OrderLineManagerAL orderLineManger;
 	
 	public void updateProductQty() { 
-	orderLineManger.updateOrderLine(orderLine);
 	}
 	
 	public void updatePorouswareQty() {

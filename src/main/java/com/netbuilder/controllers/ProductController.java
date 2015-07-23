@@ -17,7 +17,7 @@ import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 
 @Named
 @RequestScoped
-public class ProductPageController {
+public class ProductController {
 	@Inject 
 	private ProductManagerAL productManager; 
 	@Inject
@@ -27,6 +27,7 @@ public class ProductPageController {
 	private Order order;
 	
 	public Product getProduct() {
+		
 		return product;
 	}
 	
