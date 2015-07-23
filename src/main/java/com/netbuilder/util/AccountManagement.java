@@ -19,6 +19,7 @@ public class AccountManagement
 	private String addressLabel, addressLine1, addressLine2, addressLine3, city, county, postcode;
 	private boolean isBillingAddress;
 	private CardType cardType;
+	private String cardNumber, cardExpiryDate, nameOnCard;
 	
 	public String getfName() 
 	{
@@ -142,5 +143,29 @@ public class AccountManagement
 
 	public void setAddressLabel(String addressLabel) {
 		this.addressLabel = addressLabel;
+	}
+	
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public String getCardExpiryDate() {
+		return cardExpiryDate;
+	}
+
+	public void setCardExpiryDate(String cardExpiryDate) {
+		this.cardExpiryDate = cardExpiryDate;
+	}
+
+	public String getNameOnCard() {
+		return nameOnCard;
+	}
+
+	public void setNameOnCard(String nameOnCard) {
+		this.nameOnCard = nameOnCard;
 	}
 }
