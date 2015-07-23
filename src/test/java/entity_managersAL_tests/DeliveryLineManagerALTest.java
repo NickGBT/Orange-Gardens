@@ -13,6 +13,7 @@ import com.netbuilder.entities.Delivery;
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.DeliveryLineManagerAL;
+import com.netbuilder.enums.ProductCategory;
 
 public class DeliveryLineManagerALTest {
 
@@ -28,7 +29,7 @@ public class DeliveryLineManagerALTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product");
+		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
 		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8", new BigDecimal(22.50));	
 		
 		deliveryLine = new DeliveryLine(product, delivery, 50);

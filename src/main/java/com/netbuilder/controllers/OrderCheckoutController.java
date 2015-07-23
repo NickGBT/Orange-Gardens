@@ -34,6 +34,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.CustomerUserId;
 import com.netbuilder.util.OrderDetails;
 
+
 /**
  * 
  * why did i agree to do this class, i'm a fucking idiot.
@@ -68,15 +69,15 @@ public class OrderCheckoutController {
 
 	public OrderCheckoutController(){
 		
-		customer = customerManager.findByUserId(CustomerUserId.getUid()); //cookie persisted customer reference
+		customer = customerManager.findByUserId(UserId.getUid()); //cookie persisted customer reference
 				
-		order = orderManager.findBasket(basket, CustomerUserId.getUid());
+		order = orderManager.findBasket(basket, UserId.getUid());
 		
-		address = addressManager.findByUserId(CustomerUserId.getUid());//customers registered address, possibly add a checkbox for a different address.
+		address = addressManager.findByUserId(UserId.getUid());//customers registered address, possibly add a checkbox for a different address.
 		
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(CustomerUserId.getUid());//customers registered payment details, possibly add a checkbox for alternate payment details.
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());//customers registered payment details, possibly add a checkbox for alternate payment details.
 		
-		productsInOrder = orderManager.findBasket(basket, CustomerUserId.getUid()); //find order by customer id and basket status.
+		productsInOrder = orderManager.findBasket(basket, UserId.getUid()); //find order by customer id and basket status.
 		
 	} */
 	

@@ -121,7 +121,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 		
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("category", category);
 		

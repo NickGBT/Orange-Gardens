@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -24,11 +25,12 @@ public class StockTest
 	private int maxStock = 10;
 	private int criticalThreshold = 2;
 	private int requiredStock = 5;
+	private ProductCategory productCategory = ProductCategory.Accessory;
 	
 	@Before
 	public void setUp() throws Exception 
 	{
-		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom");
+		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom", productCategory);
 		testStock = new Stock(testProduct, stockLevel, stockAvailable, location, maxStock, criticalThreshold, requiredStock);
 	}
 	
