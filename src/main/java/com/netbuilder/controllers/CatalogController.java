@@ -21,16 +21,4 @@ import com.netbuilder.util.CustomerUserId;
 @RequestScoped
 public class CatalogController {
 	@Inject
-	private ProductManagerAL productManager;
-	private ArrayList<Product> products = new ArrayList<Product>();
-	
-	public CatalogController(){
-		if (categorySelected == null){
-			products = productManager.getAll();
-		}
-		
-		else{
-			products = productManager.findByCategory();
-		}
-	}
-}
+
