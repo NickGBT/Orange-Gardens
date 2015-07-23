@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
@@ -28,6 +30,7 @@ public class OrderTest {
 
 	private LoginDetails customer;
 	
+	private PaymentDetails paymentDetails;
 	private EmployeeDepartment empDept;
 	private String fName = "Test";
 	private String lName = "Employee";
@@ -45,10 +48,10 @@ public class OrderTest {
 		    employee = new LoginDetails("customer123", password, salt);
 		    
 		    orderStatus = OrderStatus.cancelled;
-		    
+		    paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", customer);
 			testOrder = new Order(customer, employee, orderStatus,
 			datePlaced, dateDispatched, dateDelivered,
-			timeToDeliver, refundAvailable);
+			timeToDeliver, refundAvailable, paymentDetails);
 	}
 
 	/*@Test

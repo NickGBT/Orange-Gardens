@@ -14,6 +14,7 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
+import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
@@ -52,16 +53,17 @@ public class OrderLineManagerALTest {
 		testCustomer1 = new LoginDetails("fooUser", password, salt);
 		employee = new LoginDetails("fooUser2", password, salt);
 		
+		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", testCustomer1);
+		
 		orderLineManager = new OrderLineManagerAL();	
 		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
 				"10/10/15", "12/10/15", "13/10/15",
-				"40", true);
+				"40", true, paymentDetails);
 		
 		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
 		
 		orderLine = new OrderLine(order , product, 50);
-		orderLine1 = new OrderLine(order , product, 50);
-		
+		orderLine1 = new OrderLine(order , product, 50);		
 	}
 
 	@Test
