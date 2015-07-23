@@ -1,6 +1,7 @@
 package com.netbuilder.entity_tests;
 
 import com.netbuilder.entities.Product;
+import com.netbuilder.enums.ProductCategory;
 
 import static org.junit.Assert.*;
 
@@ -15,17 +16,18 @@ import org.junit.Test;
 
 public class ProductTests {
 
-	Product testProduct;
+	private Product testProduct;
 	
-	String imageLocation;
-	int productId;
-	String productName;
-	double productPrice;
-	int width;
-	int length;
-	int height;
-	double weight;
-	String description;
+	private String imageLocation;
+	private int productId;
+	private String productName;
+	private double productPrice;
+	private int width;
+	private int length;
+	private int height;
+	private double weight;
+	private String description;
+	private ProductCategory productCategory;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -39,8 +41,9 @@ public class ProductTests {
 		height = 35;
 		weight = 3;
 		description = "A gnome for testing, should never exist";
+		productCategory = ProductCategory.Accessory;
 		
-		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description);
+		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description, productCategory);
 	}
 
 	@Test
@@ -94,7 +97,7 @@ public class ProductTests {
 	@Test
 	public void testGetWeight() {
 
-		assertEquals(testProduct.getWeight(), weight);
+		assertEquals(testProduct.getWeight(), weight, 0.01);
 	}
 
 	@Test

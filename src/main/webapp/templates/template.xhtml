@@ -9,7 +9,6 @@
 		<title><ui:insert name="pageTitle"/></title>
 		<meta name="description" content="NB Gardens OPS template" />
 		<meta name="author" content="Orange Gardens" />
-		<meta charset="ISO-8859-1">
 	</head>
 	
 	<body>
@@ -23,35 +22,38 @@
 			<div id="buying Info">
 				<div id="basket">
 					<!-- basket bean with a fold-out here -->
-					<img src="basket.png" alt="basket" height="56" width="75" />
+					<img src="resource/img/basket.png" alt="basket" height="56" width="75" />
+					<h:outputLabel value="#{basket.getBasketSize()"/>
 				</div>
-				<!-- Bean checking login here. If not logged in, login button -->
 			</div>
 			
 			<div id="controls">
 			
 				<div id="mainbuttons">
-					
-					<a href="" class="headerButton">Home</a>
-					<a href="" class="headerButton">Account</a>
-					<a href="" class="headerButton">Contact</a>
-					<a href="" class="headerButton">Catalogue</a>
-					<br/>
+			
+					<a href="index.xhtml" class="headerButton">Home</a>
+					<a href="contact.xhtml" class="headerButton">Contact</a>
+					<a href="catalog.xhtml" class="headerButton">Catalog</a>
+					<h:link >
+						<a href="account.xhtml" class="headerButton">Account</a>
+					</h:link>
+					<h:link >
+						<a href="customerlogin.xhtml" class="headerButton">Login</a>
+					</h:link>
 					<br/>
 				</div>
 				
 				<div id="searchbar">
-					<form>
-						<input type="text" name="searchbar" id="searchText"></input>
-						<button name="submit" id="searchButton"></button><img src="search.png" alt="Search" height="25" width="33" />
-					</form>
+					<h:inputText type="text" name="searchbar" id="searchText"/>
+					<h:commandLink name="submit" id="searchButton"><img src="resource/img/search.png" alt="Search" height="25" width="33" /></h:commandLink>
+
 				</div>
 			</div>
 		</div>
 		
 		<!-- Content goes here -->
 		<div id="content">
-			<ui:insert name="content"></ui:insert>
+			<ui:insert name="content"/>
 		</div>
 		<!-- End Content -->
 		

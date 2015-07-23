@@ -3,6 +3,7 @@ package entity_managersAL_tests;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.arraylist.StockManagerAL;
+import com.netbuilder.enums.ProductCategory;
 
 import static org.junit.Assert.*;
 
@@ -31,8 +32,8 @@ public class StockManagerALTest
 		stockManager = new StockManagerAL();
 		testArrayStock = new ArrayList<Stock>();
 		testArrayStock2 = new ArrayList<Stock>();
-		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom");
-		testProduct2 = new Product("the other thing", "gnome", 44.00, 8, 5, 2, 320.00, "A gnome");
+		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom", ProductCategory.Gnome);
+		testProduct2 = new Product("the other thing", "gnome", 44.00, 8, 5, 2, 320.00, "A gnome", ProductCategory.Gnome);
 		testStock = new Stock(testProduct, 4, 3, "Over there", 10, 2, 5);
 		testStock2 = new Stock(testProduct2, 5, 4, "Right here", 12, 5, 9);
 	}

@@ -3,20 +3,13 @@ package com.netbuilder.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
-import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.UserId;
 
-public class Order {
+public class OrderDetails {
 	
 		int customerUserId;
 		
@@ -26,7 +19,7 @@ public class Order {
 				
 		public List<OrderLine> getWishlist(){
 			
-			int wishlistId = orderManager.findWishlist(OrderStatus.wishlist, CustomerUserId.getUid());
+			int wishlistId = orderManager.findWishlist(OrderStatus.wishlist, UserId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(wishlistId);	
 			
@@ -36,7 +29,7 @@ public class Order {
 		
 		public List<OrderLine> getBasket(){
 			
-			int basketId = orderManager.findWishlist(OrderStatus.basket, CustomerUserId.getUid());
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
 			
