@@ -1,5 +1,8 @@
 package com.netbuilder.entity_managers.interfaces;
 
+import java.util.List;
+
+import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 
 /**
@@ -16,6 +19,7 @@ public interface LoginDetailsManager {
 	public LoginDetails findByEmail(String email);
 	public LoginDetails findByUserId(int userId);
 	public int checkPassword(String name, String password);
+	public List<LoginDetails> getAllLoginDetails();
 	
 	//UPDATE
 	public void updateLoginDetails(LoginDetails details);

@@ -1,10 +1,12 @@
 package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
 
+import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
@@ -45,6 +47,11 @@ public class LoginDetailsManagerAL implements LoginDetailsManager {
 			if(ld.getUserId() == userId) return ld;
 		}
 		return null;
+	}
+	
+	public List<LoginDetails> getAllLoginDetails()
+	{
+		return loginDetails;
 	}
 
 	public int checkPassword(String name, String password) {

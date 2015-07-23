@@ -1,5 +1,8 @@
 package com.netbuilder.entity_managers.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -8,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.orange_gardens.PersistenceManager;
@@ -113,6 +117,14 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 		em.remove(details);
 		pm.closeEntityManager(em);
 
+	}
+	
+	public List<LoginDetails> getAllLoginDetails()
+	{
+		EntityManager em = pm.createEntityManager();
+		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>)em.createQuery("SELECT a FROM login_details a", LoginDetails.class).getResultList();
+		pm.closeEntityManager(em);
+		return allLoginDetails;
 	}
 
 }
