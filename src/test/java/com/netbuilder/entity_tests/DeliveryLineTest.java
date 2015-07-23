@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entities.Product;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -36,6 +37,7 @@ public class DeliveryLineTest {
 	private String supplier = "GnomeM8";
 	private BigDecimal price = new BigDecimal(50.00);
 	private Delivery delivery;
+	private ProductCategory productCategory = ProductCategory.Accessory;
 	
 	private int quantity = 10;
 	
@@ -43,7 +45,7 @@ public class DeliveryLineTest {
 	public void setUp() throws Exception {
 		
 		testProduct = new Product (imageLocation, productName,
-				productPrice, width, length, height, weight, description);
+				productPrice, width, length, height, weight, description, productCategory);
 		
 		delivery = new Delivery(datePlaced, dateToBeDelivered, supplier, price);
 		

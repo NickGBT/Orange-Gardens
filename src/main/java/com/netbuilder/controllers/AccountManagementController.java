@@ -1,5 +1,7 @@
 package com.netbuilder.controllers;
 
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
@@ -9,7 +11,7 @@ import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
 import com.netbuilder.util.AccountManagement;
-import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.UserId;
 
 /**
  * 
@@ -20,22 +22,31 @@ import com.netbuilder.util.CustomerUserId;
 public class AccountManagementController 
 {
 	private String errorMsg;
+	@Inject
 	private AccountManagement accountManagement;
+	@Inject
 	private LoginDetails loginDetails;
+	@Inject
 	private LoginDetailsManagerAL loginDetailsManager;
+	@Inject
 	private Customer customer;
+	@Inject
 	private CustomerManagerAL customerManager;
+	@Inject
 	private Address address;
+	@Inject
 	private AddressManagerAL addressManager;
+	@Inject
 	private PaymentDetails paymentDetails;
+	@Inject
 	private PaymentDetailsManagerAL paymentDetailsManager;
 	
 	public AccountManagementController()
 	{
-		loginDetails = loginDetailsManager.findByUserId(CustomerUserId.getUid());
-		customer = customerManager.findByUserId(CustomerUserId.getUid());
-		address = addressManager.findByUserId(CustomerUserId.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(CustomerUserId.getUid());
+		loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
+		customer = customerManager.findByUserId(UserId.getUid());
+		address = addressManager.findByUserId(UserId.getUid());
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
 	}
 	
 	public LoginDetails getLoginDetails()

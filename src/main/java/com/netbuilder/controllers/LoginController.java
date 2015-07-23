@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
 import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
-import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.UserId;
 import com.netbuilder.util.UserDetails;
 
 /**
@@ -32,7 +32,7 @@ public class LoginController
 		uid = loginManager.checkPassword(userDetails.getName(), userDetails.getPassword());
 		if(uid == -1)
 		{
-			CustomerUserId.setUid(uid);
+			UserId.setUid(uid);
 			errorMsg = "Incorrect details";
 			return "login";
 		}
@@ -43,7 +43,7 @@ public class LoginController
 	{
 		userDetails.setName(null);
 		userDetails.setPassword(null);
-		CustomerUserId.setUid(0);
+		UserId.setUid(0);
 		return "home";
 	}
 

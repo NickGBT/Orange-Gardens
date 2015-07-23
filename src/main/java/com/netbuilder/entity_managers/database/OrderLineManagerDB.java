@@ -72,7 +72,7 @@ public class OrderLineManagerDB implements OrderLineManager{
 		pm.closeEntityManager(em);
 		tq.setParameter("order_id", orderId);
 		try{
-			return tq.getSingleResult();
+			return tq.getResultList();
 		}catch(NoResultException e){
 			e.printStackTrace();
 			return null;

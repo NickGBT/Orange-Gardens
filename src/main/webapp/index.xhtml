@@ -23,7 +23,7 @@
 	<div id="specialOffers">
 		<h2>New Products</h2>
 		<table id="homepageProducts" style="width: 80%">
-			<c:forEach var="newProduct"
+			<ui:repeat var="newProduct"
 				items="${HomepageController.getNewProducts()}">
 				<tr>
 					<td><img src="${newProduct.imageLocation}" alt=""
@@ -35,7 +35,7 @@
 					<td>${newProduct.description}</td>
 					<td>${newProduct.price}</td>
 				</tr>
-			</c:forEach>
+			</ui:repeat>
 		</table>
 		<br /> <br /> <br />
 		<table id="contactInfo" style="width: 50%">
