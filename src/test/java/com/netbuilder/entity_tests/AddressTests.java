@@ -37,7 +37,7 @@ public class AddressTests {
 	@Before
 	public void setUp() throws Exception {
 		
-		testCustomer = new LoginDetails("fooUser", password, salt);
+		testCustomer = new LoginDetails("fooUser", "testEmail1", password, salt);
 		
 		testAddress = new Address(testCustomer, addressLabel, lineOne, lineTwo, lineThree, city, county, postcode, false);
 	}

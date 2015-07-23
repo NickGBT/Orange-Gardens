@@ -24,46 +24,11 @@
 				
 			<f:facet name="orderLinePopulator">
 			<!-- facet populates the orderline with the relevant order -->	
-				<br/>
-						<div id="productDetailsSmall" style="
-							height: 200px;
-							width: 500px;
-							padding: 10px;
-							border: 2px solid black;
-							margin: 0; 
-						">
-							<div id="productImage" style="float: left; width: 200px;">
-								<f:facet name="productImage">
-									<h:graphicImage value="#{productImage.productController}"/>
-								</f:facet>
-							</div>
-							
-							<div id="productDetails" style="float: left; width: 200px;">
-								<f:facet name="productName">
-									<p><h:outputText value="#{productName.productController}"/></p>
-								</f:facet>
-								<f:facet name="productDescription">
-									<p><h:outputText value="#{productDescription.productController}"/></p>
-								</f:facet>
-								<f:facet name="productPrice">
-									<p><h:outputText value="#{productName.productController}"/></p>
-								</f:facet>
-							</div>
-							
-							<div id="productLinks" style="float: right; width: 100px;">
-								<f:facet name="productPageRef">
-									<button type="button">Product Page</button><!-- should take you to the product page of the product in question --><br><br>
-								</f:facet>
-								<f:facet name="addProductToWishlist">
-									<button type="button">Add to Wishlist</button><!-- JSF to be implemented -->
-								</f:facet><br><br>
-								<f:facet name="addProductToBasket">
-									<button type="button">Add to Basket</button><!-- JSF to be implemented -->
-								</f:facet>
-							</div>
-							
-						</div>
-		</f:facet>				
+			<br/>
+						
+			</f:facet>				
+		<div>					
+					
 		</div>
 	</div>
 	
@@ -125,9 +90,7 @@
 					</div> -->
 			</div>
 			
-	<div id="UseAlternatePaymentDetails">
-		<h:selectBooleanCheckbox value="Use alternate payment details" id="checkToUseAlternatePaymentDetails" />
-	</div>
+
 	 
 	</div>
 	<div id="billingAddress">
@@ -138,30 +101,13 @@
 				<h:outputtext value="#{OrderCheckoutController.getAddress().getCounty()}"/>
 				<h:outputtext value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
 	</div>
-	
-	<p>Please check if post address is different from billing address</p><br/>
-	
-	<div id="PostAddressNeeded">
-	
-		<h:selectBooleanCheckbox value="Post address is different" id="checkToEnterPostAddress" />
-		
-	</div>
-	
-	<div id="PostAddress"> <!--Should be hidden if billing address is the same as post address-->
-		<p>Address:</p>
-			<div id="AddressText">
-				<p>Address Line 1</p>
-				<p>Address Line 2</p>
-				<p>Address Line 3</p>
-				<p>City</p>
-				<p>County</p>
-				<p>Postcode</p>
-			</div>
-			<f:facet name="postAddressSubmit">
+	<div id="submitOrder">
+			<f:facet name="orderSubmit">
 				<h:commandbutton class="button" value="submit" action="#{}"/><!-- to submit alternate post address --><br/>
 			</f:facet>
 		<br/>
 	</div>
+</div>
 </div>
 
 </ui:define>

@@ -50,8 +50,8 @@ public class OrderLineManagerALTest {
 		
 		orderlineAL = new ArrayList<OrderLine>();
 		
-		testCustomer1 = new LoginDetails("fooUser", password, salt);
-		employee = new LoginDetails("fooUser2", password, salt);
+		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password, salt);
+		employee = new LoginDetails("fooUser2", "testEmail2", password, salt);
 		
 		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", testCustomer1);
 		

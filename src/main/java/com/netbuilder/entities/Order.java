@@ -126,6 +126,10 @@ public class Order {
 		return status;
 	}
 	
+	public void setStatus(OrderStatus status) {
+		this.status = status;
+	}
+
 	public LoginDetails getEmployee(){
 		return employeeID;
 	}

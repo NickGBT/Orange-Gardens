@@ -46,8 +46,8 @@ public class PaymentDetailsManagerALTests {
 	public void setUp() throws Exception {
 		paymentDetailsManager = new PaymentDetailsManager();
 		
-		c1 = new LoginDetails("fooUser", password, salt);
-		c2 = new LoginDetails("fooUser2", password, salt);
+		c1 = new LoginDetails("fooUser", "testEmail1", password, salt);
+		c2 = new LoginDetails("fooUser2", "testEmail2", password, salt);
 		
 		c1.setUserId(1);
 		c2.setUserId(2);

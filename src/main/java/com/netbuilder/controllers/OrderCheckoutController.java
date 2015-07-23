@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.PaymentDetails;
@@ -57,7 +58,7 @@ public class OrderCheckoutController {
 		productsInOrder = orderManager.findBasket(basket, UserId.getUid()); //find order by customer id and basket status.
 		
 	} */
-	
+	@Inject
 	private OrderDetails order;
 	public List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	private AddressManager address;	
