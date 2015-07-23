@@ -26,17 +26,13 @@ import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
 import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.util.OrderDetails;
+
 /**
  * 
  * @author ngilbert
  *
- */
-import com.netbuilder.util.CustomerUserId;
-import com.netbuilder.util.OrderDetails;
-
-
-/**
- * 
+ *
  * why did i agree to do this class, i'm a fucking idiot.
  *
  */
