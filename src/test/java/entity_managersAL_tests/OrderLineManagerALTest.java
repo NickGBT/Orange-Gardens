@@ -16,6 +16,7 @@ import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -54,7 +55,7 @@ public class OrderLineManagerALTest {
 				"10/10/15", "12/10/15", "13/10/15",
 				"40", true);
 		
-		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product");
+		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
 		
 		orderLine = new OrderLine(order , product, 50);
 		orderLine1 = new OrderLine(order , product, 50);

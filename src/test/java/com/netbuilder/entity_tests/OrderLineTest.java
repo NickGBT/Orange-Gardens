@@ -12,6 +12,7 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
+import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
@@ -48,6 +49,7 @@ public class OrderLineTest {
 	private int height = 35;
 	private double weight = 3;
 	private String description = "A gnome for testing, should never exist";
+	private ProductCategory productCategory = ProductCategory.Accessory;
 	
 	private OrderLine productLine;
 	
@@ -66,7 +68,7 @@ public class OrderLineTest {
 		datePlaced, dateDispatched, dateDelivered,
 		timeToDeliver, refundAvailable);
 		
-		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description);
+		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description, productCategory);
 		
 		productLine = new OrderLine(testOrder, testProduct, quantity);
 	}
