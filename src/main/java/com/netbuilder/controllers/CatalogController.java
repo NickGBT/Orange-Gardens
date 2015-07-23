@@ -14,15 +14,9 @@ import com.netbuilder.entities.Product;
  *
  */
 
-
-
 @Named
 @RequestScoped
 public class CatalogController {
 
-	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();	
-	
-	
-	
+	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();		
 }
-
