@@ -11,7 +11,7 @@ import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
 import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
 import com.netbuilder.util.AccountManagement;
-import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.UserId;
 
 /**
  * 
@@ -43,10 +43,10 @@ public class AccountManagementController
 	
 	public AccountManagementController()
 	{
-		loginDetails = loginDetailsManager.findByUserId(CustomerUserId.getUid());
-		customer = customerManager.findByUserId(CustomerUserId.getUid());
-		address = addressManager.findByUserId(CustomerUserId.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(CustomerUserId.getUid());
+		loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
+		customer = customerManager.findByUserId(UserId.getUid());
+		address = addressManager.findByUserId(UserId.getUid());
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
 	}
 	
 	public LoginDetails getLoginDetails()
