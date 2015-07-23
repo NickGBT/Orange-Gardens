@@ -1,17 +1,11 @@
 package com.netbuilder.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.netbuilder.entities.Order;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
-import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.util.ProductDetails;
 
 /**
  * 
@@ -22,39 +16,22 @@ import com.netbuilder.enums.ProductCategory;
 @Named
 @RequestScoped
 public class ProductController {
+
 	@Inject 
-	private ProductManagerAL productManager; 
-	@Inject
-	private OrderLineManagerAL orderManager;
-	
+	private ProductDetails productD;
 	private Product product;
-	private Order order;
-	private List<Product> products;
-	public Product getProduct() {
-		
+
+	
+	public Product getProduct(){
+		product = productD.getProductId();
 		return product;
 	}
 	
-	public void addToBasket() { 
+	public void addToBasket(){ 
 	}
 	
 	
-	public void addToWishlist() {
+	public void addToWishlist(){
 	}
 	
-
-	
-	public void addToCatalog(){
-		ProductCategory categorySelected;
-		if (categorySelected == null){
-			products = productManager.getAll();
-		}
-		
-		else{
-			products = productManager.findByCategory();
-			
-			
-		}
-	}
-}
 }

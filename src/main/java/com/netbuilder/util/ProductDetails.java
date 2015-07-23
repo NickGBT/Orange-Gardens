@@ -3,6 +3,8 @@ package com.netbuilder.util;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -19,38 +21,17 @@ public class ProductDetails {
 	
 	OrderStatus status;
 	
-	public int getQuantity() {
-		return quantity;
+	private ProductManagerAL productMan;
+	private Product product;
+	
+	public Product getProductId() {
+		product = productMan.findByProductId(productId);
+		return product;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public int getProductId() {
-		return productId;
-	}
+	
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-	public ProductCategory getCategory() {
-		return category;
-	}
-	public void setCategory(ProductCategory category) {
-		this.category = category;
-	}
-	
-
 	
 	
 }
