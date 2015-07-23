@@ -16,7 +16,7 @@ import com.netbuilder.enums.CardType;
 public class AccountManagement 
 {
 	private String fName, lName, email, contactNo, username;
-	private String addressLine1, addressLine2, addressLine3, city, county, postcode;
+	private String addressLabel, addressLine1, addressLine2, addressLine3, city, county, postcode;
 	private boolean isBillingAddress;
 	private CardType cardType;
 	
@@ -134,5 +134,13 @@ public class AccountManagement
 
 	public void setBillingAddress(boolean isBillingAddress) {
 		this.isBillingAddress = isBillingAddress;
+	}
+
+	public String getAddressLabel() {
+		return addressLabel;
+	}
+
+	public void setAddressLabel(String addressLabel) {
+		this.addressLabel = addressLabel;
 	}
 }

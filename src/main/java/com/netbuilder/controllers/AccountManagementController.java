@@ -50,6 +50,7 @@ public class AccountManagementController
 	}
 
 	public void changeAddress(){
+		address.setAddressLabel(accountManagement.getAddressLabel());
 		address.setAddressLine1(accountManagement.getAddressLine1());
 		address.setAddressLine2(accountManagement.getAddressLine2());
 		address.setAddressLine3(accountManagement.getAddressLine3());
@@ -58,6 +59,7 @@ public class AccountManagementController
 		address.setCounty(accountManagement.getCounty());
 		address.setPostcode(accountManagement.getPostcode());
 		address.setBillingAddress(accountManagement.isBillingAddress());
+		
 	}
 	
 	public LoginDetails getLoginDetails()
