@@ -23,7 +23,7 @@ public class LoginDetailsTest
 	@Before
 	public void setUp() throws Exception
 	{
-		testLoginDetails = new LoginDetails(123, "testUser1", testPassword1, testSalt1);
+		testLoginDetails = new LoginDetails(123, "testUser1", "testEmail1", testPassword1, testSalt1);
 	}
 	
 	@Test
@@ -36,6 +36,12 @@ public class LoginDetailsTest
 	public void testGetUsername()
 	{
 		assertEquals(testLoginDetails.getUsername(), "testUser1");
+	}
+	
+	@Test
+	public void testGetEmail()
+	{
+		assertEquals(testLoginDetails.getEmail(), "testEmail1");
 	}
 	
 	@Test
