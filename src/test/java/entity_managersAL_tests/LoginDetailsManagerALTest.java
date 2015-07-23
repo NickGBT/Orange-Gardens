@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
+import com.netbuilder.util.LoginDetailsToolkit;
 
 /**
  * 
@@ -22,15 +23,20 @@ public class LoginDetailsManagerALTest
 	private LoginDetailsManagerAL loginDetailsManager;
 	private LoginDetails loginDetailsTest1, loginDetailsTest2;
 	private List<LoginDetails> testArrayLoginDetails, testArrayLoginDetails2;
-	byte[] testPassword1 = {1,2,3};
-	byte[] testSalt1 = {1,2,3};
-	byte[] testPassword2 = {2,3,4};
-	byte[] testSalt2 = {2,3,4};
+	
+	byte[] testSalt1;
+	byte[] testPassword1; 
+	byte[] testPassword2;
+	byte[] testSalt2;
 	
 	
 	@Before
 	public void setUp() throws Exception
 	{
+		testSalt1 = LoginDetailsToolkit.generateSalt();
+		testPassword1 = LoginDetailsToolkit.getHashedPassword("testPassword", testSalt1);
+		testSalt2 = LoginDetailsToolkit.generateSalt();
+		testPassword2 = LoginDetailsToolkit.getHashedPassword("testPassword", testSalt2);
 		loginDetailsManager = new LoginDetailsManagerAL();
 		testArrayLoginDetails = new ArrayList<LoginDetails>();
 		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail1", testPassword1, testSalt1);
@@ -75,7 +81,10 @@ public class LoginDetailsManagerALTest
 	@Test
 	public void testCheckPassword()
 	{
-		
+		testArrayLoginDetails.clear();
+		testArrayLoginDetails.add(loginDetailsTest1);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
+		assertEquals(123,loginDetailsManager.checkPassword(loginDetailsTest1.getEmail(), "testPassword"));
 	}
 	
 }
