@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
+import com.netbuilder.enums.ProductCategory;
+
 /**
  * 
  * 
@@ -26,6 +28,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
+	@NamedQuery(name = Product.FIND_BY_CATEGORY, query= "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"),
 })
 public class Product {
 	
@@ -33,6 +36,7 @@ public class Product {
 	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";
 	public static final String FIND_BY_PRODUCT_NAME = "Product.findByProductName";
 	public static final String FIND_BY_PRODUCT_PRICE = "Product.findByProductPrice";
+	public static final String FIND_BY_CATEGORY = "Product.findByCategory";
 
 	@Column(name = "image_location", nullable = true, length = 100)
 	@Null
@@ -74,9 +78,13 @@ public class Product {
 	@NotNull
 	@Size(min = 20, max = 1000)
 	private String description;
-
+	
+	@Column(name = "category", nullable = false)
+	@NotNull
+	private ProductCategory category;
+	
 	public Product(String imageLocation, String productName, double productPrice, int width, int height, int length,
-			double weight, String description) {
+			double weight, String description, ProductCategory category) {
 		this.imageLocation = imageLocation;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -85,10 +93,11 @@ public class Product {
 		this.length = length;
 		this.weight = weight;
 		this.description = description;
+		this.category = category;
 	}
 
 	public Product(String productName, double productPrice, int width, int height, int length, double weight,
-			String description) {
+			String description, ProductCategory category) {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;
@@ -96,6 +105,7 @@ public class Product {
 		this.length = length;
 		this.weight = weight;
 		this.description = description;
+		this.category = category;
 	}
 
 	/**
@@ -232,5 +242,21 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	/**
+	 * @return the category
+	 */
+	public ProductCategory getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(ProductCategory category) {
+		this.category = category;
+	}
+	
+	
 
 }

@@ -13,6 +13,7 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.orange_gardens.PersistenceManager;
 
 /**
@@ -106,6 +107,24 @@ public class ProductManagerDB implements ProductManager {
 		pm.closeEntityManager(em);
 		tq.setParameter("lPrice", lowPrice);
 		tq.setParameter("hPrice", highPrice);
+		try{
+			results = new ArrayList<Product>(tq.getResultList());
+		}
+		catch(NoResultException nre){
+			
+		}
+		return results;
+	}
+	
+	public List<Product> findByCategory(ProductCategory category){
+		
+		List<Product> results = null;
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("category", category);
+		
 		try{
 			results = new ArrayList<Product>(tq.getResultList());
 		}
