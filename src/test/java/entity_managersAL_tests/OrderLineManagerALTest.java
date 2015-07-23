@@ -11,6 +11,7 @@ import org.junit.Test;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 import com.netbuilder.enums.EmployeeDepartment;
@@ -34,6 +35,7 @@ public class OrderLineManagerALTest {
 	private EmployeeDepartment employeeDepartment;
 	private EmployeePermissions employeePermission;
 	private OrderStatus orderStatus;
+	private PaymentDetails paymentDetails;
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
 	private Product product;
