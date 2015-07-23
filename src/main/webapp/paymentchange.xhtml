@@ -20,15 +20,14 @@
 <h:form style="display:inline; padding-left=10%">
 	<h2>Payment Method</h2>
 	Card Type : <h:select>
-		<h:option value="#{RegistrationDetails.cardType.visa}">Visa</h:option>
-		<h:option value="#{RegistrationDetails.cardType.masterCard}">MasterCard</h:option>
+		<h:option value="#{AccountManagment.cardType.visa}">Visa</h:option>
+		<h:option value="#{AccountManagment.cardType.masterCard}">MasterCard</h:option>
 	</h:select>
 	<br /><br />
-	Name on Card : <h:inputText type="text" value="#{RegistrationDetails.nameOnCard}" /><br /><br />
-	Card Number : <h:inputText type="text" value="#{RegistrationDetails.cardNumber}" /><br /><br />
-	Expiry Date : <h:inputText type="text" value="#{RegistrationDetails.expiryDate}" /><br /><br />
-	Issue Number : <h:inputText type="text" value="#{RegistrationDetails.issueNumber}" /><br /><br />
-	<h:commandButton id = "submit" value = "Submit" action = "#{ChangeAddressController.registerCustomer()} />
+	Name on Card : <h:inputText type="text" value="#{AccountManagment.nameOnCard}" /><br /><br />
+	Card Number : <h:inputText type="text" value="#{AccountManagment.cardNumber}" /><br /><br />
+	Expiry Date : <h:inputText type="text" value="#{AccountManagment.expiryDate}" /><br /><br />
+	<h:commandButton id = "submit" value = "Submit" action = "#{AccountManagmentController.changePayment()} />
 </h:form>
 </div>
 
