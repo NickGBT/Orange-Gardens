@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -30,7 +31,9 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
  * @author ngilbert
  *
  */
-import com.netbuilder.util.UserId;
+import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.OrderDetails;
+
 
 /**
  * 
@@ -41,7 +44,7 @@ import com.netbuilder.util.UserId;
 @Named
 @RequestScoped
 public class OrderCheckoutController {
-	@Inject
+	/* @Inject
 	private ProductManagerAL productManager;
 	@Inject
 	private OrderManagerAL orderManager;
@@ -76,12 +79,20 @@ public class OrderCheckoutController {
 		
 		productsInOrder = orderManager.findBasket(basket, UserId.getUid()); //find order by customer id and basket status.
 		
+	} */
+	
+	private OrderDetails order;
+	public List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	 
+	public Order getBasket(){
+		order.getBasket();
 	}
+	
 	public PaymentDetails getPaymentDetails(){
 		return paymentDetails;
 	}
 	
 	public Address getAddress(){
-		return address;
-	}
+		return address; 
+	} 
 }
