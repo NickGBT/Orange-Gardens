@@ -19,14 +19,14 @@
 <div id="registerForm">
 <h:form style="display:inline; padding-left=10%">
 	<h2>Address</h2>
-	Address Label : <h:inputText type="text" value="#{ChangeAddressDetails.addressLabel}" /><br /><br />
-	Home Number : <h:inputText type="text" value="#{ChangeAddressDetails.addressLine1}" /><br /><br />
-	Street : <h:inputText type="text" value="#{ChangeAddressDetails.addressLine2}" /><br /><br />
-	City : <h:inputText type="text" value="#{ChangeAddressDetails.city}" /><br /><br />
-	County : <h:inputText type="text" value="#{ChangeAddressDetails.county}" /><br /><br />
-	Post Code : <h:inputText type="text" value="#{ChangeAddressDetails.postcode}" /><br /><br />
-	Is Billing Address? : <h:input type="checkbox" value="#{ChangeAddressDetails.setBillingAdress}" /><br /><br />
-	<h:commandButton id = "submit" value = "Submit" action = "#{ChangeAddressController.registerCustomer()} />
+	Address Label : <h:inputText type="text" value="#{AccountManagment.addressLabel}" /><br /><br />
+	Home Number : <h:inputText type="text" value="#{AccountManagment.addressLine1}" /><br /><br />
+	Street : <h:inputText type="text" value="#{AccountManagment.addressLine2}" /><br /><br />
+	City : <h:inputText type="text" value="#{AccountManagment.city}" /><br /><br />
+	County : <h:inputText type="text" value="#{AccountManagment.county}" /><br /><br />
+	Post Code : <h:inputText type="text" value="#{AccountManagment.postcode}" /><br /><br />
+	Is Billing Address? : <h:input type="checkbox" value="#{AccountManagment.setBillingAdress}" /><br /><br />
+	<h:commandButton id = "submit" value = "Submit" action = "#{AccountManagmentController.changeAddress()} />
 </h:form>
 </div>
 
