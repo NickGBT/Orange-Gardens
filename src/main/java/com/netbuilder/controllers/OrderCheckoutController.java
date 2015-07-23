@@ -6,36 +6,19 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.netbuilder.entities.Product;
-import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.enums.OrderStatus;
-import com.netbuilder.entity_managers.interfaces.ProductManager;
-import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
-import com.netbuilder.entity_managers.interfaces.CustomerManager;
-import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
-import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.util.UserId;
 import com.netbuilder.util.OrderDetails;
-
 /**
  * 
  * @author ngilbert
  *
  *
- * why did i agree to do this class, i'm a fucking idiot.
- *
- */
+ **/
 
 @Named
 @RequestScoped
@@ -59,9 +42,7 @@ public class OrderCheckoutController {
 	
 	private Order order;
 	
-	private Address address;
-	
-	private PaymentDetails paymentDetails;
+
 
 	public OrderCheckoutController(){
 		
@@ -79,16 +60,19 @@ public class OrderCheckoutController {
 	
 	private OrderDetails order;
 	public List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	private AddressManager address;	
+	private PaymentDetailsManager paymentDetails;
+
 	 
-	public Order getBasket(){
-		order.getBasket();
+	public List<OrderLine> getBasket(){
+		return order.getBasket();
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		return paymentDetails;
+		return paymentDetails.findCustomerPaymentDetails(UserId.getUid());
 	}
 	
 	public Address getAddress(){
-		return address; 
+		return address.findByUserId(UserId.getUid()); 
 	} 
 }
