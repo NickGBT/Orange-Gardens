@@ -53,7 +53,7 @@
 					<div id = "Buttons"> 
 						
 						<f:facet name="buttonBasket">
-							<h:commandbutton class = "button" value = "Add to Basket" action =  #{}/>
+							<h:commandbutton class = "button" value = "Add to Basket" action =  #{ProductController.addToBasket}/>
 						</f:facet>
 						
 						Qty : 
@@ -67,7 +67,7 @@
 						</select>
 
 						<f:facet name="buttonWishlist"> 
-							<h:commandbutton class = "button" value = "Add to Wishlist" action = #{}/> 
+							<h:commandbutton class = "button" value = "Add to Wishlist" action = #{ProductController.addToWishlist()}/> 
 						</f:facet> 
 					
 					</div> 
