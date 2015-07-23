@@ -3,8 +3,8 @@ package com.netbuilder.controllers;
 import java.util.ArrayList;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-
 
 import com.netbuilder.entities.Product;
 
@@ -18,5 +18,11 @@ import com.netbuilder.entities.Product;
 @RequestScoped
 public class CatalogController {
 
-	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();		
+
+	@Inject
+	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();	
+	
+	
+	
 }
+

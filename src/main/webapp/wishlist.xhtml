@@ -23,7 +23,7 @@
 	
 	<div>
 		<div id="tableContainer">
-			<t:dataList value="#{wishlistController.productsInWishlist}" var="product">
+			<t:dataList value="#{WishlistController.getWishList}" var="product">
 				<h:outputLabel class="productName" value="#{product.getProductName()"/>
 				<h:outputLabel class="productPrice" value="#{product.getProductPrice()"/>
 				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()"/>

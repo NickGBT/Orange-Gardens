@@ -21,7 +21,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 public class ProductManagerALTests {
 
-	ProductManager productManager;
+	ProductManagerAL productManager;
 	
 	Product p1;
 	Product p2;
