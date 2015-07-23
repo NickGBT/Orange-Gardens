@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.util.Order;
+import com.netbuilder.util.OrderDetails;
 
 /**
  * 
@@ -19,7 +19,7 @@ import com.netbuilder.util.Order;
 @RequestScoped
 public class WishlistController {
 	
-		private Order wishlistGetter;
+		private OrderDetails wishlistGetter;
 		public List<OrderLine> wishlist;
 	
 		@Inject

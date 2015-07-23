@@ -3,20 +3,13 @@ package com.netbuilder.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.util.CustomerUserId;
 
-public class Order {
+public class OrderDetails {
 	
 		int customerUserId;
 		
