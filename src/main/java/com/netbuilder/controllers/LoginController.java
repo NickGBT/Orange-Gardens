@@ -2,7 +2,6 @@ package com.netbuilder.controllers;
 
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
-
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.UserId;
 import com.netbuilder.util.UserDetails;

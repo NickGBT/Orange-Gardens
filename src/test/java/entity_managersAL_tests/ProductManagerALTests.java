@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManager;
+import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
 
@@ -21,7 +21,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 public class ProductManagerALTests {
 
-	ProductManager productManager;
+	ProductManagerAL productManager;
 	
 	Product p1;
 	Product p2;
@@ -35,7 +35,7 @@ public class ProductManagerALTests {
 
 	@Before
 	public void setUp() throws Exception {
-		productManager = new ProductManager();
+		productManager = new ProductManagerAL();
 		
 		p1 = new Product("Trial Gnome", 2.99, 2, 2, 2, 3.5, "A gnome for testing.", ProductCategory.Accessory);
 		p2 = new Product("Diamond Sun Lounger", 999.99, 60, 55, 170, 10.6, "A sun lounger covered in diamonds.", ProductCategory.Accessory);
