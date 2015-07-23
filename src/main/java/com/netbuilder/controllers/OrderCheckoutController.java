@@ -31,15 +31,8 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
  * @author ngilbert
  *
  */
-import com.netbuilder.util.CustomerUserId;
+import com.netbuilder.util.UserId;
 import com.netbuilder.util.OrderDetails;
-
-
-/**
- * 
- * why did i agree to do this class, i'm a fucking idiot.
- *
- */
 
 @Named
 @RequestScoped
@@ -63,9 +56,7 @@ public class OrderCheckoutController {
 	
 	private Order order;
 	
-	private Address address;
-	
-	private PaymentDetails paymentDetails;
+
 
 	public OrderCheckoutController(){
 		
@@ -83,16 +74,19 @@ public class OrderCheckoutController {
 	
 	private OrderDetails order;
 	public List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	private AddressManager address;	
+	private PaymentDetailsManager paymentDetails;
+
 	 
-	public Order getBasket(){
-		order.getBasket();
+	public List<OrderLine> getBasket(){
+		return order.getBasket();
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		return paymentDetails;
+		return paymentDetails.findCustomerPaymentDetails(UserId.getUid());
 	}
 	
 	public Address getAddress(){
-		return address; 
+		return address.findByUserId(UserId.getUid()); 
 	} 
 }
