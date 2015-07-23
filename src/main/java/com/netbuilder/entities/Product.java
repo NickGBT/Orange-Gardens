@@ -28,7 +28,7 @@ import com.netbuilder.enums.ProductCategory;
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
-	@NamedQuery(name = Product.FIND_BY_CATEGORY, query= "SELECT p FROM products p WHERE p.product_category = :category"),
+	@NamedQuery(name = Product.FIND_BY_CATEGORY, query= "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"),
 })
 public class Product {
 	
