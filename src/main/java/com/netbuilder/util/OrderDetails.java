@@ -6,8 +6,8 @@ import java.util.List;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entity_managers.arraylist.OrderManager;
-import com.netbuilder.entity_managers.arraylist.OrderLineManager;
+import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 import com.netbuilder.util.UserId;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,8 +18,8 @@ public class OrderDetails {
 		int customerUserId;
 		private Order order; 
 		
-		private OrderManager orderManager;
-		private OrderLineManager orderLineManager;
+		private OrderManagerAL orderManager;
+		private OrderLineManagerAL orderLineManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");

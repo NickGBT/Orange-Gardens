@@ -17,7 +17,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 @Alternative
 @Stateless
-public class ProductManager implements ProductManager {
+public class ProductManagerAL implements ProductManager {
 
 	private ArrayList<Product> products = new ArrayList<Product>();
 	

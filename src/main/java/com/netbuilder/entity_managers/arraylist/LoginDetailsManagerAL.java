@@ -18,7 +18,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
  */
 @Alternative
 @Stateless
-public class LoginDetailsManager implements LoginDetailsManager {
+public class LoginDetailsManagerAL implements LoginDetailsManager {
 
 	private ArrayList<LoginDetails> loginDetails = new ArrayList<LoginDetails>();
 	

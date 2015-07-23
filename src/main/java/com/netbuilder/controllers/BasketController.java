@@ -2,7 +2,7 @@ package com.netbuilder.controllers;
 
 import javax.inject.Inject;
 
-import com.netbuilder.entity_managers.arraylist.OrderLineManager;
+import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 
 /**
  * 
@@ -12,7 +12,7 @@ import com.netbuilder.entity_managers.arraylist.OrderLineManager;
 
 public class BasketController {
 	@Inject
-	private OrderLineManager orderLineManger;
+	private OrderLineManagerAL orderLineManger;
 	
 	public void updateProductQty() { 
 	}

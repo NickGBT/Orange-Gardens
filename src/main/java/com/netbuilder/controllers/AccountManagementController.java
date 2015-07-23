@@ -8,8 +8,8 @@ import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.arraylist.AddressManagerAL;
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManager;
-import com.netbuilder.entity_managers.arraylist.PaymentDetailsManager;
+import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
+import com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.UserId;
 
@@ -27,7 +27,7 @@ public class AccountManagementController
 	@Inject
 	private LoginDetails loginDetails;
 	@Inject
-	private LoginDetailsManager loginDetailsManager;
+	private LoginDetailsManagerAL loginDetailsManager;
 	@Inject
 	private Customer customer;
 	@Inject
@@ -39,7 +39,7 @@ public class AccountManagementController
 	@Inject
 	private PaymentDetails paymentDetails;
 	@Inject
-	private PaymentDetailsManager paymentDetailsManager;
+	private PaymentDetailsManagerAL paymentDetailsManager;
 	
 	public AccountManagementController()
 	{

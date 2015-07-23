@@ -17,7 +17,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
  */
 @Alternative
 @Stateless
-public class PaymentDetailsManager implements PaymentDetailsManager {
+public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 	
 	private List<PaymentDetails> paymentDetails = new ArrayList<PaymentDetails>();
 	

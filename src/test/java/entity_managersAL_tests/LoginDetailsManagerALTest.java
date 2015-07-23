@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.LoginDetails;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManager;
+import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 
 /**
  * 
@@ -19,7 +19,7 @@ import com.netbuilder.entity_managers.arraylist.LoginDetailsManager;
 
 public class LoginDetailsManagerALTest 
 {
-	private LoginDetailsManager loginDetailsManager;
+	private LoginDetailsManagerAL loginDetailsManager;
 	private LoginDetails loginDetailsTest1, loginDetailsTest2;
 	private List<LoginDetails> testArrayLoginDetails, testArrayLoginDetails2;
 	byte[] testPassword1 = {1,2,3};
@@ -31,7 +31,7 @@ public class LoginDetailsManagerALTest
 	@Before
 	public void setUp() throws Exception
 	{
-		loginDetailsManager = new LoginDetailsManager();
+		loginDetailsManager = new LoginDetailsManagerAL();
 		testArrayLoginDetails = new ArrayList<LoginDetails>();
 		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail1", testPassword1, testSalt1);
 		loginDetailsTest2 = new LoginDetails(456, "testUser2", "testEmail2", testPassword2, testSalt2);
