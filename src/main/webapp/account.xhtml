@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<!-- Alexander Neil -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
+
+		
+	<ui:define name="pageTitle">Welcome <!-- get user's name for here --></ui:define>
+	<ui:define name="content">
+		<div id="content">
+		
+			<h1>Welcome <!-- get user's name for here --></h1>
+			<div id="productScroller">
+				<!-- Load popular products using JS or similar -->
+				<f:facet name="popularScroller">
+				
+				</f:facet>
+			</div>
+			<div id="accountLinks">
+				<!-- Align Center -->
+				<a href="">Manage Account</a><br />
+				<a href="">View Previous Orders</a><br />
+				<a href="">View Wishlist</a><br />
+				<a href="">View Basket></a><br />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
