@@ -88,7 +88,7 @@ public class LoginDetailsManagerALTest
 	}
 	
 	@Test
-	void testUpdateLoginDetails()
+	public void testUpdateLoginDetails()
 	{
 		testArrayLoginDetails.clear();
 		testArrayLoginDetails.add(loginDetailsTest2);
@@ -98,7 +98,7 @@ public class LoginDetailsManagerALTest
 	}
 	
 	@Test
-	void testRemoveLoginDetails()
+	public void testRemoveLoginDetails()
 	{
 		testArrayLoginDetails.add(loginDetailsTest1);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
