@@ -84,7 +84,27 @@ public class LoginDetailsManagerALTest
 		testArrayLoginDetails.clear();
 		testArrayLoginDetails.add(loginDetailsTest1);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
-		assertEquals(123,loginDetailsManager.checkPassword(loginDetailsTest1.getEmail(), "testPassword"));
+		assertEquals(123,loginDetailsManager.checkPassword("testUser1", "testPassword"));
 	}
+	
+	@Test
+	void testUpdateLoginDetails()
+	{
+		testArrayLoginDetails.clear();
+		testArrayLoginDetails.add(loginDetailsTest2);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
+		loginDetailsManager.updateLoginDetails(loginDetailsTest2);
+		assertEquals(loginDetailsManager.getAllLoginDetails(), testArrayLoginDetails);
+	}
+	
+	@Test
+	void testRemoveLoginDetails()
+	{
+		testArrayLoginDetails.add(loginDetailsTest1);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
+		loginDetailsManager.persistLoginDetails(loginDetailsTest2);
+		loginDetailsManager.deleteLoginDetails(loginDetailsTest2);
+		assertEquals(loginDetailsManager.getAllLoginDetails(), testArrayLoginDetails);
+	}	
 	
 }
