@@ -94,7 +94,7 @@ public class LoginDetailsManagerALTest
 		testArrayLoginDetails.add(loginDetailsTest2);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
 		loginDetailsManager.updateLoginDetails(loginDetailsTest2);
-		assertEquals(loginDetailsManager.getAllLoginDetails(), testArrayLoginDetails);
+		assertEquals(loginDetailsManager.getAllLoginDetails(), testArrayLoginDetails.get(0));
 	}
 	
 	@Test
