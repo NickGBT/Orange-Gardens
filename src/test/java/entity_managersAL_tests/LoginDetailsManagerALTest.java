@@ -39,8 +39,8 @@ public class LoginDetailsManagerALTest
 		testPassword2 = LoginDetailsToolkit.getHashedPassword("testPassword", testSalt2);
 		loginDetailsManager = new LoginDetailsManagerAL();
 		testArrayLoginDetails = new ArrayList<LoginDetails>();
-		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail1", testPassword1, testSalt1);
-		loginDetailsTest2 = new LoginDetails(456, "testUser2", "testEmail2", testPassword2, testSalt2);
+		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail@1", testPassword1, testSalt1);
+		loginDetailsTest2 = new LoginDetails(456, "testUser2", "testEmail@2", testPassword2, testSalt2);
 	}
 	
 	@Test
@@ -75,14 +75,12 @@ public class LoginDetailsManagerALTest
 		testArrayLoginDetails.clear();
 		testArrayLoginDetails.add(loginDetailsTest1);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
-		assertEquals(loginDetailsManager.findByEmail("testEmail1"), testArrayLoginDetails.get(0));
+		assertEquals(loginDetailsManager.findByEmail("testEmail@1"), testArrayLoginDetails.get(0));
 	}
 	
 	@Test
 	public void testCheckPassword()
 	{
-		testArrayLoginDetails.clear();
-		testArrayLoginDetails.add(loginDetailsTest1);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
 		assertEquals(123,loginDetailsManager.checkPassword("testUser1", "testPassword"));
 	}
@@ -91,10 +89,11 @@ public class LoginDetailsManagerALTest
 	public void testUpdateLoginDetails()
 	{
 		testArrayLoginDetails.clear();
-		testArrayLoginDetails.add(loginDetailsTest2);
 		loginDetailsManager.persistLoginDetails(loginDetailsTest1);
-		loginDetailsManager.updateLoginDetails(loginDetailsTest2);
-		assertEquals(loginDetailsManager.getAllLoginDetails(), testArrayLoginDetails.get(0));
+		loginDetailsTest1.setUsername("updatedUsername");
+		testArrayLoginDetails.add(loginDetailsTest1);
+		loginDetailsManager.updateLoginDetails(loginDetailsTest1);
+		assertEquals(loginDetailsManager.findByUsername("updatedUsername"), testArrayLoginDetails.get(0));
 	}
 	
 	@Test
