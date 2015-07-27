@@ -31,6 +31,7 @@ public class OrderDetails {
 		private OrderLineManager orderLineManager;
 		private ProductManager productManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
+		private List<Double> subtotals;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Calendar rightNow = Calendar.getInstance();
@@ -91,10 +92,54 @@ public class OrderDetails {
 		public double getItemSubtotal(int productId)
 		{
 			double itemSubtotal;
+			
 			double productPrice =  productManager.findByProductId(productId).getProductPrice();
+			
 			itemSubtotal = productPrice * itemQuantity;
+			
+			subtotals.add(itemSubtotal);
 						
 			return itemSubtotal;
 		}
-
+		
+		
+		/**
+		 * 
+		 *  @author Jordan Taylor
+		 *  
+		 */
+		public double getTotal()
+		{
+			double itemTotal = 0;
+			
+			for (double subtotal : subtotals)
+			{
+				itemTotal = itemTotal + subtotal;
+			}			
+			
+			return itemTotal;			
+		}
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */
+		public void updateBasket()
+		{
+			//needs changing so that it will take both a product id and the new quantity for the basket
+			int productId = 0; //change to equal the passed parameter
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			
+			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
+			
+			for(OrderLine o : associatedOrderLines)
+			{
+				if(o.getProduct().getProductId() == productId)
+				{
+					o.setQuantity(itemQuantity);
+				}
+			}				
+		}
 }

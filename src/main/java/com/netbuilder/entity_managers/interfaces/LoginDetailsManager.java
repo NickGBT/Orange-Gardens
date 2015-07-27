@@ -2,7 +2,6 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 
 /**

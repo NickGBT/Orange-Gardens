@@ -1,105 +1,122 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/template.xhtml">
-		
-		<!-- author: ngilbert -->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="templates/template.xhtml">
 
-		<ui:define name="pageTitle">Catalog</ui:define>
-		<ui:define name="content">
-		
-			<div id="title">
-				<h1>Product Catalog</h1>
+	<!-- author: ngilbert -->
+
+	<ui:define name="pageTitle">Catalog</ui:define>
+	<ui:define name="content">
+
+		<div id="title">
+			<h1>Product Catalog</h1>
+		</div>
+
+		<br />
+
+		<div id="categories">
+			<h1>Categories</h1>
+
+			<br />
+
+			<div id="categorySelector">
+				<h:selectOneMenu value="#{ProductDetails.productCategory}">
+					<f:selectitem value="1" />
+					<f:selectitem value="2" />
+					<f:selectitem value="3" />
+					<f:selectitem value="4" />
+					<f:selectitem value="5" />
+				</h:selectOneMenu>
+				<br /> <br />
+				<button type="button">category</button>
 			</div>
-			
-			<br/>
-			
-			<div id="categories">
-				<h1>
-				Categories 
-				</h1>
-				
-				<br/>
-				
-				<div id="categorySelector">
-					<select>
-						<option value="gnomes">Gnomes</option>
-						<option value="furniture">Furniture</option><!-- Facet to populate selector with categories? -->
-						<option value="water features">Water Features</option>
-					</select>
-					<br/>
-					<br/>
-					<button type="button">category</button>
-				</div>
-			</div>
-<br/>
-			<div id="productSearch">
-				<ui:insert name="NBGardensCatalogSearch">
+		</div>
+		<br />
+		<div id="productSearch">
+			<ui:insert name="NBGardensCatalogSearch">
 				<f:facet name="productSearch">
 					<h:form>
-						<h:inputText id="search" value="#{productsBean.searchString}"/>
+						<h:inputText id="search" value="#{productsBean.searchString}" />
 					</h:form>
 					<!-- searches within the product database for the product name -->
 				</f:facet>
-				<br/>
-				<button type="button">Search</button><!-- should be submitting the jsf form -->
-				<br/>
-			</div>
-			
-			<br/>
-			
-			<div id="catalog">
-				<ui:insert name="NBGardensCatalog">
+				<br />
+				<button type="button">Search</button>
+				<!-- should be submitting the jsf form -->
+				<br />
+		</div>
+
+		<br />
+
+		<div id="catalog">
+			<ui:insert name="NBGardensCatalog">
 				<f:facet name="productCatalog">
 					<!-- places the catalog within the webpage -->
 				</f:facet>
-				
-				<t:dataList value="#{CatalogController.productsInCatalog}" var="product">
-					<div id="productDetailsSmall" style="
-					height: 200px;
-					width: 500px;
-					padding: 10px;
-					border: 2px solid black;
-					margin: 0; 
-				">
-					<div id="productImage" style="float: left; width: 200px;">
-						<f:facet name="productImage">
-							<h:graphicImage value="#{productImage.productController}"/>
-						</f:facet>
-					</div>
-					
-					<div id="productDetails" style="float: left; width: 200px;">
-						<f:facet name="productName">
-							<p><h:outputText value="#{productName.productController}"/></p>
-						</f:facet>
-						<f:facet name="productDescription">
-							<p><h:outputText value="#{productDescription.productController}"/></p>
-						</f:facet>
-						<f:facet name="productPrice">
-							<p><h:outputText value="#{productName.productController}"/></p>
-						</f:facet>
-					</div>
-					
-					<div id="productLinks" style="float: right; width: 100px;">
-						<f:facet name="productPageRef">
-							<button type="button">Product Page</button><!-- should take you to the product page of the product in question --><br><br> 
-						</f:facet>
+
+				<t:dataList value="#{CatalogController.productsInCatalog}"
+					var="product">
+					<div id="productDetailsSmall"
+						style="height: 200px; width: 500px; padding: 10px; border: 2px solid black; margin: 0;">
+						<div id="productImage" style="float: left; width: 200px;">
+							<f:facet name="productImage">
+								<h:graphicImage value="#{productImage.productController}" />
+							</f:facet>
+						</div>
+
+						<div id="productDetails" style="float: left; width: 200px;">
+							<f:facet name="productName">
+								<p>
+									<h:outputText value="#{productName.productController}" />
+								</p>
+							</f:facet>
+							<f:facet name="productDescription">
+								<p>
+									<h:outputText value="#{productDescription.productController}" />
+								</p>
+							</f:facet>
+							<f:facet name="productPrice">
+								<p>
+									<h:outputText value="#{productName.productController}" />
+								</p>
+							</f:facet>
+						</div>
+
+						<div id="productLinks" style="float: right; width: 100px;">
+							<f:facet name="productPageRef">
+								<button type="button">Product Page</button>
+								<!-- should take you to the product page of the product in question -->
+								<br><br> 
+						
+							</f:facet>
 						<f:facet name="addProductToWishlist">
-							<h:commandbutton class="button" value="add product to wishlist" action="#{ProductController.addToWishlist()}"><!-- JSF to be implemented --><br><br> 
-						</f:facet>
+							<h:commandbutton class="button" value="add product to wishlist"
+									action="#{ProductController.addToWishlist()}">
+									<!-- JSF to be implemented -->
+									<br>
+									<br> 
+						
+							</f:facet>
 						<f:facet name="addProductToBasket">
-							<h:commandbutton class="button" value="add product to basket" action="#{ProductContoller.addToBasket()}"><!-- JSF to be implemented -->
-						</f:facet>
+							<h:commandbutton class="button" value="add product to basket"
+									action="#{ProductContoller.addToBasket()}">
+									<!-- JSF to be implemented -->
+						
+							</f:facet>
 					</div>
 					
 				</div>
-				<br/><br/>
+					<br />
+					
+								<br />
 				</t:dataList>
 			
 				
 				
-			</div>
+			
+		</div>
 		</ui:define>
 </html>
