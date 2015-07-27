@@ -8,7 +8,6 @@ import javax.ejb.Stateful;
  *
  */
 
-@Stateful
 public class UserId 
 {
 	private static int customerUid, employeeUid;
