@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -125,8 +126,13 @@ public class LoginDetailsToolkit {
 	 * @return true if hashed passwords match, else false
 	 */
 	public static boolean checkPassword(LoginDetails details, String testPassword){
+		
+		byte[] currPass;
+		byte[] hashedTest;
 		try {
-			if(details.getPassword().equals(getHashedPassword(testPassword, details.getSalt()))) return true;
+			currPass = details.getPassword();
+			hashedTest = getHashedPassword(testPassword, details.getSalt());
+			if(Arrays.equals(currPass, hashedTest)) return true;
 			else return false;
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

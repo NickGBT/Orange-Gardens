@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
 
-import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
