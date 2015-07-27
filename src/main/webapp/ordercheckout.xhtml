@@ -24,6 +24,12 @@
 				
 			<f:facet name="orderLinePopulator">
 			<!-- facet populates the orderline with the relevant order -->	
+			<t:dataList value="#{WishlistController.getWishList}" var="product">
+				<h:outputLabel class="productName" value="#{product.getProductName()"/>
+				<h:outputLabel class="productPrice" value="#{product.getProductPrice()"/>
+				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()"/>
+				<br/><br/>
+			</t:dataList>	
 			<br/>
 						
 			</f:facet>				

@@ -12,7 +12,7 @@ import com.netbuilder.entities.Product;
  * 
  * @author ngilbert
  *
- */
+ **/
 
 @Named
 @RequestScoped

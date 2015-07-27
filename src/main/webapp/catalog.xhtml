@@ -86,10 +86,10 @@
 							<button type="button">Product Page</button><!-- should take you to the product page of the product in question --><br><br> 
 						</f:facet>
 						<f:facet name="addProductToWishlist">
-							<button type="button">Add to Wish list</button><!-- JSF to be implemented --><br><br> 
+							<h:commandbutton class="button" value="add product to wishlist" action="#{ProductController.addToWishlist()}"><!-- JSF to be implemented --><br><br> 
 						</f:facet>
 						<f:facet name="addProductToBasket">
-							<button type="button">Add to Basket</button><!-- JSF to be implemented -->
+							<h:commandbutton class="button" value="add product to basket" action="#{ProductContoller.addToBasket()}"><!-- JSF to be implemented -->
 						</f:facet>
 					</div>
 					

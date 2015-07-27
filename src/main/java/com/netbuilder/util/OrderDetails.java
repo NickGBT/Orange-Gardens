@@ -13,6 +13,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * 
+ * @author ngilbert
+ *
+ **/
+
 public class OrderDetails {
 	
 		int customerUserId;
