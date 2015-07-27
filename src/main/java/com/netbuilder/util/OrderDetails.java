@@ -8,7 +8,9 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.util.UserId;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +23,7 @@ public class OrderDetails {
 		
 		private OrderManager orderManager;
 		private OrderLineManager orderLineManager;
+		private ProductManager productManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
@@ -70,6 +73,22 @@ public class OrderDetails {
 			
 			orderManager.updateOrder(order);
 						
+		}
+		
+		
+		/**
+		 * 
+		 *  @author Jordan Taylor
+		 *  
+		 *
+		 */
+		public double getItemSubtotal(int productId)
+		{
+			double itemSubtotal;
+			double productPrice =  productManager.findByProductId(productId).getProductPrice();
+			itemSubtotal = productPrice * itemQuantity;
+						
+			return itemSubtotal;
 		}
 
 }
