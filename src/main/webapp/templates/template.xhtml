@@ -34,12 +34,8 @@
 					<a href="index.xhtml" class="headerButton">Home</a>
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a>
-					<h:link >
-						<a href="account.xhtml" class="headerButton">Account</a>
-					</h:link>
-					<h:link >
-						<a href="customerlogin.xhtml" class="headerButton">Login</a>
-					</h:link>
+					<h:link rendered="#{login.isLoggedIn()}" outcome="account.xhtml" value="Account" />
+					<h:link rendered="#{!login.isLoggedIn()}" outcome="customerlogin.xhtml" value="Login" />>
 					<br/>
 				</div>
 				
