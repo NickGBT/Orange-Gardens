@@ -10,7 +10,7 @@ import com.netbuilder.util.OrderDetails;
 
 /**
  * 
- * @author mwatson & Jordan Taylor
+ * @author Jordan Taylor
  *
  */
 
@@ -29,17 +29,19 @@ public class BasketController {
 	
 	public void updateProductQty() 
 	{ 
-		//add into xhtml
+		int newQuantity = basketGetter.itemQuantity;
+		
+		
 	}
 	
 	public void updatePorousware() 
 	{
-		//add into xhtml
+		//add into xhtml.. when a user changes yes or no on porousware, update the basket entry
 	}
 	
 	public void removeProduct() 
 	{ 
-		//add into xhtml
+		//add into xhtml.. a remove button per item that allows the removal of a basket item at index
 	}
 	
 }
