@@ -31,6 +31,7 @@ public class OrderDetails {
 		private OrderLineManager orderLineManager;
 		private ProductManager productManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
+		private List<Double> subtotals;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Calendar rightNow = Calendar.getInstance();
@@ -93,8 +94,26 @@ public class OrderDetails {
 			double itemSubtotal;
 			double productPrice =  productManager.findByProductId(productId).getProductPrice();
 			itemSubtotal = productPrice * itemQuantity;
+			subtotals.add(itemSubtotal);
 						
 			return itemSubtotal;
+		}
+		
+		
+		/**
+		 * 
+		 *  @author Jordan Taylor
+		 *  
+		 */
+		public double getTotal()
+		{
+			double itemTotal = 0;
+			for (double subtotal : subtotals)
+			{
+				itemTotal = itemTotal + subtotal;
+			}			
+			
+			return itemTotal;			
 		}
 
 }
