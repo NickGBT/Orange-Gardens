@@ -13,11 +13,11 @@ public class OrderStatusController {
 		private OrderDetails setOrderStatus;
 		
 		//public 
-		public void MoveWishListToBasket(){
+		public void moveWishListToBasket(){
 			setOrderStatus.moveOrderToBasket();
 		}
 		
-		public void PlaceOrder(){
+		public void placeOrder(){
 			setOrderStatus.checkoutOrder();
 		}
 }
