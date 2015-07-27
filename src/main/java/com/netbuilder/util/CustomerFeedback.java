@@ -9,8 +9,6 @@ import javax.inject.Named;
  *
  */
 
-@Named
-@RequestScoped
 public class CustomerFeedback 
 {
 	private String userFeedback;

@@ -1,7 +1,5 @@
 package com.netbuilder.util;
 
-import javax.ejb.Stateful;
-
 /**
  * 
  * @author JustinMabbutt

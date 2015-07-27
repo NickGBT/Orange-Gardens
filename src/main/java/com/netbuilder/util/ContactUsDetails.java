@@ -9,9 +9,6 @@ import javax.inject.Named;
  *
  */
 
-@Named
-@RequestScoped
-
 public class ContactUsDetails {
 	public String telephone;
 	public String mailAddress1;

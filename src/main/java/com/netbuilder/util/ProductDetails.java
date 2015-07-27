@@ -1,8 +1,5 @@
 package com.netbuilder.util;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
@@ -16,8 +13,6 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
-@Named
-@RequestScoped
 public class ProductDetails {
 
 	private int quantity;
