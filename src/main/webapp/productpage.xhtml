@@ -21,7 +21,7 @@
 							<h1> 
 								<f:facet name = "productName">
 									<h:outputLabel for = "product">
-										<h:outputText id = "productLabel" value = "#{}"/>
+										<h:outputText id = "productLabel" value = "#{ProductPageController.getProduct().getProductName()}"/>
 											<!-- Add Product Name String Here -->
 									</h:outputLabel>
 								</f:facet>

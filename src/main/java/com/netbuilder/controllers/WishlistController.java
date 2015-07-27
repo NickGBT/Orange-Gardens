@@ -28,4 +28,6 @@ public class WishlistController {
 			wishlist = wishlistGetter.getWishlist();
 			return wishlist;
 		}
+		
+		//add remove from wishlist functionality?
 }

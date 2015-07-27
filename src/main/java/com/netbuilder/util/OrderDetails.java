@@ -8,19 +8,30 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.util.UserId;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+/**
+ * 
+ * @author ngilbert
+ *
+ **/
 
 public class OrderDetails {
 	
 		int customerUserId;
 		private Order order; 
+		public int itemQuantity;
 		
 		private OrderManager orderManager;
 		private OrderLineManager orderLineManager;
+		private ProductManager productManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
+		private List<Double> subtotals;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Calendar rightNow = Calendar.getInstance();
@@ -69,6 +80,40 @@ public class OrderDetails {
 			
 			orderManager.updateOrder(order);
 						
+		}
+		
+		
+		/**
+		 * 
+		 *  @author Jordan Taylor
+		 *  
+		 *
+		 */
+		public double getItemSubtotal(int productId)
+		{
+			double itemSubtotal;
+			double productPrice =  productManager.findByProductId(productId).getProductPrice();
+			itemSubtotal = productPrice * itemQuantity;
+			subtotals.add(itemSubtotal);
+						
+			return itemSubtotal;
+		}
+		
+		
+		/**
+		 * 
+		 *  @author Jordan Taylor
+		 *  
+		 */
+		public double getTotal()
+		{
+			double itemTotal = 0;
+			for (double subtotal : subtotals)
+			{
+				itemTotal = itemTotal + subtotal;
+			}			
+			
+			return itemTotal;			
 		}
 
 }

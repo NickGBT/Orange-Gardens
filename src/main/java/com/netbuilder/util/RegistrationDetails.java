@@ -2,9 +2,6 @@ package com.netbuilder.util;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 import com.netbuilder.enums.CardType;
 
 /**
@@ -13,8 +10,6 @@ import com.netbuilder.enums.CardType;
  *
  */
 
-@Named
-@RequestScoped
 public class RegistrationDetails 
 {
 	//Customer

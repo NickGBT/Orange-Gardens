@@ -11,8 +11,6 @@ import com.netbuilder.enums.CardType;
  *
  */
 
-@Named
-@RequestScoped
 public class AccountManagement 
 {
 	private String fName, lName, email, contactNo, username;
