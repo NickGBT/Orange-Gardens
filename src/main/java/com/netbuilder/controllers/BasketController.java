@@ -28,6 +28,7 @@ public class BasketController {
 	
 	public void removeProduct() 
 	{ 
+		//add into xhtml
 	}
 	
 }
