@@ -17,6 +17,7 @@ public class OrderDetails {
 	
 		int customerUserId;
 		private Order order; 
+		public int itemQuantity;
 		
 		private OrderManager orderManager;
 		private OrderLineManager orderLineManager;
