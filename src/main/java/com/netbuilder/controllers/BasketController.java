@@ -2,6 +2,8 @@ package com.netbuilder.controllers;
 
 import javax.inject.Inject;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.util.OrderDetails;
+import com.netbuilder.entities.Order;
 
 /**
  * 
@@ -12,17 +14,19 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 public class BasketController {
 	@Inject
 	private OrderLineManager orderLineManger;
+	private Order order;
+	
 	
 	public void updateProductQty() 
 	{ 
 		
 	}
 	
-	public void updatePorouswareQty() 
+	public void updatePorousware() 
 	{
 	}
 	
-	public void deleteProduct() 
+	public void removeProduct() 
 	{ 
 	}
 	
