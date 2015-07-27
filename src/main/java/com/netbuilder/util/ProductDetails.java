@@ -16,6 +16,12 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
+/**
+ * 
+ * @author mwatson
+ *
+ */
+
 @Named
 @RequestScoped
 public class ProductDetails {
