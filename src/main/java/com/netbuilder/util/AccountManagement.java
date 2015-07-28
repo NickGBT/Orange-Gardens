@@ -1,8 +1,5 @@
 package com.netbuilder.util;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 import com.netbuilder.enums.CardType;
 
 /**
