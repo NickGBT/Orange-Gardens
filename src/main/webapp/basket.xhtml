@@ -4,8 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:t="http://myfaces.apache.org/tomahawk"
-	template="templates/template.xhtml">
+	xmlns:t="http://myfaces.apache.org/tomahawk">
 		
 <!-- author: Jordan Taylor -->
 
@@ -54,16 +53,16 @@
 						
 						<div id="quantity" style="float: right; width: 100px;">
 							<f:facet name="productPageRef">
-								<h:outputtext value="Qty: "/>
+								<h:outputText value="Qty: "/>
 								<h:selectOneMenu value="#{BasketController.setItemQuantity()}" onchange="#BasketController.updateProductQty(productId.productController)"> 
-									<f:selectitem value="1"/> 
-									<f:selectitem value="2"/> 
-									<f:selectitem value="3"/> 
-									<f:selectitem value="4"/> 
-									<f:selectitem value="5"/> 
+									<f:selectItem value="1"/> 
+									<f:selectItem value="2"/> 
+									<f:selectItem value="3"/> 
+									<f:selectItem value="4"/> 
+									<f:selectItem value="5"/> 
 								</h:selectOneMenu>
-								<h:outputtext value="Individual Price: #{productPrice.productController}"/>
-								<h:outputtext value="Subtotal: #{BasketController.getSubtotal(productId.productController)}"/>
+								<h:outputText value="Individual Price: #{productPrice.productController}"/>
+								<h:outputText value="Subtotal: #{BasketController.getSubtotal(productId.productController)}"/>
 								<br/>
 							</f:facet>
 							<f:facet name="productRemoveButton">
@@ -76,13 +75,13 @@
 					<br/><br/>
 				</t:dataList>
 			
-			<h:datatable id="total">
+			<h:dataTable id="total">
 				<h:column>
 					<h2>Total: #{basketController.getTotal()}</h2>
 				</h:column>
-			</h:datatable>
+			</h:dataTable>
 		</div>
 	</div>
 </ui:define>
 
-</html>
+</ui:composition>
