@@ -7,7 +7,7 @@ import javax.inject.Named;
  * 
  * @author ngilbert
  *
- */
+ **/
 
 @Named
 @RequestScoped
