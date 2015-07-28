@@ -24,11 +24,11 @@
 
 			<div id="categorySelector">
 				<h:selectOneMenu value="#{ProductDetails.productCategory}">
-					<f:selectitem value="1" />
-					<f:selectitem value="2" />
-					<f:selectitem value="3" />
-					<f:selectitem value="4" />
-					<f:selectitem value="5" />
+					<f:selectItem value="1" />
+					<f:selectItem value="2" />
+					<f:selectItem value="3" />
+					<f:selectItem value="4" />
+					<f:selectItem value="5" />
 				</h:selectOneMenu>
 				<br /> <br />
 				<button type="button">category</button>
@@ -90,23 +90,23 @@
 							<f:facet name="productPageRef">
 								<button type="button">Product Page</button>
 								<!-- should take you to the product page of the product in question -->
-								</br></br> 
+								<br/> 
 						
 							</f:facet>
 						<f:facet name="addProductToWishlist">
-							<h:commandbutton class="button" value="add product to wishlist"
+							<h:commandButton class="button" value="add product to wishlist"
 									action="#{ProductController.addToWishlist()}">
 									<!-- JSF to be implemented -->
-									<br>
-									<br> 
-						
-							</f:facet>
+									<br/>
+									
+							</h:commandButton>
+						</f:facet>
 						<f:facet name="addProductToBasket">
-							<h:commandbutton class="button" value="add product to basket"
+							<h:commandButton class="button" value="add product to basket"
 									action="#{ProductContoller.addToBasket()}">
 									<!-- JSF to be implemented -->
-						
-							</f:facet>
+							</h:commandButton>
+						</f:facet>
 					</div>
 					
 				</div>
@@ -117,7 +117,7 @@
 			
 				
 				
-			
+			</ui:insert>
 		</div>
 		</ui:define>
-</html>
+</ui:composition>
