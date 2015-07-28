@@ -57,7 +57,7 @@ public class OrderLineManagerALTest {
 		
 		orderLineManager = new OrderLineManagerAL();	
 		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
-				"10/10/15", "12/10/15", "13/10/15",
+				"10/10/15", 12380809, "12/10/15", "13/10/15",
 				"40", true, paymentDetails);
 		
 		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);

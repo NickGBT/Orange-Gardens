@@ -46,6 +46,10 @@ public class Order {
 	@NotNull
 	private String datePlaced;
 	
+	@Column (name = "date_placed_millis", nullable = false)
+	@NotNull
+	private long datePlacedInMillis;
+	
 	@Column (name = "date_dispatched", nullable = false)
 	@NotNull
 	private String dateDispatched;
@@ -61,12 +65,13 @@ public class Order {
 	private boolean refundAvailable;
 	
 	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
-			String datePlaced, String dateDispatched, String dateDelivered,
+			String datePlaced, long datePlacedInMillis, String dateDispatched, String dateDelivered,
 			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.employeeID = employeeID;
 		this.status = status;
 		this.datePlaced = datePlaced;
+		this.datePlacedInMillis = datePlacedInMillis;
 		this.dateDispatched = dateDispatched;
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
@@ -89,6 +94,12 @@ public class Order {
 	}
 	public void setDatePlaced(String datePlaced) {
 		this.datePlaced = datePlaced;
+	}
+	public long getDatePlacedInMillis() {
+		return datePlacedInMillis;
+	}
+	public void setDatePlacedInMillis(long datePlacedInMillis) {
+		this.datePlacedInMillis = datePlacedInMillis;
 	}
 	public String getTimeToDeliver() {
 		return timeToDeliver;

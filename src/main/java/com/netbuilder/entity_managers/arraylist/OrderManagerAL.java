@@ -66,6 +66,27 @@ public class OrderManagerAL implements OrderManager {
 		} else
 			return orderResults;
 	}
+	
+	/**
+	 * 
+	 * @author ngilbert
+	 *
+	 **/
+	
+	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis) {
+		List<Order> orderResults = new ArrayList<Order>();
+
+		for (Order o : orders) {
+			if (o.getDatePlacedInMillis() == datePlacedInMillis) {
+				orderResults.add(o);
+			}
+		}
+
+		if (orderResults.isEmpty()) {
+			return null;
+		} else
+			return orderResults;
+	}
 
 	public List<Order> findByDateDispatched(String dateDispatched) {
 		List<Order> orderResults = new ArrayList<Order>();
