@@ -126,10 +126,8 @@ public class OrderDetails {
 		 * @author Jordan Taylor
 		 * 
 		 */
-		public void updateBasket()
+		public void updateBasket(int productId)
 		{
-			//needs changing so that it will take both a product id and the new quantity for the basket
-			int productId = 0; //change to equal the passed parameter
 			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(basketId);	

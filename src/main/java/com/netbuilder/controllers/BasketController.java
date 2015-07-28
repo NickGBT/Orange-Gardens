@@ -17,31 +17,38 @@ import com.netbuilder.util.OrderDetails;
 public class BasketController {
 	@Inject
 	private OrderLineManager orderLineManger;
-	private OrderDetails basketGetter;
+	@Inject
+	private OrderDetails basketDetails;
 	public List<OrderLine> basket;
 	
 	public List<OrderLine> getBasket()
 	{
-		basket = basketGetter.getBasket();
+		basket = basketDetails.getBasket();
 		return basket;	
 	}
 	
-	
-	public void updateProductQty() 
+	public void updateProductQty(int productId) 
 	{ 
-		int newQuantity = basketGetter.itemQuantity;
-		
-		
+		basketDetails.updateBasket(productId);
 	}
 	
-	public void updatePorousware() 
-	{
-		//add into xhtml.. when a user changes yes or no on porousware, update the basket entry
-	}
-	
-	public void removeProduct() 
+	public void removeProduct(int productId) 
 	{ 
 		//add into xhtml.. a remove button per item that allows the removal of a basket item at index
 	}
 	
+	public double getTotal()
+	{
+		return 0;
+	}
+	
+	public double getSubtotal()
+	{
+		return 0;
+	}
+	
+	public void setItemQuantity()
+	{
+
+	}
 }
