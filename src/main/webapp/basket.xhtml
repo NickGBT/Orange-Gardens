@@ -19,11 +19,14 @@
 					<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
 					<h:outputtext value="#{ProductController.getProduct().getProductName()}"/> 
 					<h:outputtext value="Qty: "/>
-					<h:selectOneMenu value="#{OrderDetails.itemQuantity}"> 
-					<f:selectitem value="1"/> <f:selectitem value="2"/> 
-					<f:selectitem value="3"/> <f:selectitem value="4"/> <f:selectitem value="5"/> </h:selectOneMenu>
+					<h:selectOneMenu value="#{OrderDetails.itemQuantity}" onchange="#BasketController.updateProductQty()"> 
+						<f:selectitem value="1"/> 
+						<f:selectitem value="2"/> 
+						<f:selectitem value="3"/> 
+						<f:selectitem value="4"/> 
+						<f:selectitem value="5"/> 
+					</h:selectOneMenu>
 					<h:outputtext value="Individual Price: #{ProductController.getProduct().getProductPrice()}"/>
-					<h:outputtext value="Porousware: "/> <h:selectOneMenu> <f:selectitem value="Yes"/> <f:selectitem value="No"/> </h:selectOneMenu>
 					<h:outputtext value="Subtotal: #{OrderDetails.getItemSubtotal(ProductController.getProduct().getProductId())}"/>
 				</h:column>
 			</h:datatable>

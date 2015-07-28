@@ -2,9 +2,6 @@ package com.netbuilder.util;
 
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 
@@ -14,8 +11,6 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
  *
  */
 
-@Named
-@RequestScoped
 public class StoreFrontProducts
 {
 	private ProductManager productManager;

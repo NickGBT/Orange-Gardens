@@ -21,6 +21,7 @@ import com.netbuilder.entities.LoginDetails;
  * @author Alexander Neil
  *
  */
+
 public class LoginDetailsToolkit {
 	/**
 	 * Generates a new 8-byte salt.
