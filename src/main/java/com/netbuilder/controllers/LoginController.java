@@ -25,6 +25,7 @@ public class LoginController {
 	private String name;
 	private String password;
 	private int userId;
+	private boolean loggedIn = true;
 
 	public String login(){
 		
@@ -48,8 +49,12 @@ public class LoginController {
 	public void logout(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
-	
-	public boolean isLoggedIn(){
-		return userId >= 0;
+
+	public boolean getLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 }
