@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
@@ -14,10 +14,8 @@
 	<div class="title">
 		<h1>NB GARDENS</h1>
 	</div>
-</ui:define>
-<body>
 	<div id="homeImg">
-		<img src="NBGardens.jpg" alt="" style="width: 600px; height: 600px;" />
+		<h:graphicImage value="NBGardens.jpg" width="600"  height="600"/>
 	</div>
 
 	<div id="specialOffers">
@@ -26,8 +24,8 @@
 			<ui:repeat var="newProduct"
 				items="${HomepageController.getNewProducts()}">
 				<tr>
-					<td><img src="${newProduct.imageLocation}" alt=""
-						style="width: 200px; height: 200px;" /></td>
+					<td><h:graphicImage value="${newProduct.imageLocation}" 
+						width="200" height="200" /></td>
 
 				</tr>
 				<tr>
@@ -46,5 +44,5 @@
 			</tr>
 		</table>
 	</div>
-</body>
-</html>
+</ui:define>
+</ui:composition>
