@@ -55,7 +55,7 @@
 						<div id="quantity" style="float: right; width: 100px;">
 							<f:facet name="productPageRef">
 								<h:outputtext value="Qty: "/>
-								<h:selectOneMenu value="#{OrderDetails.itemQuantity}" onchange="#BasketController.updateProductQty(productId.productController)"> 
+								<h:selectOneMenu value="#{BasketController.setItemQuantity()}" onchange="#BasketController.updateProductQty(productId.productController)"> 
 									<f:selectitem value="1"/> 
 									<f:selectitem value="2"/> 
 									<f:selectitem value="3"/> 
@@ -63,11 +63,11 @@
 									<f:selectitem value="5"/> 
 								</h:selectOneMenu>
 								<h:outputtext value="Individual Price: #{productPrice.productController}"/>
-								<h:outputtext value="Subtotal: #{OrderDetails.getItemSubtotal(productId.productController}"/>
+								<h:outputtext value="Subtotal: #{BasketController.getSubtotal(productId.productController)}"/>
 								<br/>
 							</f:facet>
 							<f:facet name="productRemoveButton">
-								<button type="button" action = "#{BasketController.removeProduct(productId.productController)}">Remove Item </button>
+								<button type="button" action = "#{BasketController.removeBasketItem(productId.productController)}">Remove Item </button>
 									
 								<br/><br/> 
 							</f:facet>
@@ -78,7 +78,7 @@
 			
 			<h:datatable id="total">
 				<h:column>
-					<h2>Total: #{OrderDetails.getTotal()}</h2>
+					<h2>Total: #{basketController.getTotal()}</h2>
 				</h:column>
 			</h:datatable>
 		</div>

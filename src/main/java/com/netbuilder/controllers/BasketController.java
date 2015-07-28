@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.util.OrderDetails;
 
@@ -14,12 +13,12 @@ import com.netbuilder.util.OrderDetails;
  *
  */
 
-public class BasketController {
-	@Inject
-	private OrderLineManager orderLineManger;
+public class BasketController 
+{
 	@Inject
 	private OrderDetails basketDetails;
 	public List<OrderLine> basket;
+	private double subtotal, total;
 	
 	public List<OrderLine> getBasket()
 	{
@@ -29,26 +28,28 @@ public class BasketController {
 	
 	public void updateProductQty(int productId) 
 	{ 
-		basketDetails.updateBasket(productId);
+		basketDetails.updateBasketQuantity(productId);
 	}
 	
-	public void removeProduct(int productId) 
-	{ 
-		//add into xhtml.. a remove button per item that allows the removal of a basket item at index
+	public void removeBasketItem(int productId) 
+	{ 	//functionality needs to be added to remove an orderline from an order
+		//basketDetails.removeBasketItem(productId);
 	}
 	
 	public double getTotal()
 	{
-		return 0;
+		total = basketDetails.getTotal();
+		return total;
 	}
 	
-	public double getSubtotal()
+	public double getSubtotal(int productId)
 	{
-		return 0;
+		subtotal = basketDetails.getItemSubtotal(productId);
+		return subtotal;
 	}
 	
-	public void setItemQuantity()
+	public void setItemQuantity(int newItemQuantity)
 	{
-
+		basketDetails.setItemQuantity(newItemQuantity);
 	}
 }

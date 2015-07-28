@@ -127,7 +127,7 @@ public class OrderDetails {
 		 * @author Jordan Taylor
 		 * 
 		 */
-		public void updateBasket(int productId)
+		public void updateBasketQuantity(int productId)
 		{
 			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
 			
@@ -140,5 +140,38 @@ public class OrderDetails {
 					o.setQuantity(itemQuantity);
 				}
 			}				
+		}
+		
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */ //functionality needs to be added to remove from an order
+		/*public void removeBasketItem(int productId)
+		{
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			
+			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
+			
+			for(OrderLine o : associatedOrderLines)
+			{
+				if(o.getProduct().getProductId() == productId)
+				{
+					o.setQuantity(itemQuantity);
+				}
+			}				
+		}*/ 
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */
+		public void setItemQuantity(int newItemQuantity)
+		{
+			itemQuantity = newItemQuantity;
 		}
 }
