@@ -1,13 +1,10 @@
 package com.netbuilder.util;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 /**
  * 
  * @author ngilbert
  *
- */
+ **/
 
 public class ContactUsDetails {
 	public String telephone;
