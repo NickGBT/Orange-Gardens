@@ -17,18 +17,18 @@
 	<h4>What is your user name or email address?</h4>
 
 	<h:form>
-		<h:inputText id="loginDetails" value="#{UserDetails.}" maxlength="45" size="20"></h:inputText>
+		<h:inputText id="loginDetails" value="#{login.name}" maxlength="45" size="20"></h:inputText>
 	</h:form>
 
 	<h4>What is your password?</h4>
 
 	<h:form>
-		<h:inputSecret id="password" value="#{UserDetails.password}" maxlength="45" size="20"></h:inputSecret>
+		<h:inputSecret id="password" value="#{login.password}" maxlength="45" size="20"></h:inputSecret>
 	</h:form>
 
 	<br/>
 	<f:facet name="loginSubmit">
-		<h:commandbutton class="button" value="Sign In" action="#{LoginController.checkSignInMethod}"/>
+		<h:commandbutton class="button" value="Sign In" action="#{login.login()}"/>
 	</f:facet>
 	<br/>
 	<br/>
