@@ -89,6 +89,7 @@ public class OrderDetails {
 		 *  
 		 *
 		 */
+		
 		public double getItemSubtotal(int productId)
 		{
 			double itemSubtotal;
@@ -126,10 +127,8 @@ public class OrderDetails {
 		 * @author Jordan Taylor
 		 * 
 		 */
-		public void updateBasket()
+		public void updateBasketQuantity(int productId)
 		{
-			//needs changing so that it will take both a product id and the new quantity for the basket
-			int productId = 0; //change to equal the passed parameter
 			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
@@ -141,5 +140,38 @@ public class OrderDetails {
 					o.setQuantity(itemQuantity);
 				}
 			}				
+		}
+		
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */ //functionality needs to be added to remove from an order
+		/*public void removeBasketItem(int productId)
+		{
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			
+			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
+			
+			for(OrderLine o : associatedOrderLines)
+			{
+				if(o.getProduct().getProductId() == productId)
+				{
+					o.setQuantity(itemQuantity);
+				}
+			}				
+		}*/ 
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */
+		public void setItemQuantity(int newItemQuantity)
+		{
+			itemQuantity = newItemQuantity;
 		}
 }

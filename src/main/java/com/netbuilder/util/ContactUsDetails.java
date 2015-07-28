@@ -4,7 +4,7 @@ package com.netbuilder.util;
  * 
  * @author ngilbert
  *
- */
+ **/
 
 public class ContactUsDetails {
 	public String telephone;
