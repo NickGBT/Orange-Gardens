@@ -20,7 +20,7 @@
 			</div>
 			
 			<div id="Contact Details">
-				<ui:insert name="NBGardensContactDetails">
+				<ui:insert name="NBGardensContactDetails"/>
 				<h:outputLabel class="telephone" value="#{ContactDetailsController.contactDetails.getTelephone()"/>
 				<h:outputLabel class="mailAddress1" value="#{ContactDetailsController.contactDetails.getMailAddress1()"/>
 				<h:outputLabel class="mailAddress2" value="#{ContactDetailsController.contactDetails.getMailAddress2()"/>
@@ -34,4 +34,4 @@
 			</div>
 			
 		</ui:define>
-</html>
+</ui:composition>
