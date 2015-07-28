@@ -35,8 +35,8 @@
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a>
 					<h:link rendered="#{login.isLoggedIn()}" outcome="account.xhtml" value="Account" />
-					<h:link rendered="#{!(login.isLoggedIn())}" outcome="customerlogin.xhtml" value="Login" />>
-<!-- 				<h:link rendered="#{login.isLoggedIn()}" outcome="#{login.logout()}" value="Account" />		-->
+					<h:link rendered="#{login.isLoggedIn()!=false}" outcome="customerlogin.xhtml" value="Login" />
+					<!--<h:link rendered="#{login.isLoggedIn()}" outcome="#{login.logout()}" value="Account" />-->	
 					<br/>
 				</div>
 				
