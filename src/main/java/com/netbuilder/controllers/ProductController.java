@@ -14,8 +14,8 @@ import com.netbuilder.util.ProductDetails;
  *
  */
 
-@Named
-@RequestScoped
+//@Named
+//@RequestScoped
 public class ProductController {
 
 	@Inject 

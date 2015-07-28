@@ -12,7 +12,7 @@ import com.netbuilder.util.CustomerFeedback;
 
 public class FeedbackController 
 {
-	@Inject
+	//@Inject
 	private CustomerFeedback customerFeedback;
 	private String notification;
 	

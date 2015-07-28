@@ -11,6 +11,6 @@ import com.netbuilder.util.ContactUsDetails;
  **/
 
 public class ContactDetailsController {
-	@Inject
+	//@Inject
 	private ContactUsDetails contactDetails;
 }

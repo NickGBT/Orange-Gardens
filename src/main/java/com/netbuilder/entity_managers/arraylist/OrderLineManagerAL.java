@@ -3,6 +3,8 @@ package com.netbuilder.entity_managers.arraylist;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.inject.Alternative;
+
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 
@@ -12,6 +14,7 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
  *
  */
 
+@Alternative
 public class OrderLineManagerAL implements OrderLineManager{
 
 	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();

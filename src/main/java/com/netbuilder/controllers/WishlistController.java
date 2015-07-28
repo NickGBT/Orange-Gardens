@@ -16,8 +16,8 @@ import com.netbuilder.util.OrderDetails;
  *
  */
 
-@Named
-@RequestScoped
+//@Named
+//@RequestScoped
 public class WishlistController {
 	
 		private OrderDetails wishlistGetter;
