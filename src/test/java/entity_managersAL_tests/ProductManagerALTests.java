@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
-import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
 
 /**
