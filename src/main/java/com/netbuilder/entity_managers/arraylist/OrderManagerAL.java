@@ -67,6 +67,12 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 	
+	/**
+	 * 
+	 * @author ngilbert
+	 *
+	 **/
+	
 	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis) {
 		List<Order> orderResults = new ArrayList<Order>();
 

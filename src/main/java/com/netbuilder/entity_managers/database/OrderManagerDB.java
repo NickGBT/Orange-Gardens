@@ -101,6 +101,12 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 	
+	/**
+	 * 
+	 * @author ngilbert
+	 *
+	 **/
+	
 	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis) {
 		List<Order> orders = new ArrayList<Order>();
 		
