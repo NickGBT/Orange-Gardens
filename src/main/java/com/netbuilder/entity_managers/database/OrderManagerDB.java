@@ -29,6 +29,7 @@ import com.netbuilder.orange_gardens.PersistenceManager;
 			   @NamedQuery(name = "FindByStatus" , query = "SELECT a FROM order WHERE a.status = :status"),
 			   @NamedQuery(name = "FindByDateDispatched" , query = "SELECT a FROM order WHERE a.date_dispatched = :date_dispatched"),
 			   @NamedQuery(name = "FindByDatePlaced" , query = "SELECT a FROM order WHERE a.date_placed = :date_placed"),
+			   @NamedQuery(name = "FindByDatePlacedInMillis" , query = "SELECT a FROM order WHERE a.date_placed_millis = :date_placed_millis"),
 			   @NamedQuery(name = "FindByDateDelivered" , query = "SELECT a FROM order WHERE a.date_delivered = :date_delivered"),
 			   @NamedQuery(name = "FindByTwoDatesOrderPlaced" , query = "SELECT a FROM order WHERE a.date_placed BETWEEN :fDate AND sDate"),
 			   @NamedQuery(name = "FindByTwoDatesOrderDispatched" , query = "SELECT a FROM order WHERE a.date_dispatched BETWEEN :fDate AND sDate"),
@@ -90,6 +91,24 @@ public class OrderManagerDB implements OrderManager {
 		TypedQuery<Order> tq = em.createNamedQuery("FindByDatePlaced", Order.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("date_placed", datePlaced);
+		
+		try{ 
+			orders = (ArrayList<Order>)tq.getResultList();			
+		} catch(NoResultException nre) {
+		return null;
+		}
+		
+		return orders;
+	}
+	
+	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis) {
+		List<Order> orders = new ArrayList<Order>();
+		
+		
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Order> tq = em.createNamedQuery("FindByDatePlacedInMillis", Order.class);
+		pm.closeEntityManager(em);
+		tq.setParameter("date_placed_millis", datePlacedInMillis);
 		
 		try{ 
 			orders = (ArrayList<Order>)tq.getResultList();			

@@ -78,6 +78,8 @@ public class OrderDetails {
 			
 			order.setDatePlaced((dateFormat.format(rightNow.getTime())));
 			
+			order.setDatePlacedInMillis(rightNow.getTimeInMillis());
+			
 			orderManager.updateOrder(order);
 						
 		}
