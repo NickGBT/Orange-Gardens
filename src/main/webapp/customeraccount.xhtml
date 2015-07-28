@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core">
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:t="http://myfaces.apache.org/tomahawk"
+		template="templates/template.xhtml">
 		
 <!-- author: JustinMabbutt -->
 		
@@ -24,62 +26,62 @@
 		</div>
 	</div>
 	<div id="MainBlock">
-		<h:outputtext value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
+		<h:outputText value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
 		<f:facet name="firstNameChange">
-			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/><br/>
 		</f:facet>
 		
-		<h:outputtext value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
+		<h:outputText value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
 		<f:facet name="lastNameChange">
-			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
 		</f:facet>
 
-		<h:outputtext value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
+		<h:outputText value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
 		<f:facet name="emailChange">
-			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/><br/>
 		</f:facet>
 
-		<h:outputtext value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
+		<h:outputText value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
 		<f:facet name="contactNumberChange">
-			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeContactNo())}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo())}"/><br/>
 		</f:facet>
 
-		<h:outputtext value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
+		<h:outputText value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
 		<f:facet name="usernameChange">
-			<h:commandbutton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/><br/>
 		</f:facet>
 		
 		<p>Payment Methods:</p>
 		<h:selectOneMenu>
-			<f:selectitem value="#{CardType.VISA}"/>
-			<f:selectitem value="#{CardType.VISADEBIT}"/>
-			<f:selectitem value="#{CardType.VISAELECTRON}"/>
-			<f:selectitem value="#{CardType.MAESTRO}"/>
-			<f:selectitem value="#{CardType.MASTERCARD}"/>
-			<f:selectitem value="#{CardType.AMERICANEXPRESS}"/>
+			<f:selectItem value="#{CardType.VISA}"/>
+			<f:selectItem value="#{CardType.VISADEBIT}"/>
+			<f:selectItem value="#{CardType.VISAELECTRON}"/>
+			<f:selectItem value="#{CardType.MAESTRO}"/>
+			<f:selectItem value="#{CardType.MASTERCARD}"/>
+			<f:selectItem value="#{CardType.AMERICANEXPRESS}"/>
 		</h:selectOneMenu>
 		
 		<p>Address:</p>
 		<div id="AddressText">
-			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine1()}"/>
-			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine2()}"/>
-			<h:outputtext value="#{AccountManagementController.getAddress().getAddressLine3()}"/>
-			<h:outputtext value="#{AccountManagementController.getAddress().getCity()}"/>
-			<h:outputtext value="#{AccountManagementController.getAddress().getCounty()}"/>
-			<h:outputtext value="#{AccountManagementController.getAddress().getPostcode()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine1()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine2()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine3()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getCity()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getCounty()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/>
 		</div>
 		<f:facet name="addressChange">
-			<h:commandbutton class="button" value="Change" action="#{}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{}"/><br/>
 		</f:facet>
 	</div>
 
 	<div id="PasswordBlock">
 		<p>Want to change your password?</p>
 		<f:facet name="addressChange">
-			<h:commandbutton class="button" value="Reset Password" action="#{}"/><br/>
+			<h:commandButton class="button" value="Reset Password" action="#{}"/><br/>
 		</f:facet>
 	</div>
 </div>
 </ui:define>
 
-</html>
+</ui:composition>
