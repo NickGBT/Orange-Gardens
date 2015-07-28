@@ -19,7 +19,7 @@ public interface OrderManager {
 		//public void persistOrder(List<Order> order);
 		
 		//READ
-		public Order findByOrderID(int OrderID);
+		public Order findByOrderID(int orderID);
 		public List<Order> findByStatus(OrderStatus status);
 		
 		public List<Order> findByDatePlaced(String datePlaced);
@@ -38,5 +38,4 @@ public interface OrderManager {
 		
 		//UPDATE
 		public void updateOrder(Order order);
-	
 }
