@@ -1,10 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core">
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
 		
 <!-- author: JustinMabbutt -->
 
@@ -23,14 +24,14 @@
 	</h:form>
 	<br/>
 	<f:facet name="loginSubmit">
-		<h:commandbutton class="button" value="Sign In" action="#{login.login()}"/>
+		<h:commandButton class="button" value="Sign In" action="#{login.login()}"/>
 	</f:facet>
 	<br/>
 	<br/>
 	<f:facet name="accountCreate">
-		<h:commandbutton class="button" value="Register an account" action="#{RegistrationController.registerCustomer}"/>
+		<h:commandButton class="button" value="Register an account" action="#{RegistrationController.registerCustomer}"/>
 	</f:facet>
 </div>
 </ui:define>
 
-</html>	
+</ui:composition>	
