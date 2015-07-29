@@ -1,10 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core">
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
 		
 		
 <!-- Author: Matthew Watson -->
@@ -16,7 +17,7 @@
 		
 				<h1> Order No : 
 						<f:facet name= "orderId"> 
-							<h:outputText value = "#{}"/>
+							<h:outputText value = ""/>
 							<!-- Order Id header text here -->
 						</f:facet> 
 					Successfully Placed 
@@ -28,7 +29,7 @@
 					</div>
 				
 					<div id = "ConfirmationPageTable"> 
-						<h:dataTable id = "ConfirmationPageTable" value="#{}"> <!-- Table input values here -->
+						<h:dataTable id = "ConfirmationPageTable" value=""> <!-- Table input values here -->
 							<f:facet name = "ConfirmationHeader">
 								<h:outputText value = "Cart"/>
 							</f:facet>
@@ -37,7 +38,7 @@
 								<f:facet name="productName"> 
 									<h:outputText value = "Product Name"/>
 								</f:facet>
-								<h:outputText value = "#{}"/> 
+								<h:outputText value = ""/> 
 								<!-- Product Name Here -->
 							</h:column>
 							
@@ -45,7 +46,7 @@
 								<f:facet name="productQty"> 
 									<h:outputText value = "Quantity"/>
 								</f:facet>
-								<h:outputText value = "#{}"/> 
+								<h:outputText value = ""/> 
 								<!-- Product Quantity Here -->
 							</h:column>
 							
@@ -53,12 +54,12 @@
 								<f:facet name="totalProductPrice"> 
 									<h:outputText value = "Price"/>
 								</f:facet>
-								<h:outputText value = "#{}"/> 
+								<h:outputText value = ""/> 
 								<!-- Total Product Price Here -->
 							</h:column>
 							
 							<f:facet name = "subTotal">
-								<h:outputText value = "Subtotal: #{}"/>
+								<h:outputText value = "Subtotal: "/>
 								<!-- Subtotal here -->
 							</f:facet>						
 						</h:dataTable>
@@ -75,4 +76,4 @@
 		
 		
 		</ui:define>
-</html>
+</ui:composition>

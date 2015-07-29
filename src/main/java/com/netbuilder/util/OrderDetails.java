@@ -78,6 +78,8 @@ public class OrderDetails {
 			
 			order.setDatePlaced((dateFormat.format(rightNow.getTime())));
 			
+			order.setDatePlacedInMillis(rightNow.getTimeInMillis());
+			
 			orderManager.updateOrder(order);
 						
 		}
@@ -89,11 +91,15 @@ public class OrderDetails {
 		 *  
 		 *
 		 */
+		
 		public double getItemSubtotal(int productId)
 		{
 			double itemSubtotal;
+			
 			double productPrice =  productManager.findByProductId(productId).getProductPrice();
+			
 			itemSubtotal = productPrice * itemQuantity;
+			
 			subtotals.add(itemSubtotal);
 						
 			return itemSubtotal;
@@ -108,6 +114,7 @@ public class OrderDetails {
 		public double getTotal()
 		{
 			double itemTotal = 0;
+			
 			for (double subtotal : subtotals)
 			{
 				itemTotal = itemTotal + subtotal;
@@ -115,5 +122,58 @@ public class OrderDetails {
 			
 			return itemTotal;			
 		}
-
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */
+		public void updateBasketQuantity(int productId)
+		{
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			
+			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
+			
+			for(OrderLine o : associatedOrderLines)
+			{
+				if(o.getProduct().getProductId() == productId)
+				{
+					o.setQuantity(itemQuantity);
+				}
+			}				
+		}
+		
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */ //functionality needs to be added to remove from an order
+		/*public void removeBasketItem(int productId)
+		{
+			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			
+			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
+			
+			for(OrderLine o : associatedOrderLines)
+			{
+				if(o.getProduct().getProductId() == productId)
+				{
+					o.setQuantity(itemQuantity);
+				}
+			}				
+		}*/ 
+		
+		
+		/**
+		 * 
+		 * @author Jordan Taylor
+		 * 
+		 */
+		public void setItemQuantity(int newItemQuantity)
+		{
+			itemQuantity = newItemQuantity;
+		}
 }

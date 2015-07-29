@@ -14,12 +14,12 @@ import com.netbuilder.entities.Product;
  *
  **/
 
-@Named
-@RequestScoped
+//@Named
+//@RequestScoped
 public class CatalogController {
 
 
-	@Inject
+	//@Inject
 	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();	
 	
 	

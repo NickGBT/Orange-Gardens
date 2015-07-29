@@ -1,7 +1,11 @@
-<html	xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core">
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
 		
 <!-- author: JustinMabbutt -->
 
@@ -9,31 +13,31 @@
 
 <ui:define name="content">
 <div id="MainContent">
-	<H1>Give us your feedback</H1>
+	<h1>Give us your feedback</h1>
 	
-	<H4>What specific area do you wish to address?</H4>
+	<h4>What specific area do you wish to address?</h4>
 	
-	<select>
-		<option>Customer Support</option>
-		<option>Technical Support</option>
-	</select>
+	<h:selectOneMenu>
+		<f:selectItem itemValue="Customer Support" itemLabel="Customer Support"/>
+		<f:selectItem itemValue="Technical Support" itemLabel="Technical Support"/>
+	</h:selectOneMenu>
 	
-	<H4>Tell us what you think:</H4>
+	<h4>Tell us what you think:</h4>
 	
 	<div id="Feedback">
 		<f:facet name="feedback">
-			<h:inputtextarea rows="10" cols="50"/>
+			<h:inputTextarea id="textArea" rows="10" cols="50" value="Enter feedback here..."/>
 		</f:facet>
 	</div>
 	
 	<br />
 	<f:facet name="feedbackSubmit">
-		<h:commandbutton class="button" value="Send Feedback" action="#{}"/>
+		<h:commandButton class="button" value="Send Feedback" action="#{}"/>
 	</f:facet>
 	<f:facet name="feedbackCancel">
-		<h:commandbutton class="button" value="Cancel" action="#{}"/>
+		<h:commandButton class="button" value="Cancel" action="#{}"/>
 	</f:facet>
 </div>
 </ui:define>
 
-</html>	
+</ui:composition>	

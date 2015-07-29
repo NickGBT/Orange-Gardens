@@ -3,7 +3,7 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/exampletemplate.xhtml">
+		template="templates/template.xhtml">
 		
 		<!-- author: ngilbert -->
 
@@ -20,18 +20,18 @@
 			</div>
 			
 			<div id="Contact Details">
-				<ui:insert name="NBGardensContactDetails">
-				<h:outputLabel class="telephone" value="#{contactUsDetails.getTelephone()"/>
-				<h:outputLabel class="mailAddress1" value="#{contactUsDetails.getMailAddress1()"/>
-				<h:outputLabel class="mailAddress2" value="#{contactUsDetails.getMailAddress2()"/>
-				<h:outputLabel class="mailAddress3" value="#{contactUsDetails.getMailAddress3()"/>
-				<h:outputLabel class="mailAddress4" value="#{contactUsDetails.getMailAddress4()"/>
-				<h:outputLabel class="mailAddress5" value="#{contactUsDetails.getMailAddress5()"/>
+				<ui:insert name="NBGardensContactDetails"/>
+				<h:outputLabel class="telephone" value="#{ContactDetailsController.contactDetails.getTelephone()"/>
+				<h:outputLabel class="mailAddress1" value="#{ContactDetailsController.contactDetails.getMailAddress1()"/>
+				<h:outputLabel class="mailAddress2" value="#{ContactDetailsController.contactDetails.getMailAddress2()"/>
+				<h:outputLabel class="mailAddress3" value="#{ContactDetailsController.contactDetails.getMailAddress3()"/>
+				<h:outputLabel class="mailAddress4" value="#{ContactDetailsController.contactDetails.getMailAddress4()"/>
+				<h:outputLabel class="mailAddress5" value="#{ContactDetailsController.contactDetails.getMailAddress5()"/>
 				<f:facet name="emailUs">
-					<h:outputLabel class="email" value="#{contactUsDetails.getEmail()"/>
+					<h:outputLabel class="email" value="#{ContactDetailsController.contactDetails.getEmail()"/>
 					<!-- Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
 				</f:facet>
 			</div>
 			
 		</ui:define>
-</html>
+</ui:composition>

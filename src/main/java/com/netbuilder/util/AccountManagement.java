@@ -1,8 +1,5 @@
 package com.netbuilder.util;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-
 import com.netbuilder.enums.CardType;
 
 /**
@@ -11,8 +8,6 @@ import com.netbuilder.enums.CardType;
  *
  */
 
-@Named
-@RequestScoped
 public class AccountManagement 
 {
 	private String fName, lName, email, contactNo, username;

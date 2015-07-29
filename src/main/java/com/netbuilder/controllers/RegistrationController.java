@@ -17,7 +17,7 @@ import com.netbuilder.util.RegistrationDetails;
 
 public class RegistrationController
 {
-	@Inject
+	//@Inject
 	private RegistrationDetails registrationDetails;
 	private String errorMsg;
 	private Customer customer;

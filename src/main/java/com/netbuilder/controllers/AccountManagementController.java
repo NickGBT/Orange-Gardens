@@ -24,19 +24,19 @@ public class AccountManagementController
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
-	@Inject
+	//@Inject
 	private LoginDetails loginDetails;
 	@Inject
 	private LoginDetailsManager loginDetailsManager;
-	@Inject
+	//@Inject
 	private Customer customer;
 	@Inject
 	private CustomerManager customerManager;
-	@Inject
+	//@Inject
 	private Address address;
 	@Inject
 	private AddressManager addressManager;
-	@Inject
+	//@Inject
 	private PaymentDetails paymentDetails;
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;

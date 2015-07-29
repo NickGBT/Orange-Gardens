@@ -1,53 +1,60 @@
 package com.netbuilder.controllers;
 
+import javax.ejb.Stateful;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.security.auth.login.LoginException;
+
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
-import com.netbuilder.util.UserId;
-import com.netbuilder.util.UserDetails;
 
 /**
  * 
- * @author JustinMabbutt
+ * @author Alexander Neil
  *
  */
 
-public class LoginController
-{
-	@Inject
-	private LoginDetailsManager loginManager;
-	@Inject
-	private UserDetails userDetails;
-	private String errorMsg;
-	private int uid;
+@ManagedBean(name="login")
+@Stateful
+@SessionScoped
+public class LoginController {
 	
-	public String login()
-	{
-		if (userDetails.getName().isEmpty() || userDetails.getPassword().isEmpty()) 
-		{
-			errorMsg = "please enter details";
-			return "login";
+	@Inject
+	private LoginDetailsManager ldm;
+	private String name;
+	private String password;
+	private int userId;
+	private boolean loggedIn = true;
+
+	public String login(){
+		
+		userId = ldm.checkPassword(name, password);
+		
+		if(userId >= 0){
+			
+			return "account.xhtml";
 		}
-		uid = loginManager.checkPassword(userDetails.getName(), userDetails.getPassword());
-		if(uid == -1)
-		{
-			UserId.setUid(uid);
-			errorMsg = "Incorrect details";
-			return "login";
+		else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect username/password combination!"));
+			return "login.xhtml";
 		}
-		return "account/uid";
 	}
 	
-	public String logout() throws LoginException
-	{
-		userDetails.setName(null);
-		userDetails.setPassword(null);
-		UserId.setUid(0);
-		return "home";
+	public String getName() { return name; }
+	public String getPassword() { return password; }
+	public void setName(String name) { this.name = name; }
+	public void setPassword(String password) { this.password = password; }
+
+	public void logout(){
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
 
-	public String getErrorMsg() 
-	{
-		return errorMsg;
+	public boolean getLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 }

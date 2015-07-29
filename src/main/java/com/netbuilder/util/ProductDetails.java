@@ -1,6 +1,6 @@
 package com.netbuilder.util;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 import com.netbuilder.entities.LoginDetails;
@@ -15,6 +15,13 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
+
+
+/**
+ * 
+ * @author mwatson
+ *
+ */
 
 @Named
 @RequestScoped

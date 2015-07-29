@@ -4,7 +4,13 @@ import javax.inject.Inject;
 
 import com.netbuilder.util.ContactUsDetails;
 
+/**
+ * 
+ * @author ngilbert
+ *
+ **/
+
 public class ContactDetailsController {
-	@Inject
+	//@Inject
 	private ContactUsDetails contactDetails;
 }

@@ -4,42 +4,52 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.util.OrderDetails;
 
 /**
  * 
- * @author mwatson & Jordan Taylor
+ * @author Jordan Taylor
  *
  */
 
-public class BasketController {
+public class BasketController 
+{
 	@Inject
-	private OrderLineManager orderLineManger;
-	private OrderDetails basketGetter;
+	private OrderDetails basketDetails;
 	public List<OrderLine> basket;
+	private double subtotal, total;
 	
 	public List<OrderLine> getBasket()
 	{
-		basket = basketGetter.getBasket();
+		basket = basketDetails.getBasket();
 		return basket;	
 	}
 	
-	
-	public void updateProductQty() 
+	public void updateProductQty(int productId) 
 	{ 
-		//add into xhtml
+		basketDetails.updateBasketQuantity(productId);
 	}
 	
-	public void updatePorousware() 
+	public void removeBasketItem(int productId) 
+	{ 	//functionality needs to be added to remove an orderline from an order
+		//basketDetails.removeBasketItem(productId);
+	}
+	
+	public double getTotal()
 	{
-		//add into xhtml
+		total = basketDetails.getTotal();
+		return total;
 	}
 	
-	public void removeProduct() 
-	{ 
-		//add into xhtml
+	public double getSubtotal(int productId)
+	{
+		subtotal = basketDetails.getItemSubtotal(productId);
+		return subtotal;
 	}
 	
+	public void setItemQuantity(int newItemQuantity)
+	{
+		basketDetails.setItemQuantity(newItemQuantity);
+	}
 }

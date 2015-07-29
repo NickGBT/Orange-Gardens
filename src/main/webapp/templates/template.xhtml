@@ -1,15 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<!-- Author - Alexander Neil -->
+<!-- Author - Alexander Neil - llew-->
 <html 	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html">
 		
-	<head>
+	<h:head>
 		<title><ui:insert name="pageTitle"/></title>
 		<meta name="description" content="NB Gardens OPS template" />
 		<meta name="author" content="Orange Gardens" />
-	</head>
+	</h:head>
 	
 	<body>
 	<h:outputStylesheet library="default" name="css/theme.css"/>
@@ -23,7 +23,7 @@
 				<div id="basket">
 					<!-- basket bean with a fold-out here -->
 					<img src="resource/img/basket.png" alt="basket" height="56" width="75" />
-					<h:outputLabel value="#{basket.getBasketSize()"/>
+					<h:outputLabel value="#{basket.getBasketSize()}"/>
 				</div>
 			</div>
 			
@@ -34,12 +34,8 @@
 					<a href="index.xhtml" class="headerButton">Home</a>
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a>
-					<h:link >
-						<a href="account.xhtml" class="headerButton">Account</a>
-					</h:link>
-					<h:link >
-						<a href="customerlogin.xhtml" class="headerButton">Login</a>
-					</h:link>
+					<h:link rendered="#{login.loggedIn}" outcome="account.xhtml" value="Account" />
+					<h:link rendered="#{!login.loggedIn}" outcome="customerlogin.xhtml" value="Login" />
 					<br/>
 				</div>
 				
