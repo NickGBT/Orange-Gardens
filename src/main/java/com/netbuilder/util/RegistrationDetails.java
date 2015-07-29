@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
+import com.netbuilder.controllers.RegistrationController;
 import com.netbuilder.enums.CardType;
 
 /**
@@ -15,9 +17,10 @@ import com.netbuilder.enums.CardType;
  */
 
 @ManagedBean(name = "registrationDetails")
-@RequestScoped
+@SessionScoped
 public class RegistrationDetails 
 {
+	RegistrationController controller;
 	//Customer
 	private String fName;
 	private String lName;
@@ -74,6 +77,7 @@ public class RegistrationDetails
 		this.expiryDate = expiryDate; data.add(expiryDate);
 		
 		System.out.println("aite m8 " + this.fName + " " + this.lName + " " + this.nameOnCard + " " + this.password);
+
 		return "login.xhtml";
 	}
 	

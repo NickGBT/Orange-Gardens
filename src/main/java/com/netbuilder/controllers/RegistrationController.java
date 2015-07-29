@@ -1,5 +1,7 @@
 package com.netbuilder.controllers;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -15,6 +17,8 @@ import com.netbuilder.util.RegistrationDetails;
  *
  */
 
+@ManagedBean(name = "registrationDetailsController")
+@RequestScoped
 public class RegistrationController
 {
 	//@Inject
@@ -27,7 +31,9 @@ public class RegistrationController
 	
 	public String registerCustomer()
 	{
-		
+
+		System.out.println("Worked ");
+
 		if(registrationDetails.checkAllUserEntries())
 		{
 			customer = new Customer(registrationDetails.getfName(), registrationDetails.getlName(),
@@ -57,8 +63,11 @@ public class RegistrationController
 		}
 		else
 		{
+			System.out.println("Invalid");
 			errorMsg = "Invalid entries";
 			return "RegisterCustomer";
 		}
+		
+	
 	}
 }
