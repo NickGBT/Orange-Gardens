@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.netbuilder.entities.Order;
-import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 
 /**
@@ -17,11 +17,18 @@ import com.netbuilder.enums.OrderStatus;
 
 public class OrderPrioritySystem {
 
-	private OrderManagerAL orders;
+	private OrderManager orders;
 	private long currentTime = System.currentTimeMillis();
 	
 	private ArrayList <Order> placedOrders = (ArrayList<Order>) orders.findByStatus(OrderStatus.placed);
 		
+	
+	/**
+	 * This method generates a prioritised queue sorted in blocks of priorities by arraylists
+	 * It returns a list of Order objects sorted from highest priority (critical) to lowest
+	 * 
+	 **/
+	
 	public List<Order> getPrioritisedQueue(){
 		ArrayList <Order> lowPriority = new ArrayList <Order>();
 		
@@ -83,7 +90,7 @@ public class OrderPrioritySystem {
 		ArrayList <Order> criticalPriority = new ArrayList <Order>();
 		
 		for (Order o : placedOrders){
-			if ((currentTime - o.getDatePlacedInMillis()) < (360000 * 36) || (currentTime - o.getDatePlacedInMillis()) > (360000 * 24)){
+			if ((currentTime - o.getDatePlacedInMillis()) < (360000 * 36)){
 				criticalPriority.add(o);
 			}
 		}
