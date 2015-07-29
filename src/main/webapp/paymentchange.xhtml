@@ -1,36 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<!--  author llew -->      
-      
-<h:head>
-	<title>Change Payment Method</title>
-</h:head>
-<h:body>
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
 
-<div id="title">
-	<h2>Change Payment Method</h2>
-</div>
+	<!--  author llew -->
 
-<div id="registerForm">
-<h:form style="display:inline; padding-left=10%">
-	<h2>Payment Method</h2>
-	Card Type : <h:select>
-		<h:option value="#{AccountManagment.cardType.visa}">Visa</h:option>
-		<h:option value="#{AccountManagment.cardType.masterCard}">MasterCard</h:option>
-	</h:select>
-	<br /><br />
-	Name on Card : <h:inputText type="text" value="#{AccountManagment.nameOnCard}" /><br /><br />
-	Card Number : <h:inputText type="text" value="#{AccountManagment.cardNumber}" /><br /><br />
-	Expiry Date : <h:inputText type="text" value="#{AccountManagment.expiryDate}" /><br /><br />
-	<h:commandButton id = "submit" value = "Submit" action = "#{AccountManagmentController.changePayment()} />
-</h:form>
-</div>
+	<ui:define name="content">
 
-</h:body>
+		<div id="title">
+			<h2>Change Payment Method</h2>
+		</div>
 
-</html>
+		<div id="registerForm">
+			<h:form style="display:inline; padding-left=10%">
+				<h2>Payment Method</h2>
+	Card Type : <h:selectOneMenu>
+					<f:selectItem itemValue="#{AccountManagement.cardType.visa}"
+						itemLabel="Visa"></f:selectItem>
+					<f:selectItem itemValue="#{AccountManagement.cardType.masterCard}"
+						itemLabel="MasterCard"></f:selectItem>
+				</h:selectOneMenu>
+				<br />
+				<br />
+	Name on Card : <h:inputText type="text"
+					value="#{AccountManagement.nameOnCard}" />
+				<br />
+				<br />
+	Card Number : <h:inputText type="text"
+					value="#{AccountManagement.cardNumber}" />
+				<br />
+				<br />
+	Expiry Date : <h:inputText type="text"
+					value="#{AccountManagement.expiryDate}" />
+				<br />
+				<br />
+				<h:commandButton id="submit" value="Submit"
+					action="#{AccountManagementController.changePayment()}" />
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
