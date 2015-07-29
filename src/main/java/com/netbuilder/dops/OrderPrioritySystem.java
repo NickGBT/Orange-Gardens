@@ -9,6 +9,12 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
 import com.netbuilder.enums.OrderStatus;
 
+/**
+ * 
+ * @author ngilbert
+ *
+ **/
+
 public class OrderPrioritySystem {
 
 	private OrderManagerAL orders;
