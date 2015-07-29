@@ -22,6 +22,13 @@ public class OrderPrioritySystem {
 	
 	private ArrayList <Order> placedOrders = (ArrayList<Order>) orders.findByStatus(OrderStatus.placed);
 		
+	
+	/**
+	 * This method generates a prioritised queue sorted in blocks of priorities by arraylists
+	 * It returns a list of Order objects sorted from highest priority (critical) to lowest
+	 * 
+	 **/
+	
 	public List<Order> getPrioritisedQueue(){
 		ArrayList <Order> lowPriority = new ArrayList <Order>();
 		
@@ -83,7 +90,7 @@ public class OrderPrioritySystem {
 		ArrayList <Order> criticalPriority = new ArrayList <Order>();
 		
 		for (Order o : placedOrders){
-			if ((currentTime - o.getDatePlacedInMillis()) < (360000 * 36) || (currentTime - o.getDatePlacedInMillis()) > (360000 * 24)){
+			if ((currentTime - o.getDatePlacedInMillis()) < (360000 * 36)){
 				criticalPriority.add(o);
 			}
 		}
