@@ -1,6 +1,6 @@
 package com.netbuilder.dops;
 
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 
 /**
  * 
@@ -32,12 +32,14 @@ public class PathFind
 	//A* algorithm - The route returned is a string of direction digits.
 	public String pathFind(int xStart, int yStart, int xFinish, int yFinish)
 	{
-		PriorityQueue<Node> pq = new PriorityQueue<Node>(2);
+		ArrayList<Node> pq = new ArrayList<Node>(2);
+		int pqi;//pq index
 		Node n0;
 		Node m0;
 		int i, j, x = 0, y, xdx, ydy;
 		char c;
 		String path = "";
+		pqi = 0;
 		
 		//reset the node maps
 		for(y = 0; y < m; y++)
@@ -60,11 +62,11 @@ public class PathFind
 		while(!pq.isEmpty())
 		{
 			//get the current node with the highest priority from the list of open nodes
-			n0 = new Node(pq.peek().getXPos(), pq.peek().getYPos(), pq.peek().getLevel(), pq.peek().getPriority());
+			n0 = new Node(pq.get(pqi).getXPos(), pq.get(pqi).getYPos(), pq.get(pqi).getLevel(), pq.get(pqi).getPriority());
 			x = n0.getXPos(); y = n0.getYPos();
 			
 			//remove the node from the open list
-			pq.remove();
+			pq.remove(pqi);
 			openNodesMap[x][y] = 0;
 			//mark it on the closed nodes map
 			closedNodesMap[x][y] = 1;
@@ -84,7 +86,7 @@ public class PathFind
 				}
 			}
 			//empty the leftover nodes
-			while(!pq.isEmpty()) pq.remove();
+			while(!pq.isEmpty()) pq.remove(pqi);
 			return path;
 		}
 		
@@ -115,12 +117,25 @@ public class PathFind
 					dirMap[xdx][ydy] = (i + dir / 2) % dir;
 					//replace the node by emptying one pq into the other one except the node 
 					//to be replaced will be ignored and the new one will be pushed in instead
-					while(!(pq.peek().getXPos() == xdx && pq.peek().getYPos() == ydy))
+					while(!(pq.get(pqi).getXPos() == xdx && pq.get(pqi).getYPos() == ydy))
 					{
-						pq.add(pq.peek());
-						pq.remove();
+						pq.add(1 - pqi, pq.get(pqi));
+						pq.remove(pqi);
 					}
-					pq.add(m0);
+					//remove the wanted node
+					pq.remove(pqi);
+					
+					//empty the larger size into the smaller one
+					if(pq.get(pqi).getPriority() > pq.get(1 - pqi).getPriority())
+					{
+						while(pq.get(pqi) != null)
+						{
+							pq.add(1 - pqi, pq.get(pqi));
+							pq.remove(pqi);
+						}
+					}
+					pqi = 1 - pqi;
+					pq.add(pqi, m0);
 				}
 			}
 		}
