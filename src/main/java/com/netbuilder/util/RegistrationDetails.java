@@ -2,6 +2,10 @@ package com.netbuilder.util;
 
 import java.util.ArrayList;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+
 import com.netbuilder.enums.CardType;
 
 /**
@@ -10,6 +14,8 @@ import com.netbuilder.enums.CardType;
  *
  */
 
+@ManagedBean(name = "registrationDetails")
+@RequestScoped
 public class RegistrationDetails 
 {
 	//Customer
@@ -42,7 +48,36 @@ public class RegistrationDetails
 	
 	ArrayList<Object> data = new ArrayList<Object>();
 	
-	public RegistrationDetails(String username, String password, String fName, String lName, String contactNumber, String email, String addressLabel,
+	public RegistrationDetails() {}
+	
+	
+	
+	public String Register() {
+		this.fName = fName; data.add(fName);
+		this.lName = lName; data.add(lName);
+		this.contactNumber = contactNumber; data.add(contactNumber);
+		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
+		this.username = username; data.add(username);
+		this.email = email; data.add(email);
+		this.setPassword(password); data.add(password);
+		this.addressLabel = addressLabel; data.add(addressLabel);
+		this.addressLine1 = addressLine1; data.add(addressLine1);
+		this.addressLine2 = addressLine2; data.add(addressLine2);
+		this.addressLine3 = addressLine3; data.add(addressLine3);
+		this.city = city; data.add(city);
+		this.county = county; data.add(county);
+		this.postcode = postcode; data.add(postcode);
+		this.cardType = cardType; data.add(cardType);
+		this.cardNumber = cardNumber; data.add(cardNumber);
+		this.nameOnCard = nameOnCard; data.add(nameOnCard);
+		this.securityNumber = securityNumber; data.add(securityNumber);
+		this.expiryDate = expiryDate; data.add(expiryDate);
+		
+		System.out.println("aite m8 " + this.fName + " " + this.lName + " " + this.nameOnCard + " " + this.password);
+		return "login.xhtml";
+	}
+	
+	public void Register(String username, String password, String fName, String lName, String contactNumber, String email, String addressLabel,
 			String addressLine1, String addressLine2, String addressLine3, String city, String county, String postcode,
 			boolean isBillingAddress, CardType cardType, String cardNumber, String nameOnCard, int securityNumber,
 			String expiryDate) {
@@ -275,4 +310,10 @@ public class RegistrationDetails
 	public String getContactNumber(){
 		return contactNumber;
 	}
+	
+	public void printString() {
+		System.out.println(fName);
+		System.out.println(lName);
+	}
+	
 }

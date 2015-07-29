@@ -7,92 +7,82 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="templates/template.xhtml">
 
-	
+
 	<!--  author llew -->
-	
+
 	<ui:define name="content">
 
 		<div id="title">
 			<h2>Register</h2>
 		</div>
 		<div id="registerForm">
-			<h:form style="display:inline; padding-left=10%">
-	First Name : <h:inputText type="text"
-					value="#{RegistrationDetails.fName}" />
-				<br />
-				<br />
-	Last Name : <h:inputText type="text"
-					value="#{RegistrationDetails.lName}" />
-				<br />
-				<br />
-	Email : <h:inputText type="text" value="#{RegistrationDetails.email}" />
-				<br />
-				<br />
-	Phone Number : <h:inputText type="text"
-					value="#{RegistrationDetails.phoneNumber}" />
-				<br />
-				<br />
-	Password : <h:inputText type="password"
-					value="#{RegistrationDetails.password}" />
-				<br />
-				<br />
-	Password Confirmation : <h:inputText type="password"
-					value="#{RegistrationDetails.passwordConf}" />
-				<br />
-				<br />
-				<h2>Address</h2>
-	Address Label : <h:inputText type="text"
-					value="#{RegistrationDetails.addressLabel}" />
-				<br />
-				<br />
-	Home Number : <h:inputText type="text"
-					value="#{RegistrationDetails.addressLine1}" />
-				<br />
-				<br />
-	Street : <h:inputText type="text"
-					value="#{RegistrationDetails.addressLine2}" />
-				<br />
-				<br />
-	City : <h:inputText type="text" value="#{RegistrationDetails.city}" />
-				<br />
-				<br />
-	County : <h:inputText type="text" value="#{RegistrationDetails.county}" />
-				<br />
-				<br />
-	Post Code : <h:inputText type="text"
-					value="#{RegistrationDetails.postcode}" />
-				<br />
-				<br />
-	Is Billing Address? : <h:selectBooleanCheckbox type="checkbox"
-					value="#{RegistrationDetails.setBillingAdress}" />
-				<br />
-				<br />
-				<h2>Payment Method</h2>
-	Card Type : <h:selectOneMenu>
-					<f:selectItem itemValue="#{RegistrationDetails.cardType.visa}" itemLabel="Visa"></f:selectItem>
-					<f:selectItem itemValue="#{RegistrationDetails.cardType.masterCard}" itemLabel="MasterCard"></f:selectItem>
-				</h:selectOneMenu>
-				<br />
-				<br />
-	Name on Card : <h:inputText type="text"
-					value="#{RegistrationDetails.nameOnCard}" />
-				<br />
-				<br />
-	Card Number : <h:inputText type="text"
-					value="#{RegistrationDetails.cardNumber}" />
-				<br />
-				<br />
-	Expiry Date : <h:inputText type="text"
-					value="#{RegistrationDetails.expiryDate}" />
-				<br />
-				<br />
-	Issue Number : <h:inputText type="text"
-					value="#{RegistrationDetails.issueNumber}" />
-				<br />
-				<br />
-				<h:commandButton id="submit" value="Submit"
-					action="#{RegistrationController.registerCustomer()}" />
-			</h:form>
+				<h:form style="display:inline; padding-left=10%">
+					First Name : 
+					<h:inputText value="#{registrationDetails.fName}" />
+					<br />
+					<br />
+					Last Name : 
+					<h:inputText value="#{registrationDetails.lName}" />
+					<br />
+					<br />
+					Email : <h:inputText value="#{registrationDetails.email}" />
+					<br />
+					<br />
+					Phone Number : <h:inputText value="#{registrationDetails.contactNumber}" />
+					<br />
+					<br />
+					Password : <h:inputText type="password" value="#{registrationDetails.password}" />
+					<br />
+					<br />
+					Password Confirmation : <h:inputText type="password" value="#{registrationDetails.password}" />
+					<br />
+					<br />
+					<h2>Address</h2>
+					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" />
+					<br />
+					<br />
+					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" />
+					<br />
+					<br />
+					Street : <h:inputText value="#{registrationDetails.addressLine2}" />
+					<br />
+					<br />
+					City : <h:inputText value="#{registrationDetails.city}" />
+					<br />
+					<br />
+					County : <h:inputText value="#{registrationDetails.county}" />
+					<br />
+					<br />
+					Post Code : <h:inputText value="#{registrationDetails.postcode}" />
+					<br />
+					<br />
+					Is Billing Address? : <h:selectBooleanCheckbox type="checkbox" value="#{registrationDetails.billingAddress}" />
+					<br />
+					<br />
+					<h2>Payment Method</h2>
+					Card Type : <h:selectOneMenu>
+						<f:selectItem itemValue="#{registrationDetails.cardType}"
+							itemLabel="Visa"></f:selectItem>
+						<f:selectItem itemValue="#{RegistrationDetails.cardType}"
+							itemLabel="MasterCard"></f:selectItem>
+					</h:selectOneMenu>
+					<br />
+					<br />
+					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" />
+					<br />
+					<br />
+					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" />
+					<br />
+					<br />
+					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" />
+					<br />
+					<br />
+					Issue Number : <h:inputText value="#{registrationDetails.securityNumber}" />
+					<br />
+					<br />
+					<h:commandButton value="Submit"
+						action="#{registrationDetails.Register}" />
+				</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
