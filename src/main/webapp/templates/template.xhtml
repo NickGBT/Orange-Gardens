@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
 <!-- Author - Alexander Neil - llew-->
 <html 	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -9,10 +8,10 @@
 		<title><ui:insert name="pageTitle"/></title>
 		<meta name="description" content="NB Gardens OPS template" />
 		<meta name="author" content="Orange Gardens" />
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
 	</h:head>
 	
-	<body>
-	<h:outputStylesheet library="default" name="css/theme.css"/>
+	<h:body>
 		<div id="header">
 	
 			<div id="logo">
@@ -40,9 +39,10 @@
 				</div>
 				
 				<div id="searchbar">
+					<h:form>
 					<h:inputText type="text" name="searchbar" id="searchText"/>
-					<h:commandLink name="submit" id="searchButton"><img src="resource/img/search.png" alt="Search" height="25" width="33" /></h:commandLink>
-
+				    <h:commandLink name="submit" id="searchButton"><img src="resource/img/search.png" alt="Search" height="25" width="33" /></h:commandLink>
+					</h:form>
 				</div>
 			</div>
 		</div>
@@ -62,6 +62,6 @@
 				</ul>
 			</div>
 		</div>
-	</body>
+	</h:body>
 	
 </html>
