@@ -23,20 +23,13 @@
 	</h:selectOneMenu>
 	
 	<h4>Tell us what you think:</h4>
-	
-	<div id="Feedback">
-		<f:facet name="feedback">
+
 			<h:inputTextarea id="textArea" rows="10" cols="50" value="Enter feedback here..."/>
-		</f:facet>
-	</div>
+
 	
 	<br />
-	<f:facet name="feedbackSubmit">
-		<h:commandButton class="button" value="Send Feedback" action="#{}"/>
-	</f:facet>
-	<f:facet name="feedbackCancel">
-		<h:commandButton class="button" value="Cancel" action="#{}"/>
-	</f:facet>
+		<h:button class="button" value="Send Feedback" action="webstorefront.xhtml"/>
+		<h:button value="Cancel" outcome="webstorefront"/>
 </div>
 </ui:define>
 
