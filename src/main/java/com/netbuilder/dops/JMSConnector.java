@@ -20,7 +20,7 @@ public class JMSConnector{
 	
 	MessageSender sender;
 	MessagePublisher publisher;
-	//MessageReceiver receiver;
+	MessageReceiver receiver;
 	
 	public JMSConnector(){
 		activeEmployees = new ArrayList<Integer>();
