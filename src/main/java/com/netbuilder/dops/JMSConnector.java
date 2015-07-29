@@ -14,9 +14,13 @@ import com.netbuilder.entities.Order;
  */
 
 
-public class JMSConnector implements MessageListener {
+public class JMSConnector{
 
 	ArrayList<Integer> activeEmployees;
+	
+	MessageSender sender;
+	MessagePublisher publisher;
+	//MessageReceiver receiver;
 	
 	public JMSConnector(){
 		activeEmployees = new ArrayList<Integer>();
@@ -36,11 +40,8 @@ public class JMSConnector implements MessageListener {
 	void listenForRequests(){
 		
 	}
+
 	
-	@Override
-	public void onMessage(Message message) {
-		// TODO Auto-generated method stub
-
-	}
-
+	//Test method
+	
 }
