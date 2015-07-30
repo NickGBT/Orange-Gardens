@@ -3,6 +3,8 @@ package com.netbuilder.controllers;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -15,6 +17,7 @@ import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
+import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -23,8 +26,11 @@ import com.netbuilder.util.UserId;
  *
  */
 
+@ManagedBean (name = "accountManagementController")
+@RequestScoped
 public class AccountManagementController 
 {
+	private TestData testData;
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
@@ -47,10 +53,14 @@ public class AccountManagementController
 	
 	public AccountManagementController()
 	{
-		loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
-		customer = customerManager.findByUserId(UserId.getUid());
-		address = addressManager.findByUserId(UserId.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
+		//loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
+		loginDetails = testData.customerLogin;
+		//customer = customerManager.findByUserId(UserId.getUid());
+		customer = testData.customer;
+		//address = addressManager.findByUserId(UserId.getUid());
+		address = testData.address;
+		//paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
+		paymentDetails = testData.paymentDetails;
 	}
 
 	public String changeAddress()
