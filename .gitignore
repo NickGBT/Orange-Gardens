@@ -2,7 +2,8 @@
 
 .classpath
 
-*/target/
+orange-backend/target/
+orange-dops/target/
 /target/
 
 database_model.mwb.bak
