@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    
+<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
+		
+<ui:define name="pageTitle">Login</ui:define>
+
+<ui:define name="content">
+	<div id="login">
+		<h:form>
+			<h2>Login</h2>
+			<h:panelGrid>
+				<h:message />
+				<h:outputLabel value="Username" for="logindetails"/><br/>
+				<h:inputText id="logindetails" value="#{login.name}" maxlength="45" size="20"/><br/>
+				<br/>
+				<h:outputLabel value="Password" for="password"/><br/>
+				<h:inputSecret id="password" value="#{login.password}" maxlength="45" size="20"/><br/>
+				<br/>
+
+					<h:commandButton class="button" value="Submit" action="#{login.login}"/>
+
+			</h:panelGrid>
+		</h:form>
+	</div>
+	<div id="register">
+	
+	</div>
+</ui:define>
+</ui:composition>

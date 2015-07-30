@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<meta charset="ISO-8859-1">
+	<title><ui:insert name="pageTitle"/></title>
+</head>
+<body>
+<h:outputStylesheet library="default" name="css/style.css"/>
+	<div id="container">
+		<div id="header">
+			<h1>NB Gardens Online!</h1>
+		</div>
+		<div id="nav-bar">
+			<ul>
+				<li><a href="faces/home.xhtml">Home</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<ui:insert name="content">
+		</div>
+		<div id="footer">
+			Copyright me
+		</div>
+	</div>
+</body>
+</html>
