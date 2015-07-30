@@ -10,14 +10,15 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,12 +28,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
-
-import com.netbuilder.orange_dops_enums.GladosStatus;
 
 /**
  * 
@@ -47,20 +47,18 @@ public class GladosGui
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
 	private JPanel assignOrder;
-	private BufferedImage splash, title, background;
-	private Timer splashTime;
+	private BufferedImage splash, background;
+	private Timer splashTimer;
 	private Random randomGenerator;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
 	private String[] topMessage, bottomMessage;
 	private JButton getNewOrder, completeOrder, nextProduct;
-	private GladosStatus gladosStatus;
 	private int messageIndex;
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
 	private Font buttonFont;
-	private boolean isRunning;
-	private JTextArea map;
+	private Map theMap;
 	
 	/**
 	 * @author JustinMabbutt
@@ -98,7 +96,6 @@ public class GladosGui
 		splashFrame = new JFrame();
 		randomGenerator = new Random();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		splashTime = new Timer();
 		assignOrder = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -106,12 +103,11 @@ public class GladosGui
 		splash = null; background = null;
 		messageIndex = 0;
 		topMessage = new String[11]; bottomMessage = new String[11];
+		splashTimer = new Timer();
 		buttonLayout = new GridBagLayout();
 		buttonLayoutConstraints = new GridBagConstraints();
 		buttonFont = new Font("Arial", Font.BOLD, 18);
-		isRunning = true;
-		map = new JTextArea();
-		gladosStatus = GladosStatus.displaySplash;
+		theMap = new Map();
 		logger.exiting(getClass().getName(), "IMSGUI");
     }
 	
@@ -145,7 +141,7 @@ public class GladosGui
         splashFrame.setIconImage(gladosLogo);
 		splashFrame.add(splashLabel, BorderLayout.CENTER);
 		splashFrame.setVisible(true);
-		splashTime.schedule(new deleteSplashTask(), 2000);
+		splashTimer.schedule(new deleteSplashTask(), 2000);
 		logger.exiting(getClass().getName(), "displaySplash");
 	}
 	
@@ -158,6 +154,7 @@ public class GladosGui
 		logger.entering(getClass().getName(), "initUi");
 		mainFrame = new JFrame("NB GLADOS")
 		{
+			@Override
 			public void paint(Graphics g)
 			{
 				super.paint(g);
@@ -172,56 +169,10 @@ public class GladosGui
         mainFrame.setIconImage(gladosLogo);
         mainFrame.setLayout(new BorderLayout());
         mainFrame.setVisible(true);
-        while(isRunning)
-        {
-	        switch(gladosStatus)
-	        {
-	        case displayGetOrder:
-	        	assignMessages();
-	        	getNewOrder.setText("Assign yourself an order to process.");
-	        	getNewOrder.setPreferredSize(new Dimension(350, 150));
-	        	getNewOrder.setFont(buttonFont);
-	        	getNewOrder.addActionListener(new ActionListener() 
-	        	{
-					public void actionPerformed(ActionEvent arg0) 
-					{
-						gladosStatus = GladosStatus.displayOrder;
-					}
-				});
-	        	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
-	        	assignOrder.add(getNewOrder);
-	        	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
-	        	assignOrder.setLayout(buttonLayout);
-	        	mainFrame.add(assignOrder);
-	        	break;
-	        case displayOrder:
-	        	
-	        	break;
-	        case displayOrderComplete:
-	        	
-	        	break;
-	    	default:
-	    		break;
-	        }
-        }
+        displayGetOrder();
 		logger.exiting(getClass().getName(), "initUi");
 	}
-	
-	/**
-	 * @author JustinMabbutt
-     * Task to delete the opening splash screen
-     */
-    private class deleteSplashTask extends TimerTask
-   	{
-   		public void run()
-   		{
-   			splashFrame.dispose();
-   			gladosStatus = GladosStatus.displayGetOrder;				
-			splashTime.cancel();
-			initUi();
-   		}
-   	}
-    
+
     /**
      * @author JustinMabbutt
      * Task to assign completed order messages
@@ -253,12 +204,54 @@ public class GladosGui
     	bottomMessage[10] = "Doo da day!";
     	logger.exiting(getClass().getName(), "assignMessages");
     }
+
+    /**
+     * @author JustinMabbutt
+     * Task to display the order screen with map
+     */
+    private void displayGetOrder()
+    {
+    	assignMessages();
+    	theMap.setVisible(false);
+    	assignOrder.setVisible(true);
+    	getNewOrder.setText("Assign yourself an order to process.");
+    	getNewOrder.setPreferredSize(new Dimension(350, 150));
+    	getNewOrder.setFont(buttonFont);
+    	getNewOrder.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				displayMap();
+			}
+		});
+    	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
+    	assignOrder.add(getNewOrder);
+    	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
+    	assignOrder.setLayout(buttonLayout);
+    	mainFrame.add(assignOrder);
+    }
     
     /**
      * @author JustinMabbutt
+     * Task to delete the opening splash screen
      */
-    private void drawMap()
+    private class deleteSplashTask extends TimerTask
+   	{
+   		public void run()
+   		{
+			splashFrame.dispose();
+			initUi();
+			splashTimer.cancel();
+   		}
+   	}
+    
+    /**
+     * @author JustinMabbutt
+     * Task to draw the map
+     */
+   	private void displayMap()
     {
+   		assignOrder.setVisible(false);
     	//1 = Beginning
     	//2 = Possible route
     	//3 = Shelf
@@ -287,32 +280,18 @@ public class GladosGui
     			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
     			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
     	};
-    	
-    	for(int i = 0; i < 20; i++)
+    	completeOrder.setText("Complete order");
+    	completeOrder.setPreferredSize(new Dimension(350, 150));
+    	completeOrder.setFont(buttonFont);
+    	completeOrder.addActionListener(new ActionListener() 
     	{
-    		for(int j = 0; j < 20; j++)
-    		{
-    			switch(testMap[i][j])
-    			{
-    			case 1:
-    				map.append("S ");
-    				break;
-    			case 2:
-    				map.append("* ");
-    				break;
-    			case 3:
-    				map.append("S ");
-    				break;
-    			case 4:
-    				map.append("P ");
-    				break;
-    			case 5:
-    				map.append("G ");
-    				break;
-    			default:
-    				break;
-    			}
-    		}
-    	}
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				displayGetOrder();
+			}
+		});
+    	theMap.add(completeOrder);
+    	mainFrame.add(theMap);
+    	theMap.setVisible(true);
     }
 }
