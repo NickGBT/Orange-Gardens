@@ -21,9 +21,9 @@
 				<h:outputLabel value="Password" for="password"/><br/>
 				<h:inputSecret id="password" value="#{login.password}" maxlength="45" size="20"/><br/>
 				<br/>
-				<f:facet name="loginsubmit">
-					<h:commandButton class="button" value="Submit" action="#{login.login()}"/>
-				</f:facet>
+
+					<h:commandButton class="button" value="Submit" action="#{login.login}"/>
+
 			</h:panelGrid>
 		</h:form>
 	</div>
