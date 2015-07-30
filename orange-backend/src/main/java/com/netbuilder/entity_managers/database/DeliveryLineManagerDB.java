@@ -15,7 +15,7 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entity_managers.interfaces.DeliveryLineManager;
-import com.netbuilder.orange_gardens.PersistenceManager;
+import com.netbuilder.persistence_manager.PersistenceManager;
 
 /**
  * 
