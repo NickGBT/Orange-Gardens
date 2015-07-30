@@ -43,18 +43,12 @@ public class RegistrationController
 	{
 		rand = new Random();
 		System.out.println("Worked ");
-		
-		System.out.println(registrationDetails.getfName());
-		System.out.println(registrationDetails.getlName());
-		System.out.println(registrationDetails.getEmail());
-		
+
 		if(registrationDetails.checkAllUserEntries())
 		{
 			System.out.println("setting up customer");
 			customer = new Customer(registrationDetails.getfName(), registrationDetails.getlName(),
 					registrationDetails.getContactNumber() , registrationDetails.isBlackListed());
-			System.out.println(registrationDetails.getfName() + " " + registrationDetails.getlName() + " " + 
-					registrationDetails.getContactNumber() + " " +  registrationDetails.isBlackListed());
 			byte[] salt = null;
 			byte[] hashedPassword = null; 
 			
@@ -82,6 +76,8 @@ public class RegistrationController
 			userDetails.setName(registrationDetails.getfName());
 			userDetails.setPassword(registrationDetails.getPassword());
 			userDetails.setUid(rand.nextInt());
+			
+			System.out.println("First Name " + registrationDetails.getfName() + ", Last Name  " + registrationDetails.getlName());
 			
 			return "account/uid";
 		}
