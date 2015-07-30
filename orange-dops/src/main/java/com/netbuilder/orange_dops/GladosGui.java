@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -59,6 +60,7 @@ public class GladosGui
 	private GridBagConstraints buttonLayoutConstraints;
 	private Font buttonFont;
 	private boolean isRunning;
+	private JTextArea map;
 	
 	/**
 	 * @author JustinMabbutt
@@ -108,6 +110,7 @@ public class GladosGui
 		buttonLayoutConstraints = new GridBagConstraints();
 		buttonFont = new Font("Arial", Font.BOLD, 18);
 		isRunning = true;
+		map = new JTextArea();
 		gladosStatus = GladosStatus.displaySplash;
 		logger.exiting(getClass().getName(), "IMSGUI");
     }
@@ -135,7 +138,7 @@ public class GladosGui
 		nbLogo = new ImageIcon("images/nb.png");
         gladosLogo = nbLogo.getImage();
         splashFrame.setResizable(false);
-        splashFrame.setTitle("Welcome to GLADOS");
+        splashFrame.setTitle("Welcome to NB GLADOS");
         splashFrame.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());  
         splashFrame.setUndecorated(true);
         splashFrame.setLocation((int)screenSize.getWidth() / 2 - splashIcon.getIconWidth() / 2, (int)screenSize.getHeight() / 2 - splashIcon.getIconHeight() / 2);
@@ -256,6 +259,60 @@ public class GladosGui
      */
     private void drawMap()
     {
+    	//1 = Beginning
+    	//2 = Possible route
+    	//3 = Shelf
+    	//4 = Possible pickup location
+    	//5 = GDZ
+    	int[][] testMap = new int[][] { 
+    			{1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
+    	};
     	
+    	for(int i = 0; i < 20; i++)
+    	{
+    		for(int j = 0; j < 20; j++)
+    		{
+    			switch(testMap[i][j])
+    			{
+    			case 1:
+    				map.append("S ");
+    				break;
+    			case 2:
+    				map.append("* ");
+    				break;
+    			case 3:
+    				map.append("S ");
+    				break;
+    			case 4:
+    				map.append("P ");
+    				break;
+    			case 5:
+    				map.append("G ");
+    				break;
+    			default:
+    				break;
+    			}
+    		}
+    	}
     }
 }
