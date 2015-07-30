@@ -26,9 +26,10 @@
 				</h:selectOneMenu>	
 				
 				
-				<h:inputText id="search" value="#{productsBean.searchString}" />
+				<h:inputText id="search" value="#{productDetails.productName}" />
 				
-				<button type="button">Search</button>
+				<h:commandButton value="Search"
+						action="#{productDetails.printProduct()}" />
 		</div>
 		<br />
 		<div id="catalog">

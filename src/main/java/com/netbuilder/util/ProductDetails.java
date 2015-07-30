@@ -1,5 +1,6 @@
 package com.netbuilder.util;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
@@ -23,7 +24,7 @@ import com.netbuilder.enums.ProductCategory;
  *
  */
 
-@Named
+@ManagedBean(name = "productDetails")
 @RequestScoped
 public class ProductDetails {
 
@@ -31,6 +32,7 @@ public class ProductDetails {
 	private int productId;
 	private int customerId;
 	private int orderId;
+	private String productName;
 	private ProductCategory category;
 	private OrderStatus status;
 	private ProductManager productMan;
@@ -171,6 +173,15 @@ public class ProductDetails {
 	public void findLoginDetails(int customerId) {
 		this.loginD = loginMan.findByUserId(customerId);
 	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 	
 	
 }
