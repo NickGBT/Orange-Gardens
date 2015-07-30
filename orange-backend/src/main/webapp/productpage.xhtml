@@ -53,10 +53,8 @@
 					
 					<div id = "Buttons"> 
 						
-						<f:facet name="buttonBasket">
-							<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket}"/>
-						</f:facet>
-						
+						<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket}"/>
+											
 						Qty : 
 						
 						<select name = "add">
@@ -67,16 +65,13 @@
 							<option value = "Five"> 5  </option>
 						</select>
 
-						<f:facet name="buttonWishlist"> 
 							<h:commandButton class = "button" value = "Add to Wishlist" action = "#{ProductController.addToWishlist()}"/> 
-						</f:facet> 
 					
 					</div> 
 				</div> 
 				
 					<div id = "productImage"> 	
 						<h:graphicImage id = "productImage" src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" /> 
-					
 						<!-- Image is here --> 
 					</div> 
 			</div>
