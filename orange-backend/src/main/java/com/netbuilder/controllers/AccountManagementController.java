@@ -5,12 +5,14 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
@@ -30,7 +32,9 @@ import com.netbuilder.util.UserId;
 @RequestScoped
 public class AccountManagementController 
 {
+	@ManagedProperty(value= "#{testData}")
 	private TestData testData;
+
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
@@ -51,18 +55,7 @@ public class AccountManagementController
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;
 	
-	public AccountManagementController()
-	{
-		//loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
-		loginDetails = testData.customerLogin;
-		//customer = customerManager.findByUserId(UserId.getUid());
-		customer = testData.customer;
-		//address = addressManager.findByUserId(UserId.getUid());
-		address = testData.address;
-		//paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
-		paymentDetails = testData.paymentDetails;
-	}
-
+		
 	public String changeAddress()
 	{
 		if (address != null)
@@ -93,21 +86,29 @@ public class AccountManagementController
 	
 	public LoginDetails getLoginDetails()
 	{
+		//loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
+		loginDetails = testData.getCustomerLogin();
 		return loginDetails;
 	}
 
 	public Customer getCustomer() 
 	{
+		//customer = customerManager.findByUserId(UserId.getUid());
+		customer = testData.getCustomer();
 		return customer;
 	}
 
 	public Address getAddress() 
 	{
+		//address = addressManager.findByUserId(UserId.getUid());
+		address = testData.getAddress();
 		return address;
 	}
 
 	public PaymentDetails getPaymentDetails() 
 	{
+		//paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
+		paymentDetails = testData.getPaymentDetails();
 		return paymentDetails;
 	}
 	
@@ -224,6 +225,15 @@ public class AccountManagementController
 			errorMsg = "Invalid Change";
 			return "account/uid";
 		}
+	}
+	
+	
+	public TestData getTestData() {
+		return testData;
+	}
+
+	public void setTestData(TestData testData) {
+		this.testData = testData;
 	}
 	 
 }

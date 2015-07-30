@@ -27,33 +27,33 @@
 			</div>
 			<div id="MainBlock">
 				First Name:
-				<h:outputText value=" #{accountManagementController.getCustomer().getfName()}"/>
+				<h:outputText value=" #{accountManagementController.customer.fName}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>
 				<br/>
 				<br/>
 				Last Name:
-				<h:outputText value="#{accountManagementController.getCustomer().getlName()}"/>
+				<h:outputText value="#{accountManagementController.customer.lName}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/>
 				<br/>
 				<br/>
 				Email Address:
-				<h:outputText value="#{accountManagementController.getCustomer().getEmail()}"/>
+				<h:outputText value="#{accountManagementController.loginDetails.email}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/>
 				<br/>
 				<br/>
 				Contact Number:
-				<h:outputText value="#{accountManagementController.getCustomer().getContactNumber()}"/>
+				<h:outputText value="#{accountManagementController.customer.contactNumber}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/>
 				<br/>
 				<br/>
 				Username:
-				<h:outputText value="#{accountManagementController.getLoginDetails().getUsername()}"/>
+				<h:outputText value="#{accountManagementController.loginDetails.username()}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/>
 				<br/>
 				<br/>
 				
 				<p>Payment Methods:</p>
-				<h:selectOneMenu id = "cardtype" value="#{AccountManagement.cardType}">
+				<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
 					<f:selectItem itemValue="CardType.VISA" itemLabel="VISA"/>
 					<f:selectItem itemValue="CardType.VISADEBIT" itemLabel="VISA DEBIT"/>
 					<f:selectItem itemValue="CardType.VISAELECTRON" itemLabel="VISA ELECTRON"/>
@@ -64,12 +64,12 @@
 				
 				<p>Address:</p>
 				<div id="AddressText">
-					<h:outputText value="#{AccountManagementController.getAddress().getAddressLine1()}"/><br/>
-					<h:outputText value="#{AccountManagementController.getAddress().getAddressLine2()}"/><br/>
-					<h:outputText value="#{AccountManagementController.getAddress().getAddressLine3()}"/><br/>
-					<h:outputText value="#{AccountManagementController.getAddress().getCity()}"/><br/>
-					<h:outputText value="#{AccountManagementController.getAddress().getCounty()}"/><br/>
-					<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/><br/>
+					<h:outputText value="#{accountManagementController.address.addressLine1}"/><br/>
+					<h:outputText value="#{accountManagementController.address.addressLine2}"/><br/>
+					<h:outputText value="#{accountManagementController.address.addressLine3}"/><br/>
+					<h:outputText value="#{accountManagementController.address.city}"/><br/>
+					<h:outputText value="#{accountManagementController.address.county}"/><br/>
+					<h:outputText value="#{accountManagementController.address.postcode}"/><br/>
 				</div>
 					<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeAddress()}"/><br/>
 			</div>
