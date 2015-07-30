@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+	
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		template="templates/template.xhtml">
+		
+		
+<!-- Author: Matthew Watson -->
+
+		<ui:define name = "pageTitle"> NB Gardens - Product Name </ui:define>
+		<ui:define name="content"> 
+		
+			<div id = "Product"> 
+		
+				<div id = "Allbarimage"> 
+					
+					<div id = "ProductDescription">
+						<div id = "ProductHeader">
+							<h1> 
+								<f:facet name = "productName">
+									<h:outputLabel for = "product">
+										<h:outputText id = "productLabel" value = "#{ProductPageController.getProduct().getProductName()}"/>
+											<!-- Add Product Name String Here -->
+									</h:outputLabel>
+								</f:facet>
+							</h1>
+						</div>
+						<div id = "Attributes"> 
+							
+							<f:facet name = "productId"> 
+								<p>ID : <h:outputText value = "#{ProductPageController.getProduct().getProductId()}"/> <!-- Product ID Here -->	</p>
+							</f:facet>
+							
+							<f:facet name = "productSize"> 
+								<p>Size : <h:outputText	value = "#{ProductPageController.getProduct().getWidth()}"/>	Length <!-- Product Size Here --> </p>
+							</f:facet> 
+							
+							<f:facet name = "productWeight"> 
+								<p>Weight :	<h:outputText value = "#{ProductPageController.getProduct().getWeight}"/> <!-- Product Weight Here --> </p>
+							</f:facet> 	
+							
+							<f:facet name = "productDescription"> 
+								<p> id = "Product Description">Description: 
+								
+									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> </p> 					
+							</f:facet> 		
+									
+						</div>	
+					</div>
+					
+					<div id = "Buttons"> 
+						
+						<f:facet name="buttonBasket">
+							<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket}"/>
+						</f:facet>
+						
+						Qty : 
+						
+						<select name = "add">
+							<option value = "One"> 1 </option>   
+							<option value = "Two"> 2  </option>   
+							<option value = "Three"> 3 </option>   
+							<option value = "Four"> 4  </option>  
+							<option value = "Five"> 5  </option>
+						</select>
+
+						<f:facet name="buttonWishlist"> 
+							<h:commandButton class = "button" value = "Add to Wishlist" action = "#{ProductController.addToWishlist()}"/> 
+						</f:facet> 
+					
+					</div> 
+				</div> 
+				
+					<div id = "productImage"> 	
+						<h:graphicImage id = "productImage" src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" /> 
+					
+						<!-- Image is here --> 
+					</div> 
+			</div>
+		
+		
+		</ui:define>
+</ui:composition>

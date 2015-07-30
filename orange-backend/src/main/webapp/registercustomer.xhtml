@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
+
+
+	<!--  author llew -->
+
+	<ui:define name="content">
+
+		<div id="title">
+			<h2>Register</h2>
+		</div>
+		<div id="registerForm">
+				<h:form style="display:inline; padding-left=10%">
+					First Name : 
+					<h:inputText value="#{registrationDetails.fName}" />
+					<br />
+					<br />
+					Last Name : 
+					<h:inputText value="#{registrationDetails.lName}" />
+					<br />
+					<br />
+					Email : <h:inputText value="#{registrationDetails.email}" />
+					<br />
+					<br />
+					Phone Number : <h:inputText value="#{registrationDetails.contactNumber}" />
+					<br />
+					<br />
+					Password : <h:inputText type="password" value="#{registrationDetails.password}" />
+					<br />
+					<br />
+					Password Confirmation : <h:inputText type="password" value="#{registrationDetails.password}" />
+					<br />
+					<br />
+					<h2>Address</h2>
+					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" />
+					<br />
+					<br />
+					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" />
+					<br />
+					<br />
+					Street : <h:inputText value="#{registrationDetails.addressLine2}" />
+					<br />
+					<br />
+					City : <h:inputText value="#{registrationDetails.city}" />
+					<br />
+					<br />
+					County : <h:inputText value="#{registrationDetails.county}" />
+					<br />
+					<br />
+					Post Code : <h:inputText value="#{registrationDetails.postcode}" />
+					<br />
+					<br />
+					Is Billing Address? : <h:selectBooleanCheckbox type="checkbox" value="#{registrationDetails.billingAddress}" />
+					<br />
+					<br />
+					<h2>Payment Method</h2>
+					Card Type : <h:selectOneMenu>
+						<f:selectItem itemValue="#{registrationDetails.cardType}"
+							itemLabel="Visa"></f:selectItem>
+						<f:selectItem itemValue="#{RegistrationDetails.cardType}"
+							itemLabel="MasterCard"></f:selectItem>
+					</h:selectOneMenu>
+					<br />
+					<br />
+					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" />
+					<br />
+					<br />
+					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" />
+					<br />
+					<br />
+					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" />
+					<br />
+					<br />
+					Issue Number : <h:inputText value="#{registrationDetails.securityNumber}" />
+					<br />
+					<br />
+					<h:commandButton value="Submit"
+						action="#{registrationDetailsController.registerCustomer}" />
+				</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

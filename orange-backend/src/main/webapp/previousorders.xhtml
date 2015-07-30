@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
+
+<!-- author: llew -->
+
+<ui:define name="pageTitle">NB Gardens - Previous Orders</ui:define>
+
+<ui:define name="content">
+	<div class="title">
+		<h2>Previous Orders</h2>
+	</div>
+		<div id="orderTable">
+			<table id="orderTable" style="">
+				<ui:repeat var="orderedProduct"
+					items="${PreviousOrderController.getPreviousOrder()}">
+					<tr>
+						<th>
+							<div class="previousOrder">
+								<div id="orderImg" style="float: left;">
+									<h:graphicImage value=""
+										width = "200" height="200" />
+								</div>
+								<div style="float: left;">
+									<table id="orderInfo" style="width: 100%">
+										<tr>
+											<th>Order ID:</th>
+											<td>${orderedProduct.getOrderId()}</td>
+										</tr>
+										<tr>
+											<th>Order Date:</th>
+											<td>${orderedProduct.getDatePlaced()}</td>
+										</tr>
+										<tr>
+											<th>Total Price :</th>
+											<td>${orderedProduct.getTotalPrice()}</td>
+										</tr>
+										<tr>
+											<th>Order Status :</th>
+											<td>${orderedProduct.getOrderStatus}</td>
+										</tr>
+									</table>
+								</div>
+							</div>	
+						</th>
+					</tr>
+			    </ui:repeat>
+		   </table>
+		</div>			
+	</ui:define>
+</ui:composition>

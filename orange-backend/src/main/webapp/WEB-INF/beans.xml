@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<alternatives>
+	<!-- Add all arraylist classes here -->
+	<class>
+		com.netbuilder.entity_managers.arraylist.AddressManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.CustomerManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.DeliveryLineManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.DeliveryManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.EmployeeManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.OrderLineManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.OrderManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.PaymentDetailsManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.ProductManagerAL
+	</class>
+	<class>
+		com.netbuilder.entity_managers.arraylist.StockManagerAL
+	</class>
+	</alternatives>
+</beans>
