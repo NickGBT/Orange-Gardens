@@ -16,13 +16,13 @@
 			<h:panelGrid>
 				<h:message />
 				<h:outputLabel value="Username" for="logindetails"/><br/>
-				<h:inputText id="logindetails" value="#{login.name}" maxlength="45" size="20"/><br/>
+				<h:inputText id="logindetails" value="#{loginController.name}" maxlength="45" size="20"/><br/>
 				<br/>
 				<h:outputLabel value="Password" for="password"/><br/>
-				<h:inputSecret id="password" value="#{login.password}" maxlength="45" size="20"/><br/>
+				<h:inputSecret id="password" value="#{loginController.password}" maxlength="45" size="20"/><br/>
 				<br/>
 
-					<h:commandButton class="button" value="Submit" action="#{login.login}"/>
+					<h:commandButton class="button" value="Submit" action="#{loginController.login}"/>
 
 			</h:panelGrid>
 		</h:form>
