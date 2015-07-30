@@ -3,23 +3,29 @@ package com.netbuilder.controllers;
 import javax.ejb.Stateful;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.util.RegistrationDetails;
+import com.netbuilder.util.UserDetails;
 
 /**
  * 
- * @author Alexander Neil
+ * @author Alexander Neil llew
  *
  */
 
-@ManagedBean(name="login")
+@ManagedBean(name="loginController")
 @Stateful
 @SessionScoped
 public class LoginController {
 	
+	@ManagedProperty(value="#{userDetails}")
+	private UserDetails userDetails;
+
 	@Inject
 	private LoginDetailsManager ldm;
 	private String name;
@@ -58,5 +64,10 @@ public class LoginController {
 
 	public void setLoggedIn(boolean loggedIn) {
 		this.loggedIn = loggedIn;
+	}
+	
+	
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
 	}
 }
