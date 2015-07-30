@@ -1,46 +1,58 @@
-package com.netbuilder.dops;
+package com.netbuilder.dops.jms;
 
 import javax.jms.JMSException;
+import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
-import javax.jms.QueueReceiver;
+import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.netbuilder.entities.Order;
+
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+
 
 /**
  * 
  * @author Alexander Neil
  *
  */
-public class MessageReceiver {
+/*
+ * ANGRY!
+ */
+public class MessageSender {
 
+	private static int messageId = 0;
+	
 	private Context context = null;
 	private QueueConnectionFactory connFactory = null;
 	private QueueConnection conn = null;
 	private Queue queue = null;
 	private QueueSession session = null;
-	private QueueReceiver qReceiver = null;
+	private QueueSender qSender = null;
 	
-	public void receiverOrderAcceptance(){
+	public void sendOrderMessage(Order order, int employeeId){
 		try{
 			context = new InitialContext();
 			connFactory = (QueueConnectionFactory) context.lookup("ConnectionFactory");
-			queue = (Queue) context.lookup("orderaccept");
+			queue = (Queue) context.lookup("" + employeeId);
 			conn = connFactory.createQueueConnection();
 			session = conn.createQueueSession(false, AUTO_ACKNOWLEDGE);
-			qReceiver = session.createReceiver(queue);
+			qSender = session.createSender(queue);
+			OrderMessage oMessage = new OrderMessage(messageId++, order);
+			ObjectMessage objectMessage = session.createObjectMessage(oMessage);
 			conn.start();
-			qReceiver.setMessageListener(new AcceptanceListener()); //TODO
-		} catch (NamingException e){
-			e.printStackTrace();
-		} catch (JMSException e){
-			e.printStackTrace();
-		} finally {
+			qSender.send(objectMessage);
+			
+		} catch(NamingException ne){
+			ne.printStackTrace();
+		} catch(JMSException jmse){
+			jmse.printStackTrace();
+		} finally{
 			if(context != null){
 				try{
 					context.close();
@@ -56,5 +68,9 @@ public class MessageReceiver {
 				}
 			}
 		}
+	}
+	
+	public void broadcastAvailableOrder(){
+		
 	}
 }

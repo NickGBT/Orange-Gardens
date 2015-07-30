@@ -1,4 +1,4 @@
-package com.netbuilder.dops;
+package com.netbuilder.dops.jms;
 
 import java.util.ArrayList;
 
