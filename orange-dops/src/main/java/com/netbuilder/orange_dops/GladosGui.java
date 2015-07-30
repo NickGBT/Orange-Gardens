@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -50,11 +52,13 @@ public class GladosGui
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
 	private String[] topMessage, bottomMessage;
-	private JButton getNewOrder, completeOrder, cancel;
+	private JButton getNewOrder, completeOrder, nextProduct;
 	private GladosStatus gladosStatus;
 	private int messageIndex;
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
+	private Font buttonFont;
+	private boolean isRunning;
 	
 	/**
 	 * @author JustinMabbutt
@@ -96,12 +100,14 @@ public class GladosGui
 		assignOrder = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		getNewOrder = new JButton(); completeOrder = new JButton(); cancel = new JButton();
+		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
 		splash = null; background = null;
 		messageIndex = 0;
 		topMessage = new String[11]; bottomMessage = new String[11];
 		buttonLayout = new GridBagLayout();
 		buttonLayoutConstraints = new GridBagConstraints();
+		buttonFont = new Font("Arial", Font.BOLD, 18);
+		isRunning = true;
 		gladosStatus = GladosStatus.displaySplash;
 		logger.exiting(getClass().getName(), "IMSGUI");
     }
@@ -115,8 +121,8 @@ public class GladosGui
 		logger.entering(getClass().getName(), "displaySplash");
 		try 
 		{
-			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/OrangeGardensGlados/images/splash.jpg"));
-			background = ImageIO.read(new File("C:/Users/justi_000/workspace/OrangeGardensGlados/images/background.png"));
+			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/splash.jpg"));
+			background = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/background.png"));
 		} 
 		catch (IOException ie) 
 		{
@@ -129,7 +135,7 @@ public class GladosGui
 		nbLogo = new ImageIcon("images/nb.png");
         gladosLogo = nbLogo.getImage();
         splashFrame.setResizable(false);
-        splashFrame.setTitle("Welcome to the NB Gardens IMS");
+        splashFrame.setTitle("Welcome to GLADOS");
         splashFrame.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());  
         splashFrame.setUndecorated(true);
         splashFrame.setLocation((int)screenSize.getWidth() / 2 - splashIcon.getIconWidth() / 2, (int)screenSize.getHeight() / 2 - splashIcon.getIconHeight() / 2);
@@ -163,34 +169,37 @@ public class GladosGui
         mainFrame.setIconImage(gladosLogo);
         mainFrame.setLayout(new BorderLayout());
         mainFrame.setVisible(true);
-        switch(gladosStatus)
+        while(isRunning)
         {
-        case displayGetOrder:
-        	assignMessages();
-        	getNewOrder.setText("Assign yourself an order to process.");
-        	getNewOrder.setPreferredSize(new Dimension(350, 150));
-        	getNewOrder.setFont(new Font("Arial", Font.BOLD, 18));
-        	getNewOrder.addActionListener(new ActionListener() 
-        	{
-				public void actionPerformed(ActionEvent arg0) 
-				{
-					gladosStatus = GladosStatus.displayOrder;
-				}
-			});
-        	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
-        	assignOrder.add(getNewOrder);
-        	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
-        	assignOrder.setLayout(buttonLayout);
-        	mainFrame.add(assignOrder);
-        	break;
-        case displayOrder:
-        	
-        	break;
-        case displayOrderComplete:
-        	
-        	break;
-    	default:
-    		break;
+	        switch(gladosStatus)
+	        {
+	        case displayGetOrder:
+	        	assignMessages();
+	        	getNewOrder.setText("Assign yourself an order to process.");
+	        	getNewOrder.setPreferredSize(new Dimension(350, 150));
+	        	getNewOrder.setFont(buttonFont);
+	        	getNewOrder.addActionListener(new ActionListener() 
+	        	{
+					public void actionPerformed(ActionEvent arg0) 
+					{
+						gladosStatus = GladosStatus.displayOrder;
+					}
+				});
+	        	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
+	        	assignOrder.add(getNewOrder);
+	        	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
+	        	assignOrder.setLayout(buttonLayout);
+	        	mainFrame.add(assignOrder);
+	        	break;
+	        case displayOrder:
+	        	
+	        	break;
+	        case displayOrderComplete:
+	        	
+	        	break;
+	    	default:
+	    		break;
+	        }
         }
 		logger.exiting(getClass().getName(), "initUi");
 	}
@@ -203,10 +212,10 @@ public class GladosGui
    	{
    		public void run()
    		{
-   			gladosStatus = GladosStatus.displayGetOrder;
-   			initUi();
-			splashFrame.dispose();
+   			splashFrame.dispose();
+   			gladosStatus = GladosStatus.displayGetOrder;				
 			splashTime.cancel();
+			initUi();
    		}
    	}
     
