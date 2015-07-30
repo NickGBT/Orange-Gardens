@@ -27,9 +27,8 @@
 	</div>
 	<div id="MainBlock">
 		<h:outputText value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
-		<f:facet name="firstNameChange">
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/><br/>
-		</f:facet>
+		
 		
 		<h:outputText value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
 		<f:facet name="lastNameChange">
@@ -71,14 +70,14 @@
 			<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/>
 		</div>
 		<f:facet name="addressChange">
-			<h:commandButton class="button" value="Change" action="#{}"/><br/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeAddress()}"/><br/>
 		</f:facet>
 	</div>
 
 	<div id="PasswordBlock">
 		<p>Want to change your password?</p>
 		<f:facet name="addressChange">
-			<h:commandButton class="button" value="Reset Password" action="#{}"/><br/>
+			<h:commandButton class="button" value="Reset Password" action="#{AccountManagementController.changePassword()}"/><br/>
 		</f:facet>
 	</div>
 </div>

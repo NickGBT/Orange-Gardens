@@ -1,5 +1,8 @@
 package com.netbuilder.controllers;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -11,6 +14,7 @@ import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
+import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.UserId;
 
 /**
@@ -24,19 +28,19 @@ public class AccountManagementController
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
-	@Inject
+	//@Inject
 	private LoginDetails loginDetails;
 	@Inject
 	private LoginDetailsManager loginDetailsManager;
-	@Inject
+	//@Inject
 	private Customer customer;
 	@Inject
 	private CustomerManager customerManager;
-	@Inject
+	//@Inject
 	private Address address;
 	@Inject
 	private AddressManager addressManager;
-	@Inject
+	//@Inject
 	private PaymentDetails paymentDetails;
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;
@@ -180,4 +184,36 @@ public class AccountManagementController
 			return "account/uid";
 		}
 	}
+	
+	/*
+	 * 
+	 * @author jtaylor
+	 * 
+	 */
+	public String changePassword()
+	{
+		if(loginDetails != null)
+		{
+			byte[] salt = null;
+			try {
+				salt = LoginDetailsToolkit.generateSalt();
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				loginDetails.setNewPasswordAndSalt(LoginDetailsToolkit.getHashedPassword(accountManagement.getPassword(), salt), salt);
+			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "account/uid";
+		}
+		else
+		{
+			errorMsg = "Invalid Change";
+			return "account/uid";
+		}
+	}
+	 
 }

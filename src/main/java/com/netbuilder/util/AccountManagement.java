@@ -10,7 +10,7 @@ import com.netbuilder.enums.CardType;
 
 public class AccountManagement 
 {
-	private String fName, lName, email, contactNo, username;
+	private String fName, lName, email, contactNo, username, password;
 	private String addressLabel, addressLine1, addressLine2, addressLine3, city, county, postcode;
 	private boolean isBillingAddress;
 	private CardType cardType;
@@ -163,4 +163,13 @@ public class AccountManagement
 	public void setNameOnCard(String nameOnCard) {
 		this.nameOnCard = nameOnCard;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }
