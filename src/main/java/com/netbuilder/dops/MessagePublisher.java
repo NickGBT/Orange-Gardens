@@ -1,7 +1,9 @@
 package com.netbuilder.dops;
 
+import java.util.ArrayList;
+
 import javax.jms.JMSException;
-import javax.jms.TextMessage;
+import javax.jms.ObjectMessage;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
 import javax.jms.TopicConnectionFactory;
@@ -27,7 +29,7 @@ public class MessagePublisher {
 	private TopicSession session = null;
 	private TopicPublisher tPublisher = null;
 	
-	public void sendOrderAvailable(int orderId){
+	public void sendOrdersAvailable(ArrayList<Integer> orderIds){
 		try{
 			context = new InitialContext();
 			connFactory = (TopicConnectionFactory) context.lookup("ConnectionFactory");
@@ -35,8 +37,7 @@ public class MessagePublisher {
 			conn = connFactory.createTopicConnection();
 			session = conn.createTopicSession(false, AUTO_ACKNOWLEDGE);
 			tPublisher = session.createPublisher(topic);
-			TextMessage message = session.createTextMessage();
-			message.setText("" + orderId);
+			ObjectMessage message = session.createObjectMessage("orderIds");
 			conn.start();
 			tPublisher.publish(message);
 		} catch (NamingException e){
