@@ -37,7 +37,7 @@ import com.netbuilder.orange_gardens_dops_enums.GladosStatus;
  *
  */
 
-public class GladosGui
+public class GladosGui 
 {
 	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
 	private JFrame mainFrame, splashFrame;
@@ -170,13 +170,13 @@ public class GladosGui
         	getNewOrder.setText("Assign yourself an order to process.");
         	getNewOrder.setPreferredSize(new Dimension(350, 150));
         	getNewOrder.setFont(new Font("Arial", Font.BOLD, 18));
-        	getNewOrder.addActionListener(new ActionListener()
+        	getNewOrder.addActionListener(new ActionListener() 
         	{
-				public void actionPerformed(ActionEvent e)
+				public void actionPerformed(ActionEvent arg0) 
 				{
 					gladosStatus = GladosStatus.displayOrder;
 				}
-			});
+			});       						
         	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
         	assignOrder.add(getNewOrder);
         	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
