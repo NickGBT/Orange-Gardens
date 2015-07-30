@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
+import com.netbuilder.controllers.RegistrationController;
 import com.netbuilder.enums.CardType;
 
 /**
@@ -18,6 +20,7 @@ import com.netbuilder.enums.CardType;
 @RequestScoped
 public class RegistrationDetails 
 {
+	RegistrationController controller;
 	//Customer
 	private String fName;
 	private String lName;
@@ -53,7 +56,7 @@ public class RegistrationDetails
 	
 	
 	public String Register() {
-		this.fName = fName; data.add(fName);
+		this.fName = "test"; data.add(fName);
 		this.lName = lName; data.add(lName);
 		this.contactNumber = contactNumber; data.add(contactNumber);
 		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
@@ -74,6 +77,7 @@ public class RegistrationDetails
 		this.expiryDate = expiryDate; data.add(expiryDate);
 		
 		System.out.println("aite m8 " + this.fName + " " + this.lName + " " + this.nameOnCard + " " + this.password);
+
 		return "login.xhtml";
 	}
 	
