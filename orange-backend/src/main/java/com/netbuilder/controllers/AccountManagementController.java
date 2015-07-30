@@ -6,6 +6,7 @@ import java.security.spec.InvalidKeySpecException;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -20,6 +21,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.TestData;
+import com.netbuilder.util.UserDetails;
 import com.netbuilder.util.UserId;
 
 /**
@@ -34,6 +36,9 @@ public class AccountManagementController
 {
 	@ManagedProperty(value= "#{testData}")
 	private TestData testData;
+	@ManagedProperty(value= "#{userDetails}")
+	private UserDetails userDetails;
+	
 
 	private String errorMsg;
 	@Inject
@@ -91,11 +96,11 @@ public class AccountManagementController
 		return loginDetails;
 	}
 
-	public Customer getCustomer() 
+	public UserDetails getCustomer() 
 	{
 		//customer = customerManager.findByUserId(UserId.getUid());
-		customer = testData.getCustomer();
-		return customer;
+	
+		return userDetails;
 	}
 
 	public Address getAddress() 
