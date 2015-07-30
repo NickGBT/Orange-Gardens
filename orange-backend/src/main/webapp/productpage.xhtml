@@ -19,20 +19,14 @@
 					
 					<div id = "ProductDescription">
 						<div id = "ProductHeader">
-							<h1> 
-								<f:facet name = "productName">
-									<h:outputLabel for = "product">
-										<h:outputText id = "productLabel" value = "#{ProductPageController.getProduct().getProductName()}"/>
-											<!-- Add Product Name String Here -->
-									</h:outputLabel>
-								</f:facet>
-							</h1>
+							<h:outputLabel>
+								<h:outputText id = "productNameLabel"
+									value = "ProductName"	/>
+							</h:outputLabel>						
 						</div>
 						<div id = "Attributes"> 
-							
-							<f:facet name = "productId"> 
-								<p>ID : <h:outputText value = "#{ProductPageController.getProduct().getProductId()}"/> <!-- Product ID Here -->	</p>
-							</f:facet>
+								<p>ID : <h:outputText value = "#{productController.product.productName}"/> <!-- Product ID Here -->	</p>
+			
 							
 							<f:facet name = "productSize"> 
 								<p>Size : <h:outputText	value = "#{ProductPageController.getProduct().getWidth()}"/>	Length <!-- Product Size Here --> </p>

@@ -26,7 +26,8 @@ public class ProductController {
 	private Product product;
 	
 	public Product getProduct(){
-		product = productD.getProductId();
+	//	product = productD.getProductId();
+		product = testData.getProduct();
 		return product;
 	}
 	
@@ -37,6 +38,22 @@ public class ProductController {
 	public void addToBasket() { 
 		productD.addToBasket();
 	}
+
+	/**
+	 * @return the testData
+	 */
+	public TestData getTestData() {
+		return testData;
+	}
+
+	/**
+	 * @param testData the testData to set
+	 */
+	public void setTestData(TestData testData) {
+		this.testData = testData;
+	}
+	
+	
 	
 }
 
