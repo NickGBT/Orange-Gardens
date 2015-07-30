@@ -26,43 +26,50 @@
 		</div>
 	</div>
 	<div id="MainBlock">
-		<h:inputText value = "First Nae:"/>
+		First Name:
 		<h:outputText value=" #{AccountManagementController.getCustomer().getfName()}"/>
-		<f:facet name="id">
-		<h:commandButton class="button" value="Chang" action="#{AccountManagementController.changeFName()}"/>
-		</f:facet>
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>
 		<br/>
 		<br/>
-		<h:outputText value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
-
-		<h:outputText value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/><br/>
-
-		<h:outputText value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/><br/>
-
-		<h:outputText value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/><br/>
+		Last Name:
+		<h:outputText value="#{AccountManagementController.getCustomer().getlName()}"/>
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/>
+		<br/>
+		<br/>
+		Email Address:
+		<h:outputText value="#{AccountManagementController.getCustomer().getEmail()}"/>
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/>
+		<br/>
+		<br/>
+		Contact Number:
+		<h:outputText value="#{AccountManagementController.getCustomer().getContactNumber()}"/>
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/>
+		<br/>
+		<br/>
+		Username:
+		<h:outputText value="#{AccountManagementController.getLoginDetails().getUsername()}"/>
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/>
+		<br/>
+		<br/>
 		
 		<p>Payment Methods:</p>
 		<h:selectOneMenu>
-			<f:selectItem value="#{CardType.VISA}"/>
-			<f:selectItem value="#{CardType.VISADEBIT}"/>
-			<f:selectItem value="#{CardType.VISAELECTRON}"/>
-			<f:selectItem value="#{CardType.MAESTRO}"/>
-			<f:selectItem value="#{CardType.MASTERCARD}"/>
-			<f:selectItem value="#{CardType.AMERICANEXPRESS}"/>
+			<f:selectItem itemValue="CardType.VISA" itemLabel="VISA"/>
+			<f:selectItem itemValue="CardType.VISADEBIT" itemLabel="VISADEBIT"/>
+			<f:selectItem itemValue="CardType.VISAELECTRON" itemLabel="VISAELECTRON"/>
+			<f:selectItem itemValue="CardType.MAESTRO" itemLabel="MAESTRO"/>
+			<f:selectItem itemValue="CardType.MASTERCARD" itemLabel="MASTERCARD"/>
+			<f:selectItem itemValue="CardType.AMERICANEXPRESS" itemLabel="AMERICANEXPRESS"/>
 		</h:selectOneMenu>
 		
 		<p>Address:</p>
 		<div id="AddressText">
-			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine1()}"/>
-			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine2()}"/>
-			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine3()}"/>
-			<h:outputText value="#{AccountManagementController.getAddress().getCity()}"/>
-			<h:outputText value="#{AccountManagementController.getAddress().getCounty()}"/>
-			<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine1()}"/><br/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine2()}"/><br/>
+			<h:outputText value="#{AccountManagementController.getAddress().getAddressLine3()}"/><br/>
+			<h:outputText value="#{AccountManagementController.getAddress().getCity()}"/><br/>
+			<h:outputText value="#{AccountManagementController.getAddress().getCounty()}"/><br/>
+			<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/><br/>
 		</div>
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeAddress()}"/><br/>
 	</div>
