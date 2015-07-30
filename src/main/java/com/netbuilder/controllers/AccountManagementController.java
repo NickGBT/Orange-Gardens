@@ -24,19 +24,19 @@ public class AccountManagementController
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
-	//@Inject
+	@Inject
 	private LoginDetails loginDetails;
 	@Inject
 	private LoginDetailsManager loginDetailsManager;
-	//@Inject
+	@Inject
 	private Customer customer;
 	@Inject
 	private CustomerManager customerManager;
-	//@Inject
+	@Inject
 	private Address address;
 	@Inject
 	private AddressManager addressManager;
-	//@Inject
+	@Inject
 	private PaymentDetails paymentDetails;
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;
@@ -49,16 +49,24 @@ public class AccountManagementController
 		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
 	}
 
-	public void changeAddress()
+	public String changeAddress()
 	{
-		address.setAddressLabel(accountManagement.getAddressLabel());
-		address.setAddressLine1(accountManagement.getAddressLine1());
-		address.setAddressLine2(accountManagement.getAddressLine2());
-		address.setAddressLine3(accountManagement.getAddressLine3());	
-		address.setCity(accountManagement.getCity());
-		address.setCounty(accountManagement.getCounty());
-		address.setPostcode(accountManagement.getPostcode());
-		address.setBillingAddress(accountManagement.isBillingAddress());
+		if (address != null)
+		{
+			address.setAddressLabel(accountManagement.getAddressLabel());
+			address.setAddressLine2(accountManagement.getAddressLine2());
+			address.setAddressLine3(accountManagement.getAddressLine3());	
+			address.setCity(accountManagement.getCity());
+			address.setCounty(accountManagement.getCounty());
+			address.setPostcode(accountManagement.getPostcode());
+			address.setBillingAddress(accountManagement.isBillingAddress());
+			return "account/uid";
+		}
+		else
+		{
+			errorMsg = "Invalid Change";
+			return "account/uid";
+		}
 	}
 	
 	public void changePayment()
