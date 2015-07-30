@@ -15,7 +15,6 @@ import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
  *
  */
 
-@ManagedBean(name="login")
 @Stateful
 @SessionScoped
 public class LoginController {
@@ -28,8 +27,6 @@ public class LoginController {
 	private boolean loggedIn = true;
 
 	public String login(){
-		System.out.println("Checking Password");
-		System.out.println("UserName : " + name  + ", Password : " + password);
 		userId = ldm.checkPassword(name, password);
 		
 		System.out.println("User exists? : " + userId);

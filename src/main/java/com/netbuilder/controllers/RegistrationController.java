@@ -9,6 +9,8 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
 
@@ -24,6 +26,8 @@ public class RegistrationController
 {
 	@ManagedProperty(value="#{registrationDetails}")
 	private RegistrationDetails registrationDetails;
+	
+	
 	private String errorMsg;
 	private Customer customer;
 	private LoginDetails loginDetails;
