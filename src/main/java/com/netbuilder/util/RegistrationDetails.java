@@ -17,7 +17,7 @@ import com.netbuilder.enums.CardType;
  */
 
 @ManagedBean(name = "registrationDetails")
-@SessionScoped
+@RequestScoped
 public class RegistrationDetails 
 {
 	RegistrationController controller;
@@ -56,7 +56,7 @@ public class RegistrationDetails
 	
 	
 	public String Register() {
-		this.fName = fName; data.add(fName);
+		this.fName = "test"; data.add(fName);
 		this.lName = lName; data.add(lName);
 		this.contactNumber = contactNumber; data.add(contactNumber);
 		this.isBillingAddress = isBillingAddress; data.add(isBillingAddress);
