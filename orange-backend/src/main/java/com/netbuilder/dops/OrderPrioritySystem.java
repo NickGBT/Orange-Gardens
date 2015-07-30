@@ -39,7 +39,6 @@ public class OrderPrioritySystem {
 		}
 		
 		Collections.sort(lowPriority, new Comparator<Order>() {
-		    @Override
 		    public int compare(Order o1, Order o2) {
 		        if (o1.getDatePlacedInMillis() < o2.getDatePlacedInMillis())
 		            return 1;
