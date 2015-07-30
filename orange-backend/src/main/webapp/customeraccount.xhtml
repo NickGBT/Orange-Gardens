@@ -26,29 +26,24 @@
 		</div>
 	</div>
 	<div id="MainBlock">
-		<h:outputText value="First Name: #{AccountManagementController.getCustomer().getfName()}"/>
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/><br/>
-		
-		
-		<h:outputText value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
-		<f:facet name="lastNameChange">
-			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
+		First Nae:
+		<h:outputText value=" #{AccountManagementController.getCustomer().getfName()}"/>
+		<f:facet name="id">
+		<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>
 		</f:facet>
+		<br/>
+		<br/>
+		<h:outputText value="Last Name: #{AccountManagementController.getCustomer().getlName()}"/>
+			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/><br/>
 
 		<h:outputText value="Email Address: #{AccountManagementController.getCustomer().getEmail()}"/>
-		<f:facet name="emailChange">
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/><br/>
-		</f:facet>
 
 		<h:outputText value="Contact Number: #{AccountManagementController.getCustomer().getContactNumber()}"/>
-		<f:facet name="contactNumberChange">
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/><br/>
-		</f:facet>
 
 		<h:outputText value="Username: #{AccountManagementController.getLoginDetails().getUsername()}"/>
-		<f:facet name="usernameChange">
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/><br/>
-		</f:facet>
 		
 		<p>Payment Methods:</p>
 		<h:selectOneMenu>
@@ -69,16 +64,12 @@
 			<h:outputText value="#{AccountManagementController.getAddress().getCounty()}"/>
 			<h:outputText value="#{AccountManagementController.getAddress().getPostcode()}"/>
 		</div>
-		<f:facet name="addressChange">
 			<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeAddress()}"/><br/>
-		</f:facet>
 	</div>
 
 	<div id="PasswordBlock">
 		<p>Want to change your password?</p>
-		<f:facet name="addressChange">
 			<h:commandButton class="button" value="Reset Password" action="#{AccountManagementController.changePassword()}"/><br/>
-		</f:facet>
 	</div>
 </div>
 </ui:define>
