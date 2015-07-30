@@ -1,16 +1,24 @@
 package com.netbuilder.util;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 /**
  * 
- * @author JustinMabbutt
+ * @author JustinMabbutt llew
  *
  */
-
+@ManagedBean(name = "userDetails")
+@RequestScoped
 public class UserDetails
 {
 	private String name;
 	private String password;
 	private int uid;
+	
+	public UserDetails(){
+		
+	}
 	
 	public UserDetails(String name, String password) 
 	{
