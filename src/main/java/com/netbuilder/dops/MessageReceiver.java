@@ -52,7 +52,7 @@ public class MessageReceiver {
 				try{
 					conn.close();
 				} catch(JMSException e){
-					conn.close();
+					e.printStackTrace();
 				}
 			}
 		}
