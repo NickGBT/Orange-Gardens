@@ -37,10 +37,9 @@ public class LoginController {
 	public String login(){
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
-		
+		System.out.println("Registered Accounts : "  + userDetails.getName());
 		for(int i = 0; i < userDetails.getUid().size(); i++){
 			
-			System.out.println(userDetails.getName());
 			if(userDetails.getName().get(i).equals(name) &&
 				userDetails.getPassword().get(i).equals(password)){
 				
