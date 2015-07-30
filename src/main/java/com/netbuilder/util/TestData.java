@@ -2,6 +2,9 @@ package com.netbuilder.util;
 
 import java.math.BigDecimal;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Delivery;
@@ -24,7 +27,8 @@ import com.netbuilder.enums.ProductCategory;
  * @author ngilbert
  *
  */
-
+@ManagedBean(name = "testData")
+@RequestScoped
 public class TestData {
 	
 	byte[] password = {1,2,3};
@@ -123,5 +127,322 @@ public class TestData {
 	public Stock stock2 = new Stock(product2, 5, 4, "Right here", 12, 5, 9);
 	
 	public Stock stock3 = new Stock(product3, 8, 1, "Ooch aye the noo", 17, 3, 8);
+
+	/**
+	 * @return the password
+	 */
+	public byte[] getPassword() {
+		return password;
+	}
+
+	/**
+	 * @return the salt
+	 */
+	public byte[] getSalt() {
+		return salt;
+	}
+
+	/**
+	 * @return the customerLogin
+	 */
+	public LoginDetails getCustomerLogin() {
+		return customerLogin;
+	}
+
+	/**
+	 * @return the customerLogin2
+	 */
+	public LoginDetails getCustomerLogin2() {
+		return customerLogin2;
+	}
+
+	/**
+	 * @return the customerLogin3
+	 */
+	public LoginDetails getCustomerLogin3() {
+		return customerLogin3;
+	}
+
+	/**
+	 * @return the employeeLogin
+	 */
+	public LoginDetails getEmployeeLogin() {
+		return employeeLogin;
+	}
+
+	/**
+	 * @return the paymentDetails
+	 */
+	public PaymentDetails getPaymentDetails() {
+		return paymentDetails;
+	}
+
+	/**
+	 * @return the paymentDetails2
+	 */
+	public PaymentDetails getPaymentDetails2() {
+		return paymentDetails2;
+	}
+
+	/**
+	 * @return the paymentDetails3
+	 */
+	public PaymentDetails getPaymentDetails3() {
+		return paymentDetails3;
+	}
+
+	/**
+	 * @return the order
+	 */
+	public Order getOrder() {
+		return order;
+	}
+
+	/**
+	 * @return the order2
+	 */
+	public Order getOrder2() {
+		return order2;
+	}
+
+	/**
+	 * @return the order3
+	 */
+	public Order getOrder3() {
+		return order3;
+	}
+
+	/**
+	 * @return the product
+	 */
+	public Product getProduct() {
+		return product;
+	}
+
+	/**
+	 * @return the product2
+	 */
+	public Product getProduct2() {
+		return product2;
+	}
+
+	/**
+	 * @return the product3
+	 */
+	public Product getProduct3() {
+		return product3;
+	}
+
+	/**
+	 * @return the orderLine
+	 */
+	public OrderLine getOrderLine() {
+		return orderLine;
+	}
+
+	/**
+	 * @return the orderLine1
+	 */
+	public OrderLine getOrderLine1() {
+		return orderLine1;
+	}
+
+	/**
+	 * @return the orderLine2
+	 */
+	public OrderLine getOrderLine2() {
+		return orderLine2;
+	}
+
+	/**
+	 * @return the orderLine3
+	 */
+	public OrderLine getOrderLine3() {
+		return orderLine3;
+	}
+
+	/**
+	 * @return the orderLine4
+	 */
+	public OrderLine getOrderLine4() {
+		return orderLine4;
+	}
+
+	/**
+	 * @return the orderLine5
+	 */
+	public OrderLine getOrderLine5() {
+		return orderLine5;
+	}
+
+	/**
+	 * @return the orderLine6
+	 */
+	public OrderLine getOrderLine6() {
+		return orderLine6;
+	}
+
+	/**
+	 * @return the orderLine7
+	 */
+	public OrderLine getOrderLine7() {
+		return orderLine7;
+	}
+
+	/**
+	 * @return the address
+	 */
+	public Address getAddress() {
+		return address;
+	}
+
+	/**
+	 * @return the address2
+	 */
+	public Address getAddress2() {
+		return address2;
+	}
+
+	/**
+	 * @return the address3
+	 */
+	public Address getAddress3() {
+		return address3;
+	}
+
+	/**
+	 * @return the delivery
+	 */
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+	/**
+	 * @return the delivery2
+	 */
+	public Delivery getDelivery2() {
+		return delivery2;
+	}
+
+	/**
+	 * @return the delivery3
+	 */
+	public Delivery getDelivery3() {
+		return delivery3;
+	}
+
+	/**
+	 * @return the deliveryLine
+	 */
+	public DeliveryLine getDeliveryLine() {
+		return deliveryLine;
+	}
+
+	/**
+	 * @return the deliveryLine1
+	 */
+	public DeliveryLine getDeliveryLine1() {
+		return deliveryLine1;
+	}
+
+	/**
+	 * @return the deliveryLine2
+	 */
+	public DeliveryLine getDeliveryLine2() {
+		return deliveryLine2;
+	}
+
+	/**
+	 * @return the deliveryLine3
+	 */
+	public DeliveryLine getDeliveryLine3() {
+		return deliveryLine3;
+	}
+
+	/**
+	 * @return the deliveryLine4
+	 */
+	public DeliveryLine getDeliveryLine4() {
+		return deliveryLine4;
+	}
+
+	/**
+	 * @return the deliveryLine5
+	 */
+	public DeliveryLine getDeliveryLine5() {
+		return deliveryLine5;
+	}
+
+	/**
+	 * @return the customer
+	 */
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	/**
+	 * @return the customer2
+	 */
+	public Customer getCustomer2() {
+		return customer2;
+	}
+
+	/**
+	 * @return the customer3
+	 */
+	public Customer getCustomer3() {
+		return customer3;
+	}
+
+	/**
+	 * @return the employee
+	 */
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	/**
+	 * @return the employee2
+	 */
+	public Employee getEmployee2() {
+		return employee2;
+	}
+
+	/**
+	 * @return the employee3
+	 */
+	public Employee getEmployee3() {
+		return employee3;
+	}
+
+	/**
+	 * @return the employee4
+	 */
+	public Employee getEmployee4() {
+		return employee4;
+	}
+
+	/**
+	 * @return the stock
+	 */
+	public Stock getStock() {
+		return stock;
+	}
+
+	/**
+	 * @return the stock2
+	 */
+	public Stock getStock2() {
+		return stock2;
+	}
+
+	/**
+	 * @return the stock3
+	 */
+	public Stock getStock3() {
+		return stock3;
+	}
+	
+	
 			
 }

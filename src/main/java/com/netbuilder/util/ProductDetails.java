@@ -28,6 +28,7 @@ import com.netbuilder.enums.ProductCategory;
 @RequestScoped
 public class ProductDetails {
 
+	private PaymentDetails paymentD;
 	private int quantity;
 	private int productId;
 	private int customerId;
@@ -36,7 +37,6 @@ public class ProductDetails {
 	private ProductCategory category;
 	private OrderStatus status;
 	private ProductManager productMan;
-	private PaymentDetails paymentD;
 	private PaymentDetailsManager paymentMan;
 	private OrderManager orderMan;
 	private OrderLineManager orderLineMan;
