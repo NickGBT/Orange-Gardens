@@ -13,24 +13,17 @@
 
 <ui:define name="content">
 <div id="MainContent">
+<h:form>
 	<h1>Sign In</h1>
 	<h4>What is your user name or email address?</h4>
-	<h:form>
-		<h:inputText id="loginDetails" value="#{login.name}" maxlength="45" size="20"></h:inputText>
-	</h:form>
+		<h:inputText id="logindetails" value="#{loginController.name}" maxlength="45" size="20"></h:inputText>
 	<h4>What is your password?</h4>
-	<h:form>
-		<h:inputSecret id="password" value="#{login.password}" maxlength="45" size="20"></h:inputSecret>
-	</h:form>
+		<h:inputSecret id="password" value="#{loginController.password}" maxlength="45" size="20"></h:inputSecret>
 	<br/>
-	<f:facet name="loginSubmit">
-		<h:commandButton class="button" value="Sign In" action="#{login.login()}"/>
-	</f:facet>
+		<h:commandButton class="button" value="Submit" action="#{loginController.login}"/>
+</h:form>	
 	<br/>
 	<br/>
-	<f:facet name="accountCreate">
-		<h:commandButton class="button" value="Register an account" action="#{RegistrationController.registerCustomer}"/>
-	</f:facet>
 </div>
 </ui:define>
 
