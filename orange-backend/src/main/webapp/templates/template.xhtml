@@ -36,9 +36,11 @@
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a>
 					<h:link rendered="#{login.loggedIn}" outcome="account.xhtml" value="Account" class="headerButton" />
+					<h:link rendered="#{login.loggedIn}" outcome="#{login.logout()}" value="Logout" class="headerButton" />
 					<h:link rendered="#{!login.loggedIn}" outcome="customerlogin.xhtml" value="Login" class="headerButton" />
 					<br/>
 				</div>
+				<br />
 				
 				<div id="searchbar">
 					<h:form>
