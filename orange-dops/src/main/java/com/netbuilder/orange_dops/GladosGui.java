@@ -2,8 +2,8 @@ package com.netbuilder.orange_dops;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -40,7 +41,7 @@ public class GladosGui
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
-	private JPanel assignOrder;
+	private JPanel assignOrder, order;
 	private BufferedImage splash, background;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
@@ -48,8 +49,10 @@ public class GladosGui
 	private JButton getNewOrder, completeOrder, nextProduct;
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
+	private ImagePanel backgroundPanel;
 	private Font buttonFont;
-	private Map theMap;
+	private JTable productTable;
+	private TableBuilder tableBuilder;
 	
 	/**
 	 * @author JustinMabbutt
@@ -86,7 +89,7 @@ public class GladosGui
 		}		
 		splashFrame = new JFrame();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		assignOrder = new JPanel();
+		assignOrder = new JPanel(); order = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
@@ -95,7 +98,28 @@ public class GladosGui
 		buttonLayout = new GridBagLayout();
 		buttonLayoutConstraints = new GridBagConstraints();
 		buttonFont = new Font("Arial", Font.BOLD, 18);
-		theMap = new Map();
+		Thread ui = new Thread()
+		{
+			@Override
+			public void run()
+			{
+				while(true)
+				{
+					getNewOrder.repaint();
+					completeOrder.repaint();
+					nextProduct.repaint();
+					try 
+					{
+						Thread.sleep(100);
+					} 
+					catch (InterruptedException ie)
+					{
+						logger.log(Level.SEVERE, "Thread Interrupted", ie);
+					}
+				}
+			}
+		};
+		ui.start();
 		logger.exiting(getClass().getName(), "IMSGUI");
     }
 	
@@ -140,22 +164,15 @@ public class GladosGui
 	private void initUi()
 	{
 		logger.entering(getClass().getName(), "initUi");
-		mainFrame = new JFrame("NB GLADOS")
-		{
-			@Override
-			public void paint(Graphics g)
-			{
-				super.paint(g);
-				g.drawImage(background, 0, 0, null);
-			}
-		};
+		mainFrame = new JFrame("NB GLADOS");
+		backgroundPanel = new ImagePanel(backgroundIcon.getImage());
         mainFrame.setSize(500, 680);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
         nbLogo = new ImageIcon("images/nb.png");
         mainFrame.setIconImage(gladosLogo);
-        mainFrame.setLayout(new BorderLayout());
+        mainFrame.getContentPane().add(backgroundPanel);
         mainFrame.setVisible(true);
         displayGetOrder();
 		logger.exiting(getClass().getName(), "initUi");
@@ -167,8 +184,8 @@ public class GladosGui
      */
     private void displayGetOrder()
     {
-    	theMap.setVisible(false);
-    	assignOrder.setVisible(true);
+    	mainFrame.getContentPane().remove(order);
+   		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 150));
     	getNewOrder.setFont(buttonFont);
@@ -183,7 +200,9 @@ public class GladosGui
     	assignOrder.add(getNewOrder);
     	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
     	assignOrder.setLayout(buttonLayout);
-    	mainFrame.add(assignOrder);
+    	mainFrame.getContentPane().add(assignOrder);
+    	mainFrame.revalidate();
+    	mainFrame.repaint();
     }
     
     /**
@@ -206,7 +225,8 @@ public class GladosGui
      */
    	private void displayMap()
     {
-   		assignOrder.setVisible(false);
+   		mainFrame.getContentPane().remove(assignOrder);
+   		mainFrame.invalidate();
     	//1 = Beginning
     	//2 = Possible route
     	//3 = Shelf
@@ -235,8 +255,9 @@ public class GladosGui
     			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
     			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
     	};
+    	order.setLayout(new FlowLayout(FlowLayout.CENTER));
     	completeOrder.setText("Complete order");
-    	completeOrder.setPreferredSize(new Dimension(350, 150));
+    	completeOrder.setPreferredSize(new Dimension(240, 80));
     	completeOrder.setFont(buttonFont);
     	completeOrder.addActionListener(new ActionListener() 
     	{
@@ -245,8 +266,20 @@ public class GladosGui
 				displayGetOrder();
 			}
 		});
-    	theMap.add(completeOrder);
-    	mainFrame.add(theMap);
-    	theMap.setVisible(true);
+    	order.add(completeOrder);
+    	nextProduct.setText("Route to next Product");
+    	nextProduct.setPreferredSize(new Dimension(240, 80));
+    	nextProduct.setFont(buttonFont);
+    	nextProduct.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				
+			}
+		});
+    	order.add(nextProduct);
+    	mainFrame.getContentPane().add(order, BorderLayout.SOUTH);
+    	mainFrame.revalidate();
+    	mainFrame.repaint();
     }
 }
