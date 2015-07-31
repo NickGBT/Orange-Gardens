@@ -13,12 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,8 +24,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -49,12 +43,9 @@ public class GladosGui
 	private JPanel assignOrder;
 	private BufferedImage splash, background;
 	private Timer splashTimer;
-	private Random randomGenerator;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
-	private String[] topMessage, bottomMessage;
 	private JButton getNewOrder, completeOrder, nextProduct;
-	private int messageIndex;
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
 	private Font buttonFont;
@@ -94,15 +85,12 @@ public class GladosGui
 			logger.log(Level.SEVERE, "Illegal access exception", iae);
 		}		
 		splashFrame = new JFrame();
-		randomGenerator = new Random();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
 		assignOrder = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
 		splash = null; background = null;
-		messageIndex = 0;
-		topMessage = new String[11]; bottomMessage = new String[11];
 		splashTimer = new Timer();
 		buttonLayout = new GridBagLayout();
 		buttonLayoutConstraints = new GridBagConstraints();
@@ -175,43 +163,10 @@ public class GladosGui
 
     /**
      * @author JustinMabbutt
-     * Task to assign completed order messages
-     */
-    private void assignMessages()
-    {
-    	logger.entering(getClass().getName(), "assignMessages");
-    	topMessage[0] = "Pick up gnome";
-    	bottomMessage[0] = "Gnome goes in box";
-    	topMessage[1] = "Don't just stand there";
-    	bottomMessage[1] = "Pack stuff!";
-    	topMessage[2] = "All your diseases";
-    	bottomMessage[2] = "are like love to me";
-    	topMessage[3] = "You got the touch";
-    	bottomMessage[3] = "You got the pow-ah!";
-    	topMessage[4] = "Are you even";
-    	bottomMessage[4] = "still reading these?";
-    	topMessage[5] = "Don't just stand there";
-    	bottomMessage[5] = "Pack stuff!";
-    	topMessage[6] = "You have no order assigned";
-    	bottomMessage[6] = "Rectify this situation";
-    	topMessage[7] = "Touch my face";
-    	bottomMessage[7] = "Touch it!";
-    	topMessage[8] = "Yaaaay";
-    	bottomMessage[8] = "Yaaaaaaaaaay!";
-    	topMessage[9] = "Lets get this";
-    	bottomMessage[9] = "over with";
-    	topMessage[10] = "Doobie Doobie";
-    	bottomMessage[10] = "Doo da day!";
-    	logger.exiting(getClass().getName(), "assignMessages");
-    }
-
-    /**
-     * @author JustinMabbutt
      * Task to display the order screen with map
      */
     private void displayGetOrder()
     {
-    	assignMessages();
     	theMap.setVisible(false);
     	assignOrder.setVisible(true);
     	getNewOrder.setText("Assign yourself an order to process.");
