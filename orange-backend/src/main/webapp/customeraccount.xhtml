@@ -15,9 +15,6 @@
 	<ui:define name="content">
 		<div id = "MainContent">
 			<div id="TitleBar">
-				<div id="TitleImageLeft">
-					<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
-				</div>
 				<div id="TitleText">
 					<h1>Your Account</h1>
 				</div>
@@ -26,6 +23,8 @@
 				</div>
 			</div>
 			<div id="MainBlock">
+				<br/>
+				<br/>
 				First Name:
 				<h:outputText value=" #{accountManagementController.customer.fName}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>

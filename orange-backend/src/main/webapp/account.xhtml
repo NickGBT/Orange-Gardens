@@ -10,11 +10,11 @@
 		template="templates/template.xhtml">
 
 		
-	<ui:define name="pageTitle">Welcome <!-- get user's name for here --></ui:define>
+	<ui:define name="pageTitle">Welcome #{accountManagementController.customer.fName}</ui:define>
 	<ui:define name="content">
 		<div id="content">
 		
-			<h1>Welcome <h:outputLabel value=""/></h1>
+			<h1>Welcome #{accountManagementController.customer.fName}!<h:outputLabel value=""/></h1>
 			<div id="productScroller">
 				<!-- Load popular products using JS or similar -->
 				<f:facet name="popularScroller">
@@ -23,10 +23,10 @@
 			</div>
 			<div id="accountLinks">
 				<!-- Align Center -->
-				<a href="">Manage Account</a><br />
-				<a href="">View Previous Orders</a><br />
-				<a href="">View Wishlist</a><br />
-				<a href="">View Basket></a><br />
+				<a href="customeraccount.xhtml">Manage Account</a><br /><br/>
+				<a href="previousorders.xhtml">View Previous Orders</a><br /><br/>
+				<a href="wishlist.xhtml">View Wishlist</a><br /><br/>
+				<a href="basket.xhtml">View Basket</a><br /><br/>
 			</div>
 		</div>
 	</ui:define>
