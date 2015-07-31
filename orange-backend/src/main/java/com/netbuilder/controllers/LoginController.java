@@ -32,7 +32,7 @@ public class LoginController {
 	private String name;
 	private String password;
 	private int userId;
-	private boolean loggedIn = true;
+	private boolean loggedIn = false;
 
 	public String login(){
 		System.out.println("Checking Password");
