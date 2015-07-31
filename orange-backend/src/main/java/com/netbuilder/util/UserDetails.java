@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -19,7 +18,9 @@ public class UserDetails
 	private ArrayList<String> name;
 	private ArrayList<String> password;
 	private ArrayList<Integer> uid;
+	private ArrayList<Boolean> loggedIn;
 	
+	 
 	public UserDetails(){
 		Random rand = new Random();
 		
@@ -30,7 +31,6 @@ public class UserDetails
 		name.add("test");
 		password.add("test");
 		uid.add(rand.nextInt());
-		
 	}
 	
 	public UserDetails(String name, String password) 

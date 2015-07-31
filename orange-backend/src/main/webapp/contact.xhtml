@@ -8,29 +8,37 @@
 		<!-- author: ngilbert -->
 
 		<ui:define name="pageTitle">
-			<h1>
-				ContactUs
-			</h1>				
+				Contact Us			
 		</ui:define>
 		
 		<ui:define name="content">
 		
 			<div id="title">
-				<h1>Contact Us</h1>
+				<H1>Contact Us</H1>
 			</div>
 			
 			<div id="Contact Details">
 				<ui:insert name="NBGardensContactDetails"/>
-				<h:outputLabel class="telephone" value="#{ContactDetailsController.contactDetails.getTelephone()}"/>
-				<h:outputLabel class="mailAddress1" value="#{ContactDetailsController.contactDetails.getMailAddress1()}"/>
-				<h:outputLabel class="mailAddress2" value="#{ContactDetailsController.contactDetails.getMailAddress2()}"/>
-				<h:outputLabel class="mailAddress3" value="#{ContactDetailsController.contactDetails.getMailAddress3()}"/>
-				<h:outputLabel class="mailAddress4" value="#{ContactDetailsController.contactDetails.getMailAddress4()}"/>
-				<h:outputLabel class="mailAddress5" value="#{ContactDetailsController.contactDetails.getMailAddress5()}"/>
-				<f:facet name="emailUs">
-					<h:outputLabel class="email" value="#{ContactDetailsController.contactDetails.getEmail()}"/>
-					<!-- Emailpopup with the NBGardens email filled in, maybe a second button for an email order form-->
-				</f:facet>
+				<H3>By Telephone:</H3> 
+				<h:outputLabel class="telephone" value="#{contactUsDetailsController.contactUsDetails.telephone}"/>
+				<br/>
+				<br/>
+				<H3>By Post:</H3> 
+				<h:outputLabel class="mailAddress1" value="#{contactUsDetailsController.contactUsDetails.mailAddress1}"/>
+				<br/>
+				<h:outputLabel class="mailAddress2" value="#{contactUsDetailsController.contactUsDetails.mailAddress2}"/>
+				<br/>
+				<h:outputLabel class="mailAddress3" value="#{contactUsDetailsController.contactUsDetails.mailAddress3}"/>
+				<br/>
+				<h:outputLabel class="mailAddress4" value="#{contactUsDetailsController.contactUsDetails.mailAddress4}"/>
+				<br/>
+				<h:outputLabel class="mailAddress5" value="#{contactUsDetailsController.contactUsDetails.mailAddress5}"/>
+				<br/>
+				<br/>
+				<H3>By Email:</H3> 
+				<h:outputLabel class="email" value="#{contactUsDetailsController.contactUsDetails.email}"/>
+				<br/>
+				<br/>
 			</div>
 			
 		</ui:define>
