@@ -72,11 +72,12 @@ public class RegistrationController
 					registrationDetails.getNameOnCard(), registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 			
-			System.out.println("Setting user details");
-			userDetails.setName(registrationDetails.getfName());
-			userDetails.setPassword(registrationDetails.getPassword());
-			userDetails.setUid(rand.nextInt());
 			
+			System.out.println("Setting user details");
+//			userDetails.setName(registrationDetails.getfName());
+//			userDetails.setPassword(registrationDetails.getPassword());
+//			userDetails.setUid(rand.nextInt());
+//			
 			System.out.println("First Name " + registrationDetails.getfName() + ", Last Name  " + registrationDetails.getlName());
 			
 			return "account/uid";
