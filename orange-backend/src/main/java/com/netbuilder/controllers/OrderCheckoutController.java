@@ -36,7 +36,7 @@ public class OrderCheckoutController
 	@ManagedProperty(value= "#{testData}")
 	private TestData testData;
 	
-	public List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	//public List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	private AddressManager address;	
 	private PaymentDetailsManager paymentDetails;
 	
