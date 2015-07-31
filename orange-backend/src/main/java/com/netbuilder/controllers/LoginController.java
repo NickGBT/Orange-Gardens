@@ -47,7 +47,7 @@ public class LoginController {
 			}
 		}
 		
-		return "login.xhtml";
+		return "customerlogin.xhtml";
 		
 	/*	userId = ldm.checkPassword(name, password);
 		
