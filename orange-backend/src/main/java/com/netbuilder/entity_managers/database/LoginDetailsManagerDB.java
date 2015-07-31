@@ -13,7 +13,7 @@ import javax.validation.ValidationException;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
-import com.netbuilder.orange_gardens.PersistenceManager;
+import com.netbuilder.persistence_manager.PersistenceManager;
 import com.netbuilder.util.LoginDetailsToolkit;
 
 /**

@@ -14,7 +14,7 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
-import com.netbuilder.orange_gardens.PersistenceManager;
+import com.netbuilder.persistence_manager.PersistenceManager;
 
 /**
  * 
