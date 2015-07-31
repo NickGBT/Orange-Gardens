@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -13,21 +14,28 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -41,7 +49,7 @@ public class GladosGui
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
-	private JPanel assignOrder, order;
+	private JPanel assignOrder, orderButtons, orderPanel;
 	private BufferedImage splash, background;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
@@ -50,9 +58,9 @@ public class GladosGui
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
 	private ImagePanel backgroundPanel;
-	private Font buttonFont;
-	private JTable productTable;
-	private TableBuilder tableBuilder;
+	private Font gladosFont;
+	private int mapCount;
+	private JTextField productName, quantity, boxSize;
 	
 	/**
 	 * @author JustinMabbutt
@@ -89,15 +97,17 @@ public class GladosGui
 		}		
 		splashFrame = new JFrame();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		assignOrder = new JPanel(); order = new JPanel();
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
+		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		splash = null; background = null;
 		splashTimer = new Timer();
 		buttonLayout = new GridBagLayout();
+		mapCount = 0;
 		buttonLayoutConstraints = new GridBagConstraints();
-		buttonFont = new Font("Arial", Font.BOLD, 18);
+		gladosFont = new Font("Arial", Font.BOLD, 18);
 		Thread ui = new Thread()
 		{
 			@Override
@@ -106,8 +116,10 @@ public class GladosGui
 				while(true)
 				{
 					getNewOrder.repaint();
-					completeOrder.repaint();
-					nextProduct.repaint();
+					//completeOrder.repaint();
+					//nextProduct.repaint();
+					orderButtons.repaint();
+					orderPanel.repaint();
 					try 
 					{
 						Thread.sleep(100);
@@ -184,11 +196,9 @@ public class GladosGui
      */
     private void displayGetOrder()
     {
-    	mainFrame.getContentPane().remove(order);
-   		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 150));
-    	getNewOrder.setFont(buttonFont);
+    	getNewOrder.setFont(gladosFont);
     	getNewOrder.addActionListener(new ActionListener() 
     	{
 			public void actionPerformed(ActionEvent arg0) 
@@ -235,30 +245,86 @@ public class GladosGui
     	int[][] testMap = new int[][] { 
     			{1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
     			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{1, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
     			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
     			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
     	};
-    	order.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	
+    	for(int x = 0; x < 20; x++)
+        {
+    		if(mapCount >= 19)
+    		{
+    			System.out.println("\n");
+    			mapCount = 0;
+    		}
+            for(int y = 0; y < 20; y++)
+            {
+                if(testMap[x][y] == 1)
+                {
+                	System.out.print("B ");//beginning
+                	mapCount++;
+                }            
+                else if(testMap[x][y] == 2)
+                {
+                	System.out.print("* ");//possible route
+                	mapCount++;
+                }
+                else if(testMap[x][y] == 3)
+                {
+                	System.out.print("S ");//shelf
+                	mapCount++;
+                }
+                else if(testMap[x][y] == 4)
+                {
+                	System.out.print("P ");//possible pickup location
+                	mapCount++;
+                }
+                else if(testMap[x][y] == 5)
+                {
+                    System.out.print("G ");//GDZ
+                    mapCount++;
+                }
+            }
+        }	
+    	productName.setText("Product Name: ");// + theProductName
+    	quantity.setText("Quantity: ");// + quantity
+    	boxSize.setText("Box Size: ");// + boxSize
+    	productName.setFont(gladosFont); 
+    	productName.setPreferredSize(new Dimension(200, 30));
+    	productName.setEditable(false);
+    	productName.setMaximumSize(productName.getPreferredSize());
+    	quantity.setFont(gladosFont); 
+    	quantity.setPreferredSize(new Dimension(200, 30));
+    	quantity.setEditable(false);
+    	quantity.setMaximumSize(quantity.getPreferredSize());
+    	boxSize.setFont(gladosFont); 
+    	boxSize.setPreferredSize(new Dimension(200, 30));
+    	boxSize.setEditable(false);
+    	boxSize.setMaximumSize(boxSize.getPreferredSize());
+    	orderPanel.add(productName);
+    	orderPanel.add(quantity);
+    	orderPanel.add(boxSize);
+    	orderPanel.setLayout(new BoxLayout(orderPanel, BoxLayout.PAGE_AXIS));
+    	orderButtons.setLayout(new FlowLayout(FlowLayout.CENTER));
     	completeOrder.setText("Complete order");
     	completeOrder.setPreferredSize(new Dimension(240, 80));
-    	completeOrder.setFont(buttonFont);
+    	completeOrder.setFont(gladosFont);
     	completeOrder.addActionListener(new ActionListener() 
     	{
 			public void actionPerformed(ActionEvent arg0) 
@@ -266,10 +332,10 @@ public class GladosGui
 				displayGetOrder();
 			}
 		});
-    	order.add(completeOrder);
+    	orderButtons.add(completeOrder);
     	nextProduct.setText("Route to next Product");
     	nextProduct.setPreferredSize(new Dimension(240, 80));
-    	nextProduct.setFont(buttonFont);
+    	nextProduct.setFont(gladosFont);
     	nextProduct.addActionListener(new ActionListener() 
     	{
 			public void actionPerformed(ActionEvent arg0) 
@@ -277,9 +343,21 @@ public class GladosGui
 				
 			}
 		});
-    	order.add(nextProduct);
-    	mainFrame.getContentPane().add(order, BorderLayout.SOUTH);
+    	orderButtons.add(nextProduct);
+    	mainFrame.getContentPane().add(orderPanel);
+    	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
     	mainFrame.revalidate();
     	mainFrame.repaint();
     }
+   	
+   	/**
+   	 * @author JustinMabbutt
+   	 * 
+   	 */
+   	private void displayOrderComplete()
+   	{
+   		mainFrame.remove(orderPanel);
+   		mainFrame.remove(orderButtons);
+   		mainFrame.invalidate();
+   	}
 }
