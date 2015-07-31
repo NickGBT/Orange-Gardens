@@ -1,8 +1,10 @@
 package com.netbuilder.controllers;
 
-import javax.inject.Inject;
-
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import com.netbuilder.util.ContactUsDetails;
+import com.netbuilder.util.TestData;
 
 /**
  * 
@@ -10,7 +12,31 @@ import com.netbuilder.util.ContactUsDetails;
  *
  **/
 
-public class ContactDetailsController {
+@ManagedBean (name = "contactUsDetailsController")
+@RequestScoped
+public class ContactDetailsController 
+{
 	//@Inject
-	private ContactUsDetails contactDetails;
+	@ManagedProperty(value= "#{testData}")
+	private TestData testData;
+	
+	private ContactUsDetails contactUsDetails;
+	
+	/*
+	 * @author jtaylor
+	 */
+	public ContactUsDetails getContactUsDetails() 
+	{
+		contactUsDetails = testData.getContactUs();
+		return contactUsDetails;
+	}
+	
+	public TestData getTestData() {
+		return testData;
+	}
+
+	public void setTestData(TestData testData) {
+		this.testData = testData;
+	}
+	
 }

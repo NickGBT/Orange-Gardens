@@ -21,6 +21,7 @@ import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.util.ContactUsDetails;
 
 /**
  * 
@@ -127,6 +128,8 @@ public class TestData {
 	public Stock stock2 = new Stock(product2, 5, 4, "Right here", 12, 5, 9);
 	
 	public Stock stock3 = new Stock(product3, 8, 1, "Ooch aye the noo", 17, 3, 8);
+	
+	public ContactUsDetails contactUs = new ContactUsDetails("04066457482", "NB Gardens", "666 Gnarled close", "Hell", "Staines", "ST00BL", "NBGardens@hotmail.com");
 
 	/**
 	 * @return the password
@@ -443,6 +446,8 @@ public class TestData {
 		return stock3;
 	}
 	
-	
+	public ContactUsDetails getContactUs() {
+		return contactUs;
+	}
 			
 }
