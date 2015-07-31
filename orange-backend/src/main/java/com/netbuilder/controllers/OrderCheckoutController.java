@@ -36,7 +36,7 @@ public class OrderCheckoutController
 	@ManagedProperty(value= "#{testData}")
 	private TestData testData;
 	
-	//public List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 	private AddressManager address;	
 	private PaymentDetailsManager paymentDetails;
 	
@@ -44,7 +44,6 @@ public class OrderCheckoutController
 	private OrderManager orderManager;
 	private Order order;
 	private OrderDetails basketDetails;
-	private OrderLine orderLine1, orderLine2, orderLine3;
 	
 	
 	public Order getOrder() 
@@ -55,7 +54,9 @@ public class OrderCheckoutController
 	}
 	 
 	public List<OrderLine> getBasket(){
-		return basketDetails.getBasket();
+		//orderLines = testData.getOrderLines();
+		return orderLines;
+		//return basketDetails.getBasket();
 	}
 	
 	public PaymentDetails getPaymentDetails(){
