@@ -22,8 +22,8 @@
 			<div id="buying Info">
 				<div id="basket">
 					<!-- basket bean with a fold-out here -->
-					<img src="resource/img/basket.png" alt="basket" height="56" width="75" />
-					<h:outputLabel value="#{basket.getBasketSize()}"/>
+					<img src="resources/img/basket.png" alt="basket" height="56" width="75" />
+					<!--<h:outputLabel value="#{basket.getBasketSize()}"/> -->
 				</div>
 			</div>
 			
@@ -34,15 +34,15 @@
 					<a href="index.xhtml" class="headerButton">Home</a>
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a>
-					<h:link rendered="#{login.loggedIn}" outcome="account.xhtml" value="Account" />
-					<h:link rendered="#{!login.loggedIn}" outcome="customerlogin.xhtml" value="Login" />
+					<h:link rendered="#{login.loggedIn}" outcome="account.xhtml" value="Account" class="headerButton" />
+					<h:link rendered="#{!login.loggedIn}" outcome="customerlogin.xhtml" value="Login" class="headerButton" />
 					<br/>
 				</div>
 				
 				<div id="searchbar">
 					<h:form>
 					<h:inputText type="text" name="searchbar" id="searchText"/>
-				    <h:commandLink name="submit" id="searchButton"><img src="resource/img/search.png" alt="Search" height="25" width="33" /></h:commandLink>
+				    <h:commandLink name="submit" id="searchButton"><img src="resources/img/search.png" alt="Search" height="25" width="33" /></h:commandLink>
 					</h:form>
 				</div>
 			</div>
