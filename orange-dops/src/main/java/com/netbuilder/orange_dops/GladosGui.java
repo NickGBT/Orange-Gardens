@@ -6,15 +6,15 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -27,15 +27,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -196,6 +191,9 @@ public class GladosGui
      */
     private void displayGetOrder()
     {
+    	mainFrame.getContentPane().remove(orderPanel);
+    	mainFrame.getContentPane().remove(orderButtons);
+   		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 150));
     	getNewOrder.setFont(gladosFont);
@@ -275,30 +273,28 @@ public class GladosGui
     		}
             for(int y = 0; y < 20; y++)
             {
-                if(testMap[x][y] == 1)
-                {
+            	switch(testMap[x][y])
+            	{
+            	case 1:
                 	System.out.print("B ");//beginning
                 	mapCount++;
-                }            
-                else if(testMap[x][y] == 2)
-                {
+                    break;
+            	case 2:
                 	System.out.print("* ");//possible route
                 	mapCount++;
-                }
-                else if(testMap[x][y] == 3)
-                {
+                	break;
+            	case 3:              
                 	System.out.print("S ");//shelf
                 	mapCount++;
-                }
-                else if(testMap[x][y] == 4)
-                {
+                	break;
+            	case 4:               
                 	System.out.print("P ");//possible pickup location
                 	mapCount++;
-                }
-                else if(testMap[x][y] == 5)
-                {
+                	break;
+            	case 5:
                     System.out.print("G ");//GDZ
                     mapCount++;
+                    break;
                 }
             }
         }	
@@ -349,15 +345,4 @@ public class GladosGui
     	mainFrame.revalidate();
     	mainFrame.repaint();
     }
-   	
-   	/**
-   	 * @author JustinMabbutt
-   	 * 
-   	 */
-   	private void displayOrderComplete()
-   	{
-   		mainFrame.remove(orderPanel);
-   		mainFrame.remove(orderButtons);
-   		mainFrame.invalidate();
-   	}
 }
