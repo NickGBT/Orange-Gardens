@@ -1,30 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/template.xhtml">
-		
-<!-- author: JustinMabbutt -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
 
-<ui:define name="pageTitle">NB Gardens - Sign In</ui:define>
+	<!-- author: JustinMabbutt -->
 
-<ui:define name="content">
-<div id="MainContent">
-<h:form>
-	<h1>Sign In</h1>
-	<h4>What is your user name or email address?</h4>
-		<h:inputText id="logindetails" value="#{loginController.name}" maxlength="45" size="20"></h:inputText>
-	<h4>What is your password?</h4>
-		<h:inputSecret id="password" value="#{loginController.password}" maxlength="45" size="20"></h:inputSecret>
-	<br/>
-		<h:commandButton class="button" value="Submit" action="#{loginController.login}"/>
-</h:form>	
-	<br/>
-	<br/>
-</div>
-</ui:define>
+	<ui:define name="pageTitle">NB Gardens - Sign In</ui:define>
 
-</ui:composition>	
+	<ui:define name="content">
+		<div id="MainContent">
+			<h:form>
+				<h1>Sign In</h1>
+				<h4>What is your user name or email address?</h4>
+				<h:inputText id="logindetails" value="#{loginController.name}"
+					maxlength="45" size="20"></h:inputText>
+				<h4>What is your password?</h4>
+				<h:inputSecret id="password" value="#{loginController.password}"
+					maxlength="45" size="20"></h:inputSecret>
+				<br />
+				<h:commandButton class="button" value="Submit"
+					action="#{loginController.login}" />
+			</h:form>
+			<br /> <br />
+		</div>
+	</ui:define>
+
+</ui:composition>
