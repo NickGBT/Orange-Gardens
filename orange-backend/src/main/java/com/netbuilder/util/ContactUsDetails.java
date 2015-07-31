@@ -1,5 +1,10 @@
 package com.netbuilder.util;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+import com.netbuilder.entities.DeliveryLine;
+
 /**
  * 
  * @author ngilbert
@@ -15,14 +20,14 @@ public class ContactUsDetails {
 	public String mailAddress5;
 	public String email;
 	
-	public ContactUsDetails(String telephone, String mailAddress, String email){
-		this.telephone = "04066457482";
-		this.mailAddress1 = "NB Gardens";
-		this.mailAddress2 =	"666 Gnarled close"; 
-		this.mailAddress3 =	"Hell"; 
-		this.mailAddress4 = "Staines";
-		this.mailAddress5 = "ST00BL";
-		this.email = "NBGardens@hotmail.com";
+	public ContactUsDetails(String telephone, String mailAddress1, String mailAddress2, String mailAddress3, String mailAddress4, String mailAddress5, String email){
+		this.telephone = telephone;
+		this.mailAddress1 = mailAddress1;
+		this.mailAddress2 =	mailAddress2; 
+		this.mailAddress3 =	mailAddress3; 
+		this.mailAddress4 = mailAddress4;
+		this.mailAddress5 = mailAddress5;
+		this.email = email;
 	}
 	
 	public String getTelephone() {
