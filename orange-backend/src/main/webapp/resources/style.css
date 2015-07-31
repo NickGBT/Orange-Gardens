@@ -1,31 +1,36 @@
 html{
-	width: 70%;
-	min-width: 700px;
-	margin: 0 auto;
+	
+	margin: 0;
+	padding: 0;
 	font-family: Helvetica, Arial, sans-serif;
 	
 }
 
 body{
-	background-color: #87DD7C;
+	background-color: #242051;
+	margin: 0;
+	padding: 0;
 }
 
 #content{
-	background-color: #EEFFEE;
+	background-color: #96c177;
 	border-radius: 5px;
+	width: 70%;
+	margin: 0 auto;
+	min-width: 700px;
+	color: #587d71;
+	
 }
 
 #header{
 	
 	text-align: center;
 	padding: 11px;
-	background-color: #A9FF9E;
+	background-color: #3fdd4d;
 	
-	border-radius: 20px 20px 5px 5px;
-	
-	background-image: url('img/bg.jpg');
-	background-size: 100%, 100%;
-	background-attachment: fixed;
+	border-bottom: 10px solid #1b5e20;
+	border-left: 10px solid #1b5e20;
+	border-bottom-left-radius: 50px;
 }
 
 #logo{
@@ -63,20 +68,19 @@ body{
 	
 	color: #000000;
 	font-weight: bold;
-	border: 3px solid #AAFFD2;
+	border-bottom: 5px solid #6e9aaf;
+	border-left: 5px solid #6e9aaf;
 	padding: 10px 20px;
 	text-decoration: none;
-	background-color: #98ee8d;
+	background-color: rgba(255,255,255,0.15);
 }
 
 .headerButton:hover{
-	background-color: #76CC6B;
+	background-color: #96c177;
 }
 
 .headerButton:active{
-	background-color: #54AA49;
-	position:relative;
-	top:1px;
+	background-color: rgba(0,0,0,0.15);
 }
 
 .searchText{
@@ -96,23 +100,24 @@ body{
 }
  
 .searchButton{
-	background-color: rgba(255,255,255,0);
-	border: 2px solid #000000;
+	background-color: rgba(255,255,255,0.15);
+	border: 5px solid #6e9aaf;
 	color: #000000;
 	font-weight: bold;
 	border-radius: 5px 10px 10px 5px;
 	padding: 12px 5px 0px 5px;
 	position:relative;
 	top:7px;
+	border-left: 0px;
+	border-top: 0px;
 }
  
 .searchButton:hover{
-	background-color: #76CC6B;
+	background-color: #96c177;
 }
  
 .searchButton:active{
-	background-color: #035638;
-	background-color: #035638;
+	background-color: rgba(0,0,0,0.15);
 	position:relative;
 	top:8px;
 }
@@ -122,11 +127,12 @@ body{
 	font-size: 14px;
 	color: #000000;
 	padding-bottom: 5px;
-	border-radius: 5px 5px 20px 20px;
 	
-	background-image: url('img/bg.jpg');
-	background-size: 100%, 100%;
-	background-attachment: fixed;
+	background-color: #3fdd4d;
+	
+	border-top: 10px solid #1b5e20;
+	border-right: 10px solid #1b5e20;
+	border-top-right-radius: 50px;
 }
 
 #copyright{
