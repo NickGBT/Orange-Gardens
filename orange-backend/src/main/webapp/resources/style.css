@@ -1,8 +1,18 @@
 html{
 	width: 70%;
+	min-width: 700px;
 	margin: 0 auto;
 	font-family: Helvetica, Arial, sans-serif;
-	background-color: #66B25D;
+	
+}
+
+body{
+	background-color: #87DD7C;
+}
+
+#content{
+	background-color: #EEFFEE;
+	border-radius: 5px;
 }
 
 #header{
@@ -10,6 +20,12 @@ html{
 	text-align: center;
 	padding: 11px;
 	background-color: #A9FF9E;
+	
+	border-radius: 20px 20px 5px 5px;
+	
+	background-image: url('img/bg.jpg');
+	background-size: 100%, 100%;
+	background-attachment: fixed;
 }
 
 #logo{
@@ -24,11 +40,9 @@ html{
 	float:right;
 }
 
-#basket{
-}
 
 #basket:hover{
-	background-color: #374409;
+	background-color: rgba(255,255,255,0.2);
 	border-radius: 10px;
 }
 
@@ -52,23 +66,24 @@ html{
 	border: 3px solid #AAFFD2;
 	padding: 10px 20px;
 	text-decoration: none;
+	background-color: #98ee8d;
 }
 
 .headerButton:hover{
-	background-color: #15494C;
+	background-color: #76CC6B;
 }
 
 .headerButton:active{
-	background-color: #035638;
+	background-color: #54AA49;
 	position:relative;
 	top:1px;
 }
 
-#searchText{
+.searchText{
 	width: 325px;
 	color: #000000;
 	font-weight: bold;
-	background-color: #195603;
+	background-color: rgba(255,255,255,0.2);
 	border: none;
 	outline: none;
 	border-bottom: 4px solid #FFFFFF;
@@ -76,24 +91,30 @@ html{
 	font-size: 16px;
  }
  
-#searchText:focus{
-	background-color: #035638;
+.searchText:focus{
+	background-color: rgba(255,255,255,0.3);
 }
  
-#searchButton{
-	background-color:rgba(0, 0, 0, 0);
+.searchButton{
+	background-color: rgba(255,255,255,0);
 	border: 2px solid #000000;
 	color: #000000;
 	font-weight: bold;
 	border-radius: 5px 10px 10px 5px;
+	padding: 12px 5px 0px 5px;
+	position:relative;
+	top:7px;
 }
  
-#searchButton:hover{
-	background-color: #15494C;
+.searchButton:hover{
+	background-color: #76CC6B;
 }
  
-#searchButton:active{
+.searchButton:active{
 	background-color: #035638;
+	background-color: #035638;
+	position:relative;
+	top:8px;
 }
  
 #footer{
@@ -101,10 +122,16 @@ html{
 	font-size: 14px;
 	color: #000000;
 	padding-bottom: 5px;
+	border-radius: 5px 5px 20px 20px;
+	
+	background-image: url('img/bg.jpg');
+	background-size: 100%, 100%;
+	background-attachment: fixed;
 }
 
 #copyright{
 	float:right;
+	text-align:left;
 }
 
 #footerLinks{

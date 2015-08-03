@@ -31,7 +31,15 @@
 							
 								<p>Weight :	<h:outputText value = "#{productController.product.weight}"/> <!-- Product Weight Here --> </p>
 							
+
 								<p>Description: <h:outputText value = "#{productController.product.description}"/> <!-- Product Description Here --> </p> 							
+
+							<f:facet name = "productDescription"> 
+								<p> id = "Product Description">Description: </p>
+								
+									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> 			
+							</f:facet> 		
+									
 						</div>	
 					</div>
 					

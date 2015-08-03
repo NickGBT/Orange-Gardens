@@ -18,7 +18,7 @@
 	</div>
 	
 	<div id="orderDetails">
-	<p>Order Details </p>
+	<p>Order Details:  </p>
 	
 		<div id="orderLine">
 	
@@ -26,7 +26,7 @@
 				
 			<f:facet name="orderLinePopulator">
 			<!-- facet populates the orderline with the relevant order -->	
-			<t:dataList value="#{OrderCheckOutController.getBasket}" var="product">
+			<t:dataList value="#{orderCheckoutController.orderLines}" var="product">
 				<h:outputLabel class="productName" value="#{product.getProductName()}"/>
 				<h:outputLabel class="productPrice" value="#{product.getProductPrice()}"/>
 				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()}"/>
