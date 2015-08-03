@@ -1,0 +1,145 @@
+html{
+	
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	
+}
+
+body{
+	background-color: #242051;
+	margin: 0;
+	padding: 0;
+}
+
+#content{
+	background-color: #96c177;
+	border-radius: 5px;
+	width: 70%;
+	margin: 0 auto;
+	min-width: 700px;
+	color: #587d71;
+	
+}
+
+#header{
+	
+	text-align: center;
+	padding: 11px;
+	background-color: #3fdd4d;
+	
+	border-bottom: 10px solid #1b5e20;
+	border-left: 10px solid #1b5e20;
+	border-bottom-left-radius: 50px;
+}
+
+#logo{
+	float: left;
+}
+
+#controls{
+	padding-top: 100px;
+}
+
+#buyingInfo{
+	float:right;
+}
+
+
+#basket:hover{
+	background-color: rgba(255,255,255,0.2);
+	border-radius: 10px;
+}
+
+.headFootLinks{
+	color: #000000;
+	text-decoration: none;
+}
+
+.headFootLinks:hover{
+	color: #487C7F;
+}
+
+.headFootLinks:active{
+	color: #487C7F;
+}
+
+.headerButton{
+	
+	color: #000000;
+	font-weight: bold;
+	border-bottom: 5px solid #6e9aaf;
+	border-left: 5px solid #6e9aaf;
+	padding: 10px 20px;
+	text-decoration: none;
+	background-color: rgba(255,255,255,0.15);
+}
+
+.headerButton:hover{
+	background-color: #96c177;
+}
+
+.headerButton:active{
+	background-color: rgba(0,0,0,0.15);
+}
+
+.searchText{
+	width: 325px;
+	color: #000000;
+	font-weight: bold;
+	background-color: rgba(255,255,255,0.2);
+	border: none;
+	outline: none;
+	border-bottom: 4px solid #FFFFFF;
+	height: 25px;
+	font-size: 16px;
+ }
+ 
+.searchText:focus{
+	background-color: rgba(255,255,255,0.3);
+}
+ 
+.searchButton{
+	background-color: rgba(255,255,255,0.15);
+	border: 5px solid #6e9aaf;
+	color: #000000;
+	font-weight: bold;
+	border-radius: 5px 10px 10px 5px;
+	padding: 12px 5px 0px 5px;
+	position:relative;
+	top:7px;
+	border-left: 0px;
+	border-top: 0px;
+}
+ 
+.searchButton:hover{
+	background-color: #96c177;
+}
+ 
+.searchButton:active{
+	background-color: rgba(0,0,0,0.15);
+	position:relative;
+	top:8px;
+}
+ 
+#footer{
+	background-color: #A9FF9E;
+	font-size: 14px;
+	color: #000000;
+	padding-bottom: 5px;
+	
+	background-color: #3fdd4d;
+	
+	border-top: 10px solid #1b5e20;
+	border-right: 10px solid #1b5e20;
+	border-top-right-radius: 50px;
+}
+
+#copyright{
+	float:right;
+	text-align:left;
+}
+
+#footerLinks{
+
+}

@@ -1,5 +1,8 @@
 package com.netbuilder.util;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
 import com.netbuilder.enums.CardType;
 
 /**
@@ -8,6 +11,8 @@ import com.netbuilder.enums.CardType;
  *
  */
 
+@ManagedBean(name = "accountManagement")
+@RequestScoped
 public class AccountManagement 
 {
 	private String fName, lName, email, contactNo, username, password;

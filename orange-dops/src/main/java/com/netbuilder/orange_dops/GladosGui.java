@@ -2,8 +2,8 @@ package com.netbuilder.orange_dops;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -11,25 +11,26 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
-
-import com.netbuilder.orange_dops_enums.GladosStatus;
 
 /**
  * 
@@ -43,18 +44,18 @@ public class GladosGui
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
-	private JPanel assignOrder;
-	private BufferedImage splash, title, background;
-	private Timer splashTime;
-	private Random randomGenerator;
+	private JPanel assignOrder, orderButtons, orderPanel;
+	private BufferedImage splash, background;
+	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
-	private String[] topMessage, bottomMessage;
-	private JButton getNewOrder, completeOrder, cancel;
-	private GladosStatus gladosStatus;
-	private int messageIndex;
+	private JButton getNewOrder, completeOrder, nextProduct;
 	private GridBagLayout buttonLayout;
 	private GridBagConstraints buttonLayoutConstraints;
+	private ImagePanel backgroundPanel;
+	private Font gladosFont;
+	private int mapCount;
+	private JTextField productName, quantity, boxSize;
 	
 	/**
 	 * @author JustinMabbutt
@@ -90,19 +91,42 @@ public class GladosGui
 			logger.log(Level.SEVERE, "Illegal access exception", iae);
 		}		
 		splashFrame = new JFrame();
-		randomGenerator = new Random();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		splashTime = new Timer();
-		assignOrder = new JPanel();
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		getNewOrder = new JButton(); completeOrder = new JButton(); cancel = new JButton();
+		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
+		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		splash = null; background = null;
-		messageIndex = 0;
-		topMessage = new String[11]; bottomMessage = new String[11];
+		splashTimer = new Timer();
 		buttonLayout = new GridBagLayout();
+		mapCount = 0;
 		buttonLayoutConstraints = new GridBagConstraints();
-		gladosStatus = GladosStatus.displaySplash;
+		gladosFont = new Font("Arial", Font.BOLD, 18);
+		Thread ui = new Thread()
+		{
+			@Override
+			public void run()
+			{
+				while(true)
+				{
+					getNewOrder.repaint();
+					//completeOrder.repaint();
+					//nextProduct.repaint();
+					orderButtons.repaint();
+					orderPanel.repaint();
+					try 
+					{
+						Thread.sleep(100);
+					} 
+					catch (InterruptedException ie)
+					{
+						logger.log(Level.SEVERE, "Thread Interrupted", ie);
+					}
+				}
+			}
+		};
+		ui.start();
 		logger.exiting(getClass().getName(), "IMSGUI");
     }
 	
@@ -115,8 +139,8 @@ public class GladosGui
 		logger.entering(getClass().getName(), "displaySplash");
 		try 
 		{
-			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/OrangeGardensGlados/images/splash.jpg"));
-			background = ImageIO.read(new File("C:/Users/justi_000/workspace/OrangeGardensGlados/images/background.png"));
+			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/splash.jpg"));
+			background = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/background.png"));
 		} 
 		catch (IOException ie) 
 		{
@@ -129,14 +153,14 @@ public class GladosGui
 		nbLogo = new ImageIcon("images/nb.png");
         gladosLogo = nbLogo.getImage();
         splashFrame.setResizable(false);
-        splashFrame.setTitle("Welcome to the NB Gardens IMS");
+        splashFrame.setTitle("Welcome to NB GLADOS");
         splashFrame.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());  
         splashFrame.setUndecorated(true);
         splashFrame.setLocation((int)screenSize.getWidth() / 2 - splashIcon.getIconWidth() / 2, (int)screenSize.getHeight() / 2 - splashIcon.getIconHeight() / 2);
         splashFrame.setIconImage(gladosLogo);
 		splashFrame.add(splashLabel, BorderLayout.CENTER);
 		splashFrame.setVisible(true);
-		splashTime.schedule(new deleteSplashTask(), 2000);
+		splashTimer.schedule(new deleteSplashTask(), 2000);
 		logger.exiting(getClass().getName(), "displaySplash");
 	}
 	
@@ -147,106 +171,178 @@ public class GladosGui
 	private void initUi()
 	{
 		logger.entering(getClass().getName(), "initUi");
-		mainFrame = new JFrame("NB GLADOS")
-		{
-			public void paint(Graphics g)
-			{
-				super.paint(g);
-				g.drawImage(background, 0, 0, null);
-			}
-		};
+		mainFrame = new JFrame("NB GLADOS");
+		backgroundPanel = new ImagePanel(backgroundIcon.getImage());
         mainFrame.setSize(500, 680);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setResizable(false);
         nbLogo = new ImageIcon("images/nb.png");
         mainFrame.setIconImage(gladosLogo);
-        mainFrame.setLayout(new BorderLayout());
+        mainFrame.getContentPane().add(backgroundPanel);
         mainFrame.setVisible(true);
-        switch(gladosStatus)
-        {
-        case displayGetOrder:
-        	assignMessages();
-        	getNewOrder.setText("Assign yourself an order to process.");
-        	getNewOrder.setPreferredSize(new Dimension(350, 150));
-        	getNewOrder.setFont(new Font("Arial", Font.BOLD, 18));
-        	getNewOrder.addActionListener(new ActionListener() 
-        	{
-				public void actionPerformed(ActionEvent arg0) 
-				{
-					gladosStatus = GladosStatus.displayOrder;
-				}
-			});
-        	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
-        	assignOrder.add(getNewOrder);
-        	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
-        	assignOrder.setLayout(buttonLayout);
-        	mainFrame.add(assignOrder);
-        	break;
-        case displayOrder:
-        	
-        	break;
-        case displayOrderComplete:
-        	
-        	break;
-    	default:
-    		break;
-        }
+        displayGetOrder();
 		logger.exiting(getClass().getName(), "initUi");
 	}
-	
-	/**
-	 * @author JustinMabbutt
+
+    /**
+     * @author JustinMabbutt
+     * Task to display the order screen with map
+     */
+    private void displayGetOrder()
+    {
+    	mainFrame.getContentPane().remove(orderPanel);
+    	mainFrame.getContentPane().remove(orderButtons);
+   		mainFrame.invalidate();
+    	getNewOrder.setText("Assign yourself an order to process.");
+    	getNewOrder.setPreferredSize(new Dimension(350, 150));
+    	getNewOrder.setFont(gladosFont);
+    	getNewOrder.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				displayMap();
+			}
+		});
+    	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
+    	assignOrder.add(getNewOrder);
+    	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
+    	assignOrder.setLayout(buttonLayout);
+    	mainFrame.getContentPane().add(assignOrder);
+    	mainFrame.revalidate();
+    	mainFrame.repaint();
+    }
+    
+    /**
+     * @author JustinMabbutt
      * Task to delete the opening splash screen
      */
     private class deleteSplashTask extends TimerTask
    	{
    		public void run()
    		{
-   			gladosStatus = GladosStatus.displayGetOrder;
-   			initUi();
 			splashFrame.dispose();
-			splashTime.cancel();
+			initUi();
+			splashTimer.cancel();
    		}
    	}
     
     /**
      * @author JustinMabbutt
-     * Task to assign completed order messages
+     * Task to draw the map
      */
-    private void assignMessages()
+   	private void displayMap()
     {
-    	logger.entering(getClass().getName(), "assignMessages");
-    	topMessage[0] = "Pick up gnome";
-    	bottomMessage[0] = "Gnome goes in box";
-    	topMessage[1] = "Don't just stand there";
-    	bottomMessage[1] = "Pack stuff!";
-    	topMessage[2] = "All your diseases";
-    	bottomMessage[2] = "are like love to me";
-    	topMessage[3] = "You got the touch";
-    	bottomMessage[3] = "You got the pow-ah!";
-    	topMessage[4] = "Are you even";
-    	bottomMessage[4] = "still reading these?";
-    	topMessage[5] = "Don't just stand there";
-    	bottomMessage[5] = "Pack stuff!";
-    	topMessage[6] = "You have no order assigned";
-    	bottomMessage[6] = "Rectify this situation";
-    	topMessage[7] = "Touch my face";
-    	bottomMessage[7] = "Touch it!";
-    	topMessage[8] = "Yaaaay";
-    	bottomMessage[8] = "Yaaaaaaaaaay!";
-    	topMessage[9] = "Lets get this";
-    	bottomMessage[9] = "over with";
-    	topMessage[10] = "Doobie Doobie";
-    	bottomMessage[10] = "Doo da day!";
-    	logger.exiting(getClass().getName(), "assignMessages");
-    }
-    
-    /**
-     * @author JustinMabbutt
-     */
-    private void drawMap()
-    {
+   		mainFrame.getContentPane().remove(assignOrder);
+   		mainFrame.invalidate();
+    	//1 = Beginning
+    	//2 = Possible route
+    	//3 = Shelf
+    	//4 = Possible pickup location
+    	//5 = GDZ
+    	int[][] testMap = new int[][] { 
+    			{1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
+    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+    			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
+    	};
     	
+    	for(int x = 0; x < 20; x++)
+        {
+    		if(mapCount >= 19)
+    		{
+    			System.out.println("\n");
+    			mapCount = 0;
+    		}
+            for(int y = 0; y < 20; y++)
+            {
+            	switch(testMap[x][y])
+            	{
+            	case 1:
+                	System.out.print("B ");//beginning
+                	mapCount++;
+                    break;
+            	case 2:
+                	System.out.print("* ");//possible route
+                	mapCount++;
+                	break;
+            	case 3:              
+                	System.out.print("S ");//shelf
+                	mapCount++;
+                	break;
+            	case 4:               
+                	System.out.print("P ");//possible pickup location
+                	mapCount++;
+                	break;
+            	case 5:
+                    System.out.print("G ");//GDZ
+                    mapCount++;
+                    break;
+                }
+            }
+        }	
+    	productName.setText("Product Name: ");// + theProductName
+    	quantity.setText("Quantity: ");// + quantity
+    	boxSize.setText("Box Size: ");// + boxSize
+    	productName.setFont(gladosFont); 
+    	productName.setPreferredSize(new Dimension(200, 30));
+    	productName.setEditable(false);
+    	productName.setMaximumSize(productName.getPreferredSize());
+    	quantity.setFont(gladosFont); 
+    	quantity.setPreferredSize(new Dimension(200, 30));
+    	quantity.setEditable(false);
+    	quantity.setMaximumSize(quantity.getPreferredSize());
+    	boxSize.setFont(gladosFont); 
+    	boxSize.setPreferredSize(new Dimension(200, 30));
+    	boxSize.setEditable(false);
+    	boxSize.setMaximumSize(boxSize.getPreferredSize());
+    	orderPanel.add(productName);
+    	orderPanel.add(quantity);
+    	orderPanel.add(boxSize);
+    	orderPanel.setLayout(new BoxLayout(orderPanel, BoxLayout.PAGE_AXIS));
+    	orderButtons.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	completeOrder.setText("Complete order");
+    	completeOrder.setPreferredSize(new Dimension(240, 80));
+    	completeOrder.setFont(gladosFont);
+    	completeOrder.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				displayGetOrder();
+			}
+		});
+    	orderButtons.add(completeOrder);
+    	nextProduct.setText("Route to next Product");
+    	nextProduct.setPreferredSize(new Dimension(240, 80));
+    	nextProduct.setFont(gladosFont);
+    	nextProduct.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				
+			}
+		});
+    	orderButtons.add(nextProduct);
+    	mainFrame.getContentPane().add(orderPanel);
+    	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
+    	mainFrame.revalidate();
+    	mainFrame.repaint();
     }
 }

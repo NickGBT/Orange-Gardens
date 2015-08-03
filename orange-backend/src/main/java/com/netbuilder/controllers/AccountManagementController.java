@@ -3,18 +3,23 @@ package com.netbuilder.controllers;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
+import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -23,8 +28,15 @@ import com.netbuilder.util.UserId;
  *
  */
 
+@ManagedBean (name = "accountManagementController")
+@RequestScoped
 public class AccountManagementController 
 {
+	@ManagedProperty(value= "#{testData}")
+	private TestData testData;
+	
+	
+
 	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
@@ -45,14 +57,7 @@ public class AccountManagementController
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;
 	
-	public AccountManagementController()
-	{
-		loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
-		customer = customerManager.findByUserId(UserId.getUid());
-		address = addressManager.findByUserId(UserId.getUid());
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
-	}
-
+		
 	public String changeAddress()
 	{
 		if (address != null)
@@ -83,21 +88,29 @@ public class AccountManagementController
 	
 	public LoginDetails getLoginDetails()
 	{
+		//loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
+		loginDetails = testData.getCustomerLogin();
 		return loginDetails;
 	}
 
 	public Customer getCustomer() 
 	{
+		//customer = customerManager.findByUserId(UserId.getUid());
+		customer = testData.getCustomer();
 		return customer;
 	}
 
 	public Address getAddress() 
 	{
+		//address = addressManager.findByUserId(UserId.getUid());
+		address = testData.getAddress();
 		return address;
 	}
 
 	public PaymentDetails getPaymentDetails() 
 	{
+		//paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
+		paymentDetails = testData.getPaymentDetails();
 		return paymentDetails;
 	}
 	
@@ -214,6 +227,15 @@ public class AccountManagementController
 			errorMsg = "Invalid Change";
 			return "account/uid";
 		}
+	}
+	
+	
+	public TestData getTestData() {
+		return testData;
+	}
+
+	public void setTestData(TestData testData) {
+		this.testData = testData;
 	}
 	 
 }

@@ -21,7 +21,7 @@ public class Glados
     public static void main(String[] args)
     {
     	logger.entering(Glados.class.getName(), "main");
-    	System.out.println("GLADOS startup...");
+    	System.out.println("GLADOS startup..."); 
     	gladosGui.displaySplash();
     	logger.exiting(Glados.class.getName(), "main");
     }

@@ -1,16 +1,37 @@
 package com.netbuilder.util;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  * 
- * @author JustinMabbutt
+ * @author JustinMabbutt llew
  *
  */
-
+@ManagedBean(name = "userDetails")
+@SessionScoped
 public class UserDetails
 {
-	private String name;
-	private String password;
-	private int uid;
+	private ArrayList<String> name;
+	private ArrayList<String> password;
+	private ArrayList<Integer> uid;
+	private ArrayList<Boolean> loggedIn;
+	
+	 
+	public UserDetails(){
+		Random rand = new Random();
+		
+		name = new ArrayList<String>();
+		password = new ArrayList<String>();
+		uid = new ArrayList<Integer>();
+		
+		name.add("test");
+		password.add("test");
+		uid.add(rand.nextInt());
+	}
 	
 	public UserDetails(String name, String password) 
 	{
@@ -18,33 +39,35 @@ public class UserDetails
 		this.setPassword(password);
 	}
 
-	public String getName()
+	public ArrayList<String> getName()
 	{
 		return name;
 	}
 
 	public void setName(String name)
 	{
-		this.name = name;
+		this.name.add(name);
 	}
 
-	public String getPassword() 
+	public ArrayList<String> getPassword() 
 	{
 		return password;
 	}
 
 	public void setPassword(String password) 
 	{
-		this.password = password;
+		this.password.add(password);
 	}
 
-	public int getUid() 
+	public ArrayList<Integer> getUid() 
 	{
 		return uid;
 	}
 
 	public void setUid(int uid) 
 	{
-		this.uid = uid;
+		this.uid.add(uid);
 	}
+	
+	
 }

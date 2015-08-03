@@ -1,5 +1,7 @@
 package com.netbuilder.controllers;
 
+import java.util.Random;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -11,6 +13,7 @@ import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
+import com.netbuilder.util.UserDetails;
 
 /**
  * 
@@ -24,27 +27,28 @@ public class RegistrationController
 {
 	@ManagedProperty(value="#{registrationDetails}")
 	private RegistrationDetails registrationDetails;
+	
+	@ManagedProperty(value="#{userDetails}")
+	private UserDetails userDetails;
+	
 	private String errorMsg;
 	private Customer customer;
 	private LoginDetails loginDetails;
 	private Address address;
 	private PaymentDetails payDetails;
 	
+	private Random rand;
+	
 	public String registerCustomer()
 	{
+		rand = new Random();
 		System.out.println("Worked ");
-		
-		System.out.println(registrationDetails.getfName());
-		System.out.println(registrationDetails.getlName());
-		System.out.println(registrationDetails.getEmail());
-		
+
 		if(registrationDetails.checkAllUserEntries())
 		{
 			System.out.println("setting up customer");
 			customer = new Customer(registrationDetails.getfName(), registrationDetails.getlName(),
 					registrationDetails.getContactNumber() , registrationDetails.isBlackListed());
-			System.out.println(registrationDetails.getfName() + " " + registrationDetails.getlName() + " " + 
-					registrationDetails.getContactNumber() + " " +  registrationDetails.isBlackListed());
 			byte[] salt = null;
 			byte[] hashedPassword = null; 
 			
@@ -68,6 +72,13 @@ public class RegistrationController
 					registrationDetails.getNameOnCard(), registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 			
+			System.out.println("Setting user details");
+			userDetails.setName(registrationDetails.getfName());
+			userDetails.setPassword(registrationDetails.getPassword());
+			userDetails.setUid(rand.nextInt());
+			
+			System.out.println("First Name " + registrationDetails.getfName() + ", Last Name  " + registrationDetails.getlName());
+			
 			return "account/uid";
 		}
 		else
@@ -83,4 +94,10 @@ public class RegistrationController
 	public void setRegistrationDetails(RegistrationDetails registrationDetails) {
 		this.registrationDetails = registrationDetails;
 	}
+
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
+	}
+	
+	
 }

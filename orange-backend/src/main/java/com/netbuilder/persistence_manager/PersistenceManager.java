@@ -1,4 +1,4 @@
-package com.netbuilder.orange_gardens;
+package com.netbuilder.persistence_manager;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;

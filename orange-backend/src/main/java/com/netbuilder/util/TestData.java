@@ -1,6 +1,8 @@
 package com.netbuilder.util;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,6 +23,7 @@ import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.util.ContactUsDetails;
 
 /**
  * 
@@ -67,23 +70,7 @@ public class TestData {
 	public Product product2 = new Product("img/iomg", "testproduct2", 29.25, 53, 90, 15, 15.50, "test Product 2", ProductCategory.Gnome);	
 	
 	public Product product3 = new Product("img/iomg", "testproduct3", 76.25, 80, 45, 18, 19.50, "test Product 3", ProductCategory.Furniture);	
-	
-	public OrderLine orderLine = new OrderLine(order , product, 50);
-	
-	public OrderLine orderLine1 = new OrderLine(order , product2, 5);	
-	
-	public OrderLine orderLine2 = new OrderLine(order , product, 20);	
-	
-	public OrderLine orderLine3 = new OrderLine(order2 , product, 4);
-	
-	public OrderLine orderLine4 = new OrderLine(order2 , product3, 3);	
-	
-	public OrderLine orderLine5 = new OrderLine(order2 , product2, 8);	
-	
-	public OrderLine orderLine6 = new OrderLine(order3 , product, 6);	
-	
-	public OrderLine orderLine7 = new OrderLine(order3 , product2, 7);	
-	
+		
 	public Address address = new Address(customerLogin, "house", "absolutely", "fantastic", "pull", "bounce", "cheese", "LEY76R", false);
 	
 	public Address address2 = new Address(customerLogin2, "shed", "banter", "hell", "earth", "junit", "java", "ABCDEF", false);
@@ -127,7 +114,44 @@ public class TestData {
 	public Stock stock2 = new Stock(product2, 5, 4, "Right here", 12, 5, 9);
 	
 	public Stock stock3 = new Stock(product3, 8, 1, "Ooch aye the noo", 17, 3, 8);
+	
+	public ContactUsDetails contactUs = new ContactUsDetails("04066457482", "NB Gardens", "666 Gnarled close", "Hell", "Staines", "ST00BL", "NBGardens@hotmail.com");
+	
+	/*public List<OrderLine> orderLines = new ArrayList<OrderLine>()
+	{{
+		Order orderTest = new Order(customerLogin, employeeLogin, OrderStatus.awaitingDispatch,
+				"10/10/15", 12380809, "12/10/15", "13/10/15",
+				"40", true, paymentDetails);
+		
+		Product productTest = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
+		
+		OrderLine orderLine = new OrderLine(orderTest , productTest, 50);
+		
+		//OrderLine orderLine1 = new OrderLine(order , product2, 5);	
+		
+		//OrderLine orderLine2 = new OrderLine(order , product, 20);	
+		
+		//OrderLine orderLine3 = new OrderLine(order2 , product, 4);
+		
+		//OrderLine orderLine4 = new OrderLine(order2 , product3, 3);	
+		
+		//OrderLine orderLine5 = new OrderLine(order2 , product2, 8);	
+		
+		//OrderLine orderLine6 = new OrderLine(order3 , product, 6);	
+		
+		//OrderLine orderLine7 = new OrderLine(order3 , product2, 7);	
+		
+		orderLines.add(orderLine);
 
+	}};
+			
+			
+	public List<OrderLine> getOrderLines() 
+	{
+		return orderLines;
+	}
+	
+	
 	/**
 	 * @return the password
 	 */
@@ -231,62 +255,6 @@ public class TestData {
 	 */
 	public Product getProduct3() {
 		return product3;
-	}
-
-	/**
-	 * @return the orderLine
-	 */
-	public OrderLine getOrderLine() {
-		return orderLine;
-	}
-
-	/**
-	 * @return the orderLine1
-	 */
-	public OrderLine getOrderLine1() {
-		return orderLine1;
-	}
-
-	/**
-	 * @return the orderLine2
-	 */
-	public OrderLine getOrderLine2() {
-		return orderLine2;
-	}
-
-	/**
-	 * @return the orderLine3
-	 */
-	public OrderLine getOrderLine3() {
-		return orderLine3;
-	}
-
-	/**
-	 * @return the orderLine4
-	 */
-	public OrderLine getOrderLine4() {
-		return orderLine4;
-	}
-
-	/**
-	 * @return the orderLine5
-	 */
-	public OrderLine getOrderLine5() {
-		return orderLine5;
-	}
-
-	/**
-	 * @return the orderLine6
-	 */
-	public OrderLine getOrderLine6() {
-		return orderLine6;
-	}
-
-	/**
-	 * @return the orderLine7
-	 */
-	public OrderLine getOrderLine7() {
-		return orderLine7;
 	}
 
 	/**
@@ -443,6 +411,8 @@ public class TestData {
 		return stock3;
 	}
 	
-	
+	public ContactUsDetails getContactUs() {
+		return contactUs;
+	}
 			
 }

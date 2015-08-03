@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:t="http://myfaces.apache.org/tomahawk"
-		template="templates/template.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="templates/template.xhtml">
 
-<ui:define name="pageTitle"><h1>NB Gardens - Wishlist</h1></ui:define>
+	<ui:define name="pageTitle">
+		<h1>NB Gardens - Wishlist</h1>
+	</ui:define>
 
-<!-- author: ngilbert -->
+	<!-- author: ngilbert llew -->
 
-<ui:define name="content">
+	<ui:define name="content">
 
-<div id="wishlistContent">
-<h1>Wishlist</h1>
-<div><p>Items currently on wishlist</p></div>
+		<div id="wishlistContent">
+			<h1>Wishlist</h1>
+			<div>
+				<p>Items currently on wishlist</p>
+			</div>
+			<br />
+			<!-- logic is to convert the order status from wishlist to basket -->
 
-	<f:facet>
-		<h:commandButton class="button" value="move items to basket" action="#{OrderStatusController.moveToBasket()}">/
-		</h:commandButton>
-		<br/>
-		<!-- logic is to convert the order status from wishlist to basket -->
-	</f:facet>
-	
-	<div>
-		<div id="tableContainer">
-			<t:dataList value="#{WishlistController.getWishList}" var="product">
-				<h:outputLabel for = "productName"> 
-					<h:outputText class="productName" value="#{product.getProductName()"/> 
-				</h:outputLabel>
-				<h:outputLabel for = "productPrice">
-					<h:outputText class = "productPrice" value="#{product.getProductPrice()"/>
-				</h:outputLabel>
-				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()"/>
-				<br/><br/>
-			</t:dataList>		
+			<div>
+				<div id="tableContainer">
+					<h:form>
+						<t:dataList value="#{WishlistController.getWishList}"
+							var="product">
+							<h:outputLabel for="productName">
+								<h:outputText class="productName"
+									value="#{product.getProductName()}" />
+							</h:outputLabel>
+							<h:outputLabel for="productPrice">
+								<h:outputText class="productPrice"
+									value="#{product.getProductPrice()}" />
+							</h:outputLabel>
+							<h:graphicImage class="productImage"
+								value="#{product.getProductImageLocation()}" />
+							<br />
+							<br />
+						</t:dataList>
+						<h:commandButton class="button" value="move items to basket"
+							action="#{OrderStatusController.moveToBasket()}">/
+						</h:commandButton>
+						<br />
+					</h:form>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-<br/>
+		<br />
 
-</ui:define>
+	</ui:define>
 
 </ui:composition>

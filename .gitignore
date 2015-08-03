@@ -3,6 +3,7 @@
 .classpath
 
 orange-backend/target/
+orange-backend/bin
 orange-dops/target/
 /target/
 

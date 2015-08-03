@@ -4,9 +4,9 @@
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:t="http://myfaces.apache.org/tomahawk"
-		template="templates/exampletemplate.xhtml">
+		template="templates/template.xhtml">
 		
-<!-- author: ngilbert -->
+<!-- author: ngilbert llew-->
 
 
 <ui:define name="pageTitle">NB Gardens - OrderCheckout</ui:define>
@@ -14,11 +14,11 @@
 <ui:define name="content">
 <div id="MainContent">
 	<div>
-	<h1>Checkout</h1>
+	<h1>Order Checkout</h1>
 	</div>
 	
 	<div id="orderDetails">
-	<p>Order Details </p>
+	<p>Order Details:  </p>
 	
 		<div id="orderLine">
 	
@@ -26,10 +26,10 @@
 				
 			<f:facet name="orderLinePopulator">
 			<!-- facet populates the orderline with the relevant order -->	
-			<t:dataList value="#{OrderCheckOutController.getBasket}" var="product">
-				<h:outputLabel class="productName" value="#{product.getProductName()"/>
-				<h:outputLabel class="productPrice" value="#{product.getProductPrice()"/>
-				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()"/>
+			<t:dataList value="#{orderCheckoutController.orderLines}" var="product">
+				<h:outputLabel class="productName" value="#{product.getProductName()}"/>
+				<h:outputLabel class="productPrice" value="#{product.getProductPrice()}"/>
+				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()}"/>
 				<br/><br/>
 			</t:dataList>	
 			<br/>
@@ -46,11 +46,11 @@
 		<p>Payment Details</p>
 		
 		<div id="registeredPaymentDetails">
-				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
+				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
+				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
+				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
+				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
+				<h:outputText value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
 		</div>
 		
 		<!--  </div>
@@ -102,16 +102,16 @@
 	 
 	</div>
 	<div id="billingAddress">
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getCity()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getCounty()}"/>
-				<h:outputtext value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getCity()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getCounty()}"/>
+				<h:outputText value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
 	</div>
 	<div id="submitOrder">
 			<f:facet name="orderSubmit">
-				<h:commandbutton class="button" value="submit" action="#{OrderStatusController.placeOrder()}"/><!-- to submit order. --><br/>
+				<h:commandButton class="button" value="submit" action="#{OrderStatusController.placeOrder()}"/><!-- to submit order. --><br/>
 			</f:facet>
 		<br/>
 	</div>
