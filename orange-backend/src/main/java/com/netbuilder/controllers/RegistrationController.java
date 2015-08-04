@@ -11,6 +11,7 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
@@ -31,6 +32,9 @@ public class RegistrationController
 	@ManagedProperty(value="#{userDetails}")
 	private UserDetails userDetails;
 	
+	@Inject
+	private LoginDetailsManager loginDetailsManager;
+	
 	private String errorMsg;
 	private Customer customer;
 	private LoginDetails loginDetails;
@@ -46,38 +50,29 @@ public class RegistrationController
 
 		if(registrationDetails.checkAllUserEntries())
 		{
-			System.out.println("setting up customer");
 			customer = new Customer(registrationDetails.getfName(), registrationDetails.getlName(),
 					registrationDetails.getContactNumber() , registrationDetails.isBlackListed());
 			byte[] salt = null;
 			byte[] hashedPassword = null; 
-			
-			System.out.println("Setting up hash");
+
 			try {
 				salt = LoginDetailsToolkit.generateSalt();
 				hashedPassword = LoginDetailsToolkit.getHashedPassword(registrationDetails.getPassword(), salt);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}			
-			
-			System.out.println("Setting up login det");
+			System.out.println("Hashed Pass : " + hashedPassword);
 			loginDetails = new LoginDetails(registrationDetails.getUsername(), registrationDetails.getEmail(), hashedPassword, salt);
 			address = new Address(loginDetails, registrationDetails.getAddressLabel(), registrationDetails.getAddressLine1(), 
 					registrationDetails.getAddressLine2(), registrationDetails.getAddressLine3(), 
 					registrationDetails.getCity(), registrationDetails.getCounty(), 
 					registrationDetails.getPostcode(), registrationDetails.isBillingAddress());
 			
-			System.out.println("Setting up pay det");
 			payDetails = new PaymentDetails(registrationDetails.getCardType(), registrationDetails.getCardNumber(),
 					registrationDetails.getNameOnCard(), registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 			
-			System.out.println("Setting user details");
-			userDetails.setName(registrationDetails.getfName());
-			userDetails.setPassword(registrationDetails.getPassword());
-			userDetails.setUid(rand.nextInt());
-			
-			System.out.println("First Name " + registrationDetails.getfName() + ", Last Name  " + registrationDetails.getlName());
+			loginDetailsManager.persistLoginDetails(loginDetails);		
 			
 			return "account/uid";
 		}

@@ -25,6 +25,7 @@ public class ProductManagerALTests {
 	Product p1;
 	Product p2;
 	Product p3;
+	Product p4;
 	
 	ArrayList<Product> testInput;
 	
@@ -39,6 +40,7 @@ public class ProductManagerALTests {
 		p1 = new Product("Trial Gnome", 2.99, 2, 2, 2, 3.5, "A gnome for testing.", ProductCategory.Accessory);
 		p2 = new Product("Diamond Sun Lounger", 999.99, 60, 55, 170, 10.6, "A sun lounger covered in diamonds.", ProductCategory.Accessory);
 		p3 = new Product("Testing Gnome", 6.99, 3, 4, 3, 4.2, "Another gnome for testing.", ProductCategory.Accessory);
+		p4 = new Product("Testing Gong", 6.99, 3, 4, 3, 4.2, "Another gnome for testing.", ProductCategory.Furniture);
 		
 		p1.setProductId(1);
 		p2.setProductId(2);
@@ -48,6 +50,7 @@ public class ProductManagerALTests {
 		testInput.add(p1);
 		testInput.add(p2);
 		testInput.add(p3);
+		testInput.add(p4);
 	}
 
 	@Test
@@ -74,6 +77,16 @@ public class ProductManagerALTests {
 		List<Product> output = productManager.findProductsByName("Gnome");
 		
 		assertEquals(2, output.size());
+	}
+	
+	@Test
+	public void testPersistProductsAndFindByCategory() {
+
+		productManager.persistProducts(testInput);
+		
+		List<Product> output = productManager.findByCategory(ProductCategory.Furniture);
+		
+		assertEquals(1, output.size());
 	}
 
 	@Test

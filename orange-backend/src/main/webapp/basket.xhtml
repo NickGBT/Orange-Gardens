@@ -17,6 +17,21 @@
 		<div id="BasketContent">
 			<h1>Basket</h1>
 			
+			<h:dataTable>
+				columnClasses = "list-column-center, list-column-right, list-column-center, list-column-right" headerClass = "list-header"
+				rowClasses = "list-row" styleClass = "list-background" value="#{ProductController.}" var = "basket">
+				
+				<h:column>
+					<f:facet name = "header">
+						<h:outputText value = ""/>
+						<!--  product name -->
+					</f:facet>
+				</h:column> 
+			
+			</h:dataTable>
+			
+			
+			
 			<t:dataList value="#{BasketController.getBasket()}"
 					var="product">
 					<div id="productDetailsSmall"

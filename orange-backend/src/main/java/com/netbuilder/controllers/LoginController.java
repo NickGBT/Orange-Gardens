@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,8 +21,7 @@ import com.netbuilder.util.UserDetails;
  */
 
 @ManagedBean(name="loginController")
-@Stateful
-@SessionScoped
+@RequestScoped
 public class LoginController {
 	
 	@ManagedProperty(value="#{userDetails}")
@@ -29,6 +29,7 @@ public class LoginController {
 
 	@Inject
 	private LoginDetailsManager ldm;
+	
 	private String name;
 	private String password;
 	private int userId;
@@ -37,20 +38,19 @@ public class LoginController {
 	public String login(){
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
-		System.out.println("Registered Accounts : "  + userDetails.getName());
-		for(int i = 0; i < userDetails.getUid().size(); i++){
-			
-			if(userDetails.getName().get(i).equals(name) &&
-				userDetails.getPassword().get(i).equals(password)){
-				
-				return "account.xhtml";
-			}
-		}
-		
-		return "customerlogin.xhtml";
-		
-	/*	userId = ldm.checkPassword(name, password);
-		
+		//System.out.println("Registered Accounts : "  + userDetails.getName());
+//		for(int i = 0; i < userDetails.getUid().size(); i++){
+//			
+//			if(userDetails.getName().get(i).equals(name) &&
+//				userDetails.getPassword().get(i).equals(password)){
+//				
+//				return "account.xhtml";
+//			}
+//		}
+//		
+//		return "customerlogin.xhtml";
+		System.out.println(ldm.getAllLoginDetails());
+		userId = ldm.checkPassword(name, password);
 		System.out.println("User exists? : " + userId);
 		if(userId >= 0){
 			
@@ -59,7 +59,7 @@ public class LoginController {
 		else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect username/password combination!"));
 			return "login.xhtml";
-		}*/
+		}
 	}
 	
 	public String getName() { return name; }
