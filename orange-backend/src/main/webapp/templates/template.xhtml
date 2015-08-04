@@ -35,9 +35,9 @@
 					<a href="index.xhtml" class="headerButton">Home</a>
 					<a href="contact.xhtml" class="headerButton">Contact</a>
 					<a href="catalog.xhtml" class="headerButton">Catalog</a> 
-					<h:link rendered="#{login.loggedIn}" outcome="account.xhtml" value="Account" class="headerButton" /> 
-					<h:link rendered="#{login.loggedIn}" outcome="#{login.logout()}" value="Logout" class="headerButton" /> 
-					<h:link rendered="#{!login.loggedIn}" outcome="customerlogin.xhtml" value="Login" class="headerButton" /> 
+					<h:link rendered="#{login.loggedIn == true}" outcome="account.xhtml" value="Account" class="headerButton" /> 
+					<h:link rendered="#{login.loggedIn == true}" outcome="#{login.logout()}" value="Logout" class="headerButton" /> 
+					<h:link rendered="#{login.loggedIn != true}" outcome="customerlogin.xhtml" value="Login" class="headerButton" /> 
 					<br/>
 				</div>
 				<br />
