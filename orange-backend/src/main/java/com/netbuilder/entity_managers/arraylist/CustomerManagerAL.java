@@ -24,9 +24,9 @@ public class CustomerManagerAL implements CustomerManager
 		customers.add(customer);
 	}
  
-	public void persistCustomer(List<Customer> customers)
+	public void persistCustomer(List<Customer> passedCustomers)
 	{
-		customers.addAll(customers);
+		customers.addAll(passedCustomers);
 	}		
 
 	public List<Customer> findByFName(String fName)

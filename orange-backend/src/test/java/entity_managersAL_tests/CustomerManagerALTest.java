@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
+import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 
 /**
  * 
@@ -22,6 +24,11 @@ public class CustomerManagerALTest
 	private CustomerManagerAL customerManager;
 	private Customer testCustomer, testCustomer2;
 	private List<Customer> testArrayCustomer, testArrayCustomer2;
+	private LoginDetailsManagerAL loginDetailsManager;
+	private LoginDetails loginDetailsTest1;
+	private List<LoginDetails> testArrayLoginDetails;
+	byte[] testSalt1;
+	byte[] testPassword1; 
 	
 	
 	@Before
@@ -32,6 +39,7 @@ public class CustomerManagerALTest
 		testArrayCustomer2 = new ArrayList<Customer>();
 		testCustomer = new Customer("fName1", "lName1", "contactNumber1", true);
 		testCustomer2 = new Customer("fName2", "lName2", "contactNumber2", true);
+		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail@1", testPassword1, testSalt1);
 	}
 	
 	@Test
@@ -48,29 +56,28 @@ public class CustomerManagerALTest
 		testArrayCustomer.add(testCustomer);
 		testArrayCustomer.add(testCustomer2);
 		customerManager.persistCustomer(testArrayCustomer);
-		testArrayCustomer2 = customerManager.getCustomers();
-		assertEquals(testArrayCustomer2.size(), 2);
+		assertEquals(customerManager.getCustomers(), testArrayCustomer);
 	}
 	
 	@Test 
-	void testFindByFName()
+	public void testFindByFName()
 	{
 		testArrayCustomer.add(testCustomer);
 		customerManager.persistCustomer(testCustomer);
-		assertEquals(customerManager.findByFName("Absolutely"), testArrayCustomer);
+		assertEquals(customerManager.findByFName("fName1"), testArrayCustomer);
 	}
 	
 	@Test 
-	void testFindByLName()
+	public void testFindByLName()
 	{
 		testArrayCustomer.add(testCustomer);
 		customerManager.persistCustomer(testCustomer);
-		assertEquals(customerManager.findByLName("Fantastic"), testArrayCustomer);
+		assertEquals(customerManager.findByLName("lName1"), testArrayCustomer);
 	}
 	
 	
 	@Test
-	void testGetCustomers()
+	public void testGetCustomers()
 	{
 		testArrayCustomer.add(testCustomer);
 		testArrayCustomer.add(testCustomer2);
@@ -80,16 +87,18 @@ public class CustomerManagerALTest
 	}
 	
 	@Test
-	void testUpdateCustomer()
+	public void testUpdateCustomer()
 	{
+		testArrayCustomer.clear();
+		customerManager.persistCustomer(testCustomer);
+		testCustomer.setfName("updateTest");
 		testArrayCustomer.add(testCustomer);
-		customerManager.persistCustomer(testArrayCustomer);
 		customerManager.updateCustomer(testCustomer);
-		assertEquals(customerManager.getCustomers(), testArrayCustomer);
+		assertEquals(customerManager.findByFName("fName1").get(0).getfName(), testArrayCustomer.get(0).getfName());
 	}
 	
 	@Test
-	void testRemoveCustomer()
+	public void testRemoveCustomer()
 	{
 		testArrayCustomer.add(testCustomer);
 		testArrayCustomer.add(testCustomer2);
