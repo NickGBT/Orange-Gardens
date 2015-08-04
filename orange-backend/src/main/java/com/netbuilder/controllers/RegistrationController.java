@@ -11,6 +11,7 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
@@ -30,6 +31,9 @@ public class RegistrationController
 	
 	@ManagedProperty(value="#{userDetails}")
 	private UserDetails userDetails;
+	
+	@Inject
+	private LoginDetailsManager loginDetailsManager;
 	
 	private String errorMsg;
 	private Customer customer;
@@ -72,11 +76,17 @@ public class RegistrationController
 					registrationDetails.getNameOnCard(), registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 			
-			System.out.println("Setting user details");
-			userDetails.setName(registrationDetails.getfName());
-			userDetails.setPassword(registrationDetails.getPassword());
-			userDetails.setUid(rand.nextInt());
+			loginDetailsManager.persistLoginDetails(loginDetails);
+			System.out.println(loginDetails);
+			System.out.println(loginDetailsManager.getAllLoginDetails());
 			
+			
+			
+			System.out.println("Setting user details");
+//			userDetails.setName(registrationDetails.getfName());
+//			userDetails.setPassword(registrationDetails.getPassword());
+//			userDetails.setUid(rand.nextInt());
+//			
 			System.out.println("First Name " + registrationDetails.getfName() + ", Last Name  " + registrationDetails.getlName());
 			
 			return "account/uid";

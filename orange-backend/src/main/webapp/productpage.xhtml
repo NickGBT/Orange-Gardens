@@ -26,20 +26,24 @@
 						</div>
 						<div id = "Attributes"> 
 								<p>ID : <h:outputText value = "#{productController.product.productName}"/> <!-- Product ID Here -->	</p>
-			
 							
-							<f:facet name = "productSize"> 
-								<p>Size : <h:outputText	value = "#{ProductPageController.getProduct().getWidth()}"/>	Length <!-- Product Size Here --> </p>
-							</f:facet> 
+								<p>Size : <h:outputText	value = "#{productController.product.height}"/>	Length <!-- Product Size Here --> </p>
 							
-							<f:facet name = "productWeight"> 
-								<p>Weight :	<h:outputText value = "#{ProductPageController.getProduct().getWeight}"/> <!-- Product Weight Here --> </p>
-							</f:facet> 	
+								<p>Weight :	<h:outputText value = "#{productController.product.weight}"/> <!-- Product Weight Here --> </p>
 							
 
+<<<<<<< HEAD
+								<p>Description: <h:outputText value = "#{productController.product.description}"/> <!-- Product Description Here --> </p> 							
+
+							<f:facet name = "productDescription"> 
+								<p> id = "Product Description">Description: </p>
+								
+									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> 			
+=======
 								<p> id = "Product Description">Description: </p>
 							<f:facet name = "productDescription"> 
 									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> 					
+>>>>>>> 50d914079eaa9fd4f43cc6fd0e8f466b654da007
 							</f:facet> 		
 									
 						</div>	
@@ -47,7 +51,7 @@
 					
 					<div id = "Buttons"> 
 						
-						<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket}"/>
+						<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket()}"/>
 											
 					
 						
@@ -66,7 +70,7 @@
 				</div> 
 				
 					<div id = "productImage"> 	
-						<h:graphicImage id = "productImage" src = "#{ProductPageController.getProduct().getImageLocation()}" alt  = "Gnome" /> 
+						<h:graphicImage id = "productImage" src = "#{productController.product.getImageLocation}" alt  = "Gnome" /> 
 						<!-- Image is here --> 
 					</div> 
 			</div>

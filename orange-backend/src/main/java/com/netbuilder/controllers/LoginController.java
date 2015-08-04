@@ -37,20 +37,21 @@ public class LoginController {
 	public String login(){
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
-		System.out.println("Registered Accounts : "  + userDetails.getName());
-		for(int i = 0; i < userDetails.getUid().size(); i++){
-			
-			if(userDetails.getName().get(i).equals(name) &&
-				userDetails.getPassword().get(i).equals(password)){
-				
-				return "account.xhtml";
-			}
-		}
+		//System.out.println("Registered Accounts : "  + userDetails.getName());
+//		for(int i = 0; i < userDetails.getUid().size(); i++){
+//			
+//			if(userDetails.getName().get(i).equals(name) &&
+//				userDetails.getPassword().get(i).equals(password)){
+//				
+//				return "account.xhtml";
+//			}
+//		}
+//		
+//		return "customerlogin.xhtml";
 		
-		return "customerlogin.xhtml";
-		
-	/*	userId = ldm.checkPassword(name, password);
-		
+		userId = ldm.checkPassword(name, password);
+		System.out.println("Username :" + ldm.getAllLoginDetails().get(0).getUsername());
+		System.out.println("Password :" + ldm.getAllLoginDetails().get(0).getPassword());
 		System.out.println("User exists? : " + userId);
 		if(userId >= 0){
 			
@@ -59,7 +60,7 @@ public class LoginController {
 		else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect username/password combination!"));
 			return "login.xhtml";
-		}*/
+		}
 	}
 	
 	public String getName() { return name; }
