@@ -9,6 +9,7 @@ import javax.enterprise.inject.Alternative;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.util.TestData;
 
 /**
  * 
@@ -19,7 +20,19 @@ import com.netbuilder.enums.ProductCategory;
 @Stateless
 public class ProductManagerAL implements ProductManager {
 
-	private ArrayList<Product> products = new ArrayList<Product>();
+	private TestData testData;
+	
+	private ArrayList<Product> products = new ArrayList<Product>()
+			{/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+			{
+				products.add(testData.product);
+				products.add(testData.product2);
+				products.add(testData.product3);
+			}};
 	
 	public void persistProduct(Product product) {
 		products.add(product);
