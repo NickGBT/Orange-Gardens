@@ -1,20 +1,20 @@
 package com.netbuilder.orange_dops;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-
 import java.io.File;
 import java.io.IOException;
-
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -28,9 +28,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  * 
@@ -44,7 +47,7 @@ public class GladosGui
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
-	private JPanel assignOrder, orderButtons, orderPanel;
+	private JPanel assignOrder, orderButtons, orderPanel, mapPanel;
 	private BufferedImage splash, background;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
@@ -54,8 +57,11 @@ public class GladosGui
 	private GridBagConstraints buttonLayoutConstraints;
 	private ImagePanel backgroundPanel;
 	private Font gladosFont;
-	private int mapCount;
+	private int[][] baseMap;
 	private JTextField productName, quantity, boxSize;
+	private String testRoute;
+	private int startX, startY, routeX, routeY;
+	private int[] xDiff, yDiff;
 	
 	/**
 	 * @author JustinMabbutt
@@ -92,15 +98,19 @@ public class GladosGui
 		}		
 		splashFrame = new JFrame();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel();
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); mapPanel = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
 		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		splash = null; background = null;
 		splashTimer = new Timer();
+		testRoute = "101222";
+		startX = 0; startY = 0;
+		xDiff = new int[] {0, 1, 1, 1, 0, -1, -1, -1};
+		yDiff = new int[] {1, 1, 0, -1, -1, -1, 0, 1};
 		buttonLayout = new GridBagLayout();
-		mapCount = 0;
+    	initMap();
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		Thread ui = new Thread()
@@ -111,10 +121,10 @@ public class GladosGui
 				while(true)
 				{
 					getNewOrder.repaint();
-					//completeOrder.repaint();
-					//nextProduct.repaint();
+					mapPanel.repaint();
 					orderButtons.repaint();
 					orderPanel.repaint();
+					mapPanel.repaint();
 					try 
 					{
 						Thread.sleep(100);
@@ -192,6 +202,7 @@ public class GladosGui
     private void displayGetOrder()
     {
     	mainFrame.getContentPane().remove(orderPanel);
+    	mainFrame.getContentPane().remove(mapPanel);
     	mainFrame.getContentPane().remove(orderButtons);
    		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
@@ -229,75 +240,124 @@ public class GladosGui
     
     /**
      * @author JustinMabbutt
+     * Task to populate the map with nodes
+     */
+    private void buildMap()
+    {
+    	mapPanel.removeAll();
+    	mapPanel.invalidate();
+    	if(testRoute.length() > 0)
+    	{
+    		baseMap[startX][startY] = 4;
+    		for(int i = 0; i < testRoute.length(); i++)
+    		{
+    			int j = Integer.parseInt(String.valueOf(testRoute.charAt(i)));
+    			routeX += xDiff[j];
+    			routeY += yDiff[j];
+    			baseMap[routeX][routeY] = 4;
+    		}
+	    	for (int i = 0; i < 20; i++) 
+	    	{
+	    		for(int j = 0; j < 20; j++)
+	    		{
+	    			switch(baseMap[i][j])
+	    			{
+	    			case 1:
+	    			    JLabel possRoute = new JLabel("*", SwingConstants.CENTER);//beginning
+	    			    possRoute.setForeground(Color.BLACK);
+	    			    mapPanel.add(possRoute);
+	    				break;
+	    			case 2:
+	    				JLabel shelf = new JLabel("S", SwingConstants.CENTER);//shelf
+	    				shelf.setForeground(Color.BLUE);
+	    				mapPanel.add(shelf);
+	    				break;
+	    			case 3:
+	    				JLabel gdz = new JLabel("G", SwingConstants.CENTER);//GDZ
+	    				gdz.setForeground(Color.ORANGE);
+	    				mapPanel.add(gdz);
+	    				break;
+	    			case 4:
+	    				JLabel route = new JLabel("X", SwingConstants.CENTER);//route
+	    				route.setForeground(Color.RED);
+	    				mapPanel.add(route);
+	    				break;
+	    			}
+	    		}	    
+	    	}
+    	}
+    	else
+    	{
+    		for (int i = 0; i < 20; i++) 
+	    	{
+	    		for(int j = 0; j < 20; j++)
+	    		{
+	    			switch(baseMap[i][j])
+	    			{
+	    			case 1:
+	    			    JLabel possRoute = new JLabel("*", SwingConstants.CENTER);//beginning
+	    			    possRoute.setForeground(Color.BLACK);
+	    			    mapPanel.add(possRoute);
+	    				break;
+	    			case 2:
+	    				JLabel shelf = new JLabel("S", SwingConstants.CENTER);//shelf
+	    				shelf.setForeground(Color.BLUE);
+	    				mapPanel.add(shelf);
+	    				break;
+	    			case 3:
+	    				JLabel gdz = new JLabel("G", SwingConstants.CENTER);//GDZ
+	    				gdz.setForeground(Color.ORANGE);
+	    				mapPanel.add(gdz);
+	    				break;
+	    			}
+	    		}
+	    	}
+    	}
+    	mapPanel.revalidate();
+    }
+    
+    /**
+     * @author JustinMabbutt
+     * Task to re/initialise the map
+     */
+    private void initMap()
+    {
+    	//1 = Possible route
+    	//2 = Shelf
+    	//3 = GDZ
+    	baseMap = new int[][] { 
+    			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1},
+    			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    			{1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1}
+    	};
+    	
+    }
+    
+    /**
+     * @author JustinMabbutt
      * Task to draw the map
      */
    	private void displayMap()
     {
    		mainFrame.getContentPane().remove(assignOrder);
    		mainFrame.invalidate();
-    	//1 = Beginning
-    	//2 = Possible route
-    	//3 = Shelf
-    	//4 = Possible pickup location
-    	//5 = GDZ
-    	int[][] testMap = new int[][] { 
-    			{1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 4, 2},
-    			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-    			{2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2, 5, 2, 2}
-    	};
-    	
-    	for(int x = 0; x < 20; x++)
-        {
-    		if(mapCount >= 19)
-    		{
-    			System.out.println("\n");
-    			mapCount = 0;
-    		}
-            for(int y = 0; y < 20; y++)
-            {
-            	switch(testMap[x][y])
-            	{
-            	case 1:
-                	System.out.print("B ");//beginning
-                	mapCount++;
-                    break;
-            	case 2:
-                	System.out.print("* ");//possible route
-                	mapCount++;
-                	break;
-            	case 3:              
-                	System.out.print("S ");//shelf
-                	mapCount++;
-                	break;
-            	case 4:               
-                	System.out.print("P ");//possible pickup location
-                	mapCount++;
-                	break;
-            	case 5:
-                    System.out.print("G ");//GDZ
-                    mapCount++;
-                    break;
-                }
-            }
-        }	
     	productName.setText("Product Name: ");// + theProductName
     	quantity.setText("Quantity: ");// + quantity
     	boxSize.setText("Box Size: ");// + boxSize
@@ -317,7 +377,9 @@ public class GladosGui
     	orderPanel.add(quantity);
     	orderPanel.add(boxSize);
     	orderPanel.setLayout(new BoxLayout(orderPanel, BoxLayout.PAGE_AXIS));
-    	orderButtons.setLayout(new FlowLayout(FlowLayout.CENTER));
+    	buildMap();
+    	mapPanel.setLayout(new GridLayout(20, 20));
+    	orderButtons.setLayout(new FlowLayout(FlowLayout.CENTER));	
     	completeOrder.setText("Complete order");
     	completeOrder.setPreferredSize(new Dimension(240, 80));
     	completeOrder.setFont(gladosFont);
@@ -336,11 +398,14 @@ public class GladosGui
     	{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				//mapPanel.removeAll();
+				//mapPanel.invalidate();
+				//new route
 			}
 		});
     	orderButtons.add(nextProduct);
-    	mainFrame.getContentPane().add(orderPanel);
+    	mainFrame.getContentPane().add(orderPanel, BorderLayout.NORTH);
+    	mainFrame.getContentPane().add(mapPanel, BorderLayout.CENTER);
     	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
     	mainFrame.revalidate();
     	mainFrame.repaint();

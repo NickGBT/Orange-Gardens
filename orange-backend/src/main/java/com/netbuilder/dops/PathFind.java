@@ -30,14 +30,14 @@ public class PathFind
 	
 	
 	//A* algorithm - The route returned is a string of direction digits.
+	//0 = east
 	//1 = south-east
 	//2 = south
 	//3 = south-west
 	//4 = west
 	//5 = north-west
 	//6 = north 
-	//7 = north-east
-	//8 = east
+	//7 = north-east	
 	public String pathFind(int xStart, int yStart, int xFinish, int yFinish)
 	{
 		ArrayList<Node> pq = new ArrayList<Node>(2);
