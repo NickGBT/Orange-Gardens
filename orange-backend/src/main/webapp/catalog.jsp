@@ -16,6 +16,9 @@
 		<ul>
 			<c:forEach items="${Items}" var="product">
 				<li>Product Name: <c:out value="${product.name}"/>;
+				
+				
+				
 			</c:forEach>
 		</ul>	
 	</body>
