@@ -18,7 +18,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
  *
  */
 @Alternative
-@Stateful
+@Singleton
 public class LoginDetailsManagerAL implements LoginDetailsManager {
 
 	private ArrayList<LoginDetails> loginDetails = new ArrayList<LoginDetails>();
@@ -31,7 +31,7 @@ public class LoginDetailsManagerAL implements LoginDetailsManager {
 
 	public LoginDetails findByUsername(String username) {
 		
-		for(LoginDetails ld: loginDetails){
+		for(LoginDetails ld: loginDetails){;
 			if(ld.getUsername().equals(username)) return ld;
 		}
 		return null;
@@ -54,13 +54,10 @@ public class LoginDetailsManagerAL implements LoginDetailsManager {
 	
 	public List<LoginDetails> getAllLoginDetails()
 	{
-		System.out.println("getting: " + loginDetails);
 		return loginDetails;
 	}
 
 	public int checkPassword(String name, String password) {
-		System.out.println("Check Name: " + name);
-		System.out.println("Check password" + password);
 		LoginDetails result;
 		
 		if(LoginDetailsToolkit.isEmail(name)){
@@ -68,10 +65,11 @@ public class LoginDetailsManagerAL implements LoginDetailsManager {
 		}
 		else{
 			result = findByUsername(name);
+			System.out.println("Check username: " + name);
 		}
 		
 		if(result != null){
-			if(LoginDetailsToolkit.checkPassword(result, password)) return result.getUserId();
+			if(LoginDetailsToolkit.checkPassword(result, password)) return 1 ; //result.getUserId();
 		}
 		return -1;
 
