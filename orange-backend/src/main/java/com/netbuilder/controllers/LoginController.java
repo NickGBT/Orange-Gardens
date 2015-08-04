@@ -21,7 +21,7 @@ import com.netbuilder.util.UserDetails;
  */
 
 @ManagedBean(name="loginController")
-@RequestScoped
+@SessionScoped
 public class LoginController {
 	
 	@ManagedProperty(value="#{userDetails}")
@@ -34,30 +34,22 @@ public class LoginController {
 	private String password;
 	private int userId;
 	private boolean loggedIn = false;
+//	private String logout = "index.html";
 
 	public String login(){
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
-		//System.out.println("Registered Accounts : "  + userDetails.getName());
-//		for(int i = 0; i < userDetails.getUid().size(); i++){
-//			
-//			if(userDetails.getName().get(i).equals(name) &&
-//				userDetails.getPassword().get(i).equals(password)){
-//				
-//				return "account.xhtml";
-//			}
-//		}
-//		
-//		return "customerlogin.xhtml";
+
 		System.out.println(ldm.getAllLoginDetails());
 		userId = ldm.checkPassword(name, password);
 		System.out.println("User exists? : " + userId);
 		if(userId >= 0){
-			
+			loggedIn = true;
 			return "account.xhtml";
 		}
 		else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect username/password combination!"));
+			loggedIn = false;
 			return "login.xhtml";
 		}
 	}
@@ -67,8 +59,11 @@ public class LoginController {
 	public void setName(String name) { this.name = name; }
 	public void setPassword(String password) { this.password = password; }
 
-	public void logout(){
+	public String logout(){
+		System.out.println("4realm8");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		loggedIn = false;
+		return "index.xhtml";
 	}
 
 	public boolean getLoggedIn() {
@@ -83,4 +78,12 @@ public class LoginController {
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
 	}
+
+/*	public String getLogout() {
+		return logout;
+	}
+
+	public void setLogout(String logout) {
+		this.logout = logout;
+	}*/
 }
