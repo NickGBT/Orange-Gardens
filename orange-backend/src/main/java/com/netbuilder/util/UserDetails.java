@@ -18,7 +18,12 @@ public class UserDetails
 	private ArrayList<String> name;
 	private ArrayList<String> password;
 	private ArrayList<Integer> uid;
-	private ArrayList<Boolean> loggedIn;
+	private Boolean loggedIn;
+	
+	private int loggedUid = -1;
+	private String loggedName;
+	
+	private int index;
 	
 	 
 	public UserDetails(){
@@ -68,6 +73,32 @@ public class UserDetails
 	{
 		this.uid.add(uid);
 	}
-	
-	
+
+	public void setLogged(int index){
+		this.index = index;
+	}
+
+	public int getLoggedUid() {
+		return loggedUid;
+	}
+
+	public void setLoggedUid(int loggedUid) {
+		this.loggedUid = loggedUid;
+	}
+
+	public String getLoggedName() {
+		return name.get(index);
+	}
+
+	public void setLoggedName(String loggedName) {
+		this.loggedName = loggedName;
+	}
+
+	public Boolean getLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(Boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
 }

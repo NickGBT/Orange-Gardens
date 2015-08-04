@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,8 +21,7 @@ import com.netbuilder.util.UserDetails;
  */
 
 @ManagedBean(name="loginController")
-@Stateful
-@SessionScoped
+@RequestScoped
 public class LoginController {
 	
 	@ManagedProperty(value="#{userDetails}")
@@ -29,6 +29,7 @@ public class LoginController {
 
 	@Inject
 	private LoginDetailsManager ldm;
+	
 	private String name;
 	private String password;
 	private int userId;
@@ -48,10 +49,8 @@ public class LoginController {
 //		}
 //		
 //		return "customerlogin.xhtml";
-		
+		System.out.println(ldm.getAllLoginDetails());
 		userId = ldm.checkPassword(name, password);
-		System.out.println("Username :" + ldm.getAllLoginDetails().get(0).getUsername());
-		System.out.println("Password :" + ldm.getAllLoginDetails().get(0).getPassword());
 		System.out.println("User exists? : " + userId);
 		if(userId >= 0){
 			
