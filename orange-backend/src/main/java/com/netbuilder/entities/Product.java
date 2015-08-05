@@ -17,7 +17,7 @@ import com.netbuilder.enums.ProductCategory;
 /**
  * 
  * 
- * @author mwatson
+ * @author mwatson llew
  *
  */
 
@@ -98,6 +98,20 @@ public class Product {
 
 	public Product(String productName, double productPrice, int width, int height, int length, double weight,
 			String description, ProductCategory category) {
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.weight = weight;
+		this.description = description;
+		this.category = category;
+	}
+	
+	//Temp productId param
+	public Product(int productId, String productName, double productPrice, int width, int height, int length, double weight,
+			String description, ProductCategory category) {
+		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;

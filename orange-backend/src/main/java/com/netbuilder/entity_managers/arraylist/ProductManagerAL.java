@@ -7,6 +7,8 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
 import javax.faces.bean.ManagedBean;
+
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -23,8 +25,8 @@ import com.netbuilder.util.DummyAL;
 
 @Alternative
 @Singleton
-public class ProductManagerAL implements ProductManager {
-	
+public class ProductManagerAL implements ProductManager 
+{
 	@Inject
 	private DummyAL dummyAL;
 	private List<Product> products = new ArrayList<Product>();
@@ -33,7 +35,7 @@ public class ProductManagerAL implements ProductManager {
 	{
 		
 	}
-	
+
 	public void persistProduct(Product product) {
 		dummyAL.allProducts.add(product);
 	}
@@ -43,7 +45,6 @@ public class ProductManagerAL implements ProductManager {
 	}
 
 	public Product findByProductId(int productId) {
-		
 		for(Product p: dummyAL.allProducts){
 			if(p.getProductId() == productId) return p;
 		}
@@ -55,7 +56,7 @@ public class ProductManagerAL implements ProductManager {
 		dummyAL.addProducts();
 		return dummyAL.getAllProducts();
 	}
-	
+
 	public List<Product> findProductsByName(String name) {
 		List<Product> results = new ArrayList<Product>();
 		
@@ -65,7 +66,8 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 
-	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
+	public List<Product> findProductsByPriceBetween(double lowPrice,
+			double highPrice) {
 		List<Product> results = new ArrayList<Product>();
 		
 		for(Product p: dummyAL.allProducts){
@@ -73,15 +75,15 @@ public class ProductManagerAL implements ProductManager {
 		}
 		return results;
 	}
-	
-	public List<Product> findByCategory(ProductCategory category){
-		
+
+	public List<Product> findByCategory(ProductCategory category) {
+
 		List<Product> results = new ArrayList<Product>();
-		
+
 		for(Product p: dummyAL.allProducts){
 			if(category == p.getCategory()) results.add(p);
 		}
-		
+
 		return results;
 	}
 
@@ -89,7 +91,6 @@ public class ProductManagerAL implements ProductManager {
 		for(Product p: dummyAL.allProducts){
 			if(p.getProductId() == product.getProductId()){
 				dummyAL.allProducts.set(dummyAL.allProducts.indexOf(p), product);
-				return;
 			}
 		}
 	}

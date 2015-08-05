@@ -2,7 +2,6 @@ package com.netbuilder.util;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
@@ -145,7 +144,7 @@ public class ProductDetails {
 	public void addToBasket() {
 		if(orderMan.findByCustomerId(customerId) == null) {
 			
-			order = new Order(loginD, OrderStatus.wishlist, paymentD);
+			order = new Order(loginD, OrderStatus.basket, paymentD);
 			orderLine = new OrderLine(order, product, quantity);
 			
 			orderMan.persistOrder(order);
