@@ -2,13 +2,14 @@ package com.netbuilder.controllers;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+//import com.netbuilder.entity_managers.interfaces.ProductManager;
+//import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 
 /**
@@ -17,18 +18,36 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
  *
  **/
 
-//@Named
-//@RequestScoped
-@Controller
+@ManagedBean (name = "catalogController")
+@RequestScoped
 public class CatalogController 
 {	
-	//@Inject
-	ProductManagerAL productManager;
+	@Inject
+	ProductManager productManager;
 	
-	/*public ArrayList<Product> getRelevantProducts(ProductCategory productCategory)
+	private ArrayList<Product> productsInCatalog = new ArrayList<Product>();
+	
+	/*public ArrayList<Product> getProductsInCatalog() 
+	{
+		productManager.populateProducts();
+		productsInCatalog = (ArrayList<Product>) productManager.getAll();
+		return productsInCatalog;
+	}*/
+
+	public void setProductsInCatalog(ArrayList<Product> productsInCatalog) 
+	{
+		this.productsInCatalog = productsInCatalog;
+	}
+	
+	public ArrayList<Product> getProdsToDisplay() {
+		return (ArrayList<Product>) productManager.getAll();
+	}
+
+	/*public ArrayList<Product> getProductsInCatalog(ProductCategory productCategory)
 	{
 		if (productCategory == null)
 		{
+			productManager.populateProducts();
 			productsInCatalog = (ArrayList<Product>) productManager.getAll();
 		}
 		else
@@ -37,18 +56,19 @@ public class CatalogController
 		}
 		
 		return productsInCatalog;	
-	}	*/
+	}*/
 	
+	/*
 	@RequestMapping(value = "/catalog", method = RequestMethod.GET)
 	public String displayCatalogPage(Model model)
 	{
 		System.out.println("/catalouge");
 		ArrayList<Product> productsInCatalog = new ArrayList<Product>();
-		productManager.populateProducts();
+		//productManager.populateProducts();
 		productsInCatalog = (ArrayList<Product>) productManager.getAll();
 		model.addAttribute("items", productsInCatalog);
 		System.out.println(productsInCatalog.size());
 		return "items";
-	}
+	}*/
 }
 
