@@ -2,7 +2,6 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 

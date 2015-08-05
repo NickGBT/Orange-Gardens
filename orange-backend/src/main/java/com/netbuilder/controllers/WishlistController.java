@@ -3,9 +3,7 @@ package com.netbuilder.controllers;
 
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.util.OrderDetails;

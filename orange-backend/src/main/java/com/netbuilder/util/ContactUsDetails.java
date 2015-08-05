@@ -1,10 +1,5 @@
 package com.netbuilder.util;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
-import com.netbuilder.entities.DeliveryLine;
-
 /**
  * 
  * @author ngilbert

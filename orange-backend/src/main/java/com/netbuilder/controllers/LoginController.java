@@ -1,18 +1,15 @@
 package com.netbuilder.controllers;
 
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
-import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
+import com.netbuilder.util.UserId;
 
 /**
  * 
@@ -32,8 +29,11 @@ public class LoginController {
 	
 	private String name;
 	private String password;
-	private int userId;
+	private int userExists;
 	private boolean loggedIn = false;
+	
+	@Inject
+	private UserId userId;
 //	private String logout = "index.html";
 
 	public String login(){
@@ -41,9 +41,10 @@ public class LoginController {
 		System.out.println("UserName : " + name  + ", Password : " + password);
 
 		System.out.println(ldm.getAllLoginDetails());
-		userId = ldm.checkPassword(name, password);
-		System.out.println("User exists? : " + userId);
-		if(userId >= 0){
+		userExists = ldm.checkPassword(name, password);
+		System.out.println("User exists? : " + userExists);
+		if(userExists >= 0){
+			userId.setUsername(name);
 			loggedIn = true;
 			return "account.xhtml";
 		}
@@ -60,7 +61,6 @@ public class LoginController {
 	public void setPassword(String password) { this.password = password; }
 
 	public String logout(){
-		System.out.println("4realm8");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		loggedIn = false;
 		return "index.xhtml";

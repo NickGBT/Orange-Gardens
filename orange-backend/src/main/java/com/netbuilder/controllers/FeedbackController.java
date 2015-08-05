@@ -1,7 +1,5 @@
 package com.netbuilder.controllers;
 
-import javax.inject.Inject;
-
 import com.netbuilder.util.CustomerFeedback;
 
 /**

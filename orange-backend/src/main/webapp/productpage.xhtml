@@ -1,80 +1,90 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-	
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:f="http://java.sun.com/jsf/core"
-		template="templates/template.xhtml">
-		
-		
-<!-- Author: Matthew Watson -->
 
-		<ui:define name = "pageTitle"> NB Gardens - Product Name </ui:define>
-		<ui:define name="content"> 
-		
-			<div id = "Product"> 
-		
-				<div id = "Allbarimage"> 
-					
-					<div id = "ProductDescription">
-						<div id = "ProductHeader">
-							<h:outputLabel>
-								<h:outputText id = "productNameLabel"
-									value = "ProductName"	/>
-							</h:outputLabel>						
-						</div>
-						<div id = "Attributes"> 
-								<p>ID : <h:outputText value = "#{productController.product.productName}"/> <!-- Product ID Here -->	</p>
-							
-								<p>Size : <h:outputText	value = "#{productController.product.height}"/>	Length <!-- Product Size Here --> </p>
-							
-								<p>Weight :	<h:outputText value = "#{productController.product.weight}"/> <!-- Product Weight Here --> </p>
-							
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
 
-<<<<<<< HEAD
-								<p>Description: <h:outputText value = "#{productController.product.description}"/> <!-- Product Description Here --> </p> 							
 
-							<f:facet name = "productDescription"> 
-								<p> id = "Product Description">Description: </p>
-								
-									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> 			
-=======
-								<p> id = "Product Description">Description: </p>
-							<f:facet name = "productDescription"> 
-									<h:outputText value = "#{ProductPageController.getProduct().getDescription()}"/> <!-- Product Description Here --> 					
->>>>>>> 50d914079eaa9fd4f43cc6fd0e8f466b654da007
-							</f:facet> 		
-									
-						</div>	
+	<!-- Author: Matthew Watson llew-->
+
+	<ui:define name="pageTitle"> NB Gardens - Product Name </ui:define>
+	<ui:define name="content">
+
+		<div id="Product">
+
+			<div id="Allbarimage">
+
+				<div id="ProductDescription">
+					<div id="ProductHeader">
+						<h:outputLabel>
+							<h:outputText id="productNameLabel" value="ProductName" />
+						</h:outputLabel>
 					</div>
+					<div id="Attributes">
+						<p>
+							ID :
+							<h:outputText value="#{productController.product.productName}" />
+							<!-- Product ID Here -->
+						</p>
+
+						<p>
+							Size :
+							<h:outputText value="#{productController.product.height}" />
+							Length :
+							<h:outputText value="#{productController.product.length}" />
+							<!-- Product Size Here -->
+						</p>
+
+						<p>
+							Weight :
+							<h:outputText value="#{productController.product.weight}" />
+							<!-- Product Weight Here -->
+						</p>
+
+						<p>
+							Description:
+							<h:outputText value="#{productController.product.description}" />
+						</p>
+
+					</div>
+				</div>
+
+				<div id="Buttons">
+					<h:form>
 					
-					<div id = "Buttons"> 
-						
-						<h:commandButton id = "basket" value = "Add to Basket" action = "#{ProductController.addToBasket()}"/>
-											
+					 <input type="hidden" name="productId" value="#{productController.product.productId}" />
 					
-						
-						<select name = "add">
-							<option value = "One"> 1 </option>   
-							<option value = "Two"> 2  </option>   
-							<option value = "Three"> 3 </option>   
-							<option value = "Four"> 4  </option>  
-							<option value = "Five"> 5  </option>
-						</select>
-						
-						
-							<h:commandButton class = "button" value = "Add to Wishlist" action = "#{ProductController.addToWishlist()}"/> 
-					
-					</div> 
-				</div> 
-				
-					<div id = "productImage"> 	
-						<h:graphicImage id = "productImage" src = "#{productController.product.getImageLocation}" alt  = "Gnome" /> 
-						<!-- Image is here --> 
-					</div> 
+						<h:commandButton value="Add To Basket"  id="basket"
+							action="#{productController.addToBasket}">
+						</h:commandButton>
+					</h:form>
+
+
+					<select name="add">
+						<option value="One">1</option>
+						<option value="Two">2</option>
+						<option value="Three">3</option>
+						<option value="Four">4</option>
+						<option value="Five">5</option>
+					</select>
+
+
+					<h:commandButton class="button" value="Add to Wishlist"
+						action="#{ProductController.addToWishlist()}" />
+
+				</div>
 			</div>
-		
-		
-		</ui:define>
+
+			<div id="productImage">
+				<h:graphicImage id="productImage"
+					src="#{productController.product.getImageLocation}" alt="Gnome" />
+				<!-- Image is here -->
+			</div>
+		</div>
+
+
+	</ui:define>
 </ui:composition>

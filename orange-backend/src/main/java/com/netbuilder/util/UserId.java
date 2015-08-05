@@ -1,32 +1,51 @@
 package com.netbuilder.util;
 
+import javax.ejb.Stateful;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  * 
- * @author JustinMabbutt
+ * @author JustinMabbutt llew
  *
  */
-
+@SessionScoped
 public class UserId 
 {
-	private static int customerUid, employeeUid;
+	private int customerUid, employeeUid;
+	private String username = "";
 	
-	public static void setUid(int customerUid)
+	public void setUid(int customerUid)
 	{
-		UserId.customerUid = customerUid;
+		this.customerUid = customerUid;
 	}
 	
-	public static int getUid()
+	public int getUid()
 	{
 		return customerUid;
 	}
 
-	public static int getEmployeeUid() 
+	public int getEmployeeUid() 
 	{
 		return employeeUid;
 	}
 
-	public static void setEmployeeUid(int employeeUid)
+	public void setEmployeeUid(int employeeUid)
 	{
-		UserId.employeeUid = employeeUid;
+		this.employeeUid = employeeUid;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public UserId getUserId(){
+		return this;
+	}
+	
+	
 }
