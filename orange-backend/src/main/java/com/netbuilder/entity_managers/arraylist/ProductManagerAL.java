@@ -2,7 +2,9 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.inject.Alternative;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -20,28 +22,31 @@ import com.netbuilder.util.TestData;
 @Singleton
 public class ProductManagerAL implements ProductManager {
 
-	@Inject
+	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
 
-	private ArrayList<Product> products = new ArrayList<Product>() {
-		/**
-				 * 
-				 */
-		private static final long serialVersionUID = 1L;
-
-		{
-			/*System.out.println(testData);
-			products.add(testData.getProduct());
-			products.add(testData.getProduct2());
-			products.add(testData.getProduct3());*/
-		}
-	};
+	private Product product_genID; 
+	private Product product;
+	private Product product2 ;
+	private Product product3;
+	
+	private ArrayList<Product> products = new ArrayList<Product>();
 
 	public ProductManagerAL() {
-		System.out.println(testData);
-		products.add(testData.getProduct());
-		products.add(testData.getProduct2());
-		products.add(testData.getProduct3());
+		
+		product_genID = new Product(1, "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
+		
+		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
+		
+		product2 = new Product("img/iomg", "testproduct2", 29.25, 53, 90, 15, 15.50, "test Product 2", ProductCategory.Gnome);	
+		
+		product3 = new Product("img/iomg", "testproduct3", 76.25, 80, 45, 18, 19.50, "test Product 3", ProductCategory.Furniture);	
+		
+		products.add(product_genID);
+		products.add(product2);
+		products.add(product);
+		products.add(product3);
+
 	}
 
 	public void persistProduct(Product product) {

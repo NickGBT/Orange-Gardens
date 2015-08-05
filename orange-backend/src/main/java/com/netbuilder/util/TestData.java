@@ -152,11 +152,7 @@ public class TestData {
 	/**
 	 * @return the password
 	 */
-	
-	public TestData(){
-		System.out.println("Test Data created");
-	}
-	
+		
 	public byte[] getPassword() {
 		return password;
 	}
