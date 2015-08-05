@@ -22,17 +22,14 @@ public class ProductManagerAL implements ProductManager {
 
 	private TestData testData;
 	
-	private ArrayList<Product> products = new ArrayList<Product>()
-			{/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-
-			{
+	private List<Product> products = new ArrayList<Product>();
+	
+	public void populateProducts()
+	{
 				products.add(testData.product);
 				products.add(testData.product2);
 				products.add(testData.product3);
-			}};
+	}
 	
 	public void persistProduct(Product product) {
 		products.add(product);

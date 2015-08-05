@@ -2,16 +2,14 @@ package com.netbuilder.controllers;
 
 import java.util.ArrayList;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
-import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
 
 /**
  * 
@@ -25,10 +23,9 @@ import com.netbuilder.enums.ProductCategory;
 public class CatalogController 
 {	
 	//@Inject
-	public ArrayList<Product> productsInCatalog = new ArrayList<Product>();	
 	ProductManagerAL productManager;
 	
-	public ArrayList<Product> getRelevantProducts(ProductCategory productCategory)
+	/*public ArrayList<Product> getRelevantProducts(ProductCategory productCategory)
 	{
 		if (productCategory == null)
 		{
@@ -40,13 +37,18 @@ public class CatalogController
 		}
 		
 		return productsInCatalog;	
-	}	
+	}	*/
 	
-	@RequestMapping(value = "/ShowItems.htm")
-	public String showItems(ModelMap model)
+	@RequestMapping(value = "/catalog", method = RequestMethod.GET)
+	public String displayCatalogPage(Model model)
 	{
-		model.addAttribute("Items", productsInCatalog);
-		return "ShowItems";
+		System.out.println("/catalouge");
+		ArrayList<Product> productsInCatalog = new ArrayList<Product>();
+		productManager.populateProducts();
+		productsInCatalog = (ArrayList<Product>) productManager.getAll();
+		model.addAttribute("items", productsInCatalog);
+		System.out.println(productsInCatalog.size());
+		return "items";
 	}
 }
 
