@@ -32,9 +32,9 @@ public class Map<map extends Node>
 
     private void initEmptyNodes()
     {
-        for (int i = 0; i <= width; i++)
+        for(int i = 0; i <= width; i++)
         {
-            for (int j = 0; j <= higth; j++)
+            for(int j = 0; j <= higth; j++)
             {
                 nodes[i][j] = (map)nodeFactory.createNode(i, j);
             }
@@ -68,18 +68,18 @@ public class Map<map extends Node>
 
     public void drawMap()
     {
-        for (int i = 0; i <= width; i++) 
+        for(int i = 0; i <= width; i++) 
         {
         	print(" _");
         }
         print("\n");
 
-        for (int j = higth; j >= 0; j--)
+        for(int j = higth; j >= 0; j--)
         {
             print("|");
-            for (int i = 0; i <= width; i++)
+            for(int i = 0; i <= width; i++)
             {
-                if (nodes[i][j].isWalkable()) 
+                if(nodes[i][j].isWalkable()) 
                 {
                     print("  ");
                 } 
@@ -91,7 +91,7 @@ public class Map<map extends Node>
             print("|\n");
         }
 
-        for (int i = 0; i <= width; i++)
+        for(int i = 0; i <= width; i++)
         {
         	print(" _");
         }
@@ -114,7 +114,7 @@ public class Map<map extends Node>
 
         done = false;
         map current;
-        while (!done) 
+        while(!done) 
         {
             current = lowestFInOpen();
             closedList.add(current);
@@ -129,7 +129,7 @@ public class Map<map extends Node>
             for (int i = 0; i < adjacentNodes.size(); i++) 
             {
                 map currentAdj = adjacentNodes.get(i);
-                if (!openList.contains(currentAdj)) 
+                if(!openList.contains(currentAdj)) 
                 {
                     currentAdj.setPrevious(current);
                     currentAdj.sethCosts(nodes[newX][newY]);
@@ -138,7 +138,7 @@ public class Map<map extends Node>
                 } 
                 else 
                 {
-                    if (currentAdj.getgCosts() > currentAdj.calculategCosts(current)) 
+                    if(currentAdj.getgCosts() > currentAdj.calculategCosts(current)) 
                     {
                         currentAdj.setPrevious(current);
                         currentAdj.setgCosts(current);
@@ -146,7 +146,7 @@ public class Map<map extends Node>
                 }
             }
 
-            if (openList.isEmpty()) 
+            if(openList.isEmpty()) 
             {
                 return new LinkedList<map>();
             }
@@ -192,7 +192,7 @@ public class Map<map extends Node>
         List<map> adj = new LinkedList<map>();
 
         map temp;
-        if (x > 0) 
+        if(x > 0) 
         {
             temp = this.getNode((x - 1), y);
             if (temp.isWalkable() && !closedList.contains(temp)) 
@@ -202,7 +202,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (x < width) 
+        if(x < width) 
         {
             temp = this.getNode((x + 1), y);
             if (temp.isWalkable() && !closedList.contains(temp))
@@ -212,7 +212,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (y > 0)
+        if(y > 0)
         {
             temp = this.getNode(x, (y - 1));
             if (temp.isWalkable() && !closedList.contains(temp))
@@ -222,7 +222,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (y < higth) 
+        if(y < higth) 
         {
             temp = this.getNode(x, (y + 1));
             if (temp.isWalkable() && !closedList.contains(temp)) 
@@ -232,7 +232,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (CANMOVEDIAGONALLY) 
+        if(CANMOVEDIAGONALLY) 
         {
             if (x < width && y < higth)
             {
@@ -264,7 +264,7 @@ public class Map<map extends Node>
                 }
             }
 
-            if (x < width && y > 0) 
+            if(x < width && y > 0) 
             {
                 temp = this.getNode((x + 1), (y - 1));
                 if (temp.isWalkable() && !closedList.contains(temp)) 
