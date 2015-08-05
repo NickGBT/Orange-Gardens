@@ -1,9 +1,9 @@
+
 html{
 	
 	margin: 0;
 	padding: 0;
 	font-family: Helvetica, Arial, sans-serif;
-	
 }
 
 body{
@@ -12,13 +12,25 @@ body{
 	padding: 0;
 }
 
+html,body { 
+	height: 100%;	
+}
+
+#wrap {
+	min-height:100%;
+	height:100%
+	margin: 0 auto -4em;
+}
+
 #content{
 	background-color: #96c177;
 	border-radius: 5px;
-	width: 70%;
+	width: 90%;
 	margin: 0 auto;
-	min-width: 700px;
+	min-width: 100px;
 	color: #587d71;
+	padding-bottom: 100px;
+	overflow: auto;
 	
 }
 
@@ -27,7 +39,6 @@ body{
 	text-align: center;
 	padding: 11px;
 	background-color: #3fdd4d;
-	
 	border-bottom: 10px solid #1b5e20;
 	border-left: 10px solid #1b5e20;
 	border-bottom-left-radius: 50px;
@@ -37,18 +48,50 @@ body{
 	float: left;
 }
 
+#logo:hover{
+	opacity: 0.8;
+}
+
 #controls{
 	padding-top: 100px;
 }
 
 #buyingInfo{
 	float:right;
+	padding-bottom: 90px;
 }
 
 
 #basket:hover{
 	background-color: rgba(255,255,255,0.2);
 	border-radius: 10px;
+}
+
+.cornerButton {
+	color: #000000;
+	font-weight: bold;
+	font-size : small;
+	text-decoration: none;
+	padding: 10px 15px;
+	background:none!important;
+	border: none;
+	padding: :0!important;
+	font: : inherit;
+	
+	
+}
+
+.cornerButton:hover {
+	color: 	#FFFFFF;
+}
+
+.cornerButton:active {
+	color: 	#FFFFFF;
+}
+
+#sideButtons{
+	float:right;
+	padding-bottom: 50;
 }
 
 .headFootLinks{
@@ -121,18 +164,23 @@ body{
 	position:relative;
 	top:8px;
 }
- 
+
 #footer{
+	
+	position: relative;
+	margin-top: -100px;
+	height:100px;
+	clear:both;
+	
 	background-color: #A9FF9E;
 	font-size: 14px;
 	color: #000000;
 	padding-bottom: 5px;
-	
 	background-color: #3fdd4d;
-	
 	border-top: 10px solid #1b5e20;
 	border-right: 10px solid #1b5e20;
 	border-top-right-radius: 50px;
+
 }
 
 #copyright{
