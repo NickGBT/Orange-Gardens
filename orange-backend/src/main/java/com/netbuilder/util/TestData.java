@@ -1,12 +1,8 @@
 package com.netbuilder.util;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
+import javax.inject.Singleton;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.Delivery;
@@ -14,7 +10,6 @@ import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entities.Employee;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
-import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entities.Stock;
@@ -31,7 +26,7 @@ import com.netbuilder.util.ContactUsDetails;
  *
  */
 @ManagedBean(name = "testData")
-@RequestScoped
+@Singleton
 public class TestData {
 	
 	byte[] password = {1,2,3};
@@ -64,6 +59,8 @@ public class TestData {
 	public Order order3 = new Order(customerLogin3, employeeLogin, OrderStatus.wishlist,
 			"08/08/15", 12380809, "10/08/15", "11/08/15",
 			"80", true, paymentDetails3);	
+	
+	public Product product_genID = new Product(1, "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
 	
 	public Product product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
 	
@@ -155,6 +152,11 @@ public class TestData {
 	/**
 	 * @return the password
 	 */
+	
+	public TestData(){
+		System.out.println("Test Data created");
+	}
+	
 	public byte[] getPassword() {
 		return password;
 	}
@@ -240,7 +242,7 @@ public class TestData {
 	 * @return the product
 	 */
 	public Product getProduct() {
-		return product;
+		return product_genID;
 	}
 
 	/**

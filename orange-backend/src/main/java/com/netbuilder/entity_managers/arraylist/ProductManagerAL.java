@@ -2,9 +2,9 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
@@ -17,23 +17,33 @@ import com.netbuilder.util.TestData;
  *
  */
 @Alternative
-@Stateless
+@Singleton
 public class ProductManagerAL implements ProductManager {
 
+	@Inject
 	private TestData testData;
-	
-	private ArrayList<Product> products = new ArrayList<Product>()
-			{/**
+
+	private ArrayList<Product> products = new ArrayList<Product>() {
+		/**
 				 * 
 				 */
-				private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 1L;
 
-			{
-				products.add(testData.product);
-				products.add(testData.product2);
-				products.add(testData.product3);
-			}};
-	
+		{
+			/*System.out.println(testData);
+			products.add(testData.getProduct());
+			products.add(testData.getProduct2());
+			products.add(testData.getProduct3());*/
+		}
+	};
+
+	public ProductManagerAL() {
+		System.out.println(testData);
+		products.add(testData.getProduct());
+		products.add(testData.getProduct2());
+		products.add(testData.getProduct3());
+	}
+
 	public void persistProduct(Product product) {
 		products.add(product);
 	}
@@ -43,49 +53,55 @@ public class ProductManagerAL implements ProductManager {
 	}
 
 	public Product findByProductId(int productId) {
-		
-		for(Product p: products){
-			if(p.getProductId() == productId) return p;
+
+		for (Product p : products) {
+			if (p.getProductId() == productId)
+				return p;
 		}
 		return null;
 	}
 
-	public List<Product> getAll(){
+	public List<Product> getAll() {
 		return products;
 	}
-	
+
 	public List<Product> findProductsByName(String name) {
 		List<Product> results = new ArrayList<Product>();
-		
-		for(Product p: products){
-			if(p.getProductName().contains(name)) results.add(p);
+
+		for (Product p : products) {
+			if (p.getProductName().contains(name))
+				results.add(p);
 		}
 		return results;
 	}
 
-	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
+	public List<Product> findProductsByPriceBetween(double lowPrice,
+			double highPrice) {
 		List<Product> results = new ArrayList<Product>();
-		
-		for(Product p: products){
-			if((lowPrice < p.getProductPrice())&&(p.getProductPrice() < highPrice)) results.add(p);
+
+		for (Product p : products) {
+			if ((lowPrice < p.getProductPrice())
+					&& (p.getProductPrice() < highPrice))
+				results.add(p);
 		}
 		return results;
 	}
-	
-	public List<Product> findByCategory(ProductCategory category){
-		
+
+	public List<Product> findByCategory(ProductCategory category) {
+
 		List<Product> results = new ArrayList<Product>();
-		
-		for(Product p: products){
-			if(category == p.getCategory()) results.add(p);
+
+		for (Product p : products) {
+			if (category == p.getCategory())
+				results.add(p);
 		}
-		
+
 		return results;
 	}
 
 	public void updateProduct(Product product) {
-		for(Product p: products){
-			if(p.getProductId() == product.getProductId()){
+		for (Product p : products) {
+			if (p.getProductId() == product.getProductId()) {
 				products.set(products.indexOf(p), product);
 				return;
 			}

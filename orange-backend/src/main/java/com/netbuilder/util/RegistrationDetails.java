@@ -76,8 +76,6 @@ public class RegistrationDetails
 		this.securityNumber = securityNumber; data.add(securityNumber);
 		this.expiryDate = expiryDate; data.add(expiryDate);
 		
-		System.out.println("aite m8 " + this.fName + " " + this.lName + " " + this.nameOnCard + " " + this.password);
-
 		return "login.xhtml";
 	}
 	

@@ -145,7 +145,7 @@ public class ProductDetails {
 	public void addToBasket() {
 		if(orderMan.findByCustomerId(customerId) == null) {
 			
-			order = new Order(loginD, OrderStatus.wishlist, paymentD);
+			order = new Order(loginD, OrderStatus.basket, paymentD);
 			orderLine = new OrderLine(order, product, quantity);
 			
 			orderMan.persistOrder(order);
