@@ -2,7 +2,6 @@ package com.netbuilder.util;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;

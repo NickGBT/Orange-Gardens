@@ -12,7 +12,6 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
-import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
@@ -20,7 +19,6 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.TestData;
-import com.netbuilder.util.UserId;
 
 /**
  * 
