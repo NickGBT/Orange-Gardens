@@ -17,16 +17,15 @@
 						<h:outputText value="Product Catalog"/>
 					</f:facet>
 					<h:column>
-						<h:outputText value="#{product.productName}"/>
+						<h:graphicImage value="#{product.imageLocation}"/>
 					</h:column>
 					<h:column>
 						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
+						<h:outputText value="#{product.description}"/>
+						<h:outputText value="#{product.productPrice}"/>
+						<h:outputText value="#{product.width} #{product.height} #{product.length}"/>
+						<h:outputText value="#{product.weight}"/>
+						<h:outputText value="#{product.category}"/>
 					</h:column>
 					
 				</h:dataTable>
