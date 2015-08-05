@@ -13,16 +13,18 @@ import com.netbuilder.util.TestData;
 @Singleton
 public class DummyAL 
 {
-	Product product = new Product("resources/img/gunPic.jpg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
 	
-	Product product2 = new Product("resources/img/croppedPic2.jpg", "testproduct2", 29.25, 53, 90, 15, 15.50, "test Product 2", ProductCategory.Gnome);	
+	Product product = new Product("resources/img/gardenLight.jpg", "Garden Light", 25.25, 10, 10, 11, 10.50, "This will light up your life.", ProductCategory.Accessory);	
 	
-	Product product3 = new Product("resources/img/croppedPic1.jpg", "testproduct3", 76.25, 80, 45, 18, 19.50, "test Product 3", ProductCategory.Furniture);
+	Product product2 = new Product("resources/img/coolGnome.jpg", "Cool Gnome", 29.25, 53, 90, 15, 15.50, "This gnome is cool.", ProductCategory.Gnome);	
 	
-	public ArrayList<Product> allProducts = new ArrayList<Product>();
-			
-
-	public ArrayList<Product> getAllProducts() {
+	Product product3 = new Product("resources/img/gardenSeat.jpg", "Relaxation Chair", 76.25, 80, 45, 18, 19.50, "Relax.", ProductCategory.Furniture);
+	
+	Product product4 = new Product("resources/img/swagShed.jpg", "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
+	
+	public List<Product> allProducts = new ArrayList<Product>();
+				
+	public List<Product> getAllProducts() {
 		return allProducts;
 	}
 
@@ -32,8 +34,10 @@ public class DummyAL
 			
 	public void addProducts()
 	{
+		allProducts.clear();
 		allProducts.add(product);
 		allProducts.add(product2);
 		allProducts.add(product3);
+		allProducts.add(product4);
 	}
 }
