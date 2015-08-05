@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="templates/template.xhtml">
 		
 <!-- author: Jordan Taylor -->
@@ -18,9 +17,7 @@
 			<h1>Basket</h1>
 			
 			<h:dataTable>
-				columnClasses = "list-column-center, list-column-right, list-column-center, list-column-right" headerClass = "list-header"
-				rowClasses = "list-row" styleClass = "list-background" value="#{ProductController.}" var = "basket">
-				
+
 				<h:column>
 					<f:facet name = "header">
 						<h:outputText value = ""/>
@@ -32,7 +29,7 @@
 			
 			
 			
-			<t:dataList value="#{BasketController.getBasket()}"
+			<h:dataTable value="#{BasketController.getBasket()}"
 					var="product">
 					<div id="productDetailsSmall"
 						style="height: 200px; width: 500px; padding: 10px; border: 2px solid black; margin: 0;">
@@ -83,14 +80,14 @@
 								<br/>
 							</f:facet>
 							<f:facet name="productRemoveButton">
-								<button type="button" action = "#{BasketController.removeBasketItem(productId.productController)}">Remove Item </button>
+								<h:commandButton type="button" action = "#{BasketController.removeBasketItem(productId.productController)}">Remove Item </h:commandButton>
 									
 								<br/><br/> 
 							</f:facet>
 						</div>
 					</div>
 					<br/><br/>
-				</t:dataList>
+				</h:dataTable>
 			
 			<h:dataTable id="total">
 				<h:column>
