@@ -1,17 +1,13 @@
 package com.netbuilder.controllers;
 
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
-import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
 
 /**

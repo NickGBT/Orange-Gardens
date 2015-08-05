@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 import com.netbuilder.controllers.RegistrationController;
 import com.netbuilder.enums.CardType;
