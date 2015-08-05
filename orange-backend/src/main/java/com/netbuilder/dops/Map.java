@@ -8,35 +8,35 @@ import java.util.List;
  * @author JustinMabbutt
  *
  */
-public class Map<map extends Node>
+public class Map<gladosNode extends Node>
 {
     protected static boolean CANMOVEDIAGONALLY = true;
 
-    private map[][] nodes;
+    private gladosNode[][] nodes;
 
     protected int width;
-    protected int higth;
+    protected int height;
 
     private NodeFactory nodeFactory;
     private Map<GladosNode> warehouseMap;
     private List<GladosNode> path;
 
-    public Map(int width, int higth, NodeFactory nodeFactory)
+    public Map(int width, int height, NodeFactory nodeFactory)
     {
         this.nodeFactory = nodeFactory;        
-        nodes = (map[][])new Node[width][higth];
+        nodes = (gladosNode[][])new Node[width][height];
         this.width = width - 1;
-        this.higth = higth - 1;
+        this.height = height - 1;
         initEmptyNodes();
     }
 
     private void initEmptyNodes()
     {
-        for (int i = 0; i <= width; i++)
+        for(int i = 0; i <= width; i++)
         {
-            for (int j = 0; j <= higth; j++)
+            for(int j = 0; j <= height; j++)
             {
-                nodes[i][j] = (map)nodeFactory.createNode(i, j);
+                nodes[i][j] = (gladosNode)nodeFactory.createNode(i, j);
             }
         }
         buildMap();
@@ -61,25 +61,25 @@ public class Map<map extends Node>
         nodes[x][y].setWalkable(bool);
     }
 
-    public final map getNode(int x, int y)
+    public final gladosNode getNode(int x, int y)
     {
         return nodes[x][y];
     }
 
     public void drawMap()
     {
-        for (int i = 0; i <= width; i++) 
+        for(int i = 0; i <= width; i++) 
         {
         	print(" _");
         }
         print("\n");
 
-        for (int j = higth; j >= 0; j--)
+        for(int j = height; j >= 0; j--)
         {
             print("|");
-            for (int i = 0; i <= width; i++)
+            for(int i = 0; i <= width; i++)
             {
-                if (nodes[i][j].isWalkable()) 
+                if(nodes[i][j].isWalkable()) 
                 {
                     print("  ");
                 } 
@@ -91,7 +91,7 @@ public class Map<map extends Node>
             print("|\n");
         }
 
-        for (int i = 0; i <= width; i++)
+        for(int i = 0; i <= width; i++)
         {
         	print(" _");
         }
@@ -102,19 +102,19 @@ public class Map<map extends Node>
         System.out.print(s);
     }
 
-    private List<map> openList;
-    private List<map> closedList;
+    private List<gladosNode> openList;
+    private List<gladosNode> closedList;
     private boolean done = false;
 
-    public final List<map> findPath(int oldX, int oldY, int newX, int newY)
+    public final List<gladosNode> findPath(int oldX, int oldY, int newX, int newY)
     {
-        openList = new LinkedList<map>();
-        closedList = new LinkedList<map>();
+        openList = new LinkedList<gladosNode>();
+        closedList = new LinkedList<gladosNode>();
         openList.add(nodes[oldX][oldY]);
 
         done = false;
-        map current;
-        while (!done) 
+        gladosNode current;
+        while(!done) 
         {
             current = lowestFInOpen();
             closedList.add(current);
@@ -125,11 +125,11 @@ public class Map<map extends Node>
                 return calcPath(nodes[oldX][oldY], current);
             }
 
-            List<map> adjacentNodes = getAdjacent(current);
+            List<gladosNode> adjacentNodes = getAdjacent(current);
             for (int i = 0; i < adjacentNodes.size(); i++) 
             {
-                map currentAdj = adjacentNodes.get(i);
-                if (!openList.contains(currentAdj)) 
+                gladosNode currentAdj = adjacentNodes.get(i);
+                if(!openList.contains(currentAdj)) 
                 {
                     currentAdj.setPrevious(current);
                     currentAdj.sethCosts(nodes[newX][newY]);
@@ -138,7 +138,7 @@ public class Map<map extends Node>
                 } 
                 else 
                 {
-                    if (currentAdj.getgCosts() > currentAdj.calculategCosts(current)) 
+                    if(currentAdj.getgCosts() > currentAdj.calculategCosts(current)) 
                     {
                         currentAdj.setPrevious(current);
                         currentAdj.setgCosts(current);
@@ -146,23 +146,23 @@ public class Map<map extends Node>
                 }
             }
 
-            if (openList.isEmpty()) 
+            if(openList.isEmpty()) 
             {
-                return new LinkedList<map>();
+                return new LinkedList<gladosNode>();
             }
         }
         return null;
     }
 
-    private List<map> calcPath(map start, map goal)
+    private List<gladosNode> calcPath(gladosNode start, gladosNode goal)
     {
-        LinkedList<map> path = new LinkedList<map>();
+        LinkedList<gladosNode> path = new LinkedList<gladosNode>();
 
-        map curr = goal;
+        gladosNode curr = goal;
         boolean done = false;
         while (!done) {
             path.addFirst(curr);
-            curr = (map)curr.getPrevious();
+            curr = (gladosNode)curr.getPrevious();
 
             if (curr.equals(start))
             {
@@ -172,9 +172,9 @@ public class Map<map extends Node>
         return path;
     }
 
-    private map lowestFInOpen() 
+    private gladosNode lowestFInOpen() 
     {
-        map cheapest = openList.get(0);
+        gladosNode cheapest = openList.get(0);
         for (int i = 0; i < openList.size(); i++)
         {
             if (openList.get(i).getfCosts() < cheapest.getfCosts())
@@ -185,14 +185,14 @@ public class Map<map extends Node>
         return cheapest;
     }
 
-    private List<map> getAdjacent(map node) 
+    private List<gladosNode> getAdjacent(gladosNode node) 
     {
         int x = node.getxPosition();
         int y = node.getyPosition();
-        List<map> adj = new LinkedList<map>();
+        List<gladosNode> adj = new LinkedList<gladosNode>();
 
-        map temp;
-        if (x > 0) 
+        gladosNode temp;
+        if(x > 0) 
         {
             temp = this.getNode((x - 1), y);
             if (temp.isWalkable() && !closedList.contains(temp)) 
@@ -202,7 +202,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (x < width) 
+        if(x < width) 
         {
             temp = this.getNode((x + 1), y);
             if (temp.isWalkable() && !closedList.contains(temp))
@@ -212,7 +212,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (y > 0)
+        if(y > 0)
         {
             temp = this.getNode(x, (y - 1));
             if (temp.isWalkable() && !closedList.contains(temp))
@@ -222,7 +222,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (y < higth) 
+        if(y < height) 
         {
             temp = this.getNode(x, (y + 1));
             if (temp.isWalkable() && !closedList.contains(temp)) 
@@ -232,9 +232,9 @@ public class Map<map extends Node>
             }
         }
 
-        if (CANMOVEDIAGONALLY) 
+        if(CANMOVEDIAGONALLY) 
         {
-            if (x < width && y < higth)
+            if (x < width && y < height)
             {
                 temp = this.getNode((x + 1), (y + 1));
                 if (temp.isWalkable() && !closedList.contains(temp))
@@ -254,7 +254,7 @@ public class Map<map extends Node>
                 }
             }
 
-            if (x > 0 && y < higth) 
+            if (x > 0 && y < height) 
             {
                 temp = this.getNode((x - 1), (y + 1));
                 if (temp.isWalkable() && !closedList.contains(temp))
@@ -264,7 +264,7 @@ public class Map<map extends Node>
                 }
             }
 
-            if (x < width && y > 0) 
+            if(x < width && y > 0) 
             {
                 temp = this.getNode((x + 1), (y - 1));
                 if (temp.isWalkable() && !closedList.contains(temp)) 

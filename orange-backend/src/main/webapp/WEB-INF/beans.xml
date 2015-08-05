@@ -36,4 +36,7 @@
 		com.netbuilder.entity_managers.arraylist.StockManagerAL
 	</class>
 	</alternatives>
+<!-- 	<class> -->
+<!-- 		com.netbuilder.controllers.RegistrationController -->
+<!-- 	</class> -->
 </beans>

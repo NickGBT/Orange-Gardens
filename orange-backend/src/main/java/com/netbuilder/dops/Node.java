@@ -105,18 +105,18 @@ public abstract class Node
 
     public void setgCosts(Node previousAbstractNode) 
     {
-        if (diagonally) 
+        if(diagonally) 
         {
             setgCosts(previousAbstractNode, DIAGONALMOVEMENTCOST);
         } 
-        else 
+        else
         {
             setgCosts(previousAbstractNode, BASICMOVEMENTCOST);
         }
     }
     public int calculategCosts(Node previousAbstractNode) 
     {
-        if (diagonally) 
+        if(diagonally) 
         {
             return (previousAbstractNode.getgCosts()
                     + DIAGONALMOVEMENTCOST + movementPenalty);

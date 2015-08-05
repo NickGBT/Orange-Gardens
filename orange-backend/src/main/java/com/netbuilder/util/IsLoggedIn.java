@@ -1,7 +1,8 @@
 package com.netbuilder.util;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 
 @ManagedBean(name = "isLoggedIn")
 @SessionScoped
