@@ -15,18 +15,18 @@ public class Map<gladosNode extends Node>
     private gladosNode[][] nodes;
 
     protected int width;
-    protected int higth;
+    protected int height;
 
     private NodeFactory nodeFactory;
     private Map<GladosNode> warehouseMap;
     private List<GladosNode> path;
 
-    public Map(int width, int higth, NodeFactory nodeFactory)
+    public Map(int width, int height, NodeFactory nodeFactory)
     {
         this.nodeFactory = nodeFactory;        
-        nodes = (gladosNode[][])new Node[width][higth];
+        nodes = (gladosNode[][])new Node[width][height];
         this.width = width - 1;
-        this.higth = higth - 1;
+        this.height = height - 1;
         initEmptyNodes();
     }
 
@@ -34,7 +34,7 @@ public class Map<gladosNode extends Node>
     {
         for(int i = 0; i <= width; i++)
         {
-            for(int j = 0; j <= higth; j++)
+            for(int j = 0; j <= height; j++)
             {
                 nodes[i][j] = (gladosNode)nodeFactory.createNode(i, j);
             }
@@ -74,7 +74,7 @@ public class Map<gladosNode extends Node>
         }
         print("\n");
 
-        for(int j = higth; j >= 0; j--)
+        for(int j = height; j >= 0; j--)
         {
             print("|");
             for(int i = 0; i <= width; i++)
@@ -222,7 +222,7 @@ public class Map<gladosNode extends Node>
             }
         }
 
-        if(y < higth) 
+        if(y < height) 
         {
             temp = this.getNode(x, (y + 1));
             if (temp.isWalkable() && !closedList.contains(temp)) 
@@ -234,7 +234,7 @@ public class Map<gladosNode extends Node>
 
         if(CANMOVEDIAGONALLY) 
         {
-            if (x < width && y < higth)
+            if (x < width && y < height)
             {
                 temp = this.getNode((x + 1), (y + 1));
                 if (temp.isWalkable() && !closedList.contains(temp))
@@ -254,7 +254,7 @@ public class Map<gladosNode extends Node>
                 }
             }
 
-            if (x > 0 && y < higth) 
+            if (x > 0 && y < height) 
             {
                 temp = this.getNode((x - 1), (y + 1));
                 if (temp.isWalkable() && !closedList.contains(temp))
