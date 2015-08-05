@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Map<map extends Node>
 {
-    protected static boolean CANMOVEDIAGONALY = true;
+    protected static boolean CANMOVEDIAGONALLY = true;
 
     private map[][] nodes;
 
@@ -232,7 +232,7 @@ public class Map<map extends Node>
             }
         }
 
-        if (CANMOVEDIAGONALY) 
+        if (CANMOVEDIAGONALLY) 
         {
             if (x < width && y < higth)
             {

@@ -145,11 +145,6 @@ public abstract class Node
 
     public abstract void sethCosts(Node endAbstractNode);
 
-    private int getMovementPenalty()
-    {
-        return movementPenalty;
-    }
-
     @Override
     public String toString() 
     {
