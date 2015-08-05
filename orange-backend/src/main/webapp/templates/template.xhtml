@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Author - Alexander Neil - llew-->
+<!-- Author - Alexander Neil - llew - mwatson-->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -14,60 +14,83 @@
 </h:head>
 
 <h:body>
-	<div id="header">
 
-		<div id="logo">
-			<img src="resources/img/nbglogo.png" alt="NBGardens logo"
-				height="175" width="175" />
-		</div>
-
-		<div id="buyingInfo">
-			<div id="basket">
-				<a href="basket.xhtml"> <img src="resources/img/basket.png"
-					alt="basket" height="56" width="75" /> <!--<h:outputLabel value="#{basket.getBasketSize()}"/> -->
+	<div id = "wrap">
+		<div id="header">
+	
+			<div id="logo">
+				<a href = "index.xhtml"> 
+					<img src="resources/img/nbglogo.png" alt="NBGardens logo"
+						height="175" width="175" />
 				</a>
-				<h:form>
-				<h:commandButton rendered="#{loginController.loggedIn == true}"
-					 value="Logout" class="headerButton" 
-					 action="#{loginController.logout}"/>
-				</h:form>
 			</div>
-		</div>
-
-		<div id="controls">
-
-			<div id="mainbuttons">
-
-				<a href="index.xhtml" class="headerButton">Home</a> <a
-					href="contact.xhtml" class="headerButton">Contact</a> <a
-					href="catalog.xhtml" class="headerButton">Catalog</a>
-				<h:link rendered="#{loginController.loggedIn == true}"
-					outcome="account.xhtml" value="Account" class="headerButton" />
-				<h:link rendered="#{loginController.loggedIn != true}"
-					outcome="customerlogin.xhtml" value="Login" class="headerButton" />
+	
+			<div id = "sideButtons">
+				<div id="buyingInfo">
+					<div id="basket">
+						<a href="basket.xhtml"> <img src="resources/img/basket.png"
+							alt="basket" height="56" width="75" /> <!--<h:outputLabel value="#{basket.getBasketSize()}"/> -->
+						</a>
+					</div>
+					
+				</div>
+				
+				<div id = "bottomCornerButtons">
+					<h:form>
+						<a href = "wishlist.xhtml" class="cornerButton" >Wishlist</a>
+						<h:link rendered="#{loginController.loggedIn != true}"
+								outcome="customerlogin.xhtml" value="Login" class = "cornerButton" />
+					
+						<h:commandButton rendered="#{loginController.loggedIn == true}"
+								 value="Logout" class="cornerButton" 
+								 action="#{loginController.logout}"/>
+					</h:form>
+				
+				</div>
+				
+			</div>
+			
+			<div id="controls">
+	
+				<div id="mainbuttons">
+	
+					<a href="index.xhtml" class="headerButton">Home</a> <a
+						href="contact.xhtml" class="headerButton">Contact</a> <a
+						href="catalog.xhtml" class="headerButton">Catalog</a>
+						
+					<h:link rendered="#{loginController.loggedIn == true}"
+						outcome="account.xhtml" value="Account" class="headerButton" />
+					
+					
+					<br />
+	
+				</div>
 				<br />
-
+	
+				<div id="searchbar">
+					<h:form>
+						<h:inputText styleClass="searchText" value="" />
+						<h:commandLink name="submit" styleClass="searchButton">
+							<img src="resources/img/search.png" alt="Search" height="25"
+								width="33" />
+						</h:commandLink>
+					
+					</h:form>
+				</div>
+				
+				
 			</div>
-			<br />
-
-			<div id="searchbar">
-				<h:form>
-					<h:inputText styleClass="searchText" value="" />
-					<h:commandLink name="submit" styleClass="searchButton">
-						<img src="resources/img/search.png" alt="Search" height="25"
-							width="33" />
-					</h:commandLink>
-				</h:form>
-			</div>
+			
+			
 		</div>
+	
+		<!-- Content goes here -->
+		<div id="content">
+			<ui:insert name="content" />
+		</div>
+		<!-- End Content -->
 	</div>
-
-	<!-- Content goes here -->
-	<div id="content">
-		<ui:insert name="content" />
-	</div>
-	<!-- End Content -->
-
+	
 	<div id="footer">
 		<p id="copyright">Design &#169; Creations Consulting &#160;</p>
 		<div id="footerLinks">

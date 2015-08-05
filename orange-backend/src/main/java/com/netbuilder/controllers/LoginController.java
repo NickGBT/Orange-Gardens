@@ -16,7 +16,7 @@ import com.netbuilder.util.UserId;
 
 /**
  * 
- * @author Alexander Neil llew
+ * @author Alexander Neil llew mwatson
  *
  */
 
@@ -81,6 +81,14 @@ public class LoginController implements Serializable{
 	
 	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
+	}
+	
+	public String checkLoginStatus() {
+		if(loggedIn == true) {
+			return "account.xhtml";
+		}
+		else 
+		return "login.xhtml";
 	}
 
 /*	public String getLogout() {
