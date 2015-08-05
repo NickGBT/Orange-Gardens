@@ -1,8 +1,10 @@
 package com.netbuilder.util;
 
-import javax.ejb.Stateful;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
+//import javax.faces.bean.SessionScoped;
+
+import javax.enterprise.context.SessionScoped;
 
 /**
  * 
@@ -10,10 +12,10 @@ import javax.faces.bean.SessionScoped;
  *
  */
 @SessionScoped
-public class UserId 
+public class UserId implements Serializable
 {
 	private int customerUid, employeeUid;
-	private String username = "";
+	private String username;
 	
 	public void setUid(int customerUid)
 	{
@@ -43,9 +45,7 @@ public class UserId
 		this.username = username;
 	}
 	
-	public UserId getUserId(){
+	public UserId getUserId() {
 		return this;
 	}
-	
-	
 }

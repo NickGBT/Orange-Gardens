@@ -1,11 +1,14 @@
 package com.netbuilder.controllers;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.UserDetails;
@@ -17,9 +20,9 @@ import com.netbuilder.util.UserId;
  *
  */
 
-@ManagedBean(name="loginController")
+@Named("loginController")
 @SessionScoped
-public class LoginController {
+public class LoginController implements Serializable{
 	
 	@ManagedProperty(value="#{userDetails}")
 	private UserDetails userDetails;
@@ -46,6 +49,7 @@ public class LoginController {
 		if(userExists >= 0){
 			userId.setUsername(name);
 			loggedIn = true;
+			System.out.println(userId.getUsername());
 			return "account.xhtml";
 		}
 		else{
