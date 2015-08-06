@@ -1,4 +1,4 @@
-package com.netbuilder.dops;
+package com.netbuilder.pathfinding;
 
 import java.io.Serializable;
 

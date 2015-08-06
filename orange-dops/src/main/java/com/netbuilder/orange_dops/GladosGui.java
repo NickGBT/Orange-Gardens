@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -32,6 +33,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import com.netbuilder.pathfinding.*;
 
 /**
  * 
@@ -57,9 +60,8 @@ public class GladosGui
 	private Font gladosFont;
 	private int[][] baseMap;
 	private JTextField productName, quantity, boxSize;
-	private String testRoute;
-	private int startX, startY, routeX, routeY;
-	private int[] xDiff, yDiff;
+	private List<GladosNode> testPath;
+	private Map<GladosNode> warehouseMap;
 	
 	/**
 	 * @author JustinMabbutt
@@ -103,12 +105,19 @@ public class GladosGui
 		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		splash = null; background = null;
 		splashTimer = new Timer();
-		testRoute = "101222";
-		startX = 0; startY = 0;
-		xDiff = new int[] {0, 1, 1, 1, 0, -1, -1, -1};
-		yDiff = new int[] {1, 1, 0, -1, -1, -1, 0, 1};
 		buttonLayout = new GridBagLayout();
+		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());        
+	    for(int i = 2; i < 18; i++)
+	    {
+	    	warehouseMap.setWalkable(2, i, false);
+	    	warehouseMap.setWalkable(5, i, false);
+	    	warehouseMap.setWalkable(8, i, false);
+	    	warehouseMap.setWalkable(11, i, false);
+	    	warehouseMap.setWalkable(14, i, false);
+	    	warehouseMap.setWalkable(17, i, false);
+	    }
     	initMap();
+    	testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		Thread ui = new Thread()
@@ -244,15 +253,11 @@ public class GladosGui
     {
     	mapPanel.removeAll();
     	mapPanel.invalidate();
-    	if(testRoute.length() > 0)
+    	if(testPath.size() > 0)
     	{
-    		baseMap[startX][startY] = 4;
-    		for(int i = 0; i < testRoute.length(); i++)
+    		for(int i = 0; i < testPath.size(); i++)
     		{
-    			int j = Integer.parseInt(String.valueOf(testRoute.charAt(i)));
-    			routeX += xDiff[j];
-    			routeY += yDiff[j];
-    			baseMap[routeX][routeY] = 4;
+    			baseMap[testPath.get(i).getyPosition()][testPath.get(i).getxPosition()] = 4;
     		}
 	    	for (int i = 0; i < 20; i++) 
 	    	{
