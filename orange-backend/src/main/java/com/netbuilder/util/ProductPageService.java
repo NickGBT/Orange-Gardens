@@ -9,11 +9,10 @@ public class ProductPageService {
 
 		@Path("clickedproduct")
 		@POST
-		public String productId(@FormParam("productid") String pid){
+		public int productId(@FormParam("productid") String pid){
 			
-			
-			
-			return pid; 
+			int productId = Integer.parseInt(pid);
+			return productId; 
 					
 		}
 }

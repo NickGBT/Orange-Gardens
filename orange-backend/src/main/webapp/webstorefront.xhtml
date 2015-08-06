@@ -14,91 +14,72 @@
 <ui:define name="content">
 <div id="MainContent">
 	<div id="TitleBar">
-		<div id="TitleImageLeft">
-			<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
-		</div>
 		<div id="TitleText">
-			<h1>NB Gardens Web Store</h1>
-		</div>
-		<div id="TitleImageRight">
-			<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"></h:graphicImage>
+			<h1>Welcome to the NB Gardens Web Store</h1>
 		</div>
 	</div>
 	<div id="StoreHeader">
 		<h1>New Products</h1>
+		<ui:insert name="newProducts">
+				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+					<h:column>
+						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
+					</h:column>
+					<h:column>
+					<br/>
+						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
+						<h:outputText value="#{product.description}"/><br/><br/>
+						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
+						<h:outputText value="Weight: #{product.weight}kg"/><br/>
+						<h:outputText value="Category: #{product.category}"/><br/><br/>
+						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<br/><br/>	
+					</h:column>
+				</h:dataTable>
+				</ui:insert>
 	</div>
-	<h:dataTable class="StoreProducts">
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,1)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(0).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(0).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,2)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(1).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(1).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,3)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(2).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(2).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,4)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(3).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getNewProducts.get(3).getProductPrice()}"/>
-		</h:column>
-	</h:dataTable>
+
 	<div id="LowerStoreHeader">
 		<h1>Special Offers</h1>
+		<ui:insert name="specialOffers">
+		<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+					<h:column>
+						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
+					</h:column>
+					<h:column>
+					<br/>
+						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
+						<h:outputText value="#{product.description}"/><br/><br/>
+						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
+						<h:outputText value="Weight: #{product.weight}kg"/><br/>
+						<h:outputText value="Category: #{product.category}"/><br/><br/>
+						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<br/><br/>	
+					</h:column>
+				</h:dataTable>
+				</ui:insert>
 	</div>
-	<h:dataTable  clsas="StoreProducts">
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,1)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(0).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(0).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,2)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(1).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(1).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,3)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(2).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(2).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,4)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(3).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getSpecialOffers.get(3).getProductPrice()}"/>
-		</h:column>
-	</h:dataTable>
+
 	<div id="LowerStoreHeader">
 		<h1>Catalogue Exclusive Items</h1>
+		<ui:insert name="exclusiveItems">
+		<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+					<h:column>
+						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
+					</h:column>
+					<h:column>
+					<br/>
+						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
+						<h:outputText value="#{product.description}"/><br/><br/>
+						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
+						<h:outputText value="Weight: #{product.weight}kg"/><br/>
+						<h:outputText value="Category: #{product.category}"/><br/><br/>
+						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<br/><br/>	
+					</h:column>
+				</h:dataTable>
+				</ui:insert>
 	</div>
-	<h:dataTable class="StoreProducts">
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,1)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(0).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(0).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,2)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(1).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(1).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,3)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(2).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(2).getProductPrice()}"/>
-		</h:column>
-		<h:column>
-			<h:commandButton action="#{StoreFrontController.productClick(1,4)}" image="#{images/rad.jpg}" width = "100" height = "100"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(3).getProductName()}"/>
-			<h:outputText value="#{StoreFrontProducts.getCatalogueExclusives.get(3).getProductPrice()}"/>
-		</h:column>
-	</h:dataTable>
 </div>
 </ui:define>
 
