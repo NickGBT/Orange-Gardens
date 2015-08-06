@@ -24,6 +24,7 @@ html,body {
 
 #content{
 	background-color: #96c177;
+	opacity:0.9;
 	border-radius: 5px;
 	width: 90%;
 	margin: 0 auto;
@@ -32,8 +33,12 @@ html,body {
 	padding-bottom: 100px;
 	overflow: auto;
 	
+	
 }
 
+.background { 
+	border: 2px solid #242051;
+}
 #header{
 	
 	text-align: center;
