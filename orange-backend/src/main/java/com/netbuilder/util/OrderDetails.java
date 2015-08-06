@@ -15,6 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.inject.Inject;
+
 /**
  * 
  * @author ngilbert
@@ -32,13 +34,15 @@ public class OrderDetails {
 		private ProductManager productManager;
 		public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 		private List<Double> subtotals;
+
+		private UserId userId;
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Calendar rightNow = Calendar.getInstance();
 				
 		public List<OrderLine> getWishlist(){
 			
-			int wishlistId = orderManager.findWishlist(OrderStatus.wishlist, UserId.getUid());
+			int wishlistId = orderManager.findWishlist(OrderStatus.wishlist, userId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(wishlistId);	
 			
@@ -48,7 +52,7 @@ public class OrderDetails {
 		
 		public List<OrderLine> getBasket(){
 			
-			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			int basketId = orderManager.findWishlist(OrderStatus.basket, userId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
 			
@@ -58,7 +62,7 @@ public class OrderDetails {
 		
 		public void moveOrderToBasket(){
 			
-			int wishListId = orderManager.findWishlist(OrderStatus.wishlist, UserId.getUid());
+			int wishListId = orderManager.findWishlist(OrderStatus.wishlist, userId.getUid());
 			
 			order = orderManager.findByOrderID(wishListId);
 			
@@ -70,7 +74,7 @@ public class OrderDetails {
 		
 		public void checkoutOrder(){
 			
-			int orderId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			int orderId = orderManager.findWishlist(OrderStatus.basket, userId.getUid());
 			
 			order = orderManager.findByOrderID(orderId);
 			
@@ -131,7 +135,7 @@ public class OrderDetails {
 		 */
 		public void updateBasketQuantity(int productId)
 		{
-			int basketId = orderManager.findWishlist(OrderStatus.basket, UserId.getUid());
+			int basketId = orderManager.findWishlist(OrderStatus.basket, userId.getUid());
 			
 			associatedOrderLines = orderLineManager.findByOrderId(basketId);	
 			
