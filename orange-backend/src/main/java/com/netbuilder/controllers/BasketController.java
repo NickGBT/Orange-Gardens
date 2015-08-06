@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.util.OrderDetails;
 
 /**
@@ -16,19 +17,18 @@ import com.netbuilder.util.OrderDetails;
 public class BasketController 
 {
 	@Inject
-	private OrderDetails basketDetails;
-	public List<OrderLine> basket;
+	private OrderManager basketManager;
 	private double subtotal, total;
 	
 	public List<OrderLine> getBasket()
 	{
-		basket = basketDetails.getBasket();
+		basket = basketManager.findBasket(status, customerId)
 		return basket;	
 	}
 	
 	public void updateProductQty(int productId) 
 	{ 
-		basketDetails.updateBasketQuantity(productId);
+
 	}
 	
 	public void removeBasketItem(int productId) 
@@ -38,18 +38,15 @@ public class BasketController
 	
 	public double getTotal()
 	{
-		total = basketDetails.getTotal();
 		return total;
 	}
 	
 	public double getSubtotal(int productId)
 	{
-		subtotal = basketDetails.getItemSubtotal(productId);
 		return subtotal;
 	}
 	
 	public void setItemQuantity(int newItemQuantity)
 	{
-		basketDetails.setItemQuantity(newItemQuantity);
 	}
 }

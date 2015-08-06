@@ -38,7 +38,6 @@ public class CatalogController
 				getRequestParameterMap().get("productId");
 				
 		prDet.setId(Integer.parseInt(productId));
-		System.out.println(prDet.getId());
 		
 		return "productpage.xhtml";
 		
