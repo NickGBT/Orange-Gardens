@@ -88,8 +88,7 @@ public class ProductController {
         System.out.println("Adding to basket , productID : " + productId + "(" + foundProduct.getProductName() + ")");
 		
 		loginDet = ldm.findByUsername(userId.getUsername());
-		orderBasket = new Order(loginDet, OrderStatus.basket, null);
-	    
+		orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
 		om.persistOrder(orderBasket);
 		
 		orderLine = new OrderLine(orderBasket, foundProduct, 1);

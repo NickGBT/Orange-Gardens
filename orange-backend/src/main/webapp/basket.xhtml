@@ -1,100 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	template="templates/template.xhtml">
+	template="templates/template.xhtml"
+	xmlns:fu="http://java.sun.com/jsp/jstl/functions">
 		
 <!-- author: Jordan Taylor -->
 
 <ui:define name="pageTitle">NB Gardens - Your Basket</ui:define>
 
-<ui:define name="content">
-	<div id="MainContent">
-		<div id="BasketContent">
-			<h1>Basket</h1>
-			
-			<h:dataTable>
-
-				<h:column>
-					<f:facet name = "header">
-						<h:outputText value = ""/>
-						<!--  product name -->
-					</f:facet>
-				</h:column> 
-			
-			</h:dataTable>
-			
-			
-			
-			<h:dataTable value="#{BasketController.getBasket()}"
-					var="product">
-					<div id="productDetailsSmall"
-						style="height: 200px; width: 500px; padding: 10px; border: 2px solid black; margin: 0;">
-						<div id="productImage" style="float: left; width: 200px;">
-							<f:facet name="productImage">
-								<h:graphicImage value="#{productImage.productController}" />
-							</f:facet>
-						</div>
-
-						<div id="productDetails" style="float: left; width: 200px;">
-							<f:facet name="productName">
-								<p>
-									<h:outputText value="#{productName.productController}" />
-								</p>
-							</f:facet>
-							<f:facet name="productDescription">
-								<p>
-									<h:outputText value="#{productDescription.productController}" />
-								</p>
-							</f:facet>
-							<f:facet name="productPrice">
-								<p>
-									<h:outputText value="#{productPrice.productController}" />
-								</p>
-							</f:facet>
-						</div>
-
-						<div id="productLinks" style="float: right; width: 100px;">
-							<f:facet name="productPageRef">
-								<button type="button">Product Page</button>
-								<!-- should take you to the product page of the product in question -->
-								<br/><br/> 
-							</f:facet>
-						</div>
+<ui:define name="content">	
+				
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{basketController.getOrderBasket()}" var="product">
+					<h:column>
 						
-						<div id="quantity" style="float: right; width: 100px;">
-							<f:facet name="productPageRef">
-								<h:outputText value="Qty: "/>
-								<h:selectOneMenu value="#{BasketController.setItemQuantity()}" onchange="#BasketController.updateProductQty(productId.productController)"> 
-									<f:selectItem value="1"/> 
-									<f:selectItem value="2"/> 
-									<f:selectItem value="3"/> 
-									<f:selectItem value="4"/> 
-									<f:selectItem value="5"/> 
-								</h:selectOneMenu>
-								<h:outputText value="Individual Price: #{productPrice.productController}"/>
-								<h:outputText value="Subtotal: #{BasketController.getSubtotal(productId.productController)}"/>
-								<br/>
-							</f:facet>
-							<f:facet name="productRemoveButton">
-								<h:commandButton type="button" action = "#{BasketController.removeBasketItem(productId.productController)}">Remove Item </h:commandButton>
-									
-								<br/><br/> 
-							</f:facet>
-						</div>
-					</div>
-					<br/><br/>
+					</h:column>
 				</h:dataTable>
-			
-			<h:dataTable id="total">
-				<h:column>
-					<h2>Total: #{basketController.getTotal()}</h2>
-				</h:column>
-			</h:dataTable>
-		</div>
-	</div>
-</ui:define>
+			</ui:insert>
+
+		</ui:define>
+
 </ui:composition>
