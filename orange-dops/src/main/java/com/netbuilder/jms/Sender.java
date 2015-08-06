@@ -14,6 +14,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
+/**
+ * 
+ * @author Alexander Neil
+ *
+ */
+
 public class Sender {
 
 	private String broker;
@@ -34,13 +40,13 @@ public class Sender {
 		connection = connectionFactory.createConnection();
 	}
 	
-	public void sendToQueue(String payload, String destination) throws JMSException{
+	public void sendToQueue(String payload, String destinationQueue) throws JMSException{
 		
 		connection.start();
 		Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
 		
-		Destination dest = session.createQueue(destination);
-		MessageProducer producer = session.createProducer(dest);
+		Destination destination = session.createQueue(destinationQueue);
+		MessageProducer producer = session.createProducer(destination);
 		
 		TextMessage message = session.createTextMessage(payload);
 		
@@ -50,13 +56,13 @@ public class Sender {
 		connection.close();
 	}
 	
-	public void sendToQueue(Serializable payload, String destination) throws JMSException{
+	public void sendToQueue(Serializable payload, String destinationQueue) throws JMSException{
 		
 		connection.start();
 		Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
 		
-		Destination dest = session.createQueue(destination);
-		MessageProducer producer = session.createProducer(dest);
+		Destination destination = session.createQueue(destinationQueue);
+		MessageProducer producer = session.createProducer(destination);
 		
 		ObjectMessage message = session.createObjectMessage(payload);
 		
