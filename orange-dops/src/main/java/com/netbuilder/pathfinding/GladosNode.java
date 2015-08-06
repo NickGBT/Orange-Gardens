@@ -1,7 +1,5 @@
 package com.netbuilder.pathfinding;
 
-import java.io.Serializable;
-
 /**
  * 
  * @author JustinMabbutt

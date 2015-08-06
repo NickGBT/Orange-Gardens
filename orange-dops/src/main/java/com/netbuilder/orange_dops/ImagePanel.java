@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel
 {
+	private static final long serialVersionUID = -4377283619239711907L;
+	
 	private Image img;
 	private static final Logger logger = Logger.getLogger(ImagePanel.class.getName());
 
