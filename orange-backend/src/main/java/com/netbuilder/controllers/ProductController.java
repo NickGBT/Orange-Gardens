@@ -6,9 +6,15 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.ProductDetails;
 import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
@@ -24,10 +30,22 @@ import com.netbuilder.util.UserId;
 public class ProductController {
 
 	@Inject
+	private LoginDetailsManager ldm;
+	
+	@Inject
+	private PaymentDetailsManager pdm;
+	
+	@Inject
 	private UserId userId;
 	
 	@Inject
-	private ProductManagerAL pm;
+	private ProductManager pm;
+	
+	@Inject
+	private OrderManager om;
+	
+	@Inject
+	private ProductDetails productDetails;
 	
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
@@ -35,6 +53,8 @@ public class ProductController {
 	private Product product;
 	private String productId;
 	private Product foundProduct;
+	private LoginDetails loginDet;
+	private PaymentDetails paymentDet;
 	
 	private Order orderBasket;
 	
@@ -44,8 +64,8 @@ public class ProductController {
 	
 	public Product getProduct() {
 		// product = productD.getProductId();
-		
-		product = testData.getProduct();
+		System.out.println(productDetails.getId());
+		product = pm.findByProductId(productDetails.getId());
 		return product;
 	}
 
@@ -55,15 +75,18 @@ public class ProductController {
 
 	 
 	public void addToBasket() {
-		System.out.println(userId.getUsername());
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
+		
+        System.out.println("Adding to basket , productID : " + productId);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 		
-		System.out.println(foundProduct.getProductId());
+		System.out.println(foundProduct.getProductName());
 		
-		//orderBasket = new Order()
-		
+		loginDet = ldm.findByUsername(userId.getUsername());
+		orderBasket = new Order(loginDet, OrderStatus.basket, null);
+	    
+		om.persistOrder(orderBasket);
 	}
 
 	/**
@@ -81,4 +104,11 @@ public class ProductController {
 		this.testData = testData;
 	}
 
+	public ProductDetails getProductDetails(){
+		return productDetails;
+	}
+	
+	public void setProductDetails(ProductDetails productDetails){
+		this.productDetails = productDetails;
+	}
 }

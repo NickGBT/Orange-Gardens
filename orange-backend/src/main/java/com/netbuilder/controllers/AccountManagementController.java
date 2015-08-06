@@ -209,13 +209,11 @@ public class AccountManagementController
 			try {
 				salt = LoginDetailsToolkit.generateSalt();
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				loginDetails.setNewPasswordAndSalt(LoginDetailsToolkit.getHashedPassword(accountManagement.getPassword(), salt), salt);
 			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return "account/uid";

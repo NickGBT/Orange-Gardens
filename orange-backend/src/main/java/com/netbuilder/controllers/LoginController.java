@@ -1,15 +1,12 @@
 package com.netbuilder.controllers;
 
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
-//import javax.faces.bean.SessionScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.UserDetails;
 import com.netbuilder.util.UserId;
@@ -39,7 +36,7 @@ public class LoginController implements Serializable{
 	private UserId userId;
 //	private String logout = "index.html";
 
-	public String login(){
+	public String login(){  
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
 

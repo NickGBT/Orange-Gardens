@@ -2,6 +2,9 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+
 import com.netbuilder.entities.Order;
 import com.netbuilder.enums.OrderStatus;
 
@@ -10,7 +13,8 @@ import com.netbuilder.enums.OrderStatus;
  * @author mwatson
  *
  */
-
+@Named
+@RequestScoped
 public interface OrderManager {
 
 		//CREATE

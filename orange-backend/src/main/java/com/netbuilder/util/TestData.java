@@ -60,7 +60,7 @@ public class TestData {
 			"08/08/15", 12380809, "10/08/15", "11/08/15",
 			"80", true, paymentDetails3);	
 	
-	public Product product_genID = new Product(1, "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
+	public Product product_genID = new Product(1, "testproduct", 25.25, 10, 10, 11, 10.50, "test Product gen", ProductCategory.Accessory);	
 	
 	public Product product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);	
 	

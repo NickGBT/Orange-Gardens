@@ -3,15 +3,14 @@ package com.netbuilder.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-
 import com.netbuilder.entities.Product;
-//import com.netbuilder.entity_managers.interfaces.ProductManager;
-//import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.util.ProductDetails;
 
 /**
  * 
@@ -24,7 +23,26 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 public class CatalogController 
 {	
 	@Inject
-	ProductManager productManager;
+	private ProductManager productManager;
+
+	@Inject
+	private ProductDetails prDet;
+	
+	private Product pr;
+	
+	private String productId;
+	
+	public String setProductPage(){
+				
+		productId = FacesContext.getCurrentInstance().getExternalContext().
+				getRequestParameterMap().get("productId");
+				
+		prDet.setId(Integer.parseInt(productId));
+		System.out.println(prDet.getId());
+		
+		return "productpage.xhtml";
+		
+	}
 	
 	private ArrayList<Product> productsInCatalog = new ArrayList<Product>();
 	

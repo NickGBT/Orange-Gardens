@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.enums.ProductCategory;
-import com.netbuilder.util.TestData;
 
 @Singleton
 public class DummyAL 
@@ -21,6 +19,17 @@ public class DummyAL
 	Product product3 = new Product("resources/img/gardenSeat.jpg", "Relaxation Chair", 76.25, 80, 45, 18, 19.50, "Relax.", ProductCategory.Furniture);
 	
 	Product product4 = new Product("resources/img/swagShed.jpg", "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
+	
+	Product product5 = new Product(1, "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
+	
+	public DummyAL(){
+		allProducts.clear();
+		allProducts.add(product);
+		allProducts.add(product2);
+		allProducts.add(product3);
+		allProducts.add(product4);
+		allProducts.add(product5);
+	}
 	
 	public List<Product> allProducts = new ArrayList<Product>();
 				
@@ -39,5 +48,6 @@ public class DummyAL
 		allProducts.add(product2);
 		allProducts.add(product3);
 		allProducts.add(product4);
+		allProducts.add(product5);
 	}
 }

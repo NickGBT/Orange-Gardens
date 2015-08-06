@@ -223,7 +223,7 @@ public class GladosGui
 				displayMap();
 			}
 		});
-    	buttonLayoutConstraints.fill = buttonLayoutConstraints.CENTER;
+    	buttonLayoutConstraints.fill = GridBagConstraints.CENTER;
     	assignOrder.add(getNewOrder);
     	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
     	assignOrder.setLayout(buttonLayout);
