@@ -25,6 +25,7 @@
 				</h:selectOneMenu>	
 				
 				<h:inputText id="search" value="#{productDetails.productName}" />
+				<h:commandButton value="Search" action="#{productDetails.printProduct()}" />
 				
 			<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
@@ -33,16 +34,17 @@
 					</h:column>
 					<h:column>
 					<br/>
-						<h:outputText value="#{product.productName}"/><br/><br/>
+						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
 						<h:outputText value="#{product.description}"/><br/><br/>
 						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
 						<h:outputText value="Weight: #{product.weight}kg"/><br/>
 						<h:outputText value="Category: #{product.category}"/><br/><br/>
-						<h:outputText value="£#{product.productPrice}"/><br/><br/><br/><br/>	
+						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<h:commandButton value="Add to Basket"/>
+						<h:commandButton value="Add to Wishlist"/>
+						<br/><br/>	
 					</h:column>
 				</h:dataTable>
-	
-				<h:commandButton value="Search" action="#{productDetails.printProduct()}" />
 			</ui:insert>
 		</div>
 			
