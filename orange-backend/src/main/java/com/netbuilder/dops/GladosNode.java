@@ -1,15 +1,13 @@
 package com.netbuilder.dops;
 
-import java.io.Serializable;
-
 /**
  * 
  * @author JustinMabbutt
  *
  */
-public class GladosNode extends Node implements Serializable
+public class GladosNode extends Node
 {
-	private static final long serialVersionUID = 5;
+	private static final long serialVersionUID = 275286839230750238L;
 
 	public GladosNode(int xPosition, int yPosition)
 	{
