@@ -24,17 +24,12 @@
 				<h:dataTable id="storeHead" value="#{catalogController.prodsToDisplay}" var="product">
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					</h:column>
-					<h:column>
 					<br/>
-						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-						<h:outputText value="#{product.description}"/><br/><br/>
-						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-						<h:outputText value="Weight: #{product.weight}kg"/><br/>
-						<h:outputText value="Category: #{product.category}"/><br/><br/>
-						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<h2><h:outputText value="#{product.productName}"/></h2>
+						<h:outputText value="£#{product.productPrice}"/>
 						<br/><br/>	
-					</h:column>
+						</h:column>
+						
 				</h:dataTable>
 				</ui:insert>
 	</div>
@@ -43,6 +38,7 @@
 		<h1>Special Offers</h1>
 		<ui:insert name="specialOffers">
 		<h:dataTable id="lowerStoreHead" value="#{catalogController.prodsToDisplay}" var="product">
+
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
 					</h:column>
@@ -64,6 +60,7 @@
 		<h1>Catalogue Exclusive Items</h1>
 		<ui:insert name="exclusiveItems">
 		<h:dataTable id="exclusive" value="#{catalogController.prodsToDisplay}" var="product">
+
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
 					</h:column>

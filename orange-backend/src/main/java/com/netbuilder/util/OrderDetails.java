@@ -15,8 +15,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.inject.Inject;
-
 /**
  * 
  * @author ngilbert
