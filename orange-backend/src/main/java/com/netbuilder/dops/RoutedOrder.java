@@ -39,17 +39,11 @@ public class RoutedOrder {
 	public void processOrder(){
 		
 		//placeholder for an employee id to be sent back to the class
-		orderFromQueue.setStatus(OrderStatus.processing);
-		
-		
+		orderFromQueue.setStatus(OrderStatus.processing);		
 	}
 	
 	public void fulfilOrder(){
 		
-		
-		orderFromQueue.setStatus(OrderStatus.dispached);	
-		
-		
+		orderFromQueue.setStatus(OrderStatus.dispached);			
 	}
-
 }
