@@ -69,7 +69,7 @@ public class GladosGui
 	 */
 	public GladosGui() 
 	{
-		logger.entering(getClass().getName(), "IMSGUI");
+		logger.entering(getClass().getName(), "GladosGui");
 		try
 		{
 			for(LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
@@ -144,7 +144,7 @@ public class GladosGui
 			}
 		};
 		ui.start();
-		logger.exiting(getClass().getName(), "IMSGUI");
+		logger.exiting(getClass().getName(), "GladosGui");
     }
 	
 	/**
@@ -208,6 +208,7 @@ public class GladosGui
      */
     private void displayGetOrder()
     {
+    	logger.entering(getClass().getName(), "displayGetOrder");
     	mainFrame.getContentPane().remove(orderPanel);
     	mainFrame.getContentPane().remove(mapPanel);
     	mainFrame.getContentPane().remove(orderButtons);
@@ -229,6 +230,7 @@ public class GladosGui
     	mainFrame.getContentPane().add(assignOrder);
     	mainFrame.revalidate();
     	mainFrame.repaint();
+    	logger.exiting(getClass().getName(), "displayGetOrder");
     }
     
     /**
@@ -251,6 +253,7 @@ public class GladosGui
      */
     private void buildMap()
     {
+    	logger.entering(getClass().getName(), "buildMap");
     	mapPanel.removeAll();
     	mapPanel.invalidate();
     	if(testPath.size() > 0)
@@ -317,6 +320,7 @@ public class GladosGui
 	    	}
     	}
     	mapPanel.revalidate();
+    	logger.exiting(getClass().getName(), "buildMap");
     }
     
     /**
@@ -325,6 +329,7 @@ public class GladosGui
      */
     private void initMap()
     {
+    	logger.entering(getClass().getName(), "initMap");
     	//1 = Possible route
     	//2 = Shelf
     	//3 = GDZ
@@ -350,7 +355,7 @@ public class GladosGui
     			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     			{1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1}
     	};
-    	
+    	logger.exiting(getClass().getName(), "initMap");
     }
     
     /**
@@ -359,6 +364,7 @@ public class GladosGui
      */
    	private void displayMap()
     {
+   		logger.entering(getClass().getName(), "displayMap");
    		mainFrame.getContentPane().remove(assignOrder);
    		mainFrame.invalidate();
     	productName.setText("Product Name: ");// + theProductName
@@ -412,5 +418,6 @@ public class GladosGui
     	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
     	mainFrame.revalidate();
     	mainFrame.repaint();
+    	logger.exiting(getClass().getName(), "displayMap");
     }
 }
