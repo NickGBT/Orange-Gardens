@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -39,8 +40,8 @@ public class CatalogController
 		this.productsInCatalog = productsInCatalog;
 	}
 	
-	public ArrayList<Product> getProdsToDisplay() {
-		return (ArrayList<Product>) productManager.getAll();
+	public List<Product> getProdsToDisplay() {
+		return productManager.getAll();
 	}
 
 	/*public ArrayList<Product> getProductsInCatalog(ProductCategory productCategory)

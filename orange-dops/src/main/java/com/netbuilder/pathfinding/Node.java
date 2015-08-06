@@ -1,11 +1,11 @@
-package com.netbuilder.dops;
+package com.netbuilder.pathfinding;
 
 /**
  * 
  * @author JustinMabbutt
  *
  */
-public abstract class Node 
+public abstract class Node
 {
     protected static final int BASICMOVEMENTCOST = 10;
     protected static final int DIAGONALMOVEMENTCOST = 14;

@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -32,6 +33,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import com.netbuilder.pathfinding.*;
 
 /**
  * 
@@ -57,9 +60,8 @@ public class GladosGui
 	private Font gladosFont;
 	private int[][] baseMap;
 	private JTextField productName, quantity, boxSize;
-	private String testRoute;
-	private int startX, startY, routeX, routeY;
-	private int[] xDiff, yDiff;
+	private List<GladosNode> testPath;
+	private Map<GladosNode> warehouseMap;
 	
 	/**
 	 * @author JustinMabbutt
@@ -67,7 +69,7 @@ public class GladosGui
 	 */
 	public GladosGui() 
 	{
-		logger.entering(getClass().getName(), "IMSGUI");
+		logger.entering(getClass().getName(), "GladosGui");
 		try
 		{
 			for(LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
@@ -103,12 +105,19 @@ public class GladosGui
 		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		splash = null; background = null;
 		splashTimer = new Timer();
-		testRoute = "101222";
-		startX = 0; startY = 0;
-		xDiff = new int[] {0, 1, 1, 1, 0, -1, -1, -1};
-		yDiff = new int[] {1, 1, 0, -1, -1, -1, 0, 1};
 		buttonLayout = new GridBagLayout();
+		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());        
+	    for(int i = 2; i < 18; i++)
+	    {
+	    	warehouseMap.setWalkable(2, i, false);
+	    	warehouseMap.setWalkable(5, i, false);
+	    	warehouseMap.setWalkable(8, i, false);
+	    	warehouseMap.setWalkable(11, i, false);
+	    	warehouseMap.setWalkable(14, i, false);
+	    	warehouseMap.setWalkable(17, i, false);
+	    }
     	initMap();
+    	testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		Thread ui = new Thread()
@@ -135,7 +144,7 @@ public class GladosGui
 			}
 		};
 		ui.start();
-		logger.exiting(getClass().getName(), "IMSGUI");
+		logger.exiting(getClass().getName(), "GladosGui");
     }
 	
 	/**
@@ -199,6 +208,7 @@ public class GladosGui
      */
     private void displayGetOrder()
     {
+    	logger.entering(getClass().getName(), "displayGetOrder");
     	mainFrame.getContentPane().remove(orderPanel);
     	mainFrame.getContentPane().remove(mapPanel);
     	mainFrame.getContentPane().remove(orderButtons);
@@ -220,6 +230,7 @@ public class GladosGui
     	mainFrame.getContentPane().add(assignOrder);
     	mainFrame.revalidate();
     	mainFrame.repaint();
+    	logger.exiting(getClass().getName(), "displayGetOrder");
     }
     
     /**
@@ -242,17 +253,14 @@ public class GladosGui
      */
     private void buildMap()
     {
+    	logger.entering(getClass().getName(), "buildMap");
     	mapPanel.removeAll();
     	mapPanel.invalidate();
-    	if(testRoute.length() > 0)
+    	if(testPath.size() > 0)
     	{
-    		baseMap[startX][startY] = 4;
-    		for(int i = 0; i < testRoute.length(); i++)
+    		for(int i = 0; i < testPath.size(); i++)
     		{
-    			int j = Integer.parseInt(String.valueOf(testRoute.charAt(i)));
-    			routeX += xDiff[j];
-    			routeY += yDiff[j];
-    			baseMap[routeX][routeY] = 4;
+    			baseMap[testPath.get(i).getyPosition()][testPath.get(i).getxPosition()] = 4;
     		}
 	    	for (int i = 0; i < 20; i++) 
 	    	{
@@ -312,6 +320,7 @@ public class GladosGui
 	    	}
     	}
     	mapPanel.revalidate();
+    	logger.exiting(getClass().getName(), "buildMap");
     }
     
     /**
@@ -320,6 +329,7 @@ public class GladosGui
      */
     private void initMap()
     {
+    	logger.entering(getClass().getName(), "initMap");
     	//1 = Possible route
     	//2 = Shelf
     	//3 = GDZ
@@ -345,7 +355,7 @@ public class GladosGui
     			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     			{1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1}
     	};
-    	
+    	logger.exiting(getClass().getName(), "initMap");
     }
     
     /**
@@ -354,6 +364,7 @@ public class GladosGui
      */
    	private void displayMap()
     {
+   		logger.entering(getClass().getName(), "displayMap");
    		mainFrame.getContentPane().remove(assignOrder);
    		mainFrame.invalidate();
     	productName.setText("Product Name: ");// + theProductName
@@ -407,5 +418,6 @@ public class GladosGui
     	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
     	mainFrame.revalidate();
     	mainFrame.repaint();
+    	logger.exiting(getClass().getName(), "displayMap");
     }
 }

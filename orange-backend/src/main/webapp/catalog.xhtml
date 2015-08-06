@@ -11,27 +11,11 @@
 	<ui:define name="pageTitle">Catalog</ui:define>
 	<ui:define name="content">	
 		<div id="catalog">
-			<ui:insert name="NBGardensCatalog">
-				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
-					<f:facet name="header">
-						<h:outputText value="Product Catalog"/>
-					</f:facet>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					<h:column>
-						<h:outputText value="#{product.productName}"/>
-					</h:column>
-					
-				</h:dataTable>
-				
-				<div id="categories">	
+			<div id="title">
+				<H1>Product Catalog</H1>
+			</div>
+			
+			<div id="categories">	
 				<h:selectOneMenu id = "category" value="#{ProductDetails.productCategory}">
 					<f:selectItem itemValue="1" itemLabel = "1" />
 					<f:selectItem itemValue="2" itemLabel = "2" />
@@ -40,16 +24,37 @@
 					<f:selectItem itemValue="5" itemLabel = "5" />
 				</h:selectOneMenu>	
 				
-				
 				<h:inputText id="search" value="#{productDetails.productName}" />
+				<h:commandButton value="Search" action="#{productDetails.printProduct()}" />
 				
-				<h:commandButton value="Search"
-						action="#{productDetails.printProduct()}" />
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+					<h:column>
+						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
+					</h:column>
+					<h:column>
+					<br/>
+						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
+						<h:outputText value="#{product.description}"/><br/><br/>
+						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
+						<h:outputText value="Weight: #{product.weight}kg"/><br/>
+						<h:outputText value="Category: #{product.category}"/><br/><br/>
+						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
+						<form action="clickedproduct" method="POST">
+							<h:inputhidden value ="#{product.productId}" name="productid"/>
+							<h:commandbutton value="productpage" onclick="#{productcatalogcontroller.}"/>			
+						</form>
+						<h:commandButton value="Add to Basket"/>
+						<h:commandButton value="Add to Wishlist"/>
+						<br/><br/>	
+					</h:column>
+				</h:dataTable>
+			</ui:insert>
 		</div>
 			
 				
 				
-			</ui:insert>
+			
 		</div>
 		</ui:define>
 </ui:composition>

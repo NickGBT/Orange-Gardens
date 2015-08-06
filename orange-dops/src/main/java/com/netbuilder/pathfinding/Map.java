@@ -1,17 +1,23 @@
-package com.netbuilder.dops;
+package com.netbuilder.pathfinding;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 
  * @author JustinMabbutt
  *
  */
-public class Map<gladosNode extends Node>
+public class Map<gladosNode extends Node> implements Serializable
 {
-    protected static boolean CANMOVEDIAGONALLY = true;
+	private static final long serialVersionUID = 4082015;
 
+	private static final Logger logger = Logger.getLogger(Map.class.getName());
+    
+	protected static boolean CANMOVEDIAGONALLY = true;
+    
     private gladosNode[][] nodes;
 
     protected int width;
@@ -23,15 +29,18 @@ public class Map<gladosNode extends Node>
 
     public Map(int width, int height, NodeFactory nodeFactory)
     {
+    	logger.entering(getClass().getName(), "Map");
         this.nodeFactory = nodeFactory;        
         nodes = (gladosNode[][])new Node[width][height];
         this.width = width - 1;
         this.height = height - 1;
         initEmptyNodes();
+        logger.exiting(getClass().getName(), "Map");
     }
 
     private void initEmptyNodes()
     {
+    	logger.entering(getClass().getName(), "initEmptyNodes");
         for(int i = 0; i <= width; i++)
         {
             for(int j = 0; j <= height; j++)
@@ -39,21 +48,7 @@ public class Map<gladosNode extends Node>
                 nodes[i][j] = (gladosNode)nodeFactory.createNode(i, j);
             }
         }
-        buildMap();
-    }
-    
-    private void buildMap()
-    {
-    	warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());        
-        for(int i = 2; i < 18; i++)
-        {
-        	warehouseMap.setWalkable(2, i, false);
-        	warehouseMap.setWalkable(5, i, false);
-        	warehouseMap.setWalkable(8, i, false);
-        	warehouseMap.setWalkable(11, i, false);
-        	warehouseMap.setWalkable(14, i, false);
-        	warehouseMap.setWalkable(17, i, false);
-        }
+        logger.exiting(getClass().getName(), "initEmptyNodes");
     }
 
     public void setWalkable(int x, int y, boolean bool)
@@ -68,6 +63,7 @@ public class Map<gladosNode extends Node>
 
     public void drawMap()
     {
+    	logger.entering(getClass().getName(), "drawMap");
         for(int i = 0; i <= width; i++) 
         {
         	print(" _");
@@ -95,6 +91,7 @@ public class Map<gladosNode extends Node>
         {
         	print(" _");
         }
+        logger.exiting(getClass().getName(), "drawMap");
     }
 
     private void print(String s) 
@@ -108,6 +105,7 @@ public class Map<gladosNode extends Node>
 
     public final List<gladosNode> findPath(int oldX, int oldY, int newX, int newY)
     {
+    	logger.entering(getClass().getName(), "findPath");
         openList = new LinkedList<gladosNode>();
         closedList = new LinkedList<gladosNode>();
         openList.add(nodes[oldX][oldY]);
@@ -151,11 +149,13 @@ public class Map<gladosNode extends Node>
                 return new LinkedList<gladosNode>();
             }
         }
-        return null;
+        logger.exiting(getClass().getName(), "findPath");
+        return null;        
     }
 
     private List<gladosNode> calcPath(gladosNode start, gladosNode goal)
     {
+    	logger.entering(getClass().getName(), "calcPath");
         LinkedList<gladosNode> path = new LinkedList<gladosNode>();
 
         gladosNode curr = goal;
@@ -169,11 +169,13 @@ public class Map<gladosNode extends Node>
                 done = true;
             }
         }
+        logger.exiting(getClass().getName(), "calcPath");
         return path;
     }
 
     private gladosNode lowestFInOpen() 
     {
+    	logger.entering(getClass().getName(), "lowestFInOpen");
         gladosNode cheapest = openList.get(0);
         for (int i = 0; i < openList.size(); i++)
         {
@@ -182,11 +184,13 @@ public class Map<gladosNode extends Node>
                 cheapest = openList.get(i);
             }
         }
+        logger.exiting(getClass().getName(), "lowestFInOpen");
         return cheapest;
     }
 
     private List<gladosNode> getAdjacent(gladosNode node) 
     {
+    	logger.entering(getClass().getName(), "getAdjacent");
         int x = node.getxPosition();
         int y = node.getyPosition();
         List<gladosNode> adj = new LinkedList<gladosNode>();
@@ -274,6 +278,7 @@ public class Map<gladosNode extends Node>
                 }
             }
         }
+        logger.exiting(getClass().getName(), "getAdjacent");
         return adj;
     }
 }

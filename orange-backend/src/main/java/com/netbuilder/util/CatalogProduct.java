@@ -1,26 +1,32 @@
 package com.netbuilder.util;
 
-import org.springframework.hateoas.ResourceSupport;
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.interfaces.ProductManager;
-
-
-
-public class CatalogProduct extends ResourceSupport{
-	private final Product p;
-	private ProductManager pm;
-
-	@JsonCreator 
-	public CatalogProduct(@JsonProperty("id") String id){
-		int parsedId = Integer.parseInt(id);
-		p = pm.findByProductId(parsedId);
+@Path(value = "catalog")
+public class CatalogProduct{
+	
+	private String title = "Catalog";
+	
+	@GET
+	@Produces("text/plain")
+	@Path("{id}")
+	public String getProduct(@PathParam("id") String id, @DefaultValue("0") @QueryParam("page")int page){
+		String returnString = id + ": " + title + ", page " + page;
+		return returnString;
+	}	
+	
+	@POST
+	@Consumes("text/plain")
+	public void postClichedMessage(String message){
+		title = message;
 	}
 	
-	public Product getProduct(){
-		return p;
-	}
-	
+
 }

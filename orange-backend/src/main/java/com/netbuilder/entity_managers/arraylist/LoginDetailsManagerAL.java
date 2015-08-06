@@ -1,5 +1,6 @@
 package com.netbuilder.entity_managers.arraylist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
  */
 @Alternative
 @Singleton
-public class LoginDetailsManagerAL implements LoginDetailsManager {
+public class LoginDetailsManagerAL implements LoginDetailsManager, Serializable {
 
 	private ArrayList<LoginDetails> loginDetails = new ArrayList<LoginDetails>();
 	

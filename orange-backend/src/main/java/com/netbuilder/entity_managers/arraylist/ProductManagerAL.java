@@ -54,7 +54,9 @@ public class ProductManagerAL implements ProductManager
 	public List<Product> getAll(){
 		System.out.println("Reached get all in AL");
 		dummyAL.addProducts();
+		System.out.println(dummyAL.getAllProducts());
 		return dummyAL.getAllProducts();
+		
 	}
 
 	public List<Product> findProductsByName(String name) {
