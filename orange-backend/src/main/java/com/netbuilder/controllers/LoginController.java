@@ -36,7 +36,7 @@ public class LoginController implements Serializable{
 	private UserId userId;
 //	private String logout = "index.html";
 
-	public String login(){
+	public String login(){  
 		System.out.println("Checking Password");
 		System.out.println("UserName : " + name  + ", Password : " + password);
 

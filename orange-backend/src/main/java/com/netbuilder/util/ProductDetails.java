@@ -1,7 +1,9 @@
 package com.netbuilder.util;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
@@ -19,13 +21,13 @@ import com.netbuilder.enums.ProductCategory;
 
 /**
  * 
- * @author mwatson
+ * @author mwatson llew
  *
  */
 
-@ManagedBean(name = "productDetails")
-@RequestScoped
-public class ProductDetails {
+@Named
+@SessionScoped
+public class ProductDetails implements Serializable{
 
 	private PaymentDetails paymentD;
 	private int quantity;
@@ -44,11 +46,18 @@ public class ProductDetails {
 	private OrderLine orderLine;
 	private LoginDetailsManager loginMan;
 	private LoginDetails loginD;
+		
+	public void setId(int productId){
+		this.productId = productId;
+	}
 	
+	public int getId(){
+		return productId;
+	}
 	
-	public Product getProductId() {
-		product = productMan.findByProductId(productId);
-		return product;
+	public int getProductId() {
+		//product = productMan.findByProductId(productId);
+		return productId;
 	}
 	
 	public void setProductId(int productId) {
