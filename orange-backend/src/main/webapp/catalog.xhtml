@@ -41,7 +41,7 @@
 						<h:outputText value="Category: #{product.category}"/><br/><br/>
 						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
 						<form action="clickedproduct" method="POST">
-							<h:inputhidden value ="#{product.productId}" name="productid"/>
+							<h:inputHidden value ="#{product.productId}" name="productid"/>
 							<h:commandbutton value="productpage" onclick="#{productcatalogcontroller.}"/>			
 						</form>
 						<h:commandButton value="Add to Basket"/>
