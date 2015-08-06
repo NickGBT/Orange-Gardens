@@ -3,11 +3,7 @@ package com.netbuilder.entity_managers.arraylist;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
-import javax.faces.bean.ManagedBean;
-
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,7 +33,7 @@ public class ProductManagerAL implements ProductManager
 	}
 
 	public void persistProduct(Product product) {
-		dummyAL.allProducts.add(product);
+		dummyAL.allProducts.add(product); 
 	}
 
 	public void persistProducts(List<Product> products) {

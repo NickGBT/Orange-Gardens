@@ -41,6 +41,8 @@ public class OrderCheckoutController
 	private Order order;
 	private OrderDetails basketDetails;
 	
+	@Inject
+	private UserId userId;
 	
 	public Order getOrder() 
 	{
@@ -56,11 +58,11 @@ public class OrderCheckoutController
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		return paymentDetails.findCustomerPaymentDetails(UserId.getUid());
+		return paymentDetails.findCustomerPaymentDetails(userId.getUid());
 	}
 	
 	public Address getAddress(){
-		return address.findByUserId(UserId.getUid()); 
+		return address.findByUserId(userId.getUid()); 
 	} 
 	
 	public TestData getTestData() {

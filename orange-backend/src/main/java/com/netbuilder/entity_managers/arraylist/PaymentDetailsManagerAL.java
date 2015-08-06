@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
+
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 
@@ -16,7 +17,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
  *
  */
 @Alternative
-@Stateless
+@Singleton
 public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 	
 	private List<PaymentDetails> paymentDetails = new ArrayList<PaymentDetails>();

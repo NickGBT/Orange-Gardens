@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.enums.ProductCategory;
-import com.netbuilder.util.TestData;
 
 @Singleton
 public class DummyAL 

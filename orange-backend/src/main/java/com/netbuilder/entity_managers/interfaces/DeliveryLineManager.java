@@ -2,6 +2,9 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
+import javax.faces.bean.RequestScoped;
+import javax.inject.Named;
+
 import com.netbuilder.entities.DeliveryLine;
 
 /**
@@ -9,7 +12,8 @@ import com.netbuilder.entities.DeliveryLine;
  * @author llew
  *
  */
-
+@Named
+@RequestScoped
 public interface DeliveryLineManager {
 
 	// CREATE
