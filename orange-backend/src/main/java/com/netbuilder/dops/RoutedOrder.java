@@ -9,7 +9,11 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.enums.OrderStatus;
 
-
+/**
+ * 
+ * @author ngilbert
+ *
+ **/
 
 public class RoutedOrder {
 	
