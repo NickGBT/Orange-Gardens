@@ -55,4 +55,24 @@ public class Receiver {
 		
 		return jmsListener;
 	}
+	
+	public JmsListener listenOnTopic(String topic, Object source) throws JMSException{
+		
+		try{
+			connection.start();
+		} catch (JMSException e){
+			System.err.println("Connection erroneous or already started.");
+		}
+		
+Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
+		
+		Destination destination = session.createTopic(topic);
+		
+		MessageConsumer consumer = session.createConsumer(destination);
+		
+		JmsListener jmsListener = new JmsListener(source);
+		consumer.setMessageListener(jmsListener);
+		
+		return jmsListener;
+	}
 }
