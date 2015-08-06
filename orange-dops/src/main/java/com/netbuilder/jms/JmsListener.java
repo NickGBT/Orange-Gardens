@@ -6,6 +6,8 @@ import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 import javax.jms.TextMessage;
 
+import com.netbuilder.orange_dops.GladosGui;
+
 /**
  * 
  * @author Alexander Neil
@@ -13,10 +15,10 @@ import javax.jms.TextMessage;
  */
 public class JmsListener implements MessageListener {
 
-	private final Object source;
+	private final GladosGui handler;
 	
-	public JmsListener(Object source){
-		this.source = source;
+	public JmsListener(GladosGui source){
+		this.handler = source;
 	}
 	
 	@Override

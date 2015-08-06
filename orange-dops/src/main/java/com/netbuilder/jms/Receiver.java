@@ -8,6 +8,8 @@ import javax.jms.Session;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
+import com.netbuilder.orange_dops.GladosGui;
+
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
 
@@ -36,7 +38,7 @@ public class Receiver {
 		connection = connectionFactory.createConnection();
 	}
 	
-	public JmsListener listenOnQueue(String queue, Object source) throws JMSException{
+	public JmsListener listenOnQueue(String queue, GladosGui source) throws JMSException{
 
 		try {
 			connection.start();
@@ -56,7 +58,7 @@ public class Receiver {
 		return jmsListener;
 	}
 	
-	public JmsListener listenOnTopic(String topic, Object source) throws JMSException{
+	public JmsListener listenOnTopic(String topic, GladosGui source) throws JMSException{
 		
 		try{
 			connection.start();
