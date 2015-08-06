@@ -188,6 +188,17 @@ html,body {
 
 }
 
+.sliderImage { 
+	height: 345px;
+	
+}
+
+.imageClip{
+    width: 1000px;
+    height: 345px;
+    overflow:hidden;
+}
+
 #copyright{
 	float:right;
 	text-align:left;
