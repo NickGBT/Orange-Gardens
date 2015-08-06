@@ -1,15 +1,12 @@
 package com.netbuilder.controllers;
 
 import java.io.Serializable;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
-//import javax.faces.bean.SessionScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.UserDetails;
 import com.netbuilder.util.UserId;

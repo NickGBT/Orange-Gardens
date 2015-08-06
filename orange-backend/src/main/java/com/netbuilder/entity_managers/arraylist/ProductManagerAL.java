@@ -37,7 +37,7 @@ public class ProductManagerAL implements ProductManager
 	}
 
 	public void persistProduct(Product product) {
-		dummyAL.allProducts.add(product);
+		dummyAL.allProducts.add(product); 
 	}
 
 	public void persistProducts(List<Product> products) {

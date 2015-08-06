@@ -10,12 +10,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
 
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 
 @Alternative
+@Singleton
 public class OrderManagerAL implements OrderManager {
 
 	private ArrayList<Order> orders = new ArrayList<Order>();
