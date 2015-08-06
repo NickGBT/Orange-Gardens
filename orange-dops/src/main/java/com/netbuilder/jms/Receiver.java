@@ -3,8 +3,11 @@ package com.netbuilder.jms;
 import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.JMSException;
+import javax.jms.Message;
 import javax.jms.MessageConsumer;
+import javax.jms.ObjectMessage;
 import javax.jms.Session;
+import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -66,7 +69,7 @@ public class Receiver {
 			System.err.println("Connection erroneous or already started.");
 		}
 		
-Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
+		Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
 		
 		Destination destination = session.createTopic(topic);
 		
@@ -76,5 +79,32 @@ Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
 		consumer.setMessageListener(jmsListener);
 		
 		return jmsListener;
+	}
+	
+	public Object getMessage(String queue) throws JMSException{
+		
+		try{
+			connection.start();
+		} catch(JMSException e){
+			System.err.println("Connection erroneous or already started.");
+		}
+		
+		Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
+		Destination destination = session.createQueue(queue);
+		MessageConsumer consumer = session.createConsumer(destination);
+		
+		Message message = consumer.receive(60000);
+		Object payload;
+		
+		if(message instanceof TextMessage){
+			payload = ((TextMessage)message).getText();
+		}else if(message instanceof ObjectMessage){
+			payload = ((ObjectMessage)message).getObject();
+		}else{
+			payload = null;
+			//PANIC!
+		}
+		
+		return payload;
 	}
 }
