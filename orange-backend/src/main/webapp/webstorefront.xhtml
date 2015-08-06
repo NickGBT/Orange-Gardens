@@ -21,7 +21,7 @@
 	<div id="StoreHeader">
 		<h1>New Products</h1>
 		<ui:insert name="newProducts">
-				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+				<h:dataTable id="storeHead" value="#{catalogController.prodsToDisplay}" var="product">
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
 					</h:column>
@@ -42,7 +42,7 @@
 	<div id="LowerStoreHeader">
 		<h1>Special Offers</h1>
 		<ui:insert name="specialOffers">
-		<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+		<h:dataTable id="lowerStoreHead" value="#{catalogController.prodsToDisplay}" var="product">
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
 					</h:column>
@@ -63,7 +63,7 @@
 	<div id="LowerStoreHeader">
 		<h1>Catalogue Exclusive Items</h1>
 		<ui:insert name="exclusiveItems">
-		<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
+		<h:dataTable id="exclusive" value="#{catalogController.prodsToDisplay}" var="product">
 					<h:column>
 						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
 					</h:column>
