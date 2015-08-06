@@ -7,10 +7,8 @@ import java.io.Serializable;
  * @author JustinMabbutt
  *
  */
-public class GladosNode extends Node implements Serializable
+public class GladosNode extends Node
 {
-	private static final long serialVersionUID = 5082015;
-
 	public GladosNode(int xPosition, int yPosition)
 	{
         super(xPosition, yPosition);
