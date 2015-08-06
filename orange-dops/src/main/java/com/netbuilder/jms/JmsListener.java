@@ -1,5 +1,7 @@
 package com.netbuilder.jms;
 
+import java.util.List;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -36,7 +38,9 @@ public class JmsListener implements MessageListener {
 			try {
 				Object payload = ((ObjectMessage)message).getObject();
 				
-				//TODO Use received object
+				if(payload instanceof List<?>){
+					
+				}
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
