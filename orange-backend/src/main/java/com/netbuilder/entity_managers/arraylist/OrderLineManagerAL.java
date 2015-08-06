@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
 
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
+import com.netbuilder.enums.OrderStatus;
 
 /**
  * 
@@ -15,6 +17,7 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
  */
 
 @Alternative
+@Singleton
 public class OrderLineManagerAL implements OrderLineManager{
 
 	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
@@ -87,5 +90,15 @@ public class OrderLineManagerAL implements OrderLineManager{
 		
 	}
 
+	public List<OrderLine> getOrderLines(String username){
+		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
+		for(OrderLine o : orderLines){
+			if(o.getOrder().getCustomer().getUsername().equals(username) && o.getOrder().getOrderStatus() == OrderStatus.basket){
+				userOrderLines.add(o);
+			}
+		}
+		
+		return userOrderLines;
+	}
 	
 }

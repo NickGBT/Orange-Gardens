@@ -9,15 +9,33 @@
 	<title><ui:insert name="pageTitle" /></title>
 	<meta name="description" content="NB Gardens OPS template" />
 	<meta name="author" content="Orange Gardens" />
-
+	
 	<link type="text/css" rel="stylesheet" href="resources/style.css" />
+	
+	
+	 <meta charset="utf-8"/>
+ 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  	
+  	<style>
+  		.carousel-inner > .item > img,
+  		.carousel-inner > .item > a > img {
+      	width: 70%;
+      	margin: auto;
+  	}
+  	</style>
+  
 </h:head>
 
 <h:body>
 
 	<div id = "wrap">
 		<div id="header">
+		
 	
+		
 			<div id="logo">
 				<a href = "index.xhtml"> 
 					<img src="resources/img/nbglogo.png" alt="NBGardens logo"
@@ -40,7 +58,9 @@
 						<a href = "wishlist.xhtml" class="cornerButton" >Wishlist</a>
 						<h:link rendered="#{loginController.loggedIn != true}"
 								outcome="customerlogin.xhtml" value="Login" class = "cornerButton" />
-					
+						
+						
+						
 						<h:commandButton rendered="#{loginController.loggedIn == true}"
 								 value="Logout" class="cornerButton" 
 								 action="#{loginController.logout}"/>
@@ -83,12 +103,14 @@
 			
 			
 		</div>
-	
-		<!-- Content goes here -->
-		<div id="content">
-			<ui:insert name="content" />
+		
+		<div class = "background"> 
+			<!-- Content goes here -->
+			<div id="content">
+				<ui:insert name="content" />
+			</div>
+			<!-- End Content -->
 		</div>
-		<!-- End Content -->
 	</div>
 	
 	<div id="footer">

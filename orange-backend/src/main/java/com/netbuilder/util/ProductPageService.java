@@ -4,7 +4,8 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-@Path ("/catalog.xtml")
+
+@Path ("webapp/catalog.xhtml")
 public class ProductPageService {
 
 		@Path("clickedproduct")
