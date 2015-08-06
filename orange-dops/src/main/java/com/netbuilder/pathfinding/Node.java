@@ -28,6 +28,8 @@ public abstract class Node implements Serializable
 
     private int hCosts;
     
+    public Node(){}
+    
     public Node(int xPosition, int yPosition)
     {
         this.xPosition = xPosition;
