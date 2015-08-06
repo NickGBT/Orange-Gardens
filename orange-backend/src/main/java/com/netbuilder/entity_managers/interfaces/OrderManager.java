@@ -39,6 +39,7 @@ public interface OrderManager {
 		public List<Order> findByCustomerId(int customerId);
 		public List<Order> findByEmployeeId(int employeeId);
 		public List<Order> getAllOrders();
+		public Order findBasketByUsername(OrderStatus status, String username);
 		
 		//UPDATE
 		public void updateOrder(Order order);

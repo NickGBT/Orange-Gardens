@@ -27,6 +27,7 @@ public interface OrderLineManager {
 		public List<OrderLine> findByOrderId(int orderId); 
 		public List<OrderLine> findByQuantity(int quantity); 
 		public List<OrderLine> getOrderLine();
+		public List<OrderLine> getOrderLines(String username);
 
 		// UPDATE
 		public void updateOrderLine(OrderLine orderLine);

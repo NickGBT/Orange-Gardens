@@ -109,9 +109,10 @@ public class Product {
 	}
 	
 	//Temp productId param
-	public Product(int productId, String productName, double productPrice, int width, int height, int length, double weight,
+	public Product(int productId, String imageLocation, String productName, double productPrice, int width, int height, int length, double weight,
 			String description, ProductCategory category) {
 		this.productId = productId;
+		this.imageLocation = imageLocation;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;

@@ -8,9 +8,11 @@ import javax.inject.Inject;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
@@ -47,6 +49,9 @@ public class ProductController {
 	@Inject
 	private ProductDetails productDetails;
 	
+	@Inject
+	private OrderLineManager olm;
+	
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
 	private ProductDetails productD;
@@ -55,6 +60,7 @@ public class ProductController {
 	private Product foundProduct;
 	private LoginDetails loginDet;
 	private PaymentDetails paymentDet;
+	private OrderLine orderLine;
 	
 	private Order orderBasket;
 	
@@ -64,7 +70,6 @@ public class ProductController {
 	
 	public Product getProduct() {
 		// product = productD.getProductId();
-		System.out.println(productDetails.getId());
 		product = pm.findByProductId(productDetails.getId());
 		return product;
 	}
@@ -78,15 +83,16 @@ public class ProductController {
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
 		
-        System.out.println("Adding to basket , productID : " + productId);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
-		
-		System.out.println(foundProduct.getProductName());
+
+        System.out.println("Adding to basket , productID : " + productId + "(" + foundProduct.getProductName() + ")");
 		
 		loginDet = ldm.findByUsername(userId.getUsername());
-		orderBasket = new Order(loginDet, OrderStatus.basket, null);
-	    
+		orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
 		om.persistOrder(orderBasket);
+		
+		orderLine = new OrderLine(orderBasket, foundProduct, 1);
+		olm.persistOrderLine(orderLine);
 	}
 
 	/**

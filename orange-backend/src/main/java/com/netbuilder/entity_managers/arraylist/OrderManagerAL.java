@@ -274,6 +274,18 @@ public class OrderManagerAL implements OrderManager {
 		}
 		return null;
 	}
+	
+	@Override
+	public Order findBasketByUsername(OrderStatus status, String username) {
+		for (Order o : orders)
+		{
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUsername().equals(username)))
+			{
+				return o;
+			}
+		}
+		return null;
+	}
 
 	
 	public List<Order> findPreviousOrders(OrderStatus status, int customerId) {
