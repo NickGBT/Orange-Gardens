@@ -10,7 +10,6 @@ import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entity_managers.arraylist.ProductManagerAL;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
