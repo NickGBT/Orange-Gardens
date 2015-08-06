@@ -20,6 +20,17 @@ public class DummyAL
 	
 	Product product4 = new Product("resources/img/swagShed.jpg", "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
 	
+	Product product5 = new Product(1, "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
+	
+	public DummyAL(){
+		allProducts.clear();
+		allProducts.add(product);
+		allProducts.add(product2);
+		allProducts.add(product3);
+		allProducts.add(product4);
+		allProducts.add(product5);
+	}
+	
 	public List<Product> allProducts = new ArrayList<Product>();
 				
 	public List<Product> getAllProducts() {
@@ -37,5 +48,6 @@ public class DummyAL
 		allProducts.add(product2);
 		allProducts.add(product3);
 		allProducts.add(product4);
+		allProducts.add(product5);
 	}
 }

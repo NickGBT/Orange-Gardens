@@ -44,6 +44,9 @@ public class ProductController {
 	@Inject
 	private OrderManager om;
 	
+	@Inject
+	private ProductDetails productDetails;
+	
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
 	private ProductDetails productD;
@@ -61,8 +64,8 @@ public class ProductController {
 	
 	public Product getProduct() {
 		// product = productD.getProductId();
-		
-		product = testData.getProduct();
+		System.out.println(productDetails.getId());
+		product = pm.findByProductId(productDetails.getId());
 		return product;
 	}
 
@@ -72,9 +75,10 @@ public class ProductController {
 
 	 
 	public void addToBasket() {
-
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
+		
+        System.out.println("Adding to basket , productID : " + productId);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 		
 		System.out.println(foundProduct.getProductName());
@@ -83,8 +87,6 @@ public class ProductController {
 		orderBasket = new Order(loginDet, OrderStatus.basket, null);
 	    
 		om.persistOrder(orderBasket);
-	    
-		System.out.println(om.getAllOrders());
 	}
 
 	/**
@@ -102,4 +104,11 @@ public class ProductController {
 		this.testData = testData;
 	}
 
+	public ProductDetails getProductDetails(){
+		return productDetails;
+	}
+	
+	public void setProductDetails(ProductDetails productDetails){
+		this.productDetails = productDetails;
+	}
 }

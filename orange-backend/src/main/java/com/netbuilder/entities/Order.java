@@ -47,15 +47,12 @@ public class Order {
 	private String datePlaced;
 	
 	@Column (name = "date_placed_millis", nullable = false)
-	@NotNull
 	private long datePlacedInMillis;
 	
 	@Column (name = "date_dispatched", nullable = false)
-	@NotNull
 	private String dateDispatched;
 	
 	@Column (name = "date_delivered", nullable = false)
-	@NotNull
 	private String dateDelivered;
 	
 	@Column (name = "time_to_deliver")
