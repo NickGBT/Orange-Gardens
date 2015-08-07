@@ -1,6 +1,7 @@
 package com.netbuilder.orange_dops;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,7 +55,7 @@ public class GladosGui
 	private Image gladosLogo;
 	private JLabel splashLabel, backgroundLabel;
 	private JLabel[][] mapLabel;
-	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginButtonPanel, loginTextPanel;
+	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginPanel, fillPanel;
 	private BufferedImage splash, background;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
@@ -64,7 +66,8 @@ public class GladosGui
 	private ImagePanel backgroundPanel;
 	private Font gladosFont;
 	private int[][] baseMap;
-	private JTextField productName, quantity, boxSize, username, password;
+	private JTextField productName, quantity, boxSize; 
+	private LoginTextField username, password;
 	private List<GladosNode> testPath;
 	private Map<GladosNode> warehouseMap;
 	private String user, pass;
@@ -105,11 +108,12 @@ public class GladosGui
 		}		
 		splashFrame = new JFrame();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel(); mapLabel = new JLabel[20][20];
-		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); mapPanel = new JPanel(); loginButtonPanel = new JPanel(); loginTextPanel = new JPanel();
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); fillPanel = new JPanel(); mapPanel = new JPanel(); loginPanel = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton(); login = new JButton();
-		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35); username = new JTextField(10); password = new JTextField(10);
+		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35); 
+		username = new LoginTextField("Username:"); password = new LoginTextField("Password:");
 		splash = null; background = null;
 		user = ""; pass = "";
 		splashTimer = new Timer();
@@ -224,7 +228,15 @@ public class GladosGui
 		mainFrame.remove(orderPanel);
 		mainFrame.invalidate();
 		username.setFont(gladosFont);
+		username.setPreferredSize(new Dimension(200, 30));
+		buttonLayoutConstraints.gridx = 0;
+		buttonLayoutConstraints.gridy = 0;
+		loginPanel.add(username, buttonLayoutConstraints);
 		password.setFont(gladosFont);
+		password.setPreferredSize(new Dimension(200, 30));
+		buttonLayoutConstraints.gridx = 1;
+		buttonLayoutConstraints.gridy = 0;
+		loginPanel.add(password, buttonLayoutConstraints);
 		login.setText("Login");
 		login.setPreferredSize(new Dimension(350, 150));
 		login.setFont(gladosFont);
@@ -233,9 +245,9 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if(username.getText().equals(null) || password.getText().equals(null))
+				if(username.getText().equals("") || username.getText().equals("Username:") || password.getText().equals("") || password.getText().equals("Password:"))
 				{
-					JOptionPane.showMessageDialog(mainFrame, "Must have entry in both fields", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 				}
 				else
 				{
@@ -247,16 +259,14 @@ public class GladosGui
 				}
 			}			
 		});
-		loginButtonPanel.setBackground(new Color(0, 0, 0, 0));
-		loginTextPanel.setBackground(new Color(0, 0, 0, 0));	
-		loginTextPanel.add(username);
-		loginTextPanel.add(password);
-		buttonLayoutConstraints.fill = GridBagConstraints.CENTER;
-		buttonLayout.setConstraints(loginButtonPanel, buttonLayoutConstraints);
-		loginButtonPanel.add(login);
-		loginButtonPanel.setLayout(buttonLayout);
-		mainFrame.getContentPane().add(loginTextPanel, BorderLayout.CENTER);
-		mainFrame.getContentPane().add(loginButtonPanel);
+		buttonLayoutConstraints.gridx = 0;
+		buttonLayoutConstraints.gridy = 1;
+		loginPanel.add(login, buttonLayoutConstraints);
+		loginPanel.setBackground(new Color(0, 0, 0, 0));
+		fillPanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 3));
+		fillPanel.setBackground(new Color(0, 0, 0, 0));
+		mainFrame.getContentPane().add(fillPanel, BorderLayout.NORTH);
+		mainFrame.getContentPane().add(loginPanel, BorderLayout.CENTER);
 		mainFrame.revalidate();
 		mainFrame.repaint();
 		ui.start();
@@ -273,8 +283,7 @@ public class GladosGui
 		mainFrame.getContentPane().remove(orderPanel);
 		mainFrame.getContentPane().remove(mapPanel);
 		mainFrame.getContentPane().remove(orderButtons);
-    	mainFrame.getContentPane().remove(loginButtonPanel);
-    	mainFrame.getContentPane().remove(loginTextPanel);
+    	mainFrame.getContentPane().remove(loginPanel);
    		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 150));
@@ -428,8 +437,7 @@ public class GladosGui
     {
    		logger.entering(getClass().getName(), "displayMap");
    		mainFrame.getContentPane().remove(assignOrder);
-    	mainFrame.getContentPane().remove(loginButtonPanel);
-    	mainFrame.getContentPane().remove(loginTextPanel);
+    	mainFrame.getContentPane().remove(loginPanel);
    		mainFrame.invalidate();
     	productName.setText("Product Name: ");// + theProductName
     	quantity.setText("Quantity: ");// + quantity
