@@ -99,12 +99,32 @@ public class ProductController {
 		
 		//System.out.println("Product Controller::Line100:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
 		
-		loginDet = ldm.findByUsername(userId.getUsername());
-		orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
-		om.persistOrder(orderBasket);
 		
-		orderLine = new OrderLine(orderBasket, foundProduct, quantity);
-		olm.persistOrderLine(orderLine);
+		loginDet = ldm.findByUsername(userId.getUsername());
+		
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null)
+		{
+			if (olm.findByProductId(foundProduct.getProductId()) != null)
+			{
+				orderLine = olm.findByProductId(foundProduct.getProductId());
+				orderLine = new OrderLine(orderLine.getOrder(), orderLine.getProduct(), (orderLine.getQuantity() + quantity));
+				olm.updateOrderLine(orderLine);
+			}
+			else
+			{
+				orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+				olm.persistOrderLine(orderLine);
+			}
+		}
+		else
+		{
+			orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
+			om.persistOrder(orderBasket);
+			
+			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+			olm.persistOrderLine(orderLine);
+		}
 	}
 
 	/**
