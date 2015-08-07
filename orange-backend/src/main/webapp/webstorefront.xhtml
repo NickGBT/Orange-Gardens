@@ -17,7 +17,7 @@
 	<ui:define name="content">
 		<div id="MainContent">
 
-			<div class="container" style="width: 50%">
+			<div class="container" style="width: 60%">
 				<br />
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
@@ -88,12 +88,10 @@
 							<tr>
 								<div style="min-width: 30%; max-width: 55%; float: left;overflow:auto; padding: 1px;">
 									<td>
-									<h:form>
+										<h:form>
 											<input type="hidden" name="productId" value="#{product.productId}" />										
 											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
 															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px" />
-											
-											
 										</h:form>
 									</td>
 								</div>
