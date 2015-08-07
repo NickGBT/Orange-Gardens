@@ -11,7 +11,9 @@ import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
@@ -34,6 +36,12 @@ public class RegistrationController
 	
 	@Inject
 	private LoginDetailsManager loginDetailsManager;
+	
+	@Inject
+	private PaymentDetailsManager paymentDetailsManager;
+	
+	@Inject
+	private AddressManager addressManager;
 	
 	private String errorMsg;
 	private Customer customer;
@@ -72,7 +80,9 @@ public class RegistrationController
 					registrationDetails.getNameOnCard(), registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 			
-			loginDetailsManager.persistLoginDetails(loginDetails);		
+			loginDetailsManager.persistLoginDetails(loginDetails);	
+			addressManager.persistAddress(address);
+			paymentDetailsManager.persistPaymentDetails(payDetails);
 			
 			return "account/uid";
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
 
 import com.netbuilder.entities.Address;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
@@ -15,6 +16,7 @@ import com.netbuilder.entity_managers.interfaces.AddressManager;
  */
 
 @Alternative
+@Singleton
 public class AddressManagerAL implements AddressManager
 {
 	private ArrayList<Address> addresses = new ArrayList<Address>();
