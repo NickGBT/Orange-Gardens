@@ -6,28 +6,25 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -46,22 +43,25 @@ public class GladosGui
 {
 	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
 	private JFrame mainFrame, splashFrame;
-	private Image gladosLogo;
+	private Image gladosLogo, splash, background;
 	private JLabel splashLabel, backgroundLabel;
-	private JPanel assignOrder, orderButtons, orderPanel, mapPanel;
-	private BufferedImage splash, background;
+	private JLabel[][] mapLabel;
+	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginPanel, fillPanel;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
-	private JButton getNewOrder, completeOrder, nextProduct;
-	private GridBagLayout buttonLayout;
+	private JButton getNewOrder, completeOrder, nextProduct, login, logout;
 	private GridBagConstraints buttonLayoutConstraints;
 	private ImagePanel backgroundPanel;
 	private Font gladosFont;
 	private int[][] baseMap;
-	private JTextField productName, quantity, boxSize;
+	private JTextField productName, quantity, boxSize; 
+	private LoginTextField username;
+	private JPasswordField password;
 	private List<GladosNode> testPath;
 	private Map<GladosNode> warehouseMap;
+	private String user, pass;
+	private Thread ui;
 	
 	/**
 	 * @author JustinMabbutt
@@ -97,15 +97,16 @@ public class GladosGui
 			logger.log(Level.SEVERE, "Illegal access exception", iae);
 		}		
 		splashFrame = new JFrame();
-		splashLabel = new JLabel(); backgroundLabel = new JLabel();
-		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); mapPanel = new JPanel();
+		splashLabel = new JLabel(); backgroundLabel = new JLabel(); mapLabel = new JLabel[20][20];
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); fillPanel = new JPanel(); mapPanel = new JPanel(); loginPanel = new JPanel();
 		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
-		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
+		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton(); login = new JButton(); logout = new JButton();
+		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35); 
+		username = new LoginTextField("Username:"); password = new JPasswordField(11);
 		splash = null; background = null;
+		user = ""; pass = "";
 		splashTimer = new Timer();
-		buttonLayout = new GridBagLayout();
 		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());        
 	    for(int i = 2; i < 18; i++)
 	    {
@@ -120,15 +121,18 @@ public class GladosGui
     	testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
-		Thread ui = new Thread()
+		ui = new Thread()
 		{
 			@Override
 			public void run()
 			{
 				while(true)
-				{
+				{	
+					username.repaint();
+					password.repaint();
+					login.repaint();				
 					getNewOrder.repaint();
-					mapPanel.repaint();
+					logout.repaint();
 					orderButtons.repaint();
 					orderPanel.repaint();
 					mapPanel.repaint();
@@ -154,15 +158,8 @@ public class GladosGui
 	public void displaySplash()
 	{
 		logger.entering(getClass().getName(), "displaySplash");
-		try 
-		{
-			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/splash.jpg"));
-			background = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/background.png"));
-		} 
-		catch (IOException ie) 
-		{
-			logger.log(Level.SEVERE, "Error loading images", ie);
-		}
+		splash = Toolkit.getDefaultToolkit().getImage("images/splash.jpg");
+		background = Toolkit.getDefaultToolkit().getImage("images/background.png");
 		splashIcon.setImage(splash); backgroundIcon.setImage(background);
 		splashLabel.setIcon(splashIcon); backgroundLabel.setIcon(backgroundIcon);
 		splashFrame = new JFrame();
@@ -198,8 +195,66 @@ public class GladosGui
         mainFrame.setIconImage(gladosLogo);
         mainFrame.getContentPane().add(backgroundPanel);
         mainFrame.setVisible(true);
-        displayGetOrder();
+        displayLogin();
 		logger.exiting(getClass().getName(), "initUi");
+	}
+	
+	/**
+	 * @author JustinMabbutt
+	 * Task to display and authenticate employee login
+	 */
+	public void displayLogin()
+	{
+		logger.entering(getClass().getName(), "displayLogin");
+		mainFrame.remove(assignOrder);
+		mainFrame.remove(mapPanel);
+		mainFrame.remove(orderButtons);
+		mainFrame.remove(orderPanel);
+		mainFrame.remove(fillPanel);
+		mainFrame.invalidate();
+		username.setFont(gladosFont);
+		username.setPreferredSize(new Dimension(200, 30));
+		buttonLayoutConstraints.gridx = 0;
+		buttonLayoutConstraints.gridy = 0;
+		loginPanel.add(username, buttonLayoutConstraints);
+		password.setFont(gladosFont);
+		password.setPreferredSize(new Dimension(200, 30));	
+		buttonLayoutConstraints.gridx = 1;
+		buttonLayoutConstraints.gridy = 0;
+		loginPanel.add(password, buttonLayoutConstraints);
+		login.setText("Login");
+		login.setPreferredSize(new Dimension(180, 50));
+		login.setFont(gladosFont);
+		login.addActionListener(new ActionListener()
+		{	
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				if(username.getText().equals("") || username.getText().equals("Username:") || password.getPassword().toString().equals("") || password.getPassword().toString().equals("Password:"))
+				{
+					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					user = username.getText();
+					pass = password.getPassword().toString();
+					//validate
+					mainFrame.setTitle("NB GLADOS - " + user);
+					displayGetOrder();
+				}
+			}			
+		});
+		buttonLayoutConstraints.gridx = 0;
+		buttonLayoutConstraints.gridy = 1;
+		loginPanel.add(login, buttonLayoutConstraints);
+		loginPanel.setBackground(new Color(0, 0, 0, 0));
+		fillPanel.setPreferredSize(new Dimension(screenSize.width, 680 / 3));
+		fillPanel.setBackground(new Color(0, 0, 0, 0));
+		mainFrame.getContentPane().add(fillPanel, BorderLayout.NORTH);
+		mainFrame.getContentPane().add(loginPanel, BorderLayout.CENTER);
+		mainFrame.revalidate();
+		mainFrame.repaint();
+		logger.exiting(getClass().getName(), "displayLogin");
 	}
 
     /**
@@ -209,12 +264,16 @@ public class GladosGui
     private void displayGetOrder()
     {
     	logger.entering(getClass().getName(), "displayGetOrder");
-    	mainFrame.getContentPane().remove(orderPanel);
-    	mainFrame.getContentPane().remove(mapPanel);
-    	mainFrame.getContentPane().remove(orderButtons);
+		mainFrame.getContentPane().remove(orderPanel);
+		mainFrame.getContentPane().remove(mapPanel);
+		mainFrame.getContentPane().remove(orderButtons);
+    	mainFrame.getContentPane().remove(loginPanel);
+    	mainFrame.getContentPane().remove(fillPanel);
    		mainFrame.invalidate();
+   		fillPanel.setPreferredSize(new Dimension(screenSize.width, 680 / 3));
+		fillPanel.setBackground(new Color(0, 0, 0, 0));
     	getNewOrder.setText("Assign yourself an order to process.");
-    	getNewOrder.setPreferredSize(new Dimension(350, 150));
+    	getNewOrder.setPreferredSize(new Dimension(350, 100));
     	getNewOrder.setFont(gladosFont);
     	getNewOrder.addActionListener(new ActionListener() 
     	{
@@ -223,11 +282,26 @@ public class GladosGui
 				displayMap();
 			}
 		});
-    	buttonLayoutConstraints.fill = GridBagConstraints.CENTER;
-    	assignOrder.add(getNewOrder);
-    	buttonLayout.setConstraints(assignOrder, buttonLayoutConstraints);
-    	assignOrder.setLayout(buttonLayout);
-    	mainFrame.getContentPane().add(assignOrder);
+    	logout.setText("Log out");
+    	logout.setPreferredSize(new Dimension(200, 100));
+    	logout.setFont(gladosFont);
+    	logout.addActionListener(new ActionListener()
+    	{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				logout();
+			}
+		});
+    	assignOrder.setBackground(new Color(0, 0, 0, 0));
+    	buttonLayoutConstraints.gridx = 0;
+    	buttonLayoutConstraints.gridy = 0;
+    	assignOrder.add(getNewOrder, buttonLayoutConstraints);
+    	buttonLayoutConstraints.gridx = 0;
+    	buttonLayoutConstraints.gridy = 1;
+    	assignOrder.add(logout, buttonLayoutConstraints);
+    	mainFrame.getContentPane().add(fillPanel, BorderLayout.NORTH);
+    	mainFrame.getContentPane().add(assignOrder, BorderLayout.CENTER);
     	mainFrame.revalidate();
     	mainFrame.repaint();
     	logger.exiting(getClass().getName(), "displayGetOrder");
@@ -249,13 +323,24 @@ public class GladosGui
     
     /**
      * @author JustinMabbutt
+     * Task to log the employee out
+     */
+    private void logout()
+    {
+    	mainFrame.setTitle("NB GLADOS");
+    	username.setText("");
+    	password.setText("");
+    	displayLogin();
+    }
+    
+    /**
+     * @author JustinMabbutt
      * Task to populate the map with nodes
      */
     private void buildMap()
     {
     	logger.entering(getClass().getName(), "buildMap");
     	mapPanel.removeAll();
-    	mapPanel.invalidate();
     	if(testPath.size() > 0)
     	{
     		for(int i = 0; i < testPath.size(); i++)
@@ -269,24 +354,24 @@ public class GladosGui
 	    			switch(baseMap[i][j])
 	    			{
 	    			case 1:
-	    			    JLabel possRoute = new JLabel("*", SwingConstants.CENTER);//beginning
-	    			    possRoute.setForeground(Color.BLACK);
-	    			    mapPanel.add(possRoute);
+	    			    mapLabel[i][j] = new JLabel("*", SwingConstants.CENTER);//beginning
+	    			    mapLabel[i][j].setForeground(Color.BLACK);
+	    			    mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			case 2:
-	    				JLabel shelf = new JLabel("S", SwingConstants.CENTER);//shelf
-	    				shelf.setForeground(Color.BLUE);
-	    				mapPanel.add(shelf);
+	    				mapLabel[i][j] = new JLabel("S", SwingConstants.CENTER);//shelf
+	    				mapLabel[i][j].setForeground(Color.BLUE);
+	    				mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			case 3:
-	    				JLabel gdz = new JLabel("G", SwingConstants.CENTER);//GDZ
-	    				gdz.setForeground(Color.ORANGE);
-	    				mapPanel.add(gdz);
+	    				mapLabel[i][j] = new JLabel("G", SwingConstants.CENTER);//GDZ
+	    				mapLabel[i][j].setForeground(Color.ORANGE);
+	    				mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			case 4:
-	    				JLabel route = new JLabel("X", SwingConstants.CENTER);//route
-	    				route.setForeground(Color.RED);
-	    				mapPanel.add(route);
+	    				mapLabel[i][j] = new JLabel("X", SwingConstants.CENTER);//route
+	    				mapLabel[i][j].setForeground(Color.RED);
+	    				mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			}
 	    		}	    
@@ -301,25 +386,24 @@ public class GladosGui
 	    			switch(baseMap[i][j])
 	    			{
 	    			case 1:
-	    			    JLabel possRoute = new JLabel("*", SwingConstants.CENTER);//beginning
-	    			    possRoute.setForeground(Color.BLACK);
-	    			    mapPanel.add(possRoute);
+	    			    mapLabel[i][j] = new JLabel("*", SwingConstants.CENTER);//beginning
+	    			    mapLabel[i][j].setForeground(Color.BLACK);
+	    			    mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			case 2:
-	    				JLabel shelf = new JLabel("S", SwingConstants.CENTER);//shelf
-	    				shelf.setForeground(Color.BLUE);
-	    				mapPanel.add(shelf);
+	    				mapLabel[i][j] = new JLabel("S", SwingConstants.CENTER);//shelf
+	    				mapLabel[i][j].setForeground(Color.BLUE);
+	    				mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			case 3:
-	    				JLabel gdz = new JLabel("G", SwingConstants.CENTER);//GDZ
-	    				gdz.setForeground(Color.ORANGE);
-	    				mapPanel.add(gdz);
+	    				mapLabel[i][j] = new JLabel("G", SwingConstants.CENTER);//GDZ
+	    				mapLabel[i][j].setForeground(Color.ORANGE);
+	    				mapPanel.add(mapLabel[i][j]);
 	    				break;
 	    			}
 	    		}
 	    	}
     	}
-    	mapPanel.revalidate();
     	logger.exiting(getClass().getName(), "buildMap");
     }
     
@@ -366,6 +450,8 @@ public class GladosGui
     {
    		logger.entering(getClass().getName(), "displayMap");
    		mainFrame.getContentPane().remove(assignOrder);
+    	mainFrame.getContentPane().remove(loginPanel);
+    	mainFrame.getContentPane().remove(fillPanel);
    		mainFrame.invalidate();
     	productName.setText("Product Name: ");// + theProductName
     	quantity.setText("Quantity: ");// + quantity
@@ -407,8 +493,6 @@ public class GladosGui
     	{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				//mapPanel.removeAll();
-				//mapPanel.invalidate();
 				//new route
 			}
 		});

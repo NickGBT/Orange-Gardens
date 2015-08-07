@@ -7,82 +7,116 @@
 	xmlns:fu="http://java.sun.com/jsp/jstl/functions">
 
 	<ui:define name="head-meta">
-	
-		<link rel = "stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- 		<style>
-	  		.carousel-inner > .item > img,
-	  		.carousel-inner > .item > a > img {
-	      	width: 70%;
-	     	 margin: auto;
-  		}</style>
-	
-	
+
+		<link rel="stylesheet"
+			href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script
+			src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<style>
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 70%;
+	margin: auto;
+}
+</style>
+
+
 	</ui:define>
 
 
 	<!-- author: ngilbert -->
 
 	<ui:define name="pageTitle">Catalog</ui:define>
-	<ui:define name="content">	
+	<ui:define name="content">
 		<div id="catalog">
 			<div id="title">
 				<H1>Product Catalog</H1>
 			</div>
-			
-			<div id="categories">	
-				<h:selectOneMenu id = "category" value="#{productDetails.category}">
-					<f:selectItem itemValue="1" itemLabel = "1" />
-					<f:selectItem itemValue="2" itemLabel = "2" />
-					<f:selectItem itemValue="3" itemLabel = "3" />
-					<f:selectItem itemValue="4" itemLabel = "4" />
-					<f:selectItem itemValue="5" itemLabel = "5" />
-				</h:selectOneMenu>	
-				
-				<h:inputText id="search" value="#{productDetails.productName}" />
-				<h:commandButton value="Search" action="#{productDetails.printProduct()}" />
-				
-			<ui:insert name="NBGardensCatalog">
-				<h:dataTable id="catalogTable" value="#{catalogController.prodsToDisplay}" var="product">
-					<h:column>
-						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					</h:column>
-					<h:column>
-					<br/>
-						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-						<h:outputText value="#{product.description}"/><br/><br/>
-						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-						<h:outputText value="Weight: #{product.weight}kg"/><br/>
-					    <h:outputText value="Category: #{product.category}"/><br/><br/> 
-						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
-	
-						<h:form>
-					   	 	<input type="hidden" name="productId" value="#{product.productId}" />
-							<h:commandButton value="Add To Basket"  id="basket"
-								action="#{productController.addToBasket}">
-						</h:commandButton>
-					    </h:form>
-					    					    
-					    <h:form>
-					    
-							
-					    	<input type="hidden" name="productId" value="#{product.productId}" />
-							<h:commandButton value="Product Page "  id="productPage"
-								action="#{catalogController.setProductPage}" />
-					    
-					    </h:form>
 
-							<h:commandButton value="Add to Wishlist"/>
-						<br/><br/>	
-					</h:column>
-				</h:dataTable>
-			</ui:insert>
+			<div id="categories">
+				<h:selectOneMenu id="category" value="#{productDetails.category}">
+					<f:selectItem itemValue="1" itemLabel="1" />
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+					<f:selectItem itemValue="5" itemLabel="5" />
+				</h:selectOneMenu>
+
+				<ui:insert name="NBGardensCatalog">
+					<h:dataTable id="catalogTable"
+						value="#{catalogController.prodsToDisplay}" var="product">
+						<h:column>
+							<h:form>
+								<input type="hidden" name="productId"
+									value="#{product.productId}" />
+								<h:commandButton image="#{product.imageLocation}"
+									value="Product Page" id="productPage"
+									action="#{catalogController.setProductPage}"
+									style=" width:200px;  height:200px" />
+
+
+							</h:form>
+						</h:column>
+						<h:column>
+							<br />
+							<h2>
+								<h:outputText value="#{product.productName}" />
+							</h2>
+							<br />
+							<br />
+							<h:outputText value="#{product.description}" />
+							<br />
+							<br />
+							<h:outputText
+								value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" />
+							<br />
+							<h:outputText value="Weight: #{product.weight}kg" />
+							<br />
+							<h:outputText value="Category: #{product.category}" />
+							<br />
+							<br />
+							<h3>
+								<h:outputText value="£#{product.productPrice}" />
+							</h3>
+							<br />
+							<br />
+
+							<h:form>
+								<h:selectOneMenu id="category" value="#{productController.temp}">
+									<f:selectItem itemValue="1" itemLabel="1" />
+									<f:selectItem itemValue="2" itemLabel="2" />
+									<f:selectItem itemValue="3" itemLabel="3" />
+									<f:selectItem itemValue="4" itemLabel="4" />
+									<f:selectItem itemValue="5" itemLabel="5" />
+								</h:selectOneMenu>
+								<input type="hidden" name="productId"
+									value="#{product.productId}" />
+
+								<h:commandButton value="Add To Basket" id="basket"
+									action="#{productController.addToBasket}">
+								</h:commandButton>
+							</h:form>
+
+							<h:form>
+								<input type="hidden" name="productId"
+									value="#{product.productId}" />
+								<h:commandButton value="Product Page" id="productPage"
+									action="#{catalogController.setProductPage}" />
+
+							</h:form>
+
+							<h:commandButton value="Add to Wishlist" />
+							<br />
+							<br />
+						</h:column>
+					</h:dataTable>
+				</ui:insert>
+			</div>
+
+
+
+
 		</div>
-			
-				
-				
-			
-		</div>
-		</ui:define>
+	</ui:define>
 </ui:composition>

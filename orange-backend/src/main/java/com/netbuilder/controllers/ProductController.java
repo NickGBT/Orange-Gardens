@@ -40,6 +40,14 @@ public class ProductController {
 	@Inject
 	private UserId userId;
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Inject
 	private ProductManager pm;
 	
@@ -57,6 +65,8 @@ public class ProductController {
 	private ProductDetails productD;
 	private Product product;
 	private String productId;
+	private String temp;
+	private int quantity;
 	private Product foundProduct;
 	private LoginDetails loginDet;
 	private PaymentDetails paymentDet;
@@ -82,17 +92,39 @@ public class ProductController {
 	public void addToBasket() {
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
-		
-		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 
-        System.out.println("Adding to basket , productID : " + productId + "(" + foundProduct.getProductName() + ")");
+		//System.out.println("ProductController::Line98::" + temp);
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+		quantity = Integer.parseInt(temp);
+		
+		//System.out.println("Product Controller::Line100:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
+		
 		
 		loginDet = ldm.findByUsername(userId.getUsername());
-		orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
-		om.persistOrder(orderBasket);
 		
-		orderLine = new OrderLine(orderBasket, foundProduct, 1);
-		olm.persistOrderLine(orderLine);
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null)
+		{
+			if (olm.findByProductId(foundProduct.getProductId()) != null)
+			{
+				orderLine = olm.findByProductId(foundProduct.getProductId());
+				orderLine = new OrderLine(orderLine.getOrder(), orderLine.getProduct(), (orderLine.getQuantity() + quantity));
+				olm.updateOrderLine(orderLine);
+			}
+			else
+			{
+				orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+				olm.persistOrderLine(orderLine);
+			}
+		}
+		else
+		{
+			orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
+			om.persistOrder(orderBasket);
+			
+			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+			olm.persistOrderLine(orderLine);
+		}
 	}
 
 	/**
@@ -116,5 +148,13 @@ public class ProductController {
 	
 	public void setProductDetails(ProductDetails productDetails){
 		this.productDetails = productDetails;
+	}
+	
+	public String getTemp() {
+		return temp;
+	}
+
+	public void setTemp(String temp) {
+		this.temp = temp;
 	}
 }

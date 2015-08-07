@@ -34,6 +34,12 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">
+       	     				<h:outputText value="Individual Price" />
+       					</f:facet>				
+						<h:outputText value="£#{orderLine.product.productPrice}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
        	     				<h:outputText value="Item SubTotal" />
        					</f:facet>				
 						<h:outputText value="£#{orderLine.quantity *  orderLine.product.productPrice}"/><br/><br/>

@@ -125,5 +125,11 @@ public class OrderLineManagerDB implements OrderLineManager{
 		
 	}
 
+	@Override
+	public List<OrderLine> getOrderLines(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -56,9 +56,7 @@ public class OrderLineManagerALTest {
 		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", testCustomer1);
 		
 		orderLineManager = new OrderLineManagerAL();	
-		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
-				"10/10/15", 12380809, "12/10/15", "13/10/15",
-				"40", true, paymentDetails);
+		order = new Order(testCustomer1, OrderStatus.basket, paymentDetails);
 		
 		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
 		
@@ -102,13 +100,13 @@ public class OrderLineManagerALTest {
 		assertEquals(orderLineManager.findByOrderId(321), orderLine);
 	}*/
 
-	@Test
-	public void testFindByQuantity() {
-		orderlineAL.clear();	
-		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		assertEquals(orderLineManager.findByQuantity(50), orderLine);
-	}
+//	@Test
+//	public void testFindByQuantity() {
+//		orderlineAL.clear();	
+//		orderlineAL.add(orderLine);
+//		orderLineManager.persistOrderLine(orderlineAL);
+//		assertEquals(orderLineManager.findByQuantity(50), orderLine);
+//	}
 
 	@Test
 	public void testGetProductLine() {
@@ -121,24 +119,25 @@ public class OrderLineManagerALTest {
 	}
 
 	@Test
-	public void testUpdateProductLine() {
+	public void testUpdateOrderLine() {
 		orderlineAL.clear();	
 		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		orderLineManager.updateProductLine(orderLine);
-		assertEquals(orderLineManager.getOrderLine(), orderLine);
+		orderLineManager.persistOrderLine(orderLine);
+		orderLine = new OrderLine(order , product, 1);
+		orderLineManager.updateOrderLine(orderLine);
+		assertEquals(orderLineManager.getOrderLine().get(0).getQuantity(), 1);
 	}
 
-	@Test
-	public void testRemoveProductLine() {
-		ArrayList<OrderLine> oLine = new ArrayList<OrderLine>();
-		orderlineAL.clear();
-		orderlineAL.add(orderLine);
-		orderlineAL.add(orderLine1);
-		oLine.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		orderLineManager.removeProductLine(orderLine1);
-		assertEquals(orderLineManager.getOrderLine(), oLine);
-	}
+//	@Test
+//	public void testRemoveProductLine() {
+//		ArrayList<OrderLine> oLine = new ArrayList<OrderLine>();
+//		orderlineAL.clear();
+//		orderlineAL.add(orderLine);
+//		orderlineAL.add(orderLine1);
+//		oLine.add(orderLine);
+//		orderLineManager.persistOrderLine(orderlineAL);
+//		orderLineManager.removeProductLine(orderLine1);
+//		assertEquals(orderLineManager.getOrderLine(), oLine);
+//	}
 
 }

@@ -294,4 +294,10 @@ public class OrderManagerDB implements OrderManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Order findBasketByUsername(OrderStatus status, String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
