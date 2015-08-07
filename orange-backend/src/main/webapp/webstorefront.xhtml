@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-<<<<<<< HEAD
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -11,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-	<!-- author: JustinMabbutt llew-->
+	<!-- author: JustinMabbutt llew mwatson nickg-->
 
 	<ui:define name="pageTitle">NB Gardens - Store</ui:define>
 
@@ -32,9 +31,9 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-							<a href="webstorefront.xhtml"> 
-								<img src="resources/img/nbglogo.png" alt="Chania"
-									style="width: 300px; height: 300px; hover: opacity: 50%;" />
+							<a href="webstorefront.xhtml"> <img
+								src="resources/img/nbglogo.png" alt="Chania"
+								style="width: 300px; height: 300px; hover: opacity: 50%;" />
 							</a>
 
 						</div>
@@ -100,8 +99,7 @@
 									<br />
 									<td><h:outputText value="Category: #{product.category}" /></td>
 									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td>
-									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
 								</div>
 
 							</tr>
@@ -136,8 +134,7 @@
 									<br />
 									<td><h:outputText value="Category: #{product.category}" /></td>
 									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td>
-									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
 								</div>
 
 							</tr>
@@ -175,8 +172,7 @@
 									<br />
 									<td><h:outputText value="Category: #{product.category}" /></td>
 									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td>
-									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
 								</div>
 							</tr>
 						</div>
@@ -185,81 +181,5 @@
 			</div>
 		</div>
 	</ui:define>
-=======
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  template="templates/template.xhtml">
-		
-<!-- author: JustinMabbutt llew-->
-		
-<ui:define name="pageTitle">NB Gardens - Store</ui:define>
-
-<ui:define name="content">
-<div id="MainContent">
-	<div id="TitleBar">
-		<div id="TitleText">
-			<h1>Welcome to the NB Gardens Web Store</h1>
-		</div>
-	</div>
-	<div id="StoreHeader">
-		<h1>New Products</h1>
-		<ui:insert name="newProducts">
-			<h:dataTable id="storeHead" value="#{catalogController.prodsToDisplay}" var="product">
-				<h:column>
-					<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					<br/>
-					<h2><h:outputText value="#{product.productName}"/></h2>
-					<h:outputText value="£#{product.productPrice}"/>
-					<br/><br/>	
-				</h:column>					
-			</h:dataTable>
-		</ui:insert>
-	</div>
-
-	<div id="LowerStoreHeader">
-		<h1>Special Offers</h1>
-		<ui:insert name="specialOffers">
-		<h:dataTable id="lowerStoreHead" value="#{catalogController.prodsToDisplay}" var="product">
-			<h:column>
-				<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-			</h:column>
-			<h:column>
-				<br/>
-				<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-				<h:outputText value="#{product.description}"/><br/><br/>
-				<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-				<h:outputText value="Weight: #{product.weight}kg"/><br/>
-				<h:outputText value="Category: #{product.category}"/><br/><br/>
-				<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
-				<br/><br/>	
-			</h:column>
-		</h:dataTable>
-		</ui:insert>
-	</div>
-
-	<div id="LowerStoreHeader">
-		<h1>Catalogue Exclusive Items</h1>
-		<ui:insert name="exclusiveItems">
-		<h:dataTable id="exclusive" value="#{catalogController.prodsToDisplay}" var="product">
-			<h:column>
-				<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-			</h:column>
-			<h:column>
-				<br/>
-				<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-				<h:outputText value="#{product.description}"/><br/><br/>
-				<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-				<h:outputText value="Weight: #{product.weight}kg"/><br/>
-				<h:outputText value="Category: #{product.category}"/><br/><br/>
-				<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
-				<br/><br/>	
-			</h:column>
-		</h:dataTable>
-		</ui:insert>
-	</div>
-</div>
-</ui:define>
->>>>>>> 2d903d0973b25b00825304e81ab9b6daaaaa7f30
 
 </ui:composition>
