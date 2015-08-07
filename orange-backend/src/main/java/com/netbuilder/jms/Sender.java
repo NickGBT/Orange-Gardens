@@ -13,6 +13,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
@@ -20,33 +22,59 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 @ManagedBean(value="Sender")
 public class Sender {
 
+	private static final Logger logger = LogManager.getLogger();
+	
+	Connection connection;
+	Session session;
+	
 	public void sentToQueue(String payload, String destinationQueue){
 		
-	Context context;
 	try {
-		context = new InitialContext();
+		logger.info("Getting context and looking up connection factory");
+		Context context = new InitialContext();
 		ActiveMQConnectionFactory connectionFactory = (ActiveMQConnectionFactory) context.lookup("java:jboss/exported/ConnectionFactory");
 		
-		Connection connection = connectionFactory.createConnection();
+		logger.debug("Creating connection from the factory's settings.");
+		connection = connectionFactory.createConnection();
+		logger.info("Attempting to start the connection", connection);
 		connection.start();
+		logger.info("Successfully connected!");
 		
-		Session session = connection.createSession(false, AUTO_ACKNOWLEDGE);
+		session = connection.createSession(false, AUTO_ACKNOWLEDGE);
 		
 		Destination destination = session.createQueue(destinationQueue);
 		MessageProducer producer = session.createProducer(destination);
 		
 		TextMessage message = session.createTextMessage(payload);
 		
+		logger.debug("Sending message", message);
 		producer.send(message);
 		
-		session.close();
 		connection.close();
 		
 	} catch (NamingException e) {
+		logger.error("Error getting context or looking up connection factory", e);
 		e.printStackTrace();
 	} catch (JMSException e) {
-		// TODO Auto-generated catch block
+		logger.error("Error in JMS sending procedure.", e);
 		e.printStackTrace();
+	} finally{
+		if(session != null){
+			try {
+				session.close();
+			} catch (JMSException e) {
+				logger.info("Session closing error, or was never started.", e);
+				e.printStackTrace();
+			}
+		}
+		if(connection != null){
+			try {
+				connection.close();
+			} catch (JMSException e) {
+				logger.info("Connection closing error, or was never started.", e);
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	}
