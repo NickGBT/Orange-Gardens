@@ -9,7 +9,7 @@ public class ServerListener implements MessageListener {
 	public void onMessage(Message message) {
 		// TODO Auto-generated method stub
 
-		
+
 	}
 
 }
