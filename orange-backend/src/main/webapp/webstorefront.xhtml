@@ -1,83 +1,188 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html>
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  template="templates/template.xhtml">
-		
-<!-- author: JustinMabbutt llew-->
-		
-<ui:define name="pageTitle">NB Gardens - Store</ui:define>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="templates/template.xhtml">
 
-<ui:define name="content">
-<div id="MainContent">
-	<div id="TitleBar">
-		<div id="TitleText">
-			<h1>Welcome to the NB Gardens Web Store</h1>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<!-- author: JustinMabbutt llew-->
+
+	<ui:define name="pageTitle">NB Gardens - Store</ui:define>
+
+	<ui:define name="content">
+		<div id="MainContent">
+
+			<div class="container" style="width: 50%">
+				<br />
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<a href="webstorefront.xhtml"> 
+								<img src="resources/img/nbglogo.png" alt="Chania"
+									style="width: 300px; height: 300px; hover: opacity: 50%;" />
+							</a>
+
+						</div>
+
+						<div class="item">
+							<img src="resources/img/swagShed.jpg" alt="Chania"
+								style="width: 300px; height: 300px;" />
+						</div>
+
+						<div class="item">
+							<img src="resources/img/gardenLight.jpg" alt="Flower"
+								style="width: 300px; height: 300px;" />
+						</div>
+
+						<div class="item">
+
+							<img src="resources/img/gardenSeat.jpg" alt="Flower"
+								style="width: 300px; height: 300px;" />
+
+						</div>
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel" role="button"
+						data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel" role="button"
+						data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+
+			<div id="TitleBar">
+				<div id="TitleText">
+					<h1>Welcome to the NB Gardens Web Store</h1>
+				</div>
+			</div>
+
+			<div id="StoreHeader" style="border: 2px solid green;">
+				<h1>New Products</h1>
+				<ui:insert name="newProducts">
+
+					<ui:repeat var="product"
+						value="#{catalogController.prodsToDisplay}">
+
+						<div
+							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+							<tr>
+								<div style="max-width: 55%; float: left;">
+									<td><h:graphicImage value="#{product.imageLocation}"
+											width="200" height="200" /></td>
+								</div>
+								<div style="max-width: 45%; float: left;">
+									<td><h:outputText value="#{product.productName}" /><br />
+										<h:outputText value="#{product.description}" /></td>
+									<td><h:outputText
+											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
+									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
+									<br />
+									<td><h:outputText value="Category: #{product.category}" /></td>
+									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td>
+									<br />
+								</div>
+
+							</tr>
+						</div>
+
+
+					</ui:repeat>
+				</ui:insert>
+			</div>
+
+			<div style="width: 50%; float: left; padding: 150px;"></div>
+
+			<div id="SpecialOffer" style="border: 2px solid red;">
+				<h1>Special Offers</h1>
+				<ui:insert name="specialOffers">
+					<ui:repeat var="product"
+						value="#{catalogController.prodsToDisplay}">
+
+						<div
+							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+							<tr>
+								<div style="max-width: 55%; float: left;">
+									<td><h:graphicImage value="#{product.imageLocation}"
+											width="200" height="200" /></td>
+								</div>
+								<div style="max-width: 45%; float: left;">
+									<td><h:outputText value="#{product.productName}" /><br />
+										<h:outputText value="#{product.description}" /></td>
+									<td><h:outputText
+											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
+									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
+									<br />
+									<td><h:outputText value="Category: #{product.category}" /></td>
+									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td>
+									<br />
+								</div>
+
+							</tr>
+						</div>
+
+
+					</ui:repeat>
+
+				</ui:insert>
+			</div>
+			<div style="width: 50%; float: left; padding: 150px;"></div>
+			<br />
+			<div id="ExclusiveItems"
+				style="min-width: 50%; border: 2px solid black;">
+				<h1 style="padding-top: 30px;">Catalogue Exclusive Items</h1>
+				<ui:insert name="exclusiveItems">
+
+
+					<ui:repeat var="product"
+						value="#{catalogController.prodsToDisplay}">
+
+						<div
+							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+							<tr>
+								<div style="max-width: 55%; float: left;">
+									<td><h:graphicImage value="#{product.imageLocation}"
+											width="200" height="200" /></td>
+								</div>
+								<div style="max-width: 45%; float: left;">
+									<td><h:outputText value="#{product.productName}" /><br />
+										<h:outputText value="#{product.description}" /></td>
+									<td><h:outputText
+											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
+									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
+									<br />
+									<td><h:outputText value="Category: #{product.category}" /></td>
+									<br />
+									<td><h:outputText value="£#{product.productPrice}" /></td>
+									<br />
+								</div>
+							</tr>
+						</div>
+					</ui:repeat>
+				</ui:insert>
+			</div>
 		</div>
-	</div>
-	<div id="StoreHeader">
-		<h1>New Products</h1>
-		<ui:insert name="newProducts">
-				<h:dataTable id="storeHead" value="#{catalogController.prodsToDisplay}" var="product">
-					<h:column>
-						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					<br/>
-						<h2><h:outputText value="#{product.productName}"/></h2>
-						<h:outputText value="£#{product.productPrice}"/>
-						<br/><br/>	
-						</h:column>
-						
-				</h:dataTable>
-				</ui:insert>
-	</div>
-
-	<div id="LowerStoreHeader">
-		<h1>Special Offers</h1>
-		<ui:insert name="specialOffers">
-		<h:dataTable id="lowerStoreHead" value="#{catalogController.prodsToDisplay}" var="product">
-
-					<h:column>
-						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					</h:column>
-					<h:column>
-					<br/>
-						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-						<h:outputText value="#{product.description}"/><br/><br/>
-						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-						<h:outputText value="Weight: #{product.weight}kg"/><br/>
-						<h:outputText value="Category: #{product.category}"/><br/><br/>
-						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
-						<br/><br/>	
-					</h:column>
-				</h:dataTable>
-				</ui:insert>
-	</div>
-
-	<div id="LowerStoreHeader">
-		<h1>Catalogue Exclusive Items</h1>
-		<ui:insert name="exclusiveItems">
-		<h:dataTable id="exclusive" value="#{catalogController.prodsToDisplay}" var="product">
-
-					<h:column>
-						<h:graphicImage value="#{product.imageLocation}" width="200" height="200"/>
-					</h:column>
-					<h:column>
-					<br/>
-						<h2><h:outputText value="#{product.productName}"/></h2><br/><br/>
-						<h:outputText value="#{product.description}"/><br/><br/>
-						<h:outputText value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm"/><br/>
-						<h:outputText value="Weight: #{product.weight}kg"/><br/>
-						<h:outputText value="Category: #{product.category}"/><br/><br/>
-						<h3><h:outputText value="£#{product.productPrice}"/></h3><br/><br/>
-						<br/><br/>	
-					</h:column>
-				</h:dataTable>
-				</ui:insert>
-	</div>
-</div>
-</ui:define>
+	</ui:define>
 
 </ui:composition>

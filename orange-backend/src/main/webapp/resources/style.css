@@ -14,12 +14,18 @@ body{
 
 html,body { 
 	height: 100%;	
+	background-color: #242051;
 }
 
 #wrap {
 	min-height:100%;
 	height:100%
 	margin: 0 auto -4em;
+	background-color: #242051;
+}
+
+.carouselimages:hover {
+	opacity: 0.6;
 }
 
 #content{
@@ -47,6 +53,7 @@ html,body {
 	border-bottom: 10px solid #1b5e20;
 	border-left: 10px solid #1b5e20;
 	border-bottom-left-radius: 50px;
+	min-width: 50%;
 }
 
 #logo{
@@ -121,6 +128,7 @@ html,body {
 	padding: 10px 20px;
 	text-decoration: none;
 	background-color: rgba(255,255,255,0.15);
+	min-width: 100%;
 }
 
 .headerButton:hover{
@@ -130,6 +138,7 @@ html,body {
 .headerButton:active{
 	background-color: rgba(0,0,0,0.15);
 }
+
 
 .searchText{
 	width: 325px;
@@ -186,17 +195,6 @@ html,body {
 	border-right: 10px solid #1b5e20;
 	border-top-right-radius: 50px;
 
-}
-
-.sliderImage { 
-	height: 345px;
-	
-}
-
-.imageClip{
-    width: 1000px;
-    height: 345px;
-    overflow:hidden;
 }
 
 #copyright{
