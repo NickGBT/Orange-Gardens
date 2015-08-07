@@ -87,8 +87,15 @@
 							style="float: left; width: 50%; padding: 2%; ">
 							<tr>
 								<div style="min-width: 30%; max-width: 55%; float: left;overflow:auto; padding: 1px;">
-									<td><h:graphicImage value="#{product.imageLocation}"
-											width="300" height="300"/></td>
+									<td>
+									<h:form>
+											<input type="hidden" name="productId" value="#{product.productId}" />										
+											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
+															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px" />
+											
+											
+										</h:form>
+									</td>
 								</div>
 								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px;">
 									<td><h:outputText value="#{product.productName}" /><br />
@@ -122,8 +129,15 @@
 							style="float: left; width: 50%; padding: 2%;">
 							<tr>
 								<div style="min-width: 30%; max-width: 55%; float: left;overflow:auto; padding: 1px;">
-									<td><h:graphicImage value="#{product.imageLocation}"
-											width="300" height="300"/></td>
+									<td>
+										<h:form>
+											<input type="hidden" name="productId" value="#{product.productId}" />										
+											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
+															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px" />
+											
+											
+										</h:form>
+									</td>
 								</div>
 								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px;">
 									<td><h:outputText value="#{product.productName}" /><br />
@@ -135,6 +149,7 @@
 									<td><h:outputText value="Category: #{product.category}" /></td>
 									<br />
 									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
+							
 								</div>
 
 							</tr>

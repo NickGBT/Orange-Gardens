@@ -2,11 +2,14 @@ package com.netbuilder.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.util.ProductDetails;
@@ -32,7 +35,8 @@ public class CatalogController
 	private String productId;
 	
 	public String setProductPage(){
-				
+			
+		System.out.println("Set product Page Beign Called");
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
 				
