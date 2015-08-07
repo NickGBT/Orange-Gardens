@@ -40,6 +40,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
 
+import org.apache.taglibs.standard.resources.Resources;
+
 import com.netbuilder.pathfinding.*;
 
 /**
@@ -56,7 +58,7 @@ public class GladosGui
 	private JLabel splashLabel, backgroundLabel;
 	private JLabel[][] mapLabel;
 	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginPanel, fillPanel;
-	private BufferedImage splash, background;
+	private Image splash, background;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
@@ -167,15 +169,8 @@ public class GladosGui
 	public void displaySplash()
 	{
 		logger.entering(getClass().getName(), "displaySplash");
-		try 
-		{
-			splash = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/splash.jpg"));
-			background = ImageIO.read(new File("C:/Users/justi_000/workspace/ee/Orange-Gardens/orange-dops/images/background.png"));
-		} 
-		catch (IOException ie) 
-		{
-			logger.log(Level.SEVERE, "Error loading images", ie);
-		}
+		splash = Toolkit.getDefaultToolkit().getImage("images/splash.jpg");
+		background = Toolkit.getDefaultToolkit().getImage("images/background.png");
 		splashIcon.setImage(splash); backgroundIcon.setImage(background);
 		splashLabel.setIcon(splashIcon); backgroundLabel.setIcon(backgroundIcon);
 		splashFrame = new JFrame();
