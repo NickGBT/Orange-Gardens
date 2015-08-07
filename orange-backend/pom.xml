@@ -63,38 +63,49 @@
 			<artifactId>bootstrap-maven</artifactId>
 			<version>2.0.4</version>
 		</dependency>
-		
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter</artifactId> -->
-<!-- 			<version>1.2.5.RELEASE</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-jms</artifactId> -->
-<!-- 			<version>4.2.0.RELEASE</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.activemq</groupId> -->
-<!-- 			<artifactId>activemq-broker</artifactId> -->
-<!-- 			<version>5.11.1</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-webmvc</artifactId> -->
-<!-- 			<version>4.2.0.RELEASE</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.hateoas</groupId> -->
-<!-- 			<artifactId>spring-hateoas</artifactId> -->
-<!-- 			<version>0.18.0.RELEASE</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
-<!-- 			<artifactId>jackson-annotations</artifactId> -->
-<!-- 			<version>2.6.0</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-broker</artifactId>
+			<version>5.11.1</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter</artifactId> -->
+		<!-- <version>1.2.5.RELEASE</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-jms</artifactId> -->
+		<!-- <version>4.2.0.RELEASE</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-webmvc</artifactId> -->
+		<!-- <version>4.2.0.RELEASE</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.hateoas</groupId> -->
+		<!-- <artifactId>spring-hateoas</artifactId> -->
+		<!-- <version>0.18.0.RELEASE</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.fasterxml.jackson.core</groupId> -->
+		<!-- <artifactId>jackson-annotations</artifactId> -->
+		<!-- <version>2.6.0</version> -->
+		<!-- </dependency> -->
 
 	</dependencies>
 
