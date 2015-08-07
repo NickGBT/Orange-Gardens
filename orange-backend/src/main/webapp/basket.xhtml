@@ -46,6 +46,15 @@
        					</f:facet>				
 						<h:outputText value="£#{orderLine.quantity *  orderLine.product.productPrice}"/><br/><br/>
 					</h:column>
+					<h:column>
+						<h:form>
+					   	 	<input type="hidden" name="productId" value="#{orderLine.product.productId}" />
+
+							<h:commandButton value="Remove from Basket"  id="basketRemove"
+								action="#{basketController.removeFromBasket}">
+						</h:commandButton>
+					    </h:form>
+					</h:column>
 				</h:dataTable>
 				
    				<h2><h:outputText value="Total: £#{basketController.total}" /> </h2>

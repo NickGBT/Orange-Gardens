@@ -5,11 +5,18 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import com.netbuilder.entities.LoginDetails;
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.UserId;
 
 /**
@@ -27,8 +34,22 @@ public class BasketController
 	private UserId userId;
 	@Inject
 	private OrderLineManager orderLineManager;
+	@Inject
+	private ProductManager pm;
+	@Inject
+	private LoginDetailsManager ldm;
+	@Inject
+	private OrderLineManager olm;
+	@Inject
+	private OrderManager om;
 	
 	private List<OrderLine> basket;
+	private String productId;
+	private String temp;
+	private int quantity;
+	private LoginDetails loginDet;
+	private Product foundProduct;
+	private OrderLine orderLine;
 	
 	private double subtotal =0, total = 0;
 
@@ -83,5 +104,33 @@ public class BasketController
 	public void setTotal(double total) {
 		this.total = total;
 	}		
+	
+	public void removeFromBasket() 
+	{
+		productId = FacesContext.getCurrentInstance().getExternalContext().
+				getRequestParameterMap().get("productId");
+
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+		quantity = Integer.parseInt(temp);
+		
+		loginDet = ldm.findByUsername(userId.getUsername());
+		
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null)
+		{
+			if (olm.findByProductId(foundProduct.getProductId()) != null)
+			{
+				orderLine = olm.findByProductId(foundProduct.getProductId());
+				olm.removeProductLine(orderLine);
+			}
+			else
+			{
+				System.out.println("BasketController::Line127:: Basket does not contain said item.");
+			}
+		}
+		else
+		{
+			System.out.println("BasketController::Line134:: Cannot find user basket.");
+		}
+	}
 
 }
