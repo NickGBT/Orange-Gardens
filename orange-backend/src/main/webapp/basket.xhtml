@@ -13,13 +13,44 @@
 <ui:define name="pageTitle">NB Gardens - Your Basket</ui:define>
 
 <ui:define name="content">	
+			
+			<div id="title">
+			<h1>Basket</h1>
+			</div>
+			
 				
 			<ui:insert name="NBGardensCatalog">
-				<h:dataTable id="catalogTable" value="#{basketController.getOrderBasket()}" var="product">
+				<h:dataTable id="catalogTable" value="#{basketController.basket}" var="orderLine" border="1">
+										
 					<h:column>
-						
+						<f:facet name="header">
+       	     				<h:outputText value="Item Name" />
+       					 </f:facet>
+						<h:outputText value="#{orderLine.product.productName}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Quantity" />
+       					</f:facet>
+						<h:outputText value="#{orderLine.quantity}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item SubTotal" />
+       					</f:facet>				
+						<h:outputText value="£#{orderLine.quantity *  orderLine.product.productPrice}"/><br/><br/>
 					</h:column>
 				</h:dataTable>
+				
+   				<h2><h:outputText value="Total: £#{basketController.total}" /> </h2>
+    			<br />
+    			<br />
+    			<h:form>
+					   	<h:commandButton value="Proceed to checkout"  id="checkout"
+								action="ordercheckout.xhtml">
+						</h:commandButton>
+				</h:form>
+    			
 			</ui:insert>
 
 		</ui:define>

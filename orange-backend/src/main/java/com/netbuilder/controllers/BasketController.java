@@ -30,13 +30,7 @@ public class BasketController
 	
 	private List<OrderLine> basket;
 	
-	private double subtotal =100.0, total = 100.0;
-	
-	public List<OrderLine> getOrderBasket()
-	{
-		basket = orderLineManager.getOrderLines(userId.getUsername());
-		return basket;		
-	}
+	private double subtotal =0, total = 0;
 
 	public OrderManager getBasketManager() {
 		return basketManager;
@@ -63,6 +57,7 @@ public class BasketController
 	}
 
 	public List<OrderLine> getBasket() {
+		basket = orderLineManager.getOrderLines(userId.getUsername());
 		return basket;
 	}
 
@@ -79,6 +74,9 @@ public class BasketController
 	}
 
 	public double getTotal() {
+		for(OrderLine ol : basket){
+			total += ol.getProduct().getProductPrice();
+		}
 		return total;
 	}
 
