@@ -16,9 +16,7 @@
 			
 			<div id="title">
 			<h1>Basket</h1>
-			</div>
-			
-				
+			</div>			
 			<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{basketController.basket}" var="orderLine" border="1">
 										
@@ -45,6 +43,15 @@
        	     				<h:outputText value="Item SubTotal" />
        					</f:facet>				
 						<h:outputText value="£#{orderLine.quantity *  orderLine.product.productPrice}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<h:form>
+					   	 	<input type="hidden" name="productId" value="#{orderLine.product.productId}" />
+
+							<h:commandButton value="Remove from Basket"  id="basketRemove"
+								action="#{basketController.removeFromBasket}">
+						</h:commandButton>
+					    </h:form>
 					</h:column>
 				</h:dataTable>
 				
