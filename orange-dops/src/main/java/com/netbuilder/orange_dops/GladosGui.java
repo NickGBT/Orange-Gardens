@@ -33,6 +33,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -69,7 +70,8 @@ public class GladosGui
 	private Font gladosFont;
 	private int[][] baseMap;
 	private JTextField productName, quantity, boxSize; 
-	private LoginTextField username, password;
+	private LoginTextField username;
+	private JPasswordField password;
 	private List<GladosNode> testPath;
 	private Map<GladosNode> warehouseMap;
 	private String user, pass;
@@ -115,7 +117,7 @@ public class GladosGui
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton(); login = new JButton();
 		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35); 
-		username = new LoginTextField("Username:"); password = new LoginTextField("Password:");
+		username = new LoginTextField("Username:"); password = new JPasswordField(11);
 		splash = null; background = null;
 		user = ""; pass = "";
 		splashTimer = new Timer();
@@ -229,6 +231,7 @@ public class GladosGui
 		loginPanel.add(username, buttonLayoutConstraints);
 		password.setFont(gladosFont);
 		password.setPreferredSize(new Dimension(200, 30));
+		
 		buttonLayoutConstraints.gridx = 1;
 		buttonLayoutConstraints.gridy = 0;
 		loginPanel.add(password, buttonLayoutConstraints);
@@ -247,7 +250,7 @@ public class GladosGui
 				else
 				{
 					user = username.getText();
-					pass = password.getText();
+					pass = password.getPassword().toString();
 					//validate
 					mainFrame.setTitle("NB GLADOS - " + user);
 					displayGetOrder();
@@ -279,6 +282,7 @@ public class GladosGui
 		mainFrame.getContentPane().remove(mapPanel);
 		mainFrame.getContentPane().remove(orderButtons);
     	mainFrame.getContentPane().remove(loginPanel);
+    	mainFrame.getContentPane().remove(fillPanel);
    		mainFrame.invalidate();
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 150));
