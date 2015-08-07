@@ -75,7 +75,7 @@ public class BasketController
 
 	public double getTotal() {
 		for(OrderLine ol : basket){
-			total += ol.getProduct().getProductPrice();
+			total += (ol.getProduct().getProductPrice() * ol.getQuantity());
 		}
 		return total;
 	}
