@@ -230,8 +230,7 @@ public class GladosGui
 		buttonLayoutConstraints.gridy = 0;
 		loginPanel.add(username, buttonLayoutConstraints);
 		password.setFont(gladosFont);
-		password.setPreferredSize(new Dimension(200, 30));
-		
+		password.setPreferredSize(new Dimension(200, 30));	
 		buttonLayoutConstraints.gridx = 1;
 		buttonLayoutConstraints.gridy = 0;
 		loginPanel.add(password, buttonLayoutConstraints);
@@ -243,7 +242,7 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if(username.getText().equals("") || username.getText().equals("Username:") || password.getText().equals("") || password.getText().equals("Password:"))
+				if(username.getText().equals("") || username.getText().equals("Username:") || password.getPassword().toString().equals("") || password.getPassword().toString().equals("Password:"))
 				{
 					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 				}
@@ -261,7 +260,7 @@ public class GladosGui
 		buttonLayoutConstraints.gridy = 1;
 		loginPanel.add(login, buttonLayoutConstraints);
 		loginPanel.setBackground(new Color(0, 0, 0, 0));
-		fillPanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 3));
+		fillPanel.setPreferredSize(new Dimension(screenSize.width, 680 / 3));
 		fillPanel.setBackground(new Color(0, 0, 0, 0));
 		mainFrame.getContentPane().add(fillPanel, BorderLayout.NORTH);
 		mainFrame.getContentPane().add(loginPanel, BorderLayout.CENTER);
