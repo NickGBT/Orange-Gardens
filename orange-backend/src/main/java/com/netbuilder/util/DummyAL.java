@@ -12,15 +12,13 @@ import com.netbuilder.enums.ProductCategory;
 public class DummyAL 
 {
 	
-	Product product = new Product("resources/img/gardenLight.jpg", "Garden Light", 25.25, 10, 10, 11, 10.50, "This will light up your life.", ProductCategory.Accessory);	
+	Product product = new Product(1,"resources/img/gardenLight.jpg", "Garden Light", 25.25, 10, 10, 11, 10.50, "This will light up your life.", ProductCategory.Accessory);	
 	
-	Product product2 = new Product("resources/img/coolGnome.jpg", "Cool Gnome", 29.25, 53, 90, 15, 15.50, "This gnome is cool.", ProductCategory.Gnome);	
+	Product product2 = new Product(2, "resources/img/coolGnome.jpg", "Cool Gnome", 29.25, 53, 90, 15, 15.50, "This gnome is cool.", ProductCategory.Gnome);	
 	
-	Product product3 = new Product("resources/img/gardenSeat.jpg", "Relaxation Chair", 76.25, 80, 45, 18, 19.50, "Relax.", ProductCategory.Furniture);
+	Product product3 = new Product(3, "resources/img/gardenSeat.jpg", "Relaxation Chair", 76.25, 80, 45, 18, 19.50, "Relax.", ProductCategory.Furniture);
 	
-	Product product4 = new Product("resources/img/swagShed.jpg", "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
-	
-	Product product5 = new Product(1,"resources/img/swagShed.jpg",  "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
+	Product product4 = new Product(4, "resources/img/swagShed.jpg", "Swag Shed", 1976.25, 80, 45, 18, 19.50, "Store your swag inside.", ProductCategory.Building);
 	
 	public DummyAL(){
 		allProducts.clear();
@@ -28,7 +26,6 @@ public class DummyAL
 		allProducts.add(product2);
 		allProducts.add(product3);
 		allProducts.add(product4);
-		allProducts.add(product5);
 	}
 	
 	public List<Product> allProducts = new ArrayList<Product>();
@@ -48,6 +45,5 @@ public class DummyAL
 		allProducts.add(product2);
 		allProducts.add(product3);
 		allProducts.add(product4);
-		allProducts.add(product5);
 	}
 }

@@ -46,7 +46,7 @@ public class RegistrationController
 	public String registerCustomer()
 	{
 		rand = new Random();
-		System.out.println("Worked ");
+		System.out.println("RegistrationController::Line 49:: Worked ");
 
 		if(registrationDetails.checkAllUserEntries())
 		{
