@@ -20,7 +20,7 @@ import com.netbuilder.util.UserId;
 import com.netbuilder.util.OrderDetails;
 /**
  * 
- * @author ngilbert
+ * @author ngilbert llew
  *
  *
  **/
@@ -33,7 +33,11 @@ public class OrderCheckoutController
 	private TestData testData;
 	
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
+	
+	@Inject
 	private AddressManager address;	
+	
+	@Inject
 	private PaymentDetailsManager paymentDetails;
 	
 	@Inject
@@ -43,6 +47,10 @@ public class OrderCheckoutController
 	
 	@Inject
 	private UserId userId;
+	
+	public void testMethod(){
+		System.out.println("test");
+	}
 	
 	public Order getOrder() 
 	{
