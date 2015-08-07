@@ -52,7 +52,7 @@ public class LoginController implements Serializable{
 		else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Incorrect username/password combination!"));
 			loggedIn = false;
-			return "login.xhtml";
+			return "customerlogin.xhtml";
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class LoginController implements Serializable{
 	public String logout(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		loggedIn = false;
-		return "index.xhtml";
+		return "webstorefront.xhtml";
 	}
 
 	public boolean getLoggedIn() {
