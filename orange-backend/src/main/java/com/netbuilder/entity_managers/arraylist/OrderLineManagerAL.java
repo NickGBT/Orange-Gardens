@@ -70,7 +70,7 @@ public class OrderLineManagerAL implements OrderLineManager{
 
 	public void updateOrderLine(OrderLine orderLine) {
 		for (OrderLine o : orderLines){
-			if(o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()){
+			if(o.getOrder().getCustomer().getUsername().equals(orderLine.getOrder().getCustomer().getUsername())){
 				orderLines.set(orderLines.indexOf(o), orderLine);
 			}
 		}
@@ -78,7 +78,8 @@ public class OrderLineManagerAL implements OrderLineManager{
 
 	public void removeProductLine(OrderLine orderLine) {
 		for (OrderLine o : orderLines){
-			if(o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()){
+			if(o.getOrder().getCustomer().getUsername().equals(orderLine.getOrder().getCustomer().getUsername()))
+			{
 				orderLines.remove(orderLines.indexOf(o));
 			}
 		}
