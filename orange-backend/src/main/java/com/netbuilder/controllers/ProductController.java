@@ -93,11 +93,11 @@ public class ProductController {
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
 
-		System.out.println("ProductController::Line98::" + temp);
+		//System.out.println("ProductController::Line98::" + temp);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 		quantity = Integer.parseInt(temp);
 		
-		System.out.println("Product Controller::Line100:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
+		//System.out.println("Product Controller::Line100:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
 		
 		loginDet = ldm.findByUsername(userId.getUsername());
 		orderBasket = new Order(loginDet, OrderStatus.basket, null);	    
