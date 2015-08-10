@@ -14,16 +14,19 @@ import com.netbuilder.entities.Address;
  */
 @Named
 @RequestScoped
-public interface AddressManager 
-{
-	//CREATE
+public interface AddressManager {
+	// CREATE
 	public void persistAddress(Address address);
+
 	public void persistAddresses(List<Address> addresses);
 
 	// READ
 	public List<Address> findByPostcode(String postcode);
+
 	public Address findByAddressLabel(String addressLabel);
+
 	public Address findByUserId(int userId);
+
 	public List<Address> getAddresses();
 
 	// UPDATE

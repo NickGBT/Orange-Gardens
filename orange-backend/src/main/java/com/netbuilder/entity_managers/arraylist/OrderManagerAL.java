@@ -68,13 +68,13 @@ public class OrderManagerAL implements OrderManager {
 		} else
 			return orderResults;
 	}
-	
+
 	/**
 	 * 
 	 * @author ngilbert
 	 *
 	 **/
-	
+
 	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis) {
 		List<Order> orderResults = new ArrayList<Order>();
 
@@ -119,7 +119,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public List<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
+	public List<Order> findByTwoDatesOrderPlaced(String firstDate,
+			String secondDate) {
 		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -146,7 +147,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public List<Order> findByTwoDatesOrderDispatched(String firstDate, String secondDate) {
+	public List<Order> findByTwoDatesOrderDispatched(String firstDate,
+			String secondDate) {
 		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -173,7 +175,8 @@ public class OrderManagerAL implements OrderManager {
 			return orderResults;
 	}
 
-	public List<Order> findByTwoDatesOrderDelivered(String firstDate, String secondDate) {
+	public List<Order> findByTwoDatesOrderDelivered(String firstDate,
+			String secondDate) {
 		List<Order> orderResults = new ArrayList<Order>();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -213,8 +216,8 @@ public class OrderManagerAL implements OrderManager {
 		if (orderResults.isEmpty()) {
 			return null;
 		} else
-		return orderResults;
-		
+			return orderResults;
+
 	}
 
 	public List<Order> findByEmployeeId(int employeeId) {
@@ -253,10 +256,9 @@ public class OrderManagerAL implements OrderManager {
 
 	@Override
 	public int findWishlist(OrderStatus status, int customerId) {
-		for (Order o : orders)
-		{
-			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
-			{
+		for (Order o : orders) {
+			if (o.getOrderStatus().equals(status)
+					&& (o.getCustomer().getUserId() == customerId)) {
 				return o.getOrderID();
 			}
 		}
@@ -265,36 +267,32 @@ public class OrderManagerAL implements OrderManager {
 
 	@Override
 	public Order findBasket(OrderStatus status, int customerId) {
-		for (Order o : orders)
-		{
-			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
-			{
-				return o;
-			}
-		}
-		return null;
-	}
-	
-	@Override
-	public Order findBasketByUsername(OrderStatus status, String username) {
-		for (Order o : orders)
-		{
-			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUsername().equals(username)))
-			{
+		for (Order o : orders) {
+			if (o.getOrderStatus().equals(status)
+					&& (o.getCustomer().getUserId() == customerId)) {
 				return o;
 			}
 		}
 		return null;
 	}
 
-	
+	@Override
+	public Order findBasketByUsername(OrderStatus status, String username) {
+		for (Order o : orders) {
+			if (o.getOrderStatus().equals(status)
+					&& (o.getCustomer().getUsername().equals(username))) {
+				return o;
+			}
+		}
+		return null;
+	}
+
 	public List<Order> findPreviousOrders(OrderStatus status, int customerId) {
 		List<Order> prevOrders = new ArrayList<Order>();
-		
-		for (Order o : orders)
-		{
-			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUserId() == customerId))
-			{
+
+		for (Order o : orders) {
+			if (o.getOrderStatus().equals(status)
+					&& (o.getCustomer().getUserId() == customerId)) {
 				prevOrders.add(o);
 			}
 		}

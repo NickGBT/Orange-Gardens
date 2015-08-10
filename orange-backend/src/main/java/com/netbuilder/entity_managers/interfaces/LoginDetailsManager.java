@@ -16,19 +16,23 @@ import com.netbuilder.entities.LoginDetails;
 @Named
 @RequestScoped
 public interface LoginDetailsManager {
-	//CREATE
+	// CREATE
 	public void persistLoginDetails(LoginDetails details);
-	
-	//READ
+
+	// READ
 	public LoginDetails findByUsername(String username);
+
 	public LoginDetails findByEmail(String email);
+
 	public LoginDetails findByUserId(int userId);
+
 	public int checkPassword(String name, String password);
+
 	public List<LoginDetails> getAllLoginDetails();
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateLoginDetails(LoginDetails details);
-	
-	//DELETE
+
+	// DELETE
 	public void deleteLoginDetails(LoginDetails details);
 }

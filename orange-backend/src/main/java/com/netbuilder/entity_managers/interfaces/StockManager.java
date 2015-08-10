@@ -10,24 +10,30 @@ import com.netbuilder.entities.Stock;
  *
  */
 
-public interface StockManager 
-{
-	//CREATE
+public interface StockManager {
+	// CREATE
 	public void persistStock(Stock stock);
+
 	public void persistStock(List<Stock> stock);
-	
-	//READ
+
+	// READ
 	public List<Stock> findByCriticalThreshold(int criticalThreshold);
+
 	public List<Stock> findByRequiredStock(int requiredStock);
+
 	public List<Stock> findByStockLevel(int stockLevel);
+
 	public List<Stock> findByStockAvailable(int stockAvailable);
+
 	public List<Stock> findByMaximumStock(int maxStock);
+
 	public Stock findByProductID(int productID);
+
 	public List<Stock> getStock();
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateStock(Stock stock);
-	
-	//DELETE
+
+	// DELETE
 	public void removeStock(Stock stock);
 }
