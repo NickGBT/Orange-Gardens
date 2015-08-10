@@ -23,30 +23,29 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  *
  */
 
-@NamedQueries ({@NamedQuery(name = "FindByProductID", query = "SELECT o FROM order_line WHERE o.product_id = :product_id"),
-				@NamedQuery(name = "FindByOrderID", query = "SELECT o FROM order_line WHERE o.order_id = :order_id"),
-				@NamedQuery(name = "FindByQuantity", query = "SELECT o FROM order_line WHERE o.quantity = :quantity")})
-
+@NamedQueries({
+		@NamedQuery(name = "FindByProductID", query = "SELECT o FROM order_line WHERE o.product_id = :product_id"),
+		@NamedQuery(name = "FindByOrderID", query = "SELECT o FROM order_line WHERE o.order_id = :order_id"),
+		@NamedQuery(name = "FindByQuantity", query = "SELECT o FROM order_line WHERE o.quantity = :quantity") })
 @Default
 @Stateless
-public class OrderLineManagerDB implements OrderLineManager{
+public class OrderLineManagerDB implements OrderLineManager {
 
 	@Inject
 	private PersistenceManager pm;
-	
+
 	public void persistOrderLine(OrderLine orderLine) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(orderLine);
 		em.getTransaction().commit();
-		pm.closeEntityManager(em);		
+		pm.closeEntityManager(em);
 	}
 
 	public void persistOrderLine(List<OrderLine> orderLine) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
-		for(OrderLine c : orderLine)
-		{
+		for (OrderLine c : orderLine) {
 			em.persist(c);
 		}
 		em.getTransaction().commit();
@@ -55,12 +54,13 @@ public class OrderLineManagerDB implements OrderLineManager{
 
 	public OrderLine findByProductId(int productID) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID", OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID",
+				OrderLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("product_id", productID);
-		try{
+		try {
 			return tq.getSingleResult();
-		}catch(NoResultException e){
+		} catch (NoResultException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -68,12 +68,13 @@ public class OrderLineManagerDB implements OrderLineManager{
 
 	public List<OrderLine> findByOrderId(int orderId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID", OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID",
+				OrderLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("order_id", orderId);
-		try{
+		try {
 			return tq.getResultList();
-		}catch(NoResultException e){
+		} catch (NoResultException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -82,22 +83,23 @@ public class OrderLineManagerDB implements OrderLineManager{
 	public List<OrderLine> findByQuantity(int quantity) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByDeliveryID", OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByDeliveryID",
+				OrderLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
-		try{
-			orderLine =  (ArrayList<OrderLine>) tq.getResultList();
-		}catch(NoResultException e){
+		try {
+			orderLine = (ArrayList<OrderLine>) tq.getResultList();
+		} catch (NoResultException e) {
 			e.printStackTrace();
 			return null;
 		}
 		return orderLine;
 	}
-	
+
 	public List<OrderLine> getOrderLine() {
 		EntityManager em = pm.createEntityManager();
-		List<OrderLine> orderLine = 
-				(ArrayList<OrderLine>) em.createQuery("select d from order_line d", OrderLine.class).getResultList();
+		List<OrderLine> orderLine = (ArrayList<OrderLine>) em.createQuery(
+				"select d from order_line d", OrderLine.class).getResultList();
 		pm.closeEntityManager(em);
 		return orderLine;
 	}
@@ -105,24 +107,24 @@ public class OrderLineManagerDB implements OrderLineManager{
 	public void updateProductLine(OrderLine orderLine) {
 		if (orderLine == null)
 			throw new ValidationException("null value passed ");
-			EntityManager em = pm.createEntityManager();
-			em.merge(orderLine);
-			pm.closeEntityManager(em);
-		
+		EntityManager em = pm.createEntityManager();
+		em.merge(orderLine);
+		pm.closeEntityManager(em);
+
 	}
 
 	public void removeProductLine(OrderLine orderLine) {
 		if (orderLine == null)
 			throw new ValidationException("null value passed");
-			EntityManager em = pm.createEntityManager();
-			em.remove(orderLine);
-			pm.closeEntityManager(em);
-		
+		EntityManager em = pm.createEntityManager();
+		em.remove(orderLine);
+		pm.closeEntityManager(em);
+
 	}
 
 	public void updateOrderLine(OrderLine orderLine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -130,6 +132,5 @@ public class OrderLineManagerDB implements OrderLineManager{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

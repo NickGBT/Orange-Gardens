@@ -8,7 +8,6 @@
 		
 <!-- author: ngilbert llew-->
 
-<h:outputScript library="js" name="fillInTextBoxes.js" />
 <ui:define name="pageTitle">NB Gardens - OrderCheckout</ui:define>
 
 <ui:define name="content">
@@ -17,7 +16,6 @@
 			<h1>Order Checkout</h1>
 			</div>
 			
-				
 			<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{basketController.basket}" var="orderLine" border="1">
 										
@@ -54,7 +52,10 @@
 		<h2>Payment Details</h2>
 		
 		<div id="registeredPaymentDetails">
-				Card Type : <h:inputText value="#{orderCheckoutController.paymentDetails.cardType}"/><br/>
+		
+				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" >
+    				<f:selectItems value="#{orderCheckoutController.enumValues}" />
+				</h:selectOneMenu><br/>
 				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}"/><br/>
 				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}"/><br/>
 				Security Number : <h:inputText value="#{orderCheckoutController.paymentDetails.securityNumber}"/><br/>
@@ -65,7 +66,7 @@
 		
 		<h2>Billing Address</h2>	
 		<div id="billingAddress">
-				<h:selectBooleanCheckbox value="test" onclick="showMessage()"/> Use registered address <br />
+			
 				Address Line 1 : <h:inputText value="#{orderCheckoutController.address.addressLine1}"/><br/>
 				Address Line 2 : <h:inputText value="#{orderCheckoutController.address.addressLine2}"/><br/>
 				Address Line 3 : <h:inputText value="#{orderCheckoutController.address.addressLine3}"/><br/>
@@ -75,9 +76,9 @@
 		</div>
 		
 	<div id="submitOrder">
-				<h:commandButton value="Place Order "  id="checkout"
-							action="orderCheckoutController.testMethod">
-				</h:commandButton>>
+				<h:commandButton value="Place Order"  id="checkout"
+							action="#{orderCheckoutController.changeOrderStatus}">
+				</h:commandButton>
 	</div>	
 	</div>
 	</div>

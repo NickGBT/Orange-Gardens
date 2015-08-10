@@ -23,19 +23,17 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  *
  */
 
-@NamedQueries ({@NamedQuery(name = "FindByPostcode", query = "SELECT a FROM address WHERE a.postcode = :postcode"), 
-				@NamedQuery(name = "FindByAddressLabel", query = "SELECT a FROM address WHERE a.address_label = :address_label"),
-				@NamedQuery(name = "FindByUserId", query = "SELECT a FROM address WHERE a.user_id = :user_id")})
-
+@NamedQueries({
+		@NamedQuery(name = "FindByPostcode", query = "SELECT a FROM address WHERE a.postcode = :postcode"),
+		@NamedQuery(name = "FindByAddressLabel", query = "SELECT a FROM address WHERE a.address_label = :address_label"),
+		@NamedQuery(name = "FindByUserId", query = "SELECT a FROM address WHERE a.user_id = :user_id") })
 @Default
 @Stateless
-public class AddressManagerDB implements AddressManager 
-{
+public class AddressManagerDB implements AddressManager {
 	@Inject
 	private PersistenceManager pm;
-	
-	public void persistAddress(Address address)
-	{
+
+	public void persistAddress(Address address) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(address);
@@ -43,83 +41,70 @@ public class AddressManagerDB implements AddressManager
 		pm.closeEntityManager(em);
 	}
 
-	public void persistAddresses(List<Address> addresses)
-	{
+	public void persistAddresses(List<Address> addresses) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
-		for(Address c : addresses)
-		{
+		for (Address c : addresses) {
 			em.persist(c);
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
 	}
 
-	public List<Address> findByPostcode(String postcode)
-	{
+	public List<Address> findByPostcode(String postcode) {
 		List<Address> addresses = new ArrayList<Address>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByPostcode", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery("FindByPostcode",
+				Address.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("postcode", postcode);
-		try
-		{
-			addresses = (ArrayList<Address>)tq.getResultList();
-		}
-		catch(NoResultException nre)
-		{
+		try {
+			addresses = (ArrayList<Address>) tq.getResultList();
+		} catch (NoResultException nre) {
 			nre.printStackTrace();
 			return null;
 		}
 		return addresses;
 	}
 
-	public Address findByAddressLabel(String addressLabel) 
-	{
+	public Address findByAddressLabel(String addressLabel) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByAddressLabel", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery("FindByAddressLabel",
+				Address.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("address_label", addressLabel);
-		try
-		{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
+		} catch (NoResultException nre) {
 			nre.printStackTrace();
 			return null;
 		}
 	}
 
-	public Address findByUserId(int userId)
-	{
+	public Address findByUserId(int userId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByUserId", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery("FindByUserId",
+				Address.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("user_id", userId);
-		try
-		{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
+		} catch (NoResultException nre) {
 			nre.printStackTrace();
 			return null;
 		}
 	}
 
-	public List<Address> getAddresses()
-	{
+	public List<Address> getAddresses() {
 		EntityManager em = pm.createEntityManager();
-		List<Address> addresses = (ArrayList<Address>)em.createQuery("SELECT a FROM address a", Address.class).getResultList();
+		List<Address> addresses = (ArrayList<Address>) em.createQuery(
+				"SELECT a FROM address a", Address.class).getResultList();
 		pm.closeEntityManager(em);
 		return addresses;
 	}
 
-	public void updateAddress(Address address) 
-	{
-		if(address == null)
-		{
+	public void updateAddress(Address address) {
+		if (address == null) {
 			throw new ValidationException("null value passed");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -127,10 +112,8 @@ public class AddressManagerDB implements AddressManager
 		pm.closeEntityManager(em);
 	}
 
-	public void removeAddress(Address address)
-	{
-		if(address == null)
-		{
+	public void removeAddress(Address address) {
+		if (address == null) {
 			throw new ValidationException("null value passed");
 		}
 		EntityManager em = pm.createEntityManager();

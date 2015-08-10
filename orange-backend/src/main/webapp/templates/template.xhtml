@@ -92,8 +92,13 @@
 						<h:inputText id = "searchbar" styleClass="searchText" value="#{searchDetails.searchEntry}" />
 						<h:commandButton name="submit" styleClass="searchButton" action="#{searchController.headerSearch}">
 							<img src="resources/img/search.png" alt="Search" height="25"
+<<<<<<< HEAD
 								width="33" />
 						</h:commandButton>
+=======
+								width="33" style="padding-bottom: 5px;" />
+						</h:commandLink>
+>>>>>>> ec5c3c53e9117cc138405254601ae1d7c56b87d6
 					
 					</h:form>
 				</div>
@@ -113,12 +118,12 @@
 		</div>
 	</div>
 	
-	<div id="footer">
-		<p id="copyright">Design &#169; Creations Consulting &#160;</p>
+	<div id="footer" style="padding-top: 1%">
+		<p id="copyright" style="padding-top: 1%">Design &#169; Creations Consulting &#160;</p>
 		<div id="footerLinks">
 			<ul>
-				<li><a href="" class="headFootLinks">Returns</a></li>
-				<li><a href="" class="headFootLinks">Get a Catalogue</a></li>
+				<li><a href="returns.xhtml" class="headFootLinks">Returns</a></li>
+				<li><a href="getacatalog.xhtml" class="headFootLinks">Get a Catalogue</a></li>
 			</ul>
 		</div>
 	</div>
