@@ -14,6 +14,7 @@ import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.enums.CardType;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.RegistrationDetails;
 import com.netbuilder.util.UserDetails;
@@ -104,5 +105,8 @@ public class RegistrationController
 		this.userDetails = userDetails;
 	}
 	
+	public CardType[] getEnumValues(){
+		return CardType.values();
+	}
 	
 }

@@ -15,6 +15,8 @@ import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.enums.CardType;
+import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 import com.netbuilder.util.OrderDetails;
@@ -48,13 +50,22 @@ public class OrderCheckoutController
 	@Inject
 	private UserId userId;
 	
-	public void testMethod(){
-		System.out.println("test");
+	private PaymentDetails pd;
+	private Address ad;
+	
+	public String changeOrderStatus(){
+		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		order.setStatus(OrderStatus.placed);
+		if(order.getOrderStatus() == OrderStatus.placed){
+			return "confirmationpage.xhtml";
+		}
+		
+		else 
+			return "#";
 	}
 	
 	public Order getOrder() 
 	{
-		//order = orderManager.findByOrderID(orderId.getOrderId());
 		order= testData.getOrder();
 		return order;
 	}
@@ -66,11 +77,12 @@ public class OrderCheckoutController
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		return paymentDetails.findCustomerPaymentDetails(userId.getUid());
+		pd = paymentDetails.findCustomerPaymentDetails(userId.getUid());
+		return pd;
 	}
 	
 	public Address getAddress(){
-		return address.findByUserId(userId.getUid()); 
+		return ad = address.findByUserId(userId.getUid()); 
 	} 
 	
 	public TestData getTestData() {
@@ -79,5 +91,9 @@ public class OrderCheckoutController
 
 	public void setTestData(TestData testData) {
 		this.testData = testData;
+	}
+	
+	public CardType[] getEnumValues(){
+		return CardType.values();
 	}
 }

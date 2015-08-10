@@ -34,12 +34,10 @@ public class Address
 	@Size(min = 2, max = 45)
 	private String addressLine1;
 	@Column(name = "line2", nullable = true, length = 45)
-	@Null
-	@Size(min = 2, max = 45)
+	@Size(min = 0, max = 45)
 	private String addressLine2;
-	@Column(name = "line3", nullable = true, length = 45)
-	@Null
-	@Size(min = 2, max = 45)
+	@Column(name = "line3", nullable = true, length = 45)		
+	@Size(min = 0, max = 45)
 	private String addressLine3;
 	@Column(name = "city", nullable = false, length = 45)
 	@NotNull

@@ -63,7 +63,6 @@ public class PaymentDetails {
 
 	@OneToOne
 	@JoinColumn(name = "order_id", nullable = true)
-	@Null
 	private Order orderId;
 
 	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
