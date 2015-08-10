@@ -1,6 +1,7 @@
 package com.netbuilder.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -27,28 +28,42 @@ public class SearchController {
 	@ManagedProperty(value="#{searchDetails}")
 	SearchDetails searchDetails;
 	
-	@ManagedProperty(value="#{}")
+	@ManagedProperty(value="#{catalogController}")
 	CatalogController catalogController;
 	
-	ArrayList<Product> searchResults;
+	List<Product> searchResults;
 	String name;
 	
-	public String headerSearch() { 
-		name = searchDetails.getSearchEntry();
-		System.out.println(name);
-		ArrayList<Product> searchResults = (ArrayList<Product>) productManager.findProductsByName(name);
-		System.out.println(searchResults);
-		System.out.println(searchResults.get(0).getProductName());
-		catalogController.setProductsInCatalog(searchResults);
-		this.searchResults = searchResults;
-		return "catalog.xhtml";
+	public String headerSearch() {
+			name = searchDetails.getSearchEntry();
+			System.out.println(name);
+			List<Product> searchResults = productManager.findProductsByName(name);
+			
+			if (searchResults.isEmpty() == true) {
+				
+			}
+			
+			this.searchResults = searchResults;
+		return "searchresults.xhtml";
 	}
 
+	public List<Product> getSearchResults() {
+		
+		return searchResults;
+	}
+	
 	/**
 	 * @param searchDetails the searchDetails to set
 	 */
 	public void setSearchDetails(SearchDetails searchDetails) {
 		this.searchDetails = searchDetails;
+	}
+
+	/**
+	 * @param catalogController the catalogController to set
+	 */
+	public void setCatalogController(CatalogController catalogController) {
+		this.catalogController = catalogController;
 	}
 	
 	

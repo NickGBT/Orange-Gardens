@@ -14,8 +14,6 @@ import javax.faces.bean.RequestScoped;
 public class SearchDetails {
 
 	String searchEntry;
-
-	
 	
 	public SearchDetails() {
 	}
