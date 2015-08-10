@@ -14,7 +14,6 @@ public class Glados
 	private static GladosGui gladosGui = new GladosGui();
 	
 	/**
-     * @author JustinMabbutt
      * Main entry point for program - loads splash screen
      * @param args
      */

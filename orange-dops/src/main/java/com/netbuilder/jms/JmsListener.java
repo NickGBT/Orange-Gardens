@@ -38,7 +38,6 @@ public class JmsListener implements MessageListener {
 				String payload = ((TextMessage) message).getText();
 				
 				logger.debug("Handling TextMessage payload", payload);
-				//TODO Use payload
 			} catch (JMSException e) {
 				logger.error("Error in message conversion to TextMessage", e);
 				e.printStackTrace();
