@@ -1,15 +1,15 @@
 package com.netbuilder.entity_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
-import com.netbuilder.entities.OrderLine;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
@@ -23,7 +23,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 
 public class OrderLineTest {
-	
+
 	private Order testOrder;
 	private String datePlaced = "AR/VB/HSJA";
 	private long datePlacedInMillis = 12390825;
@@ -33,17 +33,17 @@ public class OrderLineTest {
 	private boolean refundAvailable = false;
 
 	private LoginDetails customer;
-	
+
 	private EmployeeDepartment empDept;
 	private String fName = "Test";
 	private String lName = "Employee";
 	private EmployeePermissions empPermisions;
 	private LoginDetails employee;
-	
+
 	private OrderStatus orderStatus;
-	
+
 	private Product testProduct;
-	
+
 	private String imageLocation = "res/products/img/2412.jpg";
 	private String productName = "Test Gnome";
 	private double productPrice = 29.99;
@@ -55,24 +55,26 @@ public class OrderLineTest {
 	private ProductCategory productCategory = ProductCategory.Accessory;
 	private PaymentDetails paymentDetails;
 	private OrderLine productLine;
-	
+
 	private int quantity = 50;
-	byte[] password = {1,2,3};
-	byte[] salt = {1,2,3};
+	byte[] password = { 1, 2, 3 };
+	byte[] salt = { 1, 2, 3 };
 
 	@Before
 	public void setUp() throws Exception {
-		customer  = new LoginDetails("customer123", "testEmail1", password, salt);
-	    employee = new LoginDetails("employee123", "testEmail1",password, salt);
-	    
-	    orderStatus = OrderStatus.cancelled;
-	    paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", customer);
-		testOrder = new Order(customer, employee, orderStatus,
-		datePlaced, datePlacedInMillis, dateDispatched, dateDelivered,
-		timeToDeliver, refundAvailable, paymentDetails);
-		
-		testProduct = new Product(imageLocation, productName, productPrice, width, height, length, weight, description, productCategory);
-		
+		customer = new LoginDetails("customer123", "testEmail1", password, salt);
+		employee = new LoginDetails("employee123", "testEmail1", password, salt);
+
+		orderStatus = OrderStatus.cancelled;
+		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+				"BOB", 323, "22/07/2020", customer);
+		testOrder = new Order(customer, employee, orderStatus, datePlaced,
+				datePlacedInMillis, dateDispatched, dateDelivered,
+				timeToDeliver, refundAvailable, paymentDetails);
+
+		testProduct = new Product(imageLocation, productName, productPrice,
+				width, height, length, weight, description, productCategory);
+
 		productLine = new OrderLine(testOrder, testProduct, quantity);
 	}
 
@@ -80,16 +82,15 @@ public class OrderLineTest {
 	public void testGetQuantity() {
 		assertEquals(productLine.getQuantity(), quantity);
 	}
-	
-	/*
-	@Test
-	public void testGetOrderID() {
-		assertEquals(productLine.getOrder().getOrderID(), orderID);
-	}*/
 
-	/*@Test
-	public void testGetProductID() {
-		assertEquals(productLine.getProduct().getProductId(), productID);
-	}*/
+	/*
+	 * @Test public void testGetOrderID() {
+	 * assertEquals(productLine.getOrder().getOrderID(), orderID); }
+	 */
+
+	/*
+	 * @Test public void testGetProductID() {
+	 * assertEquals(productLine.getProduct().getProductId(), productID); }
+	 */
 
 }

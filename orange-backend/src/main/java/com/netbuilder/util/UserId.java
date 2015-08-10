@@ -1,9 +1,7 @@
 package com.netbuilder.util;
 
 import java.io.Serializable;
-
 //import javax.faces.bean.SessionScoped;
-
 import javax.enterprise.context.SessionScoped;
 
 /**
@@ -12,28 +10,23 @@ import javax.enterprise.context.SessionScoped;
  *
  */
 @SessionScoped
-public class UserId implements Serializable
-{
+public class UserId implements Serializable {
 	private int customerUid, employeeUid;
 	private String username;
-	
-	public void setUid(int customerUid)
-	{
+
+	public void setUid(int customerUid) {
 		this.customerUid = customerUid;
 	}
-	
-	public int getUid()
-	{
+
+	public int getUid() {
 		return customerUid;
 	}
 
-	public int getEmployeeUid() 
-	{
+	public int getEmployeeUid() {
 		return employeeUid;
 	}
 
-	public void setEmployeeUid(int employeeUid)
-	{
+	public void setEmployeeUid(int employeeUid) {
 		this.employeeUid = employeeUid;
 	}
 
@@ -44,7 +37,7 @@ public class UserId implements Serializable
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public UserId getUserId() {
 		return this;
 	}

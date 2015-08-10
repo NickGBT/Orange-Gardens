@@ -16,22 +16,28 @@ import com.netbuilder.enums.ProductCategory;
 
 @Named
 @RequestScoped
-public interface ProductManager{ 
-	
-	//CREATE
+public interface ProductManager {
+
+	// CREATE
 	public void persistProduct(Product product);
+
 	public void persistProducts(List<Product> products);
-	
-	//READ
+
+	// READ
 	public List<Product> getAll();
+
 	public Product findByProductId(int productId);
+
 	public List<Product> findProductsByName(String name);
-	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice);
+
+	public List<Product> findProductsByPriceBetween(double lowPrice,
+			double highPrice);
+
 	public List<Product> findByCategory(ProductCategory category);
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateProduct(Product product);
-	
-	//DELETE
+
+	// DELETE
 	public void removeProduct(Product product);
 }

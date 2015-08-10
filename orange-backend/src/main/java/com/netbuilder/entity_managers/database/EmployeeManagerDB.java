@@ -17,7 +17,6 @@ import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.persistence_manager.PersistenceManager;
 
-
 /**
  * 
  * @author Alexander Neil
@@ -28,9 +27,9 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class EmployeeManagerDB implements EmployeeManager {
 	@Inject
 	private PersistenceManager pm;
-	
+
 	public void persistEmployee(Employee employee) {
-		
+
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(employee);
@@ -39,42 +38,42 @@ public class EmployeeManagerDB implements EmployeeManager {
 	}
 
 	public void persistEmployees(List<Employee> employees) {
-		
+
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
-		for(Employee e: employees){
+		for (Employee e : employees) {
 			em.persist(e);
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
 
 	}
-	
-	public List<Employee> getAll(){
-List<Employee> results = null;
-		
+
+	public List<Employee> getAll() {
+		List<Employee> results = null;
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL,
+				Employee.class);
 		pm.closeEntityManager(em);
-		try{
+		try {
 			results = new ArrayList<Employee>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
 	public Employee findEmployeeById(int userId) {
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID,
+				Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("id", userId);
-		try{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre){
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
@@ -82,77 +81,79 @@ List<Employee> results = null;
 	public List<Employee> findEmployeesBySurname(String surname) {
 
 		List<Employee> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME,
+				Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("surname", surname);
-		try{
+		try {
 			results = new ArrayList<Employee>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
 	public List<Employee> findEmployeesByNames(String forename, String surname) {
-		
+
 		List<Employee> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES,
+				Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("forename", forename);
 		tq.setParameter("surname", surname);
-		try{
+		try {
 			results = new ArrayList<Employee>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
-	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
+	public List<Employee> findEmployeesByDepartment(
+			EmployeeDepartment department) {
 
 		List<Employee> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_DEPARTMENT, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(
+				Employee.FIND_BY_DEPARTMENT, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
 
-		try{
+		try {
 			results = new ArrayList<Employee>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
-	public List<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+	public List<Employee> findEmployeesByRole(EmployeeDepartment department,
+			EmployeePermissions permission) {
 
 		List<Employee> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES,
+				Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
 		tq.setParameter("permission", permission);
-		try{
+		try {
 			results = new ArrayList<Employee>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
 	public void updateEmployee(Employee employee) {
-		
-		if(employee == null){
+
+		if (employee == null) {
 			throw new ValidationException("Null product passed!");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -162,7 +163,7 @@ List<Employee> results = null;
 
 	public void removeEmployee(Employee employee) {
 
-		if(employee == null){
+		if (employee == null) {
 			throw new ValidationException("Null product passed!");
 		}
 		EntityManager em = pm.createEntityManager();

@@ -14,21 +14,24 @@ import com.netbuilder.entities.Customer;
  */
 @Named
 @RequestScoped
-public interface CustomerManager
-{
-	//CREATE
+public interface CustomerManager {
+	// CREATE
 	public void persistCustomer(Customer customer);
+
 	public void persistCustomer(List<Customer> customers);
-	
-	//READ
+
+	// READ
 	public List<Customer> findByFName(String fName);
+
 	public List<Customer> findByLName(String lName);
+
 	public Customer findByUserId(int userId);
+
 	public List<Customer> getCustomers();
-	
-	//UPDATE
+
+	// UPDATE
 	public void updateCustomer(Customer customer);
-	
-	//DELETE
+
+	// DELETE
 	public void removeCustomer(Customer customer);
 }

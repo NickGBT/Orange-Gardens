@@ -13,27 +13,21 @@ import javax.persistence.PersistenceException;
  */
 
 @Singleton
-public class PersistenceManager
-{
+public class PersistenceManager {
 	private EntityManagerFactory emf;
-	
-	public EntityManager createEntityManager()
-	{
-		try
-		{
+
+	public EntityManager createEntityManager() {
+		try {
 			emf = Persistence.createEntityManagerFactory("OrangeGardensPU");
 			EntityManager em = emf.createEntityManager();
 			return em;
-		}
-		catch(PersistenceException pe)
-		{
+		} catch (PersistenceException pe) {
 			pe.printStackTrace();
 			return null;
 		}
 	}
-	
-	public void closeEntityManager(EntityManager em)
-	{
+
+	public void closeEntityManager(EntityManager em) {
 		em.close();
 		emf.close();
 	}

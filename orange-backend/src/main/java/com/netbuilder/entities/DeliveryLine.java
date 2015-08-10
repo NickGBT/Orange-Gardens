@@ -13,23 +13,22 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-@Table (name = "delivery_line")
+@Table(name = "delivery_line")
 public class DeliveryLine {
-	
+
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
 	private Product productId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "deliveryId", nullable = false)
 	@NotNull
 	private Delivery deliveryId;
-	
-	@Column (name = "quantity", nullable = false)
+
+	@Column(name = "quantity", nullable = false)
 	@NotNull
 	private int quantity;
-	
 
 	public DeliveryLine(Product productId, Delivery deliveryId, int quantity) {
 		this.productId = productId;
@@ -52,7 +51,7 @@ public class DeliveryLine {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public Delivery getDelivery() {
 		return deliveryId;
 	}
@@ -60,6 +59,5 @@ public class DeliveryLine {
 	public void setDeliveryId(Delivery deliveryId) {
 		this.deliveryId = deliveryId;
 	}
-	
 
 }

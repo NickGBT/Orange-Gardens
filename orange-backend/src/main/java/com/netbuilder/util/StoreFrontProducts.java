@@ -11,47 +11,39 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
  *
  */
 
-public class StoreFrontProducts
-{
+public class StoreFrontProducts {
 	private ProductManager productManager;
-	
+
 	private List<Product> newProducts;
 	private List<Product> specialOffers;
 	private List<Product> catalogueExclusives;
 	private List<Product> allProducts;
 
-	public List<Product> getNewProducts()
-	{
+	public List<Product> getNewProducts() {
 		allProducts = productManager.getAll();
-		for(int i = 0; i < 4; i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			newProducts.add(allProducts.get(allProducts.size() - i));
 		}
 		return newProducts;
 	}
 
-	public List<Product> getSpecialOffers()
-	{
+	public List<Product> getSpecialOffers() {
 		allProducts = productManager.getAll();
-		for(int i = 0; i < 4; i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			specialOffers.add(allProducts.get(i));
 		}
 		return specialOffers;
 	}
 
-	public List<Product> getCatalogueExclusives()
-	{
+	public List<Product> getCatalogueExclusives() {
 		allProducts = productManager.getAll();
-		for(int i = 8; i < 12; i++)
-		{
+		for (int i = 8; i < 12; i++) {
 			specialOffers.add(allProducts.get(i));
 		}
 		return catalogueExclusives;
 	}
 
-	public List<Product> getAllProducts() 
-	{
+	public List<Product> getAllProducts() {
 		allProducts = productManager.getAll();
 		return allProducts;
 	}

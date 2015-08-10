@@ -14,7 +14,7 @@ import javax.jms.MessageListener;
 public class JMSConnector implements MessageListener {
 
 	ArrayList<Integer> activeEmployees;
-	
+
 	@Override
 	public void onMessage(Message message) {
 		// TODO Auto-generated method stub

@@ -13,74 +13,62 @@ import com.netbuilder.enums.CardType;
 
 @ManagedBean(name = "accountManagement")
 @RequestScoped
-public class AccountManagement 
-{
+public class AccountManagement {
 	private String fName, lName, email, contactNo, username, password;
-	private String addressLabel, addressLine1, addressLine2, addressLine3, city, county, postcode;
+	private String addressLabel, addressLine1, addressLine2, addressLine3,
+			city, county, postcode;
 	private boolean isBillingAddress;
 	private CardType cardType;
 	private String cardNumber, cardExpiryDate, nameOnCard;
-	
-	public String getfName() 
-	{
+
+	public String getfName() {
 		return fName;
 	}
 
-	public void setfName(String fName) 
-	{
+	public void setfName(String fName) {
 		this.fName = fName;
 	}
 
-	public String getlName()
-	{
+	public String getlName() {
 		return lName;
 	}
 
-	public void setlName(String lName) 
-	{
+	public void setlName(String lName) {
 		this.lName = lName;
 	}
 
-	public String getEmail()
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) 
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getContactNo()
-	{
+	public String getContactNo() {
 		return contactNo;
 	}
 
-	public void setContactNo(String contactNo)
-	{
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 
-	public String getUsername() 
-	{
+	public String getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) 
-	{
+	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public CardType getCardType() 
-	{
+	public CardType getCardType() {
 		return cardType;
 	}
 
-	public void setCardType(CardType cardType) 
-	{
+	public void setCardType(CardType cardType) {
 		this.cardType = cardType;
 	}
-	
+
 	public String getAddressLine1() {
 		return addressLine1;
 	}
@@ -144,7 +132,7 @@ public class AccountManagement
 	public void setAddressLabel(String addressLabel) {
 		this.addressLabel = addressLabel;
 	}
-	
+
 	public String getCardNumber() {
 		return cardNumber;
 	}
@@ -168,7 +156,7 @@ public class AccountManagement
 	public void setNameOnCard(String nameOnCard) {
 		this.nameOnCard = nameOnCard;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}

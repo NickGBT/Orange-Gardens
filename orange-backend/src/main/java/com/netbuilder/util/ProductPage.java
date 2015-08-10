@@ -12,11 +12,11 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 @Path(value = "productpage")
 public class ProductPage {
 	private ProductManager pM;
-	
+
 	@GET
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("{id")
-	public Product read(@PathParam("id") int id){
+	public Product read(@PathParam("id") int id) {
 		Product product;
 		product = pM.findByProductId(id);
 		return product;
