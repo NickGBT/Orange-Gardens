@@ -88,7 +88,10 @@ public class ProductController {
 		productD.addToWishlist();
 	}
 
-	 
+	 /*
+	  * @author jtaylor
+	  * 
+	  */
 	public void addToBasket() {
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");

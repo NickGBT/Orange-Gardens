@@ -1,5 +1,6 @@
 package com.netbuilder.controllers;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +51,11 @@ public class BasketController
 	private LoginDetails loginDet;
 	private Product foundProduct;
 	private OrderLine orderLine;
+	DecimalFormat df = new DecimalFormat("0.00");
 	
-	private double subtotal =0, total = 0;
+	private double subtotal =0, totalDouble = 0; 
+	private String total = "";
+	
 
 	public OrderManager getBasketManager() {
 		return basketManager;
@@ -94,14 +98,20 @@ public class BasketController
 		this.subtotal = subtotal;
 	}
 
-	public double getTotal() {
-		for(OrderLine ol : basket){
-			total += (ol.getProduct().getProductPrice() * ol.getQuantity());
+	public String getTotal() 
+	{
+		for(OrderLine ol : basket)
+		{
+			totalDouble += (ol.getProduct().getProductPrice() * ol.getQuantity());
 		}
+		total = df.format(totalDouble);
+		//System.out.println("BasketController::Line108::" + total);
+		//System.out.println("BasketController::Line109::" + df.format(totalDouble));
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(String total) 
+	{
 		this.total = total;
 	}		
 	
@@ -114,7 +124,6 @@ public class BasketController
 				getRequestParameterMap().get("productId");
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
-		quantity = Integer.parseInt(temp);
 		
 		loginDet = ldm.findByUsername(userId.getUsername());
 		

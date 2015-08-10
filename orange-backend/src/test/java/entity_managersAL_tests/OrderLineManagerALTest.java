@@ -40,6 +40,7 @@ public class OrderLineManagerALTest {
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
 	private Product product;
+	private Product product2;
 	private List<OrderLine> orderlineAL;
 	byte[] password = {1,2,3};
 	byte[] salt = {1,2,3};
@@ -58,10 +59,11 @@ public class OrderLineManagerALTest {
 		orderLineManager = new OrderLineManagerAL();	
 		order = new Order(testCustomer1, OrderStatus.basket, paymentDetails);
 		
-		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
+		product = new Product(1,"img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
+		product2 = new Product(2,"img/iomg", "testproduct2", 25.25, 10, 10, 11, 10.50, "test Product2", ProductCategory.Accessory);
 		
 		orderLine = new OrderLine(order , product, 50);
-		orderLine1 = new OrderLine(order , product, 50);		
+		orderLine1 = new OrderLine(order , product2, 50);		
 	}
 
 	@Test
@@ -135,9 +137,10 @@ public class OrderLineManagerALTest {
 		orderlineAL.add(orderLine);
 		orderlineAL.add(orderLine1);
 		oLine.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
+		orderLineManager.persistOrderLine(orderLine1);
+		orderLineManager.persistOrderLine(orderLine);
 		orderLineManager.removeProductLine(orderLine1);
-		assertEquals(orderLineManager.getOrderLine(), oLine);
+		assertEquals(orderLineManager.getOrderLine().get(0), oLine.get(0));
 	}
 
 }
