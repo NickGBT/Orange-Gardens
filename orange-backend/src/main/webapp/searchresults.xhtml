@@ -5,40 +5,25 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="templates/template.xhtml"
 	xmlns:fu="http://java.sun.com/jsp/jstl/functions">
+	
+	<!-- M Watson -->
 
-	<ui:define name="head-meta">
-
-		<link rel="stylesheet"
-			href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script
-			src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<style>
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
-	width: 70%;
-	margin: auto;
-}
-</style>
-
-
-	</ui:define>
-
-
-	<!-- author: ngilbert -->
-
-	<ui:define name="pageTitle">Catalog</ui:define>
+	<ui:define name="pageTitle">Search Results</ui:define>
 	<ui:define name="content">
 		<div id="catalog">
 			<div id="title">
-				<H1>Product Catalog</H1>
+				<H1>Search Results</H1>
 			</div>
 
 			<div id="categories">
 
-				<ui:insert name="NBGardensCatalog">
-					<h:dataTable id="catalogTable"
-						value="#{catalogController.prodsToDisplay}" var="product">
+				<ui:insert name="Search Results">
+					<h:outputText value="No Products Found" rendered="#{empty searchController.searchResults}"/>
+				
+					<h:dataTable id="searchResultsTable"
+						value="#{searchController.searchResults}" var="product"
+						rendered = "#{not empty searchController.searchResults}"
+						>
 						<h:column>
 							<h:form>
 								<input type="hidden" name="productId"

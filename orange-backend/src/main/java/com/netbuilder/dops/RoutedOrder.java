@@ -47,6 +47,6 @@ public class RoutedOrder {
 
 	public void fulfilOrder() {
 
-		orderFromQueue.setStatus(OrderStatus.dispached);
+		orderFromQueue.setStatus(OrderStatus.dispatched);
 	}
 }
