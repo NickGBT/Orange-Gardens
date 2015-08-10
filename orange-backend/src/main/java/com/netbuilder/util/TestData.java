@@ -139,7 +139,7 @@ public class TestData {
 			8);
 
 	public ContactUsDetails contactUs = new ContactUsDetails("04066457482",
-			"NB Gardens", "666 Gnarled close", "Hell", "Staines", "ST00BL",
+			"NB Gardens", "66 James Close", "Ravenwood", "Staines", "ST43LE",
 			"NBGardens@hotmail.com");
 
 	/*
