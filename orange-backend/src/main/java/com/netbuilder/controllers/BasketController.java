@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.LoginDetails;
@@ -108,8 +109,9 @@ public class BasketController {
 
 	public void setTotal(String total) {
 		this.total = total;
-	}
-
+	}		
+	
+	
 	/*
 	 * @author jtaylor
 	 */
