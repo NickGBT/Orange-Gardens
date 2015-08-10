@@ -93,7 +93,7 @@ public class RegistrationController {
 			addressManager.persistAddress(address);
 			paymentDetailsManager.persistPaymentDetails(payDetails);
 
-			return "account/uid";
+			return "customerlogin.xhtml";
 		} else {
 			System.out.println("Invalid");
 			errorMsg = "Invalid entries";

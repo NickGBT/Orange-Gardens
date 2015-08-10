@@ -31,7 +31,6 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.netbuilder.pathfinding.*;
 import com.netbuilder.util.TestData;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
@@ -143,9 +142,6 @@ public class GladosGui
     	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
     			testData.getxProductLocation()[testData.getProductIncrement()], 
     			testData.getyProductLocation()[testData.getProductIncrement()]);
-    	productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
-    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
-    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
 		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
 		for (int i = 2; i < 18; i++) {
 			warehouseMap.setWalkable(2, i, false);
@@ -195,6 +191,7 @@ public class GladosGui
 	{
 		getNewOrder.addActionListener(new ActionListener() 
     	{
+			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				if(testData.isOrdersComplete())
@@ -229,6 +226,7 @@ public class GladosGui
 		
 		completeOrder.addActionListener(new ActionListener() 
     	{
+			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				if(testData.isOrdersComplete())
@@ -253,24 +251,10 @@ public class GladosGui
 		
 		nextProduct.addActionListener(new ActionListener() 
     	{
+			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if(testData.getProductIncrement() <= testData.getxProductLocation().length)
-				{
-					if(testData.getProductIncrement() == testData.getxProductLocation().length) testData.setGdz(true);
-					initMap();
-					System.out.println(testData.getProductIncrement());
-					testData.setProductIncrement(testData.getProductIncrement() + 1);
-					productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
-			    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
-			    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
-			    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement() - 1]);
-			    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement() - 1]);
-			    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
-			    			testData.getxProductLocation()[testData.getProductIncrement()], 
-			    			testData.getyProductLocation()[testData.getProductIncrement()]);    	
-			    	displayMap();
-				}
+				testData.setProductIncrement(testData.getProductIncrement() + 1);
 				if(testData.getProductIncrement() == testData.getxProductLocation().length && testData.isGdz() == false)
 				{
 					initMap();
@@ -284,6 +268,27 @@ public class GladosGui
 				}
 			}
 		});
+	}
+	
+	/**
+	 * Gets a new route
+	 */
+	public void getNewRoute()
+	{
+		initMap();
+		System.out.println(testData.getProductIncrement());
+		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
+    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
+    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
+    	if(testData.getProductIncrement() > 0)
+    	{
+	    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement() - 1]);
+	    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement() - 1]);
+    	}
+    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
+    			testData.getxProductLocation()[testData.getProductIncrement()], 
+    			testData.getyProductLocation()[testData.getProductIncrement()]);    	
+    	displayMap();
 	}
 	
 	/**
