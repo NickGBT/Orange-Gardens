@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.arraylist;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
@@ -51,13 +53,22 @@ public class ProductManagerAL implements ProductManager {
 
 	}
 
+	/**
+	 * @author mwatson
+	 */
 	public List<Product> findProductsByName(String name) {
 		List<Product> results = new ArrayList<Product>();
 
 		for (Product p : dummyAL.allProducts) {
-			if (p.getProductName().contains(name))
+			Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
+			Matcher matcher = pattern.matcher(p.getProductName());
+			
+			
+			if (matcher.find()) {
 				results.add(p);
+			}
 		}
+		
 		return results;
 	}
 

@@ -37,7 +37,6 @@ public class SearchController {
 	public String headerSearch() {
 		name = searchDetails.getSearchEntry();
 			if (name.isEmpty() == false) {
-			
 			System.out.println(name);
 			List<Product> searchResults = productManager.findProductsByName(name);
 			this.searchResults = searchResults;
