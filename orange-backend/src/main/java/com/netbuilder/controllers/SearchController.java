@@ -35,15 +35,14 @@ public class SearchController {
 	String name;
 	
 	public String headerSearch() {
-			name = searchDetails.getSearchEntry();
+		name = searchDetails.getSearchEntry();
+			if (name.isEmpty() == false) {
+			
 			System.out.println(name);
 			List<Product> searchResults = productManager.findProductsByName(name);
-			
-			if (searchResults.isEmpty() == true) {
-				
-			}
-			
 			this.searchResults = searchResults;
+			
+			}
 		return "searchresults.xhtml";
 	}
 
