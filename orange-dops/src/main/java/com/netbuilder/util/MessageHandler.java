@@ -9,7 +9,6 @@ import com.netbuilder.pathfinding.GladosNode;
  * @author JustinMabbutt
  *
  */
-<<<<<<< HEAD
 public class MessageHandler 
 {
 	private String[] tempProduct;
@@ -31,8 +30,4 @@ public class MessageHandler
 	{
 		this.tempPath = tempPath;
 	}
-=======
-public class MessageHandler {
-
->>>>>>> c9ea3b7e93a356fa78f9390dcbfa7343db4a71d6
 }

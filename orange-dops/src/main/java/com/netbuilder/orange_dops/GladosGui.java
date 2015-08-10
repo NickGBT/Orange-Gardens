@@ -50,8 +50,7 @@ public class GladosGui
 	private Image gladosLogo, splash, background;
 	private JLabel splashLabel, backgroundLabel;
 	private JLabel[][] mapLabel;
-	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginPanel,
-			fillPanel;
+	private JPanel assignOrder, orderButtons, orderPanel, mapPanel, loginPanel, fillPanel;
 	private Timer splashTimer;
 	private ImageIcon splashIcon, nbLogo, backgroundIcon;
 	private Dimension screenSize;
@@ -71,21 +70,33 @@ public class GladosGui
 	/**
 	 * Initialise appearance
 	 */
-	public GladosGui() {
+	public GladosGui()
+	{
 		logger.entering(getClass().getName(), "GladosGui");
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
+		try 
+		{
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
+			{
+				if ("Nimbus".equals(info.getName())) 
+				{
 					UIManager.setLookAndFeel(info.getClassName());
 				}
 			}
-		} catch (UnsupportedLookAndFeelException ue) {
+		} 
+		catch (UnsupportedLookAndFeelException ue) 
+		{
 			logger.log(Level.SEVERE, "Unsupported format", ue);
-		} catch (ClassNotFoundException ce) {
+		} 
+		catch (ClassNotFoundException ce) 
+		{
 			logger.log(Level.SEVERE, "Class not found", ce);
-		} catch (InstantiationException ie) {
+		} 
+		catch (InstantiationException ie) 
+		{
 			logger.log(Level.SEVERE, "Instantiation exception", ie);
-		} catch (IllegalAccessException iae) {
+		} 
+		catch (IllegalAccessException iae)
+		{
 			logger.log(Level.SEVERE, "Illegal access exception", iae);
 		}
 		splashFrame = new JFrame();
@@ -148,10 +159,13 @@ public class GladosGui
 		testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
-		ui = new Thread() {
+		ui = new Thread() 
+		{
 			@Override
-			public void run() {
-				while (true) {
+			public void run() 
+			{
+				while (true)
+				{
 					username.repaint();
 					password.repaint();
 					login.repaint();
@@ -160,9 +174,11 @@ public class GladosGui
 					orderButtons.repaint();
 					orderPanel.repaint();
 					mapPanel.repaint();
-					try {
+					try 
+					{
 						Thread.sleep(100);
-					} catch (InterruptedException ie) {
+					} catch (InterruptedException ie) 
+					{
 						logger.log(Level.SEVERE, "Thread Interrupted", ie);
 					}
 				}
@@ -273,31 +289,25 @@ public class GladosGui
 	/**
 	 * Display opening splash screen
 	 */
-	public void displaySplash() {
+	public void displaySplash() 
+	{
 		logger.entering(getClass().getName(), "displaySplash");
 		splash = Toolkit.getDefaultToolkit().getImage("images/splash.jpg");
-		background = Toolkit.getDefaultToolkit().getImage(
-				"images/background.png");
+		background = Toolkit.getDefaultToolkit().getImage("images/background.png");
 		splashIcon.setImage(splash);
 		backgroundIcon.setImage(background);
 		splashLabel.setIcon(splashIcon);
 		backgroundLabel.setIcon(backgroundIcon);
 		splashFrame = new JFrame();
-		splashFrame
-				.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		splashFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		nbLogo = new ImageIcon("images/nb.png");
 		gladosLogo = nbLogo.getImage();
 		splashFrame.setResizable(false);
 		splashFrame.setTitle("Welcome to NB GLADOS");
 		splashFrame.setSize(splashIcon.getIconWidth(),
-				splashIcon.getIconHeight());
+		splashIcon.getIconHeight());
 		splashFrame.setUndecorated(true);
-		splashFrame
-				.setLocation(
-						(int) screenSize.getWidth() / 2
-								- splashIcon.getIconWidth() / 2,
-						(int) screenSize.getHeight() / 2
-								- splashIcon.getIconHeight() / 2);
+		splashFrame.setLocation((int) screenSize.getWidth() / 2 - splashIcon.getIconWidth() / 2, (int) screenSize.getHeight() / 2 - splashIcon.getIconHeight() / 2);
 		splashFrame.setIconImage(gladosLogo);
 		splashFrame.add(splashLabel, BorderLayout.CENTER);
 		splashFrame.setVisible(true);
@@ -308,14 +318,14 @@ public class GladosGui
 	/**
 	 * Task to initialise main UI elements
 	 */
-	private void initUi() {
+	private void initUi()
+	{
 		logger.entering(getClass().getName(), "initUi");
 		mainFrame = new JFrame("NB GLADOS");
 		backgroundPanel = new ImagePanel(backgroundIcon.getImage());
 		mainFrame.setSize(500, 680);
 		mainFrame.setLocationRelativeTo(null);
-		mainFrame
-				.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		mainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		mainFrame.setResizable(false);
 		nbLogo = new ImageIcon("images/nb.png");
 		mainFrame.setIconImage(gladosLogo);
@@ -328,7 +338,8 @@ public class GladosGui
 	/**
 	 * Task to display and authenticate employee login
 	 */
-	public void displayLogin() {
+	public void displayLogin()
+	{
 		logger.entering(getClass().getName(), "displayLogin");
 		mainFrame.remove(assignOrder);
 		mainFrame.remove(mapPanel);
@@ -349,26 +360,6 @@ public class GladosGui
 		login.setText("Login");
 		login.setPreferredSize(new Dimension(180, 50));
 		login.setFont(gladosFont);
-		login.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (username.getText().equals("")
-						|| username.getText().equals("Username:")
-						|| password.getPassword().toString().equals("")
-						|| password.getPassword().toString()
-								.equals("Password:")) {
-					JOptionPane.showMessageDialog(mainFrame,
-							"Please enter a valid username and password",
-							"Invalid entry!", JOptionPane.ERROR_MESSAGE);
-				} else {
-					user = username.getText();
-					pass = password.getPassword().toString();
-					// validate
-					mainFrame.setTitle("NB GLADOS - " + user);
-					displayGetOrder();
-				}
-			}
-		});
 		buttonLayoutConstraints.gridx = 0;
 		buttonLayoutConstraints.gridy = 1;
 		loginPanel.add(login, buttonLayoutConstraints);
@@ -385,7 +376,8 @@ public class GladosGui
 	/**
 	 * Task to display the order screen with map
 	 */
-	private void displayGetOrder() {
+	private void displayGetOrder() 
+	{
 		logger.entering(getClass().getName(), "displayGetOrder");
 		mainFrame.getContentPane().remove(orderPanel);
 		mainFrame.getContentPane().remove(mapPanel);
