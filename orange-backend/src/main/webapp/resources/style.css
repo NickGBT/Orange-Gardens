@@ -38,6 +38,7 @@ html,body {
 	color: #587d71;
 	padding-bottom: 100px;
 	overflow: auto;
+	padding-left: 2%;
 	
 	
 }
@@ -120,7 +121,7 @@ html,body {
 }
 
 .headerButton{
-	
+	overflow:auto;
 	color: #000000;
 	font-weight: bold;
 	border-bottom: 5px solid #6e9aaf;
@@ -128,11 +129,14 @@ html,body {
 	padding: 10px 20px;
 	text-decoration: none;
 	background-color: rgba(255,255,255,0.15);
-	min-width: 100%;
+	min-width: 8%;
+	width: 50px;
+	height 30px;
 }
 
 .headerButton:hover{
 	background-color: #96c177;
+	text-decoration:none;
 }
 
 .headerButton:active{

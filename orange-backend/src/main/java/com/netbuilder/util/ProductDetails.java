@@ -18,7 +18,6 @@ import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
-
 /**
  * 
  * @author mwatson llew
@@ -27,7 +26,7 @@ import com.netbuilder.enums.ProductCategory;
 
 @Named
 @SessionScoped
-public class ProductDetails implements Serializable{
+public class ProductDetails implements Serializable {
 
 	private PaymentDetails paymentD;
 	private int quantity;
@@ -46,20 +45,20 @@ public class ProductDetails implements Serializable{
 	private OrderLine orderLine;
 	private LoginDetailsManager loginMan;
 	private LoginDetails loginD;
-		
-	public void setId(int productId){
+
+	public void setId(int productId) {
 		this.productId = productId;
 	}
-	
-	public int getId(){
+
+	public int getId() {
 		return productId;
 	}
-	
+
 	public int getProductId() {
-		//product = productMan.findByProductId(productId);
+		// product = productMan.findByProductId(productId);
 		return productId;
 	}
-	
+
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
@@ -72,7 +71,8 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param quantity the quantity to set
+	 * @param quantity
+	 *            the quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -86,7 +86,8 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param customerId the customerId to set
+	 * @param customerId
+	 *            the customerId to set
 	 */
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
@@ -100,7 +101,8 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param orderId the orderId to set
+	 * @param orderId
+	 *            the orderId to set
 	 */
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
@@ -114,7 +116,8 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(ProductCategory category) {
 		this.category = category;
@@ -128,40 +131,41 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param status the status to set
+	 * @param status
+	 *            the status to set
 	 */
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
-	
-	public void addToWishlist(){
-		
-		if(orderMan.findByCustomerId(customerId) == null) {
+
+	public void addToWishlist() {
+
+		if (orderMan.findByCustomerId(customerId) == null) {
 			order = new Order(loginD, OrderStatus.wishlist, paymentD);
-			orderLine = new OrderLine(order,product);
-			
+			orderLine = new OrderLine(order, product);
+
 			orderMan.persistOrder(order);
 			orderLineMan.persistOrderLine(orderLine);
-			
-		} else { 
-			orderLine = new OrderLine(order,product);
+
+		} else {
+			orderLine = new OrderLine(order, product);
 			orderLineMan.persistOrderLine(orderLine);
 		}
-				
+
 	}
-	
+
 	public void addToBasket() {
-		if(orderMan.findByCustomerId(customerId) == null) {
-			
+		if (orderMan.findByCustomerId(customerId) == null) {
+
 			order = new Order(loginD, OrderStatus.basket, paymentD);
 			orderLine = new OrderLine(order, product, quantity);
-			
+
 			orderMan.persistOrder(order);
 			orderLineMan.persistOrderLine(orderLine);
 		} else {
-			orderLine = new OrderLine(order,product);
+			orderLine = new OrderLine(order, product);
 			orderLineMan.persistOrderLine(orderLine);
-		}	
+		}
 	}
 
 	/**
@@ -172,10 +176,11 @@ public class ProductDetails implements Serializable{
 	}
 
 	/**
-	 * @param paymentD the paymentD to set
+	 * @param paymentD
+	 *            the paymentD to set
 	 */
 	public void setPaymentD(int customerId) {
-		this.paymentD =  paymentMan.findCustomerPaymentDetails(customerId); 
+		this.paymentD = paymentMan.findCustomerPaymentDetails(customerId);
 	}
 
 	public void findLoginDetails(int customerId) {
@@ -189,7 +194,5 @@ public class ProductDetails implements Serializable{
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
-	
-	
+
 }

@@ -15,12 +15,12 @@ import com.netbuilder.util.StoreFrontProducts;
  */
 
 public class HomepageController {
-	
+
 	@Inject
 	private ProductManager pmal;
 	private StoreFrontProducts storeFrontProducts;
-	
-	public List<Product> getNewProducts(){
+
+	public List<Product> getNewProducts() {
 		return storeFrontProducts.getNewProducts();
-		}
+	}
 }

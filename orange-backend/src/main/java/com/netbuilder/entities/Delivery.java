@@ -21,8 +21,7 @@ import com.netbuilder.enums.DeliveryStatus;
 
 @Entity
 @Table(name = "delivery")
-public class Delivery
-{
+public class Delivery {
 	@Id
 	@Column(name = "delivery_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +32,13 @@ public class Delivery
 	private DeliveryStatus deliveryStatus;
 	@Column(name = "date_placed", nullable = false, length = 45)
 	@NotNull
-	@Size(min = 2, max = 45) //Needs changing once date format is known
+	@Size(min = 2, max = 45)
+	// Needs changing once date format is known
 	private String datePlaced;
 	@Column(name = "delivery_date", nullable = false, length = 45)
 	@NotNull
-	@Size(min = 2, max = 45) //Needs changing once date format is known
+	@Size(min = 2, max = 45)
+	// Needs changing once date format is known
 	private String dateToBeDelivered;
 	@Column(name = "supplier", nullable = false, length = 45)
 	@NotNull
@@ -46,57 +47,48 @@ public class Delivery
 	@Column(name = "price", nullable = false)
 	@NotNull
 	private BigDecimal price;
-	
-	public Delivery(String datePlaced, String dateToBeDelivered, String supplier, BigDecimal price) 
-	{
+
+	public Delivery(String datePlaced, String dateToBeDelivered,
+			String supplier, BigDecimal price) {
 		this.datePlaced = datePlaced;
 		this.dateToBeDelivered = dateToBeDelivered;
 		this.supplier = supplier;
 		this.price = price;
 	}
-	
-	public int getDeliveryId()
-	{
+
+	public int getDeliveryId() {
 		return deliveryId;
 	}
 
-	public String getDatePlaced()
-	{
+	public String getDatePlaced() {
 		return datePlaced;
 	}
 
-	public void setDatePlaced(String datePlaced) 
-	{
+	public void setDatePlaced(String datePlaced) {
 		this.datePlaced = datePlaced;
 	}
 
-	public String getDateToBeDelivered() 
-	{
+	public String getDateToBeDelivered() {
 		return dateToBeDelivered;
 	}
 
-	public void setDateToBeDelivered(String dateToBeDelivered)
-	{
+	public void setDateToBeDelivered(String dateToBeDelivered) {
 		this.dateToBeDelivered = dateToBeDelivered;
 	}
 
-	public String getSupplier()
-	{
+	public String getSupplier() {
 		return supplier;
 	}
 
-	public void setSupplier(String supplier)
-	{
+	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
 
-	public BigDecimal getPrice()
-	{
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) 
-	{
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 }

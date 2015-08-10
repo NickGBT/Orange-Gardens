@@ -24,14 +24,13 @@ import com.netbuilder.enums.ProductCategory;
 @Entity
 @Table(name = "product")
 @NamedQueries({
-	@NamedQuery(name = Product.GET_ALL, query= "SELECT p FROM products p"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query= "SELECT p FROM products p WHERE p.product_id = :id;"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query= "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query= "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
-	@NamedQuery(name = Product.FIND_BY_CATEGORY, query= "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"),
-})
+		@NamedQuery(name = Product.GET_ALL, query = "SELECT p FROM products p"),
+		@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query = "SELECT p FROM products p WHERE p.product_id = :id;"),
+		@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
+		@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
+		@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"), })
 public class Product {
-	
+
 	public static final String GET_ALL = "Product.getAll";
 	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";
 	public static final String FIND_BY_PRODUCT_NAME = "Product.findByProductName";
@@ -78,12 +77,13 @@ public class Product {
 	@NotNull
 	@Size(min = 20, max = 1000)
 	private String description;
-	
+
 	@Column(name = "category", nullable = false)
 	@NotNull
 	private ProductCategory category;
-	
-	public Product(String imageLocation, String productName, double productPrice, int width, int height, int length,
+
+	public Product(String imageLocation, String productName,
+			double productPrice, int width, int height, int length,
 			double weight, String description, ProductCategory category) {
 		this.imageLocation = imageLocation;
 		this.productName = productName;
@@ -96,8 +96,9 @@ public class Product {
 		this.category = category;
 	}
 
-	public Product(String productName, double productPrice, int width, int height, int length, double weight,
-			String description, ProductCategory category) {
+	public Product(String productName, double productPrice, int width,
+			int height, int length, double weight, String description,
+			ProductCategory category) {
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.width = width;
@@ -107,10 +108,11 @@ public class Product {
 		this.description = description;
 		this.category = category;
 	}
-	
-	//Temp productId param
-	public Product(int productId, String imageLocation, String productName, double productPrice, int width, int height, int length, double weight,
-			String description, ProductCategory category) {
+
+	// Temp productId param
+	public Product(int productId, String imageLocation, String productName,
+			double productPrice, int width, int height, int length,
+			double weight, String description, ProductCategory category) {
 		this.productId = productId;
 		this.imageLocation = imageLocation;
 		this.productName = productName;
@@ -266,12 +268,11 @@ public class Product {
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(ProductCategory category) {
 		this.category = category;
 	}
-	
-	
 
 }

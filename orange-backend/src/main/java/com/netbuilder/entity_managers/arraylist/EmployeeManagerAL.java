@@ -22,73 +22,79 @@ import com.netbuilder.enums.EmployeePermissions;
 public class EmployeeManagerAL implements EmployeeManager {
 
 	private ArrayList<Employee> employees = new ArrayList<Employee>();
-	
+
 	public void persistEmployee(Employee employee) {
 		employees.add(employee);
-		
+
 	}
 
 	public void persistEmployees(List<Employee> employees) {
 		this.employees.addAll(employees);
-		
+
 	}
 
-	public List<Employee> getAll(){
+	public List<Employee> getAll() {
 		return employees;
 	}
-	
+
 	public Employee findEmployeeById(int userId) {
-		for(Employee e: employees){
-			if(e.getEmployee().getUserId() == userId) return e;
+		for (Employee e : employees) {
+			if (e.getEmployee().getUserId() == userId)
+				return e;
 		}
 		return null;
 	}
 
 	public List<Employee> findEmployeesBySurname(String surname) {
 		List<Employee> results = new ArrayList<Employee>();
-		
-		for(Employee e: employees){
-			if(e.getlName().equals(surname)) results.add(e);
+
+		for (Employee e : employees) {
+			if (e.getlName().equals(surname))
+				results.add(e);
 		}
 		return results;
 	}
 
 	public List<Employee> findEmployeesByNames(String forename, String surname) {
 		List<Employee> results = new ArrayList<Employee>();
-		
-		for(Employee e: employees){
-			if(e.getfName().equals(forename)&&e.getlName().equals(surname)) results.add(e);
+
+		for (Employee e : employees) {
+			if (e.getfName().equals(forename) && e.getlName().equals(surname))
+				results.add(e);
 		}
-		
+
 		return results;
 	}
 
-	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
+	public List<Employee> findEmployeesByDepartment(
+			EmployeeDepartment department) {
 		List<Employee> results = new ArrayList<Employee>();
-		
-		for(Employee e: employees){
-			if(e.getDepartment() == department) results.add(e);
+
+		for (Employee e : employees) {
+			if (e.getDepartment() == department)
+				results.add(e);
 		}
-		
+
 		return results;
 	}
 
-	public List<Employee> findEmployeesByRole(EmployeeDepartment department, EmployeePermissions permission) {
+	public List<Employee> findEmployeesByRole(EmployeeDepartment department,
+			EmployeePermissions permission) {
 		List<Employee> results = new ArrayList<Employee>();
-		
-		for(Employee e: employees){
-			if((e.getDepartment() == department)&&(e.getPermission() == permission)) results.add(e);
+
+		for (Employee e : employees) {
+			if ((e.getDepartment() == department)
+					&& (e.getPermission() == permission))
+				results.add(e);
 		}
-		
+
 		return results;
 	}
 
-	public void updateEmployee(Employee employee) 
-	{
-		for(Employee e: employees)
-		{
-			if(e.getEmployee().getUserId() == employee.getEmployee().getUserId())
-			{
+	public void updateEmployee(Employee employee) {
+		for (Employee e : employees) {
+			if (e.getEmployee().getUserId() == employee.getEmployee()
+					.getUserId()) {
 				employees.set(employees.indexOf(e), employee);
 			}
 		}
@@ -98,6 +104,4 @@ public class EmployeeManagerAL implements EmployeeManager {
 		employees.remove(employee);
 	}
 
-	
-	
 }

@@ -36,7 +36,9 @@
 				<br/>
 				<br/>
 				<H3>By Email:</H3> 
-				<h:link outcome="mailto:#{contactUsDetailsController.contactUsDetails.email}" value="#{contactUsDetailsController.contactUsDetails.email}" class = "cornerButton" />
+				<h:outputLink value="mailto:#{contactUsDetailsController.contactUsDetails.email}" class = "cornerButton">
+					<h:outputText value="#{contactUsDetailsController.contactUsDetails.email}" />
+				</h:outputLink>
 				<br/>
 				<br/>
 			</div>

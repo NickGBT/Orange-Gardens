@@ -17,8 +17,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "stock")
-public class Stock 
-{
+public class Stock {
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
@@ -42,9 +41,10 @@ public class Stock
 	@Column(name = "required_stock", nullable = false)
 	@NotNull
 	private int requiredStock;
-	
-	public Stock(Product product, int stockLevel, int stockAvailable, String location, int maxStock, int criticalThreshold, int requiredStock) 
-	{
+
+	public Stock(Product product, int stockLevel, int stockAvailable,
+			String location, int maxStock, int criticalThreshold,
+			int requiredStock) {
 		this.product = product;
 		this.stockLevel = stockLevel;
 		this.stockAvailable = stockAvailable;
@@ -53,69 +53,56 @@ public class Stock
 		this.criticalThreshold = criticalThreshold;
 		this.requiredStock = requiredStock;
 	}
-	
-	public Product getProduct()
-	{
+
+	public Product getProduct() {
 		return product;
 	}
-	
-	public int getStockLevel()
-	{
+
+	public int getStockLevel() {
 		return stockLevel;
 	}
-	
-	public void setStockLevel(int stockLevel)
-	{
+
+	public void setStockLevel(int stockLevel) {
 		this.stockLevel = stockLevel;
 	}
-	
-	public int getStockAvailable()
-	{
+
+	public int getStockAvailable() {
 		return stockAvailable;
 	}
-	
-	public void setStockAvailable(int stockAvailable)
-	{
+
+	public void setStockAvailable(int stockAvailable) {
 		this.stockAvailable = stockAvailable;
 	}
-	
-	public String getLocation()
-	{
+
+	public String getLocation() {
 		return location;
 	}
-	
-	public void setLocation(String location)
-	{
+
+	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	public int getMaxStock()
-	{
+
+	public int getMaxStock() {
 		return maxStock;
 	}
-	
-	public void setMaxStock(int maxStock)
-	{
+
+	public void setMaxStock(int maxStock) {
 		this.maxStock = maxStock;
 	}
-	
-	public int getRequiredStock()
-	{
+
+	public int getRequiredStock() {
 		return requiredStock;
 	}
-	
-	public void setRequiredStock(int requiredStock)
-	{
+
+	public void setRequiredStock(int requiredStock) {
 		this.requiredStock = requiredStock;
 	}
-	
-	public int getCriticalThreshold()
-	{
+
+	public int getCriticalThreshold() {
 		return criticalThreshold;
 	}
-	
-	public void setCriticalThreshold(int criticalThreshold)
-	{
+
+	public void setCriticalThreshold(int criticalThreshold) {
 		this.criticalThreshold = criticalThreshold;
 	}
 }
