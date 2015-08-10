@@ -32,6 +32,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import com.netbuilder.pathfinding.*;
+import com.netbuilder.util.TestData;
 
 /**
  * 
@@ -41,6 +42,7 @@ import com.netbuilder.pathfinding.*;
 public class GladosGui 
 {
 	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
+	private TestData testData;
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo, splash, background;
 	private JLabel splashLabel, backgroundLabel;
@@ -116,7 +118,14 @@ public class GladosGui
 	    	warehouseMap.setWalkable(17, i, false);
 	    }
     	initMap();
-    	testPath = warehouseMap.findPath(0, 0, 10, 10);
+    	assignActionListeners();
+    	testData = new TestData();
+    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
+    			testData.getxProductLocation()[testData.getProductIncrement()], 
+    			testData.getyProductLocation()[testData.getProductIncrement()]);
+    	productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
+    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
+    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		ui = new Thread()
@@ -148,6 +157,104 @@ public class GladosGui
 		ui.start();
 		logger.exiting(getClass().getName(), "GladosGui");
     }
+	
+	/**
+	 * Assign action listeners
+	 */
+	private void assignActionListeners()
+	{
+		getNewOrder.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(testData.isOrdersComplete())
+				{	
+					JOptionPane.showMessageDialog(mainFrame, "No pending orders available", "No outstanding orders!", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					displayMap();
+				}
+			}
+		});
+		
+		login.addActionListener(new ActionListener()
+		{	
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				if(username.getText().equals("") || username.getText().equals("Username:") || password.getPassword().toString().equals("") || password.getPassword().toString().equals("Password:"))
+				{
+					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
+				}
+				else if(username.getText().equals(testData.getEmployeeUsername()) || password.getPassword().toString().equals(testData.getEmployeePassword()))
+				{
+					user = username.getText();
+					pass = password.getPassword().toString();
+					mainFrame.setTitle("NB GLADOS - " + user);
+					displayGetOrder();		
+				}
+			}			
+		});
+		
+		completeOrder.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(testData.isOrdersComplete())
+				{
+					JOptionPane.showMessageDialog(mainFrame, "Please complete order processing", "Order not yet complete!", JOptionPane.WARNING_MESSAGE);		
+				}
+				else
+				{
+					displayGetOrder();
+				}
+			}
+		});
+		
+		logout.addActionListener(new ActionListener()
+    	{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				logout();
+			}
+		});
+		
+		nextProduct.addActionListener(new ActionListener() 
+    	{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(testData.getProductIncrement() <= testData.getxProductLocation().length)
+				{
+					if(testData.getProductIncrement() == testData.getxProductLocation().length) testData.setGdz(true);
+					initMap();
+					System.out.println(testData.getProductIncrement());
+					testData.setProductIncrement(testData.getProductIncrement() + 1);
+					productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
+			    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
+			    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
+			    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement() - 1]);
+			    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement() - 1]);
+			    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
+			    			testData.getxProductLocation()[testData.getProductIncrement()], 
+			    			testData.getyProductLocation()[testData.getProductIncrement()]);    	
+			    	displayMap();
+				}
+				if(testData.getProductIncrement() == testData.getxProductLocation().length && testData.isGdz() == false)
+				{
+					initMap();
+					productName.setText("Take products to GDZ");
+			    	quantity.setText("");
+			    	boxSize.setText("");
+			    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), testData.getxGdz(), testData.getyGdz());
+			    	testData.setOrdersComplete(true);
+			    	testData.setGdz(true);
+			    	displayMap();
+				}
+			}
+		});
+	}
 	
 	/**
 	 * Display opening splash screen
@@ -220,25 +327,6 @@ public class GladosGui
 		login.setText("Login");
 		login.setPreferredSize(new Dimension(180, 50));
 		login.setFont(gladosFont);
-		login.addActionListener(new ActionListener()
-		{	
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				if(username.getText().equals("") || username.getText().equals("Username:") || password.getPassword().toString().equals("") || password.getPassword().toString().equals("Password:"))
-				{
-					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
-				}
-				else
-				{
-					user = username.getText();
-					pass = password.getPassword().toString();
-					//validate
-					mainFrame.setTitle("NB GLADOS - " + user);
-					displayGetOrder();
-				}
-			}			
-		});
 		buttonLayoutConstraints.gridx = 0;
 		buttonLayoutConstraints.gridy = 1;
 		loginPanel.add(login, buttonLayoutConstraints);
@@ -269,24 +357,9 @@ public class GladosGui
     	getNewOrder.setText("Assign yourself an order to process.");
     	getNewOrder.setPreferredSize(new Dimension(350, 100));
     	getNewOrder.setFont(gladosFont);
-    	getNewOrder.addActionListener(new ActionListener() 
-    	{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				displayMap();
-			}
-		});
     	logout.setText("Log out");
     	logout.setPreferredSize(new Dimension(200, 100));
     	logout.setFont(gladosFont);
-    	logout.addActionListener(new ActionListener()
-    	{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				logout();
-			}
-		});
     	assignOrder.setBackground(new Color(0, 0, 0, 0));
     	buttonLayoutConstraints.gridx = 0;
     	buttonLayoutConstraints.gridy = 0;
@@ -442,9 +515,6 @@ public class GladosGui
     	mainFrame.getContentPane().remove(loginPanel);
     	mainFrame.getContentPane().remove(fillPanel);
    		mainFrame.invalidate();
-    	productName.setText("Product Name: ");// + theProductName
-    	quantity.setText("Quantity: ");// + quantity
-    	boxSize.setText("Box Size: ");// + boxSize
     	productName.setFont(gladosFont); 
     	productName.setPreferredSize(new Dimension(200, 30));
     	productName.setEditable(false);
@@ -467,24 +537,10 @@ public class GladosGui
     	completeOrder.setText("Complete order");
     	completeOrder.setPreferredSize(new Dimension(240, 80));
     	completeOrder.setFont(gladosFont);
-    	completeOrder.addActionListener(new ActionListener() 
-    	{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				displayGetOrder();
-			}
-		});
     	orderButtons.add(completeOrder);
     	nextProduct.setText("Route to next Product");
     	nextProduct.setPreferredSize(new Dimension(240, 80));
     	nextProduct.setFont(gladosFont);
-    	nextProduct.addActionListener(new ActionListener() 
-    	{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				//new route
-			}
-		});
     	orderButtons.add(nextProduct);
     	mainFrame.getContentPane().add(orderPanel, BorderLayout.NORTH);
     	mainFrame.getContentPane().add(mapPanel, BorderLayout.CENTER);
