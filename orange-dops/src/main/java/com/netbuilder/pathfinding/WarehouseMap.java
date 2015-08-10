@@ -10,11 +10,11 @@ import java.util.logging.Logger;
  * @author JustinMabbutt
  *
  */
-public class Map<gladosNode extends Node> implements Serializable
+public class WarehouseMap<gladosNode extends Node> implements Serializable
 {
 	private static final long serialVersionUID = 4082015;
 
-	private static final Logger logger = Logger.getLogger(Map.class.getName());
+	private static final Logger logger = Logger.getLogger(WarehouseMap.class.getName());
     
 	protected static boolean CANMOVEDIAGONALLY = true;
     
@@ -24,10 +24,8 @@ public class Map<gladosNode extends Node> implements Serializable
     protected int height;
 
     private NodeFactory nodeFactory;
-    private Map<GladosNode> warehouseMap;
-    private List<GladosNode> path;
 
-    public Map(int width, int height, NodeFactory nodeFactory)
+    public WarehouseMap(int width, int height, NodeFactory nodeFactory)
     {
     	logger.entering(getClass().getName(), "Map");
         this.nodeFactory = nodeFactory;        

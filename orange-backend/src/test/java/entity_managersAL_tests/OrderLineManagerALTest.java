@@ -128,16 +128,16 @@ public class OrderLineManagerALTest {
 		assertEquals(orderLineManager.getOrderLine().get(0).getQuantity(), 1);
 	}
 
-//	@Test
-//	public void testRemoveProductLine() {
-//		ArrayList<OrderLine> oLine = new ArrayList<OrderLine>();
-//		orderlineAL.clear();
-//		orderlineAL.add(orderLine);
-//		orderlineAL.add(orderLine1);
-//		oLine.add(orderLine);
-//		orderLineManager.persistOrderLine(orderlineAL);
-//		orderLineManager.removeProductLine(orderLine1);
-//		assertEquals(orderLineManager.getOrderLine(), oLine);
-//	}
+	@Test
+	public void testRemoveProductLine() {
+		ArrayList<OrderLine> oLine = new ArrayList<OrderLine>();
+		orderlineAL.clear();
+		orderlineAL.add(orderLine);
+		orderlineAL.add(orderLine1);
+		oLine.add(orderLine);
+		orderLineManager.persistOrderLine(orderlineAL);
+		orderLineManager.removeProductLine(orderLine1);
+		assertEquals(orderLineManager.getOrderLine(), oLine);
+	}
 
 }

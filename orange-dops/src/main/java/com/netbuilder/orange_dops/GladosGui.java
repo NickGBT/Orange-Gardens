@@ -38,7 +38,6 @@ import com.netbuilder.pathfinding.*;
  * @author JustinMabbutt
  *
  */
-
 public class GladosGui 
 {
 	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
@@ -59,12 +58,11 @@ public class GladosGui
 	private LoginTextField username;
 	private JPasswordField password;
 	private List<GladosNode> testPath;
-	private Map<GladosNode> warehouseMap;
+	private WarehouseMap<GladosNode> warehouseMap;
 	private String user, pass;
 	private Thread ui;
 	
 	/**
-	 * @author JustinMabbutt
 	 * Initialise appearance
 	 */
 	public GladosGui() 
@@ -107,7 +105,7 @@ public class GladosGui
 		splash = null; background = null;
 		user = ""; pass = "";
 		splashTimer = new Timer();
-		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());        
+		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());        
 	    for(int i = 2; i < 18; i++)
 	    {
 	    	warehouseMap.setWalkable(2, i, false);
@@ -152,7 +150,6 @@ public class GladosGui
     }
 	
 	/**
-	 * @author JustinMabbutt
 	 * Display opening splash screen
 	 */
 	public void displaySplash()
@@ -179,7 +176,6 @@ public class GladosGui
 	}
 	
 	/**
-	 * @author: JustinMabbutt
 	 * Task to initialise main UI elements
 	 */
 	private void initUi()
@@ -200,7 +196,6 @@ public class GladosGui
 	}
 	
 	/**
-	 * @author JustinMabbutt
 	 * Task to display and authenticate employee login
 	 */
 	public void displayLogin()
@@ -258,7 +253,6 @@ public class GladosGui
 	}
 
     /**
-     * @author JustinMabbutt
      * Task to display the order screen with map
      */
     private void displayGetOrder()
@@ -308,7 +302,6 @@ public class GladosGui
     }
     
     /**
-     * @author JustinMabbutt
      * Task to delete the opening splash screen
      */
     private class deleteSplashTask extends TimerTask
@@ -322,7 +315,6 @@ public class GladosGui
    	}
     
     /**
-     * @author JustinMabbutt
      * Task to log the employee out
      */
     private void logout()
@@ -334,7 +326,6 @@ public class GladosGui
     }
     
     /**
-     * @author JustinMabbutt
      * Task to populate the map with nodes
      */
     private void buildMap()
@@ -408,7 +399,6 @@ public class GladosGui
     }
     
     /**
-     * @author JustinMabbutt
      * Task to re/initialise the map
      */
     private void initMap()
@@ -443,7 +433,6 @@ public class GladosGui
     }
     
     /**
-     * @author JustinMabbutt
      * Task to draw the map
      */
    	private void displayMap()
