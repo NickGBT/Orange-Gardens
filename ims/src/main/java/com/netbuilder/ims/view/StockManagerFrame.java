@@ -54,7 +54,7 @@ public class StockManagerFrame extends JFrame{
 		}
 		this.setTitle("Stock Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setPreferredSize(new Dimension(950,800));
+		this.setPreferredSize(new Dimension(950,720));
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
