@@ -89,11 +89,15 @@
 	
 				<div id="searchbar">
 					<h:form>
-						<h:inputText styleClass="searchText" value="" />
-						<h:commandLink name="submit" styleClass="searchButton">
+						<h:inputText id = "searchbar" styleClass="searchText" value="#{searchDetails.searchEntry}" />
+						<h:commandButton name="submit" styleClass="searchButton" action="#{searchController.headerSearch}">
 							<img src="resources/img/search.png" alt="Search" height="25"
+								width="33" />
+						</h:commandButton>
+
 								width="33" style="padding-bottom: 5px;" />
 						</h:commandLink>
+
 					
 					</h:form>
 				</div>
