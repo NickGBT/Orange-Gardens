@@ -10,23 +10,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 @Path(value = "catalog")
-public class CatalogProduct{
-	
+public class CatalogProduct {
+
 	private String title = "Catalog";
-	
+
 	@GET
 	@Produces("text/plain")
 	@Path("{id}")
-	public String getProduct(@PathParam("id") String id, @DefaultValue("0") @QueryParam("page")int page){
+	public String getProduct(@PathParam("id") String id,
+			@DefaultValue("0") @QueryParam("page") int page) {
 		String returnString = id + ": " + title + ", page " + page;
 		return returnString;
-	}	
-	
+	}
+
 	@POST
 	@Consumes("text/plain")
-	public void postClichedMessage(String message){
+	public void postClichedMessage(String message) {
 		title = message;
 	}
-	
 
 }

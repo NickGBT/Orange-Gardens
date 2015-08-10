@@ -1,6 +1,9 @@
 package entity_managersAL_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +29,9 @@ public class EmployeeManagerALTests {
 	Employee e2;
 	Employee e3;
 	Employee e4;
-	
+
 	ArrayList<Employee> testInput;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -36,15 +39,18 @@ public class EmployeeManagerALTests {
 	@Before
 	public void setUp() throws Exception {
 		employeeManager = new EmployeeManagerAL();
-		
-		e1 = new Employee(EmployeeDepartment.WAREHOUSE, "Ware", "House", EmployeePermissions.MANAGER);
-		e2 = new Employee(EmployeeDepartment.WAREHOUSE, "Slave", "Labor", EmployeePermissions.WORKER);
-		e3 = new Employee(EmployeeDepartment.WAREHOUSE, "Shelf", "Picker", EmployeePermissions.WORKER);
-		e4 = new Employee(EmployeeDepartment.SALES, "Telephone", "House", EmployeePermissions.MANAGER);
-		
-		
+
+		e1 = new Employee(EmployeeDepartment.WAREHOUSE, "Ware", "House",
+				EmployeePermissions.MANAGER);
+		e2 = new Employee(EmployeeDepartment.WAREHOUSE, "Slave", "Labor",
+				EmployeePermissions.WORKER);
+		e3 = new Employee(EmployeeDepartment.WAREHOUSE, "Shelf", "Picker",
+				EmployeePermissions.WORKER);
+		e4 = new Employee(EmployeeDepartment.SALES, "Telephone", "House",
+				EmployeePermissions.MANAGER);
+
 		testInput = new ArrayList<Employee>();
-		
+
 		testInput.add(e1);
 		testInput.add(e2);
 		testInput.add(e3);
@@ -54,73 +60,77 @@ public class EmployeeManagerALTests {
 	@Test
 	public void testPersistAndRetrieve() {
 		employeeManager.persistEmployee(e1);
-		
-		Employee testE = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
-		
+
+		Employee testE = employeeManager.findEmployeeById(e1.getEmployee()
+				.getUserId());
+
 		assertEquals(testE, e1);
 	}
 
 	@Test
-	public void testMultiplePersistAndGetAll(){
-		
+	public void testMultiplePersistAndGetAll() {
+
 		employeeManager.persistEmployees(testInput);
-		
+
 		assertEquals(testInput.size(), employeeManager.getAll().size());
 	}
-	
+
 	@Test
-	public void testMultiplePersistAndFindByDepartment(){
-		
+	public void testMultiplePersistAndFindByDepartment() {
+
 		employeeManager.persistEmployees(testInput);
-		
-		List<Employee> output = employeeManager.findEmployeesByDepartment(EmployeeDepartment.WAREHOUSE);
-		
-		assertTrue((output.contains(e1))&&(output.contains(e2))&&!(output.contains(e4)));
+
+		List<Employee> output = employeeManager
+				.findEmployeesByDepartment(EmployeeDepartment.WAREHOUSE);
+
+		assertTrue((output.contains(e1)) && (output.contains(e2))
+				&& !(output.contains(e4)));
 	}
-	
+
 	@Test
-	public void testUpdateEmployeeAndRetrieve(){
+	public void testUpdateEmployeeAndRetrieve() {
 		employeeManager.persistEmployee(e1);
-		
+
 		employeeManager.updateEmployee(e3);
-		
-		Employee sample = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
-		
+
+		Employee sample = employeeManager.findEmployeeById(e1.getEmployee()
+				.getUserId());
+
 		assertNotEquals(e1, sample);
 	}
-	
+
 	@Test
-	public void testRemoveEmployee(){
-		
+	public void testRemoveEmployee() {
+
 		employeeManager.persistEmployees(testInput);
-		
+
 		employeeManager.removeEmployee(e1);
-		
-		Employee output = employeeManager.findEmployeeById(e1.getEmployee().getUserId());
-		
+
+		Employee output = employeeManager.findEmployeeById(e1.getEmployee()
+				.getUserId());
+
 		assertNull(output);
 	}
-	
-	@Test
-	public void testFindEmployeesBySurname(){
-		
-		employeeManager.persistEmployees(testInput);
-		
-		List<Employee> output = employeeManager.findEmployeesBySurname("House");
-		
-		assertTrue(output.size()==2);
-	}
-	
-	@Test
-	public void testfindEmployeesByRole(){
-		
-		employeeManager.persistEmployees(testInput);
-		
-		List<Employee> output = employeeManager.findEmployeesByRole(EmployeeDepartment.WAREHOUSE, EmployeePermissions.WORKER);
-		
-		assertTrue(output.size()==2);
-	}
-	
 
+	@Test
+	public void testFindEmployeesBySurname() {
+
+		employeeManager.persistEmployees(testInput);
+
+		List<Employee> output = employeeManager.findEmployeesBySurname("House");
+
+		assertTrue(output.size() == 2);
+	}
+
+	@Test
+	public void testfindEmployeesByRole() {
+
+		employeeManager.persistEmployees(testInput);
+
+		List<Employee> output = employeeManager.findEmployeesByRole(
+				EmployeeDepartment.WAREHOUSE, EmployeePermissions.WORKER);
+
+		assertTrue(output.size() == 2);
+	}
 
 }

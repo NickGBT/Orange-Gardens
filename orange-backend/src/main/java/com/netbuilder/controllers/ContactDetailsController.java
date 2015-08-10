@@ -3,6 +3,7 @@ package com.netbuilder.controllers;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import com.netbuilder.util.ContactUsDetails;
 import com.netbuilder.util.TestData;
 
@@ -12,25 +13,23 @@ import com.netbuilder.util.TestData;
  *
  **/
 
-@ManagedBean (name = "contactUsDetailsController")
+@ManagedBean(name = "contactUsDetailsController")
 @RequestScoped
-public class ContactDetailsController 
-{
-	//@Inject
-	@ManagedProperty(value= "#{testData}")
+public class ContactDetailsController {
+	// @Inject
+	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
-	
+
 	private ContactUsDetails contactUsDetails;
-	
+
 	/*
 	 * @author jtaylor
 	 */
-	public ContactUsDetails getContactUsDetails() 
-	{
+	public ContactUsDetails getContactUsDetails() {
 		contactUsDetails = testData.getContactUs();
 		return contactUsDetails;
 	}
-	
+
 	public TestData getTestData() {
 		return testData;
 	}
@@ -38,5 +37,5 @@ public class ContactDetailsController
 	public void setTestData(TestData testData) {
 		this.testData = testData;
 	}
-	
+
 }

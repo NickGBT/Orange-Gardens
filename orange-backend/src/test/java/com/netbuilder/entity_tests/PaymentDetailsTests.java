@@ -1,6 +1,6 @@
 package com.netbuilder.entity_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.enums.CardType;
 
-
 /**
  * 
  * @author Alexander Neil
@@ -19,16 +18,16 @@ import com.netbuilder.enums.CardType;
 public class PaymentDetailsTests {
 
 	CardType type;
-	
+
 	String number;
 	String name;
 	int security;
 	String expiry;
 	LoginDetails customer;
 	Order orderId;
-	byte[] password = {1,2,3};
-	byte[] salt = {1,2,3};
-	
+	byte[] password = { 1, 2, 3 };
+	byte[] salt = { 1, 2, 3 };
+
 	PaymentDetails testPaymentDetails;
 
 	@Before
@@ -38,10 +37,11 @@ public class PaymentDetailsTests {
 		name = "N B Gardens";
 		security = 123;
 		expiry = "08/18";
-		customer = new LoginDetails("fooUser", "testEmail1",password, salt);
+		customer = new LoginDetails("fooUser", "testEmail1", password, salt);
 		orderId = null;
-		
-		testPaymentDetails = new PaymentDetails(type, number, name, security, expiry, customer, orderId);
+
+		testPaymentDetails = new PaymentDetails(type, number, name, security,
+				expiry, customer, orderId);
 	}
 
 	@Test
@@ -75,10 +75,7 @@ public class PaymentDetailsTests {
 	}
 
 	/*
-	@Test
-	public void testGetCustomerId() {
-		fail("Not yet implemented");
-	}
-	*/
+	 * @Test public void testGetCustomerId() { fail("Not yet implemented"); }
+	 */
 
 }

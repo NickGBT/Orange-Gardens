@@ -26,117 +26,117 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class ProductManagerDB implements ProductManager {
 	@Inject
 	private PersistenceManager pm;
-	
+
 	public void persistProduct(Product product) {
-		
+
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(product);
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
-		
+
 	}
 
 	public void persistProducts(List<Product> products) {
 
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
-		for(Product p: products){
+		for (Product p : products) {
 			em.persist(p);
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
 
 	}
-	
-	public List<Product> getAll(){
-		
+
+	public List<Product> getAll() {
+
 		List<Product> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL,
+				Product.class);
 		pm.closeEntityManager(em);
-		try{
+		try {
 			results = new ArrayList<Product>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
-
 	public Product findByProductId(int productId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_ID, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(
+				Product.FIND_BY_PRODUCT_ID, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("id", productId);
-		try{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre){
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
 
 	public List<Product> findProductsByName(String name) {
-		
+
 		List<Product> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_NAME, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(
+				Product.FIND_BY_PRODUCT_NAME, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("name", name);
-		try{
+		try {
 			results = new ArrayList<Product>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
-		
+
 	}
 
-	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice) {
-		
+	public List<Product> findProductsByPriceBetween(double lowPrice,
+			double highPrice) {
+
 		List<Product> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(
+				Product.FIND_BY_PRODUCT_PRICE, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("lPrice", lowPrice);
 		tq.setParameter("hPrice", highPrice);
-		try{
+		try {
 			results = new ArrayList<Product>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
-	
-	public List<Product> findByCategory(ProductCategory category){
-		
+
+	public List<Product> findByCategory(ProductCategory category) {
+
 		List<Product> results = null;
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY,
+				Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("category", category);
-		
-		try{
+
+		try {
 			results = new ArrayList<Product>(tq.getResultList());
-		}
-		catch(NoResultException nre){
-			
+		} catch (NoResultException nre) {
+
 		}
 		return results;
 	}
 
 	public void updateProduct(Product product) {
 
-		if(product == null){
+		if (product == null) {
 			throw new ValidationException("Null product passed!");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -145,8 +145,8 @@ public class ProductManagerDB implements ProductManager {
 	}
 
 	public void removeProduct(Product product) {
-		
-		if(product == null){
+
+		if (product == null) {
 			throw new ValidationException("Null product passed!");
 		}
 		EntityManager em = pm.createEntityManager();

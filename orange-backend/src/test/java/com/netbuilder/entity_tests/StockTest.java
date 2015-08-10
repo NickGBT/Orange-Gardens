@@ -1,6 +1,6 @@
 package com.netbuilder.entity_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +15,7 @@ import com.netbuilder.enums.ProductCategory;
  *
  */
 
-public class StockTest
-{
+public class StockTest {
 	private Stock testStock;
 	private Product testProduct;
 	private int stockLevel = 4;
@@ -26,47 +25,42 @@ public class StockTest
 	private int criticalThreshold = 2;
 	private int requiredStock = 5;
 	private ProductCategory productCategory = ProductCategory.Accessory;
-	
+
 	@Before
-	public void setUp() throws Exception 
-	{
-		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00, "A gnom", productCategory);
-		testStock = new Stock(testProduct, stockLevel, stockAvailable, location, maxStock, criticalThreshold, requiredStock);
+	public void setUp() throws Exception {
+		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00,
+				"A gnom", productCategory);
+		testStock = new Stock(testProduct, stockLevel, stockAvailable,
+				location, maxStock, criticalThreshold, requiredStock);
 	}
-	
+
 	@Test
-	public void testGetStockLevel()
-	{
+	public void testGetStockLevel() {
 		assertEquals(testStock.getStockLevel(), stockLevel);
 	}
-	
+
 	@Test
-	public void testGetStockAvailable()
-	{
+	public void testGetStockAvailable() {
 		assertEquals(testStock.getStockAvailable(), stockAvailable);
 	}
-	
+
 	@Test
-	public void testGetLocation()
-	{
+	public void testGetLocation() {
 		assertEquals(testStock.getLocation(), location);
 	}
-	
+
 	@Test
-	public void testGetMaxStock()
-	{
+	public void testGetMaxStock() {
 		assertEquals(testStock.getMaxStock(), maxStock);
 	}
-	
+
 	@Test
-	public void testGetCriticalThreshold()
-	{
+	public void testGetCriticalThreshold() {
 		assertEquals(testStock.getCriticalThreshold(), criticalThreshold);
 	}
-	
+
 	@Test
-	public void testGetRequiredStock()
-	{
+	public void testGetRequiredStock() {
 		assertEquals(testStock.getRequiredStock(), requiredStock);
 	}
 }
