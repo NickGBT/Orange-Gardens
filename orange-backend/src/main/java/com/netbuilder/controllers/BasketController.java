@@ -87,7 +87,12 @@ public class BasketController {
 		this.basket = basket;
 	}
 
-	public double getSubtotal() {
+	/**
+	 * 
+	 * @author jtaylor
+	 */
+	public double getSubtotal() 
+	{
 		return subtotal;
 	}
 
