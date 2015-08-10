@@ -139,9 +139,7 @@ public class GladosGui
     	initMap();
     	assignActionListeners();
     	testData = new TestData();
-    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
-    			testData.getxProductLocation()[testData.getProductIncrement()], 
-    			testData.getyProductLocation()[testData.getProductIncrement()]);
+    	testPath = null;
 		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
 		for (int i = 2; i < 18; i++) {
 			warehouseMap.setWalkable(2, i, false);
@@ -231,11 +229,11 @@ public class GladosGui
 			{
 				if(testData.isOrdersComplete())
 				{
-					JOptionPane.showMessageDialog(mainFrame, "Please complete order processing", "Order not yet complete!", JOptionPane.WARNING_MESSAGE);		
+					displayGetOrder();
 				}
 				else
 				{
-					displayGetOrder();
+					JOptionPane.showMessageDialog(mainFrame, "Please complete order processing", "Order not yet complete!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -254,17 +252,19 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				testData.setProductIncrement(testData.getProductIncrement() + 1);
-				if(testData.getProductIncrement() == testData.getxProductLocation().length && testData.isGdz() == false)
+				if(testData.getProductIncrement() < 2)
 				{
-					initMap();
-					productName.setText("Take products to GDZ");
-			    	quantity.setText("");
-			    	boxSize.setText("");
-			    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), testData.getxGdz(), testData.getyGdz());
-			    	testData.setOrdersComplete(true);
-			    	testData.setGdz(true);
-			    	displayMap();
+					testData.setProductIncrement(testData.getProductIncrement() + 1);
+					getNewRoute();				
+				}
+				else if(testData.getProductIncrement() == 2 && testData.isGdz() == false)
+				{
+					testData.setGdz(true);
+					getNewRoute();
+				}
+				if(testData.isGdz() == true)
+				{
+					getGdzRoute();
 				}
 			}
 		});
@@ -276,11 +276,7 @@ public class GladosGui
 	public void getNewRoute()
 	{
 		initMap();
-		System.out.println(testData.getProductIncrement());
-		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
-    	quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
-    	boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
-    	if(testData.getProductIncrement() > 0)
+		if(testData.getProductIncrement() > 0)
     	{
 	    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement() - 1]);
 	    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement() - 1]);
@@ -288,6 +284,22 @@ public class GladosGui
     	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
     			testData.getxProductLocation()[testData.getProductIncrement()], 
     			testData.getyProductLocation()[testData.getProductIncrement()]);    	
+    	displayMap();
+	}
+	
+	/**
+	 * Gets route to GDZ
+	 */
+	public void getGdzRoute()
+	{
+		initMap();
+		if(testData.getProductIncrement() > 0)
+    	{
+	    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement()]);
+	    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement()]);
+    	}
+    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), testData.getxGdz(), testData.getyGdz());
+    	testData.setOrdersComplete(true);
     	displayMap();
 	}
 	
@@ -443,7 +455,7 @@ public class GladosGui
     {
     	logger.entering(getClass().getName(), "buildMap");
     	mapPanel.removeAll();
-    	if(testPath.size() > 0)
+    	if(testPath.size() > 0 && testPath != null)
     	{
     		for(int i = 0; i < testPath.size(); i++)
     		{
@@ -556,7 +568,7 @@ public class GladosGui
     	productName.setFont(gladosFont); 
     	productName.setPreferredSize(new Dimension(200, 30));
     	productName.setEditable(false);
-    	productName.setMaximumSize(productName.getPreferredSize());
+    	productName.setMaximumSize(productName.getPreferredSize()); 	
     	quantity.setFont(gladosFont); 
     	quantity.setPreferredSize(new Dimension(200, 30));
     	quantity.setEditable(false);
@@ -565,6 +577,18 @@ public class GladosGui
     	boxSize.setPreferredSize(new Dimension(200, 30));
     	boxSize.setEditable(false);
     	boxSize.setMaximumSize(boxSize.getPreferredSize());
+    	if(testData.getProductIncrement() <= 2)
+    	{
+    		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);	
+    		quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
+    		boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
+    	}
+    	if(testData.isGdz())
+    	{
+    		productName.setText("Take products to GDZ");
+        	quantity.setText("");
+        	boxSize.setText("");
+    	}
     	orderPanel.add(productName);
     	orderPanel.add(quantity);
     	orderPanel.add(boxSize);
