@@ -43,7 +43,7 @@ public class StockList extends JPanel{
 					
 			    
 		JScrollPane scrollPane = new JScrollPane(stockListTable);
-		scrollPane.setPreferredSize(new Dimension(500,700));
+		scrollPane.setPreferredSize(new Dimension(500,600));
 		
 		stockListTable.getColumnModel().getColumn(0).setPreferredWidth(100);
 		stockListTable.getColumnModel().getColumn(1).setPreferredWidth(300);
