@@ -105,6 +105,9 @@ public class BasketController
 		this.total = total;
 	}		
 	
+	/*
+	 * @author jtaylor
+	 */
 	public void removeFromBasket() 
 	{
 		productId = FacesContext.getCurrentInstance().getExternalContext().

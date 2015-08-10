@@ -68,10 +68,19 @@ public class OrderLineManagerAL implements OrderLineManager{
 		return orderLines;
 	}
 
+	/*
+	 * 
+	 * @author jtaylor
+	 *
+	 */
 	public void updateOrderLine(OrderLine orderLine) {
 		for (OrderLine o : orderLines){
-			if(o.getOrder().getCustomer().getUsername().equals(orderLine.getOrder().getCustomer().getUsername())){
+			if(o.getOrder().getCustomer().getUsername().equals(orderLine.getOrder().getCustomer().getUsername()))
+			{
+				if(orderLine.getProduct().getProductId() == o.getProduct().getProductId())
+				{
 				orderLines.set(orderLines.indexOf(o), orderLine);
+				}
 			}
 		}
 	}
