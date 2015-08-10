@@ -27,9 +27,9 @@ import com.netbuilder.util.LoginDetailsToolkit;
 public class LoginDetailsManagerDB implements LoginDetailsManager {
 	@Inject
 	private PersistenceManager pm;
-	
+
 	public void persistLoginDetails(LoginDetails details) {
-		
+
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(details);
@@ -38,67 +38,67 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	}
 
 	public LoginDetails findByUsername(String username) {
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(
+				LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("username", username);
-		try{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre){
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
 
 	public LoginDetails findByEmail(String email) {
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(
+				LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("email", email);
-		try{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre){
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
 
 	public LoginDetails findByUserId(int userId) {
-		
+
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(
+				LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("userId", userId);
-		try{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre){
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
 
 	public int checkPassword(String name, String password) {
-		
+
 		LoginDetails result;
-		
-		if(LoginDetailsToolkit.isEmail(name)){
+
+		if (LoginDetailsToolkit.isEmail(name)) {
 			result = findByEmail(name);
-		}
-		else{
+		} else {
 			result = findByUsername(name);
 		}
-		
-		if(result != null){
-			if(LoginDetailsToolkit.checkPassword(result, password)) return result.getUserId();
+
+		if (result != null) {
+			if (LoginDetailsToolkit.checkPassword(result, password))
+				return result.getUserId();
 		}
 		return -1;
 	}
 
 	public void updateLoginDetails(LoginDetails details) {
-		
-		if(details == null){
+
+		if (details == null) {
 			throw new ValidationException("Null details passed!");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -108,8 +108,8 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	}
 
 	public void deleteLoginDetails(LoginDetails details) {
-		
-		if(details == null){
+
+		if (details == null) {
 			throw new ValidationException("Null details passed!");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -117,11 +117,12 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 		pm.closeEntityManager(em);
 
 	}
-	
-	public List<LoginDetails> getAllLoginDetails()
-	{
+
+	public List<LoginDetails> getAllLoginDetails() {
 		EntityManager em = pm.createEntityManager();
-		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>)em.createQuery("SELECT a FROM login_details a", LoginDetails.class).getResultList();
+		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>) em
+				.createQuery("SELECT a FROM login_details a",
+						LoginDetails.class).getResultList();
 		pm.closeEntityManager(em);
 		return allLoginDetails;
 	}

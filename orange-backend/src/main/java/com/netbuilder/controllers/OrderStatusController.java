@@ -10,14 +10,14 @@ import com.netbuilder.util.OrderDetails;
 
 public class OrderStatusController {
 
-		private OrderDetails setOrderStatus;
-		
-		//public 
-		public void moveWishListToBasket(){
-			setOrderStatus.moveOrderToBasket();
-		}
-		
-		public void placeOrder(){
-			setOrderStatus.checkoutOrder();
-		}
+	private OrderDetails setOrderStatus;
+
+	// public
+	public void moveWishListToBasket() {
+		setOrderStatus.moveOrderToBasket();
+	}
+
+	public void placeOrder() {
+		setOrderStatus.checkoutOrder();
+	}
 }

@@ -1,6 +1,6 @@
 package com.netbuilder.controllers;
 
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.LoginDetails;
-import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
@@ -26,8 +25,7 @@ import com.netbuilder.util.UserId;
  */
 @ManagedBean(name = "basketController")
 @RequestScoped
-public class BasketController 
-{
+public class BasketController {
 	@Inject
 	private OrderManager basketManager;
 	@Inject
@@ -42,7 +40,7 @@ public class BasketController
 	private OrderLineManager olm;
 	@Inject
 	private OrderManager om;
-	
+
 	private List<OrderLine> basket;
 	private String productId;
 	private String temp;
@@ -50,8 +48,10 @@ public class BasketController
 	private LoginDetails loginDet;
 	private Product foundProduct;
 	private OrderLine orderLine;
-	
-	private double subtotal =0, total = 0;
+	DecimalFormat df = new DecimalFormat("0.00");
+
+	private double subtotal = 0, totalDouble = 0;
+	private String total = "";
 
 	public OrderManager getBasketManager() {
 		return basketManager;
@@ -94,45 +94,44 @@ public class BasketController
 		this.subtotal = subtotal;
 	}
 
-	public double getTotal() {
-		for(OrderLine ol : basket){
-			total += (ol.getProduct().getProductPrice() * ol.getQuantity());
+	public String getTotal() {
+		for (OrderLine ol : basket) {
+			totalDouble += (ol.getProduct().getProductPrice() * ol
+					.getQuantity());
 		}
+		total = df.format(totalDouble);
+		// System.out.println("BasketController::Line108::" + total);
+		// System.out.println("BasketController::Line109::" +
+		// df.format(totalDouble));
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(String total) {
 		this.total = total;
-	}		
-	
+	}
+
 	/*
 	 * @author jtaylor
 	 */
-	public void removeFromBasket() 
-	{
-		productId = FacesContext.getCurrentInstance().getExternalContext().
-				getRequestParameterMap().get("productId");
+	public void removeFromBasket() {
+		productId = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("productId");
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
-		quantity = Integer.parseInt(temp);
-		
+
 		loginDet = ldm.findByUsername(userId.getUsername());
-		
-		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null)
-		{
-			if (olm.findByProductId(foundProduct.getProductId()) != null)
-			{
+
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+			if (olm.findByProductId(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				olm.removeProductLine(orderLine);
+			} else {
+				System.out
+						.println("BasketController::Line127:: Basket does not contain said item.");
 			}
-			else
-			{
-				System.out.println("BasketController::Line127:: Basket does not contain said item.");
-			}
-		}
-		else
-		{
-			System.out.println("BasketController::Line134:: Cannot find user basket.");
+		} else {
+			System.out
+					.println("BasketController::Line134:: Cannot find user basket.");
 		}
 	}
 

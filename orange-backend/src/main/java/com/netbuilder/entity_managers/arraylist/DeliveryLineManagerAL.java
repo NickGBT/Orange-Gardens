@@ -15,23 +15,23 @@ import com.netbuilder.entity_managers.interfaces.DeliveryLineManager;
  */
 
 @Alternative
-public class DeliveryLineManagerAL implements DeliveryLineManager{
+public class DeliveryLineManagerAL implements DeliveryLineManager {
 
 	private ArrayList<DeliveryLine> deliveryLines = new ArrayList<DeliveryLine>();
-	
+
 	public void persistDeliveryLine(DeliveryLine deliveryLine) {
 		deliveryLines.add(deliveryLine);
-		
+
 	}
 
 	public void persistDeliveryLine(List<DeliveryLine> deliveryLines) {
 		this.deliveryLines.addAll(deliveryLines);
-		
+
 	}
 
 	public DeliveryLine findByProductId(int productId) {
-		for (DeliveryLine dl : deliveryLines){		
-			if(dl.getProduct().getProductId() == productId){
+		for (DeliveryLine dl : deliveryLines) {
+			if (dl.getProduct().getProductId() == productId) {
 				return dl;
 			}
 		}
@@ -39,8 +39,8 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 	}
 
 	public DeliveryLine findByDeliveryId(int deliveryId) {
-		for (DeliveryLine dl : deliveryLines){		
-			if(dl.getDelivery().getDeliveryId() == deliveryId){
+		for (DeliveryLine dl : deliveryLines) {
+			if (dl.getDelivery().getDeliveryId() == deliveryId) {
 				return dl;
 			}
 		}
@@ -49,8 +49,8 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 
 	public List<DeliveryLine> findByQuantity(int quantity) {
 		List<DeliveryLine> dLines = new ArrayList<DeliveryLine>();
-		for (DeliveryLine dl : deliveryLines){		
-			if(dl.getQuantity() == quantity){
+		for (DeliveryLine dl : deliveryLines) {
+			if (dl.getQuantity() == quantity) {
 				dLines.add(dl);
 			}
 		}
@@ -58,8 +58,7 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 			return null;
 		else
 			return dLines;
-					
-		
+
 	}
 
 	public List<DeliveryLine> getDeliveryLine() {
@@ -67,22 +66,23 @@ public class DeliveryLineManagerAL implements DeliveryLineManager{
 	}
 
 	public void updateDeliveryLine(DeliveryLine deliveryLine) {
-		for(DeliveryLine dl : deliveryLines){
-			if(dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery().getDeliveryId()){
+		for (DeliveryLine dl : deliveryLines) {
+			if (dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery()
+					.getDeliveryId()) {
 				deliveryLines.set(deliveryLines.indexOf(dl), deliveryLine);
 			}
 		}
-		
+
 	}
 
 	public void removeDeliveryLine(DeliveryLine deliveryLine) {
-		for(DeliveryLine dl : deliveryLines){
-			if(dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery().getDeliveryId()){
+		for (DeliveryLine dl : deliveryLines) {
+			if (dl.getDelivery().getDeliveryId() == deliveryLine.getDelivery()
+					.getDeliveryId()) {
 				deliveryLines.remove(deliveryLines.indexOf(dl));
 			}
 		}
-		
-		
+
 	}
 
 }

@@ -1,6 +1,12 @@
 package com.netbuilder.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,17 +22,16 @@ import com.netbuilder.enums.EmployeePermissions;
 @Entity
 @Table(name = "employee")
 @NamedQueries({
-	@NamedQuery(name = Employee.GET_ALL, query= "SELECT e FROM employee e"),
-	@NamedQuery(name = Employee.FIND_BY_USER_ID, query= "SELECT e FROM employee e WHERE e.user_id = :id;"),
-	@NamedQuery(name = Employee.FIND_BY_SURNAME, query= "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
-	@NamedQuery(name = Employee.FIND_BY_NAMES, query= "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
-	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query= "SELECT e from employee e WHERE e.departent = :department;"),
-	@NamedQuery(name = Employee.FIND_BY_ROLE, query= "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
-	
-})
+		@NamedQuery(name = Employee.GET_ALL, query = "SELECT e FROM employee e"),
+		@NamedQuery(name = Employee.FIND_BY_USER_ID, query = "SELECT e FROM employee e WHERE e.user_id = :id;"),
+		@NamedQuery(name = Employee.FIND_BY_SURNAME, query = "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
+		@NamedQuery(name = Employee.FIND_BY_NAMES, query = "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
+		@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query = "SELECT e from employee e WHERE e.departent = :department;"),
+		@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
 
+})
 public class Employee {
-	
+
 	public static final String GET_ALL = "Employee.getAll";
 	public static final String FIND_BY_USER_ID = "Employee.findByEmployeeId";
 	public static final String FIND_BY_SURNAME = "Employee.findBySurname";
@@ -57,7 +62,8 @@ public class Employee {
 	@NotNull
 	private EmployeePermissions employeePermission;
 
-	public Employee(EmployeeDepartment employeeDepartment, String fName, String lName, EmployeePermissions employeePermission) {
+	public Employee(EmployeeDepartment employeeDepartment, String fName,
+			String lName, EmployeePermissions employeePermission) {
 		this.employeeDepartment = employeeDepartment;
 		this.fName = fName;
 		this.lName = lName;
@@ -112,8 +118,7 @@ public class Employee {
 	/**
 	 * @return the employee's userID
 	 */
-	public LoginDetails getEmployee()
-	{
+	public LoginDetails getEmployee() {
 		return employee;
 	}
 

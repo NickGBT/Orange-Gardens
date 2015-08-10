@@ -1,4 +1,3 @@
-
 package com.netbuilder.controllers;
 
 import java.util.List;
@@ -14,18 +13,18 @@ import com.netbuilder.util.OrderDetails;
  *
  */
 
-//@Named
-//@RequestScoped
+// @Named
+// @RequestScoped
 public class WishlistController {
-	
-		private OrderDetails wishlistGetter;
-		public List<OrderLine> wishlist;
-	
-		@Inject
-		public List<OrderLine> getWishlist(){
-			wishlist = wishlistGetter.getWishlist();
-			return wishlist;
-		}
-		
-		//add remove from wishlist functionality?
+
+	private OrderDetails wishlistGetter;
+	public List<OrderLine> wishlist;
+
+	@Inject
+	public List<OrderLine> getWishlist() {
+		wishlist = wishlistGetter.getWishlist();
+		return wishlist;
+	}
+
+	// add remove from wishlist functionality?
 }
