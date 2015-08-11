@@ -1,5 +1,6 @@
 package com.netbuilder.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.util.SearchDetails;
 
 /**
@@ -33,21 +35,52 @@ public class SearchController {
 	private List<Product> searchResults;
 	private String name;
 	private String catSelection;
+	private ProductCategory category;
 	
 	public String headerSearch() {
 		System.out.println(catSelection);
 		name = searchDetails.getSearchEntry();
-		if (name.isEmpty() == false || catSelection.equals("All")) {
-			System.out.println(name);
+		
+		if (!catSelection.equals("All")){
+			category = ProductCategory.valueOf(catSelection);
+		}
+		if (name.isEmpty() == true && catSelection.equals("All")) {	
+			return "webstorefront.xhtml";
+			}
+		
+		if (name.isEmpty() && (!catSelection.equals("All"))){
+			System.out.println("Category: " + category);
+			List<Product> searchResults = productManager.findByCategory(category);
+			this.searchResults = searchResults;
+			
+			return "searchresults.xhtml";
+		} 
+		
+		if(catSelection.equals("All")){
 			List<Product> searchResults = productManager.findProductsByName(name);
 			this.searchResults = searchResults;
 			
+			return "searchresults.xhtml";
+		} else { 
+			System.out.println(name);
+			List<Product> searchResults = productManager.findProductsByName(name);
+			System.out.println(searchResults);
+			
+			List<Product> categorySearchResult = new ArrayList<Product>(); 
+			
+			for (Product r : searchResults ) { 
+				if (r.getCategory().equals(category)) {
+					categorySearchResult.add(r);
+				}
+				this.searchResults = categorySearchResult;
 			}
-		return "searchresults.xhtml";
+			
+			return "searchresults.xhtml";
+		}
+		
 	}
 
 	public List<Product> getSearchResults() {
-		
 		return searchResults;
 	}
 	
