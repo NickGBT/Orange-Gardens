@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
@@ -18,6 +19,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.OrderDetails;
+import com.netbuilder.util.ProductDetails;
 import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 
@@ -34,11 +36,13 @@ public class OrderCheckoutController {
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
 
+
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
 	@Inject
 	private AddressManager address;
-
+	private LoginDetails loginDet;
+	
 	@Inject
 	private PaymentDetailsManager paymentDetails;
 
@@ -46,7 +50,7 @@ public class OrderCheckoutController {
 	private OrderManager orderManager;
 	private Order order;
 	private OrderDetails basketDetails;
-
+	
 	@Inject
 	private UserId userId;
 	
@@ -56,18 +60,20 @@ public class OrderCheckoutController {
 	public String changeOrderStatus(){
 		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
 		order.setStatus(OrderStatus.placed);
+		
 		if(order.getOrderStatus() == OrderStatus.placed){
 			return "confirmationpage.xhtml";
+			//order = new Order(loginDet, OrderStatus.basket, null);
+			//orderManager.persistOrder(order);
 		}
-		
 		else 
 			return "#";
 	}
 	
 
 	public Order getOrder() {
-		// order = orderManager.findByOrderID(orderId.getOrderId());
-		order = testData.getOrder();
+		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		//order = testData.getOrder();
 		return order;
 	}
 

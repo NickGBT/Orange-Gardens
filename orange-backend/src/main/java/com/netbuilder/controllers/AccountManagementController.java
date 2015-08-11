@@ -19,6 +19,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.TestData;
+import com.netbuilder.util.UserId;
 
 /**
  * 
@@ -51,6 +52,8 @@ public class AccountManagementController {
 	private PaymentDetails paymentDetails;
 	@Inject
 	private PaymentDetailsManager paymentDetailsManager;
+	@Inject
+	private UserId userId;
 
 	public String changeAddress() {
 		if (address != null) {
@@ -76,27 +79,26 @@ public class AccountManagementController {
 	}
 
 	public LoginDetails getLoginDetails() {
-		// loginDetails = loginDetailsManager.findByUserId(UserId.getUid());
-		loginDetails = testData.getCustomerLogin();
+		loginDetails = loginDetailsManager.findByUserId(userId.getUid());
+		//loginDetails = testData.getCustomerLogin();
 		return loginDetails;
 	}
 
 	public Customer getCustomer() {
-		// customer = customerManager.findByUserId(UserId.getUid());
-		customer = testData.getCustomer();
+		customer = customerManager.findByUserId(userId.getUid());
+		//customer = testData.getCustomer();
 		return customer;
 	}
 
 	public Address getAddress() {
-		// address = addressManager.findByUserId(UserId.getUid());
-		address = testData.getAddress();
+		address = addressManager.findByUserId(userId.getUid());
+		//address = testData.getAddress();
 		return address;
 	}
 
 	public PaymentDetails getPaymentDetails() {
-		// paymentDetails =
-		// paymentDetailsManager.findCustomerPaymentDetails(UserId.getUid());
-		paymentDetails = testData.getPaymentDetails();
+		paymentDetailsManager.findCustomerPaymentDetails(userId.getUid());
+		//paymentDetails = testData.getPaymentDetails();
 		return paymentDetails;
 	}
 
