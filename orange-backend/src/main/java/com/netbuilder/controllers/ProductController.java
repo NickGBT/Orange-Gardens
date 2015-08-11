@@ -144,7 +144,7 @@ public class ProductController {
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 
-		System.out.println("Product Controller::Line141:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
+		//System.out.println("Product Controller::Line141:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
 
 		loginDet = ldm.findByUsername(userId.getUsername());
 

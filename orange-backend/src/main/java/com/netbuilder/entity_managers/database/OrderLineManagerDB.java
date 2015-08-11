@@ -128,12 +128,6 @@ public class OrderLineManagerDB implements OrderLineManager {
 	}
 
 	@Override
-	public List<OrderLine> getOrderLines(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public OrderLine findByProductInBasket(int productID) {
 		// TODO Auto-generated method stub
 		return null;
@@ -141,6 +135,18 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	@Override
 	public OrderLine findByProductInWishlist(int productID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderLine> getBasketOrderLines(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderLine> getWishlistOrderLines(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
