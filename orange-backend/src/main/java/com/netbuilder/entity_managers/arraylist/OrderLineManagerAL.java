@@ -129,6 +129,24 @@ public class OrderLineManagerAL implements OrderLineManager {
 		}
 		orderLines.removeAll(toRemove);
 	}
+	
+	/*
+	 * 
+	 * @author jtaylor
+	 */
+	public void removeProductLineFromWishlist(OrderLine orderLine) {
+		ArrayList<OrderLine> toRemove = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername()
+					.equals(orderLine.getOrder().getCustomer().getUsername())) {
+				if (orderLine.getProduct().getProductId() == o.getProduct()
+						.getProductId() && o.getOrder().getOrderStatus() == OrderStatus.wishlist) {
+					toRemove.add(o);
+				}
+			}
+		}
+		orderLines.removeAll(toRemove);
+	}
 
 	public void updateProductLine(OrderLine orderLine) {
 		// TODO Auto-generated method stub

@@ -55,6 +55,13 @@
 
 							<h:commandButton value="Remove from Wishlist" id="wishlistRemove" action="#{wishlistController.removeFromWishlist}"/>
 						</h:form>
+						<h:form>
+							<input type="hidden" name="productId"
+								value="#{orderLine.product.productId}" />
+							<h:commandButton value="Add to Basket" id="productPage"
+								action="#{wishlistController.addToBasketFromWishlist}" class="button"
+								style="float:right;" />
+						</h:form>
 					</h:column>
 				</h:dataTable>
 			</ui:insert>
