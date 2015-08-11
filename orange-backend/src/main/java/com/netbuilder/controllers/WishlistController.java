@@ -45,11 +45,10 @@ public class WishlistController
 	private String productId;
 	private LoginDetails loginDet;
 	private Product foundProduct;
-	private Product nullProduct;
 	private OrderLine orderLine;
-	private OrderLine nullOrderLine;
 	private Order orderBasket;
-	private Order nullBasket;
+	private String emptyWishlist = "";
+
 
 	private List<OrderLine> wishlist;
 
@@ -58,15 +57,11 @@ public class WishlistController
 		
 		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
 		
-//		if (wishlist.size() < 1)
-//		{
-//			System.out.println("WishlistController::Line63::Creating null for Empty Wishlist.");
-//			nullBasket = new Order(null, OrderStatus.wishlist, null);
-//			nullProduct = new Product(0,"","There are currently no items in your wishlist.",0,0,0,0,0,"",ProductCategory.Tool);
-//			nullOrderLine = new OrderLine(nullBasket, nullProduct,0);
-//			wishlist.add(nullOrderLine);
-//		}
-//		System.out.println("WishlistController::Line69::Pulling wishlist.");
+		if (wishlist.size() < 1)
+		{
+			emptyWishlist = "There are currently no items in your wishlist.";
+		}
+		//System.out.println("WishlistController::Line69::Pulling wishlist.");
 		return wishlist;
 	}
 
@@ -183,5 +178,13 @@ public class WishlistController
 				}
 			}		
 		}
+	}
+	
+	public String getEmptyWishlist() {
+		return emptyWishlist;
+	}
+
+	public void setEmptyWishlist(String emptyWishlist) {
+		this.emptyWishlist = emptyWishlist;
 	}
 }
