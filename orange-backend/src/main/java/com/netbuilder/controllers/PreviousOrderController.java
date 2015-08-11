@@ -18,14 +18,14 @@ import com.netbuilder.util.UserId;
 public class PreviousOrderController {
 
 	private OrderManager orderMan;
-	private OrderStatus orderStatus = OrderStatus.placed;
+	private OrderStatus orderStatus;
 
 	@Inject
 	private UserId userId;
 
 	public List<Order> getPreviousOrders() {
 
-		return orderMan.findPreviousOrders(orderStatus, userId.getUid());
+		return orderMan.findPreviousOrders( orderStatus, userId.getUsername());
 	}
 
 	/*
@@ -35,6 +35,6 @@ public class PreviousOrderController {
 	 */
 	public List<Order> getReturnableOrders() {
 		
-		return orderMan.findPreviousOrders(OrderStatus.dispatched, userId.getUid());
+		return orderMan.findPreviousOrders(OrderStatus.dispatched, userId.getUsername());
 	}
 }
