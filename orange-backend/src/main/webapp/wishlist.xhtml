@@ -7,10 +7,10 @@
 	template="templates/template.xhtml">
 
 	<ui:define name="pageTitle">
-		<h1>NB Gardens - Wishlist</h1>
+		NB Gardens - Wishlist
 	</ui:define>
 
-	<!-- author: ngilbert llew -->
+	<!-- author: ngilbert llew jtaylor-->
 
 	<ui:define name="content">
 
@@ -44,6 +44,15 @@
 							</h3>
 							<br />
 							<br />
+					</h:column>
+					<h:column>
+						<h:form>
+					   	 	<input type="hidden" name="productId" value="#{orderLine.product.productId}" />
+
+							<h:commandButton value="Remove from Wishlist"  id="wishlistRemove"
+								action="#{wishlistController.removeFromWishlist}">
+						</h:commandButton>
+					    </h:form>
 					</h:column>
 				</h:dataTable>	
 			</ui:insert>
