@@ -174,6 +174,25 @@ public class ProductController {
 	{
 		productId = FacesContext.getCurrentInstance().getExternalContext().
 				getRequestParameterMap().get("productId");
+		
+		// System.out.println("ProductController::Line98::" + temp);
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+		quantity = Integer.parseInt(temp);
+
+		// System.out.println("Product Controller::Line100:: The user has selected "
+		// + quantity +" of item "+ foundProduct.getProductName() +
+		// ", Product ID: " + productId);
+
+		loginDet = ldm.findByUsername(userId.getUsername());
+
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+			if (olm.findByProductId(foundProduct.getProductId()) != null) {
+				orderLine = olm.findByProductId(foundProduct.getProductId());
+				orderLine = new OrderLine(orderLine.getOrder(),
+						orderLine.getProduct(), (quantity));
+				olm.updateOrderLine(orderLine);
+			}
+		}
 	}
 
 	/**
