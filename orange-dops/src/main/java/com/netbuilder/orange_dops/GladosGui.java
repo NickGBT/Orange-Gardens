@@ -99,32 +99,19 @@ public class GladosGui
 			logger.log(Level.SEVERE, "Illegal access exception", iae);
 		}
 		splashFrame = new JFrame();
-		splashLabel = new JLabel();
-		backgroundLabel = new JLabel();
+		splashLabel = new JLabel(); backgroundLabel = new JLabel();
 		mapLabel = new JLabel[20][20];
-		assignOrder = new JPanel();
-		orderButtons = new JPanel();
-		orderPanel = new JPanel();
-		fillPanel = new JPanel();
-		mapPanel = new JPanel();
-		loginPanel = new JPanel();
-		splashIcon = new ImageIcon();
-		backgroundIcon = new ImageIcon();
+		assignOrder = new JPanel(); orderButtons = new JPanel(); orderPanel = new JPanel(); 
+		fillPanel = new JPanel(); mapPanel = new JPanel(); loginPanel = new JPanel();
+		splashIcon = new ImageIcon(); backgroundIcon = new ImageIcon();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		getNewOrder = new JButton();
-		completeOrder = new JButton();
-		nextProduct = new JButton();
-		login = new JButton();
-		logout = new JButton();
-		productName = new JTextField(35);
-		quantity = new JTextField(35);
-		boxSize = new JTextField(35);
+		getNewOrder = new JButton(); completeOrder = new JButton(); nextProduct = new JButton();
+		login = new JButton(); logout = new JButton();
+		productName = new JTextField(35); quantity = new JTextField(35); boxSize = new JTextField(35);
 		username = new LoginTextField("Username:");
 		password = new JPasswordField(11);
-		splash = null;
-		background = null;
-		user = "";
-		pass = "";
+		splash = null; background = null;
+		user = ""; pass = "";
 		splashTimer = new Timer();
 		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());        
 	    for(int i = 2; i < 18; i++)
@@ -153,7 +140,7 @@ public class GladosGui
 		testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
-		ui = new Thread() 
+		ui = new Thread()
 		{
 			@Override
 			public void run() 
@@ -321,8 +308,7 @@ public class GladosGui
 		gladosLogo = nbLogo.getImage();
 		splashFrame.setResizable(false);
 		splashFrame.setTitle("Welcome to NB GLADOS");
-		splashFrame.setSize(splashIcon.getIconWidth(),
-		splashIcon.getIconHeight());
+		splashFrame.setSize(splashIcon.getIconWidth(), splashIcon.getIconHeight());
 		splashFrame.setUndecorated(true);
 		splashFrame.setLocation((int) screenSize.getWidth() / 2 - splashIcon.getIconWidth() / 2, (int) screenSize.getHeight() / 2 - splashIcon.getIconHeight() / 2);
 		splashFrame.setIconImage(gladosLogo);
