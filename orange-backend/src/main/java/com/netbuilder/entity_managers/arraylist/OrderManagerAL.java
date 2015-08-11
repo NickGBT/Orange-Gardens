@@ -287,12 +287,12 @@ public class OrderManagerAL implements OrderManager {
 		return null;
 	}
 
-	public List<Order> findPreviousOrders(OrderStatus status, int customerId) {
+	public List<Order> findPreviousOrders(OrderStatus status, String username) {
 		List<Order> prevOrders = new ArrayList<Order>();
 
 		for (Order o : orders) {
 			if (o.getOrderStatus().equals(status)
-					&& (o.getCustomer().getUserId() == customerId)) {
+					&& (o.getCustomer().getUsername().equals(username))) {
 				prevOrders.add(o);
 			}
 		}
