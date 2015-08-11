@@ -49,6 +49,19 @@ public class OrderLineManagerAL implements OrderLineManager {
 		return null;
 	}
 	
+	public ArrayList<OrderLine> findProductsPlaced(String username) {
+		ArrayList<OrderLine> ol = new ArrayList<OrderLine>();
+		
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username) && 
+					o.getOrder().getOrderStatus() == OrderStatus.placed) {
+				ol.add(o);
+			}
+		
+		}
+		return ol;
+	}
+	
 	/**
 	 * 
 	 * @author jtaylor
@@ -123,6 +136,24 @@ public class OrderLineManagerAL implements OrderLineManager {
 					.equals(orderLine.getOrder().getCustomer().getUsername())) {
 				if (orderLine.getProduct().getProductId() == o.getProduct()
 						.getProductId()) {
+					toRemove.add(o);
+				}
+			}
+		}
+		orderLines.removeAll(toRemove);
+	}
+	
+	/*
+	 * 
+	 * @author jtaylor
+	 */
+	public void removeProductLineFromWishlist(OrderLine orderLine) {
+		ArrayList<OrderLine> toRemove = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername()
+					.equals(orderLine.getOrder().getCustomer().getUsername())) {
+				if (orderLine.getProduct().getProductId() == o.getProduct()
+						.getProductId() && o.getOrder().getOrderStatus() == OrderStatus.wishlist) {
 					toRemove.add(o);
 				}
 			}

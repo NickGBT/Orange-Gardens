@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.LoginDetails;
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
@@ -44,6 +45,7 @@ public class WishlistController
 	private LoginDetails loginDet;
 	private Product foundProduct;
 	private OrderLine orderLine;
+	private Order orderBasket;
 
 	private List<OrderLine> wishlist;
 
@@ -71,8 +73,8 @@ public class WishlistController
 		{
 			if (olm.findByProductInWishlist(foundProduct.getProductId()) != null) 
 			{
-				orderLine = olm.findByProductId(foundProduct.getProductId());
-				olm.removeProductLine(orderLine);
+				orderLine = olm.findByProductInWishlist(foundProduct.getProductId());
+				olm.removeProductLineFromWishlist(orderLine);
 			} 
 			else 
 			{
@@ -86,4 +88,37 @@ public class WishlistController
 	}
 
 
+	public void addToBasketFromWishlist() 
+	{
+		productId = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("productId");
+
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+
+		loginDet = ldm.findByUsername(userId.getUsername());
+
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) 
+		{
+			//System.out.println("WishlistController::Line103::Found basket");
+			if (olm.findByProductInBasket(foundProduct.getProductId()) == null) 
+			{
+				//System.out.println("WishlistController::Line103::Selected item is not already in basket");
+				orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+				orderLine = new OrderLine(orderBasket, foundProduct, 1);
+				olm.persistOrderLine(orderLine);
+			} 
+			orderLine = olm.findByProductInWishlist(foundProduct.getProductId());
+			olm.removeProductLineFromWishlist(orderLine);		
+		} 
+		else 
+		{
+			//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
+			orderBasket = new Order(loginDet, OrderStatus.basket, null);
+			om.persistOrder(orderBasket);
+			orderLine = new OrderLine(orderBasket, foundProduct, 1);
+			olm.persistOrderLine(orderLine);	
+			orderLine = olm.findByProductInWishlist(foundProduct.getProductId());
+			olm.removeProductLineFromWishlist(orderLine);	
+		}
+	}
 }

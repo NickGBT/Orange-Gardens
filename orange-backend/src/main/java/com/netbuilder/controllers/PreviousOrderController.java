@@ -1,10 +1,15 @@
 package com.netbuilder.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Order;
+import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.UserId;
@@ -15,24 +20,28 @@ import com.netbuilder.util.UserId;
  *
  */
 
+@ManagedBean(name = "previousOrderController")
+@RequestScoped
 public class PreviousOrderController {
 
+	@Inject
 	private OrderManager orderMan;
-	private OrderStatus orderStatus;
+	
+	@Inject
+	private OrderLineManager orderLineMan;
 
 	@Inject
 	private UserId userId;
 
-	public List<Order> getPreviousOrders() {
-
-		return orderMan.findPreviousOrders( orderStatus, userId.getUsername());
+	public ArrayList<OrderLine> getPreviousOrders() {
+		return orderLineMan.findProductsPlaced(userId.getUsername());
 	}
-
+	
 	/*
 	 * 
 	 * @author ngilbert
 	 *
-	 */
+	 */ 
 	public List<Order> getReturnableOrders() {
 		
 		return orderMan.findPreviousOrders(OrderStatus.dispatched, userId.getUsername());

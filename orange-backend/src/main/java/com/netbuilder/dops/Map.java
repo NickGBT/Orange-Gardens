@@ -22,7 +22,7 @@ public class Map<gladosNode extends Node> {
 
 	public Map(int width, int height, NodeFactory nodeFactory) {
 		this.nodeFactory = nodeFactory;
-		nodes = (gladosNode[][]) new Node[width][height];
+		nodes = (gladosNode[][])new Node[width][height];
 		this.width = width - 1;
 		this.height = height - 1;
 		initEmptyNodes();
@@ -31,7 +31,7 @@ public class Map<gladosNode extends Node> {
 	private void initEmptyNodes() {
 		for (int i = 0; i <= width; i++) {
 			for (int j = 0; j <= height; j++) {
-				nodes[i][j] = (gladosNode) nodeFactory.createNode(i, j);
+				nodes[i][j] = (gladosNode)nodeFactory.createNode(i, j);
 			}
 		}
 		buildMap();
@@ -137,7 +137,7 @@ public class Map<gladosNode extends Node> {
 		boolean done = false;
 		while (!done) {
 			path.addFirst(curr);
-			curr = (gladosNode) curr.getPrevious();
+			curr = (gladosNode)curr.getPrevious();
 
 			if (curr.equals(start)) {
 				done = true;
