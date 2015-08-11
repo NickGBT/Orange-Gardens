@@ -25,6 +25,8 @@ public interface OrderLineManager {
 	public OrderLine findByProductId(int productID);
 	
 	public OrderLine findByProductInBasket(int productID);
+	
+	public OrderLine findByProductInWishlist(int productID);
 
 	public List<OrderLine> findByOrderId(int orderId);
 

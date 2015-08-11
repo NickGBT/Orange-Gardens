@@ -105,13 +105,18 @@ public class ProductController {
 		loginDet = ldm.findByUsername(userId.getUsername());
 
 		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+			System.out.println("Found basket");
 			if (olm.findByProductInBasket(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
+				System.out.println("Product Id: " + foundProduct.getProductId());
+				System.out.println("Found product : " + orderLine);
 				orderLine = new OrderLine(orderLine.getOrder(),
 						orderLine.getProduct(),
 						(orderLine.getQuantity() + quantity));
+				System.out.println("OrderLine : " + orderLine);
 				olm.updateOrderLine(orderLine);
 			} else {
+				System.out.println("Product not found!");
 				orderBasket = om.findBasketByUsername(OrderStatus.basket,
 						userId.getUsername());
 				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
@@ -120,8 +125,10 @@ public class ProductController {
 		} else {
 			orderBasket = new Order(loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
+			System.out.println("Creating new orderBasket : " + orderBasket);
 			
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+			System.out.println("Creating new OrderLine : " + orderLine);
 			olm.persistOrderLine(orderLine);			
 		}
 	}
@@ -131,29 +138,31 @@ public class ProductController {
 	  * @author jtaylor
 	  * 
 	  */
-	public void addToWishlist() {
-		productId = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get("productId");
+	public void addToWishlist() 
+	{
+		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 
-		// System.out.println("ProductController::Line98::" + temp);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 
-		// System.out.println("Product Controller::Line100:: The user has selected "
-		// + quantity +" of item "+ foundProduct.getProductName() +
-		// ", Product ID: " + productId);
+		System.out.println("Product Controller::Line141:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
 
 		loginDet = ldm.findByUsername(userId.getUsername());
 
 		if (om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername()) != null) 
 		{
-			
+			if (olm.findByProductInWishlist(foundProduct.getProductId()) == null) 
+			{
+				wishlist = om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername());
+				orderLine = new OrderLine(wishlist, foundProduct, 0);
+				olm.persistOrderLine(orderLine);
+			}
 		} 
 		else 
 		{
 			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
 			om.persistOrder(wishlist);
 
-			orderLine = new OrderLine(orderBasket, foundProduct, 0);
+			orderLine = new OrderLine(wishlist, foundProduct, 0);
 			olm.persistOrderLine(orderLine);
 		}
 	}
