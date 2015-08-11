@@ -1,5 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
@@ -9,7 +10,7 @@ import com.netbuilder.entities.OrderLine;
 
 /**
  * 
- * @author mwatson
+ * @author mwatson llew
  *
  */
 @Named
@@ -25,6 +26,8 @@ public interface OrderLineManager {
 	public OrderLine findByProductId(int productID);
 	
 	public OrderLine findByProductInBasket(int productID);
+	
+	public ArrayList<OrderLine> findProductsPlaced(String username);
 	
 	public OrderLine findByProductInWishlist(int productID);
 
