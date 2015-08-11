@@ -135,11 +135,23 @@ public class OrderLineManagerAL implements OrderLineManager {
 
 	}
 
-	public List<OrderLine> getOrderLines(String username) {
+	public List<OrderLine> getBasketOrderLines(String username) {
 		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
 		for (OrderLine o : orderLines) {
 			if (o.getOrder().getCustomer().getUsername().equals(username)
 					&& o.getOrder().getOrderStatus() == OrderStatus.basket) {
+				userOrderLines.add(o);
+			}
+		}
+
+		return userOrderLines;
+	}
+	
+	public List<OrderLine> getWishlistOrderLines(String username) {
+		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username)
+					&& o.getOrder().getOrderStatus() == OrderStatus.wishlist) {
 				userOrderLines.add(o);
 			}
 		}
