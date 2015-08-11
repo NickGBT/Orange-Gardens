@@ -99,7 +99,13 @@
 
 							</h:form>
 
-							<h:commandButton value="Add to Wishlist" />
+							<h:form>
+								<input type="hidden" name="productId"
+									value="#{product.productId}" />
+								<h:commandButton value="Add to Wishlist" id="wishlist"
+									action="#{productController.addToWishlist}" />
+							</h:form>
+
 							<br />
 							<br />
 						</h:column>
