@@ -110,6 +110,10 @@ public class SearchController {
 	}
 
 	public List<Product> getSearchResults() {
+		//System.out.println(searchResults.get(0).getProductId());
+		//System.out.println(searchResults.get(1).getProductId());
+		//System.out.println(searchResults.get(2).getProductId());
+		//System.out.println(searchResults.get(3).getProductId());
 		return searchResults;
 	}
 	

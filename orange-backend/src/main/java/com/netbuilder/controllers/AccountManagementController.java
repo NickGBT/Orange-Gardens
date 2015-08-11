@@ -15,6 +15,7 @@ import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
+import com.netbuilder.enums.CardType;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
 import com.netbuilder.util.UserId;
@@ -122,5 +123,9 @@ public class AccountManagementController {
 			errorMsg = "Invalid Change";
 			return "account/uid";
 		}
+	}
+	
+	public CardType[] getEnumValues(){
+		return CardType.values();
 	}
 }

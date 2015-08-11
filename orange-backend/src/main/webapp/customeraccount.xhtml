@@ -49,12 +49,7 @@
 					
 					<p>Payment Methods:</p>
 					<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
-						<f:selectItem itemValue="CardType.VISA" itemLabel="VISA"/>
-						<f:selectItem itemValue="CardType.VISADEBIT" itemLabel="VISA DEBIT"/>
-						<f:selectItem itemValue="CardType.VISAELECTRON" itemLabel="VISA ELECTRON"/>
-						<f:selectItem itemValue="CardType.MAESTRO" itemLabel="MAESTRO"/>
-						<f:selectItem itemValue="CardType.MASTERCARD" itemLabel="MASTERCARD"/>
-						<f:selectItem itemValue="CardType.AMERICANEXPRESS" itemLabel="AMERICAN EXPRESS"/>
+						<f:selectItems value="#{accountManagementController.enumValues}" />
 					</h:selectOneMenu>
 					
 					<p>Address:</p>
@@ -67,11 +62,13 @@
 						<h:inputText value="#{accountManagementController.address.postcode}"/><br/>
 					</div>
 				</div>
-			</h:form>
 			<div id="PasswordBlock">
 				<p>Want to change your password?</p>
 					<h:commandButton class="button" value="Reset Password" action="#{AccountManagementController.changePassword()}"/><br/>
 			</div>
+			
+			<h:commandButton value="Submit" action="account.xhtml"/>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

@@ -150,4 +150,16 @@ public class OrderLineManagerDB implements OrderLineManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<OrderLine> findProductsPlaced(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeProductLineFromWishlist(OrderLine orderLine) {
+		// TODO Auto-generated method stub
+		
+	}
 }
