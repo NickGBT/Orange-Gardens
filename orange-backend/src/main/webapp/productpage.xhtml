@@ -10,7 +10,7 @@
 
 	<!-- Author: Matthew Watson llew-->
 
-	<ui:define name="pageTitle"> NB Gardens - Product Name </ui:define>
+	<ui:define name="pageTitle"> NB Gardens - #{productController.product.productName}</ui:define>
 	<ui:define name="content">
 
 		<div id="Product">
@@ -20,13 +20,13 @@
 				<div id="ProductDescription">
 					<div id="ProductHeader">
 						<h:outputLabel>
-							<h:outputText id="productNameLabel" value="ProductName" />
+							<h:outputText id="productNameLabel" value="#{productController.product.productName}" />
 						</h:outputLabel>
 					</div>
 					<div id="Attributes">
 						<p>
 							ID :
-							<h:outputText value="#{ProductPage.product.productId}" />
+							<h:outputText value="#{productController.product.productId}" />
 							<!-- Product ID Here -->
 						</p>
 
@@ -75,9 +75,7 @@
 			</div>
 
 			<div id="productImage">
-				<h:graphicImage id="productImage"
-					src="#{productController.product.getImageLocation}" alt="Gnome" />
-				<!-- Image is here -->
+				<img src="#{productController.product.imageLocation}" style="width = 100 height = 100"/>
 			</div>
 		</div>
 
