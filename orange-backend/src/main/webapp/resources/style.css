@@ -42,7 +42,6 @@ html,body {
 	padding-bottom: 100px;
 	overflow: auto;
 	padding-left: 2%;
-	background-image: url("img/nbbackground.png");
 	
 	
 }
@@ -50,6 +49,9 @@ html,body {
 .background { 
 	border: 2px solid #4ab5c4;
 	background-image: url("img/nbbackground.png");
+	background-size: 100%;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
 }
 
 #header{
@@ -61,7 +63,6 @@ html,body {
 	border-left: 10px solid #9fb56b;
 	border-bottom-left-radius: 50px;
 	min-width: 50%;
-	background-image: url("img/nbbackground.png");
 }
 
 #logo{
