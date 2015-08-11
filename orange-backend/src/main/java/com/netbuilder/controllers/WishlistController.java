@@ -16,6 +16,7 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
+import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.util.UserId;
 
 /**
@@ -44,14 +45,28 @@ public class WishlistController
 	private String productId;
 	private LoginDetails loginDet;
 	private Product foundProduct;
+	private Product nullProduct;
 	private OrderLine orderLine;
+	private OrderLine nullOrderLine;
 	private Order orderBasket;
+	private Order nullBasket;
 
 	private List<OrderLine> wishlist;
 
 	public List<OrderLine> getWishlist() 
 	{
+		
 		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
+		
+//		if (wishlist.size() < 1)
+//		{
+//			System.out.println("WishlistController::Line63::Creating null for Empty Wishlist.");
+//			nullBasket = new Order(null, OrderStatus.wishlist, null);
+//			nullProduct = new Product(0,"","There are currently no items in your wishlist.",0,0,0,0,0,"",ProductCategory.Tool);
+//			nullOrderLine = new OrderLine(nullBasket, nullProduct,0);
+//			wishlist.add(nullOrderLine);
+//		}
+//		System.out.println("WishlistController::Line69::Pulling wishlist.");
 		return wishlist;
 	}
 
@@ -119,6 +134,54 @@ public class WishlistController
 			olm.persistOrderLine(orderLine);	
 			orderLine = olm.findByProductInWishlist(foundProduct.getProductId());
 			olm.removeProductLineFromWishlist(orderLine);	
+		}
+	}
+	
+	public void addAllToBasketFromWishlist() 
+	{
+		loginDet = ldm.findByUsername(userId.getUsername());
+				
+		orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		
+		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
+		
+		//System.out.println("WishlistController::Line148::Method Called");
+		
+		if (wishlist.size() > 0) 
+		{
+			if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) 
+			{
+				for (OrderLine ol : wishlist) 
+				{
+					if (olm.findByProductInBasket(ol.getProduct().getProductId()) == null) 
+					{
+						//System.out.println("WishlistController::Line103::Selected item is not already in basket");
+						orderLine = new OrderLine(orderBasket, ol.getProduct(),1);
+						olm.persistOrderLine(orderLine);
+						orderLine = olm.findByProductInWishlist(ol.getProduct().getProductId());
+						olm.removeProductLineFromWishlist(orderLine);
+					}
+					else
+					{
+						orderLine = olm.findByProductInWishlist(ol.getProduct().getProductId());
+						olm.removeProductLineFromWishlist(orderLine);
+					}
+				}
+			}	
+			else 
+			{
+				//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
+				orderBasket = new Order(loginDet, OrderStatus.basket, null);
+				om.persistOrder(orderBasket);
+				
+				for (OrderLine ol : wishlist) 
+				{
+						orderLine = new OrderLine(orderBasket, ol.getProduct(), 1);
+						olm.persistOrderLine(orderLine);	
+						orderLine = olm.findByProductInWishlist(ol.getProduct().getProductId());
+						olm.removeProductLineFromWishlist(orderLine);	
+				}
+			}		
 		}
 	}
 }

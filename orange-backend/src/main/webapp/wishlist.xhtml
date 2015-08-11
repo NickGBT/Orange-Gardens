@@ -65,6 +65,11 @@
 					</h:column>
 				</h:dataTable>
 			</ui:insert>
+			<h:form>
+				<h:commandButton value="Send Wishlist to Basket" id="wishlistToBasket"
+									action="#{wishlistController.addAllToBasketFromWishlist}" class="button"
+									style="float:right;" />
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
