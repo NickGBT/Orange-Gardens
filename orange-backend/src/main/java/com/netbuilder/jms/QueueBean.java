@@ -36,7 +36,7 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 /* Sample line of activation, Can you activate on multiple queues? */
 })
 @ResourceAdapter("activemq-ra.rar")
-public class TopicBean implements MessageListener {
+public class QueueBean implements MessageListener {
 
 	@Resource(mappedName = "java:/activemq/ConnectionFactory")
 	private ConnectionFactory connectionFactory;
