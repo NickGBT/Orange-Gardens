@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
@@ -17,7 +18,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
  *
  */
 @Alternative
-@Singleton
+@SessionScoped
 public class LoginDetailsManagerAL implements LoginDetailsManager, Serializable {
 
 	private ArrayList<LoginDetails> loginDetails = new ArrayList<LoginDetails>();
