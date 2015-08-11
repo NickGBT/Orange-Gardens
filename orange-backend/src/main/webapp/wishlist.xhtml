@@ -16,20 +16,21 @@
 
 		<div id="wishlistContent">
 			<h1>My Wishlist</h1>
-			<br/>
-			<ui:insert name="NBGardensWishlist">
-				<h:dataTable id="wishlistTable"
-					value="#{wishlistController.wishlist}" var="orderLine">
+
+			<br />
+			<!-- logic is to convert the order status from wishlist to basket -->
+
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{wishlistController.wishlist}" var="orderLine">						
 					<h:column>
-						<h:graphicImage value="#{orderLine.product.imageLocation}"
-							style=" width:200px;  height:200px"/>
+						<h:graphicImage value="#{orderLine.product.imageLocation}" style=" width:200px;  height:200px"/>
 					</h:column>
 					<h:column>
 						<h3>
 							<h:outputText value="#{orderLine.product.productName}"/>
-							<br/>
-							<br/>
 						</h3>
+						<br/>
+						<br/>
 						<h:outputText value="#{orderLine.product.description}"/>
 						<br/>
 						<br/>
@@ -52,8 +53,7 @@
 							<input type="hidden" name="productId"
 								value="#{orderLine.product.productId}" />
 
-							<h:commandButton value="Remove from Wishlist" id="wishlistRemove"
-								action="#{wishlistController.removeFromWishlist}" />
+							<h:commandButton value="Remove from Wishlist" id="wishlistRemove" action="#{wishlistController.removeFromWishlist}"/>
 						</h:form>
 					</h:column>
 				</h:dataTable>
