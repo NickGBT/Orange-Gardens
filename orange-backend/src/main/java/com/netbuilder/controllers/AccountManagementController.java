@@ -5,7 +5,6 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -18,8 +17,6 @@ import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
-import com.netbuilder.util.TestData;
-import com.netbuilder.util.UserDetails;
 import com.netbuilder.util.UserId;
 
 /**
