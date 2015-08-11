@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title><ui:insert name="pageTitle" /></title>
@@ -73,7 +74,7 @@
 			<div id="controls">
 	
 				<div id="mainbuttons">
-	
+				
 					<a href="webstorefront.xhtml" class="headerButton">Home</a> <a
 						href="contact.xhtml" class="headerButton">Contact</a> <a
 						href="catalog.xhtml" class="headerButton">Catalog</a>
@@ -89,6 +90,15 @@
 	
 				<div id="searchbar">
 					<h:form>
+					
+						<h:selectOneMenu id="chooseCategory">
+							<f:selectItem itemValue="All" itemLabel="All"/>
+							<f:selectItem itemValue="Gnome" itemLabel="Gnome" />
+							<f:selectItem itemValue="Accessory" itemLabel="Accessory" />
+							<f:selectItem itemValue="Tool" itemLabel="Tool" />
+							<f:selectItem itemValue="Furniture" itemLabel="Furniture" />
+							<f:selectItem itemValue="Building" itemLabel="Building" />
+						</h:selectOneMenu>
 						<h:inputText id = "searchbar" styleClass="searchText" value="#{searchDetails.searchEntry}" />
 						<h:commandButton styleClass="searchButton" action="#{searchController.headerSearch}" image="resources/img/search.png" />
 					</h:form>
