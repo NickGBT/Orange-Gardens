@@ -34,7 +34,7 @@ public class PreviousOrderController {
 	private UserId userId;
 
 	public ArrayList<OrderLine> getPreviousOrders() {
-		return orderLineMan.findProductsPlaced(userId.getUsername()).get(0).getOrder().;
+		return orderLineMan.findProductsPlaced(userId.getUsername());
 	}
 	
 	/*
