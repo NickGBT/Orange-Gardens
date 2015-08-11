@@ -98,66 +98,6 @@ public class AccountManagementController {
 		return paymentDetails;
 	}
 
-	public String changeFName() {
-		if (accountManagement.getfName() != null) {
-			customer.setfName(accountManagement.getfName());
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
-	public String changeLName() {
-		if (accountManagement.getlName() != null) {
-			customer.setlName(accountManagement.getlName());
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
-	public String changeEmail() {
-		if (accountManagement.getEmail() != null) {
-			loginDetails.setEmail(accountManagement.getEmail());
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
-	public String changeContactNo() {
-		if (accountManagement.getContactNo() != null) {
-			customer.setContactNumber(accountManagement.getContactNo());
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
-	public String changeUsername() {
-		if (accountManagement.getUsername() != null) {
-			loginDetails.setUsername(accountManagement.getUsername());
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
-	public String changePaymentMethod() {
-		if (accountManagement.getCardType() != null) {
-			paymentDetails.setCardType((accountManagement.getCardType()));
-			return "account/uid";
-		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
-		}
-	}
-
 	/*
 	 * 
 	 * @author jtaylor

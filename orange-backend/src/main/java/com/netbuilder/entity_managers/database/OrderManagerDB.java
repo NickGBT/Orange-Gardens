@@ -289,13 +289,13 @@ public class OrderManagerDB implements OrderManager {
 	}
 
 	@Override
-	public List<Order> findPreviousOrders(OrderStatus status, int customerId) {
+	public Order findBasketByUsername(OrderStatus status, String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Order findBasketByUsername(OrderStatus status, String username) {
+	public List<Order> findPreviousOrders(OrderStatus status, String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
