@@ -33,7 +33,7 @@ public class CatalogController {
 
 	public String setProductPage() {
 
-		System.out.println("Set product Page Being Called");
+		System.out.println("Set Product Page Being Called");
 		productId = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("productId");
 		System.out.println(productId);
