@@ -48,6 +48,24 @@ public class OrderLineManagerAL implements OrderLineManager {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @author jtaylor
+	 * 
+	 */
+	public OrderLine findByProductInWishlist(int productID) 
+	{
+		for (OrderLine o : orderLines) 
+		{
+			if (o.getProduct().getProductId() == productID && 
+					o.getOrder().getOrderStatus() == OrderStatus.wishlist) 
+			{
+				return o;
+			}
+		}
+		return null;
+	}
 
 	public List<OrderLine> findByOrderId(int orderId) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
