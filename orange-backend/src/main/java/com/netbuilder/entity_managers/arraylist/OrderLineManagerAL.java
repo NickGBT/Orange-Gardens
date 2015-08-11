@@ -38,6 +38,16 @@ public class OrderLineManagerAL implements OrderLineManager {
 		}
 		return null;
 	}
+	
+	public OrderLine findByProductInBasket(int productID) {
+		for (OrderLine o : orderLines) {
+			if (o.getProduct().getProductId() == productID && 
+					o.getOrder().getOrderStatus() == OrderStatus.basket) {
+				return o;
+			}
+		}
+		return null;
+	}
 
 	public List<OrderLine> findByOrderId(int orderId) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();

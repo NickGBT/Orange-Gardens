@@ -4,7 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.LoginDetails;
@@ -89,11 +88,9 @@ public class ProductController {
 		productD.addToWishlist();
 	}
 
-
-	 /**
-	  * @author jtaylor
-	  * 
-	  */
+	/*
+	 * @author jtaylor
+	 */
 	public void addToBasket() {
 		productId = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("productId");
@@ -109,13 +106,17 @@ public class ProductController {
 		loginDet = ldm.findByUsername(userId.getUsername());
 
 		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
-			if (olm.findByProductId(foundProduct.getProductId()) != null) {
+			System.out.println("Found basket");
+			if (olm.findByProductInBasket(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
+				System.out.println("Found product : " + orderLine);
 				orderLine = new OrderLine(orderLine.getOrder(),
 						orderLine.getProduct(),
 						(orderLine.getQuantity() + quantity));
+				System.out.println("OrderLine : " + orderLine);
 				olm.updateOrderLine(orderLine);
 			} else {
+				System.out.println("Product not found!");
 				orderBasket = om.findBasketByUsername(OrderStatus.basket,
 						userId.getUsername());
 				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
@@ -124,41 +125,14 @@ public class ProductController {
 		} else {
 			orderBasket = new Order(loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
-
+			System.out.println("Creating new orderBasket : " + orderBasket);
+			
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
-			olm.persistOrderLine(orderLine);
+			System.out.println("Creating new OrderLine : " + orderLine);
+			olm.persistOrderLine(orderLine);			
 		}
 	}
-	
 
-	/**
-	 * @author jtaylor
-	 */
-	public void updateQuantity() 
-	{
-		productId = FacesContext.getCurrentInstance().getExternalContext().
-				getRequestParameterMap().get("productId");
-
-		//System.out.println("ProductController::Line98::" + temp);
-		foundProduct = pm.findByProductId(Integer.parseInt(productId));
-		quantity = Integer.parseInt(temp);
-		
-		//System.out.println("Product Controller::Line100:: The user has selected " + quantity +" of item "+ foundProduct.getProductName() + ", Product ID: " + productId);
-		
-		loginDet = ldm.findByUsername(userId.getUsername());
-	   
-		   if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null)
-			{
-				if (olm.findByProductId(foundProduct.getProductId()) != null)
-				{
-					orderLine = olm.findByProductId(foundProduct.getProductId());
-					orderLine = new OrderLine(orderLine.getOrder(), orderLine.getProduct(), (quantity));
-					olm.updateOrderLine(orderLine);
-				}	
-			}	   
-	}
-	
-	
 	/**
 	 * @return the testData
 	 */

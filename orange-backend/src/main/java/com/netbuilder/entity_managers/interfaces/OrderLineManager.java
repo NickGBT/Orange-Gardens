@@ -23,6 +23,8 @@ public interface OrderLineManager {
 
 	// READ
 	public OrderLine findByProductId(int productID);
+	
+	public OrderLine findByProductInBasket(int productID);
 
 	public List<OrderLine> findByOrderId(int orderId);
 
