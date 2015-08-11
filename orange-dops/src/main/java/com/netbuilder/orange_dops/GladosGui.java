@@ -565,8 +565,8 @@ public class GladosGui
     	boxSize.setMaximumSize(boxSize.getPreferredSize());
     	if(testData.getProductIncrement() <= 2)
     	{
-    		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);	
-    		quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]);
+    		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
+    		quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]  + "	Remaining Products: (" + (2 - testData.getProductIncrement()) + ")");
     		boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
     	}
     	if(testData.isGdz())
