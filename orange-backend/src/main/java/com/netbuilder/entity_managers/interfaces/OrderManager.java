@@ -35,8 +35,6 @@ public interface OrderManager {
 
 	public Order findBasket(OrderStatus status, int customerId);
 
-	public List<Order> findPreviousOrders(OrderStatus status, int customerId);
-
 	public List<Order> findByDateDispatched(String dateDispatched);
 
 	public List<Order> findByDateDelivered(String dateDelivered);
@@ -57,6 +55,8 @@ public interface OrderManager {
 	public List<Order> getAllOrders();
 
 	public Order findBasketByUsername(OrderStatus status, String username);
+	
+	public List<Order> findPreviousOrders(OrderStatus status, String username);
 
 	// UPDATE
 	public void updateOrder(Order order);
