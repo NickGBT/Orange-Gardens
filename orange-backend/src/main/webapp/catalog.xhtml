@@ -33,6 +33,21 @@
 			<div id="title">
 				<H1>Product Catalog</H1>
 			</div>
+			
+			<h:form>
+				<h:outputText value = "Category: "/>
+				<h:selectOneMenu id="chooseCategory" valueChangeListener="#{catalogController.valueChanged}"
+								 onchange="submit()">
+					<f:selectItem itemValue="All" itemLabel="All"/>
+					<f:selectItem itemValue="Gnome" itemLabel="Gnome" />
+					<f:selectItem itemValue="Accessory" itemLabel="Accessory" />
+					<f:selectItem itemValue="Tool" itemLabel="Tool" />
+					<f:selectItem itemValue="Furniture" itemLabel="Furniture" />
+					<f:selectItem itemValue="Building" itemLabel="Building" />
+				</h:selectOneMenu>
+			</h:form>
+			
+			<br/>
 
 			<div id="categories">
 

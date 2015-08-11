@@ -12,6 +12,7 @@ import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
+import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
@@ -42,6 +43,9 @@ public class RegistrationController {
 
 	@Inject
 	private AddressManager addressManager;
+	
+	@Inject
+	private CustomerManager customerManager;
 
 	private String errorMsg;
 	private Customer customer;
@@ -56,10 +60,6 @@ public class RegistrationController {
 		System.out.println("RegistrationController::Line 49:: Worked ");
 
 		if (registrationDetails.checkAllUserEntries()) {
-			customer = new Customer(registrationDetails.getfName(),
-					registrationDetails.getlName(),
-					registrationDetails.getContactNumber(),
-					registrationDetails.isBlackListed());
 			byte[] salt = null;
 			byte[] hashedPassword = null;
 
@@ -71,8 +71,16 @@ public class RegistrationController {
 				e.printStackTrace();
 			}
 			System.out.println("Hashed Pass : " + hashedPassword);
+			
 			loginDetails = new LoginDetails(registrationDetails.getUsername(),
 					registrationDetails.getEmail(), hashedPassword, salt);
+			
+			customer = new Customer(loginDetails, 
+					registrationDetails.getfName(),
+					registrationDetails.getlName(),
+					registrationDetails.getContactNumber(),
+					registrationDetails.isBlackListed());
+			
 			address = new Address(loginDetails,
 					registrationDetails.getAddressLabel(),
 					registrationDetails.getAddressLine1(),
@@ -92,14 +100,14 @@ public class RegistrationController {
 			loginDetailsManager.persistLoginDetails(loginDetails);
 			addressManager.persistAddress(address);
 			paymentDetailsManager.persistPaymentDetails(payDetails);
+			customerManager.persistCustomer(customer);
 
 			return "customerlogin.xhtml";
 		} else {
 			System.out.println("Invalid");
 			errorMsg = "Invalid entries";
-			return "RegisterCustomer";
+			return "registercustomer.xhtml";
 		}
-
 	}
 
 	public void setRegistrationDetails(RegistrationDetails registrationDetails) {
@@ -113,5 +121,4 @@ public class RegistrationController {
 	public CardType[] getEnumValues(){
 		return CardType.values();
 	}
-	
 }

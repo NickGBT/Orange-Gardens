@@ -133,7 +133,16 @@ public class OrderLineManagerDB implements OrderLineManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
+	@Override
+	public OrderLine findByProductInBasket(int productID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public OrderLine findByProductInWishlist(int productID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

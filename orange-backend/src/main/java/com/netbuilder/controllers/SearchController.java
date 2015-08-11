@@ -31,12 +31,14 @@ public class SearchController {
 	@ManagedProperty(value="#{catalogController}")
 	CatalogController catalogController;
 	
-	List<Product> searchResults;
-	String name;
+	private List<Product> searchResults;
+	private String name;
+	private String catSelection;
 	
 	public String headerSearch() {
+		System.out.println(catSelection);
 		name = searchDetails.getSearchEntry();
-			if (name.isEmpty() == false) {
+		if (name.isEmpty() == false || catSelection.equals("All")) {
 			System.out.println(name);
 			List<Product> searchResults = productManager.findProductsByName(name);
 			this.searchResults = searchResults;
@@ -62,6 +64,20 @@ public class SearchController {
 	 */
 	public void setCatalogController(CatalogController catalogController) {
 		this.catalogController = catalogController;
+	}
+
+	/**
+	 * @return the catSelection
+	 */
+	public String getCatSelection() {
+		return catSelection;
+	}
+
+	/**
+	 * @param catSelection the catSelection to set
+	 */
+	public void setCatSelection(String catSelection) {
+		this.catSelection = catSelection;
 	}
 	
 	
