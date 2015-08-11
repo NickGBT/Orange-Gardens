@@ -74,6 +74,7 @@ public class ProductController {
 	private OrderLine orderLine;
 
 	private Order orderBasket;
+	private Order wishlist;
 
 	public ProductController() {
 
@@ -84,11 +85,6 @@ public class ProductController {
 		product = pm.findByProductId(productDetails.getId());
 		return product;
 	}
-
-	public void addToWishlist() {
-		productD.addToWishlist();
-	}
-
 
 	 /**
 	  * @author jtaylor
@@ -126,6 +122,39 @@ public class ProductController {
 			om.persistOrder(orderBasket);
 
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+			olm.persistOrderLine(orderLine);
+		}
+	}
+	
+	
+	
+	/**
+	  * @author jtaylor
+	  * 
+	  */
+	public void addToWishlist() {
+		productId = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("productId");
+
+		// System.out.println("ProductController::Line98::" + temp);
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+
+		// System.out.println("Product Controller::Line100:: The user has selected "
+		// + quantity +" of item "+ foundProduct.getProductName() +
+		// ", Product ID: " + productId);
+
+		loginDet = ldm.findByUsername(userId.getUsername());
+
+		if (om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername()) != null) 
+		{
+			
+		} 
+		else 
+		{
+			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
+			om.persistOrder(wishlist);
+
+			orderLine = new OrderLine(orderBasket, foundProduct, 0);
 			olm.persistOrderLine(orderLine);
 		}
 	}
