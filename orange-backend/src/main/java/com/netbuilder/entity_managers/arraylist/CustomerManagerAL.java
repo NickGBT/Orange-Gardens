@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Alternative;
+import javax.inject.Singleton;
 
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
@@ -15,6 +16,7 @@ import com.netbuilder.entity_managers.interfaces.CustomerManager;
  */
 
 @Alternative
+@Singleton
 public class CustomerManagerAL implements CustomerManager {
 	ArrayList<Customer> customers = new ArrayList<Customer>();
 
@@ -54,6 +56,15 @@ public class CustomerManagerAL implements CustomerManager {
 		}
 	}
 
+	public Customer findByUsername(String username) {
+		for (Customer c : customers) {
+			if (c.getCustomer().getUsername().equals(username)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public Customer findByUserId(int userId) {
 		for (Customer c : customers) {
 			if (c.getCustomer().getUserId() == userId) {

@@ -121,4 +121,10 @@ public class CustomerManagerDB implements CustomerManager {
 		pm.closeEntityManager(em);
 	}
 
+	@Override
+	public Customer findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

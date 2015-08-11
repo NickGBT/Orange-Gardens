@@ -8,6 +8,7 @@ html{
 
 body{
 	background-color: #4ab5c4;
+	background-image: url("resources/img/NBBackground.png");
 	margin: 0;
 	padding: 0;
 }
@@ -15,6 +16,7 @@ body{
 html,body { 
 	height: 100%;	
 	background-color: #4ab5c4;
+	
 }
 
 #wrap {
@@ -22,6 +24,7 @@ html,body {
 	height:100%
 	margin: 0 auto -4em;
 	background-color: #4ab5c4;
+
 }
 
 .carouselimages:hover {
@@ -45,7 +48,12 @@ html,body {
 
 .background { 
 	border: 2px solid #4ab5c4;
+	background-image: url("img/nbbackground.png");
+	background-size: 100%;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
 }
+
 #header{
 	
 	text-align: center;

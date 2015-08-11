@@ -5,7 +5,6 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Address;
@@ -18,7 +17,6 @@ import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.util.AccountManagement;
 import com.netbuilder.util.LoginDetailsToolkit;
-import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -30,8 +28,6 @@ import com.netbuilder.util.UserId;
 @ManagedBean(name = "accountManagementController")
 @RequestScoped
 public class AccountManagementController {
-	@ManagedProperty(value = "#{testData}")
-	private TestData testData;
 
 	private String errorMsg;
 	@Inject
@@ -64,7 +60,7 @@ public class AccountManagementController {
 			address.setCounty(accountManagement.getCounty());
 			address.setPostcode(accountManagement.getPostcode());
 			address.setBillingAddress(accountManagement.isBillingAddress());
-			return "account/uid";
+			return "customeraccount.xhtml";
 		} else {
 			errorMsg = "Invalid Change";
 			return "account/uid";
@@ -85,7 +81,7 @@ public class AccountManagementController {
 	}
 
 	public Customer getCustomer() {
-		customer = customerManager.findByUserId(userId.getUid());
+		customer = customerManager.findByUsername(userId.getUsername());
 		//customer = testData.getCustomer();
 		return customer;
 	}
@@ -187,13 +183,4 @@ public class AccountManagementController {
 			return "account/uid";
 		}
 	}
-
-	public TestData getTestData() {
-		return testData;
-	}
-
-	public void setTestData(TestData testData) {
-		this.testData = testData;
-	}
-
 }

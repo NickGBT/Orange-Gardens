@@ -43,7 +43,16 @@ public class Customer {
 		this.contactNumber = contactNumber;
 		this.isBlackListed = isBlackListed;
 	}
-
+	
+	public Customer(LoginDetails customer, String fName, String lName, String contactNumber, boolean isBlackListed)
+	{
+		this.customer = customer;
+		this.fName = fName;
+		this.lName = lName;
+		this.contactNumber = contactNumber;
+		this.isBlackListed = isBlackListed;
+	}
+	
 	public LoginDetails getCustomer() {
 		return customer;
 	}

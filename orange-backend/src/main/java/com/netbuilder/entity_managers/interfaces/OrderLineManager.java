@@ -34,7 +34,9 @@ public interface OrderLineManager {
 
 	public List<OrderLine> getOrderLine();
 
-	public List<OrderLine> getOrderLines(String username);
+	public List<OrderLine> getBasketOrderLines(String username);
+	
+	public List<OrderLine> getWishlistOrderLines(String username);
 
 	// UPDATE
 	public void updateOrderLine(OrderLine orderLine);

@@ -11,16 +11,16 @@ import com.netbuilder.pathfinding.GladosNode;
  */
 public class MessageHandler 
 {
-	private String[] tempProduct;
+	private List<String> tempProduct;
 	private List<GladosNode> tempPath;
 	
-	public String[] getTempProduct() 
+	public List<String> getTempProduct() 
 	{
 		return tempProduct;
 	}
-	public void setTempProduct(String[] tempProduct) 
+	public void addTempProduct(String tempProduct) 
 	{
-		this.tempProduct = tempProduct;
+		this.tempProduct.add(tempProduct);
 	}
 	public List<GladosNode> getTempPath()
 	{
