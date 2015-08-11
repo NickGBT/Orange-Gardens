@@ -90,8 +90,11 @@
 	
 				<div id="searchbar">
 					<h:form>
-					
-						<h:selectOneMenu id="chooseCategory" value="#{searchController.catSelection}">
+						<h:outputText value="Categories: " style="padding-right:2px; border-bottom:4px solid #6e9aaf; padding-left:2px;
+						border-top: 4px solid #4ab5c4; border-left: 4px solid #6e9aaf; border-radius: 4px 0px 0px 0px; background-color: rgba(255,255,255,0.2); 
+						color:000000; font-weight: bold;"/>
+						<h:selectOneMenu id="chooseCategory" value="#{searchController.catSelection} " style="padding-right:4px; border-bottom:4px solid #6e9aaf; 
+						border-top: 3px solid #4ab5c4; font-weight: bold;">
 							<f:selectItem itemValue="All" itemLabel="All"/>
 							<f:selectItem itemValue="Gnome" itemLabel="Gnome" />
 							<f:selectItem itemValue="Accessory" itemLabel="Accessory" />
