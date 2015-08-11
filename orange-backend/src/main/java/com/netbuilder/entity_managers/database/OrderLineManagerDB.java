@@ -148,4 +148,10 @@ public class OrderLineManagerDB implements OrderLineManager {
 	
 
 
+	@Override
+	public OrderLine findByProductInBasket(int productID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
