@@ -49,6 +49,19 @@ public class OrderLineManagerAL implements OrderLineManager {
 		return null;
 	}
 	
+	public ArrayList<OrderLine> findProductsPlaced(String username) {
+		ArrayList<OrderLine> ol = new ArrayList<OrderLine>();
+		
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username) && 
+					o.getOrder().getOrderStatus() == OrderStatus.placed) {
+				ol.add(o);
+			}
+		
+		}
+		return ol;
+	}
+	
 	/**
 	 * 
 	 * @author jtaylor

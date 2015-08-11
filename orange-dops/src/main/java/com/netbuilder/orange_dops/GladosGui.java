@@ -128,7 +128,8 @@ public class GladosGui
     	testData = new TestData();
     	testPath = null;
 		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
-		for (int i = 2; i < 18; i++) {
+		for (int i = 2; i < 18; i++) 
+		{
 			warehouseMap.setWalkable(2, i, false);
 			warehouseMap.setWalkable(5, i, false);
 			warehouseMap.setWalkable(8, i, false);
@@ -158,7 +159,8 @@ public class GladosGui
 					try 
 					{
 						Thread.sleep(100);
-					} catch (InterruptedException ie) 
+					} 
+					catch (InterruptedException ie) 
 					{
 						logger.log(Level.SEVERE, "Thread Interrupted", ie);
 					}
@@ -185,7 +187,8 @@ public class GladosGui
 				}
 				else
 				{
-					displayMap();
+					completeOrder.setEnabled(false);
+					displayMap();			
 				}
 			}
 		});
@@ -270,7 +273,8 @@ public class GladosGui
     	}
     	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
     			testData.getxProductLocation()[testData.getProductIncrement()], 
-    			testData.getyProductLocation()[testData.getProductIncrement()]);    	
+    			testData.getyProductLocation()[testData.getProductIncrement()]);
+    	nextProduct.setEnabled(true);
     	displayMap();
 	}
 	
@@ -287,6 +291,8 @@ public class GladosGui
     	}
     	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), testData.getxGdz(), testData.getyGdz());
     	testData.setOrdersComplete(true);
+    	nextProduct.setEnabled(false);
+    	completeOrder.setEnabled(true);
     	displayMap();
 	}
 	

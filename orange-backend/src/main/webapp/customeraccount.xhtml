@@ -10,13 +10,13 @@
 		
 <!-- author: JustinMabbutt -->
 		
-<ui:define name="pageTitle">NB Gardens - Your Account</ui:define>
+<ui:define name="pageTitle">NB Gardens - #{accountManagementController.customer.fName} #{accountManagementController.customer.lName}'s account</ui:define>
 
 	<ui:define name="content">
 		<div id = "MainContent">
 			<div id="TitleBar">
 				<div id="TitleText">
-					<h1>Your Account</h1>
+					<h1>#{accountManagementController.customer.fName}'s Account</h1>
 				</div>
 				<div id="TitleImageRight">
 					<img src="resources/img/nbglogo.png" style="width = 100 height = 100"/>
@@ -49,12 +49,7 @@
 					
 					<p>Payment Methods:</p>
 					<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
-						<f:selectItem itemValue="CardType.VISA" itemLabel="VISA"/>
-						<f:selectItem itemValue="CardType.VISADEBIT" itemLabel="VISA DEBIT"/>
-						<f:selectItem itemValue="CardType.VISAELECTRON" itemLabel="VISA ELECTRON"/>
-						<f:selectItem itemValue="CardType.MAESTRO" itemLabel="MAESTRO"/>
-						<f:selectItem itemValue="CardType.MASTERCARD" itemLabel="MASTERCARD"/>
-						<f:selectItem itemValue="CardType.AMERICANEXPRESS" itemLabel="AMERICAN EXPRESS"/>
+						<f:selectItems value="#{accountManagementController.enumValues}" />
 					</h:selectOneMenu>
 					
 					<p>Address:</p>
@@ -66,12 +61,13 @@
 						<h:inputText value="#{accountManagementController.address.county}"/><br/>
 						<h:inputText value="#{accountManagementController.address.postcode}"/><br/>
 					</div>
+					<h:commandButton value="Submit" action="account.xhtml"/>
 				</div>
-			</h:form>
 			<div id="PasswordBlock">
 				<p>Want to change your password?</p>
 					<h:commandButton class="button" value="Reset Password" action="#{AccountManagementController.changePassword()}"/><br/>
 			</div>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
