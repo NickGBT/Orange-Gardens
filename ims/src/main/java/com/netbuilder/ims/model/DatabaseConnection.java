@@ -86,7 +86,6 @@ public class DatabaseConnection {
 			System.out.println("Inserted into tables");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -108,7 +107,6 @@ public class DatabaseConnection {
 			}
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -120,7 +118,6 @@ public class DatabaseConnection {
 			String sql = "UPDATE Product " + "SET ProductQuantity = " + productQuantity + "  WHERE ProductID = " + productID ;
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -133,7 +130,6 @@ public class DatabaseConnection {
 			String sql = "INSERT INTO Product VALUES (" + productID +", '" + productName + "', " + productQuantity + ")";
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -146,7 +142,6 @@ public class DatabaseConnection {
 			String sql = "DELETE FROM Product " + "WHERE ProductID = 30";
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -10,42 +10,61 @@
 		NB Gardens - Wishlist
 	</ui:define>
 
-	<!-- author: ngilbert llew -->
+	<!-- author: ngilbert llew jtaylor-->
 
 	<ui:define name="content">
 
 		<div id="wishlistContent">
 			<h1>My Wishlist</h1>
+
 			<br />
 			<!-- logic is to convert the order status from wishlist to basket -->
 
-					<ui:insert name="NBGardensCatalog">
+			<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{wishlistController.wishlist}" var="orderLine">						
 					<h:column>
 						<h:graphicImage value="#{orderLine.product.imageLocation}" style=" width:200px;  height:200px"/>
 					</h:column>
 					<h:column>
-						<h3><h:outputText value="#{orderLine.product.productName}"/><br/><br/></h3>
-						<h:outputText value="#{orderLine.product.description}" />
-							<br />
-							<br />
-							<h:outputText
-								value="Width: #{orderLine.product.width}cm	Height: #{orderLine.product.height}cm	Length: #{orderLine.product.length}cm" />
-							<br />
-							<h:outputText value="Weight: #{orderLine.product.weight}kg" />
-							<br />
-							<h:outputText value="Category: #{orderLine.product.category}" />
-							<br />
-							<br />
-							<h3>
-								<h:outputText value="£#{orderLine.product.productPrice}" />
-							</h3>
-							<br />
-							<br />
+						<h3>
+							<h:outputText value="#{orderLine.product.productName}"/>
+						</h3>
+						<br/>
+						<br/>
+						<h:outputText value="#{orderLine.product.description}"/>
+						<br/>
+						<br/>
+						<h:outputText
+							value="Width: #{orderLine.product.width}cm	Height: #{orderLine.product.height}cm	Length: #{orderLine.product.length}cm"/>
+						<br/>
+						<h:outputText value="Weight: #{orderLine.product.weight}kg"/>
+						<br/>
+						<h:outputText value="Category: #{orderLine.product.category}"/>
+						<br/>
+						<br/>
+						<h3>
+							<h:outputText value="£#{orderLine.product.productPrice}"/>
+						</h3>
+						<br/>
+						<br/>
 					</h:column>
-				</h:dataTable>	
+					<h:column>
+						<h:form>
+							<input type="hidden" name="productId"
+								value="#{orderLine.product.productId}" />
+
+							<h:commandButton value="Remove from Wishlist" id="wishlistRemove" action="#{wishlistController.removeFromWishlist}"/>
+						</h:form>
+						<h:form>
+							<input type="hidden" name="productId"
+								value="#{orderLine.product.productId}" />
+							<h:commandButton value="Add to Basket" id="productPage"
+								action="#{wishlistController.addToBasketFromWishlist}" class="button"
+								style="float:right;" />
+						</h:form>
+					</h:column>
+				</h:dataTable>
 			</ui:insert>
 		</div>
-		<br />
 	</ui:define>
 </ui:composition>

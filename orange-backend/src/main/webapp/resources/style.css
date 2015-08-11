@@ -8,7 +8,10 @@ html{
 
 body{
 	background-color: #4ab5c4;
-	background-image: url("resources/img/NBBackground.png");
+	background-image: url("img/nbbackground.png");
+	background-size: 100%;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
 	margin: 0;
 	padding: 0;
 }
@@ -44,16 +47,13 @@ html,body {
 	padding-left: 2%;
 }
 
-#registerForm input{
+#content input, #content select{
 	color: #000000;
 }
 
 .background { 
 	border: 2px solid #4ab5c4;
-	background-image: url("img/nbbackground.png");
-	background-size: 100%;
-	background-attachment: fixed;
-	background-repeat: repeat-y;
+	
 }
 
 #header{

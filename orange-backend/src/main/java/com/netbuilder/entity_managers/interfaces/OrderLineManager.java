@@ -46,4 +46,6 @@ public interface OrderLineManager {
 
 	// DELETE
 	public void removeProductLine(OrderLine orderLine);
+	
+	public void removeProductLineFromWishlist(OrderLine orderLine);
 }

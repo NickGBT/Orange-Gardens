@@ -6,11 +6,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
+import com.netbuilder.util.ProductDetails;
 import com.netbuilder.util.SearchDetails;
 
 /**
@@ -24,18 +26,41 @@ import com.netbuilder.util.SearchDetails;
 public class SearchController {
 	
 	@Inject 
-	ProductManager productManager;
+	private ProductManager productManager;
+	
+	@Inject
+	private ProductDetails prDet;
+
+	private List<Product> searchResults;
 	
 	@ManagedProperty(value="#{searchDetails}")
-	SearchDetails searchDetails;
+	private SearchDetails searchDetails;
 	
 	@ManagedProperty(value="#{catalogController}")
-	CatalogController catalogController;
+	private CatalogController catalogController;
 	
-	private List<Product> searchResults;
+	
 	private String name;
 	private String catSelection;
 	private ProductCategory category;
+
+	
+
+	private Product pr;
+
+	private String productId;
+
+	public String setProductPage() {
+
+		System.out.println("Set product Page Being Called");
+		productId = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("productId");
+		System.out.println(productId);
+		prDet.setId(Integer.parseInt(productId));
+
+		return "productpage.xhtml";
+
+	}
 	
 	public String headerSearch() {
 		System.out.println(catSelection);
@@ -78,6 +103,10 @@ public class SearchController {
 			return "searchresults.xhtml";
 		}
 		
+	}
+	
+	public void printSomething() {
+		System.out.println("Hello");
 	}
 
 	public List<Product> getSearchResults() {
