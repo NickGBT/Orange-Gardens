@@ -15,7 +15,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.netbuilder.orange_dops.GladosGui;
+import com.netbuilder.util.MessageHandler;
 
 /**
  * 
@@ -48,7 +48,7 @@ public class Receiver {
 		connection = connectionFactory.createConnection();
 	}
 
-	public JmsListener listenOnQueue(String queue, GladosGui source)
+	public JmsListener listenOnQueue(String queue, MessageHandler source)
 			throws JMSException {
 
 		try {
@@ -72,7 +72,7 @@ public class Receiver {
 		return jmsListener;
 	}
 
-	public JmsListener listenOnTopic(String topic, GladosGui source)
+	public JmsListener listenOnTopic(String topic, MessageHandler source)
 			throws JMSException {
 
 		try {

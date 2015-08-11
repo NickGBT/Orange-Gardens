@@ -19,7 +19,6 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.OrderDetails;
-import com.netbuilder.util.ProductDetails;
 import com.netbuilder.util.TestData;
 import com.netbuilder.util.UserId;
 

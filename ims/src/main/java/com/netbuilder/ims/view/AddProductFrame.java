@@ -1,7 +1,6 @@
 package com.netbuilder.ims.view;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 

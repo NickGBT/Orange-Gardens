@@ -27,6 +27,8 @@ public interface CustomerManager {
 
 	public Customer findByUserId(int userId);
 
+	public Customer findByUsername(String username);
+	
 	public List<Customer> getCustomers();
 
 	// UPDATE

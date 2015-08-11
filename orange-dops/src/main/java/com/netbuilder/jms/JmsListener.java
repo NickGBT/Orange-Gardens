@@ -11,7 +11,8 @@ import javax.jms.TextMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.netbuilder.orange_dops.GladosGui;
+import com.netbuilder.pathfinding.GladosNode;
+import com.netbuilder.util.MessageHandler;
 
 /**
  * 
@@ -20,10 +21,11 @@ import com.netbuilder.orange_dops.GladosGui;
  */
 public class JmsListener implements MessageListener {
 
-	private final GladosGui handler;
+	private final MessageHandler handler;
 	private static final Logger logger = LogManager.getLogger();
+	private int messageIndex = 0;
 
-	public JmsListener(GladosGui source) {
+	public JmsListener(MessageHandler source) {
 		this.handler = source;
 	}
 
@@ -36,8 +38,9 @@ public class JmsListener implements MessageListener {
 		if (message instanceof TextMessage) {
 			try {
 				String payload = ((TextMessage) message).getText();
-
+				
 				logger.debug("Handling TextMessage payload", payload);
+				handler.addTempProduct(payload);
 			} catch (JMSException e) {
 				logger.error("Error in message conversion to TextMessage", e);
 				e.printStackTrace();
@@ -46,10 +49,10 @@ public class JmsListener implements MessageListener {
 			try {
 				Object payload = ((ObjectMessage) message).getObject();
 
-				logger.debug("Checking payload class type of ObjectMessage",
-						payload);
+				logger.debug("Checking payload class type of ObjectMessage", payload);
+				
 				if (payload instanceof List<?>) {
-
+					handler.setTempPath((List<GladosNode>)payload);
 				}
 			} catch (JMSException e) {
 				logger.error("Error in message conversion to TextMessage", e);
