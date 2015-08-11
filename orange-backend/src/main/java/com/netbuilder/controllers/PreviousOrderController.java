@@ -28,6 +28,11 @@ public class PreviousOrderController {
 		return orderMan.findPreviousOrders(orderStatus, userId.getUid());
 	}
 
+	/*
+	 * 
+	 * @author ngilbert
+	 *
+	 */
 	public List<Order> getReturnableOrders() {
 		
 		return orderMan.findPreviousOrders(OrderStatus.dispatched, userId.getUid());

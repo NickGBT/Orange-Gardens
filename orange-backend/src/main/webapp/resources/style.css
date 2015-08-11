@@ -7,21 +7,21 @@ html{
 }
 
 body{
-	background-color: #242051;
+	background-color: #4ab5c4;
 	margin: 0;
 	padding: 0;
 }
 
 html,body { 
 	height: 100%;	
-	background-color: #242051;
+	background-color: #4ab5c4;
 }
 
 #wrap {
 	min-height:100%;
 	height:100%
 	margin: 0 auto -4em;
-	background-color: #242051;
+	background-color: #4ab5c4;
 }
 
 .carouselimages:hover {
@@ -29,13 +29,13 @@ html,body {
 }
 
 #content{
-	background-color: #96c177;
+	background-color: #699581;
 	opacity:0.9;
 	border-radius: 5px;
 	width: 90%;
 	margin: 0 auto;
 	min-width: 100px;
-	color: #587d71;
+	color: #ffffff;
 	padding-bottom: 100px;
 	overflow: auto;
 	padding-left: 2%;
@@ -44,15 +44,15 @@ html,body {
 }
 
 .background { 
-	border: 2px solid #242051;
+	border: 2px solid #4ab5c4;
 }
 #header{
 	
 	text-align: center;
 	padding: 11px;
-	background-color: #3fdd4d;
-	border-bottom: 10px solid #1b5e20;
-	border-left: 10px solid #1b5e20;
+	background-color: #029676;
+	border-bottom: 10px solid #9fb56b;
+	border-left: 10px solid #9fb56b;
 	border-bottom-left-radius: 50px;
 	min-width: 50%;
 }
@@ -89,9 +89,7 @@ html,body {
 	background:none!important;
 	border: none;
 	padding: :0!important;
-	font: : inherit;
-	
-	
+	font: : inherit;		
 }
 
 .cornerButton:hover {
@@ -113,11 +111,11 @@ html,body {
 }
 
 .headFootLinks:hover{
-	color: #487C7F;
+	color: #ffffff;
 }
 
 .headFootLinks:active{
-	color: #487C7F;
+	color: #ffffff;
 }
 
 .headerButton{
@@ -125,17 +123,17 @@ html,body {
 	color: #000000;
 	font-weight: bold;
 	border-bottom: 5px solid #6e9aaf;
-	border-left: 5px solid #6e9aaf;
+	border-right: 5px solid #6e9aaf;
 	padding: 10px 20px;
 	text-decoration: none;
-	background-color: rgba(255,255,255,0.15);
+	background-color: #4ab5c4;
 	min-width: 8%;
 	width: 50px;
 	height 30px;
 }
 
 .headerButton:hover{
-	background-color: #96c177;
+	background-color: #0989b1;
 	text-decoration:none;
 }
 
@@ -161,7 +159,7 @@ html,body {
 }
  
 .searchButton{
-	background-color: rgba(255,255,255,0.15);
+	background-color: #4ab5c4;
 	border: 5px solid #6e9aaf;
 	color: #000000;
 	font-weight: bold;
@@ -174,7 +172,7 @@ html,body {
 }
  
 .searchButton:hover{
-	background-color: #96c177;
+	background-color: #0989b1;
 }
  
 .searchButton:active{
@@ -190,14 +188,13 @@ html,body {
 	height:100px;
 	clear:both;
 	
-	background-color: #A9FF9E;
+	background-color: #029676;
 	font-size: 14px;
 	color: #000000;
 	padding-bottom: 5px;
-	background-color: #3fdd4d;
-	border-top: 10px solid #1b5e20;
-	border-right: 10px solid #1b5e20;
-	border-top-right-radius: 50px;
+	border-top: 10px solid #9fb56b;
+/* 	border-right: 10px solid #1b5e20; */
+/* 	border-top-right-radius: 50px; */
 
 }
 
