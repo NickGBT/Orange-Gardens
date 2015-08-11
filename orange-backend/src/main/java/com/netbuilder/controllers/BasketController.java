@@ -79,7 +79,7 @@ public class BasketController {
 	}
 
 	public List<OrderLine> getBasket() {
-		basket = orderLineManager.getOrderLines(userId.getUsername());
+		basket = orderLineManager.getBasketOrderLines(userId.getUsername());
 		return basket;
 	}
 
