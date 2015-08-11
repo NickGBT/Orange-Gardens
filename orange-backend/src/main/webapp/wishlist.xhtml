@@ -19,7 +19,7 @@
 			<br />
 			<!-- logic is to convert the order status from wishlist to basket -->
 
-					<ui:insert name="NBGardensCatalog">
+			<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{wishlistController.wishlist}" var="orderLine">						
 					<h:column>
 						<h:graphicImage value="#{orderLine.product.imageLocation}" style=" width:200px;  height:200px"/>
