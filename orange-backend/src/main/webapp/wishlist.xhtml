@@ -19,8 +19,6 @@
 			<br />
 			<!-- logic is to convert the order status from wishlist to basket -->
 
-			<div>
-				<div id="tableContainer">
 					<ui:insert name="NBGardensCatalog">
 				<h:dataTable id="catalogTable" value="#{wishlistController.wishlist}" var="orderLine">						
 					<h:column>
@@ -56,11 +54,7 @@
 					</h:column>
 				</h:dataTable>	
 			</ui:insert>
-				</div>
-			</div>
 		</div>
 		<br />
-
 	</ui:define>
-
 </ui:composition>
