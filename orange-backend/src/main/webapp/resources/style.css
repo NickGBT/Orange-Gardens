@@ -132,6 +132,8 @@ html,body {
 	height 30px;
 }
 
+.button {color: black;}
+
 .headerButton:hover{
 	background-color: #0989b1;
 	text-decoration:none;
