@@ -26,27 +26,27 @@
 				<br/>
 				<br/>
 				First Name:
-				<h:outputText value=" #{accountManagementController.customer.fName}"/>
+				<h:outputText value=" #{accountManagementController.customer.fName}"/> <h:inputText value="#{accountManagement.fName}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>
 				<br/>
 				<br/>
 				Last Name:
-				<h:outputText value="#{accountManagementController.customer.lName}"/>
+				<h:outputText value="#{accountManagementController.customer.lName}"/> <h:inputText value="#{accountManagement.lName}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/>
 				<br/>
 				<br/>
 				Email Address:
-				<h:outputText value="#{accountManagementController.loginDetails.email}"/>
+				<h:outputText value="#{accountManagementController.loginDetails.email}"/> <h:inputText value="#{accountManagement.email}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/>
 				<br/>
 				<br/>
 				Contact Number:
-				<h:outputText value="#{accountManagementController.customer.contactNumber}"/>
+				<h:outputText value="#{accountManagementController.customer.contactNumber}"/> <h:inputText value="#{accountManagement.contactNo}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/>
 				<br/>
 				<br/>
 				Username:
-				<h:outputText value="#{accountManagementController.loginDetails.username}"/>
+				<h:outputText value="#{accountManagementController.loginDetails.username}"/> <h:inputText value="#{accountManagement.username}"/>
 				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/>
 				<br/>
 				<br/>

@@ -42,8 +42,10 @@ html,body {
 	padding-bottom: 100px;
 	overflow: auto;
 	padding-left: 2%;
-	
-	
+}
+
+#registerForm input{
+	color: #000000;
 }
 
 .background { 
