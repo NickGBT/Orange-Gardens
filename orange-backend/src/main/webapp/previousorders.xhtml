@@ -16,9 +16,11 @@
 			<h1>Previous Orders</h1>
 			</div>
 			
-			<ui:insert name="NBGardensCatalog">
-				<h:dataTable id="catalogTable" value="#{previousOrderController.previousOrders}" var="prevOrders" border="1">
-										
+			<ui:repeat value="#{previousOrderController.orderIds}" var = "orderId">
+    			<div><h3>Order Id : <h:outputText value = "#{orderId}"></h:outputText></h3></div>
+    			
+    			<h:dataTable id="catalogTable" value="#{previousOrderController.orderLines}" var="prevOrders" border="1">
+															
 					<h:column>
 						<f:facet name="header">
        	     				<h:outputText value="Item Name" />
@@ -33,10 +35,9 @@
 					</h:column>
 
 				</h:dataTable>
-			
-    			<br />
-    			<br />
-  			</ui:insert>
+    			
+			</ui:repeat>
+
 	</div>
 	</ui:define>
 </ui:composition>

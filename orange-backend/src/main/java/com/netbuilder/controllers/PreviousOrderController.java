@@ -32,19 +32,47 @@ public class PreviousOrderController {
 
 	@Inject
 	private UserId userId;
-
-	public ArrayList<OrderLine> getPreviousOrders() {
-		
-		ArrayList<String> orders = new ArrayList<String>();
-		ArrayList<String> orderLines = new ArrayList<String>();
+	
+	private int currentOrderId;
+	ArrayList<Integer> orderIds = new ArrayList<Integer>();
+	
+	ArrayList<List<OrderLine>> group = new ArrayList<List<OrderLine>>();
+	
+	int index = 0;
+	
+	public List<OrderLine> getOrderLines(){
+		getPreviousOrders();
+		return group.get(index++);
+	}
+	
+	public List<OrderLine> getPreviousOrders() {
+		int i = 0;
+		List<OrderLine> orderLines = new ArrayList<OrderLine>();
 		for(Order o: orderMan.getAllOrders()){
 			if(o.getOrderStatus() == OrderStatus.placed && 
 					o.getCustomer().getUsername().equals(userId.getUsername())) {
-					orders.add(Integer.toString(o.getOrderID()));					
+				
+					System.out.println("Order ID : " + o.getOrderID());
+					orderLines = orderLineMan.findByOrderId(o.getOrderID());
+					System.out.println("OrderLines : " + orderLines);
+					group.add(orderLines);
 					}
 		}
 		
-		return orderLineMan.findProductsPlaced(userId.getUsername());
+		return orderLines;
+	}
+	
+	public ArrayList<Integer> getOrderIds(){
+		
+		for(Order o: orderMan.getAllOrders()){
+			if(o.getOrderStatus() == OrderStatus.placed && 
+					o.getCustomer().getUsername().equals(userId.getUsername())) {
+					orderIds.add(o.getOrderID());
+			}
+		}
+		
+		return orderIds;
+		
 	}
 	
 	/*
