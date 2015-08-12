@@ -40,8 +40,8 @@ public class QueueBean implements MessageListener {
 
 	@Resource(mappedName = "java:/activemq/ConnectionFactory")
 	private ConnectionFactory connectionFactory;
+	//changeable or not required for sending. Can input at send-time
 	@Resource(mappedName = "java:/activemq/queue_out")
-	// Change to specific destination
 	private Destination queue;
 
 	private Connection connection;
@@ -49,7 +49,7 @@ public class QueueBean implements MessageListener {
 	private static final Logger logger = LogManager.getLogger();
 
 	public void init() throws JMSException {
-		logger.info("Starting JMS connecton");
+		logger.info("Starting JMS connecton.");
 		connection = connectionFactory.createConnection();
 		connection.start();
 	}

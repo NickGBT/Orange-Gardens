@@ -33,17 +33,49 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
 		@ActivationConfigProperty(propertyName = "destination", propertyValue = "queue.topic_in")
-/* Sample line of activation, Can you activate on multiple queues?
- * Register queues/topics in the standalone-full.xml
- *  */
+/*
+ * Sample line of activation, Can you activate on multiple queues? Register
+ * queues/topics in the standalone-full.xml
+ */
 })
 @ResourceAdapter("activemq-ra.rar")
 public class TopicBean implements MessageListener {
 
+	@Resource(mappedName = "java:/activemq/ConnectionFactory")
+	private ConnectionFactory connectionFactory;
+	// changeable or not required for sending. Can input at send-time
+	@Resource(mappedName = "java:/activemq/topic_out")
+	private Destination topic;
+
+	private Connection connection;
+
+	private static final Logger logger = LogManager.getLogger();
+
+	public void init() throws JMSException {
+		logger.info("Starting JMS connetion.");
+		connection = connectionFactory.createConnection();
+		connection.start();
+	}
+
+	public void destroy() throws JMSException {
+		logger.info("Closing JMS connection.");
+		connection.close();
+	}
+
+	/**
+	 * This may not be useful. Depends if the server will be listening on any topics.
+	 * Exists in case it's needed. 
+	 */
 	@Override
 	public void onMessage(Message message) {
-		// TODO Auto-generated method stub
-
+		// TODO Presumably inject a thing and muck it. Maybe.
+		if (message instanceof TextMessage) {
+			// TODO Actual functionality, imagine that.
+		} else if (message instanceof ObjectMessage) {
+			// TODO As above
+		} else {
+			logger.error("Message of unusable type received", message);
+		}
 	}
 
 }
