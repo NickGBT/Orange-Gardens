@@ -118,7 +118,7 @@ public class ProductController {
 				olm.persistOrderLine(orderLine);
 			}
 		} else {
-			orderBasket = new Order(rand.nextInt(), loginDet, OrderStatus.basket, null);
+			orderBasket = new Order(rand.nextInt(1000), loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
 			
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
