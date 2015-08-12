@@ -13,17 +13,17 @@
 		<ui:define name = "pageTitle"> NB Gardens - Product Name </ui:define>
 		<ui:define name="content"> 
 		
-			<div id = "ConfirmationContainer"> 
+			<div id = "ConfirmationContainer">
+				<h1>Order Successfully Placed</h1>
 		
-				<h1> Order No : 
+				<!-- <h1> Order No  
 						<f:facet name= "orderId"> 
 							<h:outputText value = ""/>
-							<!-- Order Id header text here -->
 						</f:facet> 
 					Successfully Placed 
 				</h1> 			
 					<div id = "ConfirmationPageTable"> 
-						<h:dataTable id = "ConfirmationPageTable" value=""> <!-- Table input values here -->
+						<h:dataTable id = "ConfirmationPageTable" value="">
 							<f:facet name = "ConfirmationHeader">
 								<h:outputText value = "Cart"/>
 							</f:facet>
@@ -33,7 +33,6 @@
 									<h:outputText value = "Product Name"/>
 								</f:facet>
 								<h:outputText value = ""/> 
-								<!-- Product Name Here -->
 							</h:column>
 							
 							<h:column>
@@ -41,7 +40,6 @@
 									<h:outputText value = "Quantity"/>
 								</f:facet>
 								<h:outputText value = ""/> 
-								<!-- Product Quantity Here -->
 							</h:column>
 							
 							<h:column>
@@ -49,26 +47,19 @@
 									<h:outputText value = "Price"/>
 								</f:facet>
 								<h:outputText value = ""/> 
-								<!-- Total Product Price Here -->
 							</h:column>
 							
 							<f:facet name = "subTotal">
 								<h:outputText value = "Subtotal: "/>
-								<!-- Subtotal here -->
 							</f:facet>						
 						</h:dataTable>
-					</div> 
-					
-					
-					
+					</div>  -->	
+									
 					<div id = "Links"> 
 					<h3>
-						<a href = "catalog.xhtml">Continue Shopping</a><br/>
-						<a href = "webstorefront.xhtml">Logout</a></h3>				
+						<a href = "catalog.xhtml" style="color: #FFFFFF">Continue Shopping</a><br/>
+						<a href = "webstorefront.xhtml" style="color: #FFFFFF">Logout</a></h3>				
 					</div>
 				</div>
-		
-		
-		
 		</ui:define>
 </ui:composition>

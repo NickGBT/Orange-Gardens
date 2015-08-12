@@ -16,13 +16,15 @@
 		
 			<h1>Welcome #{accountManagementController.loginDetails.username}!<h:outputLabel value=""/></h1>
 			
-			<h3><h:outputText rendered="#{accountManagementController.customer.blackListed == false}"
-								 value="YOUR ACCOUNT IS IN GOOD STANDING" />
+			<h3><h:graphicImage value="resources/img/green.png" rendered="#{accountManagementController.customer.blackListed == false}" 
+			width="20" height="20"/><h:outputText rendered="#{accountManagementController.customer.blackListed == false}"
+								 value="	YOUR ACCOUNT IS IN GOOD STANDING"/>
 			
+			<h:graphicImage value="resources/img/red.png" rendered="#{accountManagementController.customer.blackListed == true}" 
+			width="20" height="20"/><h:outputText rendered="#{accountManagementController.customer.blackListed == true}"
+								 value="YOUR ACCOUNT HAS BEEN BLACKLISTED!"/>
 			<h:outputText rendered="#{accountManagementController.customer.blackListed == true}"
-								 value="YOUR ACCOUNT HAS BEEN BLACKLISTED!" />
-			<h:outputText rendered="#{accountManagementController.customer.blackListed == true}"
-								 value="CONTACT NB GARDENS CUSTOMER SUPPORT" /> </h3>
+								 value="CONTACT NB GARDENS CUSTOMER SUPPORT"/></h3>
 								 
 			<div id="productScroller">
 				<!-- Load popular products using JS or similar -->
