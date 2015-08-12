@@ -33,8 +33,16 @@
        					</f:facet>
 						<h:outputText value="#{prevOrders.quantity}"/><br/><br/>
 					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Price" />
+       					</f:facet>
+						<h:outputText value="#{prevOrders.product.productPrice}"/><br/><br/>
+					</h:column>
 
 				</h:dataTable>
+    			<div><h4>Total : <h:outputText value = "#{previousOrderController.total}"></h:outputText></h4></div>
     			
 			</ui:repeat>
 

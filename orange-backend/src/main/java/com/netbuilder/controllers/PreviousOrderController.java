@@ -39,9 +39,24 @@ public class PreviousOrderController {
 	ArrayList<List<OrderLine>> group = new ArrayList<List<OrderLine>>();
 	
 	int index = 0;
+	int total = 0;
+	
+	public int getTotal(){
+
+		return total;
+	}	
+	
+	public void setTotal(int index){
+		total = 0;
+		for(OrderLine o : group.get(index)){
+			total += o.getProduct().getProductPrice();
+		}
+
+	}
 	
 	public List<OrderLine> getOrderLines(){
 		getPreviousOrders();
+		setTotal(index);
 		return group.get(index++);
 	}
 	
@@ -51,10 +66,7 @@ public class PreviousOrderController {
 		for(Order o: orderMan.getAllOrders()){
 			if(o.getOrderStatus() == OrderStatus.placed && 
 					o.getCustomer().getUsername().equals(userId.getUsername())) {
-				
-					System.out.println("Order ID : " + o.getOrderID());
 					orderLines = orderLineMan.findByOrderId(o.getOrderID());
-					System.out.println("OrderLines : " + orderLines);
 					group.add(orderLines);
 					}
 		}
