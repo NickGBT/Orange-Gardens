@@ -10,20 +10,27 @@ import javax.swing.JTextField;
  * @author JustinMabbutt
  *
  */
-public class LoginTextField extends JTextField {
-	public LoginTextField(final String promptText) {
+public class LoginTextField extends JTextField 
+{
+	public LoginTextField(final String promptText) 
+	{
 		super(promptText);
-		addFocusListener(new FocusListener() {
+		addFocusListener(new FocusListener()
+		{
 			@Override
-			public void focusLost(FocusEvent e) {
-				if (getText().isEmpty()) {
+			public void focusLost(FocusEvent e) 
+			{
+				if (getText().isEmpty())
+				{
 					setText(promptText);
 				}
 			}
 
 			@Override
-			public void focusGained(FocusEvent e) {
-				if (getText().equals(promptText)) {
+			public void focusGained(FocusEvent e)
+			{
+				if (getText().equals(promptText))
+				{
 					setText("");
 				}
 			}

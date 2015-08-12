@@ -14,18 +14,19 @@ import javax.swing.JPanel;
  *
  */
 
-public class ImagePanel extends JPanel {
-	private static final long serialVersionUID = -4377283619239711907L;
-
+public class ImagePanel extends JPanel 
+{
 	private Image img;
 	private static final Logger logger = Logger.getLogger(ImagePanel.class
 			.getName());
 
-	public ImagePanel(String img) {
+	public ImagePanel(String img)
+	{
 		this(new ImageIcon(img).getImage());
 	}
 
-	public ImagePanel(Image img) {
+	public ImagePanel(Image img)
+	{
 		logger.entering(getClass().getName(), "ImagePanel");
 		this.img = img;
 		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
@@ -37,7 +38,8 @@ public class ImagePanel extends JPanel {
 		logger.exiting(getClass().getName(), "ImagePanel");
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g)
+	{
 		logger.entering(getClass().getName(), "paintComponent");
 		g.drawImage(img, 0, 0, null);
 		logger.exiting(getClass().getName(), "paintComponent");
