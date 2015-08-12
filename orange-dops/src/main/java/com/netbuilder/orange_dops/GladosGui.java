@@ -14,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -31,6 +29,9 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.util.TestData;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
@@ -43,7 +44,7 @@ import com.netbuilder.pathfinding.WarehouseMap;
  */
 public class GladosGui 
 {
-	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
+	private static final Logger logger = LogManager.getLogger();
 	private TestData testData;
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo, splash, background;
@@ -127,16 +128,6 @@ public class GladosGui
     	assignActionListeners();
     	testData = new TestData();
     	testPath = null;
-		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
-		for (int i = 2; i < 18; i++) 
-		{
-			warehouseMap.setWalkable(2, i, false);
-			warehouseMap.setWalkable(5, i, false);
-			warehouseMap.setWalkable(8, i, false);
-			warehouseMap.setWalkable(11, i, false);
-			warehouseMap.setWalkable(14, i, false);
-			warehouseMap.setWalkable(17, i, false);
-		}
 		initMap();
 		testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();

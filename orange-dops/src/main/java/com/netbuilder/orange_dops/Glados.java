@@ -1,6 +1,7 @@
 package com.netbuilder.orange_dops;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 
@@ -9,8 +10,7 @@ import java.util.logging.Logger;
  */
 
 public class Glados {
-	private static final Logger logger = Logger.getLogger(Glados.class
-			.getName());
+	private static final Logger logger = LogManager.getLogger();
 	private static GladosGui gladosGui = new GladosGui();
 
 	/**
@@ -19,9 +19,8 @@ public class Glados {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		logger.entering(Glados.class.getName(), "main");
+		logger.info("GLADOS startup");
 		System.out.println("GLADOS startup...");
 		gladosGui.displaySplash();
-		logger.exiting(Glados.class.getName(), "main");
 	}
 }

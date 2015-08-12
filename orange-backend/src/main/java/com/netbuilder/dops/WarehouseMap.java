@@ -8,7 +8,7 @@ import java.util.List;
  * @author JustinMabbutt
  *
  */
-public class Map<gladosNode extends Node> {
+public class WarehouseMap<gladosNode extends Node> {
 	protected static boolean CANMOVEDIAGONALLY = true;
 
 	private gladosNode[][] nodes;
@@ -17,10 +17,10 @@ public class Map<gladosNode extends Node> {
 	protected int height;
 
 	private NodeFactory nodeFactory;
-	private Map<GladosNode> warehouseMap;
+	private WarehouseMap<GladosNode> warehouseMap;
 	private List<GladosNode> path;
 
-	public Map(int width, int height, NodeFactory nodeFactory) {
+	public WarehouseMap(int width, int height, NodeFactory nodeFactory) {
 		this.nodeFactory = nodeFactory;
 		nodes = (gladosNode[][])new Node[width][height];
 		this.width = width - 1;
@@ -37,8 +37,8 @@ public class Map<gladosNode extends Node> {
 		buildMap();
 	}
 
-	private void buildMap() {
-		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());
+	private WarehouseMap<GladosNode> buildMap() {
+		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
 		for (int i = 2; i < 18; i++) {
 			warehouseMap.setWalkable(2, i, false);
 			warehouseMap.setWalkable(5, i, false);
@@ -47,6 +47,7 @@ public class Map<gladosNode extends Node> {
 			warehouseMap.setWalkable(14, i, false);
 			warehouseMap.setWalkable(17, i, false);
 		}
+		return warehouseMap;
 	}
 
 	public void setWalkable(int x, int y, boolean bool) {
