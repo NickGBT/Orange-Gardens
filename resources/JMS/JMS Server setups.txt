@@ -6,6 +6,6 @@
 5. Copy standalone-full.xml from this repository to "wildfly-8.2.0.Final\standalone\configuration"
 6. If using Eclipse for Wildfly startup, change configuration of the server to use standalone-full.xml instead of standalone.xml.
 	If external launching, launch with "sh ./standalone.sh -c standalone-full.xml" in cygwin
-6. Download "activemq-rar-5.11.1.rar"
-7. Rename above file to "activemq-ra.rar"
-8. Copy activemq-ra.rar to "wildfly-8.2.0.Final\standalone\deployments"
+7. Download "activemq-rar-5.11.1.rar"
+8. Rename above file to "activemq-ra.rar"
+9. Copy activemq-ra.rar to "wildfly-8.2.0.Final\standalone\deployments"
