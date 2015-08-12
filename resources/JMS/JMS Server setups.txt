@@ -4,6 +4,8 @@
 4. Copy activemq.bat from this folder to "apache-activemq-5.11.1\bin"
 4.1. If you installed JDK 1.7 outside default location change instance of "C:\Program Files\Java\jdk1.7.0_79\" to match your path
 5. Copy standalone-full.xml from this repository to "wildfly-8.2.0.Final\standalone\configuration"
+6. If using Eclipse for Wildfly startup, change configuration of the server to use standalone-full.xml instead of standalone.xml.
+	If external launching, launch with "sh ./standalone.sh -c standalone-full.xml" in cygwin
 6. Download "activemq-rar-5.11.1.rar"
 7. Rename above file to "activemq-ra.rar"
 8. Copy activemq-ra.rar to "wildfly-8.2.0.Final\standalone\deployments"
