@@ -27,11 +27,25 @@ public class JmsMessageHandler
 			salt = LoginDetailsToolkit.generateSalt();
 			hashedPassword = LoginDetailsToolkit.getHashedPassword("password", salt);
 			warehouseOperativeLogin = new LoginDetails(22, "JSmith", "JSmith@nbg.co.uk", hashedPassword, salt);
-			setWarehouseOperative(new Employee(warehouseOperativeLogin, EmployeeDepartment.WAREHOUSE, "John", "Smith", EmployeePermissions.WORKER));
+			warehouseOperative = new Employee(warehouseOperativeLogin, EmployeeDepartment.WAREHOUSE, "John", "Smith", EmployeePermissions.WORKER);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	public boolean checkEmployeeDetails()
+	{
+		if(employeeDetails.get(0).equals(warehouseOperativeLogin.getUsername()) && employeeDetails.get(1).equals(warehouseOperativeLogin.getPassword().toString()))
+		{
+			employeeDetails.clear();
+			return true;
+		}
+		else
+		{
+			employeeDetails.clear();
+			return false;
 		}
 	}
 	
