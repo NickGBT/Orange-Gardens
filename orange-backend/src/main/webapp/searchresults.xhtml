@@ -49,10 +49,11 @@
 			
 			<br/>
 
-			<div id="categories">
+			
 
 				<ui:insert name="NBGardensCatalog">
 					<ui:repeat var="product" value="#{searchController.searchResults}">
+					<div id="categories" style = "border: 2px solid black; overflow:auto; padding-bottom: 20px;">
 						<div style="float: left; padding-right: 10px;">
 								<h:form>
 									<input type="hidden" name="productId"
@@ -62,11 +63,65 @@
 										action="#{searchController.setProductPage}"
 										style=" width:200px;  height:200px" />
 								</h:form>
-						</div>			
+						</div>	
+						<div style="overflow:auto; border: 2px solid yellow" >
+						<h:column>		
+							<div style="padding-left: 5px; float: left; padding-right: 5px; border:2px solid green">
+								
+									
+									<h2>
+										<h:outputText value="#{product.productName}" />
+									</h2>
+									
+									<h3>
+										<h:outputText value="£#{product.productPrice}" />
+									</h3>
+									<br />
+									<br />
 							
+							</div>
+							<div style="float: left; padding-left: 10px; border:2px solid red">
+							
+								<h:form>
+									<h:selectOneMenu id="category"
+										value="#{productController.temp}" class="button"
+										style="padding-right:10px; float:left;">
+										<f:selectItem itemValue="1" itemLabel="1" />
+										<f:selectItem itemValue="2" itemLabel="2" />
+										<f:selectItem itemValue="3" itemLabel="3" />
+										<f:selectItem itemValue="4" itemLabel="4" />
+										<f:selectItem itemValue="5" itemLabel="5" />
+									</h:selectOneMenu>
+									<input type="hidden" name="productId"
+										value="#{product.productId}" />
+
+
+									<div
+										style="min-width: 10px; max-width: 20px; width: 2%; float: left"></div>
+
+
+									<h:commandButton value="Add To Basket" id="basket"
+										action="#{productController.addToBasket}" class="button"
+										style="float:right;">
+									</h:commandButton>
+								</h:form>
+								
+								<h:form>
+									<input type="hidden" name="productId"
+										value="#{product.productId}" />
+									<h:commandButton value="Add to Wishlist" id="productPage"
+										action="#{productController.addToWishlist}" class="button"
+										style="float:right;" />
+								</h:form>
+								<br />
+								<br />
+							</div>
+						</h:column>
+						</div>
+						</div>
 					</ui:repeat>
 				</ui:insert>
 			</div>
-		</div>
+		
 	</ui:define>
 </ui:composition>

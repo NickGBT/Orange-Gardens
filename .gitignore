@@ -6,6 +6,7 @@ orange-backend/target/
 orange-backend/bin
 orange-dops/target/
 /target/
+ims/bin/
 
 database_model.mwb.bak
 ~$*.docx
