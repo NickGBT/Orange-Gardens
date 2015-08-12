@@ -207,7 +207,7 @@ public class GladosGui
 					user = username.getText();
 					pass = password.getPassword().toString();
 					mainFrame.setTitle("NB GLADOS - " + user);
-					displayGetOrder();		
+					displayGetOrder();
 				}
 			}			
 		});
