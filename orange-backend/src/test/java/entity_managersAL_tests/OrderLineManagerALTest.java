@@ -1,6 +1,6 @@
 package entity_managersAL_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 
 public class OrderLineManagerALTest {
-	
+
 	private List<OrderLine> testArrayOrderLine, testArrayOrderLine2;
 	private OrderLineManagerAL orderLineManager;
 	private Order order;
@@ -40,30 +40,33 @@ public class OrderLineManagerALTest {
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
 	private Product product;
+	private Product product2;
 	private List<OrderLine> orderlineAL;
-	byte[] password = {1,2,3};
-	byte[] salt = {1,2,3};
-	
-	
+	byte[] password = { 1, 2, 3 };
+	byte[] salt = { 1, 2, 3 };
+
 	@Before
 	public void setUp() throws Exception {
-		
+
 		orderlineAL = new ArrayList<OrderLine>();
-		
-		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password, salt);
+
+		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password,
+				salt);
 		employee = new LoginDetails("fooUser2", "testEmail2", password, salt);
-		
-		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447", "BOB", 323, "22/07/2020", testCustomer1);
-		
-		orderLineManager = new OrderLineManagerAL();	
-		order = new Order(testCustomer1, employee, OrderStatus.awaitingDispatch,
-				"10/10/15", 12380809, "12/10/15", "13/10/15",
-				"40", true, paymentDetails);
-		
-		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
-		
-		orderLine = new OrderLine(order , product, 50);
-		orderLine1 = new OrderLine(order , product, 50);		
+
+		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+				"BOB", 323, "22/07/2020", testCustomer1);
+
+		orderLineManager = new OrderLineManagerAL();
+		order = new Order(testCustomer1, OrderStatus.basket, paymentDetails);
+
+		product = new Product(1, "img/iomg", "testproduct", 25.25, 10, 10, 11,
+				10.50, "test Product", ProductCategory.Accessory);
+		product2 = new Product(2, "img/iomg", "testproduct2", 25.25, 10, 10,
+				11, 10.50, "test Product2", ProductCategory.Accessory);
+
+		orderLine = new OrderLine(order, product, 50);
+		orderLine1 = new OrderLine(order, product2, 50);
 	}
 
 	@Test
@@ -71,9 +74,8 @@ public class OrderLineManagerALTest {
 		orderLineManager.persistOrderLine(orderLine);
 		orderlineAL = orderLineManager.getOrderLine();
 		assertEquals(1, orderlineAL.size());
-		
+
 	}
-	
 
 	@Test
 	public void testPersistProductLineArrayListOfOrderLine() {
@@ -83,32 +85,30 @@ public class OrderLineManagerALTest {
 		orderLineManager.persistOrderLine(orderlineAL);
 		orderlineAL = orderLineManager.getOrderLine();
 		assertEquals(2, orderlineAL.size());
-		
+
 	}
 
-	/*@Test
-	public void testFindByProductId() {
-		orderlineAL.clear();	
-		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		assertEquals(orderLineManager.findByProductId(2123), orderLine);
-	}*/
+	/*
+	 * @Test public void testFindByProductId() { orderlineAL.clear();
+	 * orderlineAL.add(orderLine);
+	 * orderLineManager.persistOrderLine(orderlineAL);
+	 * assertEquals(orderLineManager.findByProductId(2123), orderLine); }
+	 */
 
-	/*@Test
-	public void testFindByOrderId() {
-		orderlineAL.clear();	
-		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		assertEquals(orderLineManager.findByOrderId(321), orderLine);
-	}*/
+	/*
+	 * @Test public void testFindByOrderId() { orderlineAL.clear();
+	 * orderlineAL.add(orderLine);
+	 * orderLineManager.persistOrderLine(orderlineAL);
+	 * assertEquals(orderLineManager.findByOrderId(321), orderLine); }
+	 */
 
-	@Test
-	public void testFindByQuantity() {
-		orderlineAL.clear();	
-		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		assertEquals(orderLineManager.findByQuantity(50), orderLine);
-	}
+	// @Test
+	// public void testFindByQuantity() {
+	// orderlineAL.clear();
+	// orderlineAL.add(orderLine);
+	// orderLineManager.persistOrderLine(orderlineAL);
+	// assertEquals(orderLineManager.findByQuantity(50), orderLine);
+	// }
 
 	@Test
 	public void testGetProductLine() {
@@ -121,12 +121,13 @@ public class OrderLineManagerALTest {
 	}
 
 	@Test
-	public void testUpdateProductLine() {
-		orderlineAL.clear();	
+	public void testUpdateOrderLine() {
+		orderlineAL.clear();
 		orderlineAL.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
-		orderLineManager.updateProductLine(orderLine);
-		assertEquals(orderLineManager.getOrderLine(), orderLine);
+		orderLineManager.persistOrderLine(orderLine);
+		orderLine = new OrderLine(order, product, 1);
+		orderLineManager.updateOrderLine(orderLine);
+		assertEquals(orderLineManager.getOrderLine().get(0).getQuantity(), 1);
 	}
 
 	@Test
@@ -136,9 +137,10 @@ public class OrderLineManagerALTest {
 		orderlineAL.add(orderLine);
 		orderlineAL.add(orderLine1);
 		oLine.add(orderLine);
-		orderLineManager.persistOrderLine(orderlineAL);
+		orderLineManager.persistOrderLine(orderLine1);
+		orderLineManager.persistOrderLine(orderLine);
 		orderLineManager.removeProductLine(orderLine1);
-		assertEquals(orderLineManager.getOrderLine(), oLine);
+		assertEquals(orderLineManager.getOrderLine().get(0), oLine.get(0));
 	}
 
 }

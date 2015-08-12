@@ -7,49 +7,70 @@
 	template="templates/template.xhtml">
 
 	<ui:define name="pageTitle">
-		<h1>NB Gardens - Wishlist</h1>
+		NB Gardens - Wishlist
 	</ui:define>
 
-	<!-- author: ngilbert llew -->
+	<!-- author: ngilbert llew jtaylor-->
 
 	<ui:define name="content">
 
 		<div id="wishlistContent">
-			<h1>Wishlist</h1>
-			<div>
-				<p>Items currently on wishlist</p>
-			</div>
+			<h1>My Wishlist</h1>
+
 			<br />
 			<!-- logic is to convert the order status from wishlist to basket -->
 
-			<div>
-				<div id="tableContainer">
-					<h:form>
-						<t:dataList value="#{WishlistController.getWishList}"
-							var="product">
-							<h:outputLabel for="productName">
-								<h:outputText class="productName"
-									value="#{product.getProductName()}" />
-							</h:outputLabel>
-							<h:outputLabel for="productPrice">
-								<h:outputText class="productPrice"
-									value="#{product.getProductPrice()}" />
-							</h:outputLabel>
-							<h:graphicImage class="productImage"
-								value="#{product.getProductImageLocation()}" />
-							<br />
-							<br />
-						</t:dataList>
-						<h:commandButton class="button" value="move items to basket"
-							action="#{OrderStatusController.moveToBasket()}">/
-						</h:commandButton>
-						<br />
-					</h:form>
-				</div>
-			</div>
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{wishlistController.wishlist}" var="orderLine">						
+					<h:column>
+						<h:graphicImage value="#{orderLine.product.imageLocation}" style=" width:200px;  height:200px"/>
+					</h:column>
+					<h:column>
+						<h3>
+							<h:outputText value="#{orderLine.product.productName}"/>
+						</h3>
+						<br/>
+						<br/>
+						<h:outputText value="#{orderLine.product.description}"/>
+						<br/>
+						<br/>
+						<h:outputText
+							value="Width: #{orderLine.product.width}cm	Height: #{orderLine.product.height}cm	Length: #{orderLine.product.length}cm"/>
+						<br/>
+						<h:outputText value="Weight: #{orderLine.product.weight}kg"/>
+						<br/>
+						<h:outputText value="Category: #{orderLine.product.category}"/>
+						<br/>
+						<br/>
+						<h3>
+							<h:outputText value="£#{orderLine.product.productPrice}"/>
+						</h3>
+						<br/>
+						<br/>
+					</h:column>
+					<h:column>
+						<h:form>
+							<input type="hidden" name="productId"
+								value="#{orderLine.product.productId}" />
+
+							<h:commandButton value="Remove from Wishlist" id="wishlistRemove" action="#{wishlistController.removeFromWishlist}"/>
+						</h:form>
+						<h:form>
+							<input type="hidden" name="productId"
+								value="#{orderLine.product.productId}" />
+							<h:commandButton value="Add to Basket" id="productPage"
+								action="#{wishlistController.addToBasketFromWishlist}" class="button"
+								style="float:right;" />
+						</h:form>
+					</h:column>
+				</h:dataTable>
+				<h3><h:outputText value="#{wishlistController.emptyWishlist}"/></h3>
+			</ui:insert>
+			<h:form>
+				<h:commandButton value="Send Wishlist to Basket" id="wishlistToBasket"
+									action="#{wishlistController.addAllToBasketFromWishlist}" class="button"
+									style="float:right;" />
+			</h:form>
 		</div>
-		<br />
-
 	</ui:define>
-
 </ui:composition>

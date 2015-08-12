@@ -10,73 +10,64 @@
 		
 <!-- author: JustinMabbutt -->
 		
-<ui:define name="pageTitle">NB Gardens - Your Account</ui:define>
+<ui:define name="pageTitle">NB Gardens - #{accountManagementController.customer.fName} #{accountManagementController.customer.lName}'s account</ui:define>
 
 	<ui:define name="content">
 		<div id = "MainContent">
 			<div id="TitleBar">
 				<div id="TitleText">
-					<h1>Your Account</h1>
+					<h1>#{accountManagementController.customer.fName}'s Account</h1>
 				</div>
 				<div id="TitleImageRight">
-					<h:graphicImage value="/images/rad.jpg" width = "100" height = "100"/>
+					<img src="resources/img/nbglogo.png" style="width = 100 height = 100"/>
 				</div>
 			</div>
-			<div id="MainBlock">
-				<br/>
-				<br/>
-				First Name:
-				<h:outputText value=" #{userDetails.loggedName}"/>
-				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeFName()}"/>
-				<br/>
-				<br/>
-				Last Name:
-				<h:outputText value="#{accountManagementController.customer.lName}"/>
-				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeLName()}"/>
-				<br/>
-				<br/>
-				Email Address:
-				<h:outputText value="#{accountManagementController.loginDetails.email}"/>
-				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeEmail()}"/>
-				<br/>
-				<br/>
-				Contact Number:
-				<h:outputText value="#{accountManagementController.customer.contactNumber}"/>
-				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeContactNo()}"/>
-				<br/>
-				<br/>
-				Username:
-				<h:outputText value="#{accountManagementController.loginDetails.username}"/>
-				<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeUsername()}"/>
-				<br/>
-				<br/>
-				
-				<p>Payment Methods:</p>
-				<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
-					<f:selectItem itemValue="CardType.VISA" itemLabel="VISA"/>
-					<f:selectItem itemValue="CardType.VISADEBIT" itemLabel="VISA DEBIT"/>
-					<f:selectItem itemValue="CardType.VISAELECTRON" itemLabel="VISA ELECTRON"/>
-					<f:selectItem itemValue="CardType.MAESTRO" itemLabel="MAESTRO"/>
-					<f:selectItem itemValue="CardType.MASTERCARD" itemLabel="MASTERCARD"/>
-					<f:selectItem itemValue="CardType.AMERICANEXPRESS" itemLabel="AMERICAN EXPRESS"/>
-				</h:selectOneMenu>
-				
-				<p>Address:</p>
-				<div id="AddressText">
-					<h:outputText value="#{accountManagementController.address.addressLine1}"/><br/>
-					<h:outputText value="#{accountManagementController.address.addressLine2}"/><br/>
-					<h:outputText value="#{accountManagementController.address.addressLine3}"/><br/>
-					<h:outputText value="#{accountManagementController.address.city}"/><br/>
-					<h:outputText value="#{accountManagementController.address.county}"/><br/>
-					<h:outputText value="#{accountManagementController.address.postcode}"/><br/>
+			<h:form>
+				<div id="MainBlock">
+					<br/>
+					<br/>
+					First Name:
+					<h:inputText value=" #{accountManagementController.customer.fName}"/>
+					<br/>
+					<br/>
+					Last Name:
+					<h:inputText value="#{accountManagementController.customer.lName}"/>
+					<br/>
+					<br/>
+					Email Address:
+					<h:inputText value="#{accountManagementController.loginDetails.email}"/>
+					<br/>
+					<br/>
+					Contact Number:
+					<h:inputText value="#{accountManagementController.customer.contactNumber}"/>
+					<br/>
+					<br/>
+					Username:
+					<h:inputText value="#{accountManagementController.loginDetails.username}"/>
+					<br/>
+					<br/>
+					
+					<p>Payment Methods:</p>
+					<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
+						<f:selectItems value="#{accountManagementController.enumValues}" />
+					</h:selectOneMenu>
+					
+					<p>Address:</p>
+					<div id="AddressText">
+						<h:inputText value="#{accountManagementController.address.addressLine1}"/><br/>
+						<h:inputText value="#{accountManagementController.address.addressLine2}"/><br/>
+						<h:inputText value="#{accountManagementController.address.addressLine3}"/><br/>
+						<h:inputText value="#{accountManagementController.address.city}"/><br/>
+						<h:inputText value="#{accountManagementController.address.county}"/><br/>
+						<h:inputText value="#{accountManagementController.address.postcode}"/><br/>
+					</div>
+					<h:commandButton value="Submit" action="account.xhtml"/>
 				</div>
-					<h:commandButton class="button" value="Change" action="#{AccountManagementController.changeAddress()}"/><br/>
-			</div>
-		
 			<div id="PasswordBlock">
 				<p>Want to change your password?</p>
 					<h:commandButton class="button" value="Reset Password" action="#{AccountManagementController.changePassword()}"/><br/>
 			</div>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

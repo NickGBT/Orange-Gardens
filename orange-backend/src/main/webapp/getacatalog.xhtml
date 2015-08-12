@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<ui:composition	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:t="http://myfaces.apache.org/tomahawk"
+		template="templates/template.xhtml">
+		
+<!-- author: ngilbert -->
+		
+<ui:define name="pageTitle">NB Gardens - Get a catalog</ui:define>
+
+	<ui:define name="content">
+		<div id = "MainContent">
+			<div id="TitleBar">
+				<div id="TitleText">
+					<h1>Get a catalog</h1>
+				</div>
+			</div>
+			<div id="MainBlock">				
+				
+				<p><b>Send to Address:</b></p>
+				<div id="AddressText">
+					<h:outputText value="#{accountManagementController.address.addressLine1}"/><br/>
+					<h:outputText value="#{accountManagementController.address.addressLine2}"/><br/>
+					<h:outputText value="#{accountManagementController.address.addressLine3}"/><br/>
+					<h:outputText value="#{accountManagementController.address.city}"/><br/>
+					<h:outputText value="#{accountManagementController.address.county}"/><br/>
+					<h:outputText value="#{accountManagementController.address.postcode}"/><br/>
+				</div>
+				<br/>
+					<h:commandButton class="button" value="Send"/><br/>
+			</div>		
+		</div>
+	</ui:define>
+</ui:composition>

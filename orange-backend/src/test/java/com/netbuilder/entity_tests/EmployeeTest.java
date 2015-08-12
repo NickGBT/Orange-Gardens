@@ -1,6 +1,6 @@
 package com.netbuilder.entity_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,23 +12,24 @@ import com.netbuilder.enums.EmployeePermissions;
 public class EmployeeTest {
 
 	Employee testEmployee;
-	
+
 	EmployeeDepartment employeeDepartment;
 	String fName;
 	String lName;
 	int employeeId;
 	String password;
 	EmployeePermissions employeePermission;
-	
+
 	@Before
 	public void setUp() throws Exception {
-		
+
 		employeeDepartment = EmployeeDepartment.SALES;
 		fName = "Matthew";
 		lName = "Watson";
 		employeePermission = EmployeePermissions.MANAGER;
-		
-		testEmployee = new Employee(employeeDepartment, fName, lName, employeePermission);
+
+		testEmployee = new Employee(employeeDepartment, fName, lName,
+				employeePermission);
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class EmployeeTest {
 
 	@Test
 	public void testGetPermission() {
-		assertEquals(testEmployee.getPermission(),employeePermission);
+		assertEquals(testEmployee.getPermission(), employeePermission);
 	}
 
 }

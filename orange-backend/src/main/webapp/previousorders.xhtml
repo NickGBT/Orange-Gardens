@@ -11,45 +11,32 @@
 <ui:define name="pageTitle">NB Gardens - Previous Orders</ui:define>
 
 <ui:define name="content">
-	<div class="title">
-		<h2>Previous Orders</h2>
+	<div id="MainContent">
+	<div id="title">
+			<h1>Previous Orders</h1>
+			</div>
+			
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{previousOrderController.previousOrders}" var="prevOrders" border="1">
+										
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Name" />
+       					 </f:facet>
+						<h:outputText value="#{prevOrders.product.productName}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Quantity" />
+       					</f:facet>
+						<h:outputText value="#{prevOrders.quantity}"/><br/><br/>
+					</h:column>
+
+				</h:dataTable>
+			
+    			<br />
+    			<br />
+  			</ui:insert>
 	</div>
-		<div id="orderTable">
-			<table id="orderTable" style="">
-				<ui:repeat var="orderedProduct"
-					items="${PreviousOrderController.getPreviousOrder()}">
-					<tr>
-						<th>
-							<div class="previousOrder">
-								<div id="orderImg" style="float: left;">
-									<h:graphicImage value=""
-										width = "200" height="200" />
-								</div>
-								<div style="float: left;">
-									<table id="orderInfo" style="width: 100%">
-										<tr>
-											<th>Order ID:</th>
-											<td>${orderedProduct.getOrderId()}</td>
-										</tr>
-										<tr>
-											<th>Order Date:</th>
-											<td>${orderedProduct.getDatePlaced()}</td>
-										</tr>
-										<tr>
-											<th>Total Price :</th>
-											<td>${orderedProduct.getTotalPrice()}</td>
-										</tr>
-										<tr>
-											<th>Order Status :</th>
-											<td>${orderedProduct.getOrderStatus}</td>
-										</tr>
-									</table>
-								</div>
-							</div>	
-						</th>
-					</tr>
-			    </ui:repeat>
-		   </table>
-		</div>			
 	</ui:define>
 </ui:composition>

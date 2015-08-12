@@ -17,7 +17,7 @@
 	<ui:define name="content">
 		<div id="MainContent">
 
-			<div class="container" style="width: 50%">
+			<div class="container" style="width: 60%">
 				<br />
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
@@ -76,21 +76,26 @@
 				</div>
 			</div>
 
-			<div id="StoreHeader" style="border: 2px solid green;">
+			<div id="StoreHeader" style=" overflow : auto;">
 				<h1>New Products</h1>
 				<ui:insert name="newProducts">
 
 					<ui:repeat var="product"
 						value="#{catalogController.prodsToDisplay}">
 
-						<div
-							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+						<div style="float: left; width: 50%; padding: 2%; ">
 							<tr>
-								<div style="max-width: 55%; float: left;">
-									<td><h:graphicImage value="#{product.imageLocation}"
-											width="200" height="200" /></td>
+								<div style="min-width: 30%; max-width: 55%; float: left;overflow:auto; padding: 1px;">
+									<td>
+										<h:form>
+											<input type="hidden" name="productId" value="#{product.productId}" />										
+											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
+															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px" />
+										</h:form>
+									</td>
 								</div>
-								<div style="max-width: 45%; float: left;">
+								
+								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px; padding-left: 5px">
 									<td><h:outputText value="#{product.productName}" /><br />
 										<h:outputText value="#{product.description}" /></td>
 									<td><h:outputText
@@ -110,22 +115,28 @@
 				</ui:insert>
 			</div>
 
-			<div style="width: 50%; float: left; padding: 150px;"></div>
+			<div style="width: 50%; padding: 1px "><h1>Special Offers</h1></div>
 
-			<div id="SpecialOffer" style="border: 2px solid red;">
-				<h1>Special Offers</h1>
+			<div id="SpecialOffer" style="overflow : auto;">
+				
 				<ui:insert name="specialOffers">
 					<ui:repeat var="product"
 						value="#{catalogController.prodsToDisplay}">
 
-						<div
-							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+						<div style="float: left; width: 50%; padding: 2%;">
 							<tr>
-								<div style="max-width: 55%; float: left;">
-									<td><h:graphicImage value="#{product.imageLocation}"
-											width="200" height="200" /></td>
+								<div style="min-width: 30%; max-width: 55%; float: left;overflow:auto; padding: 1px;">
+									<td>
+										<h:form>
+											<input type="hidden" name="productId" value="#{product.productId}" />										
+											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
+															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px" />
+											
+											
+										</h:form>
+									</td>
 								</div>
-								<div style="max-width: 45%; float: left;">
+								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px; padding-left: 5px">
 									<td><h:outputText value="#{product.productName}" /><br />
 										<h:outputText value="#{product.description}" /></td>
 									<td><h:outputText
@@ -135,6 +146,7 @@
 									<td><h:outputText value="Category: #{product.category}" /></td>
 									<br />
 									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
+							
 								</div>
 
 							</tr>
@@ -145,25 +157,23 @@
 
 				</ui:insert>
 			</div>
-			<div style="width: 50%; float: left; padding: 150px;"></div>
-			<br />
+			<div style="width: 50%; padding: 1px;"> <h1>Catalogue Exclusive Items</h1></div>
+			
 			<div id="ExclusiveItems"
-				style="min-width: 50%; border: 2px solid black;">
-				<h1 style="padding-top: 30px;">Catalogue Exclusive Items</h1>
+				style="min-width: 50%; overflow : auto;">
+				
 				<ui:insert name="exclusiveItems">
 
 
-					<ui:repeat var="product"
-						value="#{catalogController.prodsToDisplay}">
+					<ui:repeat var="product" value="#{catalogController.prodsToDisplay}">
 
-						<div
-							style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
+						<div style="float: left; max-width: 50%; padding-left: 2%; padding-bottom: 2%;">
 							<tr>
 								<div style="max-width: 55%; float: left;">
 									<td><h:graphicImage value="#{product.imageLocation}"
 											width="200" height="200" /></td>
 								</div>
-								<div style="max-width: 45%; float: left;">
+								<div style="max-width: 45%; float: left; padding-left: 5px">
 									<td><h:outputText value="#{product.productName}" /><br />
 										<h:outputText value="#{product.description}" /></td>
 									<td><h:outputText

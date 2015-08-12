@@ -14,7 +14,7 @@
 	<ui:define name="content">
 		<div id="content">
 		
-			<h1>Welcome #{userDetails.loggedName}!<h:outputLabel value=""/></h1>
+			<h1>Welcome #{accountManagementController.loginDetails.username}!<h:outputLabel value=""/></h1>
 			<div id="productScroller">
 				<!-- Load popular products using JS or similar -->
 				<f:facet name="popularScroller">
@@ -28,6 +28,14 @@
 				<a href="wishlist.xhtml">View Wishlist</a><br /><br/>
 				<a href="basket.xhtml">View Basket</a><br /><br/>
 			</div>
+			
+			<h:outputText rendered="#{accountManagementController.customer.blackListed == false}"
+								 value="YOUR ACCOUNT IS IN GOOD STANDING" />
+			
+			<h:outputText rendered="#{accountManagementController.customer.blackListed == true}"
+								 value="YOUR ACCOUNT HAS BEEN BLACKLISTED!" />
+			<h:outputText rendered="#{accountManagementController.customer.blackListed == true}"
+								 value="CONTACT NB GARDENS CUSTOMER SUPPORT" />
 		</div>
 	</ui:define>
 </ui:composition>

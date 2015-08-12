@@ -1,5 +1,7 @@
 package com.netbuilder.jms;
 
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+
 import java.io.Serializable;
 
 import javax.jms.Connection;
@@ -13,8 +15,6 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 
 /**
  * 

@@ -1,6 +1,7 @@
 package entity_managersAL_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import com.netbuilder.enums.ProductCategory;
 
 public class DeliveryLineManagerALTest {
 
-	
 	private Product product;
 	private Delivery delivery;
 	private DeliveryLine deliveryLine;
@@ -26,18 +26,20 @@ public class DeliveryLineManagerALTest {
 	private List<DeliveryLine> deliveryLineAL;
 	private List<DeliveryLine> deliveryLineAL1;
 	private List<DeliveryLine> testAL;
-	
+
 	@Before
 	public void setUp() throws Exception {
-		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11, 10.50, "test Product", ProductCategory.Accessory);
-		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8", new BigDecimal(22.50));	
-		
+		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11,
+				10.50, "test Product", ProductCategory.Accessory);
+		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8",
+				new BigDecimal(22.50));
+
 		deliveryLine = new DeliveryLine(product, delivery, 50);
 		deliveryLine1 = new DeliveryLine(product, delivery, 50);
-		
+
 		deliveryLineManager = new DeliveryLineManagerAL();
 		deliveryLineAL = new ArrayList<DeliveryLine>();
-		deliveryLineAL1 = new ArrayList<DeliveryLine>();	
+		deliveryLineAL1 = new ArrayList<DeliveryLine>();
 		testAL = new ArrayList<DeliveryLine>();
 	}
 
@@ -62,17 +64,16 @@ public class DeliveryLineManagerALTest {
 		fail("Not yet implemented");
 	}
 
-	/*@Test
-	public void testFindByDeliveryID() {
-		deliveryLineAL.clear();	
-		deliveryLineAL.add(deliveryLine);
-		deliveryLineManager.persistDeliveryLine(deliveryLineAL);
-		assertEquals(deliveryLineManager.findByDeliveryID(1010), deliveryLine);
-	}*/
+	/*
+	 * @Test public void testFindByDeliveryID() { deliveryLineAL.clear();
+	 * deliveryLineAL.add(deliveryLine);
+	 * deliveryLineManager.persistDeliveryLine(deliveryLineAL);
+	 * assertEquals(deliveryLineManager.findByDeliveryID(1010), deliveryLine); }
+	 */
 
 	@Test
 	public void testFindByQuantity() {
-		deliveryLineAL.clear();	
+		deliveryLineAL.clear();
 		deliveryLineAL.add(deliveryLine);
 		deliveryLineManager.persistDeliveryLine(deliveryLineAL);
 		assertEquals(deliveryLineManager.findByQuantity(50), deliveryLine);
@@ -90,7 +91,7 @@ public class DeliveryLineManagerALTest {
 
 	@Test
 	public void testUpdateDeliveryLine() {
-		deliveryLineAL.clear();	
+		deliveryLineAL.clear();
 		deliveryLineAL.add(deliveryLine);
 		deliveryLineManager.persistDeliveryLine(deliveryLineAL);
 		deliveryLineManager.updateDeliveryLine(deliveryLine);

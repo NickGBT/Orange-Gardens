@@ -1,15 +1,21 @@
 package com.netbuilder.controllers;
 
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entities.Product;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
+import com.netbuilder.entity_managers.interfaces.ProductManager;
+import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.UserId;
 
 /**
@@ -19,18 +25,33 @@ import com.netbuilder.util.UserId;
  */
 @ManagedBean(name = "basketController")
 @RequestScoped
-public class BasketController 
-{
+public class BasketController {
 	@Inject
 	private OrderManager basketManager;
 	@Inject
 	private UserId userId;
 	@Inject
 	private OrderLineManager orderLineManager;
-	
+	@Inject
+	private ProductManager pm;
+	@Inject
+	private LoginDetailsManager ldm;
+	@Inject
+	private OrderLineManager olm;
+	@Inject
+	private OrderManager om;
+
 	private List<OrderLine> basket;
-	
-	private double subtotal =0, total = 0;
+	private String productId;
+	private String temp;
+	private int quantity;
+	private LoginDetails loginDet;
+	private Product foundProduct;
+	private OrderLine orderLine;
+	DecimalFormat df = new DecimalFormat("0.00");
+
+	private double subtotal = 0, totalDouble = 0;
+	private String total = "";
 
 	public OrderManager getBasketManager() {
 		return basketManager;
@@ -57,7 +78,7 @@ public class BasketController
 	}
 
 	public List<OrderLine> getBasket() {
-		basket = orderLineManager.getOrderLines(userId.getUsername());
+		basket = orderLineManager.getBasketOrderLines(userId.getUsername());
 		return basket;
 	}
 
@@ -65,7 +86,12 @@ public class BasketController
 		this.basket = basket;
 	}
 
-	public double getSubtotal() {
+	/**
+	 * 
+	 * @author jtaylor
+	 */
+	public double getSubtotal() 
+	{
 		return subtotal;
 	}
 
@@ -73,15 +99,46 @@ public class BasketController
 		this.subtotal = subtotal;
 	}
 
-	public double getTotal() {
-		for(OrderLine ol : basket){
-			total += (ol.getProduct().getProductPrice() * ol.getQuantity());
+	public String getTotal() {
+		for (OrderLine ol : basket) {
+			totalDouble += (ol.getProduct().getProductPrice() * ol
+					.getQuantity());
 		}
+		total = df.format(totalDouble);
+		// System.out.println("BasketController::Line108::" + total);
+		// System.out.println("BasketController::Line109::" +
+		// df.format(totalDouble));
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(String total) {
 		this.total = total;
 	}		
+	
+	
+	/*
+	 * @author jtaylor
+	 */
+	public void removeFromBasket() {
+		productId = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("productId");
+
+		foundProduct = pm.findByProductId(Integer.parseInt(productId));
+
+		loginDet = ldm.findByUsername(userId.getUsername());
+
+		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+			if (olm.findByProductId(foundProduct.getProductId()) != null) {
+				orderLine = olm.findByProductId(foundProduct.getProductId());
+				olm.removeProductLine(orderLine);
+			} else {
+				System.out
+						.println("BasketController::Line127:: Basket does not contain said item.");
+			}
+		} else {
+			System.out
+					.println("BasketController::Line134:: Cannot find user basket.");
+		}
+	}
 
 }

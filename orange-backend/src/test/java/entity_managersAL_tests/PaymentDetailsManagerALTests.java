@@ -1,6 +1,10 @@
 package entity_managersAL_tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +31,16 @@ public class PaymentDetailsManagerALTests {
 	PaymentDetails p1;
 	PaymentDetails p2;
 	PaymentDetails p3;
-	
+
 	ArrayList<PaymentDetails> detailsInput;
-	
+
 	LoginDetails c1;
 	LoginDetails c2;
-	byte[] password = {1,2,3};
-	byte[] salt = {1,2,3};
-	
+	byte[] password = { 1, 2, 3 };
+	byte[] salt = { 1, 2, 3 };
+
 	Order o1;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -44,19 +48,23 @@ public class PaymentDetailsManagerALTests {
 	@Before
 	public void setUp() throws Exception {
 		paymentDetailsManager = new PaymentDetailsManagerAL();
-		
+
 		c1 = new LoginDetails("fooUser", "testEmail1", password, salt);
 		c2 = new LoginDetails("fooUser2", "testEmail2", password, salt);
-		
+
 		c1.setUserId(1);
 		c2.setUserId(2);
-		
-		o1 = new Order(c2, c1, OrderStatus.placed, "2015-07-07", 238198545, "2015-07-08", "2015-07-09", "3", true, p1);
+
+		o1 = new Order(c2, c1, OrderStatus.placed, "2015-07-07", 238198545,
+				"2015-07-08", "2015-07-09", "3", true, p1);
 		o1.setOrderID(1);
-		
-		p1 = new PaymentDetails(CardType.AMERICANEXPRESS, "12345678912345", "N B Gardens", 123, "03-17", c1);
-		p2 = new PaymentDetails(CardType.VISADEBIT, "9876543219876543", "B Back", 987, "04-14", c1);
-		p3 = new PaymentDetails(CardType.MASTERCARD, "1478963214789632", "D U Mmy", 456, "06-18", c2, o1);
+
+		p1 = new PaymentDetails(CardType.AMERICANEXPRESS, "12345678912345",
+				"N B Gardens", 123, "03-17", c1);
+		p2 = new PaymentDetails(CardType.VISADEBIT, "9876543219876543",
+				"B Back", 987, "04-14", c1);
+		p3 = new PaymentDetails(CardType.MASTERCARD, "1478963214789632",
+				"D U Mmy", 456, "06-18", c2, o1);
 
 		detailsInput = new ArrayList<PaymentDetails>();
 		detailsInput.add(p1);
@@ -66,22 +74,24 @@ public class PaymentDetailsManagerALTests {
 
 	@Test
 	public void testPersistPaymentDetailsPaymentDetailsAndFindByNumber() {
-		
+
 		paymentDetailsManager.persistPaymentDetails(p1);
-		
-		assertNotNull(paymentDetailsManager.findCardByNumber(p1.getCardNumber()));
+
+		assertNotNull(paymentDetailsManager
+				.findCardByNumber(p1.getCardNumber()));
 	}
 
 	@Test
 	public void testPersistPaymentDetailsArrayListOfPaymentDetails() {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
-		
-		PaymentDetails output = paymentDetailsManager.findCustomerPaymentDetails(c1.getUserId());
-		
+
+		PaymentDetails output = paymentDetailsManager
+				.findCustomerPaymentDetails(c1.getUserId());
+
 		ArrayList<PaymentDetails> paymentDetailsTest = new ArrayList<PaymentDetails>();
 		paymentDetailsTest.add(output);
-		
+
 		assertTrue(output.equals(detailsInput));
 	}
 
@@ -89,15 +99,15 @@ public class PaymentDetailsManagerALTests {
 	public void testFindExpiredDetails() {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
-		
-		List<PaymentDetails> output = paymentDetailsManager.findExpiredDetails(c1.getUserId());
-		
-		if(output.size()>0){
+
+		List<PaymentDetails> output = paymentDetailsManager
+				.findExpiredDetails(c1.getUserId());
+
+		if (output.size() > 0) {
 			PaymentDetails sample = output.get(0);
-			
+
 			assertEquals(p2, sample);
-		}
-		else{
+		} else {
 			fail();
 		}
 	}
@@ -106,19 +116,20 @@ public class PaymentDetailsManagerALTests {
 	public void testFindPaymentDetailsForOrder() {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
-		
-		PaymentDetails sample = paymentDetailsManager.findPaymentDetailsForOrder(o1.getOrderID());
-		
+
+		PaymentDetails sample = paymentDetailsManager
+				.findPaymentDetailsForOrder(o1.getOrderID());
+
 		assertEquals(p3, sample);
 	}
 
 	@Test
 	public void testRemovePaymentDetails() {
-		
+
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
-		
+
 		paymentDetailsManager.removePaymentDetails(p1);
-		
+
 		assertNull(paymentDetailsManager.findCardByNumber(p1.getCardNumber()));
 	}
 

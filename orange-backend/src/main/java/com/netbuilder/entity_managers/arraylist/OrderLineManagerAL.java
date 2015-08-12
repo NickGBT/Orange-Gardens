@@ -18,21 +18,62 @@ import com.netbuilder.enums.OrderStatus;
 
 @Alternative
 @Singleton
-public class OrderLineManagerAL implements OrderLineManager{
+public class OrderLineManagerAL implements OrderLineManager {
 
 	private ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
-	
+
 	public void persistOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
 	}
 
 	public void persistOrderLine(List<OrderLine> orderLine) {
-		orderLines.addAll(orderLine);		
+		orderLines.addAll(orderLine);
 	}
 
-	public OrderLine findByProductId(int productID) { 
-		for(OrderLine o : orderLines){
-			if(o.getProduct().getProductId() == productID){
+	public OrderLine findByProductId(int productID) {
+		for (OrderLine o : orderLines) {
+			if (o.getProduct().getProductId() == productID) {
+				return o;
+			}
+		}
+		return null;
+	}
+	
+	public OrderLine findByProductInBasket(int productID) {
+		for (OrderLine o : orderLines) {
+			if (o.getProduct().getProductId() == productID && 
+					o.getOrder().getOrderStatus() == OrderStatus.basket) {
+				return o;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<OrderLine> findProductsPlaced(String username) {
+		ArrayList<OrderLine> ol = new ArrayList<OrderLine>();
+		
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username) && 
+					o.getOrder().getOrderStatus() == OrderStatus.placed) {
+				ol.add(o);
+			}
+		
+		}
+		return ol;
+	}
+	
+	/**
+	 * 
+	 * @author jtaylor
+	 * 
+	 */
+	public OrderLine findByProductInWishlist(int productID) 
+	{
+		for (OrderLine o : orderLines) 
+		{
+			if (o.getProduct().getProductId() == productID && 
+					o.getOrder().getOrderStatus() == OrderStatus.wishlist) 
+			{
 				return o;
 			}
 		}
@@ -41,8 +82,8 @@ public class OrderLineManagerAL implements OrderLineManager{
 
 	public List<OrderLine> findByOrderId(int orderId) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
-		for(OrderLine o : orderLines){
-			if(o.getOrder().getOrderID() == orderId){
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getOrderID() == orderId) {
 				orderLine.add(o);
 			}
 		}
@@ -50,55 +91,103 @@ public class OrderLineManagerAL implements OrderLineManager{
 	}
 
 	public List<OrderLine> findByQuantity(int quantity) {
-		List<OrderLine> orderLine = new ArrayList<OrderLine>(); 
-		for(OrderLine o : orderLine){
-			if(o.getQuantity() == quantity){
+		List<OrderLine> orderLine = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLine) {
+			if (o.getQuantity() == quantity) {
 				orderLine.add(o);
 			}
 		}
-		
-		if(orderLine.isEmpty())
+
+		if (orderLine.isEmpty())
 			return orderLine;
 		else
 			return null;
-		
+
 	}
-	
+
 	public List<OrderLine> getOrderLine() {
 		return orderLines;
 	}
 
+	/*
+	 * 
+	 * @author jtaylor
+	 */
 	public void updateOrderLine(OrderLine orderLine) {
-		for (OrderLine o : orderLines){
-			if(o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()){
-				orderLines.set(orderLines.indexOf(o), orderLine);
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername()
+					.equals(orderLine.getOrder().getCustomer().getUsername())) {
+				if (orderLine.getProduct().getProductId() == o.getProduct()
+						.getProductId()) {
+					orderLines.set(orderLines.indexOf(o), orderLine);
+				}
 			}
 		}
 	}
 
+	/*
+	 * 
+	 * @author jtaylor
+	 */
 	public void removeProductLine(OrderLine orderLine) {
-		for (OrderLine o : orderLines){
-			if(o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()){
-				orderLines.remove(orderLines.indexOf(o));
+		ArrayList<OrderLine> toRemove = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername()
+					.equals(orderLine.getOrder().getCustomer().getUsername())) {
+				if (orderLine.getProduct().getProductId() == o.getProduct()
+						.getProductId()) {
+					toRemove.add(o);
+				}
 			}
 		}
-		
+		orderLines.removeAll(toRemove);
+	}
+	
+	/*
+	 * 
+	 * @author jtaylor
+	 */
+	public void removeProductLineFromWishlist(OrderLine orderLine) {
+		ArrayList<OrderLine> toRemove = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername()
+					.equals(orderLine.getOrder().getCustomer().getUsername())) {
+				if (orderLine.getProduct().getProductId() == o.getProduct()
+						.getProductId() && o.getOrder().getOrderStatus() == OrderStatus.wishlist) {
+					toRemove.add(o);
+				}
+			}
+		}
+		orderLines.removeAll(toRemove);
 	}
 
 	public void updateProductLine(OrderLine orderLine) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public List<OrderLine> getOrderLines(String username){
+	public List<OrderLine> getBasketOrderLines(String username) {
 		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
-		for(OrderLine o : orderLines){
-			if(o.getOrder().getCustomer().getUsername().equals(username) && o.getOrder().getOrderStatus() == OrderStatus.basket){
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username)
+					&& o.getOrder().getOrderStatus() == OrderStatus.basket) {
 				userOrderLines.add(o);
 			}
 		}
-		
+
 		return userOrderLines;
 	}
 	
+	public List<OrderLine> getWishlistOrderLines(String username) {
+		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
+		for (OrderLine o : orderLines) {
+			if (o.getOrder().getCustomer().getUsername().equals(username)
+					&& o.getOrder().getOrderStatus() == OrderStatus.wishlist) {
+				userOrderLines.add(o);
+			}
+		}
+
+		return userOrderLines;
+	}
+
 }

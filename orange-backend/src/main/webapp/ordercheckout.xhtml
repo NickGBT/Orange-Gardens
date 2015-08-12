@@ -8,115 +8,87 @@
 		
 <!-- author: ngilbert llew-->
 
-
 <ui:define name="pageTitle">NB Gardens - OrderCheckout</ui:define>
 
 <ui:define name="content">
 <div id="MainContent">
-	<div>
-	<h1>Order Checkout</h1>
-	</div>
-	
-	<div id="orderDetails">
-	<p>Order Details:  </p>
-	
-		<div id="orderLine">
-	
-			<p>Orderline in this div</p>
+	<div id="title">
+			<h1>Order Checkout</h1>
+			</div>
+			
+			<ui:insert name="NBGardensCatalog">
+				<h:dataTable id="catalogTable" value="#{basketController.basket}" var="orderLine" >
+										
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Name" />
+       					 </f:facet>
+						<h:outputText value="#{orderLine.product.productName}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item Quantity" />
+       					</f:facet>
+						<h:outputText value="#{orderLine.quantity}"/><br/><br/>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+       	     				<h:outputText value="Item SubTotal" />
+       					</f:facet>				
+						<h:outputText value="£#{orderLine.quantity *  orderLine.product.productPrice}"/><br/><br/>
+					</h:column>
+				</h:dataTable>
 				
-			<f:facet name="orderLinePopulator">
-			<!-- facet populates the orderline with the relevant order -->	
-			<t:dataList value="#{orderCheckoutController.orderLines}" var="product">
-				<h:outputLabel class="productName" value="#{product.getProductName()}"/>
-				<h:outputLabel class="productPrice" value="#{product.getProductPrice()}"/>
-				<h:graphicImage class="productImage" value ="#{product.getProductImageLocation()}"/>
-				<br/><br/>
-			</t:dataList>	
-			<br/>
-						
-			</f:facet>				
-		<div>					
-					
-		</div>
-	</div>
+   				<h2><h:outputText value="Total: £#{basketController.total}" /> </h2>
+    			<br />
+    			<br />
+  			</ui:insert>
+	
+	<h:form>
 	
 	<div id="paymentDetails">
 	
 		<div>
-		<p>Payment Details</p>
+		<h2>Payment Details</h2>
 		
 		<div id="registeredPaymentDetails">
-				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getCardType()}"/>
-				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getCardNumber()}"/>
-				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getNameOnCard()}"/>
-				<h:outputText value="#{OrderCheckoutController.getPaymentDetails().getSecurityNumber()}"/>
-				<h:outputText value="#{OrderCheckoutController.getPaymentDetails.getExpiryDate()}"/>
+		
+				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" >
+    				<f:selectItems value="#{orderCheckoutController.enumValues}" />
+				</h:selectOneMenu><br/>
+				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}"/><br/>
+				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}"/><br/>
+				Security Number : <h:inputText value="#{orderCheckoutController.paymentDetails.securityNumber}"/><br/>
+				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}"/><br/>
 		</div>
 		
-		<!--  </div>
+		<br /> <br />
 		
-			<div id="cardDetails">
-				<p>Please select your card type</p>
-					<div id="cardType">
-						<select>
-							<option value="cardtype">cardtype</option>
-						</select>
-					</div>
-				</br>
-				<p>Please enter your card number</p>
-					<div id="cardNumber">
-						<form id="cardNumber">
-							<f:facet name="cardNumber">
-								<h:inputText value="card number" maxlength="16"/>
-							</f:facet>	
-						</form>
-					</div>
-				</br>
-				<p>Please enter the name on the card</p>
-					<div id="nameOnCard">
-						<form id="nameOnCard">
-							<f:facet name="nameOnCard">
-								<h:inputText value="name on card" maxlength="70"/>
-							</f:facet>	
-						</form>
-					</div>
-				</br>
-				<p>Please select your expiry date</p>
-					<div id="expiryDate">
-						<select>
-							<option value="expirydate">expirydate</option>
-						</select>
-					</div>
-				</br>
-				<p>Please enter the 3 digit card security number</p>
-					<div id="securityNumber">
-						<form id="securityNumber">
-							<f:facet name="securityNumber">
-								<h:inputHidden value="security number" maxlength="3"/>
-							</f:facet>	
-						</form>
-					</div> -->
-			</div>
-			
+		<h3>Estimated Delivery time 1 to 3 working days</h3>
 
-	 
-	</div>
-	<div id="billingAddress">
-				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine1()}"/>
-				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine2()}"/>
-				<h:outputText value="#{OrderCheckoutController.getAddress().getAddressLine3()}"/>
-				<h:outputText value="#{OrderCheckoutController.getAddress().getCity()}"/>
-				<h:outputText value="#{OrderCheckoutController.getAddress().getCounty()}"/>
-				<h:outputText value="#{OrderCheckoutController.getAddress().getPostcode()}"/>
-	</div>
-	<div id="submitOrder">
-			<f:facet name="orderSubmit">
-				<h:commandButton class="button" value="submit" action="#{OrderStatusController.placeOrder()}"/><!-- to submit order. --><br/>
-			</f:facet>
 		<br/>
+		
+		<h2>Billing Address</h2>	
+		<div id="billingAddress">
+				Address Line 1 : <h:inputText value="#{orderCheckoutController.address.addressLine1}"/><br/>
+				Address Line 2 : <h:inputText value="#{orderCheckoutController.address.addressLine2}"/><br/>
+				Address Line 3 : <h:inputText value="#{orderCheckoutController.address.addressLine3}"/><br/>
+				City : <h:inputText value="#{orderCheckoutController.address.city}"/><br/>
+				County : <h:inputText value="#{orderCheckoutController.address.county}"/><br/>
+				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}"/><br/>
+		</div>
+		
+	<div id="submitOrder">
+				<h:commandButton value="Place Order"  id="checkout"
+							action="#{orderCheckoutController.changeOrderStatus}">
+				</h:commandButton>
+	</div>	
 	</div>
+	</div>
+    </h:form>		
+	<br/>
 </div>
-</div>
+
 
 </ui:define>
 </ui:composition>

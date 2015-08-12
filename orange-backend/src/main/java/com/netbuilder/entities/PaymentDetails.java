@@ -9,7 +9,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 import com.netbuilder.enums.CardType;
@@ -23,13 +22,12 @@ import com.netbuilder.enums.CardType;
 @Entity
 @Table(name = "payment_details")
 @NamedQueries({
-	@NamedQuery(name = PaymentDetails.FIND_BY_CARD_NUMBER, query= "SELECT pd FROM payment_details pd WHERE pd.card_number = :cardNo;"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_CUSTOMER, query= "SELECT pd FROM payment_detais pd WHERE pd.customer_id = :id;"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query= "SELECT pd FROM payment_details pd WHERE pd.customer_id = :id AND expiry_date < CURRENT_DATE();"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_ORDER, query= "SELECT pd FROM payment_details pd WHERE order_id = :oId;")
-})
+		@NamedQuery(name = PaymentDetails.FIND_BY_CARD_NUMBER, query = "SELECT pd FROM payment_details pd WHERE pd.card_number = :cardNo;"),
+		@NamedQuery(name = PaymentDetails.FIND_BY_CUSTOMER, query = "SELECT pd FROM payment_detais pd WHERE pd.customer_id = :id;"),
+		@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query = "SELECT pd FROM payment_details pd WHERE pd.customer_id = :id AND expiry_date < CURRENT_DATE();"),
+		@NamedQuery(name = PaymentDetails.FIND_BY_ORDER, query = "SELECT pd FROM payment_details pd WHERE order_id = :oId;") })
 public class PaymentDetails {
-	
+
 	public static final String FIND_BY_CARD_NUMBER = "PaymentDetails.findByCardNumber";
 	public static final String FIND_BY_CUSTOMER = "PaymentDetails.findByCustomer";
 	public static final String FIND_BY_EXPIRED = "PaymentDetails.findByExpired";
@@ -63,10 +61,10 @@ public class PaymentDetails {
 
 	@OneToOne
 	@JoinColumn(name = "order_id", nullable = true)
-	@Null
 	private Order orderId;
 
-	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+	public PaymentDetails(CardType cardType, String cardNumber,
+			String nameOnCard, int securityNumber, String expiryDate,
 			LoginDetails customerId, Order orderId) {
 		super();
 		this.cardType = cardType;
@@ -78,7 +76,8 @@ public class PaymentDetails {
 		this.orderId = orderId;
 	}
 
-	public PaymentDetails(CardType cardType, String cardNumber, String nameOnCard, int securityNumber, String expiryDate,
+	public PaymentDetails(CardType cardType, String cardNumber,
+			String nameOnCard, int securityNumber, String expiryDate,
 			LoginDetails customerId) {
 		super();
 		this.cardType = cardType;
@@ -171,7 +170,6 @@ public class PaymentDetails {
 		return customerId;
 	}
 
-
 	/**
 	 * @return the orderId
 	 */
@@ -180,7 +178,8 @@ public class PaymentDetails {
 	}
 
 	/**
-	 * @param orderId the orderId to set
+	 * @param orderId
+	 *            the orderId to set
 	 */
 	public void setOrderId(Order orderId) {
 		this.orderId = orderId;

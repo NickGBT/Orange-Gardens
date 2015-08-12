@@ -14,8 +14,8 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Customer;
-import com.netbuilder.persistence_manager.PersistenceManager;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
+import com.netbuilder.persistence_manager.PersistenceManager;
 
 /**
  * 
@@ -23,19 +23,17 @@ import com.netbuilder.entity_managers.interfaces.CustomerManager;
  *
  */
 
-@NamedQueries ({@NamedQuery(name = "FindByfName", query = "SELECT a FROM customer WHERE a.fname = :fname"), 
-				@NamedQuery(name = "FindBylName", query = "SELECT a FROM customer WHERE a.lname = :lname"),
-				@NamedQuery(name = "FindByUserId", query = "SELECT a FROM customer WHERE a.user_id = :user_id"),})
-
+@NamedQueries({
+		@NamedQuery(name = "FindByfName", query = "SELECT a FROM customer WHERE a.fname = :fname"),
+		@NamedQuery(name = "FindBylName", query = "SELECT a FROM customer WHERE a.lname = :lname"),
+		@NamedQuery(name = "FindByUserId", query = "SELECT a FROM customer WHERE a.user_id = :user_id"), })
 @Default
 @Stateless
-public class CustomerManagerDB implements CustomerManager
-{
+public class CustomerManagerDB implements CustomerManager {
 	@Inject
 	private PersistenceManager pm;
-	
-	public void persistCustomer(Customer customer)
-	{
+
+	public void persistCustomer(Customer customer) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(customer);
@@ -43,83 +41,70 @@ public class CustomerManagerDB implements CustomerManager
 		pm.closeEntityManager(em);
 	}
 
-	public void persistCustomer(List<Customer> customers) 
-	{
+	public void persistCustomer(List<Customer> customers) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
-		for(Customer c : customers)
-		{
+		for (Customer c : customers) {
 			em.persist(c);
 		}
 		em.getTransaction().commit();
 		pm.closeEntityManager(em);
 	}
 
-	public List<Customer> findByFName(String fName)
-	{
+	public List<Customer> findByFName(String fName) {
 		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByfName", Customer.class);
+		TypedQuery<Customer> tq = em.createNamedQuery("FindByfName",
+				Customer.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("fname", fName);
-		try
-		{
-			customers = (ArrayList<Customer>)tq.getResultList();
-		}
-		catch(NoResultException nre)
-		{
+		try {
+			customers = (ArrayList<Customer>) tq.getResultList();
+		} catch (NoResultException nre) {
 			nre.printStackTrace();
 			return null;
 		}
 		return customers;
 	}
 
-	public List<Customer> findByLName(String lName)
-	{
+	public List<Customer> findByLName(String lName) {
 		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindBylName", Customer.class);
+		TypedQuery<Customer> tq = em.createNamedQuery("FindBylName",
+				Customer.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("lname", lName);
-		try
-		{
-			customers = (ArrayList<Customer>)tq.getResultList();
-		}
-		catch(NoResultException nre)
-		{
+		try {
+			customers = (ArrayList<Customer>) tq.getResultList();
+		} catch (NoResultException nre) {
 			return null;
 		}
 		return customers;
 	}
 
-	public Customer findByUserId(int userId)
-	{
+	public Customer findByUserId(int userId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Customer> tq = em.createNamedQuery("FindByUserId", Customer.class);
+		TypedQuery<Customer> tq = em.createNamedQuery("FindByUserId",
+				Customer.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("user_id", userId);
-		try
-		{
+		try {
 			return tq.getSingleResult();
-		}
-		catch(NoResultException nre)
-		{
+		} catch (NoResultException nre) {
 			return null;
 		}
 	}
 
-	public List<Customer> getCustomers() 
-	{
+	public List<Customer> getCustomers() {
 		EntityManager em = pm.createEntityManager();
-		List<Customer> customers = (ArrayList<Customer>)em.createQuery("SELECT a FROM customer a", Customer.class).getResultList();
+		List<Customer> customers = (ArrayList<Customer>) em.createQuery(
+				"SELECT a FROM customer a", Customer.class).getResultList();
 		pm.closeEntityManager(em);
 		return customers;
 	}
 
-	public void updateCustomer(Customer customer)
-	{
-		if(customer == null)
-		{
+	public void updateCustomer(Customer customer) {
+		if (customer == null) {
 			throw new ValidationException("null value passed");
 		}
 		EntityManager em = pm.createEntityManager();
@@ -127,15 +112,19 @@ public class CustomerManagerDB implements CustomerManager
 		pm.closeEntityManager(em);
 	}
 
-	public void removeCustomer(Customer customer) 
-	{
-		if(customer == null)
-		{
+	public void removeCustomer(Customer customer) {
+		if (customer == null) {
 			throw new ValidationException("null value passed");
 		}
 		EntityManager em = pm.createEntityManager();
 		em.remove(customer);
 		pm.closeEntityManager(em);
+	}
+
+	@Override
+	public Customer findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

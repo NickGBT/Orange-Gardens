@@ -64,11 +64,9 @@
 					<br />
 					<br />
 					<h2>Payment Method</h2>
-					Card Type : <h:selectOneMenu>
-						<f:selectItem itemValue="#{registrationDetails.cardType}"
-							itemLabel="Visa"></f:selectItem>
-						<f:selectItem itemValue="#{registrationDetails.cardType}"
-							itemLabel="MasterCard"></f:selectItem>
+										
+					Card Type : <h:selectOneMenu value="#{registrationDetails.cardType}" >
+    				<f:selectItems value="#{registrationDetailsController.enumValues}" />
 					</h:selectOneMenu>
 					<br />
 					<br />

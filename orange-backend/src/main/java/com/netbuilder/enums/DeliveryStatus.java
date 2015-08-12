@@ -6,7 +6,6 @@ package com.netbuilder.enums;
  *
  */
 
-public enum DeliveryStatus
-{
+public enum DeliveryStatus {
 	Dispatched, Processing, Delivered
 }

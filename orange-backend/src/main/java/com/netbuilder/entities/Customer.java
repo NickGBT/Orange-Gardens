@@ -36,54 +36,56 @@ public class Customer {
 	@NotNull
 	private boolean isBlackListed;
 
-	public Customer(String fName, String lName,String contactNumber,  boolean isBlackListed) 
-	{
+	public Customer(String fName, String lName, String contactNumber,
+			boolean isBlackListed) {
 		this.fName = fName;
 		this.lName = lName;
 		this.contactNumber = contactNumber;
 		this.isBlackListed = isBlackListed;
 	}
 	
-	public LoginDetails getCustomer()
+	public Customer(LoginDetails customer, String fName, String lName, String contactNumber, boolean isBlackListed)
 	{
-		return customer;
-	}
-
-	public String getfName()
-	{
-		return fName;
-	}
-
-	public void setfName(String fName)
-	{
+		this.customer = customer;
 		this.fName = fName;
-	}
-
-	public String getlName()
-	{
-		return lName;
-	}
-
-	public void setlName(String lName)
-	{
 		this.lName = lName;
-	}
-
-	public boolean isBlackListed()
-	{
-		return isBlackListed;
-	}
-
-	public void setBlackListed(boolean isBlackListed)
-	{
+		this.contactNumber = contactNumber;
 		this.isBlackListed = isBlackListed;
 	}
 	
-	public void setContactNumber(String contactNum){
+	public LoginDetails getCustomer() {
+		return customer;
+	}
+
+	public String getfName() {
+		return fName;
+	}
+
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
+	}
+
+	public boolean isBlackListed() {
+		return isBlackListed;
+	}
+
+	public void setBlackListed(boolean isBlackListed) {
+		this.isBlackListed = isBlackListed;
+	}
+
+	public void setContactNumber(String contactNum) {
 		this.contactNumber = contactNum;
 	}
 
-	public String getContactNumber(){
+	public String getContactNumber() {
 		return contactNumber;
 	}
 }

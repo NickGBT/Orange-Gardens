@@ -8,29 +8,29 @@ import com.netbuilder.util.CustomerFeedback;
  *
  */
 
-public class FeedbackController 
-{
-	//@Inject
+public class FeedbackController {
+	// @Inject
 	private CustomerFeedback customerFeedback;
 	private String notification;
-	
+
 	/**
 	 * User cancels feedback
+	 * 
 	 * @return go to home page (store front)
 	 */
-	public String cancel()
-	{
+	public String cancel() {
 		customerFeedback.setUserFeedback(null);
 		return "home";
 	}
-	
+
 	/**
 	 * User clicks send on feedback screen
-	 * @param the user entry feedback
+	 * 
+	 * @param the
+	 *            user entry feedback
 	 * @return go to home page (store front)
 	 */
-	public String sendFeedback(String feedback)
-	{
+	public String sendFeedback(String feedback) {
 		customerFeedback.setUserFeedback(feedback);
 		notification = "Feedback sent, thank you.";
 		return "home";
@@ -38,10 +38,10 @@ public class FeedbackController
 
 	/**
 	 * Get notification message string
+	 * 
 	 * @return notification message
 	 */
-	public String getNotification()
-	{
+	public String getNotification() {
 		return notification;
 	}
 }

@@ -1,4 +1,5 @@
 package com.netbuilder.entities;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,54 +17,55 @@ import com.netbuilder.enums.OrderStatus;
  */
 
 @Entity
-@Table (name = "Order")
+@Table(name = "Order")
 public class Order {
-	
+
 	@Id
 	@Column(name = "order_id", nullable = false)
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int orderID;
-	
+
 	@OneToMany
 	@NotNull
-	@JoinColumn (name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private LoginDetails customerID;
-	
+
 	@OneToMany
-	@JoinColumn (name = "user_id")
+	@JoinColumn(name = "user_id")
 	private LoginDetails employeeID;
-	
+
 	@OneToMany
 	@JoinColumn
 	private PaymentDetails paymentDetails;
-	
-	@Column (name = "status", nullable = false)
-	@NotNull	
+
+	@Column(name = "status", nullable = false)
+	@NotNull
 	private OrderStatus status;
-	
-	@Column (name = "date_placed", nullable = false)
+
+	@Column(name = "date_placed", nullable = false)
 	@NotNull
 	private String datePlaced;
-	
-	@Column (name = "date_placed_millis", nullable = false)
+
+	@Column(name = "date_placed_millis", nullable = false)
 	private long datePlacedInMillis;
-	
-	@Column (name = "date_dispatched", nullable = false)
+
+	@Column(name = "date_dispatched", nullable = false)
 	private String dateDispatched;
-	
-	@Column (name = "date_delivered", nullable = false)
+
+	@Column(name = "date_delivered", nullable = false)
 	private String dateDelivered;
-	
-	@Column (name = "time_to_deliver")
+
+	@Column(name = "time_to_deliver")
 	private String timeToDeliver;
-	
-	@Column (name = "refund_available")
+
+	@Column(name = "refund_available")
 	private boolean refundAvailable;
-	
-	public Order(LoginDetails customerID, LoginDetails employeeID, OrderStatus status,
-			String datePlaced, long datePlacedInMillis, String dateDispatched, String dateDelivered,
-			String timeToDeliver, boolean refundAvailable, PaymentDetails paymentDetails) {
+
+	public Order(LoginDetails customerID, LoginDetails employeeID,
+			OrderStatus status, String datePlaced, long datePlacedInMillis,
+			String dateDispatched, String dateDelivered, String timeToDeliver,
+			boolean refundAvailable, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.employeeID = employeeID;
 		this.status = status;
@@ -75,8 +77,9 @@ public class Order {
 		this.refundAvailable = refundAvailable;
 		this.paymentDetails = paymentDetails;
 	}
-	
-	public Order(LoginDetails customerID, OrderStatus status, PaymentDetails paymentDetails) {
+
+	public Order(LoginDetails customerID, OrderStatus status,
+			PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.status = status;
 		this.paymentDetails = paymentDetails;
@@ -89,60 +92,72 @@ public class Order {
 	public String getDatePlaced() {
 		return datePlaced;
 	}
+
 	public void setDatePlaced(String datePlaced) {
 		this.datePlaced = datePlaced;
 	}
+
 	public long getDatePlacedInMillis() {
 		return datePlacedInMillis;
 	}
+
 	public void setDatePlacedInMillis(long datePlacedInMillis) {
 		this.datePlacedInMillis = datePlacedInMillis;
 	}
+
 	public String getTimeToDeliver() {
 		return timeToDeliver;
 	}
+
 	public void setTimeToDeliver(String timeToDeliver) {
 		this.timeToDeliver = timeToDeliver;
 	}
+
 	public boolean isRefundAvailable() {
 		return refundAvailable;
 	}
+
 	public void setRefundAvailable(boolean refundAvailable) {
 		this.refundAvailable = refundAvailable;
 	}
+
 	public String getDateDispatched() {
 		return dateDispatched;
 	}
+
 	public void setDateDispatched(String dateDispatched) {
 		this.dateDispatched = dateDispatched;
 	}
+
 	public String getDateDelivered() {
 		return dateDelivered;
 	}
+
 	public void setDateDelivered(String dateDelivered) {
 		this.dateDelivered = dateDelivered;
 	}
+
 	public int getOrderID() {
 		return orderID;
 	}
-	
-	public void setOrderID(int id){
+
+	public void setOrderID(int id) {
 		orderID = id;
 	}
-	
-	public OrderStatus getOrderStatus(){
+
+	public OrderStatus getOrderStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
 
-	public LoginDetails getEmployee(){
+	public LoginDetails getEmployee() {
 		return employeeID;
 	}
-	
-	public PaymentDetails getPaymentDetails(){
+
+	public PaymentDetails getPaymentDetails() {
 		return paymentDetails;
 	}
 }

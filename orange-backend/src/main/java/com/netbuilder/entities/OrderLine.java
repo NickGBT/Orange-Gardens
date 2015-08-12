@@ -15,56 +15,56 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table (name = "product_line")
+@Table(name = "product_line")
 public class OrderLine {
-			
+
 	@ManyToOne
 	@JoinColumn(name = "order_id", nullable = false)
 	@NotNull
 	private Order order;
-	
+
 	@OneToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
 	private Product product;
 
-	@Column (name = "quantity", nullable = true)
+	@Column(name = "quantity", nullable = true)
 	@NotNull
 	private int quantity;
 
 	public OrderLine(Order order, Product product, int quantity) {
-		
+
 		this.order = order;
 		this.product = product;
 		this.quantity = quantity;
 	}
-	
+
 	public OrderLine(Order orderId, Product productId) {
 		this.order = orderId;
 		this.product = productId;
 	}
 
-	public void setQuantity(int quantity){
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	public int getQuantity(){
+
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setOrderID(Order order){
+	public void setOrderID(Order order) {
 		this.order = order;
 	}
-	
-	public Order getOrder(){
+
+	public Order getOrder() {
 		return order;
 	}
-	
-	public void setProductID(Product product){
+
+	public void setProductID(Product product) {
 		this.product = product;
 	}
-	
-	public Product getProduct(){
+
+	public Product getProduct() {
 		return product;
 	}
 }
