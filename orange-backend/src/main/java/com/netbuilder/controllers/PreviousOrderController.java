@@ -34,6 +34,16 @@ public class PreviousOrderController {
 	private UserId userId;
 
 	public ArrayList<OrderLine> getPreviousOrders() {
+		
+		ArrayList<String> orders = new ArrayList<String>();
+		ArrayList<String> orderLines = new ArrayList<String>();
+		for(Order o: orderMan.getAllOrders()){
+			if(o.getOrderStatus() == OrderStatus.placed && 
+					o.getCustomer().getUsername().equals(userId.getUsername())) {
+					orders.add(Integer.toString(o.getOrderID()));					
+					}
+		}
+		
 		return orderLineMan.findProductsPlaced(userId.getUsername());
 	}
 	

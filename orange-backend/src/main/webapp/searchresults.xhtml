@@ -54,12 +54,13 @@
 				<ui:insert name="NBGardensCatalog">
 					<ui:repeat var="product" value="#{searchController.searchResults}">
 						<div style="float: left; padding-right: 10px;">
+						<h:outputText value="#{product.productId}"></h:outputText>
 								<h:form>
 									<input type="hidden" name="productId"
 										value="#{product.productId}" class="button" />
 									<h:commandButton image="#{product.imageLocation}"
-										value="Product Page" id="productPage" class="button"
 										action="#{searchController.setProductPage}"
+										value="Product Page" id="productPage" class="button"
 										style=" width:200px;  height:200px" />
 								</h:form>
 						</div>			

@@ -1,5 +1,6 @@
 package com.netbuilder.entity_managers.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
@@ -23,6 +24,7 @@ public interface ProductManager {
 
 	public void persistProducts(List<Product> products);
 
+	
 	// READ
 	public List<Product> getAll();
 
@@ -33,6 +35,8 @@ public interface ProductManager {
 	public List<Product> findProductsByPriceBetween(double lowPrice,
 			double highPrice);
 
+	public List<Product> findProductsByNameAndCat(ProductCategory category, ArrayList<Product> products);
+	
 	public List<Product> findByCategory(ProductCategory category);
 
 	// UPDATE

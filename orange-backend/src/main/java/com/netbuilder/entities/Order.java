@@ -84,6 +84,14 @@ public class Order {
 		this.status = status;
 		this.paymentDetails = paymentDetails;
 	}
+	
+	public Order(int orderId, LoginDetails customerID, OrderStatus status,
+			PaymentDetails paymentDetails) {
+		this.orderID = orderId;
+		this.customerID = customerID;
+		this.status = status;
+		this.paymentDetails = paymentDetails;
+	}
 
 	public LoginDetails getCustomer() {
 		return customerID;

@@ -84,6 +84,21 @@ public class ProductManagerAL implements ProductManager {
 		return results;
 	}
 
+	public List<Product> findProductsByNameAndCat(ProductCategory category, ArrayList<Product> products){
+		
+		List<Product> categorySearchResult = new ArrayList<Product>(); 
+		
+		for (Product r : products) { 
+			
+			if (r.getCategory() == category ) {
+				
+				categorySearchResult.add(r);
+			}
+		}
+		System.out.println("Found results : " + categorySearchResult);
+		return categorySearchResult;
+	}
+	
 	public List<Product> findByCategory(ProductCategory category) {
 
 		List<Product> results = new ArrayList<Product>();

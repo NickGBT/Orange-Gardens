@@ -88,17 +88,10 @@ public class SearchController {
 			return "searchresults.xhtml";
 		} else { 
 			System.out.println(name);
-			List<Product> searchResults = productManager.findProductsByName(name);
+			ArrayList<Product> searchResults = (ArrayList<Product>) productManager.findProductsByName(name);
 			System.out.println(searchResults);
 			
-			List<Product> categorySearchResult = new ArrayList<Product>(); 
-			
-			for (Product r : searchResults ) { 
-				if (r.getCategory().equals(category)) {
-					categorySearchResult.add(r);
-				}
-				this.searchResults = categorySearchResult;
-			}
+			this.searchResults = productManager.findProductsByNameAndCat(category, searchResults);
 			
 			return "searchresults.xhtml";
 		}
@@ -114,7 +107,7 @@ public class SearchController {
 		//System.out.println(searchResults.get(1).getProductId());
 		//System.out.println(searchResults.get(2).getProductId());
 		//System.out.println(searchResults.get(3).getProductId());
-		return searchResults;
+		return this.searchResults;
 	}
 	
 	/**
