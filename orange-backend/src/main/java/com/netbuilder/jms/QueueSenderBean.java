@@ -30,6 +30,8 @@ public class QueueSenderBean {
 	private ConnectionFactory connectionFactory;
 	@Resource(mappedName = "java:/activemq/queue_out")
 	private Destination queue;
+//	@Resource(mappedName = "java:/activemq/dops_queue")
+//	private Destination dopsQueue;
 	
 	private Connection connection;
 	
@@ -149,7 +151,7 @@ public class QueueSenderBean {
 			init();
 			
 			session = connection.createSession(true, AUTO_ACKNOWLEDGE);
-			session.createQueue(destination);
+			queue = session.createQueue(destination);
 			
 			producer = session.createProducer(queue);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
