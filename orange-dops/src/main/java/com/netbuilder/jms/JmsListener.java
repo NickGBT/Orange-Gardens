@@ -39,7 +39,7 @@ public class JmsListener implements MessageListener {
 				String payload = ((TextMessage) message).getText();
 				
 				logger.debug("Handling TextMessage payload", payload);
-				handler.addTempProduct(payload);
+				
 			} catch (JMSException e) {
 				logger.error("Error in message conversion to TextMessage", e);
 				e.printStackTrace();
@@ -51,9 +51,6 @@ public class JmsListener implements MessageListener {
 
 				logger.debug("Checking payload class type of ObjectMessage", payload);
 				
-				if (payload instanceof List<?>) {
-					handler.setTempPath((List<GladosNode>)payload);
-				}
 			} catch (JMSException e) {
 				logger.error("Error in message conversion to ObjectMessage", e);
 				e.printStackTrace();
