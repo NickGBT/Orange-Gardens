@@ -1,0 +1,8 @@
+1. Install JDK 1.7
+2. Download and unpack apache active-mq-5.11.1
+3. Download Wildfly 8.2 via Eclipse or otherwise
+4. Copy activemq.bat from this folder to "apache-activemq-5.11.1\bin"
+5. Copy standalone-full.xml from this repository to "C:\Users\aneil\wildfly-8.2.0.Final\standalone\configuration"
+6. Download "activemq-rar-5.11.1.rar"
+7. Rename above file to "activemq-ra.rar"
+8. Copy activemq-ra.rar to "wildfly-8.2.0.Final\standalone\deployments"
