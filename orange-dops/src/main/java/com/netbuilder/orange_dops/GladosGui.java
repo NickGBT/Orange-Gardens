@@ -187,7 +187,8 @@ public class GladosGui
 				}
 				else
 				{
-					displayMap();
+					completeOrder.setEnabled(false);
+					displayMap();			
 				}
 			}
 		});
@@ -274,7 +275,6 @@ public class GladosGui
     			testData.getxProductLocation()[testData.getProductIncrement()], 
     			testData.getyProductLocation()[testData.getProductIncrement()]);
     	nextProduct.setEnabled(true);
-    	completeOrder.setEnabled(false);
     	displayMap();
 	}
 	
