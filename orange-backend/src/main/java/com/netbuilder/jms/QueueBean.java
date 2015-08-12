@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
+import javax.inject.Named;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
@@ -29,6 +30,7 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
  *
  */
 
+@Named(value="queueBean")
 @MessageDriven(activationConfig = {
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -62,8 +64,7 @@ public class QueueBean implements MessageListener {
 	/**
 	 * Sends to destination specified in the Destination resource injection
 	 * 
-	 * @param text
-	 *            Text to be sent as a JMS message
+	 * @param text Text to be sent as a JMS message
 	 */
 	public void sendMessage(String text) {
 		logger.debug("Sending text message");
@@ -108,8 +109,7 @@ public class QueueBean implements MessageListener {
 	/**
 	 * Sends to destination specified in the Destination resource injection
 	 * 
-	 * @param object
-	 *            Serializable object to be sent as a JMS message
+	 * @param object Serializable object to be sent as a JMS message
 	 */
 	public void sendMessage(Serializable object) {
 		Session session = null;
@@ -119,6 +119,99 @@ public class QueueBean implements MessageListener {
 			init();
 
 			session = connection.createSession(true, AUTO_ACKNOWLEDGE);
+			producer = session.createProducer(queue);
+			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+
+			ObjectMessage message = session.createObjectMessage(object);
+			producer.send(message);
+
+		} catch (JMSException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (producer != null) {
+					producer.close();
+				}
+			} catch (JMSException e) {
+				logger.info("Issue closing message producer. May not have been created properly.");
+			}
+			try {
+				if (producer != null) {
+					session.close();
+				}
+			} catch (JMSException e) {
+				logger.info("Issue closing session. May not have been created properly.");
+			}
+			try {
+				destroy();
+			} catch (JMSException e) {
+				logger.info("Issue closing connection. May not have been created properly.");
+			}
+		}
+	}
+	
+	/**
+	 * Sends to destination specified in the Destination resource injection
+	 * @param destination Name of the queue to send a message to
+	 * @param text Text to be sent as a JMS message
+	 */
+	public void sendMessage(String destination, String text) {
+		logger.debug("Sending text message");
+		Session session = null;
+		MessageProducer producer = null;
+		try {
+			init();
+			
+			session = connection.createSession(true, AUTO_ACKNOWLEDGE);
+			session.createQueue(destination);
+			
+			producer = session.createProducer(queue);
+			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+
+			TextMessage message = session.createTextMessage(text);
+			logger.info("Attempting to send message.", message);
+			producer.send(message);
+
+		} catch (JMSException e) {
+
+		} finally {
+			try {
+				if (producer != null) {
+					producer.close();
+				}
+			} catch (JMSException e) {
+				logger.info("Issue closing message producer. May not have been created properly.");
+			}
+			try {
+				if (producer != null) {
+					session.close();
+				}
+			} catch (JMSException e) {
+				logger.info("Issue closing session. May not have been created properly.");
+			}
+			try {
+				destroy();
+			} catch (JMSException e) {
+				logger.info("Issue closing connection. May not have been created properly.");
+			}
+		}
+	}
+
+	/**
+	 * Sends to destination specified as a parameter
+	 * @param destination Name of queue to send message to
+	 * @param object Serializable object to be sent as a JMS message
+	 */
+	public void sendMessage(String destination, Serializable object) {
+		Session session = null;
+		MessageProducer producer = null;
+
+		try {
+			init();
+
+			session = connection.createSession(true, AUTO_ACKNOWLEDGE);
+			session.createQueue(destination);
+			
 			producer = session.createProducer(queue);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
