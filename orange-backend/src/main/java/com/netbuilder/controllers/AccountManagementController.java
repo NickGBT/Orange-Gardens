@@ -94,7 +94,7 @@ public class AccountManagementController {
 	}
 
 	public PaymentDetails getPaymentDetails() {
-		paymentDetailsManager.findCustomerPaymentDetails(userId.getUid());
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(userId.getUid());
 		//paymentDetails = testData.getPaymentDetails();
 		return paymentDetails;
 	}

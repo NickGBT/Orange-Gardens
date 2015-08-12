@@ -47,7 +47,7 @@ public class OrderCheckoutController {
 
 	@Inject
 	private OrderManager orderManager;
-	private Order order;
+	private Order order, confirmed;
 	private OrderDetails basketDetails;
 	
 	@Inject
@@ -74,6 +74,17 @@ public class OrderCheckoutController {
 		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
 		//order = testData.getOrder();
 		return order;
+	}
+	
+	/**
+	 * @author JustinMabbutt
+	 * Get the order that is has been confirmed
+	 * @return the confirmed order
+	 */
+	public Order getConfirmed()
+	{
+		confirmed = orderManager.findBasketByUsername(OrderStatus.placed, userId.getUsername());
+		return confirmed;
 	}
 
 	public List<OrderLine> getBasket() {

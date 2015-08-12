@@ -53,8 +53,7 @@ public class SearchController {
 	public String setProductPage() {
 
 		System.out.println("Set product Page Being Called");
-		productId = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get("productId");
+		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 		System.out.println(productId);
 		prDet.setId(Integer.parseInt(productId));
 
