@@ -30,7 +30,7 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
  *
  */
 
-@Named(value="queueBean")
+@Named(value="receiverBean")
 @MessageDriven(activationConfig = {
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
@@ -38,7 +38,7 @@ import static javax.jms.Session.AUTO_ACKNOWLEDGE;
 /* Sample line of activation, Can you activate on multiple queues? */
 })
 @ResourceAdapter("activemq-ra.rar")
-public class QueueBean implements MessageListener {
+public class QueueReceiverBean implements MessageListener {
 
 	@Resource(mappedName = "java:/activemq/ConnectionFactory")
 	private ConnectionFactory connectionFactory;
