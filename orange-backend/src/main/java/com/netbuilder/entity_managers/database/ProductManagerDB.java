@@ -154,4 +154,11 @@ public class ProductManagerDB implements ProductManager {
 		pm.closeEntityManager(em);
 	}
 
+	@Override
+	public List<Product> findProductsByNameAndCat(ProductCategory category,
+			ArrayList<Product> products) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
