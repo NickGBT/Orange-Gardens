@@ -20,7 +20,6 @@ public class ProductTests {
 	private Product testProduct;
 
 	private String imageLocation;
-	private int productId;
 	private String productName;
 	private double productPrice;
 	private int width;
@@ -34,7 +33,6 @@ public class ProductTests {
 	public void setUp() throws Exception {
 
 		imageLocation = "res/products/img/2412.jpg";
-		productId = 2412;
 		productName = "Test Gnome";
 		productPrice = 29.99;
 		width = 20;

@@ -18,7 +18,5 @@ public class ApplicationLoader {
 		StockManager model = new StockManager();
 		
 		StockManagerController controller = new StockManagerController(model, view);
-
 	}
-
 }

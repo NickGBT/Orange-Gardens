@@ -24,7 +24,6 @@ public class DeliveryLineManagerALTest {
 	private DeliveryLine deliveryLine1;
 	private DeliveryLineManagerAL deliveryLineManager;
 	private List<DeliveryLine> deliveryLineAL;
-	private List<DeliveryLine> deliveryLineAL1;
 	private List<DeliveryLine> testAL;
 
 	@Before
@@ -39,7 +38,6 @@ public class DeliveryLineManagerALTest {
 
 		deliveryLineManager = new DeliveryLineManagerAL();
 		deliveryLineAL = new ArrayList<DeliveryLine>();
-		deliveryLineAL1 = new ArrayList<DeliveryLine>();
 		testAL = new ArrayList<DeliveryLine>();
 	}
 

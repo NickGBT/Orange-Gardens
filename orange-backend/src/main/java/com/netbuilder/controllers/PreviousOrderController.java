@@ -60,15 +60,15 @@ public class PreviousOrderController {
 		return group.get(index++);
 	}
 	
-	public List<OrderLine> getPreviousOrders() {
-		int i = 0;
+	public List<OrderLine> getPreviousOrders()
+	{
 		List<OrderLine> orderLines = new ArrayList<OrderLine>();
 		for(Order o: orderMan.getAllOrders()){
-			if(o.getOrderStatus() == OrderStatus.placed && 
-					o.getCustomer().getUsername().equals(userId.getUsername())) {
-					orderLines = orderLineMan.findByOrderId(o.getOrderID());
-					group.add(orderLines);
-					}
+			if(o.getOrderStatus() == OrderStatus.placed && o.getCustomer().getUsername().equals(userId.getUsername())) 
+			{
+				orderLines = orderLineMan.findByOrderId(o.getOrderID());
+				group.add(orderLines);
+			}
 		}
 		
 		return orderLines;

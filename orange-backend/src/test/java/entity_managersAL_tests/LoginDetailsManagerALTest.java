@@ -21,7 +21,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
 public class LoginDetailsManagerALTest {
 	private LoginDetailsManagerAL loginDetailsManager;
 	private LoginDetails loginDetailsTest1, loginDetailsTest2;
-	private List<LoginDetails> testArrayLoginDetails, testArrayLoginDetails2;
+	private List<LoginDetails> testArrayLoginDetails;
 
 	byte[] testSalt1;
 	byte[] testPassword1;
