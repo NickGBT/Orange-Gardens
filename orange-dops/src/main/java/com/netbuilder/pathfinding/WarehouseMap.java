@@ -26,7 +26,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 	public WarehouseMap(int width, int height, NodeFactory nodeFactory) 
 	{
 		this.nodeFactory = nodeFactory;
-		nodes = (gladosNode[][]) new Node[width][height];
+		nodes = (gladosNode[][])new Node[width][height];
 		this.width = width - 1;
 		this.height = height - 1;
 		initEmptyNodes();
@@ -38,7 +38,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		{
 			for (int j = 0; j <= height; j++)
 			{
-				nodes[i][j] = (gladosNode) nodeFactory.createNode(i, j);
+				nodes[i][j] = (gladosNode)nodeFactory.createNode(i, j);
 			}
 		}
 	}
@@ -153,7 +153,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		while (!done)
 		{
 			path.addFirst(curr);
-			curr = (gladosNode) curr.getPrevious();
+			curr = (gladosNode)curr.getPrevious();
 			if (curr.equals(start)) 
 			{
 				done = true;
