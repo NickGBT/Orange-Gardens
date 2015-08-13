@@ -53,9 +53,9 @@
 
 				<ui:insert name="NBGardensCatalog">
 					<ui:repeat var="product" value="#{searchController.searchResults}">
-					<div id="categories" style = "border: 2px solid black; overflow:auto; padding-bottom: 20px;">
+					<div id="categories" style = "overflow:auto; padding-bottom: 20px;">
 						<div style="float: left; padding-right: 10px;">
-						<h:outputText value="#{product.productId}"></h:outputText>
+						<!--<h:outputText value="#{product.productId}"></h:outputText>-->
 								<h:form>
 									<input type="hidden" name="productId"
 										value="#{product.productId}" class="button" />
@@ -65,9 +65,9 @@
 										style=" width:200px;  height:200px" />
 								</h:form>
 						</div>	
-						<div style="overflow:auto; border: 2px solid yellow" >
+						<div style="overflow:auto;" >
 						<h:column>		
-							<div style="padding-left: 5px; float: left; padding-right: 5px; border:2px solid green">
+							<div style="padding-left: 5px; float: left; padding-right: 5px;">
 								
 									
 									<h2>
@@ -81,7 +81,7 @@
 									<br />
 							
 							</div>
-							<div style="float: left; padding-left: 10px; border:2px solid red">
+							<div style="float: left; padding-left: 10px;">
 							
 								<h:form>
 									<h:selectOneMenu id="category"
