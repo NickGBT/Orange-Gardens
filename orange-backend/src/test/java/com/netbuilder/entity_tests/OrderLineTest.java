@@ -11,8 +11,6 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.enums.CardType;
-import com.netbuilder.enums.EmployeeDepartment;
-import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -34,10 +32,6 @@ public class OrderLineTest {
 
 	private LoginDetails customer;
 
-	private EmployeeDepartment empDept;
-	private String fName = "Test";
-	private String lName = "Employee";
-	private EmployeePermissions empPermisions;
 	private LoginDetails employee;
 
 	private OrderStatus orderStatus;

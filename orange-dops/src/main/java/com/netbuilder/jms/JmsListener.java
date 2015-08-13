@@ -23,12 +23,12 @@ public class JmsListener implements MessageListener {
 
 	private final MessageHandler handler;
 	private static final Logger logger = LogManager.getLogger();
-	private int messageIndex = 0;
 
 	public JmsListener(MessageHandler source) {
 		this.handler = source;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onMessage(Message message) {
 

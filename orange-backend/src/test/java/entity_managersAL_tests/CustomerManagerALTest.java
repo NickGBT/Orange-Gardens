@@ -23,9 +23,6 @@ public class CustomerManagerALTest {
 	private CustomerManagerAL customerManager;
 	private Customer testCustomer, testCustomer2;
 	private List<Customer> testArrayCustomer, testArrayCustomer2;
-	private LoginDetailsManagerAL loginDetailsManager;
-	private LoginDetails loginDetailsTest1;
-	private List<LoginDetails> testArrayLoginDetails;
 	byte[] testSalt1;
 	byte[] testPassword1;
 
@@ -36,8 +33,6 @@ public class CustomerManagerALTest {
 		testArrayCustomer2 = new ArrayList<Customer>();
 		testCustomer = new Customer("fName1", "lName1", "contactNumber1", true);
 		testCustomer2 = new Customer("fName2", "lName2", "contactNumber2", true);
-		loginDetailsTest1 = new LoginDetails(123, "testUser1", "testEmail@1",
-				testPassword1, testSalt1);
 	}
 
 	@Test

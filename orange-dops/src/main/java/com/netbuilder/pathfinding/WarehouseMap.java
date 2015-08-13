@@ -1,7 +1,6 @@
 package com.netbuilder.pathfinding;
 
 import java.io.Serializable;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 
 	private NodeFactory nodeFactory;
 
+	@SuppressWarnings("unchecked")
 	public WarehouseMap(int width, int height, NodeFactory nodeFactory) 
 	{
 		this.nodeFactory = nodeFactory;
@@ -32,6 +32,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		initEmptyNodes();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void initEmptyNodes()
 	{
 		for (int i = 0; i <= width; i++)
@@ -144,6 +145,7 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	private List<gladosNode> calcPath(gladosNode start, gladosNode goal) 
 	{
 		LinkedList<gladosNode> path = new LinkedList<gladosNode>();

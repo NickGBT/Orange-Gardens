@@ -28,14 +28,9 @@ import com.netbuilder.enums.ProductCategory;
 
 public class OrderLineManagerALTest {
 
-	private List<OrderLine> testArrayOrderLine, testArrayOrderLine2;
 	private OrderLineManagerAL orderLineManager;
 	private Order order;
 	private LoginDetails testCustomer1;
-	private LoginDetails employee;
-	private EmployeeDepartment employeeDepartment;
-	private EmployeePermissions employeePermission;
-	private OrderStatus orderStatus;
 	private PaymentDetails paymentDetails;
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
@@ -52,7 +47,6 @@ public class OrderLineManagerALTest {
 
 		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password,
 				salt);
-		employee = new LoginDetails("fooUser2", "testEmail2", password, salt);
 
 		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
 				"BOB", 323, "22/07/2020", testCustomer1);
