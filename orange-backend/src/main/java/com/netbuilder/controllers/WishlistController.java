@@ -16,7 +16,6 @@ import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
-import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.util.UserId;
 
 /**

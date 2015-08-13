@@ -9,8 +9,6 @@ import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.enums.CardType;
-import com.netbuilder.enums.EmployeeDepartment;
-import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 
 /**
@@ -32,10 +30,6 @@ public class OrderTest {
 	private LoginDetails customer;
 
 	private PaymentDetails paymentDetails;
-	private EmployeeDepartment empDept;
-	private String fName = "Test";
-	private String lName = "Employee";
-	private EmployeePermissions empPermisions;
 	private LoginDetails employee;
 	byte[] password = { 1, 2, 3 };
 	byte[] salt = { 1, 2, 3 };

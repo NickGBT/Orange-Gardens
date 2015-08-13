@@ -443,7 +443,6 @@ public class StockManagerController {
 			  // save to file
 			}
 		}
-		
 	}
 	
 	private class AddOrderHandler implements ActionListener{

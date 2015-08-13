@@ -30,7 +30,6 @@ import com.netbuilder.util.UserId;
 @RequestScoped
 public class AccountManagementController {
 
-	private String errorMsg;
 	@Inject
 	private AccountManagement accountManagement;
 	// @Inject
@@ -63,8 +62,7 @@ public class AccountManagementController {
 			address.setBillingAddress(accountManagement.isBillingAddress());
 			return "customeraccount.xhtml";
 		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
+			return "customeraccount.xhtml";
 		}
 	}
 
@@ -118,10 +116,9 @@ public class AccountManagementController {
 			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 				e.printStackTrace();
 			}
-			return "account/uid";
+			return "customeraccount.xhtml";
 		} else {
-			errorMsg = "Invalid Change";
-			return "account/uid";
+			return "customeraccount.xhtml";
 		}
 	}
 	
