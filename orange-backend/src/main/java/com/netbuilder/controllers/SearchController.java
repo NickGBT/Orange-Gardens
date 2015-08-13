@@ -9,6 +9,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
@@ -39,12 +42,11 @@ public class SearchController {
 	@ManagedProperty(value="#{catalogController}")
 	private CatalogController catalogController;
 	
-	
 	private String name;
 	private String catSelection;
 	private ProductCategory category;
 
-	
+	private static final Logger logger = LogManager.getLogger();
 
 	private Product pr;
 
@@ -55,6 +57,7 @@ public class SearchController {
 		System.out.println("Set product Page Being Called");
 		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 		System.out.println(productId);
+		logger.info("Product Id: " + productId);
 		prDet.setId(Integer.parseInt(productId));
 
 		return "productpage.xhtml";
@@ -63,6 +66,7 @@ public class SearchController {
 	
 	public String headerSearch() {
 		System.out.println(catSelection);
+		logger.info("Catalogue Selection: " + catSelection);
 		name = searchDetails.getSearchEntry();
 		
 		if (!catSelection.equals("All")){
@@ -74,6 +78,7 @@ public class SearchController {
 		
 		if (name.isEmpty() && (!catSelection.equals("All"))){
 			System.out.println("Category: " + category);
+			logger.info("Category: " + category);
 			List<Product> searchResults = productManager.findByCategory(category);
 			this.searchResults = searchResults;
 			
@@ -87,6 +92,7 @@ public class SearchController {
 			return "searchresults.xhtml";
 		} else { 
 			System.out.println(name);
+			logger.info("Name: " + name);
 			ArrayList<Product> searchResults = (ArrayList<Product>) productManager.findProductsByName(name);
 			System.out.println(searchResults);
 			

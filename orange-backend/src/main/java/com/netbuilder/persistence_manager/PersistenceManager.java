@@ -6,6 +6,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * 
  * @author JustinMabbutt
@@ -14,6 +17,7 @@ import javax.persistence.PersistenceException;
 
 @Singleton
 public class PersistenceManager {
+	private static final Logger logger = LogManager.getLogger();
 	private EntityManagerFactory emf;
 
 	public EntityManager createEntityManager() {
@@ -22,6 +26,7 @@ public class PersistenceManager {
 			EntityManager em = emf.createEntityManager();
 			return em;
 		} catch (PersistenceException pe) {
+			logger.error("Persistence error", emf);
 			pe.printStackTrace();
 			return null;
 		}

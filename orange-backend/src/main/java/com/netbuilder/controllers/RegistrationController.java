@@ -7,6 +7,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
@@ -52,7 +55,7 @@ public class RegistrationController {
 	private LoginDetails loginDetails;
 	private Address address;
 	private PaymentDetails payDetails;
-
+	private static final Logger logger = LogManager.getLogger();
 	private Random rand;
 
 	public String registerCustomer() {
@@ -67,6 +70,7 @@ public class RegistrationController {
 				hashedPassword = LoginDetailsToolkit.getHashedPassword(
 						registrationDetails.getPassword(), salt);
 			} catch (Exception e) {
+				logger.error("Exception thrown, consult stack trace");
 				e.printStackTrace();
 			}
 			System.out.println("Hashed Pass : " + hashedPassword);
@@ -104,7 +108,7 @@ public class RegistrationController {
 			return "customerlogin.xhtml";
 		} else {
 			System.out.println("Invalid");
-			errorMsg = "Invalid entries";
+			logger.info("Invalid registration entries");
 			return "registercustomer.xhtml";
 		}
 	}

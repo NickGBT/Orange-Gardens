@@ -15,8 +15,6 @@ import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
 import com.netbuilder.enums.CardType;
-import com.netbuilder.enums.EmployeeDepartment;
-import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 

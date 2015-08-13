@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.Product;
@@ -49,9 +52,10 @@ public class BasketController {
 	private Product foundProduct;
 	private OrderLine orderLine;
 	DecimalFormat df = new DecimalFormat("0.00");
-
 	private double subtotal = 0, totalDouble = 0;
 	private String total = "";
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	public OrderManager getBasketManager() {
 		return basketManager;
@@ -132,12 +136,12 @@ public class BasketController {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				olm.removeProductLine(orderLine);
 			} else {
-				System.out
-						.println("BasketController::Line127:: Basket does not contain said item.");
+				logger.info("BasketController::Line127:: Basket does not contain said item.");
+				System.out.println("BasketController::Line127:: Basket does not contain said item.");
 			}
 		} else {
-			System.out
-					.println("BasketController::Line134:: Cannot find user basket.");
+			logger.info("BasketController::Line134:: Cannot find user basket.");
+			System.out.println("BasketController::Line134:: Cannot find user basket.");
 		}
 	}
 

@@ -33,7 +33,7 @@ public class FeedbackController {
 	public String sendFeedback(String feedback) {
 		customerFeedback.setUserFeedback(feedback);
 		notification = "Feedback sent, thank you.";
-		return "home";
+		return "webstorefront.xhtml";
 	}
 
 	/**

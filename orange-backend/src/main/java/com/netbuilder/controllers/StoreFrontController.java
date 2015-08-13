@@ -20,24 +20,16 @@ public class StoreFrontController {
 		case 1:
 			switch (column) {
 			case 1:
-				pageNav = "products/"
-						+ storeFrontProducts.getNewProducts().get(0)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getNewProducts().get(0).getProductId();
 				break;
 			case 2:
-				pageNav = "products/"
-						+ storeFrontProducts.getNewProducts().get(1)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getNewProducts().get(1).getProductId();
 				break;
 			case 3:
-				pageNav = "products/"
-						+ storeFrontProducts.getNewProducts().get(2)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getNewProducts().get(2).getProductId();
 				break;
 			case 4:
-				pageNav = "products/"
-						+ storeFrontProducts.getNewProducts().get(3)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getNewProducts().get(3).getProductId();
 				break;
 			default:
 				break;
@@ -46,24 +38,16 @@ public class StoreFrontController {
 		case 2:
 			switch (column) {
 			case 1:
-				pageNav = "products/"
-						+ storeFrontProducts.getSpecialOffers().get(0)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getSpecialOffers().get(0).getProductId();
 				break;
 			case 2:
-				pageNav = "products/"
-						+ storeFrontProducts.getSpecialOffers().get(1)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getSpecialOffers().get(1).getProductId();
 				break;
 			case 3:
-				pageNav = "products/"
-						+ storeFrontProducts.getSpecialOffers().get(2)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getSpecialOffers().get(2).getProductId();
 				break;
 			case 4:
-				pageNav = "products/"
-						+ storeFrontProducts.getSpecialOffers().get(3)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getSpecialOffers().get(3).getProductId();
 				break;
 			default:
 				break;
@@ -71,24 +55,16 @@ public class StoreFrontController {
 		case 3:
 			switch (column) {
 			case 1:
-				pageNav = "products/"
-						+ storeFrontProducts.getCatalogueExclusives().get(0)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getCatalogueExclusives().get(0).getProductId();
 				break;
 			case 2:
-				pageNav = "products/"
-						+ storeFrontProducts.getCatalogueExclusives().get(1)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getCatalogueExclusives().get(1).getProductId();
 				break;
 			case 3:
-				pageNav = "products/"
-						+ storeFrontProducts.getCatalogueExclusives().get(2)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getCatalogueExclusives().get(2).getProductId();
 				break;
 			case 4:
-				pageNav = "products/"
-						+ storeFrontProducts.getCatalogueExclusives().get(3)
-								.getProductId();
+				pageNav = "products/" + storeFrontProducts.getCatalogueExclusives().get(3).getProductId();
 				break;
 			default:
 				break;

@@ -8,6 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
@@ -35,6 +38,7 @@ public class OrderCheckoutController {
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
 
+	private static final Logger logger = LogManager.getLogger();
 
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
@@ -66,6 +70,7 @@ public class OrderCheckoutController {
 			//orderManager.persistOrder(order);
 		}
 		else 
+			logger.info("Order failed", order);
 			return "#";
 	}
 	
