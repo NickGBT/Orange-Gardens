@@ -7,6 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
@@ -48,7 +51,8 @@ public class WishlistController
 	private Order orderBasket;
 	private String emptyWishlist = "";
 
-
+	private static final Logger logger = LogManager.getLogger();
+	
 	private List<OrderLine> wishlist;
 
 	public List<OrderLine> getWishlist() 
@@ -87,11 +91,13 @@ public class WishlistController
 			} 
 			else 
 			{
+				logger.info("WishlistController::Line80:: Wishlist does not contain said item.");
 				System.out.println("WishlistController::Line80:: Wishlist does not contain said item.");
 			}
 		} 
 		else 
 		{
+			logger.info("WishlistController::Line80:: Wishlist does not contain said item.");
 			System.out.println("WishlistController::Line85:: Cannot find user wishlist.");
 		}
 	}

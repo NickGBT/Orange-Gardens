@@ -40,7 +40,6 @@ public class CatalogController {
 		prDet.setId(Integer.parseInt(productId));
 
 		return "productpage.xhtml";
-
 	}
 
 	private ArrayList<Product> productsInCatalog = new ArrayList<Product>();

@@ -7,6 +7,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
@@ -50,6 +53,8 @@ public class AccountManagementController {
 	private PaymentDetailsManager paymentDetailsManager;
 	@Inject
 	private UserId userId;
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	public String changeAddress() {
 		if (address != null) {
@@ -107,13 +112,13 @@ public class AccountManagementController {
 			try {
 				salt = LoginDetailsToolkit.generateSalt();
 			} catch (NoSuchAlgorithmException e) {
+				logger.error("No algorithm found", salt);
 				e.printStackTrace();
 			}
 			try {
-				loginDetails.setNewPasswordAndSalt(
-						LoginDetailsToolkit.getHashedPassword(
-								accountManagement.getPassword(), salt), salt);
+				loginDetails.setNewPasswordAndSalt(LoginDetailsToolkit.getHashedPassword(accountManagement.getPassword(), salt), salt);
 			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+				logger.error("Invalid key specification");
 				e.printStackTrace();
 			}
 			return "customeraccount.xhtml";

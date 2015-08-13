@@ -9,9 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.netbuilder.entities.Customer;
-import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.arraylist.CustomerManagerAL;
-import com.netbuilder.entity_managers.arraylist.LoginDetailsManagerAL;
 
 /**
  * 

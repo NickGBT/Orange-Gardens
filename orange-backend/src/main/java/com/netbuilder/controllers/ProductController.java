@@ -8,6 +8,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
@@ -78,6 +81,8 @@ public class ProductController {
 	private Order wishlist;
 	private Random rand;
 	
+	private static final Logger logger = LogManager.getLogger();
+	
 	public ProductController() {
 
 	}
@@ -96,8 +101,7 @@ public class ProductController {
 	public void addToBasket() {
 		rand = new Random();
 		
-		productId = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get("productId");
+		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 		quantity = Integer.parseInt(temp);
@@ -120,7 +124,7 @@ public class ProductController {
 		} else {
 			orderBasket = new Order(rand.nextInt(1000), loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
-			
+			logger.info("Basket not found, creating new basket");
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
 			olm.persistOrderLine(orderLine);			
 		}
@@ -154,7 +158,7 @@ public class ProductController {
 		{
 			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
 			om.persistOrder(wishlist);
-
+			logger.info("Wishlist not found, creating new wishlist");
 			orderLine = new OrderLine(wishlist, foundProduct, 0);
 			olm.persistOrderLine(orderLine);
 		}
@@ -166,8 +170,7 @@ public class ProductController {
 	 */
 	public void updateQuantity() 
 	{
-		productId = FacesContext.getCurrentInstance().getExternalContext().
-				getRequestParameterMap().get("productId");
+		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 		
 		// System.out.println("ProductController::Line98::" + temp);
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));

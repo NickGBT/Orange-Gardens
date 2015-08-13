@@ -9,6 +9,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.util.UserDetails;
 import com.netbuilder.util.UserId;
@@ -33,6 +36,8 @@ public class LoginController implements Serializable {
 	private String password;
 	private int userExists;
 	private boolean loggedIn = false;
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	@Inject
 	private UserId userId;
@@ -50,14 +55,10 @@ public class LoginController implements Serializable {
 			userId.setUsername(name);
 			loggedIn = true;
 			System.out.println(userId.getUsername());
+			logger.info("Username: " + userId.getUsername());
 			return "account.xhtml";
 		} else {
-			FacesContext
-					.getCurrentInstance()
-					.addMessage(
-							null,
-							new FacesMessage(
-									"Incorrect username/password combination!"));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Incorrect username/password combination!"));
 			loggedIn = false;
 			return "customerlogin.xhtml";
 		}
@@ -80,8 +81,7 @@ public class LoginController implements Serializable {
 	}
 
 	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext()
-				.invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		loggedIn = false;
 		return "webstorefront.xhtml";
 	}

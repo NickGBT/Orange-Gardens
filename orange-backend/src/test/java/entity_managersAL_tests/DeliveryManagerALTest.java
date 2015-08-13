@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entity_managers.arraylist.DeliveryManagerAL;
-import com.netbuilder.enums.DeliveryStatus;
 
 /**
  * 
@@ -23,7 +22,6 @@ import com.netbuilder.enums.DeliveryStatus;
 public class DeliveryManagerALTest {
 
 	private Delivery testDelivery, testDelivery2, testDelivery3, testDelivery4;
-	private DeliveryStatus deliveryStatus;
 	private DeliveryManagerAL deliveryManager;
 	private List<Delivery> testArrayDelivery, testArrayDelivery2;
 
@@ -31,7 +29,6 @@ public class DeliveryManagerALTest {
 	public void setUp() throws Exception {
 
 		deliveryManager = new DeliveryManagerAL();
-		deliveryStatus = DeliveryStatus.Processing;
 		testDelivery = new Delivery("AB/BC/CDEF", "BC/DE/EFGH", "Gnome Depot",
 				new BigDecimal(110.5));
 		testDelivery2 = new Delivery("14/04/2015", "17/05/2015",
