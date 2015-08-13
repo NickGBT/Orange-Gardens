@@ -549,8 +549,9 @@ public class GladosGui
     	{
     		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
     		quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]  + "	Remaining Products: (" + (2 - testData.getProductIncrement()) + ")");
-    		boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
+    		
     	}
+    	boxSize.setText("Box Type: " + testData.getTestBoxes()[0] + ", " + testData.getTestBoxes()[1] + ", " + testData.getTestBoxes()[2]);
     	if(testData.isGdz())
     	{
     		productName.setText("Take products to GDZ");
