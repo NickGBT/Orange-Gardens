@@ -42,7 +42,7 @@ import com.netbuilder.pathfinding.WarehouseMap;
  * @author JustinMabbutt
  *
  */
-public class GladosGui 
+public class GladosGui
 {
 	private static final Logger logger = LogManager.getLogger();
 	private TestData testData;

@@ -176,10 +176,10 @@ public class WishlistController
 				
 				for (OrderLine ol : wishlist) 
 				{
-						orderLine = new OrderLine(orderBasket, ol.getProduct(), 1);
-						olm.persistOrderLine(orderLine);	
-						orderLine = olm.findByProductInWishlist(ol.getProduct().getProductId());
-						olm.removeProductLineFromWishlist(orderLine);	
+					orderLine = new OrderLine(orderBasket, ol.getProduct(), 1);	
+					olm.persistOrderLine(orderLine);	
+					orderLine = olm.findByProductInWishlist(ol.getProduct().getProductId());
+					olm.removeProductLineFromWishlist(orderLine);	
 				}
 			}		
 		}
