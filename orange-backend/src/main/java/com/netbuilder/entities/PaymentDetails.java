@@ -46,10 +46,6 @@ public class PaymentDetails {
 	@Size(min = 2, max = 45)
 	private String nameOnCard;
 
-	@Column(name = "security_number", nullable = false)
-	@NotNull
-	private int securityNumber;
-
 	@Column(name = "expiry_date", nullable = false)
 	@NotNull
 	private String expiryDate;
@@ -59,23 +55,6 @@ public class PaymentDetails {
 	@NotNull
 	private LoginDetails customerId;
 
-	@OneToOne
-	@JoinColumn(name = "order_id", nullable = true)
-	private Order orderId;
-
-	public PaymentDetails(CardType cardType, String cardNumber,
-			String nameOnCard, int securityNumber, String expiryDate,
-			LoginDetails customerId, Order orderId) {
-		super();
-		this.cardType = cardType;
-		this.cardNumber = cardNumber;
-		this.nameOnCard = nameOnCard;
-		this.securityNumber = securityNumber;
-		this.expiryDate = expiryDate;
-		this.customerId = customerId;
-		this.orderId = orderId;
-	}
-
 	public PaymentDetails(CardType cardType, String cardNumber,
 			String nameOnCard, int securityNumber, String expiryDate,
 			LoginDetails customerId) {
@@ -83,7 +62,6 @@ public class PaymentDetails {
 		this.cardType = cardType;
 		this.cardNumber = cardNumber;
 		this.nameOnCard = nameOnCard;
-		this.securityNumber = securityNumber;
 		this.expiryDate = expiryDate;
 		this.customerId = customerId;
 	}
@@ -134,21 +112,6 @@ public class PaymentDetails {
 	}
 
 	/**
-	 * @return the securityNumber
-	 */
-	public int getSecurityNumber() {
-		return securityNumber;
-	}
-
-	/**
-	 * @param securityNumber
-	 *            the securityNumber to set
-	 */
-	public void setSecurityNumber(int securityNumber) {
-		this.securityNumber = securityNumber;
-	}
-
-	/**
 	 * @return the expiryDate
 	 */
 	public String getExpiryDate() {
@@ -170,19 +133,5 @@ public class PaymentDetails {
 		return customerId;
 	}
 
-	/**
-	 * @return the orderId
-	 */
-	public Order getOrderId() {
-		return orderId;
-	}
-
-	/**
-	 * @param orderId
-	 *            the orderId to set
-	 */
-	public void setOrderId(Order orderId) {
-		this.orderId = orderId;
-	}
 
 }

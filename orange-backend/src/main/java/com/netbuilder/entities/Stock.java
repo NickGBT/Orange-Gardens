@@ -41,10 +41,16 @@ public class Stock {
 	@Column(name = "required_stock", nullable = false)
 	@NotNull
 	private int requiredStock;
+	@Column(name = "warehouse_x", nullable = false)
+	@NotNull
+	private int warehouseX;
+	@Column(name = "warehouse_y", nullable = false)
+	@NotNull
+	private int warehouseY;
 
 	public Stock(Product product, int stockLevel, int stockAvailable,
 			String location, int maxStock, int criticalThreshold,
-			int requiredStock) {
+			int requiredStock, int warehouseX, int warehouseY) {
 		this.product = product;
 		this.stockLevel = stockLevel;
 		this.stockAvailable = stockAvailable;
@@ -52,6 +58,8 @@ public class Stock {
 		this.maxStock = maxStock;
 		this.criticalThreshold = criticalThreshold;
 		this.requiredStock = requiredStock;
+		this.warehouseX = warehouseX;
+		this.warehouseY = warehouseY;
 	}
 
 	public Product getProduct() {
@@ -104,5 +112,33 @@ public class Stock {
 
 	public void setCriticalThreshold(int criticalThreshold) {
 		this.criticalThreshold = criticalThreshold;
+	}
+
+	/**
+	 * @return the warehouseX
+	 */
+	public int getWarehouseX() {
+		return warehouseX;
+	}
+
+	/**
+	 * @param warehouseX the warehouseX to set
+	 */
+	public void setWarehouseX(int warehouseX) {
+		this.warehouseX = warehouseX;
+	}
+
+	/**
+	 * @return the warehouseY
+	 */
+	public int getWarehouseY() {
+		return warehouseY;
+	}
+
+	/**
+	 * @param warehouseY the warehouseY to set
+	 */
+	public void setWarehouseY(int warehouseY) {
+		this.warehouseY = warehouseY;
 	}
 }

@@ -78,10 +78,10 @@ public class Product {
 	@Size(min = 20, max = 1000)
 	private String description;
 
-	@Column(name = "category", nullable = false)
+	@Column(name = "product_category", nullable = false)
 	@NotNull
 	private ProductCategory category;
-
+	
 	public Product(String imageLocation, String productName,
 			double productPrice, int width, int height, int length,
 			double weight, String description, ProductCategory category) {
