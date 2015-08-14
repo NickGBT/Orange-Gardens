@@ -65,7 +65,7 @@ public class OrderLineManagerAL implements OrderLineManager {
 	/**
 	 * 
 	 * @author jtaylor
-	 * 
+	 *  
 	 */
 	public OrderLine findByProductInWishlist(int productID) 
 	{

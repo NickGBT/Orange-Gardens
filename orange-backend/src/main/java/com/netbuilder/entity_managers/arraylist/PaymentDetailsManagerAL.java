@@ -72,18 +72,18 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 
 	}
 
-	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
-
-		for (PaymentDetails pd : paymentDetails) {
-			try {
-				if (pd.getOrderId().getOrderID() == orderId)
-					return pd;
-			} catch (NullPointerException npe) {
-				// No orderId for these payment details
-			}
-		}
-		return null;
-	}
+//	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
+//
+//		for (PaymentDetails pd : paymentDetails) {
+//			try {
+//				if (pd.getOrderId().getOrderID() == orderId)
+//					return pd;
+//			} catch (NullPointerException npe) {
+//				// No orderId for these payment details
+//			}
+//		}
+//		return null;
+//	}
 
 	/*
 	 * public void updatePaymentDetails(PaymentDetails paymentDetails) {

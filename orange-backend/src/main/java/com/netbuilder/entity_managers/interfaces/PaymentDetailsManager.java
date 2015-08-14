@@ -28,7 +28,7 @@ public interface PaymentDetailsManager {
 
 	public List<PaymentDetails> findExpiredDetails(int userId);
 
-	public PaymentDetails findPaymentDetailsForOrder(int orderId);
+//	public PaymentDetails findPaymentDetailsForOrder(int orderId);
 
 	// UPDATE
 	// public void updatePaymentDetails(PaymentDetails paymentDetails);

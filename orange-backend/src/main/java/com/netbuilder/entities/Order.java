@@ -47,9 +47,6 @@ public class Order {
 	@NotNull
 	private String datePlaced;
 
-	@Column(name = "date_placed_millis", nullable = false)
-	private long datePlacedInMillis;
-
 	@Column(name = "date_dispatched", nullable = false)
 	private String dateDispatched;
 
@@ -57,20 +54,19 @@ public class Order {
 	private String dateDelivered;
 
 	@Column(name = "time_to_deliver")
-	private String timeToDeliver;
+	private int timeToDeliver;
 
 	@Column(name = "refund_available")
 	private boolean refundAvailable;
 
 	public Order(LoginDetails customerID, LoginDetails employeeID,
-			OrderStatus status, String datePlaced, long datePlacedInMillis,
-			String dateDispatched, String dateDelivered, String timeToDeliver,
+			OrderStatus status, String datePlaced,
+			String dateDispatched, String dateDelivered, int timeToDeliver,
 			boolean refundAvailable, PaymentDetails paymentDetails) {
 		this.customerID = customerID;
 		this.employeeID = employeeID;
 		this.status = status;
 		this.datePlaced = datePlaced;
-		this.datePlacedInMillis = datePlacedInMillis;
 		this.dateDispatched = dateDispatched;
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
@@ -105,19 +101,11 @@ public class Order {
 		this.datePlaced = datePlaced;
 	}
 
-	public long getDatePlacedInMillis() {
-		return datePlacedInMillis;
-	}
-
-	public void setDatePlacedInMillis(long datePlacedInMillis) {
-		this.datePlacedInMillis = datePlacedInMillis;
-	}
-
-	public String getTimeToDeliver() {
+	public int getTimeToDeliver() {
 		return timeToDeliver;
 	}
 
-	public void setTimeToDeliver(String timeToDeliver) {
+	public void setTimeToDeliver(int timeToDeliver) {
 		this.timeToDeliver = timeToDeliver;
 	}
 

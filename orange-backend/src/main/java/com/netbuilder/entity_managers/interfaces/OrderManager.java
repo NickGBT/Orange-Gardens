@@ -29,7 +29,7 @@ public interface OrderManager {
 
 	public List<Order> findByDatePlaced(String datePlaced);
 
-	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis);
+//	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis);
 
 	public int findWishlist(OrderStatus status, int customerId);
 

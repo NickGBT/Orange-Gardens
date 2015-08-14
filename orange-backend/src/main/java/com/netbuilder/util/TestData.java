@@ -56,16 +56,16 @@ public class TestData {
 			"2346546487469332", "PAUL", 925, "10/12/2025", customerLogin3);
 
 	public Order order = new Order(customerLogin, employeeLogin,
-			OrderStatus.awaitingDispatch, "10/10/15", 12380809, "12/10/15",
-			"13/10/15", "40", true, paymentDetails);
+			OrderStatus.awaitingDispatch, "10/10/15", "12/10/15",
+			"13/10/15", 40, true, paymentDetails);
 
 	public Order order2 = new Order(customerLogin2, employeeLogin,
-			OrderStatus.basket, "09/08/15", 64632373, "30/09/15", "01/10/15",
-			"70", true, paymentDetails2);
+			OrderStatus.basket, "09/08/15", "30/09/15", "01/10/15",
+			70, true, paymentDetails2);
 
 	public Order order3 = new Order(customerLogin3, employeeLogin,
-			OrderStatus.wishlist, "08/08/15", 12380809, "10/08/15", "11/08/15",
-			"80", true, paymentDetails3);
+			OrderStatus.wishlist, "08/08/15","10/08/15", "11/08/15",
+			80, true, paymentDetails3);
 
 	public Product product_genID = new Product(1, "img/iomg", "testproduct",
 			25.25, 10, 10, 11, 10.50, "test Product gen",
@@ -131,12 +131,12 @@ public class TestData {
 	public Employee employee4 = new Employee(EmployeeDepartment.SALES,
 			"Telephone", "House", EmployeePermissions.MANAGER);
 
-	public Stock stock = new Stock(product, 4, 3, "Over there", 10, 2, 5);
+	public Stock stock = new Stock(product, 4, 3, "Over there", 10, 2, 5, 10 , 10);
 
-	public Stock stock2 = new Stock(product2, 5, 4, "Right here", 12, 5, 9);
+	public Stock stock2 = new Stock(product2, 5, 4, "Right here", 12, 5, 9, 11 , 11);
 
 	public Stock stock3 = new Stock(product3, 8, 1, "Ooch aye the noo", 17, 3,
-			8);
+			8, 15 , 12);
 
 	public ContactUsDetails contactUs = new ContactUsDetails("04066457482",
 			"NB Gardens", "66 James Close", "Ravenwood", "Staines", "ST43LE",
