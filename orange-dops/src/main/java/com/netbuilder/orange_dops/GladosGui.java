@@ -14,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -31,6 +29,9 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.netbuilder.util.TestData;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
@@ -43,7 +44,7 @@ import com.netbuilder.pathfinding.WarehouseMap;
  */
 public class GladosGui 
 {
-	private static final Logger logger = Logger.getLogger(GladosGui.class.getName());
+	private static final Logger logger = LogManager.getLogger();
 	private TestData testData;
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo, splash, background;
@@ -71,7 +72,6 @@ public class GladosGui
 	 */
 	public GladosGui()
 	{
-		logger.entering(getClass().getName(), "GladosGui");
 		try 
 		{
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
@@ -84,19 +84,19 @@ public class GladosGui
 		} 
 		catch (UnsupportedLookAndFeelException ue) 
 		{
-			logger.log(Level.SEVERE, "Unsupported format", ue);
+			logger.error("Unsupported format", ue);
 		} 
 		catch (ClassNotFoundException ce) 
 		{
-			logger.log(Level.SEVERE, "Class not found", ce);
+			logger.error("Class not found", ce);
 		} 
 		catch (InstantiationException ie) 
 		{
-			logger.log(Level.SEVERE, "Instantiation exception", ie);
+			logger.error("Instantiation exception", ie);
 		} 
 		catch (IllegalAccessException iae)
 		{
-			logger.log(Level.SEVERE, "Illegal access exception", iae);
+			logger.error("Illegal access exception", iae);
 		}
 		splashFrame = new JFrame();
 		splashLabel = new JLabel(); backgroundLabel = new JLabel();
@@ -127,16 +127,6 @@ public class GladosGui
     	assignActionListeners();
     	testData = new TestData();
     	testPath = null;
-		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
-		for (int i = 2; i < 18; i++) 
-		{
-			warehouseMap.setWalkable(2, i, false);
-			warehouseMap.setWalkable(5, i, false);
-			warehouseMap.setWalkable(8, i, false);
-			warehouseMap.setWalkable(11, i, false);
-			warehouseMap.setWalkable(14, i, false);
-			warehouseMap.setWalkable(17, i, false);
-		}
 		initMap();
 		testPath = warehouseMap.findPath(0, 0, 10, 10);
 		buttonLayoutConstraints = new GridBagConstraints();
@@ -162,13 +152,12 @@ public class GladosGui
 					} 
 					catch (InterruptedException ie) 
 					{
-						logger.log(Level.SEVERE, "Thread Interrupted", ie);
+						logger.error("Thread Interrupted", ie);
 					}
 				}
 			}
 		};
 		ui.start();
-		logger.exiting(getClass().getName(), "GladosGui");
 	}
 
 	/**
@@ -207,7 +196,7 @@ public class GladosGui
 					user = username.getText();
 					pass = password.getPassword().toString();
 					mainFrame.setTitle("NB GLADOS - " + user);
-					displayGetOrder();		
+					displayGetOrder();
 				}
 			}			
 		});
@@ -301,7 +290,6 @@ public class GladosGui
 	 */
 	public void displaySplash() 
 	{
-		logger.entering(getClass().getName(), "displaySplash");
 		splash = Toolkit.getDefaultToolkit().getImage("images/splash.jpg");
 		background = Toolkit.getDefaultToolkit().getImage("images/background.png");
 		splashIcon.setImage(splash);
@@ -321,7 +309,6 @@ public class GladosGui
 		splashFrame.add(splashLabel, BorderLayout.CENTER);
 		splashFrame.setVisible(true);
 		splashTimer.schedule(new deleteSplashTask(), 2000);
-		logger.exiting(getClass().getName(), "displaySplash");
 	}
 
 	/**
@@ -329,7 +316,6 @@ public class GladosGui
 	 */
 	private void initUi()
 	{
-		logger.entering(getClass().getName(), "initUi");
 		mainFrame = new JFrame("NB GLADOS");
 		backgroundPanel = new ImagePanel(backgroundIcon.getImage());
 		mainFrame.setSize(500, 680);
@@ -341,7 +327,6 @@ public class GladosGui
 		mainFrame.getContentPane().add(backgroundPanel);
 		mainFrame.setVisible(true);
 		displayLogin();
-		logger.exiting(getClass().getName(), "initUi");
 	}
 
 	/**
@@ -349,7 +334,6 @@ public class GladosGui
 	 */
 	public void displayLogin()
 	{
-		logger.entering(getClass().getName(), "displayLogin");
 		mainFrame.remove(assignOrder);
 		mainFrame.remove(mapPanel);
 		mainFrame.remove(orderButtons);
@@ -379,7 +363,6 @@ public class GladosGui
 		mainFrame.getContentPane().add(loginPanel, BorderLayout.CENTER);
 		mainFrame.revalidate();
 		mainFrame.repaint();
-		logger.exiting(getClass().getName(), "displayLogin");
 	}
 
 	/**
@@ -387,7 +370,6 @@ public class GladosGui
 	 */
 	private void displayGetOrder() 
 	{
-		logger.entering(getClass().getName(), "displayGetOrder");
 		mainFrame.getContentPane().remove(orderPanel);
 		mainFrame.getContentPane().remove(mapPanel);
 		mainFrame.getContentPane().remove(orderButtons);
@@ -413,7 +395,6 @@ public class GladosGui
     	mainFrame.getContentPane().add(assignOrder, BorderLayout.CENTER);
     	mainFrame.revalidate();
     	mainFrame.repaint();
-    	logger.exiting(getClass().getName(), "displayGetOrder");
     }
     
     /**
@@ -445,7 +426,6 @@ public class GladosGui
      */
     private void buildMap()
     {
-    	logger.entering(getClass().getName(), "buildMap");
     	mapPanel.removeAll();
     	if(testPath.size() > 0 && testPath != null)
     	{
@@ -510,7 +490,6 @@ public class GladosGui
 	    		}
 	    	}
     	}
-    	logger.exiting(getClass().getName(), "buildMap");
     }
     
     /**
@@ -518,7 +497,6 @@ public class GladosGui
      */
     private void initMap()
     {
-    	logger.entering(getClass().getName(), "initMap");
     	//1 = Possible route
     	//2 = Shelf
     	//3 = GDZ
@@ -544,7 +522,6 @@ public class GladosGui
     			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     			{1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1, 3, 1, 1}
     	};
-    	logger.exiting(getClass().getName(), "initMap");
     }
     
     /**
@@ -552,7 +529,6 @@ public class GladosGui
      */
    	private void displayMap()
     {
-   		logger.entering(getClass().getName(), "displayMap");
    		mainFrame.getContentPane().remove(assignOrder);
     	mainFrame.getContentPane().remove(loginPanel);
     	mainFrame.getContentPane().remove(fillPanel);
@@ -601,6 +577,5 @@ public class GladosGui
     	mainFrame.getContentPane().add(orderButtons, BorderLayout.SOUTH);
     	mainFrame.revalidate();
     	mainFrame.repaint();
-    	logger.exiting(getClass().getName(), "displayMap");
     }
 }

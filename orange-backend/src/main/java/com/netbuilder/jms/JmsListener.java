@@ -11,47 +11,57 @@ import javax.jms.TextMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.netbuilder.pathfinding.GladosNode;
-import com.netbuilder.util.MessageHandler;
-
 /**
  * 
- * @author Alexander Neil
+ * @author JustinMabbutt
  *
  */
-public class JmsListener implements MessageListener {
-
-	private final MessageHandler handler;
+public class JmsListener implements MessageListener
+{
 	private static final Logger logger = LogManager.getLogger();
-
-	public JmsListener(MessageHandler source) {
+	private final JmsMessageHandler handler;
+	
+	public JmsListener(JmsMessageHandler source)
+	{
 		this.handler = source;
 	}
 
 	@Override
-	public void onMessage(Message message) {
-
+	public void onMessage(Message message)
+	{
 		logger.info("Message received", message);
 
 		logger.debug("Checking instance of message", message);
-		if (message instanceof TextMessage) {
-			try {
-				String payload = ((TextMessage) message).getText();
+		if (message instanceof TextMessage)
+		{
+			try
+			{
+				String payload = ((TextMessage)message).getText();
 				
 				logger.debug("Handling TextMessage payload", payload);
-				
-			} catch (JMSException e) {
+				//handle string message
+			} 
+			catch (JMSException e)
+			{
 				logger.error("Error in message conversion to TextMessage", e);
 				e.printStackTrace();
 			}
-		} 
-		else if (message instanceof ObjectMessage) {
-			try {
-				Object payload = ((ObjectMessage) message).getObject();
+		}
+		else if (message instanceof ObjectMessage)
+		{
+			try 
+			{
+				Object payload = ((ObjectMessage)message).getObject();
 
 				logger.debug("Checking payload class type of ObjectMessage", payload);
 				
-			} catch (JMSException e) {
+				if (payload instanceof List<?>)
+				{
+					//handle list message
+				}
+			} 
+			catch (JMSException e)
+			{
 				logger.error("Error in message conversion to ObjectMessage", e);
 				e.printStackTrace();
 			}
