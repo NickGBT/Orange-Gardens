@@ -24,16 +24,16 @@ public class Order {
 	@Column(name = "order_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-	private int orderID;
+	private int orderId;
 
 	@OneToMany
 	@NotNull
 	@JoinColumn(name = "user_id", nullable = false)
-	private LoginDetails customerID;
+	private LoginDetails customerId;
 
 	@OneToMany
 	@JoinColumn(name = "user_id")
-	private LoginDetails employeeID;
+	private LoginDetails employeeId;
 
 	@OneToMany
 	@JoinColumn
@@ -59,12 +59,12 @@ public class Order {
 	@Column(name = "refund_available")
 	private boolean refundAvailable;
 
-	public Order(LoginDetails customerID, LoginDetails employeeID,
+	public Order(LoginDetails customerId, LoginDetails employeeId,
 			OrderStatus status, String datePlaced,
 			String dateDispatched, String dateDelivered, int timeToDeliver,
 			boolean refundAvailable, PaymentDetails paymentDetails) {
-		this.customerID = customerID;
-		this.employeeID = employeeID;
+		this.customerId = customerId;
+		this.employeeId = employeeId;
 		this.status = status;
 		this.datePlaced = datePlaced;
 		this.dateDispatched = dateDispatched;
@@ -74,23 +74,24 @@ public class Order {
 		this.paymentDetails = paymentDetails;
 	}
 
-	public Order(LoginDetails customerID, OrderStatus status,
+	public Order(LoginDetails customerId, LoginDetails employeeId, OrderStatus status,
 			PaymentDetails paymentDetails) {
-		this.customerID = customerID;
+		this.customerId = customerId;
+		this.employeeId = employeeId;
 		this.status = status;
 		this.paymentDetails = paymentDetails;
 	}
 	
 	public Order(int orderId, LoginDetails customerID, OrderStatus status,
 			PaymentDetails paymentDetails) {
-		this.orderID = orderId;
-		this.customerID = customerID;
+		this.orderId = orderId;
+		this.customerId = customerID;
 		this.status = status;
 		this.paymentDetails = paymentDetails;
 	}
 
 	public LoginDetails getCustomer() {
-		return customerID;
+		return customerId;
 	}
 
 	public String getDatePlaced() {
@@ -134,11 +135,11 @@ public class Order {
 	}
 
 	public int getOrderID() {
-		return orderID;
+		return orderId;
 	}
 
 	public void setOrderID(int id) {
-		orderID = id;
+		orderId = id;
 	}
 
 	public OrderStatus getOrderStatus() {
@@ -150,7 +151,7 @@ public class Order {
 	}
 
 	public LoginDetails getEmployee() {
-		return employeeID;
+		return employeeId;
 	}
 
 	public PaymentDetails getPaymentDetails() {

@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
@@ -67,14 +66,12 @@ public class ProductController {
 
 	@ManagedProperty(value = "#{testData}")
 	private TestData testData;
-	private ProductDetails productD;
 	private Product product;
 	private String productId;
 	private String temp;
 	private int quantity;
 	private Product foundProduct;
 	private LoginDetails loginDet;
-	private PaymentDetails paymentDet;
 	private OrderLine orderLine;
 
 	private Order orderBasket;
@@ -156,7 +153,7 @@ public class ProductController {
 		} 
 		else 
 		{
-			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
+			wishlist = new Order(1, loginDet, OrderStatus.wishlist, null);
 			om.persistOrder(wishlist);
 			logger.info("Wishlist not found, creating new wishlist");
 			orderLine = new OrderLine(wishlist, foundProduct, 0);

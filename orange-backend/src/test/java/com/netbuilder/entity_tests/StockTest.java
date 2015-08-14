@@ -24,6 +24,8 @@ public class StockTest {
 	private int maxStock = 10;
 	private int criticalThreshold = 2;
 	private int requiredStock = 5;
+	private int warehouseX = 13;
+	private int warehouseY = 10;
 	private ProductCategory productCategory = ProductCategory.Accessory;
 
 	@Before
@@ -31,7 +33,8 @@ public class StockTest {
 		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00,
 				"A gnom", productCategory);
 		testStock = new Stock(testProduct, stockLevel, stockAvailable,
-				location, maxStock, criticalThreshold, requiredStock);
+				location, maxStock, criticalThreshold, requiredStock,
+				warehouseX, warehouseY);
 	}
 
 	@Test
@@ -62,5 +65,15 @@ public class StockTest {
 	@Test
 	public void testGetRequiredStock() {
 		assertEquals(testStock.getRequiredStock(), requiredStock);
+	}
+	
+	@Test
+	public void testGetWarehouseX() {
+		assertEquals(testStock.getWarehouseX(), warehouseX);
+	}
+	
+	@Test
+	public void testGetWarehouseY() {
+		assertEquals(testStock.getWarehouseY(), warehouseY);
 	}
 }

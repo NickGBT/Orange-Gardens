@@ -128,7 +128,7 @@ public class WishlistController
 		else 
 		{
 			//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
-			orderBasket = new Order(loginDet, OrderStatus.basket, null);
+			orderBasket = new Order(1, loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
 			orderLine = new OrderLine(orderBasket, foundProduct, 1);
 			olm.persistOrderLine(orderLine);	
@@ -171,7 +171,7 @@ public class WishlistController
 			else 
 			{
 				//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
-				orderBasket = new Order(loginDet, OrderStatus.basket, null);
+				orderBasket = new Order(1, loginDet, OrderStatus.basket, null);
 				om.persistOrder(orderBasket);
 				
 				for (OrderLine ol : wishlist) 

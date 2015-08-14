@@ -21,10 +21,9 @@ public class OrderTest {
 
 	private Order testOrder;
 	private String datePlaced = "AR/VB/HSJA";
-	private long datePlacedInMillis = 21314256;
 	private String dateDispatched = "AY/YY/LMAO";
 	private String dateDelivered = "BS/TI/ARHG";
-	private String timeToDeliver = "YU:NB";
+	private int timeToDeliver = 40;
 	private boolean refundAvailable = false;
 
 	private LoginDetails customer;
@@ -46,7 +45,7 @@ public class OrderTest {
 		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
 				"BOB", 323, "22/07/2020", customer);
 		testOrder = new Order(customer, employee, orderStatus, datePlaced,
-				datePlacedInMillis, dateDispatched, dateDelivered,
+				dateDispatched, dateDelivered,
 				timeToDeliver, refundAvailable, paymentDetails);
 	}
 

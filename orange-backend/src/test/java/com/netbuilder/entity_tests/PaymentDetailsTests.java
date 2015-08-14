@@ -41,7 +41,7 @@ public class PaymentDetailsTests {
 		orderId = null;
 
 		testPaymentDetails = new PaymentDetails(type, number, name, security,
-				expiry, customer, orderId);
+				expiry, customer);
 	}
 
 	@Test
@@ -60,12 +60,6 @@ public class PaymentDetailsTests {
 	public void testGetNameOnCard() {
 
 		assertEquals(name, testPaymentDetails.getNameOnCard());
-	}
-
-	@Test
-	public void testGetSecurityNumber() {
-
-		assertEquals(security, testPaymentDetails.getSecurityNumber());
 	}
 
 	@Test

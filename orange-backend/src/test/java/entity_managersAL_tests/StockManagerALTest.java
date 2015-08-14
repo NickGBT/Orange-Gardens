@@ -34,8 +34,8 @@ public class StockManagerALTest {
 				"A gnom", ProductCategory.Gnome);
 		testProduct2 = new Product("the other thing", "gnome", 44.00, 8, 5, 2,
 				320.00, "A gnome", ProductCategory.Gnome);
-		testStock = new Stock(testProduct, 4, 3, "Over there", 10, 2, 5);
-		testStock2 = new Stock(testProduct2, 5, 4, "Right here", 12, 5, 9);
+		testStock = new Stock(testProduct, 4, 3, "Over there", 10, 2, 5, 10, 10);
+		testStock2 = new Stock(testProduct2, 5, 4, "Right here", 12, 5, 9, 11, 11);
 	}
 
 	@Test
