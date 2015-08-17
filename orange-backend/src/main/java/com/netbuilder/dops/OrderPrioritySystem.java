@@ -33,14 +33,12 @@ public class OrderPrioritySystem {
 	private static final Logger logger = LogManager.getLogger();
 
 	private ArrayList<Order> placedOrders = (ArrayList<Order>) orders.findByStatus(OrderStatus.placed);
-
-	/**
-	 * This method generates a prioritised queue sorted in blocks of priorities
-	 * by arraylists It returns a list of Order objects sorted from highest
-	 * priority (critical) to lowest
-	 * 
-	 **/
 	
+	/**
+	 * @author JustinMabbutt
+	 * @param datePlaced
+	 * @return the date in milliseconds
+	 */
 	public long changeDateToMillis(String date)
 	{
 		try
@@ -56,7 +54,13 @@ public class OrderPrioritySystem {
 		milliseconds = calendar.getTimeInMillis();
 		return milliseconds;
 	}
-
+	
+	/**
+	 * This method generates a prioritised queue sorted in blocks of priorities
+	 * by arraylists It returns a list of Order objects sorted from highest
+	 * priority (critical) to lowest
+	 * 
+	 **/
 	public List<Order> getPrioritisedQueue() {
 		ArrayList<Order> lowPriority = new ArrayList<Order>();
 
