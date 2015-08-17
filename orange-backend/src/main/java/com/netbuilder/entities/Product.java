@@ -1,5 +1,7 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +31,7 @@ import com.netbuilder.enums.ProductCategory;
 		@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
 		@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
 		@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"), })
-public class Product {
+public class Product implements Serializable {
 
 	public static final String GET_ALL = "Product.getAll";
 	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";

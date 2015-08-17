@@ -21,6 +21,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.ejb3.annotation.ResourceAdapter;
 
+import com.netbuilder.entities.Product;
+import com.netbuilder.util.DopsOrder;
+
 @Named(value="queueSender")
 @Stateless
 @ResourceAdapter("activemq-ra.rar")
@@ -190,7 +193,7 @@ public class QueueSenderBean {
 	 * @param destination Name of queue to send message to
 	 * @param object Serializable object to be sent as a JMS message
 	 */
-	public void sendMessage(String destination, Serializable object) {
+	public void sendMessage(String destination, DopsOrder dopsOrder) {
 		Session session = null;
 		MessageProducer producer = null;
 
@@ -198,12 +201,12 @@ public class QueueSenderBean {
 			init();
 
 			session = connection.createSession(true, AUTO_ACKNOWLEDGE);
-			session.createQueue(destination);
+			queue = session.createQueue(destination);
 			
 			producer = session.createProducer(queue);
 			producer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
-			ObjectMessage message = session.createObjectMessage(object);
+			ObjectMessage message = session.createObjectMessage(dopsOrder);
 			producer.send(message);
 
 		} catch (JMSException e) {

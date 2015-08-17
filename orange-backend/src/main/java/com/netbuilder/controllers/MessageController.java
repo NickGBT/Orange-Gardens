@@ -1,17 +1,25 @@
 package com.netbuilder.controllers;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
+import com.netbuilder.dops.GladosNode;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
+import com.netbuilder.entities.Product;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
+import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.jms.QueueSenderBean;
+import com.netbuilder.util.DopsOrder;
+import com.netbuilder.util.DopsOrderline;
 import com.netbuilder.util.TestData;
 
 @ManagedBean(name = "messageController")
@@ -20,6 +28,12 @@ public class MessageController
 {
 	@Inject
 	private QueueSenderBean qb;
+	
+	private DopsOrderline dopsOrderline;
+	private DopsOrder dopsOrder;
+	private ArrayList<GladosNode> path;
+	private ArrayList<DopsOrderline> dopsOrderTemp;
+	private GladosNode gladosNode;
 	
 //	@ManagedProperty(value = "#{testData}")
 //	private TestData testData;
@@ -34,6 +48,9 @@ public class MessageController
 
 	
 	private String textMessage = "Hello from Message Controller!";
+	//private Serializable object = new Serializable();
+	private Product product;
+
 
 	public void sendTextMessage()
 	{
@@ -43,8 +60,17 @@ public class MessageController
 	
 	public void sendOrder()
 	{
+		path = new ArrayList<GladosNode>();
+		dopsOrderTemp = new ArrayList<DopsOrderline>();
+		
+		gladosNode = new GladosNode(5,5);
+		path.add(gladosNode);
+		dopsOrderline = new DopsOrderline("Gnome", "2", "B1", path);
+		dopsOrderTemp.add(dopsOrderline);
+		dopsOrder = new DopsOrder(dopsOrderTemp);
+		
 		System.out.println("MessageController::Line27::Sending Order");
-//		qb.sendMessage("dops_queue", order);
+		qb.sendMessage("dops_queue", dopsOrder);
 	}
 	
 	public String getTextMessage() {
