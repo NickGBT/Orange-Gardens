@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 
 import com.netbuilder.entities.OrderLine;
 
@@ -13,7 +12,6 @@ import com.netbuilder.entities.OrderLine;
  * @author mwatson llew
  *
  */
-@Named
 @RequestScoped
 public interface OrderLineManager {
 

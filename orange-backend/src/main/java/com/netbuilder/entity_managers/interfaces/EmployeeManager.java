@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
+import javax.faces.bean.RequestScoped;
+
 import com.netbuilder.entities.Employee;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
@@ -11,6 +13,7 @@ import com.netbuilder.enums.EmployeePermissions;
  * @author Alexander Neil
  *
  */
+@RequestScoped
 public interface EmployeeManager {
 
 	// CREATE

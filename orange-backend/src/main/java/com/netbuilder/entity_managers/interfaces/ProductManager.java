@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
 
 import com.netbuilder.entities.Product;
 import com.netbuilder.enums.ProductCategory;
@@ -14,8 +13,6 @@ import com.netbuilder.enums.ProductCategory;
  * @author Alexander Neil
  *
  */
-
-@Named
 @RequestScoped
 public interface ProductManager {
 

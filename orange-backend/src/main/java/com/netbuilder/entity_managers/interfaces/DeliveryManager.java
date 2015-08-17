@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
+import javax.faces.bean.RequestScoped;
+
 import com.netbuilder.entities.Delivery;
 
 /**
@@ -9,7 +11,7 @@ import com.netbuilder.entities.Delivery;
  * @author JustinMabbutt
  *
  */
-
+@RequestScoped
 public interface DeliveryManager {
 	// CREATE
 	public void persistDelivery(Delivery delivery);

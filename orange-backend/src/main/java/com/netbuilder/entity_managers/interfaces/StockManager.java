@@ -2,6 +2,8 @@ package com.netbuilder.entity_managers.interfaces;
 
 import java.util.List;
 
+import javax.faces.bean.RequestScoped;
+
 import com.netbuilder.entities.Stock;
 
 /**
@@ -9,7 +11,7 @@ import com.netbuilder.entities.Stock;
  * @author JustinMabbutt
  *
  */
-
+@RequestScoped
 public interface StockManager {
 	// CREATE
 	public void persistStock(Stock stock);
