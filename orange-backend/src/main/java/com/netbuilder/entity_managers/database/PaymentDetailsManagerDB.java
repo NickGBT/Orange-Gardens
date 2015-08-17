@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -20,6 +22,11 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
+@NamedQueries({
+	@NamedQuery(name = PaymentDetails.FIND_BY_CARD_NUMBER, query = "SELECT pd FROM payment_details pd WHERE pd.card_number = :cardNo;"),
+	@NamedQuery(name = PaymentDetails.FIND_BY_CUSTOMER, query = "SELECT pd FROM payment_detais pd WHERE pd.customer_id = :id;"),
+	@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query = "SELECT pd FROM payment_details pd WHERE pd.customer_id = :id AND expiry_date < CURRENT_DATE();"),
+	@NamedQuery(name = PaymentDetails.FIND_BY_ORDER, query = "SELECT pd FROM payment_details pd WHERE order_id = :oId;") })
 @Default
 @Stateless
 public class PaymentDetailsManagerDB implements PaymentDetailsManager {

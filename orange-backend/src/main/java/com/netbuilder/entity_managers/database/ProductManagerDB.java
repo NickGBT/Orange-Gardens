@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -21,6 +23,12 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
+@NamedQueries({
+	@NamedQuery(name = Product.GET_ALL, query = "SELECT p FROM products p"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query = "SELECT p FROM products p WHERE p.product_id = :id;"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
+	@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"), })
 @Default
 @Stateless
 public class ProductManagerDB implements ProductManager {

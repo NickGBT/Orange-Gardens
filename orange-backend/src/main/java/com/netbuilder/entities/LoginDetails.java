@@ -1,5 +1,6 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,11 +22,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "login_details")
-@NamedQueries({
-		@NamedQuery(name = LoginDetails.FIND_BY_USERNAME, query = "SELECT ld FROM login_details ld WHERE ld.username = :username;"),
-		@NamedQuery(name = LoginDetails.FIND_BY_EMAIL, query = "SELECT ld FROM login_details ld WHERE ld.email = :email;"),
-		@NamedQuery(name = LoginDetails.FIND_BY_USER_ID, query = "SELECT ld FROM login_details ld WHERE ld.user_id = :userId;") })
-public class LoginDetails {
+public class LoginDetails implements Serializable {
 
 	public static final String FIND_BY_USERNAME = "LoginDetails.findByUsername";
 	public static final String FIND_BY_EMAIL = "LoginDetails.findByEmail";
@@ -76,6 +73,8 @@ public class LoginDetails {
 		this.password = password;
 		this.salt = salt;
 	}
+	
+	public LoginDetails(){}
 
 	/**
 	 * Instantiates an entity where the userId is already generated

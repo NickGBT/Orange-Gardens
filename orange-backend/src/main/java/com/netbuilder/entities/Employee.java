@@ -1,7 +1,10 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -21,16 +24,7 @@ import com.netbuilder.enums.EmployeePermissions;
 
 @Entity
 @Table(name = "employee")
-@NamedQueries({
-		@NamedQuery(name = Employee.GET_ALL, query = "SELECT e FROM employee e"),
-		@NamedQuery(name = Employee.FIND_BY_USER_ID, query = "SELECT e FROM employee e WHERE e.user_id = :id;"),
-		@NamedQuery(name = Employee.FIND_BY_SURNAME, query = "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
-		@NamedQuery(name = Employee.FIND_BY_NAMES, query = "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
-		@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query = "SELECT e from employee e WHERE e.departent = :department;"),
-		@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
-
-})
-public class Employee {
+public class Employee implements Serializable {
 
 	public static final String GET_ALL = "Employee.getAll";
 	public static final String FIND_BY_USER_ID = "Employee.findByEmployeeId";
@@ -54,6 +48,7 @@ public class Employee {
 	private String lName;
 
 	@ManyToOne
+	@Id
 	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
 	private LoginDetails employee;
@@ -61,6 +56,8 @@ public class Employee {
 	@Column(name = "permissions", nullable = false)
 	@NotNull
 	private EmployeePermissions employeePermission;
+	
+	public Employee(){}
 
 	public Employee(EmployeeDepartment employeeDepartment, String fName,
 			String lName, EmployeePermissions employeePermission) {

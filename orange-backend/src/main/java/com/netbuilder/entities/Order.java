@@ -1,12 +1,14 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +20,7 @@ import com.netbuilder.enums.OrderStatus;
 
 @Entity
 @Table(name = "Order")
-public class Order {
+public class Order implements Serializable {
 
 	@Id
 	@Column(name = "order_id", nullable = false)
@@ -26,17 +28,17 @@ public class Order {
 	@NotNull
 	private int orderId;
 
-	@OneToMany
+	@ManyToOne
 	@NotNull
 	@JoinColumn(name = "user_id", nullable = false)
 	private LoginDetails customerId;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private LoginDetails employeeId;
 
-	@OneToMany
-	@JoinColumn
+	@ManyToOne
+	@JoinColumn(name = "payment_details")
 	private PaymentDetails paymentDetails;
 
 	@Column(name = "status", nullable = false)
@@ -89,6 +91,8 @@ public class Order {
 		this.status = status;
 		this.paymentDetails = paymentDetails;
 	}
+	
+	public Order(){}
 
 	public LoginDetails getCustomer() {
 		return customerId;

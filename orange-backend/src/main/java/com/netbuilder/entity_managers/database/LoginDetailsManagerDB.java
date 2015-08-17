@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -21,7 +23,10 @@ import com.netbuilder.util.LoginDetailsToolkit;
  * @author Alexander Neil
  *
  */
-
+@NamedQueries({
+	@NamedQuery(name = LoginDetails.FIND_BY_USERNAME, query = "SELECT ld FROM login_details ld WHERE ld.username = :username;"),
+	@NamedQuery(name = LoginDetails.FIND_BY_EMAIL, query = "SELECT ld FROM login_details ld WHERE ld.email = :email;"),
+	@NamedQuery(name = LoginDetails.FIND_BY_USER_ID, query = "SELECT ld FROM login_details ld WHERE ld.user_id = :userId;") })
 @Default
 @Stateless
 public class LoginDetailsManagerDB implements LoginDetailsManager {
@@ -30,6 +35,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 	public void persistLoginDetails(LoginDetails details) {
 
+		System.out.println("DB");
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(details);

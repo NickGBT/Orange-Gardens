@@ -1,5 +1,7 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +19,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
@@ -67,6 +69,8 @@ public class Address {
 		this.postcode = postcode;
 		this.isBillingAddress = isBillingAddress;
 	}
+	
+	public Address(){}
 
 	public LoginDetails getCustomer() {
 		return customer;

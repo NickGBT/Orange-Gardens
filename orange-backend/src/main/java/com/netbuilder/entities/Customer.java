@@ -1,7 +1,10 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,8 +19,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
 	@ManyToOne
+	@Id
 	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull
 	private LoginDetails customer;
@@ -43,6 +47,8 @@ public class Customer {
 		this.contactNumber = contactNumber;
 		this.isBlackListed = isBlackListed;
 	}
+	
+	public Customer(){}
 	
 	public Customer(LoginDetails customer, String fName, String lName, String contactNumber, boolean isBlackListed)
 	{

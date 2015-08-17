@@ -22,7 +22,8 @@ public class PersistenceManager {
 
 	public EntityManager createEntityManager() {
 		try {
-			emf = Persistence.createEntityManagerFactory("OrangeGardensPU");
+			System.out.println("EM");
+			emf = Persistence.createEntityManagerFactory("orange-backend");
 			EntityManager em = emf.createEntityManager();
 			return em;
 		} catch (PersistenceException pe) {

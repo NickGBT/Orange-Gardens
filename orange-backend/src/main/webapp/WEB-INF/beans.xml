@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<alternatives>
-	<!-- Add all arraylist classes here -->
+<!-- <alternatives> 
 	<class>
 		com.netbuilder.entity_managers.arraylist.AddressManagerAL
 	</class>
@@ -35,8 +34,8 @@
 	<class>
 		com.netbuilder.entity_managers.arraylist.StockManagerAL
 	</class>
-	</alternatives>
-<!-- 	<class> -->
-<!-- 		com.netbuilder.controllers.RegistrationController -->
-<!-- 	</class> -->
+	</alternatives> -->
+	
+
+
 </beans>

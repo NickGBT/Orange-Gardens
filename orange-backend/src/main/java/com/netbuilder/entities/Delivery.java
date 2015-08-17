@@ -1,5 +1,6 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -21,7 +22,7 @@ import com.netbuilder.enums.DeliveryStatus;
 
 @Entity
 @Table(name = "delivery")
-public class Delivery {
+public class Delivery implements Serializable {
 	@Id
 	@Column(name = "delivery_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +56,8 @@ public class Delivery {
 		this.supplier = supplier;
 		this.price = price;
 	}
+	
+	public Delivery(){}
 
 	public int getDeliveryId() {
 		return deliveryId;

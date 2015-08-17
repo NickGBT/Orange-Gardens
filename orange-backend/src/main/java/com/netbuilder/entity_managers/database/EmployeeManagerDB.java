@@ -7,6 +7,8 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -22,6 +24,15 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
+@NamedQueries({
+	@NamedQuery(name = Employee.GET_ALL, query = "SELECT e FROM employee e"),
+	@NamedQuery(name = Employee.FIND_BY_USER_ID, query = "SELECT e FROM employee e WHERE e.user_id = :id;"),
+	@NamedQuery(name = Employee.FIND_BY_SURNAME, query = "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
+	@NamedQuery(name = Employee.FIND_BY_NAMES, query = "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
+	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query = "SELECT e from employee e WHERE e.departent = :department;"),
+	@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
+
+})
 @Default
 @Stateless
 public class EmployeeManagerDB implements EmployeeManager {

@@ -1,7 +1,10 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -16,9 +19,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product_line")
-public class OrderLine {
+public class OrderLine implements Serializable {
 
 	@ManyToOne
+	@Id
 	@JoinColumn(name = "order_id", nullable = false)
 	@NotNull
 	private Order order;
@@ -38,6 +42,8 @@ public class OrderLine {
 		this.product = product;
 		this.quantity = quantity;
 	}
+	
+	public OrderLine(){}
 
 	public OrderLine(Order orderId, Product productId) {
 		this.order = orderId;

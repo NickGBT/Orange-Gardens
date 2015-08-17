@@ -1,7 +1,10 @@
 package com.netbuilder.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,8 +20,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "stock")
-public class Stock {
+public class Stock implements Serializable {
 	@ManyToOne
+	@Id
 	@JoinColumn(name = "product_id", nullable = false)
 	@NotNull
 	private Product product;
@@ -61,6 +65,8 @@ public class Stock {
 		this.warehouseX = warehouseX;
 		this.warehouseY = warehouseY;
 	}
+	
+	public Stock(){}
 
 	public Product getProduct() {
 		return product;
