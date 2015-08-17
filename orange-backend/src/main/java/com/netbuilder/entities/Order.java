@@ -30,11 +30,11 @@ public class Order implements Serializable {
 
 	@ManyToOne
 	@NotNull
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	private LoginDetails customerId;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "employee_id")
 	private LoginDetails employeeId;
 
 	@ManyToOne
