@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product_line")
+@NamedQueries({
+	@NamedQuery(name = "FindByProductID", query = "SELECT o FROM OrderLine o WHERE o.product = :product"),
+	@NamedQuery(name = "FindByOrderID", query = "SELECT o FROM OrderLine o WHERE o.order = :order"),
+	@NamedQuery(name = "FindByQuantity", query = "SELECT o FROM OrderLine o WHERE o.quantity = :quantity") })
 public class OrderLine implements Serializable {
 
 	@ManyToOne

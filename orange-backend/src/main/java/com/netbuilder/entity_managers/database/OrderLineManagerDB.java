@@ -22,11 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author llew
  *
  */
-
-@NamedQueries({
-		@NamedQuery(name = "FindByProductID", query = "SELECT o FROM order_line WHERE o.product_id = :product_id"),
-		@NamedQuery(name = "FindByOrderID", query = "SELECT o FROM order_line WHERE o.order_id = :order_id"),
-		@NamedQuery(name = "FindByQuantity", query = "SELECT o FROM order_line WHERE o.quantity = :quantity") })
 @Default
 @Stateless
 public class OrderLineManagerDB implements OrderLineManager {

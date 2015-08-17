@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,10 +21,18 @@ import com.netbuilder.enums.DeliveryStatus;
  * @author JustinMabbutt
  *
  */
-
 @Entity
 @Table(name = "delivery")
-public class Delivery implements Serializable {
+@NamedQueries({
+	@NamedQuery(name = Delivery.FIND_BY_DATE_PLACED, query = "SELECT d FROM Delivery d WHERE d.datePlaced = :datePlaced"),
+	@NamedQuery(name = Delivery.FIND_BY_DELIVERY_ID, query = "SELECT d FROM Delivery d WHERE d.deliveryId = :delivery_id"),
+	@NamedQuery(name = Delivery.GET_ALL, query = "SELECT d FROM Delivery d")})
+public class Delivery implements Serializable
+{
+	public static final String GET_ALL = "Deliery.getDeliveries";
+	public static final String FIND_BY_DATE_PLACED = "Delivery.findByDatePlaced";
+	public static final String FIND_BY_DELIVERY_ID = "Delivery.findByDeliveryId";
+	
 	@Id
 	@Column(name = "delivery_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,12 +44,9 @@ public class Delivery implements Serializable {
 	@Column(name = "date_placed", nullable = false, length = 45)
 	@NotNull
 	@Size(min = 2, max = 45)
-	// Needs changing once date format is known
 	private String datePlaced;
 	@Column(name = "delivery_date", nullable = false, length = 45)
-	@NotNull
 	@Size(min = 2, max = 45)
-	// Needs changing once date format is known
 	private String dateToBeDelivered;
 	@Column(name = "supplier", nullable = false, length = 45)
 	@NotNull

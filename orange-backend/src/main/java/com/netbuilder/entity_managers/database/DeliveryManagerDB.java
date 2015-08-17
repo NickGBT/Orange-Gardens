@@ -22,10 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author ngilbert
  *
  */
-
-@NamedQueries({
-		@NamedQuery(name = "FindByDatePlaced", query = "SELECT a FROM delivery WHERE a.datePlaced = :datePlaced"),
-		@NamedQuery(name = "FindByDeliveryId", query = "SELECT a FROM delivery WHERE a.delivery_id = :delivery_id"), })
 @Default
 @Stateless
 public class DeliveryManagerDB implements DeliveryManager {
@@ -58,8 +54,7 @@ public class DeliveryManagerDB implements DeliveryManager {
 	public List<Delivery> findByDatePlaced(String datePlaced) {
 		List<Delivery> deliveries = new ArrayList<Delivery>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Delivery> tq = em.createNamedQuery("FindByDatePlaced",
-				Delivery.class);
+		TypedQuery<Delivery> tq = em.createNamedQuery(Delivery.FIND_BY_DATE_PLACED, Delivery.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("dateplaced", datePlaced);
 		try {
@@ -73,8 +68,7 @@ public class DeliveryManagerDB implements DeliveryManager {
 
 	public Delivery findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Delivery> tq = em.createNamedQuery("FindByDeliveryId",
-				Delivery.class);
+		TypedQuery<Delivery> tq = em.createNamedQuery(Delivery.FIND_BY_DELIVERY_ID, Delivery.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("delivery_id", deliveryId);
 		try {
@@ -86,8 +80,7 @@ public class DeliveryManagerDB implements DeliveryManager {
 
 	public List<Delivery> getDeliveries() {
 		EntityManager em = pm.createEntityManager();
-		List<Delivery> deliveries = (ArrayList<Delivery>) em.createQuery(
-				"SELECT a FROM delivery a", Delivery.class).getResultList();
+		List<Delivery> deliveries = (ArrayList<Delivery>) em.createNamedQuery(Delivery.GET_ALL, Delivery.class).getResultList();
 		pm.closeEntityManager(em);
 		return deliveries;
 	}

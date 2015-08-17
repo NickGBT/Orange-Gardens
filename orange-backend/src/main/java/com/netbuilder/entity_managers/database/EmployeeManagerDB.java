@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -24,15 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
-@NamedQueries({
-	@NamedQuery(name = Employee.GET_ALL, query = "SELECT e FROM employee e"),
-	@NamedQuery(name = Employee.FIND_BY_USER_ID, query = "SELECT e FROM employee e WHERE e.user_id = :id;"),
-	@NamedQuery(name = Employee.FIND_BY_SURNAME, query = "SELECT e FROM employee e WHERE MATCH (e.lname) AGAINST (':surname');"),
-	@NamedQuery(name = Employee.FIND_BY_NAMES, query = "SELECT e from employee e WHERE MATCH (e.fname) AGAINST (':forename') AND MATCH (e.lname) AGAINST (':surname');"),
-	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query = "SELECT e from employee e WHERE e.departent = :department;"),
-	@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from employee e WHERE e.departent = :department AND e.permissions = :permission;"),
-
-})
 @Default
 @Stateless
 public class EmployeeManagerDB implements EmployeeManager {
@@ -64,8 +53,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		List<Employee> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL,
-				Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL, Employee.class);
 		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
@@ -78,8 +66,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 	public Employee findEmployeeById(int userId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID,
-				Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("id", userId);
 		try {
@@ -94,8 +81,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		List<Employee> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME,
-				Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("surname", surname);
 		try {
@@ -111,8 +97,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		List<Employee> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES,
-				Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("forename", forename);
 		tq.setParameter("surname", surname);
@@ -124,14 +109,12 @@ public class EmployeeManagerDB implements EmployeeManager {
 		return results;
 	}
 
-	public List<Employee> findEmployeesByDepartment(
-			EmployeeDepartment department) {
+	public List<Employee> findEmployeesByDepartment(EmployeeDepartment department) {
 
 		List<Employee> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(
-				Employee.FIND_BY_DEPARTMENT, Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_DEPARTMENT, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
 
@@ -149,8 +132,7 @@ public class EmployeeManagerDB implements EmployeeManager {
 		List<Employee> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES,
-				Employee.class);
+		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
 		tq.setParameter("permission", permission);

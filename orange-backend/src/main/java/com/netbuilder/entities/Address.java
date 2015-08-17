@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,10 +18,20 @@ import javax.validation.constraints.Size;
  * @author JustinMabbutt
  *
  */
-
 @Entity
 @Table(name = "address")
-public class Address implements Serializable {
+@NamedQueries({
+	@NamedQuery(name = Address.GET_ALL, query = "SELECT a FROM Address a"),
+	@NamedQuery(name = Address.FIND_BY_POSTCODE, query = "SELECT a FROM Address a WHERE a.postcode = :postcode"),
+	@NamedQuery(name = Address.FIND_BY_ADDRESS_LABEL, query = "SELECT a FROM Address a WHERE a.addressLabel = :addressLabel"),
+	@NamedQuery(name = Address.FIND_BY_USER_ID, query = "SELECT a FROM Address a WHERE a.customer = :customer") })
+public class Address implements Serializable
+{
+	public static final String GET_ALL = "Address.getAddresses";
+	public static final String FIND_BY_POSTCODE = "Address.findByPostcode";
+	public static final String FIND_BY_ADDRESS_LABEL = "Address.findByAddressLabel";
+	public static final String FIND_BY_USER_ID = "Address.findByUserId";
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	@NotNull

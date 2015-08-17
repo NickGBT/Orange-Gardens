@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -20,7 +22,15 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "stock")
-public class Stock implements Serializable {
+@NamedQueries({
+	@NamedQuery(name = "FindByCriticalThreshold", query = "SELECT s FROM Stock s WHERE s.criticalThreshold = :critical_stock"),
+	@NamedQuery(name = "FindByRequiredStock", query = "SELECT s FROM Stock s WHERE s.requiredStock = :required_stock"),
+	@NamedQuery(name = "FindByStockLevel", query = "SELECT s FROM Stock s WHERE s.stockLevel = :stock_level"),
+	@NamedQuery(name = "FindByMaxStock", query = "SELECT s FROM Stock s WHERE s.maxStock = :maximum_stock"),
+	@NamedQuery(name = "FindByStockAvailable", query = "SELECT s FROM Stock s WHERE s.stockAvailable = :stock_available"),
+	@NamedQuery(name = "FindByProduct", query = "SELECT s FROM Stock s WHERE s.product = :product"), })
+public class Stock implements Serializable 
+{
 	@ManyToOne
 	@Id
 	@JoinColumn(name = "product_id", nullable = false)
@@ -54,7 +64,8 @@ public class Stock implements Serializable {
 
 	public Stock(Product product, int stockLevel, int stockAvailable,
 			String location, int maxStock, int criticalThreshold,
-			int requiredStock, int warehouseX, int warehouseY) {
+			int requiredStock, int warehouseX, int warehouseY) 
+	{
 		this.product = product;
 		this.stockLevel = stockLevel;
 		this.stockAvailable = stockAvailable;
@@ -68,83 +79,100 @@ public class Stock implements Serializable {
 	
 	public Stock(){}
 
-	public Product getProduct() {
+	public Product getProduct() 
+	{
 		return product;
 	}
 
-	public int getStockLevel() {
+	public int getStockLevel()
+	{
 		return stockLevel;
 	}
 
-	public void setStockLevel(int stockLevel) {
+	public void setStockLevel(int stockLevel) 
+	{
 		this.stockLevel = stockLevel;
 	}
 
-	public int getStockAvailable() {
+	public int getStockAvailable() 
+	{
 		return stockAvailable;
 	}
 
-	public void setStockAvailable(int stockAvailable) {
+	public void setStockAvailable(int stockAvailable)
+	{
 		this.stockAvailable = stockAvailable;
 	}
 
-	public String getLocation() {
+	public String getLocation() 
+	{
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(String location) 
+	{
 		this.location = location;
 	}
 
-	public int getMaxStock() {
+	public int getMaxStock()
+	{
 		return maxStock;
 	}
 
-	public void setMaxStock(int maxStock) {
+	public void setMaxStock(int maxStock)
+	{
 		this.maxStock = maxStock;
 	}
 
-	public int getRequiredStock() {
+	public int getRequiredStock() 
+	{
 		return requiredStock;
 	}
 
-	public void setRequiredStock(int requiredStock) {
+	public void setRequiredStock(int requiredStock)
+	{
 		this.requiredStock = requiredStock;
 	}
 
-	public int getCriticalThreshold() {
+	public int getCriticalThreshold()
+	{
 		return criticalThreshold;
 	}
 
-	public void setCriticalThreshold(int criticalThreshold) {
+	public void setCriticalThreshold(int criticalThreshold)
+	{
 		this.criticalThreshold = criticalThreshold;
 	}
 
 	/**
 	 * @return the warehouseX
 	 */
-	public int getWarehouseX() {
+	public int getWarehouseX() 
+	{
 		return warehouseX;
 	}
 
 	/**
 	 * @param warehouseX the warehouseX to set
 	 */
-	public void setWarehouseX(int warehouseX) {
+	public void setWarehouseX(int warehouseX)
+	{
 		this.warehouseX = warehouseX;
 	}
 
 	/**
 	 * @return the warehouseY
 	 */
-	public int getWarehouseY() {
+	public int getWarehouseY() 
+	{
 		return warehouseY;
 	}
 
 	/**
 	 * @param warehouseY the warehouseY to set
 	 */
-	public void setWarehouseY(int warehouseY) {
+	public void setWarehouseY(int warehouseY) 
+	{
 		this.warehouseY = warehouseY;
 	}
 }

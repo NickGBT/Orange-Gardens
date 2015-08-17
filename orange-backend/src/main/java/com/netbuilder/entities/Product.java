@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -23,6 +25,12 @@ import com.netbuilder.enums.ProductCategory;
 
 @Entity
 @Table(name = "product")
+@NamedQueries({
+	@NamedQuery(name = Product.GET_ALL, query = "SELECT p FROM Product p"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query = "SELECT p FROM Product p WHERE p.productId = :id"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM Product p WHERE p.productName LIKE :name"),
+	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM Product p WHERE p.productPrice BETWEEN :lPrice AND :hPrice"),
+	@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM Product p WHERE p.category = :category"), })
 public class Product implements Serializable {
 
 	public static final String GET_ALL = "Product.getAll";

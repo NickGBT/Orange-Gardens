@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +22,17 @@ import com.netbuilder.enums.OrderStatus;
 
 @Entity
 @Table(name = "Order")
+@NamedQueries({
+		@NamedQuery(name = "FindByOrderId", query = "SELECT o FROM Order o WHERE o.orderId = :order_id"),
+		@NamedQuery(name = "FindByStatus", query = "SELECT o FROM Order o WHERE o.status = :status"),
+		@NamedQuery(name = "FindByDateDispatched", query = "SELECT o FROM Order o WHERE o.dateDispatched = :date_dispatched"),
+		@NamedQuery(name = "FindByDatePlaced", query = "SELECT o FROM Order o WHERE o.datePlaced = :date_placed"),
+		@NamedQuery(name = "FindByDateDelivered", query = "SELECT o FROM Order o WHERE o.dateDelivered = :date_delivered"),
+		@NamedQuery(name = "FindByTwoDatesOrderPlaced", query = "SELECT o FROM Order o WHERE o.datePlaced BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = "FindByTwoDatesOrderDispatched", query = "SELECT o FROM Order o WHERE o.dateDispatched BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = "FindByTwoDatesOrderDelivered", query = "SELECT o FROM Order o WHERE o.dateDelivered BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = "FindByCustomerId", query = "SELECT o FROM Order o WHERE o.customerId = :customer_id"),
+		@NamedQuery(name = "FindByEmployeeId", query = "SELECT o FROM Order o WHERE o.employeeId = :employee_id")})
 public class Order implements Serializable {
 
 	@Id

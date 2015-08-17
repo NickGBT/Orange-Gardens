@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,8 +19,18 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "delivery_line")
+@NamedQueries({
+	@NamedQuery(name = DeliveryLine.GET_ALL, query = "SELECT dl FROM DeliveryLine dl"),
+	@NamedQuery(name = DeliveryLine.FIND_BY_PRODUCT_ID, query = "SELECT dl FROM DeliveryLine dl WHERE dl.productId = :productId"),
+	@NamedQuery(name = DeliveryLine.FIND_BY_DELIVERY_ID, query = "SELECT dl FROM DeliveryLine dl WHERE dl.deliveryId = :delivery"),
+	@NamedQuery(name = DeliveryLine.FIND_BY_QUANTITY, query = "SELECT dl FROM DeliveryLine dl WHERE dl.quantity = :quantity")})
 public class DeliveryLine implements Serializable {
 
+	public static final String GET_ALL = "DeliveryLine.getDeliveryLine";
+	public static final String FIND_BY_PRODUCT_ID = "DeliveryLine.findByProductId";
+	public static final String FIND_BY_DELIVERY_ID  = "DeliveryLine.findByDeliveryId";
+	public static final String FIND_BY_QUANTITY  = "DeliveryLine.findByQuantity";
+	
 	@ManyToOne
 	@Id
 	@JoinColumn(name = "product_id", nullable = false)

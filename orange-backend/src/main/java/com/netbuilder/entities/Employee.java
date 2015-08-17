@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,14 +24,21 @@ import com.netbuilder.enums.EmployeePermissions;
 
 @Entity
 @Table(name = "employee")
+@NamedQueries({
+	@NamedQuery(name = Employee.GET_ALL, query = "SELECT e FROM Employee e"),
+	@NamedQuery(name = Employee.FIND_BY_USER_ID, query = "SELECT e FROM Employee e WHERE e.employee = :id"),
+	@NamedQuery(name = Employee.FIND_BY_SURNAME, query = "SELECT e FROM Employee e WHERE e.lName LIKE :surname"),
+	@NamedQuery(name = Employee.FIND_BY_NAMES, query = "SELECT e from Employee e WHERE e.fName LIKE :forename AND e.lName LIKE :surname"),
+	@NamedQuery(name = Employee.FIND_BY_DEPARTMENT, query = "SELECT e from Employee e WHERE e.employeeDepartment = :department"),
+	@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from Employee e WHERE e.employeeDepartment = :department AND e.employeePermission = :permission")})
 public class Employee implements Serializable {
 
 	public static final String GET_ALL = "Employee.getAll";
 	public static final String FIND_BY_USER_ID = "Employee.findByEmployeeId";
 	public static final String FIND_BY_SURNAME = "Employee.findBySurname";
 	public static final String FIND_BY_NAMES = "Employee.findByNames";
-	public static final String FIND_BY_DEPARTMENT = "Employee.findByDepartment";
-	public static final String FIND_BY_ROLE = "Employee.findByDepartment";
+	public static final String FIND_BY_DEPARTMENT = "Employee.findEmployeesByDepartment";
+	public static final String FIND_BY_ROLE = "Employee.findEmployeesByRole";
 
 	@Column(name = "department", nullable = false)
 	@NotNull

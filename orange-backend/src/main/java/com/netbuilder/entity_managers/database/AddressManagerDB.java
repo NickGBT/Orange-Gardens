@@ -22,11 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author JustinMabbutt
  *
  */
-
-@NamedQueries({
-		@NamedQuery(name = "FindByPostcode", query = "SELECT a FROM address WHERE a.postcode = :postcode"),
-		@NamedQuery(name = "FindByAddressLabel", query = "SELECT a FROM address WHERE a.address_label = :address_label"),
-		@NamedQuery(name = "FindByUserId", query = "SELECT a FROM address WHERE a.user_id = :user_id") })
 @Default
 @Stateless
 public class AddressManagerDB implements AddressManager
@@ -55,11 +50,11 @@ public class AddressManagerDB implements AddressManager
 		pm.closeEntityManager(em);
 	}
 
-	public List<Address> findByPostcode(String postcode) 
+	public List<Address> findByPostcode(String postcode)
 	{
 		List<Address> addresses = new ArrayList<Address>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByPostcode", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery(Address.FIND_BY_POSTCODE, Address.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("postcode", postcode);
 		try 
@@ -77,9 +72,9 @@ public class AddressManagerDB implements AddressManager
 	public Address findByAddressLabel(String addressLabel) 
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByAddressLabel", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery(Address.FIND_BY_ADDRESS_LABEL, Address.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("address_label", addressLabel);
+		tq.setParameter("addressLabel", addressLabel);
 		try 
 		{
 			return tq.getSingleResult();
@@ -94,9 +89,9 @@ public class AddressManagerDB implements AddressManager
 	public Address findByUserId(int userId) 
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Address> tq = em.createNamedQuery("FindByUserId", Address.class);
+		TypedQuery<Address> tq = em.createNamedQuery(Address.FIND_BY_USER_ID, Address.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("user_id", userId);
+		tq.setParameter("customer", userId);
 		try 
 		{
 			return tq.getSingleResult();
@@ -111,7 +106,7 @@ public class AddressManagerDB implements AddressManager
 	public List<Address> getAddresses() 
 	{
 		EntityManager em = pm.createEntityManager();
-		List<Address> addresses = (ArrayList<Address>) em.createQuery("SELECT a FROM address a", Address.class).getResultList();
+		List<Address> addresses = (ArrayList<Address>) em.createNamedQuery(Address.GET_ALL, Address.class).getResultList();
 		pm.closeEntityManager(em);
 		return addresses;
 	}
