@@ -62,8 +62,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL,
-				Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
 		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Product>(tq.getResultList());
@@ -76,8 +75,7 @@ public class ProductManagerDB implements ProductManager {
 	public Product findByProductId(int productId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(
-				Product.FIND_BY_PRODUCT_ID, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_ID, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("id", productId);
 		try {
@@ -92,8 +90,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(
-				Product.FIND_BY_PRODUCT_NAME, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_NAME, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("name", name);
 		try {
@@ -111,8 +108,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(
-				Product.FIND_BY_PRODUCT_PRICE, Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("lPrice", lowPrice);
 		tq.setParameter("hPrice", highPrice);
@@ -129,8 +125,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY,
-				Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("category", category);
 
@@ -163,8 +158,7 @@ public class ProductManagerDB implements ProductManager {
 	}
 
 	@Override
-	public List<Product> findProductsByNameAndCat(ProductCategory category,
-			ArrayList<Product> products) {
+	public List<Product> findProductsByNameAndCat(ProductCategory category, ArrayList<Product> products) {
 		// TODO Auto-generated method stub
 		return null;
 	}
