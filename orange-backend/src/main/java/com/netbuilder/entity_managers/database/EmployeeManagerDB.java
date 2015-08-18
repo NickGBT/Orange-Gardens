@@ -54,12 +54,12 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.GET_ALL, Employee.class);
-		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
 		} catch (NoResultException nre) {
-
+			nre.printStackTrace();
 		}
+		pm.closeEntityManager(em);
 		return results;
 	}
 
@@ -67,11 +67,12 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_USER_ID, Employee.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("id", userId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
+			nre.printStackTrace();
 			return null;
 		}
 	}
@@ -82,12 +83,12 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_SURNAME, Employee.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("surname", surname);
+		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
 		} catch (NoResultException nre) {
-
+			nre.printStackTrace();
 		}
 		return results;
 	}
@@ -98,13 +99,13 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("forename", forename);
 		tq.setParameter("surname", surname);
+		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
 		} catch (NoResultException nre) {
-
+			nre.printStackTrace();
 		}
 		return results;
 	}
@@ -115,13 +116,12 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_DEPARTMENT, Employee.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
-
+		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
 		} catch (NoResultException nre) {
-
+			nre.printStackTrace();
 		}
 		return results;
 	}
@@ -133,13 +133,13 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Employee> tq = em.createNamedQuery(Employee.FIND_BY_NAMES, Employee.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("department", department);
 		tq.setParameter("permission", permission);
+		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Employee>(tq.getResultList());
 		} catch (NoResultException nre) {
-
+			nre.printStackTrace();
 		}
 		return results;
 	}

@@ -54,7 +54,7 @@ public class ProductManagerDB implements ProductManager {
 		List<Product> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Product> tq = em.createQuery("SELECT p FROM Product p", Product.class);
+		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
 		try {
 			System.out.println("EXECUTING");
 			results = new ArrayList<Product>(tq.getResultList());

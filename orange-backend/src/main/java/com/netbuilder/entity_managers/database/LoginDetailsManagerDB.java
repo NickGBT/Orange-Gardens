@@ -41,8 +41,8 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("username", username);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
@@ -54,8 +54,8 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("email", email);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
@@ -67,8 +67,8 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("userId", userId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
