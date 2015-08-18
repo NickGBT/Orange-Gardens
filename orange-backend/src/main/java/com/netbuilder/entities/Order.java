@@ -23,17 +23,28 @@ import com.netbuilder.enums.OrderStatus;
 @Entity
 @Table(name = "Order")
 @NamedQueries({
-		@NamedQuery(name = "FindByOrderId", query = "SELECT o FROM Order o WHERE o.orderId = :order_id"),
-		@NamedQuery(name = "FindByStatus", query = "SELECT o FROM Order o WHERE o.status = :status"),
-		@NamedQuery(name = "FindByDateDispatched", query = "SELECT o FROM Order o WHERE o.dateDispatched = :date_dispatched"),
-		@NamedQuery(name = "FindByDatePlaced", query = "SELECT o FROM Order o WHERE o.datePlaced = :date_placed"),
-		@NamedQuery(name = "FindByDateDelivered", query = "SELECT o FROM Order o WHERE o.dateDelivered = :date_delivered"),
-		@NamedQuery(name = "FindByTwoDatesOrderPlaced", query = "SELECT o FROM Order o WHERE o.datePlaced BETWEEN :fDate AND :sDate"),
-		@NamedQuery(name = "FindByTwoDatesOrderDispatched", query = "SELECT o FROM Order o WHERE o.dateDispatched BETWEEN :fDate AND :sDate"),
-		@NamedQuery(name = "FindByTwoDatesOrderDelivered", query = "SELECT o FROM Order o WHERE o.dateDelivered BETWEEN :fDate AND :sDate"),
-		@NamedQuery(name = "FindByCustomerId", query = "SELECT o FROM Order o WHERE o.customerId = :customer_id"),
-		@NamedQuery(name = "FindByEmployeeId", query = "SELECT o FROM Order o WHERE o.employeeId = :employee_id")})
+		@NamedQuery(name = Order.FIND_BY_ORDER_ID, query = "SELECT o FROM Order o WHERE o.orderId = :order_id"),
+		@NamedQuery(name = Order.FIND_BY_STATUS, query = "SELECT o FROM Order o WHERE o.status = :status"),
+		@NamedQuery(name = Order.FIND_BY_DATE_DISPATCHED, query = "SELECT o FROM Order o WHERE o.dateDispatched = :date_dispatched"),
+		@NamedQuery(name = Order.FIND_BY_DATE_PLACED, query = "SELECT o FROM Order o WHERE o.datePlaced = :date_placed"),
+		@NamedQuery(name = Order.FIND_BY_DATE_DELIVERED, query = "SELECT o FROM Order o WHERE o.dateDelivered = :date_delivered"),
+		@NamedQuery(name = Order.FIND_BY_TWO_DATES_PLACED, query = "SELECT o FROM Order o WHERE o.datePlaced BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = Order.FIND_BY_TWO_DATES_DISPATCHED, query = "SELECT o FROM Order o WHERE o.dateDispatched BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = Order.FIND_BY_TWO_DATES_DELIVERED, query = "SELECT o FROM Order o WHERE o.dateDelivered BETWEEN :fDate AND :sDate"),
+		@NamedQuery(name = Order.FIND_BY_CUSTOMER_ID, query = "SELECT o FROM Order o WHERE o.customerId = :customer_id"),
+		@NamedQuery(name = Order.FIND_BY_EMPLOYEE_ID, query = "SELECT o FROM Order o WHERE o.employeeId = :employee_id")})
 public class Order implements Serializable {
+	
+	public static final String FIND_BY_ORDER_ID = "Order.findByOrderId";
+	public static final String FIND_BY_STATUS = "Order.findByStatus";
+	public static final String FIND_BY_DATE_DISPATCHED = "Order.findByDateDispatched";
+	public static final String FIND_BY_DATE_PLACED = "Order.findByDatePlaced";
+	public static final String FIND_BY_DATE_DELIVERED = "Order.findByDateDelivered";
+	public static final String FIND_BY_TWO_DATES_PLACED = "Order.findByTwoDatesOrderPlaced";
+	public static final String FIND_BY_TWO_DATES_DISPATCHED = "Order.findByTwoDatesOrderDispatched";
+	public static final String FIND_BY_TWO_DATES_DELIVERED = "Order.findByTwoDatesOrderDelivered";
+	public static final String FIND_BY_CUSTOMER_ID = "Order.findByCustomerId";
+	public static final String FIND_BY_EMPLOYEE_ID = "Order.findByEmployeeId";
 
 	@Id
 	@Column(name = "order_id", nullable = false)

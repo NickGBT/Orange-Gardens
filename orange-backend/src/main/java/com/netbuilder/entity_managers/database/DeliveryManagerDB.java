@@ -53,13 +53,13 @@ public class DeliveryManagerDB implements DeliveryManager {
 		List<Delivery> deliveries = new ArrayList<Delivery>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Delivery> tq = em.createNamedQuery(Delivery.FIND_BY_DATE_PLACED, Delivery.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("dateplaced", datePlaced);
 		try {
 			deliveries = (ArrayList<Delivery>) tq.getResultList();
 		} catch (NoResultException nre) {
 			return null;
 		} finally {
+			pm.closeEntityManager(em);
 			return deliveries;
 		}
 	}
@@ -67,8 +67,8 @@ public class DeliveryManagerDB implements DeliveryManager {
 	public Delivery findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Delivery> tq = em.createNamedQuery(Delivery.FIND_BY_DELIVERY_ID, Delivery.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("delivery_id", deliveryId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
@@ -100,7 +100,5 @@ public class DeliveryManagerDB implements DeliveryManager {
 		EntityManager em = pm.createEntityManager();
 		em.remove(delivery);
 		pm.closeEntityManager(em);
-
 	}
-
 }

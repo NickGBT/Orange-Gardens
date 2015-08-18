@@ -53,7 +53,6 @@ public class CustomerManagerDB implements CustomerManager
 		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery(Customer.FIND_BY_FIRST_NAME, Customer.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("fName", fName);
 		try 
 		{
@@ -64,6 +63,7 @@ public class CustomerManagerDB implements CustomerManager
 			nre.printStackTrace();
 			return null;
 		}
+		pm.closeEntityManager(em);
 		return customers;
 	}
 
@@ -72,7 +72,6 @@ public class CustomerManagerDB implements CustomerManager
 		List<Customer> customers = new ArrayList<Customer>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery(Customer.FIND_BY_LAST_NAME, Customer.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("lName", lName);
 		try
 		{
@@ -82,6 +81,7 @@ public class CustomerManagerDB implements CustomerManager
 		{
 			return null;
 		}
+		pm.closeEntityManager(em);
 		return customers;
 	}
 
@@ -89,8 +89,8 @@ public class CustomerManagerDB implements CustomerManager
 	{
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery(Customer.FIND_BY_USER_ID, Customer.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("customer", customer);
+		pm.closeEntityManager(em);
 		try 
 		{
 			return tq.getSingleResult();

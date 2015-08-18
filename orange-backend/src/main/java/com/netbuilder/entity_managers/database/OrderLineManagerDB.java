@@ -48,8 +48,8 @@ public class OrderLineManagerDB implements OrderLineManager {
 	public OrderLine findByProductId(int productID) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_PRODUCT_ID, OrderLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("product", productID);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
@@ -61,8 +61,8 @@ public class OrderLineManagerDB implements OrderLineManager {
 	public List<OrderLine> findByOrderId(int orderId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_ORDER_ID, OrderLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("order", orderId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getResultList();
 		} catch (NoResultException e) {
@@ -75,8 +75,8 @@ public class OrderLineManagerDB implements OrderLineManager {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_QUANTITY, OrderLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
+		pm.closeEntityManager(em);
 		try {
 			orderLine = (ArrayList<OrderLine>) tq.getResultList();
 		} catch (NoResultException e) {

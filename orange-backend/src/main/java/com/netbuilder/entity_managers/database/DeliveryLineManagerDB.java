@@ -50,8 +50,8 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 	public DeliveryLine findByProductId(int productId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByProductId", DeliveryLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("product_id", productId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
@@ -64,8 +64,8 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 	public DeliveryLine findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("delivery_id", deliveryId);
+		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
@@ -78,7 +78,6 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 		List<DeliveryLine> delLine = new ArrayList<DeliveryLine>();
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
 		try {
 			delLine = (ArrayList<DeliveryLine>) tq.getResultList();
@@ -86,6 +85,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 			e.printStackTrace();
 			return null;
 		}
+		pm.closeEntityManager(em);
 		return delLine;
 	}
 
@@ -111,7 +111,5 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 		EntityManager em = pm.createEntityManager();
 		em.remove(deliveryLine);
 		pm.closeEntityManager(em);
-
 	}
-
 }

@@ -16,7 +16,6 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	 <class>com.netbuilder.entities.Product</class>
 	 <class>com.netbuilder.entities.Stock</class>
 	 
-	
 	<properties>
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/orange_gardens"/>
