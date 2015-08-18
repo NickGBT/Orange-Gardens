@@ -30,21 +30,23 @@ public class Glados {
 		System.out.println("GLADOS startup...");
 		gladosGui.displaySplash();
 		
-		try {
-			receiver = new Receiver("127.0.0.1");
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		messageHandler = new MessageHandler();
-		
-		try {
-			receiver.listenOnQueue("dops_queue", messageHandler);
-			logger.info("Message received from broker.");
-		} catch (JMSException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			receiver = new Receiver("127.0.0.1");
+//		} catch (JMSException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		messageHandler = new MessageHandler();
+//		
+//		try {
+//			receiver.listenOnQueue("dops_queue", messageHandler);
+//			logger.info("Message received from broker.");
+//		} catch (JMSException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

@@ -43,7 +43,7 @@ import com.netbuilder.pathfinding.WarehouseMap;
 
 /**
  * 
- * @author JustinMabbutt
+ * @author JustinMabbutt 
  *
  */
 public class GladosGui 
@@ -72,6 +72,7 @@ public class GladosGui
 	private Thread ui;
 	private Receiver receiver;
 	private DopsOrder order;
+	private Boolean gdz = false;
 
 	/**
 	 * Initialise appearance
@@ -169,6 +170,9 @@ public class GladosGui
 	/**
 	 * Assign action listeners
 	 */
+	/**
+	 * @author mwatson
+	 */
 	private void assignActionListeners()
 	{
 		getNewOrder.addActionListener(new ActionListener() 
@@ -176,22 +180,35 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				logger.info("Order Being Assigned");
+				System.out.println("Order Being Assigned");
 				try {
-					order = (DopsOrder) receiver.getMessage("dops_queue");
-				} catch (JMSException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				} 
-				
-				try {
+					System.out.println("Before Receiver");
 					receiver = new Receiver("127.0.0.1");
+					System.out.println("After Receiver");
 				} catch (JMSException e1) {
 					// TODO Auto-generated catch block
+					System.out.println("Receiver not created");
+					logger.error("Receiver not created" , e1);
 					e1.printStackTrace();
+				} catch (Exception e) {
+					System.out.println("Receiver");
 				}
 				
 				try {
+					System.out.println("Before Message");
+					order = (DopsOrder) receiver.getMessage("dops_queue");
+					logger.info("Received message correctly from broker");
+					System.out.println("Received message correctly from broker");
+				} catch (JMSException e2) {
+					// TODO Auto-generated catch block
+					logger.error("Cannot receive message from broker", e2);
+					System.out.println("Cannot receive message from broker");
+					e2.printStackTrace();
+				} catch(Exception e) {
+					System.out.println("Message Error");
+					e.printStackTrace();
+				}
 					if(order == null)
 					{	
 						JOptionPane.showMessageDialog(mainFrame, "No pending orders available", "No outstanding orders!", JOptionPane.INFORMATION_MESSAGE);
@@ -201,10 +218,7 @@ public class GladosGui
 						completeOrder.setEnabled(false);
 						displayMap();			
 					}
-				} catch (HeadlessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		
 			}
 		});
 		
@@ -552,6 +566,9 @@ public class GladosGui
     
     /**
      * Task to draw the map
+     */
+    /**
+     * @author mwatson
      */
    	private void displayMap()
     {

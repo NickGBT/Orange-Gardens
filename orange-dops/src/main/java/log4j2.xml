@@ -8,7 +8,7 @@
 	</Appenders>
 	<Loggers>
 
-		<Logger name="com.netbuilder.jms.*" level="debug" additivity="false">
+		<Logger name="com.netbuilder.jms.*" level="info" additivity="false">
 			<AppenderRef ref="Console"/>
 		</Logger>
 
