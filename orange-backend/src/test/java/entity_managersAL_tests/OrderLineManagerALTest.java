@@ -46,16 +46,16 @@ public class OrderLineManagerALTest {
 		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password,
 				salt);
 
-		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
 				"BOB", 323, "22/07/2020", testCustomer1);
 
 		orderLineManager = new OrderLineManagerAL();
 		order = new Order(1, testCustomer1, OrderStatus.basket, paymentDetails);
 
 		product = new Product(1, "img/iomg", "testproduct", 25.25, 10, 10, 11,
-				10.50, "test Product", ProductCategory.Accessory);
+				10.50, "test Product", ProductCategory.accessory);
 		product2 = new Product(2, "img/iomg", "testproduct2", 25.25, 10, 10,
-				11, 10.50, "test Product2", ProductCategory.Accessory);
+				11, 10.50, "test Product2", ProductCategory.accessory);
 
 		orderLine = new OrderLine(order, product, 50);
 		orderLine1 = new OrderLine(order, product2, 50);

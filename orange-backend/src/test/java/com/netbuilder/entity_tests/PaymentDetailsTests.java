@@ -32,7 +32,7 @@ public class PaymentDetailsTests {
 
 	@Before
 	public void setUp() throws Exception {
-		type = CardType.AMERICANEXPRESS;
+		type = CardType.americanexpress;
 		number = "4412889511254478";
 		name = "N B Gardens";
 		security = 123;

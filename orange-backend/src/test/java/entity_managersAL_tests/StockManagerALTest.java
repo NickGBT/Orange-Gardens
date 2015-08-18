@@ -31,9 +31,9 @@ public class StockManagerALTest {
 		testArrayStock = new ArrayList<Stock>();
 		testArrayStock2 = new ArrayList<Stock>();
 		testProduct = new Product("the thing", "gnom", 22.00, 4, 4, 5, 60.00,
-				"A gnom", ProductCategory.Gnome);
+				"A gnom", ProductCategory.gnome);
 		testProduct2 = new Product("the other thing", "gnome", 44.00, 8, 5, 2,
-				320.00, "A gnome", ProductCategory.Gnome);
+				320.00, "A gnome", ProductCategory.gnome);
 		testStock = new Stock(testProduct, 4, 3, "Over there", 10, 2, 5, 10, 10);
 		testStock2 = new Stock(testProduct2, 5, 4, "Right here", 12, 5, 9, 11, 11);
 	}

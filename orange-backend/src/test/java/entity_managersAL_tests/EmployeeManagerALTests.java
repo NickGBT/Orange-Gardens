@@ -40,14 +40,14 @@ public class EmployeeManagerALTests {
 	public void setUp() throws Exception {
 		employeeManager = new EmployeeManagerAL();
 
-		e1 = new Employee(EmployeeDepartment.WAREHOUSE, "Ware", "House",
-				EmployeePermissions.MANAGER);
-		e2 = new Employee(EmployeeDepartment.WAREHOUSE, "Slave", "Labor",
-				EmployeePermissions.WORKER);
-		e3 = new Employee(EmployeeDepartment.WAREHOUSE, "Shelf", "Picker",
-				EmployeePermissions.WORKER);
-		e4 = new Employee(EmployeeDepartment.SALES, "Telephone", "House",
-				EmployeePermissions.MANAGER);
+		e1 = new Employee(EmployeeDepartment.warehouse, "Ware", "House",
+				EmployeePermissions.manager);
+		e2 = new Employee(EmployeeDepartment.warehouse, "Slave", "Labor",
+				EmployeePermissions.worker);
+		e3 = new Employee(EmployeeDepartment.warehouse, "Shelf", "Picker",
+				EmployeePermissions.worker);
+		e4 = new Employee(EmployeeDepartment.sales, "Telephone", "House",
+				EmployeePermissions.manager);
 
 		testInput = new ArrayList<Employee>();
 
@@ -81,7 +81,7 @@ public class EmployeeManagerALTests {
 		employeeManager.persistEmployees(testInput);
 
 		List<Employee> output = employeeManager
-				.findEmployeesByDepartment(EmployeeDepartment.WAREHOUSE);
+				.findEmployeesByDepartment(EmployeeDepartment.warehouse);
 
 		assertTrue((output.contains(e1)) && (output.contains(e2))
 				&& !(output.contains(e4)));
@@ -128,7 +128,7 @@ public class EmployeeManagerALTests {
 		employeeManager.persistEmployees(testInput);
 
 		List<Employee> output = employeeManager.findEmployeesByRole(
-				EmployeeDepartment.WAREHOUSE, EmployeePermissions.WORKER);
+				EmployeeDepartment.warehouse, EmployeePermissions.worker);
 
 		assertTrue(output.size() == 2);
 	}

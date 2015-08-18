@@ -40,7 +40,7 @@ public class ProductTests {
 		height = 35;
 		weight = 3;
 		description = "A gnome for testing, should never exist";
-		productCategory = ProductCategory.Accessory;
+		productCategory = ProductCategory.accessory;
 
 		testProduct = new Product(imageLocation, productName, productPrice,
 				width, height, length, weight, description, productCategory);

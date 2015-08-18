@@ -7,5 +7,5 @@ package com.netbuilder.enums;
  */
 
 public enum DeliveryStatus {
-	Dispatched, Processing, Delivered
+	dispatched, processing, delivered
 }

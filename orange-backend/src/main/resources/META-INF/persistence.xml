@@ -3,6 +3,9 @@
 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="orange-backend" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+	
+	 <class>com.netbuilder.entities.Product</class>
+	
 	<properties>
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/orange_gardens"/>

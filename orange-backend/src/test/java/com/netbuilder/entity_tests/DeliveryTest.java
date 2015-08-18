@@ -26,7 +26,7 @@ public class DeliveryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		deliveryStatus = DeliveryStatus.Processing;
+		deliveryStatus = DeliveryStatus.processing;
 		testDelivery = new Delivery(datePlaced, dateToBeDelivered, supplier,
 				price);
 	}
@@ -53,6 +53,6 @@ public class DeliveryTest {
 
 	@Test
 	public void testDeliveryStatus() {
-		assertEquals(DeliveryStatus.Processing, deliveryStatus);
+		assertEquals(DeliveryStatus.processing, deliveryStatus);
 	}
 }
