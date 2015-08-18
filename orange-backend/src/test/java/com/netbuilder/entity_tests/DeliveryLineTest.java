@@ -35,7 +35,7 @@ public class DeliveryLineTest {
 	private String datePlaced = "15/01/2015";
 	private String dateToBeDelivered = "18/01/2015";
 	private String supplier = "GnomeM8";
-	private BigDecimal price = new BigDecimal(50.00);
+	private double price = 50.00;
 	private Delivery delivery;
 	private ProductCategory productCategory = ProductCategory.accessory;
 

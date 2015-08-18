@@ -14,6 +14,7 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.Address;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.AddressValidator;
 
 /**
  * 
@@ -26,14 +27,23 @@ public class AddressManagerDB implements AddressManager
 {
 	@Inject
 	private PersistenceManager pm;
+	
+	private AddressValidator addressValidator;
 
 	public void persistAddress(Address address) 
 	{
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(address);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(addressValidator.validateAddress(address))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(address);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public void persistAddresses(List<Address> addresses) 

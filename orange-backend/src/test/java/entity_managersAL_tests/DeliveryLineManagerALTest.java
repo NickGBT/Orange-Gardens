@@ -30,8 +30,7 @@ public class DeliveryLineManagerALTest {
 	public void setUp() throws Exception {
 		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11,
 				10.50, "test Product", ProductCategory.accessory);
-		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8",
-				new BigDecimal(22.50));
+		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8", 22.50);
 
 		deliveryLine = new DeliveryLine(product, delivery, 50);
 		deliveryLine1 = new DeliveryLine(product, delivery, 50);

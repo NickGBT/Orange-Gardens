@@ -54,10 +54,10 @@ public class Delivery implements Serializable
 	private String supplier;
 	@Column(name = "price", nullable = false)
 	@NotNull
-	private BigDecimal price;
+	private double price;
 
-	public Delivery(String datePlaced, String dateToBeDelivered,
-			String supplier, BigDecimal price) {
+	public Delivery(String datePlaced, String dateToBeDelivered, String supplier, double price) 
+	{
 		this.datePlaced = datePlaced;
 		this.dateToBeDelivered = dateToBeDelivered;
 		this.supplier = supplier;
@@ -66,39 +66,58 @@ public class Delivery implements Serializable
 	
 	public Delivery(){}
 
-	public int getDeliveryId() {
+	public int getDeliveryId() 
+	{
 		return deliveryId;
 	}
 
-	public String getDatePlaced() {
+	public String getDatePlaced()
+	{
 		return datePlaced;
 	}
 
-	public void setDatePlaced(String datePlaced) {
+	public void setDatePlaced(String datePlaced)
+	{
 		this.datePlaced = datePlaced;
 	}
 
-	public String getDateToBeDelivered() {
+	public String getDateToBeDelivered() 
+	{
 		return dateToBeDelivered;
 	}
 
-	public void setDateToBeDelivered(String dateToBeDelivered) {
+	public void setDateToBeDelivered(String dateToBeDelivered) 
+	{
 		this.dateToBeDelivered = dateToBeDelivered;
 	}
 
-	public String getSupplier() {
+	public String getSupplier()
+	{
 		return supplier;
 	}
 
-	public void setSupplier(String supplier) {
+	public void setSupplier(String supplier)
+	{
 		this.supplier = supplier;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice()
+	{
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price)
+	{
 		this.price = price;
+	}
+	
+	public DeliveryStatus getDeliveryStatus() 
+	{
+		return deliveryStatus;
+	}
+
+	public void setDeliveryStatus(DeliveryStatus deliveryStatus) 
+	{
+		this.deliveryStatus = deliveryStatus;
 	}
 }
