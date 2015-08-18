@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.RequestScoped;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 
 /**
  * 
@@ -23,7 +24,7 @@ public interface CustomerManager {
 
 	public List<Customer> findByLName(String lName);
 
-	public Customer findByUserId(int userId);
+	public Customer findByUser(LoginDetails customer);
 
 	public Customer findByUsername(String username);
 	

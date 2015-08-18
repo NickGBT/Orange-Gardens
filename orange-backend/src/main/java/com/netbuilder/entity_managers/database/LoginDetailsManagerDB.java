@@ -41,11 +41,13 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
 		tq.setParameter("username", username);
-		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
 		}
 	}
 
@@ -54,11 +56,13 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
 		tq.setParameter("email", email);
-		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
 		}
 	}
 
@@ -67,11 +71,13 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
 		tq.setParameter("userId", userId);
-		pm.closeEntityManager(em);
-		try {
+		try {  
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
 		}
 	}
 
@@ -116,7 +122,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 	public List<LoginDetails> getAllLoginDetails() {
 		EntityManager em = pm.createEntityManager();
-		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>) em.createQuery("SELECT a FROM login_details a", LoginDetails.class).getResultList();
+		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>) em.createQuery("SELECT a FROM LoginDetails a", LoginDetails.class).getResultList();
 		pm.closeEntityManager(em);
 		return allLoginDetails;
 	}

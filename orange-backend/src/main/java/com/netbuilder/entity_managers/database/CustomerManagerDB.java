@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
 
@@ -85,12 +86,11 @@ public class CustomerManagerDB implements CustomerManager
 		return customers;
 	}
 
-	public Customer findByUserId(int customer) 
+	public Customer findByUser(LoginDetails customer) 
 	{
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Customer> tq = em.createNamedQuery(Customer.FIND_BY_USER_ID, Customer.class);
 		tq.setParameter("customer", customer);
-		pm.closeEntityManager(em);
 		try 
 		{
 			return tq.getSingleResult();
@@ -98,6 +98,9 @@ public class CustomerManagerDB implements CustomerManager
 		catch (NoResultException nre) 
 		{
 			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
 		}
 	}
 

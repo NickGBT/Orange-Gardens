@@ -45,16 +45,13 @@ public class LoginController implements Serializable {
 	// private String logout = "index.html";
 
 	public String login() {
-		System.out.println("Checking Password");
-		System.out.println("UserName : " + name + ", Password : " + password);
 
-		System.out.println(ldm.getAllLoginDetails());
 		userExists = ldm.checkPassword(name, password);
 		System.out.println("User exists? : " + userExists);
 		if (userExists >= 0) {
 			userId.setUsername(name);
+			userId.setUid(userExists);
 			loggedIn = true;
-			System.out.println(userId.getUsername());
 			logger.info("Username: " + userId.getUsername());
 			return "account.xhtml";
 		} else {

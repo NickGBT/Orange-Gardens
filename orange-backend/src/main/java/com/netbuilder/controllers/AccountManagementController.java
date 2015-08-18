@@ -80,25 +80,22 @@ public class AccountManagementController {
 
 	public LoginDetails getLoginDetails() {
 		loginDetails = loginDetailsManager.findByUserId(userId.getUid());
-		//loginDetails = testData.getCustomerLogin();
 		return loginDetails;
 	}
 
 	public Customer getCustomer() {
-		customer = customerManager.findByUsername(userId.getUsername());
-		//customer = testData.getCustomer();
+		loginDetails = loginDetailsManager.findByUserId(userId.getUid());
+		customer = customerManager.findByUser(loginDetails);
 		return customer;
 	}
 
 	public Address getAddress() {
 		address = addressManager.findByUserId(userId.getUid());
-		//address = testData.getAddress();
 		return address;
 	}
 
 	public PaymentDetails getPaymentDetails() {
 		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(userId.getUid());
-		//paymentDetails = testData.getPaymentDetails();
 		return paymentDetails;
 	}
 
