@@ -6,7 +6,6 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
-import com.netbuilder.entities.Address;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.enums.OrderStatus;

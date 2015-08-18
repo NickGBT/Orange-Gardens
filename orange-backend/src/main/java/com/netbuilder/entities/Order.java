@@ -21,7 +21,7 @@ import com.netbuilder.enums.OrderStatus;
  */
 
 @Entity
-@Table(name = "Order")
+@Table(name = "orders")
 @NamedQueries({
 		@NamedQuery(name = Order.FIND_BY_ORDER_ID, query = "SELECT o FROM Order o WHERE o.orderId = :order_id"),
 		@NamedQuery(name = Order.FIND_BY_STATUS_AND_ID, query = "SELECT o FROM Order o WHERE o.status = :status AND o.customerId = :customerId"),

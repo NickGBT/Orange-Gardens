@@ -12,7 +12,6 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
-import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
