@@ -21,7 +21,7 @@ import com.netbuilder.enums.OrderStatus;
  */
 
 @Entity
-@Table(name = "Order")
+@Table(name = "orders")
 @NamedQueries({
 		@NamedQuery(name = Order.FIND_BY_ORDER_ID, query = "SELECT o FROM Order o WHERE o.orderId = :order_id"),
 		@NamedQuery(name = Order.FIND_BY_STATUS, query = "SELECT o FROM Order o WHERE o.status = :status"),
@@ -33,6 +33,7 @@ import com.netbuilder.enums.OrderStatus;
 		@NamedQuery(name = Order.FIND_BY_TWO_DATES_DELIVERED, query = "SELECT o FROM Order o WHERE o.dateDelivered BETWEEN :fDate AND :sDate"),
 		@NamedQuery(name = Order.FIND_BY_CUSTOMER_ID, query = "SELECT o FROM Order o WHERE o.customerId = :customer_id"),
 		@NamedQuery(name = Order.FIND_BY_EMPLOYEE_ID, query = "SELECT o FROM Order o WHERE o.employeeId = :employee_id")})
+
 public class Order implements Serializable {
 	
 	public static final String FIND_BY_ORDER_ID = "Order.findByOrderId";

@@ -43,7 +43,7 @@ public class Address implements Serializable
 	private String addressLabel;
 	@Column(name = "line1", nullable = false, length = 45)
 	@NotNull
-	@Size(min = 2, max = 45)
+	@Size(min = 0, max = 45)
 	private String addressLine1;
 	@Column(name = "line2", nullable = true, length = 45)
 	@Size(min = 0, max = 45)

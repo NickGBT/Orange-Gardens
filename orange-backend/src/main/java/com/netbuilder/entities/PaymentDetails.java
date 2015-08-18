@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,6 +35,7 @@ public class PaymentDetails implements Serializable {
 	public static final String FIND_BY_EXPIRED = "PaymentDetails.findByExpired";
 
 	@Column(name = "card_type", nullable = false)
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	private CardType cardType;
 

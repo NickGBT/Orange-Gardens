@@ -78,11 +78,15 @@ public class RegistrationController {
 			loginDetails = new LoginDetails(registrationDetails.getUsername(),
 					registrationDetails.getEmail(), hashedPassword, salt);
 			
+			loginDetailsManager.persistLoginDetails(loginDetails);
+
 			customer = new Customer(loginDetails, 
 					registrationDetails.getfName(),
 					registrationDetails.getlName(),
 					registrationDetails.getContactNumber(),
 					registrationDetails.isBlackListed());
+			
+			customerManager.persistCustomer(customer);
 			
 			address = new Address(loginDetails,
 					registrationDetails.getAddressLabel(),
@@ -100,10 +104,8 @@ public class RegistrationController {
 					registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 
-			loginDetailsManager.persistLoginDetails(loginDetails);
 			addressManager.persistAddress(address);
 			paymentDetailsManager.persistPaymentDetails(payDetails);
-			customerManager.persistCustomer(customer);
 
 			return "customerlogin.xhtml";
 		} else {
