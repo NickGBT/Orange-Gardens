@@ -5,6 +5,7 @@ import java.util.List;
 import javax.faces.bean.RequestScoped;
 
 import com.netbuilder.entities.Address;
+import com.netbuilder.entities.LoginDetails;
 
 /**
  * 
@@ -23,7 +24,7 @@ public interface AddressManager {
 
 	public Address findByAddressLabel(String addressLabel);
 
-	public Address findByUserId(int userId);
+	public Address findByUserId(LoginDetails customer);
 
 	public List<Address> getAddresses();
 

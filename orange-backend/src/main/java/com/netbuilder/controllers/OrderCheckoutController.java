@@ -99,12 +99,13 @@ public class OrderCheckoutController {
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		pd = paymentDetails.findCustomerPaymentDetails(userId.getUid());
+		//pd = paymentDetails.findCustomerPaymentDetails(userId.getUid());
 		return pd;
 	}
 	
 	public Address getAddress(){
-		return ad = address.findByUserId(userId.getUid()); 
+		//return ad = address.findByUserId(userId.getUid()); 
+		return null;
 	} 
 	
 	public TestData getTestData() {

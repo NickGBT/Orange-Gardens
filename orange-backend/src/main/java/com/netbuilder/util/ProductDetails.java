@@ -180,7 +180,7 @@ public class ProductDetails implements Serializable {
 	 *            the paymentD to set
 	 */
 	public void setPaymentD(int customerId) {
-		this.paymentD = paymentMan.findCustomerPaymentDetails(customerId);
+		//this.paymentD = paymentMan.findCustomerPaymentDetails(customerId);
 	}
 
 	public void findLoginDetails(int customerId) {

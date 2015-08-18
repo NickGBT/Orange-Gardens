@@ -11,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
@@ -60,25 +61,29 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CARD_NUMBER, PaymentDetails.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("cardNo", cardNumber);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
 		}
+		finally{
+			pm.closeEntityManager(em);
+		}
 	}
 
-	public PaymentDetails findCustomerPaymentDetails(int userId) {
+	public PaymentDetails findCustomerPaymentDetails(LoginDetails customer) {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CUSTOMER, PaymentDetails.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("id", userId);
+		tq.setParameter("id", customer);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
+		}
+		finally {
+			pm.closeEntityManager(em);
 		}
 	}
 
@@ -88,13 +93,13 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_EXPIRED, PaymentDetails.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("id", customerId);
 		try {
 			results = new ArrayList<PaymentDetails>(tq.getResultList());
 		} catch (NoResultException nre) {
 
 		}
+		pm.closeEntityManager(em);
 		return results;
 	}
 

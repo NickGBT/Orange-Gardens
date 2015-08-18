@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.RequestScoped;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 
 /**
@@ -22,7 +23,7 @@ public interface PaymentDetailsManager {
 	// READ
 	public PaymentDetails findCardByNumber(String cardNumber);
 
-	public PaymentDetails findCustomerPaymentDetails(int userId);
+	public PaymentDetails findCustomerPaymentDetails(LoginDetails customer);
 
 	public List<PaymentDetails> findExpiredDetails(int userId);
 

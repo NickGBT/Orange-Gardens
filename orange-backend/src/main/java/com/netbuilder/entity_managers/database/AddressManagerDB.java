@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.Address;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
 import com.netbuilder.validation.AddressValidator;
@@ -82,7 +83,6 @@ public class AddressManagerDB implements AddressManager
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Address> tq = em.createNamedQuery(Address.FIND_BY_ADDRESS_LABEL, Address.class);
 		tq.setParameter("addressLabel", addressLabel);
-		pm.closeEntityManager(em);
 		try 
 		{
 			return tq.getSingleResult();
@@ -92,14 +92,16 @@ public class AddressManagerDB implements AddressManager
 			nre.printStackTrace();
 			return null;
 		}
+		finally {
+			pm.closeEntityManager(em);
+		}
 	}
 
-	public Address findByUserId(int userId) 
+	public Address findByUserId(LoginDetails customer) 
 	{
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Address> tq = em.createNamedQuery(Address.FIND_BY_USER_ID, Address.class);
-		tq.setParameter("customer", userId);
-		pm.closeEntityManager(em);
+		tq.setParameter("customer", customer);
 		try 
 		{
 			return tq.getSingleResult();
@@ -108,6 +110,9 @@ public class AddressManagerDB implements AddressManager
 		{
 			nre.printStackTrace();
 			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
 		}
 	}
 

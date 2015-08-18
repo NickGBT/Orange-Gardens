@@ -22,7 +22,6 @@ public class PersistenceManager {
 
 	public EntityManager createEntityManager() {
 		try {
-			System.out.println("EM");
 			emf = Persistence.createEntityManagerFactory("orange-backend");
 			EntityManager em = emf.createEntityManager();
 			return em;
@@ -31,6 +30,7 @@ public class PersistenceManager {
 			pe.printStackTrace();
 			return null;
 		}
+
 	}
 
 	public void closeEntityManager(EntityManager em) {

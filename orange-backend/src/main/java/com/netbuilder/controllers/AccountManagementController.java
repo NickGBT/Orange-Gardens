@@ -90,12 +90,14 @@ public class AccountManagementController {
 	}
 
 	public Address getAddress() {
-		address = addressManager.findByUserId(userId.getUid());
+		loginDetails = loginDetailsManager.findByUserId(userId.getUid());
+		address = addressManager.findByUserId(loginDetails);
 		return address;
 	}
 
 	public PaymentDetails getPaymentDetails() {
-		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(userId.getUid());
+		loginDetails = loginDetailsManager.findByUserId(userId.getUid());
+		paymentDetails = paymentDetailsManager.findCustomerPaymentDetails(loginDetails);
 		return paymentDetails;
 	}
 
