@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.jms.JMSException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,6 +35,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.netbuilder.util.TestData;
+import com.netbuilder.jms.Receiver;
+import com.netbuilder.jms_tools.DopsOrder;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
 import com.netbuilder.pathfinding.WarehouseMap;
@@ -66,6 +70,8 @@ public class GladosGui
 	private WarehouseMap<GladosNode> warehouseMap;
 	private String user, pass;
 	private Thread ui;
+	private Receiver receiver;
+	private DopsOrder order;
 
 	/**
 	 * Initialise appearance
@@ -170,14 +176,34 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if(testData.isOrdersComplete())
-				{	
-					JOptionPane.showMessageDialog(mainFrame, "No pending orders available", "No outstanding orders!", JOptionPane.INFORMATION_MESSAGE);
+				
+				try {
+					order = (DopsOrder) receiver.getMessage("dops_queue");
+				} catch (JMSException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} 
+				
+				try {
+					receiver = new Receiver("127.0.0.1");
+				} catch (JMSException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				else
-				{
-					completeOrder.setEnabled(false);
-					displayMap();			
+				
+				try {
+					if(order == null)
+					{	
+						JOptionPane.showMessageDialog(mainFrame, "No pending orders available", "No outstanding orders!", JOptionPane.INFORMATION_MESSAGE);
+					}
+					else
+					{
+						completeOrder.setEnabled(false);
+						displayMap();			
+					}
+				} catch (HeadlessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
@@ -545,6 +571,7 @@ public class GladosGui
     	boxSize.setPreferredSize(new Dimension(200, 30));
     	boxSize.setEditable(false);
     	boxSize.setMaximumSize(boxSize.getPreferredSize());
+    	
     	if(testData.getProductIncrement() <= 2)
     	{
     		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
@@ -557,6 +584,7 @@ public class GladosGui
         	quantity.setText("");
         	boxSize.setText("");
     	}
+    	
     	orderPanel.add(productName);
     	orderPanel.add(quantity);
     	orderPanel.add(boxSize);
