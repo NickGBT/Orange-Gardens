@@ -15,6 +15,7 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.OrderValidator;
 
 /**
  * 
@@ -27,13 +28,22 @@ public class OrderManagerDB implements OrderManager {
 
 	@Inject
 	private PersistenceManager pm;
+	
+	private OrderValidator orderValidator;
 
 	public void persistOrder(Order order) {
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(order);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(orderValidator.validateOrder(order))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(order);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public Order findByOrderID(int OrderID) {

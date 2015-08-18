@@ -14,6 +14,7 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.Delivery;
 import com.netbuilder.entity_managers.interfaces.DeliveryManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.DeliveryValidator;
 
 /**
  * 
@@ -25,15 +26,24 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class DeliveryManagerDB implements DeliveryManager {
 	@Inject
 	private PersistenceManager pm;
+	
+	private DeliveryValidator deliveryValidator;
 
 	// ////// CRUD FUNCTIONS ////////
 	// ////////// CREATE /////////////
 	public void persistDelivery(Delivery delivery) {
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(delivery);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(deliveryValidator.validateDelivery(delivery))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(delivery);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);		
+		}		
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public void persistDeliveries(List<Delivery> deliveries) {

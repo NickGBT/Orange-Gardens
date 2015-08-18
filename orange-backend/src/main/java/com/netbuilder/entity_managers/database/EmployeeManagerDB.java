@@ -16,6 +16,7 @@ import com.netbuilder.entity_managers.interfaces.EmployeeManager;
 import com.netbuilder.enums.EmployeeDepartment;
 import com.netbuilder.enums.EmployeePermissions;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.EmployeeValidator;
 
 /**
  * 
@@ -27,14 +28,19 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class EmployeeManagerDB implements EmployeeManager {
 	@Inject
 	private PersistenceManager pm;
+	
+	private EmployeeValidator employeeValidator;
 
 	public void persistEmployee(Employee employee) {
 
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(employee);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(employeeValidator.validateEmployee(employee))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(employee);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
 	}
 
 	public void persistEmployees(List<Employee> employees) {

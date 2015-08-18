@@ -86,8 +86,7 @@ public class PaymentDetailsManagerALTests {
 
 		paymentDetailsManager.persistPaymentDetails(detailsInput);
 
-		PaymentDetails output = paymentDetailsManager
-				.findCustomerPaymentDetails(c1.getUserId());
+		PaymentDetails output = paymentDetailsManager.findCustomerPaymentDetails(c1);
 
 		ArrayList<PaymentDetails> paymentDetailsTest = new ArrayList<PaymentDetails>();
 		paymentDetailsTest.add(output);

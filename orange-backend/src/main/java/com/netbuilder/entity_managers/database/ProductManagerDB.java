@@ -15,6 +15,7 @@ import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.ProductValidator;
 
 /**
  * 
@@ -26,15 +27,22 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class ProductManagerDB implements ProductManager {
 	@Inject
 	private PersistenceManager pm;
+	
+	private ProductValidator productValidator;
 
 	public void persistProduct(Product product) {
-
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(product);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
-
+		if(productValidator.validateProduct(product))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(product);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public void persistProducts(List<Product> products) {
