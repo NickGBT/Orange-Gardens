@@ -48,7 +48,7 @@ public class LoginDetails implements Serializable {
 	private String email;
 	@Column(name = "password", nullable = false, length = 160)
 	@NotNull
-	@Size(min = 160, max = 160)
+	@Size(min = 5, max = 160)
 	private byte[] password;
 	@Column(name = "salt", nullable = false, length = 8)
 	@NotNull
