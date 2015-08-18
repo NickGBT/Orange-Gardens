@@ -37,7 +37,7 @@ public class DeliveryLineTest {
 	private String supplier = "GnomeM8";
 	private BigDecimal price = new BigDecimal(50.00);
 	private Delivery delivery;
-	private ProductCategory productCategory = ProductCategory.Accessory;
+	private ProductCategory productCategory = ProductCategory.accessory;
 
 	private int quantity = 10;
 

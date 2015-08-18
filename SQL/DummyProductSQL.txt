@@ -1,0 +1,4 @@
+UPDATE `orange_gardens`.`product` SET `product_category`='Accessory' WHERE `product_id`='1';
+UPDATE `orange_gardens`.`product` SET `product_category`='Gnome' WHERE `product_id`='2';
+UPDATE `orange_gardens`.`product` SET `product_category`='Furniture' WHERE `product_id`='3';
+UPDATE `orange_gardens`.`product` SET `product_category`='Building' WHERE `product_id`='4';

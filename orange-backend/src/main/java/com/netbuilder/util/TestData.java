@@ -46,13 +46,13 @@ public class TestData {
 	public LoginDetails employeeLogin = new LoginDetails("fooUser2",
 			"testEmail2", password, salt);
 
-	public PaymentDetails paymentDetails = new PaymentDetails(CardType.VISA,
+	public PaymentDetails paymentDetails = new PaymentDetails(CardType.visa,
 			"3435634734679447", "BOB", 323, "22/07/2020", customerLogin);
 
-	public PaymentDetails paymentDetails2 = new PaymentDetails(CardType.VISA,
+	public PaymentDetails paymentDetails2 = new PaymentDetails(CardType.visa,
 			"3432334534349464", "HARRY", 684, "11/02/2017", customerLogin2);
 
-	public PaymentDetails paymentDetails3 = new PaymentDetails(CardType.VISA,
+	public PaymentDetails paymentDetails3 = new PaymentDetails(CardType.visa,
 			"2346546487469332", "PAUL", 925, "10/12/2025", customerLogin3);
 
 	public Order order = new Order(customerLogin, employeeLogin,
@@ -69,16 +69,16 @@ public class TestData {
 
 	public Product product_genID = new Product(1, "img/iomg", "testproduct",
 			25.25, 10, 10, 11, 10.50, "test Product gen",
-			ProductCategory.Accessory);
+			ProductCategory.accessory);
 
 	public Product product = new Product("img/iomg", "testproduct", 25.25, 10,
-			10, 11, 10.50, "test Product", ProductCategory.Accessory);
+			10, 11, 10.50, "test Product", ProductCategory.accessory);
 
 	public Product product2 = new Product("img/iomg", "testproduct2", 29.25,
-			53, 90, 15, 15.50, "test Product 2", ProductCategory.Gnome);
+			53, 90, 15, 15.50, "test Product 2", ProductCategory.gnome);
 
 	public Product product3 = new Product("img/iomg", "testproduct3", 76.25,
-			80, 45, 18, 19.50, "test Product 3", ProductCategory.Furniture);
+			80, 45, 18, 19.50, "test Product 3", ProductCategory.furniture);
 
 	public Address address = new Address(customerLogin, "house", "absolutely",
 			"fantastic", "pull", "bounce", "cheese", "LEY76R", false);
@@ -119,17 +119,17 @@ public class TestData {
 	public Customer customer3 = new Customer("fName3", "lName3",
 			"contactNumber3", true);
 
-	public Employee employee = new Employee(EmployeeDepartment.WAREHOUSE,
-			"Ware", "House", EmployeePermissions.MANAGER);
+	public Employee employee = new Employee(EmployeeDepartment.warehouse,
+			"Ware", "House", EmployeePermissions.manager);
 
-	public Employee employee2 = new Employee(EmployeeDepartment.WAREHOUSE,
-			"Slave", "Labor", EmployeePermissions.WORKER);
+	public Employee employee2 = new Employee(EmployeeDepartment.warehouse,
+			"Slave", "Labor", EmployeePermissions.worker);
 
-	public Employee employee3 = new Employee(EmployeeDepartment.WAREHOUSE,
-			"Shelf", "Picker", EmployeePermissions.WORKER);
+	public Employee employee3 = new Employee(EmployeeDepartment.warehouse,
+			"Shelf", "Picker", EmployeePermissions.worker);
 
-	public Employee employee4 = new Employee(EmployeeDepartment.SALES,
-			"Telephone", "House", EmployeePermissions.MANAGER);
+	public Employee employee4 = new Employee(EmployeeDepartment.sales,
+			"Telephone", "House", EmployeePermissions.manager);
 
 	public Stock stock = new Stock(product, 4, 3, "Over there", 10, 2, 5, 10 , 10);
 

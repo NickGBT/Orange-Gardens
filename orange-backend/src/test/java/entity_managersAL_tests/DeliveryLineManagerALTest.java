@@ -29,7 +29,7 @@ public class DeliveryLineManagerALTest {
 	@Before
 	public void setUp() throws Exception {
 		product = new Product("img/iomg", "testproduct", 25.25, 10, 10, 11,
-				10.50, "test Product", ProductCategory.Accessory);
+				10.50, "test Product", ProductCategory.accessory);
 		delivery = new Delivery("10/10/15", "12/10/15", "GnomeM8",
 				new BigDecimal(22.50));
 

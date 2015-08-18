@@ -49,7 +49,7 @@ public class OrderManagerALTest {
 				salt);
 		testCustomer4 = new LoginDetails("fooUser6", "testEmail6", password,
 				salt);
-		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
 				"BOB", 323, "22/07/2020", testCustomer);
 		testOrder = new Order(testCustomer, testEmployee,
 				OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO",

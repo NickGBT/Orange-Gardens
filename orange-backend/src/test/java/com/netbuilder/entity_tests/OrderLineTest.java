@@ -45,7 +45,7 @@ public class OrderLineTest {
 	private int height = 35;
 	private double weight = 3;
 	private String description = "A gnome for testing, should never exist";
-	private ProductCategory productCategory = ProductCategory.Accessory;
+	private ProductCategory productCategory = ProductCategory.accessory;
 	private PaymentDetails paymentDetails;
 	private OrderLine productLine;
 
@@ -59,7 +59,7 @@ public class OrderLineTest {
 		employee = new LoginDetails("employee123", "testEmail1", password, salt);
 
 		orderStatus = OrderStatus.cancelled;
-		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
 				"BOB", 323, "22/07/2020", customer);
 		testOrder = new Order(customer, employee, orderStatus, datePlaced,
 				dateDispatched, dateDelivered,

@@ -23,10 +23,10 @@ public class EmployeeTest {
 	@Before
 	public void setUp() throws Exception {
 
-		employeeDepartment = EmployeeDepartment.SALES;
+		employeeDepartment = EmployeeDepartment.sales;
 		fName = "Matthew";
 		lName = "Watson";
-		employeePermission = EmployeePermissions.MANAGER;
+		employeePermission = EmployeePermissions.manager;
 
 		testEmployee = new Employee(employeeDepartment, fName, lName,
 				employeePermission);

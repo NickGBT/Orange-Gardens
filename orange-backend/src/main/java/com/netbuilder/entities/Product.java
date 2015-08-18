@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -81,6 +83,7 @@ public class Product implements Serializable {
 	private String description;
 
 	@Column(name = "product_category", nullable = false)
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	private ProductCategory category;
 	

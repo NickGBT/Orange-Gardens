@@ -42,7 +42,7 @@ public class OrderTest {
 		employee = new LoginDetails("customer123", "testEmail1", password, salt);
 
 		orderStatus = OrderStatus.cancelled;
-		paymentDetails = new PaymentDetails(CardType.VISA, "3435634734679447",
+		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
 				"BOB", 323, "22/07/2020", customer);
 		testOrder = new Order(customer, employee, orderStatus, datePlaced,
 				dateDispatched, dateDelivered,

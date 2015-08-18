@@ -26,7 +26,7 @@ public class StockTest {
 	private int requiredStock = 5;
 	private int warehouseX = 13;
 	private int warehouseY = 10;
-	private ProductCategory productCategory = ProductCategory.Accessory;
+	private ProductCategory productCategory = ProductCategory.accessory;
 
 	@Before
 	public void setUp() throws Exception {

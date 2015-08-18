@@ -7,5 +7,5 @@ package com.netbuilder.enums;
  */
 
 public enum ProductCategory {
-	Gnome, Accessory, Tool, Furniture, Building;
+	gnome, accessory, tool, furniture, building;
 }
