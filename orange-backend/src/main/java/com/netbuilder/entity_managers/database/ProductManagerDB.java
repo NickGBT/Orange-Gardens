@@ -23,12 +23,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
-@NamedQueries({
-	@NamedQuery(name = Product.GET_ALL, query = "SELECT p FROM products p"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_ID, query = "SELECT p FROM products p WHERE p.product_id = :id;"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM products p WHERE MATCH(p.product_name) AGAINST (':name');"),
-	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM products p WHERE p.product_price BETWEEN :lPrice AND :hPrice;"),
-	@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM products p WHERE MATCH(p.product_category) AGAINST (':category');"), })
 @Default
 @Stateless
 public class ProductManagerDB implements ProductManager {
@@ -63,7 +57,6 @@ public class ProductManagerDB implements ProductManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.GET_ALL, Product.class);
-
 		pm.closeEntityManager(em);
 		try {
 			results = new ArrayList<Product>(tq.getResultList());
@@ -129,7 +122,6 @@ public class ProductManagerDB implements ProductManager {
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY, Product.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("category", category);
-
 		try {
 			results = new ArrayList<Product>(tq.getResultList());
 		} catch (NoResultException nre) {

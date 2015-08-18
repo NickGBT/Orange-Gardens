@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,9 +20,12 @@ import com.netbuilder.enums.CardType;
  * @author mwatson
  *
  */
-
 @Entity
 @Table(name = "payment_details")
+@NamedQueries({
+	@NamedQuery(name = PaymentDetails.FIND_BY_CARD_NUMBER, query = "SELECT pd FROM PaymentDetails pd WHERE pd.cardNumber = :cardNo"),
+	@NamedQuery(name = PaymentDetails.FIND_BY_CUSTOMER, query = "SELECT pd FROM PaymentDetails pd WHERE pd.customerId = :id"),
+	@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query = "SELECT pd FROM PaymentDetails pd WHERE pd.customerId = :id AND pd.expiryDate < :currentDate")})
 public class PaymentDetails implements Serializable {
 
 	public static final String FIND_BY_CARD_NUMBER = "PaymentDetails.findByCardNumber";

@@ -22,10 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author llew
  *
  */
-@NamedQueries({
-		@NamedQuery(name = "FindByProductId", query = "SELECT d FROM delivery_line WHERE d.product_id = :product_id"),
-		@NamedQuery(name = "FindByDeliveryId", query = "SELECT d FROM delivery_line WHERE d.delivery_id = :delivery_id"),
-		@NamedQuery(name = "FindByQuantity", query = "SELECT d FROM delivery_line WHERE d.quantity = :quantity") })
 @Default
 @Stateless
 public class DeliveryLineManagerDB implements DeliveryLineManager {
@@ -55,8 +51,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 
 	public DeliveryLine findByProductId(int productId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByProductId",
-				DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByProductId", DeliveryLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("product_id", productId);
 		try {
@@ -70,8 +65,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 
 	public DeliveryLine findByDeliveryId(int deliveryId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId",
-				DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("delivery_id", deliveryId);
 		try {
@@ -85,8 +79,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 	public List<DeliveryLine> findByQuantity(int quantity) {
 		List<DeliveryLine> delLine = new ArrayList<DeliveryLine>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId",
-				DeliveryLine.class);
+		TypedQuery<DeliveryLine> tq = em.createNamedQuery("FindByDeliveryId", DeliveryLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
 		try {
@@ -100,9 +93,7 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 
 	public List<DeliveryLine> getDeliveryLine() {
 		EntityManager em = pm.createEntityManager();
-		List<DeliveryLine> delLine = (ArrayList<DeliveryLine>) em.createQuery(
-				"select d from delivery_line d", DeliveryLine.class)
-				.getResultList();
+		List<DeliveryLine> delLine = (ArrayList<DeliveryLine>) em.createNamedQuery(DeliveryLine.GET_ALL, DeliveryLine.class).getResultList();
 		pm.closeEntityManager(em);
 		return delLine;
 	}

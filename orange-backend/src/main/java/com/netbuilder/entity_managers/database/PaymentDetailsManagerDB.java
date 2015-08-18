@@ -22,11 +22,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author Alexander Neil
  *
  */
-@NamedQueries({
-	@NamedQuery(name = PaymentDetails.FIND_BY_CARD_NUMBER, query = "SELECT pd FROM payment_details pd WHERE pd.card_number = :cardNo;"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_CUSTOMER, query = "SELECT pd FROM payment_detais pd WHERE pd.customer_id = :id;"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query = "SELECT pd FROM payment_details pd WHERE pd.customer_id = :id AND expiry_date < CURRENT_DATE();"),
-	@NamedQuery(name = PaymentDetails.FIND_BY_ORDER, query = "SELECT pd FROM payment_details pd WHERE order_id = :oId;") })
 @Default
 @Stateless
 public class PaymentDetailsManagerDB implements PaymentDetailsManager {
@@ -57,8 +52,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 	public PaymentDetails findCardByNumber(String cardNumber) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<PaymentDetails> tq = em.createNamedQuery(
-				PaymentDetails.FIND_BY_CARD_NUMBER, PaymentDetails.class);
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CARD_NUMBER, PaymentDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("cardNo", cardNumber);
 		try {
@@ -71,10 +65,9 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 	public PaymentDetails findCustomerPaymentDetails(int userId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<PaymentDetails> tq = em.createNamedQuery(
-				PaymentDetails.FIND_BY_CUSTOMER, PaymentDetails.class);
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_CUSTOMER, PaymentDetails.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("userid", userId);
+		tq.setParameter("id", userId);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
@@ -87,8 +80,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 		List<PaymentDetails> results = null;
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<PaymentDetails> tq = em.createNamedQuery(
-				PaymentDetails.FIND_BY_EXPIRED, PaymentDetails.class);
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_EXPIRED, PaymentDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("id", customerId);
 		try {
@@ -102,8 +94,7 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<PaymentDetails> tq = em.createNamedQuery(
-				PaymentDetails.FIND_BY_ORDER, PaymentDetails.class);
+		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_ORDER, PaymentDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("oId", orderId);
 		try {

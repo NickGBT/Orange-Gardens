@@ -23,19 +23,6 @@ import com.netbuilder.persistence_manager.PersistenceManager;
  * @author mwatson
  *
  */
-
-@NamedQueries({
-		@NamedQuery(name = "FindByOrderId", query = "SELECT a FROM order WHERE a.order_id = :order_id"),
-		@NamedQuery(name = "FindByStatus", query = "SELECT a FROM order WHERE a.status = :status"),
-		@NamedQuery(name = "FindByDateDispatched", query = "SELECT a FROM order WHERE a.date_dispatched = :date_dispatched"),
-		@NamedQuery(name = "FindByDatePlaced", query = "SELECT a FROM order WHERE a.date_placed = :date_placed"),
-		@NamedQuery(name = "FindByDatePlacedInMillis", query = "SELECT a FROM order WHERE a.date_placed_millis = :date_placed_millis"),
-		@NamedQuery(name = "FindByDateDelivered", query = "SELECT a FROM order WHERE a.date_delivered = :date_delivered"),
-		@NamedQuery(name = "FindByTwoDatesOrderPlaced", query = "SELECT a FROM order WHERE a.date_placed BETWEEN :fDate AND sDate"),
-		@NamedQuery(name = "FindByTwoDatesOrderDispatched", query = "SELECT a FROM order WHERE a.date_dispatched BETWEEN :fDate AND sDate"),
-		@NamedQuery(name = "FindByTwoDatesOrderDelivered", query = "SELECT a FROM order WHERE a.date_delivered BETWEEN :fDate AND sDate"),
-		@NamedQuery(name = "FindByCustomerId", query = "SELECT a FROM order WHERE a.customer_id = :customer_id"),
-		@NamedQuery(name = "FindByEmployeeId", query = "SELECT a FROM order WHERE a.employee_id = :employee_id"), })
 @Default
 @Stateless
 public class OrderManagerDB implements OrderManager {

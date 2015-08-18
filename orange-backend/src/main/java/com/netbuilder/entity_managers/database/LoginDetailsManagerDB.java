@@ -23,10 +23,6 @@ import com.netbuilder.util.LoginDetailsToolkit;
  * @author Alexander Neil
  *
  */
-@NamedQueries({
-	@NamedQuery(name = LoginDetails.FIND_BY_USERNAME, query = "SELECT ld FROM login_details ld WHERE ld.username = :username;"),
-	@NamedQuery(name = LoginDetails.FIND_BY_EMAIL, query = "SELECT ld FROM login_details ld WHERE ld.email = :email;"),
-	@NamedQuery(name = LoginDetails.FIND_BY_USER_ID, query = "SELECT ld FROM login_details ld WHERE ld.user_id = :userId;") })
 @Default
 @Stateless
 public class LoginDetailsManagerDB implements LoginDetailsManager {
