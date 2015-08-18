@@ -176,7 +176,7 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				logger.info("logger is now working m8");
 				try {
 					order = (DopsOrder) receiver.getMessage("dops_queue");
 				} catch (JMSException e2) {
