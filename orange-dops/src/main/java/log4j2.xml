@@ -16,6 +16,13 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
+		<Logger name="com.netbuilder.orange_dops" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="com.netbuilder.util" level="debug"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 	</Loggers>
 </Configuration>

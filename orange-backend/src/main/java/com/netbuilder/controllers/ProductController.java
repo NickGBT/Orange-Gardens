@@ -17,7 +17,7 @@ import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.ProductDetails;
-import com.netbuilder.util.TestData;
+import com.netbuilder.util.OrderData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -60,7 +60,7 @@ public class ProductController {
 	private OrderLineManager olm;
 
 	@ManagedProperty(value = "#{testData}")
-	private TestData testData;
+	private OrderData testData;
 	private ProductDetails productD;
 	private Product product;
 	private String productId;
@@ -198,7 +198,7 @@ public class ProductController {
 	/**
 	 * @return the testData
 	 */
-	public TestData getTestData() {
+	public OrderData getTestData() {
 		return testData;
 	}
 
@@ -206,7 +206,7 @@ public class ProductController {
 	 * @param testData
 	 *            the testData to set
 	 */
-	public void setTestData(TestData testData) {
+	public void setTestData(OrderData testData) {
 		this.testData = testData;
 	}
 

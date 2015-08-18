@@ -20,7 +20,7 @@ public class DopsOrderline implements Serializable
 		this.productName = productName;
 		this.quantity = quantity;
 		this.boxSize = boxSize;
-		this.setPath(path);
+		this.path = path;
 	}
 	
 	

@@ -20,7 +20,7 @@ import com.netbuilder.jms.QueueSenderBean;
 import com.netbuilder.jms_tools.DopsOrder;
 import com.netbuilder.jms_tools.DopsOrderline;
 import com.netbuilder.jms_tools.GladosNode;
-import com.netbuilder.util.TestData;
+import com.netbuilder.util.OrderData;
 
 @ManagedBean(name = "messageController")
 @RequestScoped

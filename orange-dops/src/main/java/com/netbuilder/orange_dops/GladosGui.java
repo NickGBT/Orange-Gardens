@@ -34,12 +34,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.netbuilder.util.TestData;
 import com.netbuilder.jms.Receiver;
 import com.netbuilder.jms_tools.DopsOrder;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
 import com.netbuilder.pathfinding.WarehouseMap;
+import com.netbuilder.util.OrderData;
 
 /**
  * 
@@ -49,7 +49,7 @@ import com.netbuilder.pathfinding.WarehouseMap;
 public class GladosGui 
 {
 	private static final Logger logger = LogManager.getLogger();
-	private TestData testData;
+	private OrderData orderData;
 	private JFrame mainFrame, splashFrame;
 	private Image gladosLogo, splash, background;
 	private JLabel splashLabel, backgroundLabel;
@@ -132,10 +132,9 @@ public class GladosGui
 	    }
     	initMap();
     	assignActionListeners();
-    	testData = new TestData();
     	testPath = null;
 		initMap();
-		testPath = warehouseMap.findPath(0, 0, 10, 10);
+		testPath = warehouseMap.findPath(0, 0, 0, 0);
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		ui = new Thread()
@@ -200,6 +199,9 @@ public class GladosGui
 				try {
 					System.out.println("Before Message");
 					order = (DopsOrder) receiver.getMessage("dops_queue");
+					logger.info("Order: " + order.getDopsOrder().get(0).getProductName());
+					orderData = new OrderData(order);
+					logger.info("Received Following Order: " + order.getDopsOrder().get(0).getProductName());
 					logger.info("Received message correctly from broker");
 					System.out.println("Received message correctly from broker");
 				} catch (JMSException e2) {
@@ -208,6 +210,7 @@ public class GladosGui
 					System.out.println("Cannot receive message from broker");
 					e2.printStackTrace();
 				} catch(Exception e) {
+					logger.error("Cannot retrieve correct information from order sent");
 					System.out.println("Message Error");
 					e.printStackTrace();
 				}
@@ -233,7 +236,7 @@ public class GladosGui
 				{
 					JOptionPane.showMessageDialog(mainFrame, "Please enter a valid username and password", "Invalid entry!", JOptionPane.ERROR_MESSAGE);
 				}
-				else if(username.getText().equals(testData.getEmployeeUsername()) || password.getPassword().toString().equals(testData.getEmployeePassword()))
+				else if(username.getText().equals("JSmith") || password.getPassword().toString().equals("password"))
 				{
 					user = username.getText();
 					pass = password.getPassword().toString();
@@ -248,7 +251,7 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if(testData.isOrdersComplete())
+				if(orderData.isOrdersComplete())
 				{
 					displayGetOrder();
 				}
@@ -273,17 +276,17 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				if(testData.getProductIncrement() < 2)
+				if(orderData.getProductIncrement() < (order.getDopsOrder().size() - 1))
 				{
-					testData.setProductIncrement(testData.getProductIncrement() + 1);
+					orderData.setProductIncrement(orderData.getProductIncrement() + 1);
 					getNewRoute();				
 				}
-				else if(testData.getProductIncrement() == 2 && testData.isGdz() == false)
+				else if(orderData.getProductIncrement() == (order.getDopsOrder().size() - 1) && orderData.isGdz() == false)
 				{
-					testData.setGdz(true);
+					orderData.setGdz(true);
 					getNewRoute();
 				}
-				if(testData.isGdz() == true)
+				if(orderData.isGdz() == true)
 				{
 					getGdzRoute();
 				}
@@ -297,14 +300,14 @@ public class GladosGui
 	public void getNewRoute()
 	{
 		initMap();
-		if(testData.getProductIncrement() > 0)
+		if(orderData.getProductIncrement() > 0)
     	{
-	    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement() - 1]);
-	    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement() - 1]);
+	    	orderData.setxStart(orderData.getxProductLocation()[orderData.getProductIncrement()]);
+	    	orderData.setyStart(orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	}
-    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), 
-    			testData.getxProductLocation()[testData.getProductIncrement()], 
-    			testData.getyProductLocation()[testData.getProductIncrement()]);
+    	testPath = warehouseMap.findPath(orderData.getxStart(), orderData.getyStart(), 
+    			orderData.getxProductLocation()[orderData.getProductIncrement()], 
+    			orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	nextProduct.setEnabled(true);
     	displayMap();
 	}
@@ -315,13 +318,13 @@ public class GladosGui
 	public void getGdzRoute()
 	{
 		initMap();
-		if(testData.getProductIncrement() > 0)
+		if(orderData.getProductIncrement() > 0)
     	{
-	    	testData.setxStart(testData.getxProductLocation()[testData.getProductIncrement()]);
-	    	testData.setyStart(testData.getyProductLocation()[testData.getProductIncrement()]);
+	    	orderData.setxStart(orderData.getxProductLocation()[orderData.getProductIncrement()]);
+	    	orderData.setyStart(orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	}
-    	testPath = warehouseMap.findPath(testData.getxStart(), testData.getyStart(), testData.getxGdz(), testData.getyGdz());
-    	testData.setOrdersComplete(true);
+    	testPath = warehouseMap.findPath(orderData.getxStart(), orderData.getyStart(), orderData.getxGdz(), orderData.getyGdz());
+    	orderData.setOrdersComplete(true);
     	nextProduct.setEnabled(false);
     	completeOrder.setEnabled(true);
     	displayMap();
@@ -590,14 +593,18 @@ public class GladosGui
     	boxSize.setPreferredSize(new Dimension(200, 30));
     	boxSize.setEditable(false);
     	boxSize.setMaximumSize(boxSize.getPreferredSize());
+   
     	
-    	if(testData.getProductIncrement() <= 2)
-    	{
-    		productName.setText("Product Name: " + testData.getTestNames()[testData.getProductIncrement()]);
-    		quantity.setText("Quantity: " + testData.getTestQuantities()[testData.getProductIncrement()]  + "	Remaining Products: (" + (2 - testData.getProductIncrement()) + ")");
-    		boxSize.setText("Box Type: " + testData.getTestBoxes()[testData.getProductIncrement()]);
+    	if(orderData.getProductIncrement() == order.getDopsOrder().size()){
+    		testPath = warehouseMap.findPath(0, 0, orderData.getxProductLocation()[orderData.getProductIncrement()], orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	}
-    	if(testData.isGdz())
+    	if(orderData.getProductIncrement() <= order.getDopsOrder().size())
+    	{
+    		productName.setText("Product Name: " + orderData.getTestNames()[orderData.getProductIncrement()]);
+    		quantity.setText("Quantity: " + orderData.getTestQuantities()[orderData.getProductIncrement()]  + "	Remaining Products: (" + (order.getDopsOrder().size() - orderData.getProductIncrement() - 1) + ")");
+    		boxSize.setText("Box Type: " + orderData.getTestBoxes()[orderData.getProductIncrement()]);
+    	}
+    	if(orderData.isGdz())
     	{
     		productName.setText("Take products to GDZ");
         	quantity.setText("");

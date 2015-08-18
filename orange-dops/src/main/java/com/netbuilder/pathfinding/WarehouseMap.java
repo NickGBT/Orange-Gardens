@@ -138,7 +138,11 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable {
 		boolean done = false;
 		while (!done) {
 			path.addFirst(curr);
-			curr = (gladosNode) curr.getPrevious();
+			
+			if (start != goal)
+			{
+				curr = (gladosNode) curr.getPrevious();
+			}
 
 			if (curr.equals(start)) {
 				done = true;
