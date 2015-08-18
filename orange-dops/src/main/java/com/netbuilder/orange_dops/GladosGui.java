@@ -180,8 +180,10 @@ public class GladosGui
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
+
 				logger.info("Order Being Assigned");
 				System.out.println("Order Being Assigned");
+
 				try {
 					System.out.println("Before Receiver");
 					receiver = new Receiver("127.0.0.1");
