@@ -7,6 +7,7 @@ import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
 import com.netbuilder.entities.Address;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 
 /**
@@ -51,9 +52,9 @@ public class AddressManagerAL implements AddressManager {
 		return null;
 	}
 
-	public Address findByUserId(int userId) {
+	public Address findByUserId(LoginDetails customer) {
 		for (Address a : addresses) {
-			if (a.getCustomer().getUserId() == userId) {
+			if (a.getCustomer().getUserId() == customer.getUserId()) {
 				return a;
 			}
 		}

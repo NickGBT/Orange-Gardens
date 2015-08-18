@@ -8,6 +8,7 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 
@@ -38,10 +39,10 @@ public class PaymentDetailsManagerAL implements PaymentDetailsManager {
 		return null;
 	}
 
-	public PaymentDetails findCustomerPaymentDetails(int userId) {
+	public PaymentDetails findCustomerPaymentDetails(LoginDetails customer) {
 
 		for (PaymentDetails pd : paymentDetails) {
-			if (pd.getCustomerId().getUserId() == userId)
+			if (pd.getCustomerId().getUserId() == customer.getUserId())
 				return pd;
 		}
 		return null;

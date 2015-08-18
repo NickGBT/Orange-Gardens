@@ -7,6 +7,7 @@ import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
 import com.netbuilder.entities.Customer;
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 
 /**
@@ -65,9 +66,9 @@ public class CustomerManagerAL implements CustomerManager {
 		return null;
 	}
 	
-	public Customer findByUserId(int userId) {
+	public Customer findByUser(LoginDetails customer) {
 		for (Customer c : customers) {
-			if (c.getCustomer().getUserId() == userId) {
+			if (c.getCustomer().getUserId() == customer.getUserId()) {
 				return c;
 			}
 		}
