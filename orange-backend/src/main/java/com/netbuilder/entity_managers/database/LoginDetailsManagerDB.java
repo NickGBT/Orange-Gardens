@@ -15,6 +15,7 @@ import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
 import com.netbuilder.util.LoginDetailsToolkit;
+import com.netbuilder.validation.LoginDetailsValidator;
 
 /**
  * 
@@ -26,14 +27,22 @@ import com.netbuilder.util.LoginDetailsToolkit;
 public class LoginDetailsManagerDB implements LoginDetailsManager {
 	@Inject
 	private PersistenceManager pm;
+	
+	private LoginDetailsValidator loginDetailsValidator;
 
 	public void persistLoginDetails(LoginDetails details) {
-
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(details);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(loginDetailsValidator.validateLoginDetails(details))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(details);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public LoginDetails findByUsername(String username) {

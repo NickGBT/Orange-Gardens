@@ -15,6 +15,7 @@ import com.netbuilder.entities.Customer;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.CustomerManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.CustomerValidator;
 
 /**
  * 
@@ -27,14 +28,23 @@ public class CustomerManagerDB implements CustomerManager
 {
 	@Inject
 	private PersistenceManager pm;
+	
+	private CustomerValidator customerValidator;
 
 	public void persistCustomer(Customer customer) 
 	{
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(customer);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		if(customerValidator.validateCustomer(customer))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(customer);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public void persistCustomer(List<Customer> customers) 

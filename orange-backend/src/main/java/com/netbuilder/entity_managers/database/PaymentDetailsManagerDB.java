@@ -14,6 +14,7 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
+import com.netbuilder.validation.PaymentDetailsValidator;
 
 /**
  * 
@@ -25,15 +26,23 @@ import com.netbuilder.persistence_manager.PersistenceManager;
 public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 	@Inject
 	private PersistenceManager pm;
+	
+	private PaymentDetailsValidator paymentDetailsValidator;
 
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
-
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(paymentDetails);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
-
+		
+		if(paymentDetailsValidator.validatePaymentDetails(paymentDetails))
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(paymentDetails);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		else
+		{
+			//do something (maybe)
+		}
 	}
 
 	public void persistPaymentDetails(List<PaymentDetails> paymentDetails) {

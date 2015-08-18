@@ -29,14 +29,10 @@ public class DeliveryManagerALTest {
 	public void setUp() throws Exception {
 
 		deliveryManager = new DeliveryManagerAL();
-		testDelivery = new Delivery("AB/BC/CDEF", "BC/DE/EFGH", "Gnome Depot",
-				new BigDecimal(110.5));
-		testDelivery2 = new Delivery("14/04/2015", "17/05/2015",
-				"Gnomes 'r' Us", new BigDecimal(340.7));
-		testDelivery3 = new Delivery("RQ/VD/2018", "VA/AR/2020",
-				"Gnarly Gnomes", new BigDecimal(230.15));
-		testDelivery4 = new Delivery("18/06/2014", "30/07/2015",
-				"Gnome Boutique", new BigDecimal(280.66));
+		testDelivery = new Delivery("AB/BC/CDEF", "BC/DE/EFGH", "Gnome Depot", 110.5);
+		testDelivery2 = new Delivery("14/04/2015", "17/05/2015", "Gnomes 'r' Us", 340.7);
+		testDelivery3 = new Delivery("RQ/VD/2018", "VA/AR/2020", "Gnarly Gnomes", 230.15);
+		testDelivery4 = new Delivery("18/06/2014", "30/07/2015", "Gnome Boutique", 280.66);
 		testArrayDelivery = new ArrayList<Delivery>();
 		testArrayDelivery2 = new ArrayList<Delivery>();
 	}

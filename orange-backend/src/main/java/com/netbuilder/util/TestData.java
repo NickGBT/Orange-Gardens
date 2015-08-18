@@ -90,13 +90,13 @@ public class TestData {
 			"staines", "kazakhstan", "meep", "okej", "JKASJS", false);
 
 	public Delivery delivery = new Delivery("AB/BC/CDEF", "BC/DE/EFGH",
-			"Gnome Depot", new BigDecimal(110.5));
+			"Gnome Depot", 110.5);
 
 	public Delivery delivery2 = new Delivery("14/04/2015", "17/05/2015",
-			"Gnomes 'r' Us", new BigDecimal(340.7));
+			"Gnomes 'r' Us", 340.7);
 
 	public Delivery delivery3 = new Delivery("RQ/VD/2018", "VA/AR/2020",
-			"Gnarly Gnomes", new BigDecimal(230.15));
+			"Gnarly Gnomes", 230.15);
 
 	public DeliveryLine deliveryLine = new DeliveryLine(product, delivery, 50);
 

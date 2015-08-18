@@ -2,8 +2,6 @@ package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,13 +20,12 @@ public class DeliveryTest {
 	private String datePlaced = "Today";
 	private String dateToBeDelivered = "Tomorrow";
 	private String supplier = "MC Gardens";
-	private BigDecimal price = new BigDecimal(11.5);
+	private double price = 11.5;
 
 	@Before
 	public void setUp() throws Exception {
 		deliveryStatus = DeliveryStatus.processing;
-		testDelivery = new Delivery(datePlaced, dateToBeDelivered, supplier,
-				price);
+		testDelivery = new Delivery(datePlaced, dateToBeDelivered, supplier, price);
 	}
 
 	@Test
