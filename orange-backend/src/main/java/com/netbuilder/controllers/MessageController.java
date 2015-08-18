@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
-import com.netbuilder.dops.GladosNode;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.PaymentDetails;
@@ -18,8 +17,9 @@ import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 import com.netbuilder.jms.QueueSenderBean;
-import com.netbuilder.util.DopsOrder;
-import com.netbuilder.util.DopsOrderline;
+import com.netbuilder.jms_tools.DopsOrder;
+import com.netbuilder.jms_tools.DopsOrderline;
+import com.netbuilder.jms_tools.GladosNode;
 import com.netbuilder.util.TestData;
 
 @ManagedBean(name = "messageController")

@@ -1,7 +1,12 @@
 package com.netbuilder.orange_dops;
 
+import javax.jms.JMSException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.netbuilder.jms.Receiver;
+import com.netbuilder.util.MessageHandler;
 
 /**
  * 
@@ -12,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 public class Glados {
 	private static final Logger logger = LogManager.getLogger();
 	private static GladosGui gladosGui = new GladosGui();
+	private static Receiver receiver ;
+	private static MessageHandler messageHandler;
 
 	/**
 	 * Main entry point for program - loads splash screen
@@ -22,5 +29,22 @@ public class Glados {
 		logger.info("GLADOS startup");
 		System.out.println("GLADOS startup...");
 		gladosGui.displaySplash();
+		
+		try {
+			receiver = new Receiver("127.0.0.1");
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		messageHandler = new MessageHandler();
+		
+		try {
+			receiver.listenOnQueue("dops_queue", messageHandler);
+			logger.info("Message received from broker.");
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

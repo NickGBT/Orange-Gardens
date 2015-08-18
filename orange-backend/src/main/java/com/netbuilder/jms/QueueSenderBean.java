@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 import org.jboss.ejb3.annotation.ResourceAdapter;
 
 import com.netbuilder.entities.Product;
-import com.netbuilder.util.DopsOrder;
+import com.netbuilder.jms_tools.DopsOrder;
 
 @Named(value="queueSender")
 @Stateless
