@@ -12,6 +12,7 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
+import com.netbuilder.entities.Address;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
@@ -38,12 +39,21 @@ public class OrderManagerAL implements OrderManager {
 		return null;
 	}
 
-	public List<Order> findByStatus(OrderStatus status) {
+	public Order findByStatusAndId(OrderStatus status, int customerId) {
 
+		for (Order o : orders) {
+			if (o.getOrderStatus() == status && o.getCustomer().getUserId() == customerId) {
+				return o;
+			}
+		}
+		return null;
+	}
+	
+	public List<Order> findByStatus(OrderStatus status) {
 		List<Order> orderResults = new ArrayList<Order>();
 
 		for (Order o : orders) {
-			if (o.getOrderStatus() == status) {
+			if (o.getOrderStatus().equals(status)) {
 				orderResults.add(o);
 			}
 		}
@@ -246,34 +256,15 @@ public class OrderManagerAL implements OrderManager {
 	}
 
 	public void updateOrder(Order order) {
-		// TODO Auto-generated method stub
-
+		for (Order o : orders) {
+			if (o.getOrderID() == order.getOrderID()) {
+				orders.set(orders.indexOf(o), order);
+			}
+		}
 	}
 
 	public List<Order> getAllOrders() {
 		return orders;
-	}
-
-	@Override
-	public int findWishlist(OrderStatus status, int customerId) {
-		for (Order o : orders) {
-			if (o.getOrderStatus().equals(status)
-					&& (o.getCustomer().getUserId() == customerId)) {
-				return o.getOrderID();
-			}
-		}
-		return 0;
-	}
-
-	@Override
-	public Order findBasket(OrderStatus status, int customerId) {
-		for (Order o : orders) {
-			if (o.getOrderStatus().equals(status)
-					&& (o.getCustomer().getUserId() == customerId)) {
-				return o;
-			}
-		}
-		return null;
 	}
 
 	@Override

@@ -151,8 +151,17 @@ public class ProductManagerDB implements ProductManager {
 
 	@Override
 	public List<Product> findProductsByNameAndCat(ProductCategory category, ArrayList<Product> products) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Product> categorySearchResult = new ArrayList<Product>(); 
+		
+		for (Product r : products) { 
+			
+			if (r.getCategory() == category ) {
+				
+				categorySearchResult.add(r);
+			}
+		}
+		System.out.println("Found results : " + categorySearchResult);
+		return categorySearchResult;
 	}
-
 }

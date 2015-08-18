@@ -48,9 +48,23 @@ public class OrderManagerDB implements OrderManager {
 		}
 	}
 
-	public List<Order> findByStatus(OrderStatus status) {
+	public Order findByStatusAndId(OrderStatus status, int customerId) {
 
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_STATUS_AND_ID, Order.class);
+		tq.setParameter("status", status);
+		tq.setParameter("customer", customerId);
+		pm.closeEntityManager(em);
+		try {
+			return tq.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
+	}
+	
+	public List<Order> findByStatus(OrderStatus status) {
 		List<Order> orders = new ArrayList<Order>();
+
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_STATUS, Order.class);
 		tq.setParameter("status", status);
@@ -114,8 +128,7 @@ public class OrderManagerDB implements OrderManager {
 		return orders;
 	}
 
-	public List<Order> findByTwoDatesOrderPlaced(String firstDate,
-			String secondDate) {
+	public List<Order> findByTwoDatesOrderPlaced(String firstDate, String secondDate) {
 		List<Order> orders = new ArrayList<Order>();
 
 		EntityManager em = pm.createEntityManager();
@@ -212,33 +225,20 @@ public class OrderManagerDB implements OrderManager {
 
 	public List<Order> getAllOrders() {
 		EntityManager em = pm.createEntityManager();
-		List<Order> order = (ArrayList<Order>) em.createQuery(
-				"select d from order d", Order.class).getResultList();
+		List<Order> order = (ArrayList<Order>) em.createNamedQuery(Order.GET_ALL, Order.class).getResultList();
 		pm.closeEntityManager(em);
 		return order;
 	}
 
 	@Override
-	public int findWishlist(OrderStatus status, int customerId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Order findBasket(OrderStatus status, int customerId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Order findBasketByUsername(OrderStatus status, String username) {
-		// TODO Auto-generated method stub
+		//Unnecessary once id's are in place
 		return null;
 	}
 
 	@Override
 	public List<Order> findPreviousOrders(OrderStatus status, String username) {
-		// TODO Auto-generated method stub
+		//Unnecessary once id's are in place
 		return null;
 	}
 }

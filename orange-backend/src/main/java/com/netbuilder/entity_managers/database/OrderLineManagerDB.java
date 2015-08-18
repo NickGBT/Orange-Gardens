@@ -112,8 +112,13 @@ public class OrderLineManagerDB implements OrderLineManager {
 	}
 
 	public void updateOrderLine(OrderLine orderLine) {
-		// TODO Auto-generated method stub
-
+		if (orderLine == null)
+		{
+			throw new ValidationException("null value passed");
+		}
+		EntityManager em = pm.createEntityManager();
+		em.merge(orderLine);
+		pm.closeEntityManager(em);
 	}
 
 	@Override

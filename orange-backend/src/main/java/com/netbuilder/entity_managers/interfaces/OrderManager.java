@@ -23,15 +23,13 @@ public interface OrderManager {
 	// READ
 	public Order findByOrderID(int orderID);
 
+	public Order findByStatusAndId(OrderStatus status, int customerId);
+	
 	public List<Order> findByStatus(OrderStatus status);
 
 	public List<Order> findByDatePlaced(String datePlaced);
 
 //	public List<Order> findByDatePlacedInMillis(long datePlacedInMillis);
-
-	public int findWishlist(OrderStatus status, int customerId);
-
-	public Order findBasket(OrderStatus status, int customerId);
 
 	public List<Order> findByDateDispatched(String dateDispatched);
 
