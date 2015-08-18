@@ -123,34 +123,4 @@ public class OrderManagerALTest {
 		assertNotEquals(testOrder2,
 				orderManager.findByOrderID(testOrder.getOrderID()));
 	}
-
-	@Test
-	public void testFindWishlist() {
-		int tempUserId = testCustomer3.getUserId();
-		testArrayOrder.clear();
-		OrderStatus status = OrderStatus.wishlist;
-
-		orderManager.persistOrder(testOrder);
-		orderManager.persistOrder(testOrder2);
-		orderManager.persistOrder(testOrder3);
-
-		assertEquals(orderManager.findWishlist(status, tempUserId),
-				testOrder3.getOrderID());
-
-	}
-
-	@Test
-	public void testFindBasket() {
-		int tempUserId = testCustomer4.getUserId();
-		testArrayOrder.clear();
-		OrderStatus status = OrderStatus.basket;
-
-		orderManager.persistOrder(testOrder);
-		orderManager.persistOrder(testOrder2);
-		orderManager.persistOrder(testOrder4);
-
-		assertEquals(orderManager.findBasket(status, tempUserId), testOrder4);
-
-	}
-
 }

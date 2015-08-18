@@ -38,8 +38,7 @@ public class OrderDetails {
 
 	public List<OrderLine> getWishlist() {
 
-		int wishlistId = orderManager.findWishlist(OrderStatus.wishlist,
-				userId.getUid());
+		int wishlistId = orderManager.findByStatusAndId(OrderStatus.wishlist, userId.getUid()).getOrderID();
 
 		associatedOrderLines = orderLineManager.findByOrderId(wishlistId);
 
@@ -49,9 +48,8 @@ public class OrderDetails {
 
 	public List<OrderLine> getBasket() {
 
-		int basketId = orderManager.findWishlist(OrderStatus.basket,
-				userId.getUid());
-
+		int basketId = orderManager.findByStatusAndId(OrderStatus.basket, userId.getUid()).getOrderID();
+		
 		associatedOrderLines = orderLineManager.findByOrderId(basketId);
 
 		return associatedOrderLines;
@@ -60,8 +58,7 @@ public class OrderDetails {
 
 	public void moveOrderToBasket() {
 
-		int wishListId = orderManager.findWishlist(OrderStatus.wishlist,
-				userId.getUid());
+		int wishListId = orderManager.findByStatusAndId(OrderStatus.wishlist, userId.getUid()).getOrderID();
 
 		order = orderManager.findByOrderID(wishListId);
 
@@ -73,8 +70,7 @@ public class OrderDetails {
 
 	public void checkoutOrder() {
 
-		int orderId = orderManager.findWishlist(OrderStatus.basket,
-				userId.getUid());
+		int orderId = orderManager.findByStatusAndId(OrderStatus.basket, userId.getUid()).getOrderID();
 
 		order = orderManager.findByOrderID(orderId);
 
@@ -129,8 +125,7 @@ public class OrderDetails {
 	 * 
 	 */
 	public void updateBasketQuantity(int productId) {
-		int basketId = orderManager.findWishlist(OrderStatus.basket,
-				userId.getUid());
+		int basketId = orderManager.findByStatusAndId(OrderStatus.basket, userId.getUid()).getOrderID();
 
 		associatedOrderLines = orderLineManager.findByOrderId(basketId);
 

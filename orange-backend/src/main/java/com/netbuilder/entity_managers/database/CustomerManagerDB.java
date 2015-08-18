@@ -134,7 +134,7 @@ public class CustomerManagerDB implements CustomerManager
 	@Override
 	public Customer findByUsername(String username) 
 	{
-		// TODO Auto-generated method stub
+		//Unneccessary once ids are in place
 		return null;
 	}
 

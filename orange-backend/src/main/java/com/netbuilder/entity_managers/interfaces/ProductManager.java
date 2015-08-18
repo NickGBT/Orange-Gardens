@@ -29,8 +29,7 @@ public interface ProductManager {
 
 	public List<Product> findProductsByName(String name);
 
-	public List<Product> findProductsByPriceBetween(double lowPrice,
-			double highPrice);
+	public List<Product> findProductsByPriceBetween(double lowPrice, double highPrice);
 
 	public List<Product> findProductsByNameAndCat(ProductCategory category, ArrayList<Product> products);
 	
