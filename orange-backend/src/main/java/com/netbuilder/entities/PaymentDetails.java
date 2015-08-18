@@ -31,7 +31,6 @@ public class PaymentDetails implements Serializable {
 	public static final String FIND_BY_CARD_NUMBER = "PaymentDetails.findByCardNumber";
 	public static final String FIND_BY_CUSTOMER = "PaymentDetails.findByCustomer";
 	public static final String FIND_BY_EXPIRED = "PaymentDetails.findByExpired";
-	public static final String FIND_BY_ORDER = "PaymentDetails.findByOrder";
 
 	@Column(name = "card_type", nullable = false)
 	@NotNull

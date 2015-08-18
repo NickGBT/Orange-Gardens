@@ -24,12 +24,14 @@ import javax.validation.constraints.Size;
 @NamedQueries({
 	@NamedQuery(name = LoginDetails.FIND_BY_USERNAME, query = "SELECT ld FROM LoginDetails ld WHERE ld.username = :username"),
 	@NamedQuery(name = LoginDetails.FIND_BY_EMAIL, query = "SELECT ld FROM LoginDetails ld WHERE ld.email = :email"),
-	@NamedQuery(name = LoginDetails.FIND_BY_USER_ID, query = "SELECT ld FROM LoginDetails ld WHERE ld.userId = :userId") })
+	@NamedQuery(name = LoginDetails.FIND_BY_USER_ID, query = "SELECT ld FROM LoginDetails ld WHERE ld.userId = :userId"),
+	@NamedQuery(name = LoginDetails.GET_ALL, query = "SELECT ld FROM LoginDetails ld")})
 public class LoginDetails implements Serializable {
 
 	public static final String FIND_BY_USERNAME = "LoginDetails.findByUsername";
 	public static final String FIND_BY_EMAIL = "LoginDetails.findByEmail";
 	public static final String FIND_BY_USER_ID = "LoginDetails.findByUserId";
+	public static final String GET_ALL = "LoginDetails.getAllLoginDetails";
 
 	@Id
 	@Column(name = "user_id")

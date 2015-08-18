@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -54,9 +52,9 @@ public class StockManagerDB implements StockManager
 	{
 		ArrayList<Stock> stock = new ArrayList<Stock>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByCriticalThreshold", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_CRITICAL_THRESHOLD, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("critical_stock", criticalThreshold);
+		tq.setParameter("criticalThreshold", criticalThreshold);
 		try 
 		{
 			stock = (ArrayList<Stock>) tq.getResultList();
@@ -73,9 +71,9 @@ public class StockManagerDB implements StockManager
 	{
 		List<Stock> stock = new ArrayList<Stock>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByRequiredStock", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_REQUIRED_STOCK, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("required_stock", requiredStock);
+		tq.setParameter("requiredStock", requiredStock);
 		try 
 		{
 			stock = (ArrayList<Stock>) tq.getResultList();
@@ -92,9 +90,9 @@ public class StockManagerDB implements StockManager
 	{
 		List<Stock> stock = new ArrayList<Stock>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByStockLevel", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_STOCK_LEVEL, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("stock_level", stockLevel);
+		tq.setParameter("stockLevel", stockLevel);
 		try
 		{
 			stock = (ArrayList<Stock>) tq.getResultList();
@@ -111,9 +109,9 @@ public class StockManagerDB implements StockManager
 	{
 		List<Stock> stock = new ArrayList<Stock>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByStockAvailable", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_STOCK_AVAILABLE, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("stock_available", stockAvailable);
+		tq.setParameter("stockAvailable", stockAvailable);
 		try
 		{
 			stock = (ArrayList<Stock>) tq.getResultList();
@@ -130,9 +128,9 @@ public class StockManagerDB implements StockManager
 	{
 		List<Stock> stock = new ArrayList<Stock>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByMaxStock", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_MAX_STOCK, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("maximum_stock", maxStock);
+		tq.setParameter("maximumStock", maxStock);
 		try 
 		{
 			stock = (ArrayList<Stock>) tq.getResultList();
@@ -148,9 +146,9 @@ public class StockManagerDB implements StockManager
 	public Stock findByProductID(int productID)
 	{
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<Stock> tq = em.createNamedQuery("FindByEmail", Stock.class);
+		TypedQuery<Stock> tq = em.createNamedQuery(Stock.FIND_BY_PRODUCT, Stock.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("product_id", productID);
+		tq.setParameter("product", productID);
 		try 
 		{
 			return tq.getSingleResult();
@@ -165,7 +163,7 @@ public class StockManagerDB implements StockManager
 	public List<Stock> getStock()
 	{
 		EntityManager em = pm.createEntityManager();
-		List<Stock> stock = (ArrayList<Stock>) em.createQuery("SELECT a FROM stock a", Stock.class).getResultList();
+		List<Stock> stock = (ArrayList<Stock>) em.createNamedQuery(Stock.GET_ALL, Stock.class).getResultList();
 		pm.closeEntityManager(em);
 		return stock;
 	}
