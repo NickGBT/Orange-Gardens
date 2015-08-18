@@ -22,10 +22,16 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "product_line")
 @NamedQueries({
-	@NamedQuery(name = "FindByProductID", query = "SELECT o FROM OrderLine o WHERE o.product = :product"),
-	@NamedQuery(name = "FindByOrderID", query = "SELECT o FROM OrderLine o WHERE o.order = :order"),
-	@NamedQuery(name = "FindByQuantity", query = "SELECT o FROM OrderLine o WHERE o.quantity = :quantity") })
+	@NamedQuery(name = OrderLine.FIND_BY_PRODUCT_ID, query = "SELECT o FROM OrderLine o WHERE o.product = :product"),
+	@NamedQuery(name = OrderLine.FIND_BY_ORDER_ID, query = "SELECT o FROM OrderLine o WHERE o.order = :order"),
+	@NamedQuery(name = OrderLine.FIND_BY_QUANTITY, query = "SELECT o FROM OrderLine o WHERE o.quantity = :quantity"),
+	@NamedQuery(name = OrderLine.GET_ALL, query = "SELECT o FROM OrderLine o")})
 public class OrderLine implements Serializable {
+	
+	public static final String GET_ALL = "OrderLine.getOrderLine";
+	public static final String FIND_BY_ORDER_ID = "OrderLine.findByOrderId";
+	public static final String FIND_BY_PRODUCT_ID = "OrderLine.findByProductId";
+	public static final String FIND_BY_QUANTITY = "OrderLine.findByQuantity";
 
 	@ManyToOne
 	@Id

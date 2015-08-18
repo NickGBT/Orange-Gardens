@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -49,10 +47,9 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	public OrderLine findByProductId(int productID) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID",
-				OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_PRODUCT_ID, OrderLine.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("product_id", productID);
+		tq.setParameter("product", productID);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
@@ -63,10 +60,9 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	public List<OrderLine> findByOrderId(int orderId) {
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByProductID",
-				OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_ORDER_ID, OrderLine.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("order_id", orderId);
+		tq.setParameter("order", orderId);
 		try {
 			return tq.getResultList();
 		} catch (NoResultException e) {
@@ -78,8 +74,7 @@ public class OrderLineManagerDB implements OrderLineManager {
 	public List<OrderLine> findByQuantity(int quantity) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<OrderLine> tq = em.createNamedQuery("FindByDeliveryID",
-				OrderLine.class);
+		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_QUANTITY, OrderLine.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("quantity", quantity);
 		try {
@@ -93,8 +88,7 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	public List<OrderLine> getOrderLine() {
 		EntityManager em = pm.createEntityManager();
-		List<OrderLine> orderLine = (ArrayList<OrderLine>) em.createQuery(
-				"select d from order_line d", OrderLine.class).getResultList();
+		List<OrderLine> orderLine = (ArrayList<OrderLine>) em.createNamedQuery(OrderLine.GET_ALL, OrderLine.class).getResultList();
 		pm.closeEntityManager(em);
 		return orderLine;
 	}

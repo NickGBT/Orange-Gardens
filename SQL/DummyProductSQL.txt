@@ -1,4 +1,4 @@
-UPDATE `orange_gardens`.`product` SET `product_category`='Accessory' WHERE `product_id`='1';
-UPDATE `orange_gardens`.`product` SET `product_category`='Gnome' WHERE `product_id`='2';
-UPDATE `orange_gardens`.`product` SET `product_category`='Furniture' WHERE `product_id`='3';
-UPDATE `orange_gardens`.`product` SET `product_category`='Building' WHERE `product_id`='4';
+INSERT INTO `orange_gardens`.`product` (`product_name`, `product_price`, `image_location`, `description`, `length`, `width`, `height`, `weight`, `product_category`) VALUES ('Garden Light', '25.25', 'resources/img/gardenLight.jpg', 'Light up your life', '10', '10', '11', '10.5', 'accessory');
+INSERT INTO `orange_gardens`.`product` (`product_name`, `product_price`, `image_location`, `description`, `length`, `width`, `height`, `weight`, `product_category`) VALUES ('Cool Gnome', '29.25', 'resources/img/coolGnome.jpg', 'This gnome is cool', '53', '90', '15', '15.5', 'gnome');
+INSERT INTO `orange_gardens`.`product` (`product_name`, `product_price`, `image_location`, `description`, `length`, `width`, `height`, `weight`, `product_category`) VALUES ('Relaxation Chair', '76.28', 'resources/img/gardenSeat.jpg', 'Relax', '80', '45', '18', '19.5', 'furniture');
+INSERT INTO `orange_gardens`.`product` (`product_name`, `product_price`, `image_location`, `description`, `length`, `width`, `height`, `weight`, `product_category`) VALUES ('Swag Shed', '1976.25', 'resources/img/swagShed.jpg', 'Store your swag inside', '80', '45', '18', '19.5', 'building');

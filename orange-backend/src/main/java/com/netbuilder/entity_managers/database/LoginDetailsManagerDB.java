@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -42,8 +40,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	public LoginDetails findByUsername(String username) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(
-				LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USERNAME, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("username", username);
 		try {
@@ -56,8 +53,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	public LoginDetails findByEmail(String email) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(
-				LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_EMAIL, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("email", email);
 		try {
@@ -70,8 +66,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	public LoginDetails findByUserId(int userId) {
 
 		EntityManager em = pm.createEntityManager();
-		TypedQuery<LoginDetails> tq = em.createNamedQuery(
-				LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
+		TypedQuery<LoginDetails> tq = em.createNamedQuery(LoginDetails.FIND_BY_USER_ID, LoginDetails.class);
 		pm.closeEntityManager(em);
 		tq.setParameter("userId", userId);
 		try {
@@ -122,9 +117,7 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 	public List<LoginDetails> getAllLoginDetails() {
 		EntityManager em = pm.createEntityManager();
-		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>) em
-				.createQuery("SELECT a FROM login_details a",
-						LoginDetails.class).getResultList();
+		List<LoginDetails> allLoginDetails = (ArrayList<LoginDetails>) em.createQuery("SELECT a FROM login_details a", LoginDetails.class).getResultList();
 		pm.closeEntityManager(em);
 		return allLoginDetails;
 	}

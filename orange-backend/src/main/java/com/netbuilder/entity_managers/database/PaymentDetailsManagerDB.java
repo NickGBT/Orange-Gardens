@@ -7,8 +7,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
@@ -89,19 +87,6 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 
 		}
 		return results;
-	}
-
-	public PaymentDetails findPaymentDetailsForOrder(int orderId) {
-
-		EntityManager em = pm.createEntityManager();
-		TypedQuery<PaymentDetails> tq = em.createNamedQuery(PaymentDetails.FIND_BY_ORDER, PaymentDetails.class);
-		pm.closeEntityManager(em);
-		tq.setParameter("oId", orderId);
-		try {
-			return tq.getSingleResult();
-		} catch (NoResultException nre) {
-			return null;
-		}
 	}
 
 	public void removePaymentDetails(PaymentDetails paymentDetails) {

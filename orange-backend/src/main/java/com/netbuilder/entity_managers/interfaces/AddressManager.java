@@ -5,7 +5,6 @@ import java.util.List;
 import javax.faces.bean.RequestScoped;
 
 import com.netbuilder.entities.Address;
-import com.netbuilder.entities.LoginDetails;
 
 /**
  * 

@@ -23,14 +23,23 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "stock")
 @NamedQueries({
-	@NamedQuery(name = "FindByCriticalThreshold", query = "SELECT s FROM Stock s WHERE s.criticalThreshold = :critical_stock"),
-	@NamedQuery(name = "FindByRequiredStock", query = "SELECT s FROM Stock s WHERE s.requiredStock = :required_stock"),
-	@NamedQuery(name = "FindByStockLevel", query = "SELECT s FROM Stock s WHERE s.stockLevel = :stock_level"),
-	@NamedQuery(name = "FindByMaxStock", query = "SELECT s FROM Stock s WHERE s.maxStock = :maximum_stock"),
-	@NamedQuery(name = "FindByStockAvailable", query = "SELECT s FROM Stock s WHERE s.stockAvailable = :stock_available"),
-	@NamedQuery(name = "FindByProduct", query = "SELECT s FROM Stock s WHERE s.product = :product"), })
+	@NamedQuery(name = Stock.FIND_BY_CRITICAL_THRESHOLD, query = "SELECT s FROM Stock s WHERE s.criticalThreshold = :criticalThreshold"),
+	@NamedQuery(name = Stock.FIND_BY_REQUIRED_STOCK, query = "SELECT s FROM Stock s WHERE s.requiredStock = :requiredStock"),
+	@NamedQuery(name = Stock.FIND_BY_STOCK_LEVEL, query = "SELECT s FROM Stock s WHERE s.stockLevel = :stockLevel"),
+	@NamedQuery(name = Stock.FIND_BY_MAX_STOCK, query = "SELECT s FROM Stock s WHERE s.maxStock = :maximumStock"),
+	@NamedQuery(name = Stock.FIND_BY_STOCK_AVAILABLE, query = "SELECT s FROM Stock s WHERE s.stockAvailable = :stockAvailable"),
+	@NamedQuery(name = Stock.FIND_BY_PRODUCT, query = "SELECT s FROM Stock s WHERE s.product = :product"),
+	@NamedQuery(name = Stock.GET_ALL, query = "SELECT s FROM Stock s")})
 public class Stock implements Serializable 
 {
+	public static final String GET_ALL = "Stock.getStock";
+	public static final String FIND_BY_STOCK_LEVEL = "Stock.findByStockLevel";
+	public static final String FIND_BY_REQUIRED_STOCK = "Stock.findByRequiredStock";
+	public static final String FIND_BY_CRITICAL_THRESHOLD = "Stock.findByCriticalThreshold";
+	public static final String FIND_BY_MAX_STOCK = "Stock.findByMaximumStock";
+	public static final String FIND_BY_STOCK_AVAILABLE = "Stock.findByStockAvailable";
+	public static final String FIND_BY_PRODUCT = "Stock.findByProductId";
+
 	@ManyToOne
 	@Id
 	@JoinColumn(name = "product_id", nullable = false)
