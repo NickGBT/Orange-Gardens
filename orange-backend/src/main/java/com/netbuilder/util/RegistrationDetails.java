@@ -43,7 +43,6 @@ public class RegistrationDetails {
 	private CardType cardType;
 	private String cardNumber;
 	private String nameOnCard;
-	private int securityNumber;
 	private String expiryDate;
 
 	ArrayList<Object> data = new ArrayList<Object>();
@@ -56,7 +55,7 @@ public class RegistrationDetails {
 			String addressLabel, String addressLine1, String addressLine2,
 			String addressLine3, String city, String county, String postcode,
 			boolean isBillingAddress, CardType cardType, String cardNumber,
-			String nameOnCard, int securityNumber, String expiryDate) {
+			String nameOnCard, String expiryDate) {
 		this.fName = fName;
 		data.add(fName);
 		this.lName = lName;
@@ -91,8 +90,6 @@ public class RegistrationDetails {
 		data.add(cardNumber);
 		this.nameOnCard = nameOnCard;
 		data.add(nameOnCard);
-		this.securityNumber = securityNumber;
-		data.add(securityNumber);
 		this.expiryDate = expiryDate;
 		data.add(expiryDate);
 	}
@@ -224,14 +221,6 @@ public class RegistrationDetails {
 
 	public void setNameOnCard(String nameOnCard) {
 		this.nameOnCard = nameOnCard;
-	}
-
-	public int getSecurityNumber() {
-		return securityNumber;
-	}
-
-	public void setSecurityNumber(int securityNumber) {
-		this.securityNumber = securityNumber;
 	}
 
 	public String getExpiryDate() {

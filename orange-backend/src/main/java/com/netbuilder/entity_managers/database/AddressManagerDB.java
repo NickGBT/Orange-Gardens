@@ -33,18 +33,18 @@ public class AddressManagerDB implements AddressManager
 
 	public void persistAddress(Address address) 
 	{
-		if(addressValidator.validateAddress(address))
-		{
+		//if(addressValidator.validateAddress(address))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(address);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistAddresses(List<Address> addresses) 

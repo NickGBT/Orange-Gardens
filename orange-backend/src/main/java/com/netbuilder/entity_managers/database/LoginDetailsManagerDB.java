@@ -31,18 +31,18 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	private LoginDetailsValidator loginDetailsValidator;
 
 	public void persistLoginDetails(LoginDetails details) {
-		if(loginDetailsValidator.validateLoginDetails(details))
-		{
+		//if(loginDetailsValidator.validateLoginDetails(details))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(details);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public LoginDetails findByUsername(String username) {

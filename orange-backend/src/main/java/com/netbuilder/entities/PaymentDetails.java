@@ -59,7 +59,7 @@ public class PaymentDetails implements Serializable {
 	private LoginDetails customerId;
 
 	public PaymentDetails(CardType cardType, String cardNumber,
-			String nameOnCard, int securityNumber, String expiryDate,
+			String nameOnCard, String expiryDate,
 			LoginDetails customerId) {
 		super();
 		this.cardType = cardType;

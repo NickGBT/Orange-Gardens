@@ -33,18 +33,18 @@ public class CustomerManagerDB implements CustomerManager
 
 	public void persistCustomer(Customer customer) 
 	{
-		if(customerValidator.validateCustomer(customer))
-		{
+		//if(customerValidator.validateCustomer(customer))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(customer);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+	//	{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistCustomer(List<Customer> customers) 

@@ -32,18 +32,18 @@ public class PaymentDetailsManagerDB implements PaymentDetailsManager {
 
 	public void persistPaymentDetails(PaymentDetails paymentDetails) {
 		
-		if(paymentDetailsValidator.validatePaymentDetails(paymentDetails))
-		{
+		//if(paymentDetailsValidator.validatePaymentDetails(paymentDetails))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(paymentDetails);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistPaymentDetails(List<PaymentDetails> paymentDetails) {

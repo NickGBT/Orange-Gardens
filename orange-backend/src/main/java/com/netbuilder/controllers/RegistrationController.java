@@ -101,7 +101,6 @@ public class RegistrationController {
 			payDetails = new PaymentDetails(registrationDetails.getCardType(),
 					registrationDetails.getCardNumber(),
 					registrationDetails.getNameOnCard(),
-					registrationDetails.getSecurityNumber(),
 					registrationDetails.getExpiryDate(), loginDetails);
 
 			addressManager.persistAddress(address);
