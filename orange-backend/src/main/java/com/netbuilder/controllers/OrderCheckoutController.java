@@ -83,12 +83,12 @@ public class OrderCheckoutController {
 		gladosNode = new GladosNode(5,5);
 		path.add(gladosNode);
 		order = orderManager.findBasketByUsername(OrderStatus.basket, username);
-		order.setStatus(OrderStatus.placed);
 		
-		if(order.getOrderStatus() == OrderStatus.placed){
+		
+		if(order.getOrderStatus() == OrderStatus.basket){
 			
 			orderLines = orderLineManager.getBasketOrderLines(username);
-			
+
 			for (OrderLine ol : orderLines) {
 				DopsOrderline dol = new DopsOrderline(ol.getProduct().getProductName(), Integer.toString(ol.getQuantity()), Integer.toString(ol.getProduct().getHeight()),path );
 				tempDopsOrders.add(dol);				
@@ -97,7 +97,7 @@ public class OrderCheckoutController {
 			dopsOrder = new DopsOrder(tempDopsOrders);
 			
 			qb.sendMessage("dops_queue", dopsOrder);
-			
+			order.setStatus(OrderStatus.placed);
 			return "confirmationpage.xhtml";
 			//order = new Order(loginDet, OrderStatus.basket, null);
 			//orderManager.persistOrder(order);

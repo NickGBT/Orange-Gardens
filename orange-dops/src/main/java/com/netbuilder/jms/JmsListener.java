@@ -38,7 +38,7 @@ public class JmsListener implements MessageListener {
 	public void onMessage(Message message) {
 
 		logger.info("Message received", message);
-		System.out.println("JMSLISTENER::LINE41::Received MESSAGE");
+		//System.out.println("JMSLISTENER::LINE41::Received MESSAGE");
 
 		logger.debug("Checking instance of message", message);
 		if (message instanceof TextMessage) {
@@ -55,10 +55,8 @@ public class JmsListener implements MessageListener {
 		else if (message instanceof ObjectMessage) {
 			try {
 				Object payload = ((ObjectMessage) message).getObject();
-				System.out.println("JMSLISTENER::LINE57::PARSED MESSAGE TO OBJECT");
+
 				fullOrder = (DopsOrder) payload;
-				System.out.println("JMSLISTENER::LINE57::PARSED OBJECT TO DOPSORDER");
-				System.out.println(fullOrder.getDopsOrder().size());
 
 				logger.debug("Checking payload class type of ObjectMessage", payload);
 				
@@ -72,5 +70,14 @@ public class JmsListener implements MessageListener {
 			}
 		}
 	
+	}
+	
+	public DopsOrder getFullOrder() {
+		return fullOrder;
+	}
+
+
+	public void setFullOrder(DopsOrder fullOrder) {
+		this.fullOrder = fullOrder;
 	}
 }
