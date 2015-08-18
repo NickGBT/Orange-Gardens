@@ -29,7 +29,6 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 
 	public void persistLoginDetails(LoginDetails details) {
 
-		System.out.println("DB");
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(details);
