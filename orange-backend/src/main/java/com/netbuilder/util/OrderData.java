@@ -26,7 +26,7 @@ import com.netbuilder.enums.ProductCategory;
  */
 @ManagedBean(name = "testData")
 @Singleton
-public class TestData {
+public class OrderData {
 
 	byte[] password = { 1, 2, 3 };
 

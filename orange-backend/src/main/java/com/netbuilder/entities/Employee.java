@@ -66,6 +66,15 @@ public class Employee implements Serializable {
 	
 	public Employee(){}
 
+	public Employee(LoginDetails employee, EmployeeDepartment employeeDepartment, String fName,
+			String lName, EmployeePermissions employeePermission) {
+		this.employee = employee;
+		this.employeeDepartment = employeeDepartment;
+		this.fName = fName;
+		this.lName = lName;
+		this.employeePermission = employeePermission;
+	}
+	
 	public Employee(EmployeeDepartment employeeDepartment, String fName,
 			String lName, EmployeePermissions employeePermission) {
 		this.employeeDepartment = employeeDepartment;

@@ -22,7 +22,7 @@ public class LoginDetailsManagerAL implements LoginDetailsManager, Serializable 
 
 	public void persistLoginDetails(LoginDetails details) {
 
-		System.out.println("Pesist login Details: " + details);
+		System.out.println("LoginDetailsManagerAL::Line27::Pesisted login Details: " + details.getUsername());
 		loginDetails.add(details);
 	}
 

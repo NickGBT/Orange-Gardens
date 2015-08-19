@@ -1,19 +1,28 @@
 package com.netbuilder.util;
 
+import java.util.ArrayList;
+
+
+import com.netbuilder.jms_tools.DopsOrder;
+import com.netbuilder.jms_tools.DopsOrderline;
+import com.netbuilder.jms_tools.GladosNode;
+
 /**
  * 
  * @author JustinMabbutt
  *
  */
-public class TestData 
+public class OrderData 
 {
 	private String[] testNames, testQuantities, testBoxes;
 	private int xStart, yStart, xGdz, yGdz, productIncrement;
 	private int[] xProductLocation, yProductLocation;
 	private String employeeUsername, employeePassword;
 	private boolean gdz, ordersComplete;
+	private ArrayList<GladosNode> path;
 	
-	public TestData()
+	
+	public OrderData()
 	{
 		testNames = new String[3];
 		testQuantities = new String[3];
@@ -43,6 +52,35 @@ public class TestData
 		testBoxes[2] = "B2";
 		employeeUsername = "JSmith";
 		employeePassword = "password";
+	}
+	
+	public OrderData(DopsOrder dopsObject) { 
+		int i = 0;
+		testNames = new String[dopsObject.getDopsOrder().size()];
+		testQuantities = new String[dopsObject.getDopsOrder().size()];
+		testBoxes = new String[dopsObject.getDopsOrder().size()];
+		xProductLocation = new int[dopsObject.getDopsOrder().size()];
+		yProductLocation = new int[dopsObject.getDopsOrder().size()];
+		xStart = 0; yStart = 0;
+		xGdz = 2; yGdz = 18;
+		productIncrement = 0;
+		ordersComplete = false;
+		gdz = false;
+		
+		
+		for(DopsOrderline d : dopsObject.getDopsOrder()) {		
+			GladosNode productLocation = d.getProductLocation();
+			testNames[i] = d.getProductName();
+			testQuantities[i] = d.getQuantity();
+			testBoxes[i] = d.getBoxSize();
+			
+			//System.out.println("OrderData::Line77::"+ productLocation.getxPosition() + ":" + productLocation.getyPosition());
+			xProductLocation[i] = productLocation.getxPosition();
+			//System.out.println("OrderData :: Line79 :: " + d.getProductName() + " :: Location is " + productLocation.getxPosition() + ":" + productLocation.getyPosition());
+			yProductLocation[i] = productLocation.getyPosition();
+			i++;		
+		}
+		
 	}
 	
 	public int getxGdz()

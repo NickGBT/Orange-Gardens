@@ -84,6 +84,7 @@ public class Order implements Serializable {
 	@Column(name = "refund_available")
 	private boolean refundAvailable;
 
+
 	public Order(LoginDetails customerId, LoginDetails employeeId,
 			OrderStatus status, String datePlaced,
 			String dateDispatched, String dateDelivered, int timeToDeliver,
