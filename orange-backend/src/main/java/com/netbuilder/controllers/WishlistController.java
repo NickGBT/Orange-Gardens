@@ -80,9 +80,9 @@ public class WishlistController
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 
-		loginDet = ldm.findByUsername(userId.getUsername());
+		loginDet = ldm.findByUserId(userId.getUid());
 
-		if (om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername()) != null) 
+		if (om.findBasketByUserId(OrderStatus.wishlist, loginDet) != null) 
 		{
 			if (olm.findByProductInWishlist(foundProduct.getProductId()) != null) 
 			{
@@ -110,15 +110,15 @@ public class WishlistController
 
 		foundProduct = pm.findByProductId(Integer.parseInt(productId));
 
-		loginDet = ldm.findByUsername(userId.getUsername());
+		loginDet = ldm.findByUserId(userId.getUid());
 
-		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) 
+		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) 
 		{
 			//System.out.println("WishlistController::Line103::Found basket");
 			if (olm.findByProductInBasket(foundProduct.getProductId()) == null) 
 			{
 				//System.out.println("WishlistController::Line103::Selected item is not already in basket");
-				orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+				orderBasket = om.findBasketByUserId(OrderStatus.basket, loginDet);
 				orderLine = new OrderLine(orderBasket, foundProduct, 1);
 				olm.persistOrderLine(orderLine);
 			} 
@@ -128,7 +128,7 @@ public class WishlistController
 		else 
 		{
 			//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
-			orderBasket = new Order(1, loginDet, OrderStatus.basket, null);
+			orderBasket = new Order(loginDet, OrderStatus.basket, null);
 			om.persistOrder(orderBasket);
 			orderLine = new OrderLine(orderBasket, foundProduct, 1);
 			olm.persistOrderLine(orderLine);	
@@ -141,7 +141,7 @@ public class WishlistController
 	{
 		loginDet = ldm.findByUsername(userId.getUsername());
 				
-		orderBasket = om.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		orderBasket = om.findBasketByUserId(OrderStatus.basket, loginDet);
 		
 		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
 		
@@ -149,7 +149,7 @@ public class WishlistController
 		
 		if (wishlist.size() > 0) 
 		{
-			if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) 
+			if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) 
 			{
 				for (OrderLine ol : wishlist) 
 				{
@@ -171,7 +171,7 @@ public class WishlistController
 			else 
 			{
 				//System.out.println("WishlistController::Line115::Current basket not found, creating basket.");
-				orderBasket = new Order(1, loginDet, OrderStatus.basket, null);
+				orderBasket = new Order(loginDet, OrderStatus.basket, null);
 				om.persistOrder(orderBasket);
 				
 				for (OrderLine ol : wishlist) 

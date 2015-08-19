@@ -17,6 +17,7 @@ import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
+import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
@@ -48,6 +49,7 @@ public class OrderCheckoutController {
 	
 	@Inject
 	private PaymentDetailsManager paymentDetails;
+	private LoginDetailsManager loginManager;
 
 	@Inject
 	private OrderManager orderManager;
@@ -61,7 +63,8 @@ public class OrderCheckoutController {
 	private Address ad;
 	
 	public String changeOrderStatus(){
-		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		loginDet = loginManager.findByUserId(userId.getUid());
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginDet);
 		order.setStatus(OrderStatus.placed);
 		
 		if(order.getOrderStatus() == OrderStatus.placed){
@@ -76,7 +79,8 @@ public class OrderCheckoutController {
 	
 
 	public Order getOrder() {
-		order = orderManager.findBasketByUsername(OrderStatus.basket, userId.getUsername());
+		loginDet = loginManager.findByUserId(userId.getUid());
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginDet);
 		//order = testData.getOrder();
 		return order;
 	}
@@ -88,7 +92,8 @@ public class OrderCheckoutController {
 	 */
 	public Order getConfirmed()
 	{
-		confirmed = orderManager.findBasketByUsername(OrderStatus.placed, userId.getUsername());
+		loginDet = loginManager.findByUserId(userId.getUid());
+		confirmed = orderManager.findBasketByUserId(OrderStatus.placed, loginDet);
 		return confirmed;
 	}
 
