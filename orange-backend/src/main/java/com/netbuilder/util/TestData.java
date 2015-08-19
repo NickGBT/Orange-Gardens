@@ -55,15 +55,15 @@ public class TestData {
 
 	public Order order = new Order(customerLogin, employeeLogin,
 			OrderStatus.awaitingDispatch, "10/10/15", "12/10/15",
-			"13/10/15", 40, true, paymentDetails);
+			"13/10/15", 40, true);
 
 	public Order order2 = new Order(customerLogin2, employeeLogin,
 			OrderStatus.basket, "09/08/15", "30/09/15", "01/10/15",
-			70, true, paymentDetails2);
+			70, true);
 
 	public Order order3 = new Order(customerLogin3, employeeLogin,
 			OrderStatus.wishlist, "08/08/15","10/08/15", "11/08/15",
-			80, true, paymentDetails3);
+			80, true);
 
 	public Product product_genID = new Product(1, "img/iomg", "testproduct",
 			25.25, 10, 10, 11, 10.50, "test Product gen",

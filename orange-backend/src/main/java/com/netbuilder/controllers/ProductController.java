@@ -41,9 +41,6 @@ public class ProductController {
 	private LoginDetailsManager ldm;
 
 	@Inject
-	private PaymentDetailsManager pdm;
-
-	@Inject
 	private UserId userId;
 
 	public int getQuantity() {
@@ -74,7 +71,6 @@ public class ProductController {
 	private int quantity;
 	private Product foundProduct;
 	private LoginDetails loginDet;
-	private PaymentDetails paymentDet;
 	private OrderLine orderLine;
 
 	private Order orderBasket;
@@ -105,7 +101,6 @@ public class ProductController {
 		quantity = Integer.parseInt(temp);
 
 		loginDet = ldm.findByUsername(userId.getUsername());
-		paymentDet = pdm.findCustomerPaymentDetails(loginDet);
 
 		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) {
 			if (olm.findByProductInBasket(foundProduct.getProductId()) != null) {
@@ -121,7 +116,7 @@ public class ProductController {
 				olm.persistOrderLine(orderLine);
 			}
 		} else {
-			orderBasket = new Order(loginDet, OrderStatus.basket, paymentDet);
+			orderBasket = new Order(loginDet, OrderStatus.basket);
 			om.persistOrder(orderBasket);
 			logger.info("Basket not found, creating new basket");
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
@@ -155,7 +150,7 @@ public class ProductController {
 		} 
 		else 
 		{
-			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
+			wishlist = new Order(loginDet, OrderStatus.wishlist);
 			om.persistOrder(wishlist);
 			logger.info("Wishlist not found, creating new wishlist");
 			orderLine = new OrderLine(wishlist, foundProduct, 0);
@@ -222,13 +217,4 @@ public class ProductController {
 		this.temp = temp;
 	}
 
-	public PaymentDetails getPaymentDet() {
-		loginDet = ldm.findByUsername(userId.getUsername());
-		paymentDet = pdm.findCustomerPaymentDetails(loginDet);
-		return paymentDet;
-	}
-
-	public void setPaymentDet(PaymentDetails paymentDet) {
-		this.paymentDet = paymentDet;
-	}
 }

@@ -65,10 +65,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "employee_id")
 	private LoginDetails employeeId;
 
-	@ManyToOne
-	@JoinColumn(name = "payment_details")
-	private PaymentDetails paymentDetails;
-
 	@Column(name = "status", nullable = false)
 	@NotNull
 	private OrderStatus status;
@@ -91,7 +87,7 @@ public class Order implements Serializable {
 	public Order(LoginDetails customerId, LoginDetails employeeId,
 			OrderStatus status, String datePlaced,
 			String dateDispatched, String dateDelivered, int timeToDeliver,
-			boolean refundAvailable, PaymentDetails paymentDetails) {
+			boolean refundAvailable) {
 		this.customerId = customerId;
 		this.employeeId = employeeId;
 		this.status = status;
@@ -100,22 +96,17 @@ public class Order implements Serializable {
 		this.dateDelivered = dateDelivered;
 		this.timeToDeliver = timeToDeliver;
 		this.refundAvailable = refundAvailable;
-		this.paymentDetails = paymentDetails;
 	}
 
-	public Order(LoginDetails customerId, LoginDetails employeeId, OrderStatus status,
-			PaymentDetails paymentDetails) {
+	public Order(LoginDetails customerId, LoginDetails employeeId, OrderStatus status) {
 		this.customerId = customerId;
 		this.employeeId = employeeId;
 		this.status = status;
-		this.paymentDetails = paymentDetails;
 	}
 	
-	public Order(LoginDetails customerID, OrderStatus status,
-			PaymentDetails paymentDetails) {
+	public Order(LoginDetails customerID, OrderStatus status) {
 		this.customerId = customerID;
 		this.status = status;
-		this.paymentDetails = paymentDetails;
 	}
 	
 	public Order(){}
@@ -182,9 +173,5 @@ public class Order implements Serializable {
 
 	public LoginDetails getEmployee() {
 		return employeeId;
-	}
-
-	public PaymentDetails getPaymentDetails() {
-		return paymentDetails;
 	}
 }
