@@ -82,7 +82,9 @@ public class BasketController {
 	}
 
 	public List<OrderLine> getBasket() {
-		basket = orderLineManager.getBasketOrderLines(userId.getUsername());
+		
+		basket = orderLineManager.getBasketOrderLines(om.findBasketByUserId(
+				OrderStatus.basket, ldm.findByUserId(userId.getUid())));
 		return basket;
 	}
 
@@ -104,6 +106,8 @@ public class BasketController {
 	}
 
 	public String getTotal() {
+		basket = orderLineManager.getBasketOrderLines(om.findBasketByUserId(
+				OrderStatus.basket, ldm.findByUserId(userId.getUid())));
 		for (OrderLine ol : basket) {
 			totalDouble += (ol.getProduct().getProductPrice() * ol
 					.getQuantity());
