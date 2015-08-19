@@ -2,8 +2,6 @@ package com.netbuilder.util;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.persistence.Entity;
 
 @Entity

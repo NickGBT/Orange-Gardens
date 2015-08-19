@@ -21,7 +21,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.ejb3.annotation.ResourceAdapter;
 
-import com.netbuilder.entities.Product;
 import com.netbuilder.jms_tools.DopsOrder;
 
 @Named(value="queueSender")

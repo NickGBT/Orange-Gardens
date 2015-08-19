@@ -8,9 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.netbuilder.entities.Address;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
@@ -85,7 +82,7 @@ public class OrderCheckoutController {
 		username = userId.getUsername();
 		tempDopsOrders = new ArrayList<DopsOrderline>();
 
-		order = orderManager.findBasketByUsername(OrderStatus.basket, username);
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(username));
 
 		if (order.getOrderStatus() == OrderStatus.basket) {
 
@@ -125,8 +122,7 @@ public class OrderCheckoutController {
 	}
 
 	public Order getOrder() {
-		order = orderManager.findBasketByUsername(OrderStatus.basket,
-				userId.getUsername());
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(userId.getUsername()));
 		// order = testData.getOrder();
 		return order;
 	}
@@ -139,8 +135,7 @@ public class OrderCheckoutController {
 	public Order getConfirmed()
 	{
 		loginDet = loginManager.findByUserId(userId.getUid());
-		confirmed = orderManager.findBasketByUserId(OrderStatus.placed, loginDet);
-		return confirmed;
+		return orderManager.findBasketByUserId(OrderStatus.placed, loginDet);	
 	}
 
 	public List<OrderLine> getBasket() {
@@ -158,10 +153,6 @@ public class OrderCheckoutController {
 		//return ad = address.findByUserId(userId.getUid()); 
 		return null;
 	} 
-	
-	public TestData getTestData() {
-		return testData;
-	}
 
 	public void setTestData(OrderData testData) {
 		this.testData = testData;

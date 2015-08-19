@@ -2,7 +2,6 @@ package com.netbuilder.orange_dops;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import javax.jms.JMSException;
 
 import com.netbuilder.jms.Receiver;
 import com.netbuilder.util.MessageHandler;
