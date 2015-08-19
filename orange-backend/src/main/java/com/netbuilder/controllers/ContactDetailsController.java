@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import com.netbuilder.util.ContactUsDetails;
-import com.netbuilder.util.TestData;
+import com.netbuilder.util.OrderData;
 
 /**
  * 
@@ -18,7 +18,7 @@ import com.netbuilder.util.TestData;
 public class ContactDetailsController {
 	// @Inject
 	@ManagedProperty(value = "#{testData}")
-	private TestData testData;
+	private OrderData testData;
 
 	private ContactUsDetails contactUsDetails;
 
@@ -30,11 +30,11 @@ public class ContactDetailsController {
 		return contactUsDetails;
 	}
 
-	public TestData getTestData() {
+	public OrderData getTestData() {
 		return testData;
 	}
 
-	public void setTestData(TestData testData) {
+	public void setTestData(OrderData testData) {
 		this.testData = testData;
 	}
 

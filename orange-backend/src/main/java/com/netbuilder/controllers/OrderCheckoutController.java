@@ -18,12 +18,17 @@ import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.interfaces.AddressManager;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
+import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
+import com.netbuilder.jms.QueueSenderBean;
+import com.netbuilder.jms_tools.DopsOrder;
+import com.netbuilder.jms_tools.DopsOrderline;
+import com.netbuilder.jms_tools.GladosNode;
 import com.netbuilder.util.OrderDetails;
-import com.netbuilder.util.TestData;
+import com.netbuilder.util.OrderData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -37,51 +42,92 @@ import com.netbuilder.util.UserId;
 @RequestScoped
 public class OrderCheckoutController {
 	@ManagedProperty(value = "#{testData}")
-	private TestData testData;
 
-	private static final Logger logger = LogManager.getLogger();
+	private OrderData testData;
 
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
 	@Inject
+	private QueueSenderBean qb;
+
+	@Inject
 	private AddressManager address;
 	private LoginDetails loginDet;
-	
+
 	@Inject
 	private PaymentDetailsManager paymentDetails;
 	private LoginDetailsManager loginManager;
 
 	@Inject
 	private OrderManager orderManager;
-	private Order order, confirmed;
+
+	@Inject
+	private OrderLineManager orderLineManager;
+
+	private DopsOrder dopsOrder;
+
+	private Order order;
 	private OrderDetails basketDetails;
-	
+
 	@Inject
 	private UserId userId;
-	
+
 	private PaymentDetails pd;
 	private Address ad;
-	
-	public String changeOrderStatus(){
-		loginDet = loginManager.findByUserId(userId.getUid());
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginDet);
-		order.setStatus(OrderStatus.placed);
-		
-		if(order.getOrderStatus() == OrderStatus.placed){
+
+	private String username;
+	private ArrayList<GladosNode> path;
+	private GladosNode gladosNode;
+	private ArrayList<DopsOrderline> tempDopsOrders;
+
+	public String changeOrderStatus() {
+
+		username = userId.getUsername();
+		tempDopsOrders = new ArrayList<DopsOrderline>();
+
+		order = orderManager.findBasketByUsername(OrderStatus.basket, username);
+
+		if (order.getOrderStatus() == OrderStatus.basket) {
+
+			orderLines = orderLineManager.getBasketOrderLines(username);
+
+			for (OrderLine ol : orderLines) {
+				if (ol.getProduct().getProductName() == "Garden Light") {
+					gladosNode = new GladosNode(18, 6);
+				}
+				if (ol.getProduct().getProductName() == "Cool Gnome") {
+					gladosNode = new GladosNode(6, 12);
+
+				}
+				if (ol.getProduct().getProductName() == "Relaxation Chair") {
+					gladosNode = new GladosNode(3, 3);
+				}
+				if (ol.getProduct().getProductName() == "Swag Shed") {
+					gladosNode = new GladosNode(12, 17);
+				}
+				
+				DopsOrderline dol = new DopsOrderline(ol.getProduct()
+						.getProductName(), Integer.toString(ol.getQuantity()),
+						Integer.toString(ol.getProduct().getHeight()), gladosNode);
+				tempDopsOrders.add(dol);
+				//System.out.println("OrderCheckout::Line113:: Location: " +  gladosNode.getxPosition() + ":" + gladosNode.getyPosition());
+			}
+
+			dopsOrder = new DopsOrder(tempDopsOrders);
+
+			qb.sendMessage("dops_queue", dopsOrder);
+			order.setStatus(OrderStatus.placed);
 			return "confirmationpage.xhtml";
-			//order = new Order(loginDet, OrderStatus.basket, null);
-			//orderManager.persistOrder(order);
-		}
-		else 
-			logger.info("Order failed", order);
+			// order = new Order(loginDet, OrderStatus.basket, null);
+			// orderManager.persistOrder(order);
+		} else
 			return "#";
 	}
-	
 
 	public Order getOrder() {
-		loginDet = loginManager.findByUserId(userId.getUid());
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginDet);
-		//order = testData.getOrder();
+		order = orderManager.findBasketByUsername(OrderStatus.basket,
+				userId.getUsername());
+		// order = testData.getOrder();
 		return order;
 	}
 	
@@ -117,11 +163,11 @@ public class OrderCheckoutController {
 		return testData;
 	}
 
-	public void setTestData(TestData testData) {
+	public void setTestData(OrderData testData) {
 		this.testData = testData;
 	}
-	
-	public CardType[] getEnumValues(){
+
+	public CardType[] getEnumValues() {
 		return CardType.values();
 	}
 }

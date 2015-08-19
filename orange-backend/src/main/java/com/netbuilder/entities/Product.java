@@ -33,6 +33,7 @@ import com.netbuilder.enums.ProductCategory;
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_NAME, query = "SELECT p FROM Product p WHERE p.productName LIKE :name"),
 	@NamedQuery(name = Product.FIND_BY_PRODUCT_PRICE, query = "SELECT p FROM Product p WHERE p.productPrice BETWEEN :lPrice AND :hPrice"),
 	@NamedQuery(name = Product.FIND_BY_CATEGORY, query = "SELECT p FROM Product p WHERE p.category = :category"), })
+
 public class Product implements Serializable {
 
 	public static final String GET_ALL = "Product.getAll";

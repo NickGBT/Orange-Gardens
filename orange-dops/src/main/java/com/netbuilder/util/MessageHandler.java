@@ -9,25 +9,16 @@ import com.netbuilder.pathfinding.GladosNode;
  * @author JustinMabbutt
  *
  */
-public class MessageHandler 
+public class MessageHandler
 {
-	private List<String> tempProduct;
-	private List<GladosNode> tempPath;
+	private List<Object> tempStore;
 	
-	public List<String> getTempProduct() 
+	public List<Object> getTempStore() 
 	{
-		return tempProduct;
+		return tempStore;
 	}
-	public void addTempProduct(String tempProduct) 
+	public void setTempProduct(List<Object> temp) 
 	{
-		this.tempProduct.add(tempProduct);
-	}
-	public List<GladosNode> getTempPath()
-	{
-		return tempPath;
-	}
-	public void setTempPath(List<GladosNode> tempPath)
-	{
-		this.tempPath = tempPath;
+		this.tempStore = temp;
 	}
 }

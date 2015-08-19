@@ -8,8 +8,12 @@ import java.util.List;
  * @author JustinMabbutt
  *
  */
+<<<<<<< HEAD:orange-backend/src/main/java/com/netbuilder/dops/Map.java
 public class Map<gladosNode extends Node>
 {
+=======
+public class WarehouseMap<gladosNode extends Node> {
+>>>>>>> nbgcc-306-7:orange-backend/src/main/java/com/netbuilder/dops/WarehouseMap.java
 	protected static boolean CANMOVEDIAGONALLY = true;
 
 	private gladosNode[][] nodes;
@@ -18,11 +22,18 @@ public class Map<gladosNode extends Node>
 	protected int height;
 
 	private NodeFactory nodeFactory;
+<<<<<<< HEAD:orange-backend/src/main/java/com/netbuilder/dops/Map.java
 	private Map<GladosNode> warehouseMap;
 
 	@SuppressWarnings("unchecked")
 	public Map(int width, int height, NodeFactory nodeFactory)
 	{
+=======
+	private WarehouseMap<GladosNode> warehouseMap;
+	private List<GladosNode> path;
+
+	public WarehouseMap(int width, int height, NodeFactory nodeFactory) {
+>>>>>>> nbgcc-306-7:orange-backend/src/main/java/com/netbuilder/dops/WarehouseMap.java
 		this.nodeFactory = nodeFactory;
 		nodes = (gladosNode[][])new Node[width][height];
 		this.width = width - 1;
@@ -43,11 +54,17 @@ public class Map<gladosNode extends Node>
 		buildMap();
 	}
 
+<<<<<<< HEAD:orange-backend/src/main/java/com/netbuilder/dops/Map.java
 	private void buildMap()
 	{
 		warehouseMap = new Map<GladosNode>(20, 20, new GladosFactory());
 		for (int i = 2; i < 18; i++) 
 		{
+=======
+	private WarehouseMap<GladosNode> buildMap() {
+		warehouseMap = new WarehouseMap<GladosNode>(20, 20, new GladosFactory());
+		for (int i = 2; i < 18; i++) {
+>>>>>>> nbgcc-306-7:orange-backend/src/main/java/com/netbuilder/dops/WarehouseMap.java
 			warehouseMap.setWalkable(2, i, false);
 			warehouseMap.setWalkable(5, i, false);
 			warehouseMap.setWalkable(8, i, false);
@@ -55,6 +72,7 @@ public class Map<gladosNode extends Node>
 			warehouseMap.setWalkable(14, i, false);
 			warehouseMap.setWalkable(17, i, false);
 		}
+		return warehouseMap;
 	}
 
 	public void setWalkable(int x, int y, boolean bool)

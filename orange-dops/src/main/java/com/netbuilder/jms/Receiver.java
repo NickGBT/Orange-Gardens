@@ -118,11 +118,14 @@ public class Receiver {
 		if (message instanceof TextMessage) {
 			payload = ((TextMessage) message).getText();
 			logger.debug("Unpacking TextMessage to payload object", payload);
+			connection.close();
 		} else if (message instanceof ObjectMessage) {
 			payload = ((ObjectMessage) message).getObject();
 			logger.debug("Unpacking ObjectMessage to payload object", payload);
+			connection.close();
 		} else {
 			logger.error("Message received is not next or object. Returning null");
+			connection.close();
 			return null;
 		}
 		return payload;
