@@ -23,7 +23,7 @@ import com.netbuilder.util.UserId;
 
 /**
  * 
- * @author Jordan Taylor
+ * @author Jordan Taylor llew
  *
  */
 @ManagedBean(name = "basketController")
@@ -109,9 +109,6 @@ public class BasketController {
 					.getQuantity());
 		}
 		total = df.format(totalDouble);
-		// System.out.println("BasketController::Line108::" + total);
-		// System.out.println("BasketController::Line109::" +
-		// df.format(totalDouble));
 		return total;
 	}
 
@@ -131,7 +128,7 @@ public class BasketController {
 
 		loginDet = ldm.findByUsername(userId.getUsername());
 
-		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) {
 			if (olm.findByProductId(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				olm.removeProductLine(orderLine);

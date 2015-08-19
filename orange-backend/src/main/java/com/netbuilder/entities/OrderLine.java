@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table(name = "product_line")
+@Table(name = "order_line")
 @NamedQueries({
 	@NamedQuery(name = OrderLine.FIND_BY_PRODUCT_ID, query = "SELECT o FROM OrderLine o WHERE o.product = :product"),
 	@NamedQuery(name = OrderLine.FIND_BY_ORDER_ID, query = "SELECT o FROM OrderLine o WHERE o.order = :order"),

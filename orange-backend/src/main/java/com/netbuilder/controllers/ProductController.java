@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +79,6 @@ public class ProductController {
 
 	private Order orderBasket;
 	private Order wishlist;
-	private Random rand;
 	
 	private static final Logger logger = LogManager.getLogger();
 	
@@ -220,5 +220,15 @@ public class ProductController {
 
 	public void setTemp(String temp) {
 		this.temp = temp;
+	}
+
+	public PaymentDetails getPaymentDet() {
+		loginDet = ldm.findByUsername(userId.getUsername());
+		paymentDet = pdm.findCustomerPaymentDetails(loginDet);
+		return paymentDet;
+	}
+
+	public void setPaymentDet(PaymentDetails paymentDet) {
+		this.paymentDet = paymentDet;
 	}
 }
