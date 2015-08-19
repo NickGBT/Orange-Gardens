@@ -3,7 +3,11 @@ package com.netbuilder.jms_tools;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
+/**
+ * 
+ * @author jtaylor
+ *
+ */
 public class DopsOrderline implements Serializable 
 {
 	/**
@@ -13,14 +17,14 @@ public class DopsOrderline implements Serializable
 	private String productName;
 	private String quantity;
 	private String boxSize;
-	private ArrayList<GladosNode> path;
+	private GladosNode productLocation;
 	
-	public DopsOrderline(String productName, String quantity, String boxSize, ArrayList<GladosNode> path) {
+	public DopsOrderline(String productName, String quantity, String boxSize, GladosNode productLocation) {
 
 		this.productName = productName;
 		this.quantity = quantity;
 		this.boxSize = boxSize;
-		this.path = path;
+		this.productLocation = productLocation;
 	}
 	
 	
@@ -42,12 +46,15 @@ public class DopsOrderline implements Serializable
 	public void setBoxSize(String boxSize) {
 		this.boxSize = boxSize;
 	}
-
-	public ArrayList<GladosNode> getPath() {
-		return path;
+	
+	public GladosNode getProductLocation() {
+		return productLocation;
 	}
 
-	public void setPath(ArrayList<GladosNode> path) {
-		this.path = path;
+
+	public void setProductLocation(GladosNode productLocation) {
+		this.productLocation = productLocation;
 	}
+
+	
 }

@@ -3,6 +3,11 @@ package com.netbuilder.jms_tools;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author jtaylor
+ *
+ */
 public class DopsOrder implements Serializable
 {
 	/**

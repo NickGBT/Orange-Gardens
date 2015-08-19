@@ -69,15 +69,15 @@ public class OrderData
 		
 		
 		for(DopsOrderline d : dopsObject.getDopsOrder()) {		
-			path = new ArrayList<GladosNode>(d.getPath());
+			GladosNode productLocation = d.getProductLocation();
 			testNames[i] = d.getProductName();
 			testQuantities[i] = d.getQuantity();
 			testBoxes[i] = d.getBoxSize();
 			
-			System.out.println("OrderData::Line79::"+ path.size());
-			xProductLocation[i] = path.get(0).getxPosition();
-			System.out.println("OrderData :: Line79 :: " + d.getProductName() + " :: Location is " + path.get(0).getxPosition() + ":" + path.get(0).getyPosition());
-			yProductLocation[i] = path.get(0).getyPosition();
+			//System.out.println("OrderData::Line77::"+ productLocation.getxPosition() + ":" + productLocation.getyPosition());
+			xProductLocation[i] = productLocation.getxPosition();
+			//System.out.println("OrderData :: Line79 :: " + d.getProductName() + " :: Location is " + productLocation.getxPosition() + ":" + productLocation.getyPosition());
+			yProductLocation[i] = productLocation.getyPosition();
 			i++;		
 		}
 		

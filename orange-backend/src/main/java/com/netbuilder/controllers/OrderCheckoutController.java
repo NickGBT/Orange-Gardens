@@ -77,7 +77,6 @@ public class OrderCheckoutController {
 	public String changeOrderStatus() {
 
 		username = userId.getUsername();
-		path = new ArrayList<GladosNode>();
 		tempDopsOrders = new ArrayList<DopsOrderline>();
 
 		order = orderManager.findBasketByUsername(OrderStatus.basket, username);
@@ -89,27 +88,23 @@ public class OrderCheckoutController {
 			for (OrderLine ol : orderLines) {
 				if (ol.getProduct().getProductName() == "Garden Light") {
 					gladosNode = new GladosNode(18, 6);
-					path.add(gladosNode);
 				}
 				if (ol.getProduct().getProductName() == "Cool Gnome") {
 					gladosNode = new GladosNode(6, 12);
-					path.add(gladosNode);
+
 				}
 				if (ol.getProduct().getProductName() == "Relaxation Chair") {
 					gladosNode = new GladosNode(3, 3);
-					path.add(gladosNode);
 				}
 				if (ol.getProduct().getProductName() == "Swag Shed") {
 					gladosNode = new GladosNode(12, 17);
-					path.add(gladosNode);
 				}
 				
 				DopsOrderline dol = new DopsOrderline(ol.getProduct()
 						.getProductName(), Integer.toString(ol.getQuantity()),
-						Integer.toString(ol.getProduct().getHeight()), path);
+						Integer.toString(ol.getProduct().getHeight()), gladosNode);
 				tempDopsOrders.add(dol);
-				//System.out.println("OrderCheckout::Line113:: Location: " +  path.get(0).getxPosition() + ":" + path.get(0).getyPosition());
-				path.clear();
+				//System.out.println("OrderCheckout::Line113:: Location: " +  gladosNode.getxPosition() + ":" + gladosNode.getyPosition());
 			}
 
 			dopsOrder = new DopsOrder(tempDopsOrders);

@@ -73,6 +73,7 @@ public class GladosGui
 	private Receiver receiver;
 	private DopsOrder order;
 	private Boolean gdz = false;
+	private int startxTemp, startyTemp;
 
 	/**
 	 * Initialise appearance
@@ -135,6 +136,8 @@ public class GladosGui
     	testPath = null;
 		initMap();
 		testPath = warehouseMap.findPath(0, 0, 0, 0);
+		startxTemp = 0;
+		startyTemp = 0;
 		buttonLayoutConstraints = new GridBagConstraints();
 		gladosFont = new Font("Arial", Font.BOLD, 18);
 		ui = new Thread()
@@ -198,10 +201,17 @@ public class GladosGui
 				
 				try {
 					System.out.println("Before Message");
+					JOptionPane.showMessageDialog(mainFrame, "Your device will now search for pending orders for 60 seconds...", "Searching for Pending Orders...", JOptionPane.INFORMATION_MESSAGE);
 					order = (DopsOrder) receiver.getMessage("dops_queue");
 					logger.info("Order: " + order.getDopsOrder().get(0).getProductName());
 					orderData = new OrderData(order);
-					logger.info("Received Following Order: " + order.getDopsOrder().get(0).getProductName());
+					if (startxTemp != 0)
+					{
+						orderData.setxStart(startxTemp);
+						orderData.setyStart(startyTemp);
+						nextProduct.setEnabled(true);
+					}
+					logger.info("Received Order, the first item of the order is: " + order.getDopsOrder().get(0).getProductName());
 					logger.info("Received message correctly from broker");
 					System.out.println("Received message correctly from broker");
 				} catch (JMSException e2) {
@@ -302,8 +312,8 @@ public class GladosGui
 		initMap();
 		if(orderData.getProductIncrement() > 0)
     	{
-	    	orderData.setxStart(orderData.getxProductLocation()[orderData.getProductIncrement()]);
-	    	orderData.setyStart(orderData.getyProductLocation()[orderData.getProductIncrement()]);
+	    	orderData.setxStart(orderData.getxProductLocation()[orderData.getProductIncrement()-1]);
+	    	orderData.setyStart(orderData.getyProductLocation()[orderData.getProductIncrement()-1]);
     	}
     	testPath = warehouseMap.findPath(orderData.getxStart(), orderData.getyStart(), 
     			orderData.getxProductLocation()[orderData.getProductIncrement()], 
@@ -318,12 +328,14 @@ public class GladosGui
 	public void getGdzRoute()
 	{
 		initMap();
-		if(orderData.getProductIncrement() > 0)
+		if(orderData.getProductIncrement() == 0)
     	{
 	    	orderData.setxStart(orderData.getxProductLocation()[orderData.getProductIncrement()]);
 	    	orderData.setyStart(orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	}
     	testPath = warehouseMap.findPath(orderData.getxStart(), orderData.getyStart(), orderData.getxGdz(), orderData.getyGdz());
+    	startxTemp = orderData.getxGdz();
+    	startyTemp = orderData.getyGdz();
     	orderData.setOrdersComplete(true);
     	nextProduct.setEnabled(false);
     	completeOrder.setEnabled(true);
@@ -595,8 +607,10 @@ public class GladosGui
     	boxSize.setMaximumSize(boxSize.getPreferredSize());
    
     	
-    	if(orderData.getProductIncrement() == order.getDopsOrder().size()){
-    		testPath = warehouseMap.findPath(0, 0, orderData.getxProductLocation()[orderData.getProductIncrement()], orderData.getyProductLocation()[orderData.getProductIncrement()]);
+    	if(orderData.getProductIncrement() == 0 && orderData.isGdz() == false){
+    		//logger.info("Line599:: " + orderData.getxProductLocation()[orderData.getProductIncrement()] + ":" + orderData.getyProductLocation()[orderData.getProductIncrement()]);
+    		initMap();
+    		testPath = warehouseMap.findPath(orderData.getxStart(), orderData.getyStart(), orderData.getxProductLocation()[orderData.getProductIncrement()], orderData.getyProductLocation()[orderData.getProductIncrement()]);
     	}
     	if(orderData.getProductIncrement() <= order.getDopsOrder().size())
     	{
