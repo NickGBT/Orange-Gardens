@@ -156,11 +156,11 @@ public class Order implements Serializable {
 		this.dateDelivered = dateDelivered;
 	}
 
-	public int getOrderID() {
+	public int getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderID(int id) {
+	public void setOrderId(int id) {
 		orderId = id;
 	}
 
