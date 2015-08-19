@@ -14,7 +14,6 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
-import com.netbuilder.validation.OrderLineValidator;
 
 /**
  * 
@@ -27,22 +26,14 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	@Inject
 	private PersistenceManager pm;
-	
-	private OrderLineValidator orderLineValidator;
 
 	public void persistOrderLine(OrderLine orderLine) {
-		if(orderLineValidator.validateOrderLine(orderLine))
-		{
-			EntityManager em = pm.createEntityManager();
-			em.getTransaction().begin();
-			em.persist(orderLine);
-			em.getTransaction().commit();
-			pm.closeEntityManager(em);
-		}
-		else
-		{
-			//do something (maybe)
-		}
+
+		EntityManager em = pm.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(orderLine);
+		em.getTransaction().commit();
+		pm.closeEntityManager(em);
 	}
 
 	public void persistOrderLine(List<OrderLine> orderLine) {

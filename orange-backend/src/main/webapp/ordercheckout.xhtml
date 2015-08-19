@@ -51,14 +51,16 @@
 		<div>
 		<h2>Payment Details</h2>
 		
-		<div id="registeredPaymentDetails">
-		
+		<div id="registeredPaymentDetails">	
 				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" >
     				<f:selectItems value="#{orderCheckoutController.enumValues}" />
 				</h:selectOneMenu><br/>
-				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}"/><br/>
-				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}"/><br/>
-				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}"/><br/>
+				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}">
+				<f:validateLength minimum="16" maximum="16"/></h:inputText><br/>
+				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}">
+				<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
+				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}">
+				<f:validateLength minimum="6" maximum="10"/></h:inputText><br/>
 		</div>
 		
 		<br /> <br />
@@ -69,12 +71,18 @@
 		
 		<h2>Billing Address</h2>	
 		<div id="billingAddress">
-				Address Line 1 : <h:inputText value="#{orderCheckoutController.address.addressLine1}"/><br/>
-				Address Line 2 : <h:inputText value="#{orderCheckoutController.address.addressLine2}"/><br/>
-				Address Line 3 : <h:inputText value="#{orderCheckoutController.address.addressLine3}"/><br/>
-				City : <h:inputText value="#{orderCheckoutController.address.city}"/><br/>
-				County : <h:inputText value="#{orderCheckoutController.address.county}"/><br/>
-				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}"/><br/>
+				Address Line 1 : <h:inputText value="#{orderCheckoutController.address.addressLine1}">
+				<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+				Address Line 2 : <h:inputText value="#{orderCheckoutController.address.addressLine2}">
+				<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+				Address Line 3 : <h:inputText value="#{orderCheckoutController.address.addressLine3}">
+				<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+				City : <h:inputText value="#{orderCheckoutController.address.city}">
+				<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
+				County : <h:inputText value="#{orderCheckoutController.address.county}">
+				<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
+				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}">
+				<f:validateLength minimum="6" maximum="8"/></h:inputText><br/>
 		</div>
 		
 	<div id="submitOrder">

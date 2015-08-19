@@ -14,7 +14,6 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.Stock;
 import com.netbuilder.entity_managers.interfaces.StockManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
-import com.netbuilder.validation.StockValidator;
 
 /**
  * 
@@ -27,23 +26,14 @@ public class StockManagerDB implements StockManager
 {
 	@Inject
 	private PersistenceManager pm;
-	
-	private StockValidator stockValidator;
 
 	public void persistStock(Stock stock) 
 	{
-		if(stockValidator.validateStock(stock))
-		{
-			EntityManager em = pm.createEntityManager();
-			em.getTransaction().begin();
-			em.persist(stock);
-			em.getTransaction().commit();
-			pm.closeEntityManager(em);
-		}
-		else
-		{
-			//do something (maybe)
-		}
+		EntityManager em = pm.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(stock);
+		em.getTransaction().commit();
+		pm.closeEntityManager(em);
 	}
 
 	public void persistStock(List<Stock> stock) 

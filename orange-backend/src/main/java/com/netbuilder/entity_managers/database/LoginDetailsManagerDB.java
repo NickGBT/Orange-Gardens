@@ -1,5 +1,7 @@
 package com.netbuilder.entity_managers.database;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +11,13 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
 import com.netbuilder.util.LoginDetailsToolkit;
-import com.netbuilder.validation.LoginDetailsValidator;
 
 /**
  * 
@@ -27,22 +29,14 @@ import com.netbuilder.validation.LoginDetailsValidator;
 public class LoginDetailsManagerDB implements LoginDetailsManager {
 	@Inject
 	private PersistenceManager pm;
-	
-	private LoginDetailsValidator loginDetailsValidator;
 
 	public void persistLoginDetails(LoginDetails details) {
-		//if(loginDetailsValidator.validateLoginDetails(details))
-		//{
-			EntityManager em = pm.createEntityManager();
-			em.getTransaction().begin();
-			em.persist(details);
-			em.getTransaction().commit();
-			pm.closeEntityManager(em);
-		//}
-		//else
-		//{
-			//do something (maybe)
-		//}
+		
+		EntityManager em = pm.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(details);
+		em.getTransaction().commit();
+		pm.closeEntityManager(em);
 	}
 
 	public LoginDetails findByUsername(String username) {
