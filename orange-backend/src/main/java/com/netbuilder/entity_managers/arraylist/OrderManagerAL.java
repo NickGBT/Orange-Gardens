@@ -12,6 +12,7 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
@@ -267,10 +268,9 @@ public class OrderManagerAL implements OrderManager {
 	}
 
 	@Override
-	public Order findBasketByUsername(OrderStatus status, String username) {
+	public Order findBasketByUserId(OrderStatus status, LoginDetails customer) {
 		for (Order o : orders) {
-			if (o.getOrderStatus().equals(status)
-					&& (o.getCustomer().getUsername().equals(username))) {
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUsername().equals(customer.getUsername()))) {
 				return o;
 			}
 		}
@@ -281,8 +281,7 @@ public class OrderManagerAL implements OrderManager {
 		List<Order> prevOrders = new ArrayList<Order>();
 
 		for (Order o : orders) {
-			if (o.getOrderStatus().equals(status)
-					&& (o.getCustomer().getUsername().equals(username))) {
+			if (o.getOrderStatus().equals(status) && (o.getCustomer().getUsername().equals(username))) {
 				prevOrders.add(o);
 			}
 		}

@@ -141,7 +141,7 @@ public class ProductDetails implements Serializable {
 	public void addToWishlist() {
 
 		if (orderMan.findByCustomerId(customerId) == null) {
-			order = new Order(1, loginD, OrderStatus.wishlist, paymentD);
+			order = new Order(loginD, OrderStatus.wishlist, paymentD);
 			orderLine = new OrderLine(order, product);
 
 			orderMan.persistOrder(order);
@@ -157,7 +157,7 @@ public class ProductDetails implements Serializable {
 	public void addToBasket() {
 		if (orderMan.findByCustomerId(customerId) == null) {
 
-			order = new Order(1, loginD, OrderStatus.basket, paymentD);
+			order = new Order(loginD, OrderStatus.basket, paymentD);
 			orderLine = new OrderLine(order, product, quantity);
 
 			orderMan.persistOrder(order);
