@@ -45,7 +45,7 @@ public class DeliveryTest {
 
 	@Test
 	public void testGetPrice() {
-		assertEquals(testDelivery.getPrice(), price);
+		assertEquals(testDelivery.getPrice(), price, 1.00);
 	}
 
 	@Test

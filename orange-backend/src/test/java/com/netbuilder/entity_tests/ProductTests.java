@@ -70,11 +70,10 @@ public class ProductTests {
 		assertEquals(testProduct.getProductName(), productName);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetProductPrice() {
 
-		assertEquals(testProduct.getProductPrice(), productPrice);
+		assertEquals(testProduct.getProductPrice(), productPrice, 1.00);
 	}
 
 	@Test

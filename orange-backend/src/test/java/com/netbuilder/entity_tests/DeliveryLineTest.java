@@ -2,8 +2,6 @@ package com.netbuilder.entity_tests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-
 import org.junit.Before;
 import org.junit.Test;
 

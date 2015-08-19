@@ -1,7 +1,5 @@
 package com.netbuilder.util;
 
-import java.math.BigDecimal;
-
 import javax.faces.bean.ManagedBean;
 import javax.inject.Singleton;
 
