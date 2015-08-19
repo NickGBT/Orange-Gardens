@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.RequestScoped;
 
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 
 /**
@@ -35,7 +36,7 @@ public interface OrderLineManager {
 
 	public List<OrderLine> getOrderLine();
 
-	public List<OrderLine> getBasketOrderLines(String username);
+	public List<OrderLine> getBasketOrderLines(Order order);
 	
 	public List<OrderLine> getWishlistOrderLines(String username);
 
