@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.RequestScoped;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.enums.OrderStatus;
 
@@ -50,7 +51,7 @@ public interface OrderManager {
 
 	public List<Order> getAllOrders();
 
-	public Order findBasketByUsername(OrderStatus status, String username);
+	public Order findBasketByUserId(OrderStatus status, LoginDetails customer);
 	
 	public List<Order> findPreviousOrders(OrderStatus status, String username);
 

@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
+import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
@@ -72,6 +73,7 @@ public class ProductController {
 	private int quantity;
 	private Product foundProduct;
 	private LoginDetails loginDet;
+	private PaymentDetails paymentDet;
 	private OrderLine orderLine;
 
 	private Order orderBasket;
@@ -96,7 +98,6 @@ public class ProductController {
 	  * 
 	  */
 	public void addToBasket() {
-		rand = new Random();
 		
 		productId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("productId");
 
@@ -104,8 +105,9 @@ public class ProductController {
 		quantity = Integer.parseInt(temp);
 
 		loginDet = ldm.findByUsername(userId.getUsername());
+		paymentDet = pdm.findCustomerPaymentDetails(loginDet);
 
-		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) {
 			if (olm.findByProductInBasket(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				orderLine = new OrderLine(orderLine.getOrder(),
@@ -113,13 +115,13 @@ public class ProductController {
 						(orderLine.getQuantity() + quantity));
 				olm.updateOrderLine(orderLine);
 			} else {
-				orderBasket = om.findBasketByUsername(OrderStatus.basket,
-						userId.getUsername());
+				orderBasket = om.findBasketByUserId(OrderStatus.basket,
+						loginDet);
 				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
 				olm.persistOrderLine(orderLine);
 			}
 		} else {
-			orderBasket = new Order(rand.nextInt(1000), loginDet, OrderStatus.basket, null);
+			orderBasket = new Order(loginDet, OrderStatus.basket, paymentDet);
 			om.persistOrder(orderBasket);
 			logger.info("Basket not found, creating new basket");
 			orderLine = new OrderLine(orderBasket, foundProduct, quantity);
@@ -142,18 +144,18 @@ public class ProductController {
 
 		loginDet = ldm.findByUsername(userId.getUsername());
 
-		if (om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername()) != null) 
+		if (om.findBasketByUserId(OrderStatus.wishlist, loginDet) != null) 
 		{
 			if (olm.findByProductInWishlist(foundProduct.getProductId()) == null) 
 			{
-				wishlist = om.findBasketByUsername(OrderStatus.wishlist, userId.getUsername());
+				wishlist = om.findBasketByUserId(OrderStatus.wishlist, loginDet);
 				orderLine = new OrderLine(wishlist, foundProduct, 0);
 				olm.persistOrderLine(orderLine);
 			}
 		} 
 		else 
 		{
-			wishlist = new Order(1, loginDet, OrderStatus.wishlist, null);
+			wishlist = new Order(loginDet, OrderStatus.wishlist, null);
 			om.persistOrder(wishlist);
 			logger.info("Wishlist not found, creating new wishlist");
 			orderLine = new OrderLine(wishlist, foundProduct, 0);
@@ -179,7 +181,7 @@ public class ProductController {
 
 		loginDet = ldm.findByUsername(userId.getUsername());
 
-		if (om.findBasketByUsername(OrderStatus.basket, userId.getUsername()) != null) {
+		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) {
 			if (olm.findByProductId(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				orderLine = new OrderLine(orderLine.getOrder(),

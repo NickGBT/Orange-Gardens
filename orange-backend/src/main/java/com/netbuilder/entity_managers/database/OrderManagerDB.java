@@ -11,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
@@ -32,18 +33,18 @@ public class OrderManagerDB implements OrderManager {
 	private OrderValidator orderValidator;
 
 	public void persistOrder(Order order) {
-		if(orderValidator.validateOrder(order))
-		{
+		//if(orderValidator.validateOrder(order))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(order);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public Order findByOrderID(int OrderID) {
@@ -241,9 +242,20 @@ public class OrderManagerDB implements OrderManager {
 	}
 
 	@Override
-	public Order findBasketByUsername(OrderStatus status, String username) {
-		//Unnecessary once id's are in place
-		return null;
+	public Order findBasketByUserId(OrderStatus status, LoginDetails customer) {
+
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_STATUS_AND_ID, Order.class);
+		tq.setParameter("customerId", customer);
+		tq.setParameter("status", status);
+		try {
+			return tq.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
+		}
 	}
 
 	@Override

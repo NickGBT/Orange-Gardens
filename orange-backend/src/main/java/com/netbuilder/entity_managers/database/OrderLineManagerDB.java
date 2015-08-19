@@ -31,18 +31,18 @@ public class OrderLineManagerDB implements OrderLineManager {
 	private OrderLineValidator orderLineValidator;
 
 	public void persistOrderLine(OrderLine orderLine) {
-		if(orderLineValidator.validateOrderLine(orderLine))
-		{
+		//if(orderLineValidator.validateOrderLine(orderLine))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(orderLine);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistOrderLine(List<OrderLine> orderLine) {

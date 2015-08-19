@@ -32,18 +32,18 @@ public class DeliveryManagerDB implements DeliveryManager {
 	// ////// CRUD FUNCTIONS ////////
 	// ////////// CREATE /////////////
 	public void persistDelivery(Delivery delivery) {
-		if(deliveryValidator.validateDelivery(delivery))
-		{
+		//if(deliveryValidator.validateDelivery(delivery))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(delivery);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);		
-		}		
-		else
-		{
+		//}		
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistDeliveries(List<Delivery> deliveries) {

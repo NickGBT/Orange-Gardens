@@ -31,18 +31,18 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 	private DeliveryLineValidator deliveryLineValidator;
 
 	public void persistDeliveryLine(DeliveryLine deliveryLine) {
-		if(deliveryLineValidator.validateDeliveryLine(deliveryLine))
-		{
+		//if(deliveryLineValidator.validateDeliveryLine(deliveryLine))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(deliveryLine);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
-		else
-		{
+		//}
+		//else
+		//{
 			//do something (maybe)
-		}
+		//}
 	}
 
 	public void persistDeliveryLine(List<DeliveryLine> deliveryLines) {

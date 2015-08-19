@@ -76,12 +76,14 @@ public class ProductManagerDB implements ProductManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_ID, Product.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("id", productId);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {
 			return null;
+		}
+		finally {
+			pm.closeEntityManager(em);
 		}
 	}
 
@@ -91,13 +93,13 @@ public class ProductManagerDB implements ProductManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_NAME, Product.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("name", name);
 		try {
 			results = new ArrayList<Product>(tq.getResultList());
 		} catch (NoResultException nre) {
 
 		}
+		pm.closeEntityManager(em);
 		return results;
 
 	}
@@ -109,7 +111,6 @@ public class ProductManagerDB implements ProductManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_PRODUCT_PRICE, Product.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("lPrice", lowPrice);
 		tq.setParameter("hPrice", highPrice);
 		try {
@@ -117,6 +118,7 @@ public class ProductManagerDB implements ProductManager {
 		} catch (NoResultException nre) {
 
 		}
+		pm.closeEntityManager(em);
 		return results;
 	}
 
@@ -126,13 +128,13 @@ public class ProductManagerDB implements ProductManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Product> tq = em.createNamedQuery(Product.FIND_BY_CATEGORY, Product.class);
-		pm.closeEntityManager(em);
 		tq.setParameter("category", category);
 		try {
 			results = new ArrayList<Product>(tq.getResultList());
 		} catch (NoResultException nre) {
 
 		}
+		pm.closeEntityManager(em);
 		return results;
 	}
 

@@ -33,14 +33,14 @@ public class EmployeeManagerDB implements EmployeeManager {
 
 	public void persistEmployee(Employee employee) {
 
-		if(employeeValidator.validateEmployee(employee))
-		{
+		//if(employeeValidator.validateEmployee(employee))
+		//{
 			EntityManager em = pm.createEntityManager();
 			em.getTransaction().begin();
 			em.persist(employee);
 			em.getTransaction().commit();
 			pm.closeEntityManager(em);
-		}
+		//}
 	}
 
 	public void persistEmployees(List<Employee> employees) {

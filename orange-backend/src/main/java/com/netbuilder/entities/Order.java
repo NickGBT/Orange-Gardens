@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -73,14 +74,13 @@ public class Order implements Serializable {
 	@NotNull
 	private OrderStatus status;
 
-	@Column(name = "date_placed", nullable = false)
-	@NotNull
+	@Column(name = "date_placed")
 	private String datePlaced;
 
-	@Column(name = "date_dispatched", nullable = false)
+	@Column(name = "date_dispatched")
 	private String dateDispatched;
 
-	@Column(name = "date_delivered", nullable = false)
+	@Column(name = "date_delivered")
 	private String dateDelivered;
 
 	@Column(name = "time_to_deliver")
@@ -112,9 +112,8 @@ public class Order implements Serializable {
 		this.paymentDetails = paymentDetails;
 	}
 	
-	public Order(int orderId, LoginDetails customerID, OrderStatus status,
+	public Order(LoginDetails customerID, OrderStatus status,
 			PaymentDetails paymentDetails) {
-		this.orderId = orderId;
 		this.customerId = customerID;
 		this.status = status;
 		this.paymentDetails = paymentDetails;
