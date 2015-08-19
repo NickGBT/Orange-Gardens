@@ -1,7 +1,5 @@
 package com.netbuilder.entity_managers.database;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +29,18 @@ public class LoginDetailsManagerDB implements LoginDetailsManager {
 	private PersistenceManager pm;
 
 	public void persistLoginDetails(LoginDetails details) {
-		
-		EntityManager em = pm.createEntityManager();
-		em.getTransaction().begin();
-		em.persist(details);
-		em.getTransaction().commit();
-		pm.closeEntityManager(em);
+		try
+		{
+			EntityManager em = pm.createEntityManager();
+			em.getTransaction().begin();
+			em.persist(details);
+			em.getTransaction().commit();
+			pm.closeEntityManager(em);
+		}
+		catch(ConstraintViolationException cve)
+		{
+			cve.printStackTrace();
+		}
 	}
 
 	public LoginDetails findByUsername(String username) {
