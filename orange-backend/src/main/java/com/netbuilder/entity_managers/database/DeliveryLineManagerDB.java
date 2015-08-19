@@ -14,7 +14,6 @@ import javax.validation.ValidationException;
 import com.netbuilder.entities.DeliveryLine;
 import com.netbuilder.entity_managers.interfaces.DeliveryLineManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
-import com.netbuilder.validation.DeliveryLineValidator;
 
 /**
  * 
@@ -27,10 +26,9 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 
 	@Inject
 	private PersistenceManager pm;
-	
-	private DeliveryLineValidator deliveryLineValidator;
 
 	public void persistDeliveryLine(DeliveryLine deliveryLine) {
+
 		//if(deliveryLineValidator.validateDeliveryLine(deliveryLine))
 		//{
 			EntityManager em = pm.createEntityManager();
@@ -43,8 +41,9 @@ public class DeliveryLineManagerDB implements DeliveryLineManager {
 		//{
 			//do something (maybe)
 		//}
-	}
 
+	}
+	
 	public void persistDeliveryLine(List<DeliveryLine> deliveryLines) {
 		EntityManager em = pm.createEntityManager();
 		em.getTransaction().begin();
