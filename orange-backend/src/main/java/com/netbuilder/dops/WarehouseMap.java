@@ -143,8 +143,7 @@ public class WarehouseMap<gladosNode extends Node>
 				}
 				else 
 				{
-					if (currentAdj.getgCosts() > currentAdj
-							.calculategCosts(current)) {
+					if (currentAdj.getgCosts() > currentAdj.calculategCosts(current)) {
 						currentAdj.setPrevious(current);
 						currentAdj.setgCosts(current);
 					}

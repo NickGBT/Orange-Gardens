@@ -10,6 +10,8 @@ public class IsLoggedIn {
 
 	private boolean isLoggedIn = false;
 	private int userId;
+	
+	public IsLoggedIn(){}
 
 	public IsLoggedIn(boolean isLoggedIn, int userID) {
 		this.isLoggedIn = isLoggedIn;
