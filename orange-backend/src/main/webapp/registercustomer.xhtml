@@ -19,58 +19,58 @@
 		<div id="registerForm">
 				<h:form style="display:inline; padding-left=10%">
 					Username : 
-					<h:inputText value="#{registrationDetails.username}">
+					<h:inputText value="#{registrationDetails.username}" required="true">
 					<f:validateLength minimum="5" maximum="25"/></h:inputText><br/>
 					<br />
 					<br />
 					First Name : 
-					<h:inputText value="#{registrationDetails.fName}">
+					<h:inputText value="#{registrationDetails.fName}" required="true">
 					<f:validateLength minimum="1" maximum="20"/></h:inputText><br/>
 					<br />
 					<br />
 					Last Name : 
-					<h:inputText value="#{registrationDetails.lName}">
+					<h:inputText value="#{registrationDetails.lName}" required="true">
 					<f:validateLength minimum="1" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Email : <h:inputText value="#{registrationDetails.email}">
+					Email : <h:inputText value="#{registrationDetails.email}" required="true">
 					<f:validateLength minimum="6" maximum="254"/></h:inputText><br/>
 					<br />
 					<br />
-					Phone Number : <h:inputText value="#{registrationDetails.contactNumber}">
+					Phone Number : <h:inputText value="#{registrationDetails.contactNumber}" required="true">
 					<f:validateLength minimum="1" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Password : <h:inputText type="password" value="#{registrationDetails.password}">
+					Password : <h:inputText type="password" value="#{registrationDetails.password}" required="true">
 					<f:validateLength minimum="5" maximum="160"/></h:inputText><br/>
 					<br />
 					<br />
-					Password Confirmation : <h:inputText type="password" value="#{registrationDetails.password}"/>
+					Password Confirmation : <h:inputText type="password" value="#{registrationDetails.password}" required="true">
 					<f:validateLength minimum="5" maximum="160"/></h:inputText><br/>
 					<br />
 					<br />
 					<h2>Address</h2>
-					Address Label : <h:inputText value="#{registrationDetails.addressLabel}">
+					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true">
 					<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Home Number : <h:inputText value="#{registrationDetails.addressLine1}">
+					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true">
 					<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Street : <h:inputText value="#{registrationDetails.addressLine2}">
+					Street : <h:inputText value="#{registrationDetails.addressLine2}" required="true">
 					<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					City : <h:inputText value="#{registrationDetails.city}">
+					City : <h:inputText value="#{registrationDetails.city}" required="true">
 					<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					County : <h:inputText value="#{registrationDetails.county}">
+					County : <h:inputText value="#{registrationDetails.county}" required="true">
 					<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Post Code : <h:inputText value="#{registrationDetails.postcode}">
+					Post Code : <h:inputText value="#{registrationDetails.postcode}" required="true">
 					<f:validateLength minimum="6" maximum="8"/></h:inputText><br/>
 					<br />
 					<br />
@@ -84,15 +84,15 @@
 					</h:selectOneMenu>
 					<br />
 					<br />
-					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}">
+					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" required="true">
 					<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
 					<br />
 					<br />
-					Card Number : <h:inputText value="#{registrationDetails.cardNumber}">
+					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" required="true">
 					<f:validateLength minimum="16" maximum="16"/></h:inputText><br/>
 					<br />
 					<br />
-					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}">
+					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" required="true">
 					<f:validateLength minimum="6" maximum="10"/></h:inputText><br/>
 					<br />
 					<br />
