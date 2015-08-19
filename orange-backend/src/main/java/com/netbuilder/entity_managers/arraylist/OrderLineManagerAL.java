@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Singleton;
 
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.enums.OrderStatus;
@@ -169,10 +170,10 @@ public class OrderLineManagerAL implements OrderLineManager {
 		}
 	}
 
-	public List<OrderLine> getBasketOrderLines(String username) {
+	public List<OrderLine> getBasketOrderLines(Order order) {
 		ArrayList<OrderLine> userOrderLines = new ArrayList<OrderLine>();
 		for (OrderLine o : orderLines) {
-			if (o.getOrder().getCustomer().getUsername().equals(username)
+			if (o.getOrder().getCustomer().getUsername().equals(order.getCustomer().getUsername())
 					&& o.getOrder().getOrderStatus() == OrderStatus.basket) {
 				userOrderLines.add(o);
 			}

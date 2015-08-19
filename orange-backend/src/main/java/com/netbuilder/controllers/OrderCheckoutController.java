@@ -86,7 +86,7 @@ public class OrderCheckoutController {
 
 		if (order.getOrderStatus() == OrderStatus.basket) {
 
-			orderLines = orderLineManager.getBasketOrderLines(username);
+			orderLines = orderLineManager.getBasketOrderLines(order);
 
 			for (OrderLine ol : orderLines) {
 				if (ol.getProduct().getProductName() == "Garden Light") {
