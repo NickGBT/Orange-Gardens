@@ -43,7 +43,7 @@ public class OrderTest {
 
 		orderStatus = OrderStatus.cancelled;
 		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", 323, "22/07/2020", customer);
+				"BOB", "22/07/2020", customer);
 		testOrder = new Order(customer, employee, orderStatus, datePlaced,
 				dateDispatched, dateDelivered,
 				timeToDeliver, refundAvailable, paymentDetails);

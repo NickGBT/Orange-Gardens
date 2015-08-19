@@ -47,13 +47,13 @@ public class TestData {
 			"testEmail2", password, salt);
 
 	public PaymentDetails paymentDetails = new PaymentDetails(CardType.visa,
-			"3435634734679447", "BOB", 323, "22/07/2020", customerLogin);
+			"3435634734679447", "BOB", "22/07/2020", customerLogin);
 
 	public PaymentDetails paymentDetails2 = new PaymentDetails(CardType.visa,
-			"3432334534349464", "HARRY", 684, "11/02/2017", customerLogin2);
+			"3432334534349464", "HARRY", "11/02/2017", customerLogin2);
 
 	public PaymentDetails paymentDetails3 = new PaymentDetails(CardType.visa,
-			"2346546487469332", "PAUL", 925, "10/12/2025", customerLogin3);
+			"2346546487469332", "PAUL", "10/12/2025", customerLogin3);
 
 	public Order order = new Order(customerLogin, employeeLogin,
 			OrderStatus.awaitingDispatch, "10/10/15", "12/10/15",

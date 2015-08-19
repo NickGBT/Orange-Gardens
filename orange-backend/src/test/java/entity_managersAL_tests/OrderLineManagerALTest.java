@@ -47,7 +47,7 @@ public class OrderLineManagerALTest {
 				salt);
 
 		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", 323, "22/07/2020", testCustomer1);
+				"BOB", "22/07/2020", testCustomer1);
 
 		orderLineManager = new OrderLineManagerAL();
 		order = new Order(1, testCustomer1, OrderStatus.basket, paymentDetails);

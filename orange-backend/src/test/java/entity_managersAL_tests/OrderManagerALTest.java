@@ -27,8 +27,7 @@ public class OrderManagerALTest {
 	OrderManagerAL orderManager;
 	private List<Order> testArrayOrder;
 	private Order testOrder, testOrder2, testOrder3, testOrder4;
-	private LoginDetails testCustomer, testCustomer2, testCustomer3,
-			testCustomer4;
+	private LoginDetails testCustomer, testCustomer2, testCustomer3, testCustomer4;
 	private LoginDetails testEmployee, testEmployee2;
 	private PaymentDetails paymentDetails;
 	byte[] password = { 1, 2, 3 };
@@ -50,7 +49,7 @@ public class OrderManagerALTest {
 		testCustomer4 = new LoginDetails("fooUser6", "testEmail6", password,
 				salt);
 		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", 323, "22/07/2020", testCustomer);
+				"BOB", "22/07/2020", testCustomer);
 		testOrder = new Order(testCustomer, testEmployee,
 				OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO",
 				"AB/CD/HJKS", 504, false, paymentDetails);

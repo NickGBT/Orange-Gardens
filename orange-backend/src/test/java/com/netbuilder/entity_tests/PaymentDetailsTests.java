@@ -21,7 +21,6 @@ public class PaymentDetailsTests {
 
 	String number;
 	String name;
-	int security;
 	String expiry;
 	LoginDetails customer;
 	Order orderId;
@@ -35,13 +34,11 @@ public class PaymentDetailsTests {
 		type = CardType.americanexpress;
 		number = "4412889511254478";
 		name = "N B Gardens";
-		security = 123;
 		expiry = "08/18";
 		customer = new LoginDetails("fooUser", "testEmail1", password, salt);
 		orderId = null;
 
-		testPaymentDetails = new PaymentDetails(type, number, name, security,
-				expiry, customer);
+		testPaymentDetails = new PaymentDetails(type, number, name, expiry, customer);
 	}
 
 	@Test
