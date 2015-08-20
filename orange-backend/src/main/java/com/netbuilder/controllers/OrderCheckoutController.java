@@ -72,17 +72,15 @@ public class OrderCheckoutController {
 	private PaymentDetails pd;
 	private Address ad;
 
-	private String username;
 	private ArrayList<GladosNode> path;
 	private GladosNode gladosNode;
 	private ArrayList<DopsOrderline> tempDopsOrders;
 
 	public String changeOrderStatus() {
 
-		username = userId.getUsername();
 		tempDopsOrders = new ArrayList<DopsOrderline>();
 
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(username));
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUserId(userId.getUid()));
 
 		if (order.getOrderStatus() == OrderStatus.basket) {
 
@@ -145,13 +143,11 @@ public class OrderCheckoutController {
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		//pd = paymentDetails.findCustomerPaymentDetails(userId.getUid());
-		return pd;
+		return paymentDetails.findCustomerPaymentDetails(loginManager.findByUserId(userId.getUid()));
 	}
 	
 	public Address getAddress(){
-		//return ad = address.findByUserId(userId.getUid()); 
-		return null;
+		return address.findByUserId(loginManager.findByUserId(userId.getUid()));
 	} 
 
 	public void setTestData(OrderData testData) {

@@ -105,8 +105,8 @@ public class RegistrationDetails {
 	 */
 	public void validatePassword(FacesContext context, UIComponent toValidate, Object value)
 	{     
-        String confirm = (String)value;     
-        UIInput passComp = (UIInput)toValidate.getAttributes().get("passwordComponent");     
+        String confirm = (String)value;
+        UIInput passComp = (UIInput)toValidate.getAttributes().get("passwordComponent");
         String password = (String)passComp.getValue();     
         if (!password.equals(confirm)) 
         {     
