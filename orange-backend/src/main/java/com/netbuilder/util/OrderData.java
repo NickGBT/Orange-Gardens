@@ -54,7 +54,7 @@ public class OrderData {
 			"2346546487469332", "PAUL", "10/12/2025", customerLogin3);
 
 	public Order order = new Order(customerLogin, employeeLogin,
-			OrderStatus.awaitingDispatch, "10/10/15", "12/10/15",
+			OrderStatus.awaitingdispatch, "10/10/15", "12/10/15",
 			"13/10/15", 40, true);
 
 	public Order order2 = new Order(customerLogin2, employeeLogin,

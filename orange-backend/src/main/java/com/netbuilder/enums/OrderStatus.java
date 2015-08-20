@@ -7,5 +7,5 @@ package com.netbuilder.enums;
  */
 
 public enum OrderStatus {
-	placed, processing, awaitingDispatch, dispatched, delivered, cancelled, returned, refunded, wishlist, basket
+	placed, processing, awaitingdispatch, dispatched, delivered, cancelled, returned, refunded, wishlist, basket
 }
