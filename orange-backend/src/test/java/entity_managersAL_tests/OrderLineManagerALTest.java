@@ -50,7 +50,7 @@ public class OrderLineManagerALTest {
 				"BOB", "22/07/2020", testCustomer1);
 
 		orderLineManager = new OrderLineManagerAL();
-		order = new Order(testCustomer1, OrderStatus.basket, paymentDetails);
+		order = new Order(testCustomer1, OrderStatus.basket);
 
 		product = new Product(1, "img/iomg", "testproduct", 25.25, 10, 10, 11,
 				10.50, "test Product", ProductCategory.accessory);

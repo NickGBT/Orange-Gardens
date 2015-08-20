@@ -27,7 +27,7 @@ public class JmsMessageHandler
 			salt = LoginDetailsToolkit.generateSalt();
 			hashedPassword = LoginDetailsToolkit.getHashedPassword("password", salt);
 			warehouseOperativeLogin = new LoginDetails(22, "JSmith", "JSmith@nbg.co.uk", hashedPassword, salt);
-			warehouseOperative = new Employee(warehouseOperativeLogin, EmployeeDepartment.WAREHOUSE, "John", "Smith", EmployeePermissions.WORKER);
+			warehouseOperative = new Employee(warehouseOperativeLogin, EmployeeDepartment.warehouse, "John", "Smith", EmployeePermissions.worker);
 		}
 		catch(Exception e)
 		{

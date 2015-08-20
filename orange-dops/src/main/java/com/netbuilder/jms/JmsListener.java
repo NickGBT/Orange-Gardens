@@ -1,8 +1,5 @@
 package com.netbuilder.jms;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -32,7 +29,6 @@ public class JmsListener implements MessageListener {
 		this.handler = source;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onMessage(Message message) {
 

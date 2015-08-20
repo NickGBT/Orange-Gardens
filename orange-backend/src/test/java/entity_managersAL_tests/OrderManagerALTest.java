@@ -11,9 +11,7 @@ import org.junit.Test;
 
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
-import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entity_managers.arraylist.OrderManagerAL;
-import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 
 /**
@@ -26,10 +24,9 @@ public class OrderManagerALTest {
 
 	OrderManagerAL orderManager;
 	private List<Order> testArrayOrder;
-	private Order testOrder, testOrder2, testOrder3, testOrder4;
-	private LoginDetails testCustomer, testCustomer2, testCustomer3, testCustomer4;
+	private Order testOrder, testOrder2;
+	private LoginDetails testCustomer, testCustomer2;
 	private LoginDetails testEmployee, testEmployee2;
-	private PaymentDetails paymentDetails;
 	byte[] password = { 1, 2, 3 };
 	byte[] salt = { 1, 2, 3 };
 
@@ -38,30 +35,15 @@ public class OrderManagerALTest {
 		orderManager = new OrderManagerAL();
 		testArrayOrder = new ArrayList<Order>();
 		testCustomer = new LoginDetails("fooUser", "testEmail1", password, salt);
-		testEmployee = new LoginDetails("fooUser2", "testEmail2", password,
-				salt);
-		testCustomer2 = new LoginDetails("fooUser3", "testEmail3", password,
-				salt);
-		testEmployee2 = new LoginDetails("fooUser4", "testEmail4", password,
-				salt);
-		testCustomer3 = new LoginDetails("fooUser5", "testEmail5", password,
-				salt);
-		testCustomer4 = new LoginDetails("fooUser6", "testEmail6", password,
-				salt);
-		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", "22/07/2020", testCustomer);
+		testEmployee = new LoginDetails("fooUser2", "testEmail2", password, salt);
+		testCustomer2 = new LoginDetails("fooUser3", "testEmail3", password, salt);
+		testEmployee2 = new LoginDetails("fooUser4", "testEmail4", password, salt);
 		testOrder = new Order(testCustomer, testEmployee,
 				OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO",
-				"AB/CD/HJKS", 504, false, paymentDetails);
+				"AB/CD/HJKS", 504, false);
 		testOrder2 = new Order(testCustomer2, testEmployee2,
 				OrderStatus.awaitingDispatch, "03/04/2015",
-				"AR/VB/1999", "AB/CD/4321", 2003, false, paymentDetails);
-		testOrder3 = new Order(testCustomer3, testEmployee2,
-				OrderStatus.wishlist, "03/04/2015", "AR/VB/1999",
-				"AB/CD/4321", 2002, false, paymentDetails);
-		testOrder4 = new Order(testCustomer3, testEmployee2,
-				OrderStatus.basket, "03/04/2015", "AR/VB/1999",
-				"AB/CD/4321", 2001, false, paymentDetails);
+				"AR/VB/1999", "AB/CD/4321", 2003, false);
 		testOrder.setOrderID(5);
 		testOrder2.setOrderID(10);
 	}

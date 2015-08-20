@@ -56,7 +56,7 @@ public class PaymentDetailsManagerALTests {
 		c2.setUserId(2);
 
 		o1 = new Order(c2, c1, OrderStatus.placed, "2015-07-07",
-				"2015-07-08", "2015-07-09", 3, true, p1);
+				"2015-07-08", "2015-07-09", 3, true);
 		o1.setOrderID(1);
 
 		p1 = new PaymentDetails(CardType.americanexpress, "12345678912345", "N B Gardens", "03-17", c1);

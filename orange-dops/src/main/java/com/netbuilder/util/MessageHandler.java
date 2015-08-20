@@ -2,8 +2,6 @@ package com.netbuilder.util;
 
 import java.util.List;
 
-import com.netbuilder.pathfinding.GladosNode;
-
 /**
  * 
  * @author JustinMabbutt

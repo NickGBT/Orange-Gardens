@@ -11,6 +11,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.validation.ValidationException;
 
+import com.netbuilder.entities.LoginDetails;
+import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.persistence_manager.PersistenceManager;
@@ -135,9 +137,21 @@ public class OrderLineManagerDB implements OrderLineManager {
 	}
 
 	@Override
-	public List<OrderLine> getBasketOrderLines(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderLine> getBasketOrderLines(Order order) {
+		List<OrderLine> orderLine = new ArrayList<OrderLine>();
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_ORDER_ID, OrderLine.class);
+		tq.setParameter("order", order);
+		try {
+			orderLine = (ArrayList<OrderLine>) tq.getResultList();
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		pm.closeEntityManager(em);
+		return orderLine;
+		
 	}
 
 	@Override

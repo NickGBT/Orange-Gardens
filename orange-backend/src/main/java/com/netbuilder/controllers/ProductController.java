@@ -1,13 +1,9 @@
 package com.netbuilder.controllers;
 
-import java.util.Random;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,16 +11,13 @@ import org.apache.logging.log4j.Logger;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.ProductDetails;
-import com.netbuilder.util.OrderData;
 import com.netbuilder.util.UserId;
 
 /**
@@ -63,8 +56,6 @@ public class ProductController {
 	@Inject
 	private OrderLineManager olm;
 
-	@ManagedProperty(value = "#{testData}")
-	private TestData testData;
 	private Product product;
 	private String productId;
 	private String temp;
@@ -184,21 +175,6 @@ public class ProductController {
 				olm.updateOrderLine(orderLine);
 			}
 		}
-	}
-
-	/**
-	 * @return the testData
-	 */
-	public OrderData getTestData() {
-		return testData;
-	}
-
-	/**
-	 * @param testData
-	 *            the testData to set
-	 */
-	public void setTestData(OrderData testData) {
-		this.testData = testData;
 	}
 
 	public ProductDetails getProductDetails() {

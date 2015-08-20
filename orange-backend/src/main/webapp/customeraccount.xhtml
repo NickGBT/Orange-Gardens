@@ -28,27 +28,27 @@
 					<br/>
 					First Name:
 					<h:inputText value=" #{accountManagementController.customer.fName}">
-					<f:validateLength minimum="1" maximum="20"/></h:inputText>
+					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,20})"/></h:inputText>
 					<br/>
 					<br/>
 					Last Name:
 					<h:inputText value="#{accountManagementController.customer.lName}">
-					<f:validateLength minimum="1" maximum="45"/></h:inputText>
+					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText>
 					<br/>
 					<br/>
 					Email Address:
 					<h:inputText value="#{accountManagementController.loginDetails.email}">
-					<f:validateLength minimum="6" maximum="254"/></h:inputText>
+					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{6,254})"/></h:inputText>
 					<br/>
 					<br/>
 					Contact Number:
 					<h:inputText value="#{accountManagementController.customer.contactNumber}">
-					<f:validateLength minimum="1" maximum="45"/></h:inputText>
+					<f:validateRegex pattern="[0-9]+.{1,45}"/></h:inputText>
 					<br/>
 					<br/>
 					Username:
 					<h:inputText value="#{accountManagementController.loginDetails.username}">
-					<f:validateLength minimum="5" maximum="25"/></h:inputText>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,25})"/></h:inputText>
 					<br/>
 					<br/>
 					
@@ -60,17 +60,17 @@
 					<p>Address:</p>
 					<div id="AddressText">
 						<h:inputText value="#{accountManagementController.address.addressLine1}">
-						<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*\d).{1,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.addressLine2}">
-						<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.addressLine3}">
-						<f:validateLength minimum="0" maximum="45"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{0,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.city}">
-						<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.county}">
-						<f:validateLength minimum="2" maximum="45"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.postcode}">
-						<f:validateLength minimum="6" maximum="8"/></h:inputText><br/>
+						<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8})"/></h:inputText><br/>
 					</div>
 					<h:commandButton value="Submit" action="account.xhtml"/>
 				</div>

@@ -8,9 +8,7 @@ import org.junit.Test;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
-import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -46,7 +44,6 @@ public class OrderLineTest {
 	private double weight = 3;
 	private String description = "A gnome for testing, should never exist";
 	private ProductCategory productCategory = ProductCategory.accessory;
-	private PaymentDetails paymentDetails;
 	private OrderLine productLine;
 
 	private int quantity = 50;
@@ -59,11 +56,7 @@ public class OrderLineTest {
 		employee = new LoginDetails("employee123", "testEmail1", password, salt);
 
 		orderStatus = OrderStatus.cancelled;
-		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", "22/07/2020", customer);
-		testOrder = new Order(customer, employee, orderStatus, datePlaced,
-				dateDispatched, dateDelivered,
-				timeToDeliver, refundAvailable, paymentDetails);
+		testOrder = new Order(customer, employee, orderStatus, datePlaced, dateDispatched, dateDelivered, timeToDeliver, refundAvailable);
 
 		testProduct = new Product(imageLocation, productName, productPrice,
 				width, height, length, weight, description, productCategory);
