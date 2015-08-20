@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 public class AddProductPanel extends JPanel{
 	
+	private static final long serialVersionUID = -5281524346092374485L;
 	private JTextField productID, productName, productQuantity;
 	private JLabel id, name, quantity;
 	private JButton addProduct, cancel;

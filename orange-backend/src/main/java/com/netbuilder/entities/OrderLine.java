@@ -28,6 +28,7 @@ import javax.validation.constraints.NotNull;
 	@NamedQuery(name = OrderLine.GET_ALL, query = "SELECT o FROM OrderLine o")})
 public class OrderLine implements Serializable {
 	
+	private static final long serialVersionUID = 106177606691863253L;
 	public static final String GET_ALL = "OrderLine.getOrderLine";
 	public static final String FIND_BY_ORDER_ID = "OrderLine.findByOrderId";
 	public static final String FIND_BY_PRODUCT_ID = "OrderLine.findByProductId";

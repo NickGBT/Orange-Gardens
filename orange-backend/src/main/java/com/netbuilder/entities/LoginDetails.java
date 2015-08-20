@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = LoginDetails.GET_ALL, query = "SELECT ld FROM LoginDetails ld")})
 public class LoginDetails implements Serializable {
 
+	private static final long serialVersionUID = 2158652662609676736L;
 	public static final String FIND_BY_USERNAME = "LoginDetails.findByUsername";
 	public static final String FIND_BY_EMAIL = "LoginDetails.findByEmail";
 	public static final String FIND_BY_USER_ID = "LoginDetails.findByUserId";

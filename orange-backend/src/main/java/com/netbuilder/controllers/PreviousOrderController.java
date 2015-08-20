@@ -33,7 +33,6 @@ public class PreviousOrderController {
 	@Inject
 	private UserId userId;
 	
-	private int currentOrderId;
 	ArrayList<Integer> orderIds = new ArrayList<Integer>();
 	
 	ArrayList<List<OrderLine>> group = new ArrayList<List<OrderLine>>();

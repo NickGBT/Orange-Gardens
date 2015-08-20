@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = Address.FIND_BY_USER_ID, query = "SELECT a FROM Address a WHERE a.customer = :customer") })
 public class Address implements Serializable
 {
+	private static final long serialVersionUID = 4881768056577618411L;
 	public static final String GET_ALL = "Address.getAddresses";
 	public static final String FIND_BY_POSTCODE = "Address.findByPostcode";
 	public static final String FIND_BY_ADDRESS_LABEL = "Address.findByAddressLabel";

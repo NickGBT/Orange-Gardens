@@ -12,6 +12,8 @@ import javax.swing.JTextField;
  */
 public class LoginTextField extends JTextField 
 {
+	private static final long serialVersionUID = 5878905683983754920L;
+
 	public LoginTextField(final String promptText) 
 	{
 		super(promptText);

@@ -30,6 +30,7 @@ import com.netbuilder.enums.CardType;
 	@NamedQuery(name = PaymentDetails.FIND_BY_EXPIRED, query = "SELECT pd FROM PaymentDetails pd WHERE pd.customerId = :id AND pd.expiryDate < :currentDate")})
 public class PaymentDetails implements Serializable {
 
+	private static final long serialVersionUID = -6213633216400796419L;
 	public static final String FIND_BY_CARD_NUMBER = "PaymentDetails.findByCardNumber";
 	public static final String FIND_BY_CUSTOMER = "PaymentDetails.findByCustomer";
 	public static final String FIND_BY_EXPIRED = "PaymentDetails.findByExpired";

@@ -28,6 +28,7 @@ import com.netbuilder.enums.DeliveryStatus;
 	@NamedQuery(name = Delivery.GET_ALL, query = "SELECT d FROM Delivery d")})
 public class Delivery implements Serializable
 {
+	private static final long serialVersionUID = 6861857854472008030L;
 	public static final String GET_ALL = "Deliery.getDeliveries";
 	public static final String FIND_BY_DATE_PLACED = "Delivery.findByDatePlaced";
 	public static final String FIND_BY_DELIVERY_ID = "Delivery.findByDeliveryId";

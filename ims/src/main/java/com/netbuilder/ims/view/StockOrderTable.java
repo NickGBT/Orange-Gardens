@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class StockOrderTable extends JPanel{
 	
+	private static final long serialVersionUID = 566238849647459345L;
 	private JTable orderTable;
 	private DefaultTableModel tableModel;
 	private Object columnNames[] = { "Product ID", "Product Name", "Quantity" };

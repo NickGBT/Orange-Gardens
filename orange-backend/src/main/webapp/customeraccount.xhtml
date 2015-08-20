@@ -27,50 +27,50 @@
 					<br/>
 					<br/>
 					First Name:
-					<h:inputText value=" #{accountManagementController.customer.fName}">
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,20})"/></h:inputText>
+					<h:inputText value=" #{accountManagementController.customer.fName}" required="true">
+					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText>
 					<br/>
 					<br/>
 					Last Name:
-					<h:inputText value="#{accountManagementController.customer.lName}">
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText>
+					<h:inputText value="#{accountManagementController.customer.lName}" required="true">
+					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText>
 					<br/>
 					<br/>
 					Email Address:
-					<h:inputText value="#{accountManagementController.loginDetails.email}">
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{6,254})"/></h:inputText>
+					<h:inputText value="#{accountManagementController.loginDetails.email}" required="true">
+					<f:validateRegex pattern="((?=.*[@])[0-9a-zA-Z]+.{6,254})"/></h:inputText>
 					<br/>
 					<br/>
 					Contact Number:
-					<h:inputText value="#{accountManagementController.customer.contactNumber}">
-					<f:validateRegex pattern="[0-9]+.{1,45}"/></h:inputText>
+					<h:inputText value="#{accountManagementController.customer.contactNumber}" required="true">
+					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText>
 					<br/>
 					<br/>
 					Username:
-					<h:inputText value="#{accountManagementController.loginDetails.username}">
-					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,25})"/></h:inputText>
+					<h:inputText value="#{accountManagementController.loginDetails.username}" required="true">
+					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText>
 					<br/>
 					<br/>
 					
 					<p>Payment Methods:</p>
 					<h:selectOneMenu id = "cardtype" value="#{accountManagementController.paymentDetails.cardType}">
-						<f:selectItems value="#{accountManagementController.enumValues}" />
+						<f:selectItems value="#{accountManagementController.enumValues}"/>
 					</h:selectOneMenu>
 					
 					<p>Address:</p>
 					<div id="AddressText">
-						<h:inputText value="#{accountManagementController.address.addressLine1}">
-						<f:validateRegex pattern="((?=.*\d).{1,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.addressLine2}">
-						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
+						<h:inputText value="#{accountManagementController.address.addressLine1}" required="true">
+						<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
+						<h:inputText value="#{accountManagementController.address.addressLine2}" required="true">
+						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 						<h:inputText value="#{accountManagementController.address.addressLine3}">
-						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{0,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.city}">
-						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.county}">
-						<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.postcode}">
-						<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8})"/></h:inputText><br/>
+						<f:validateRegex pattern="([a-zA-Z]+.{0,45})"/></h:inputText><br/>
+						<h:inputText value="#{accountManagementController.address.city}" required="true">
+						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+						<h:inputText value="#{accountManagementController.address.county}" required="true">
+						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+						<h:inputText value="#{accountManagementController.address.postcode}" required="true">
+						<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
 					</div>
 					<h:commandButton value="Submit" action="account.xhtml"/>
 				</div>

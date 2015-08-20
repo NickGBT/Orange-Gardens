@@ -30,7 +30,6 @@ public class Glados {
 //		try {
 //			receiver = new Receiver("127.0.0.1");
 //		} catch (JMSException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		} catch(Exception e) {
 //			e.printStackTrace();
@@ -42,7 +41,6 @@ public class Glados {
 //			receiver.listenOnQueue("dops_queue", messageHandler);
 //			logger.info("Message received from broker.");
 //		} catch (JMSException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 	}

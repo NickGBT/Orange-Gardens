@@ -25,7 +25,6 @@ import com.netbuilder.util.DummyAL;
 public class ProductManagerAL implements ProductManager {
 	@Inject
 	private DummyAL dummyAL;
-	private List<Product> products = new ArrayList<Product>();
 
 	public ProductManagerAL() {
 

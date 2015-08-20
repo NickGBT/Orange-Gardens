@@ -11,6 +11,8 @@ import javax.enterprise.context.SessionScoped;
  */
 @SessionScoped
 public class UserId implements Serializable {
+
+	private static final long serialVersionUID = 387704063221232446L;
 	private int customerUid, employeeUid;
 	private String username;
 

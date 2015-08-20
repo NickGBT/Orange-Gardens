@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 
 public class AddProductFrame extends JFrame{
 	
+	private static final long serialVersionUID = -4283759984930536758L;
+	
 	private AddProductPanel addProductPanel;
 	
 	public AddProductFrame(){

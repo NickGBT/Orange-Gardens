@@ -7,11 +7,9 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -22,12 +20,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class OrderStockPanel extends JPanel{
 	
+	private static final long serialVersionUID = 632695628478895304L;
 	private JTable orderTable;
 	private DefaultTableModel tableModel;
 	private Object columnNames[] = { "Product ID", "Product Name", "Quantity to Order" };
-	private JCheckBox saveReport;
-	private JTextField savePath;
-	private JButton browse, order, cancel;
+	private JButton order, cancel;
 	
 	public OrderStockPanel(){
 		

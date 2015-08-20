@@ -1,7 +1,5 @@
 package com.netbuilder.controllers;
 
-import java.util.Random;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -50,16 +48,13 @@ public class RegistrationController {
 	@Inject
 	private CustomerManager customerManager;
 
-	private String errorMsg;
 	private Customer customer;
 	private LoginDetails loginDetails;
 	private Address address;
 	private PaymentDetails payDetails;
 	private static final Logger logger = LogManager.getLogger();
-	private Random rand;
 
 	public String registerCustomer() {
-		rand = new Random();
 
 		if (registrationDetails.checkAllUserEntries()) {
 			byte[] salt = null;

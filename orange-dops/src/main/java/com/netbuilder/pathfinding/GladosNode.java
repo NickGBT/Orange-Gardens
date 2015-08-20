@@ -7,6 +7,8 @@ package com.netbuilder.pathfinding;
  */
 public class GladosNode extends Node
 {
+	private static final long serialVersionUID = -5240735361051754844L;
+
 	public GladosNode(int xPosition, int yPosition)
 	{
 		super(xPosition, yPosition);

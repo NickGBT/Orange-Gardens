@@ -11,10 +11,8 @@ import org.junit.Test;
 import com.netbuilder.entities.LoginDetails;
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
-import com.netbuilder.entities.PaymentDetails;
 import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.arraylist.OrderLineManagerAL;
-import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -29,7 +27,6 @@ public class OrderLineManagerALTest {
 	private OrderLineManagerAL orderLineManager;
 	private Order order;
 	private LoginDetails testCustomer1;
-	private PaymentDetails paymentDetails;
 	private OrderLine orderLine;
 	private OrderLine orderLine1;
 	private Product product;
@@ -43,11 +40,7 @@ public class OrderLineManagerALTest {
 
 		orderlineAL = new ArrayList<OrderLine>();
 
-		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password,
-				salt);
-
-		paymentDetails = new PaymentDetails(CardType.visa, "3435634734679447",
-				"BOB", "22/07/2020", testCustomer1);
+		testCustomer1 = new LoginDetails("fooUser", "testEmail1", password, salt);
 
 		orderLineManager = new OrderLineManagerAL();
 		order = new Order(testCustomer1, OrderStatus.basket);
@@ -66,7 +59,6 @@ public class OrderLineManagerALTest {
 		orderLineManager.persistOrderLine(orderLine);
 		orderlineAL = orderLineManager.getOrderLine();
 		assertEquals(1, orderlineAL.size());
-
 	}
 
 	@Test
@@ -77,7 +69,6 @@ public class OrderLineManagerALTest {
 		orderLineManager.persistOrderLine(orderlineAL);
 		orderlineAL = orderLineManager.getOrderLine();
 		assertEquals(2, orderlineAL.size());
-
 	}
 
 	/*
@@ -134,5 +125,4 @@ public class OrderLineManagerALTest {
 		orderLineManager.removeProductLine(orderLine1);
 		assertEquals(orderLineManager.getOrderLine().get(0), oLine.get(0));
 	}
-
 }

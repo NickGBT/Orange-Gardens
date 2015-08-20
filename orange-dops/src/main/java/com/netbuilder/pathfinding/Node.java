@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 public abstract class Node implements Serializable
 {
+	private static final long serialVersionUID = -7277861797370571645L;
 	protected static final int BASICMOVEMENTCOST = 10;
 	protected static final int DIAGONALMOVEMENTCOST = 14;
 

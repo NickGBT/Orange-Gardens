@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 		@NamedQuery(name = Customer.FIND_BY_USER_ID, query = "SELECT c FROM Customer c WHERE c.customer = :customer")})
 public class Customer implements Serializable
 {
+	private static final long serialVersionUID = -1567599593711266515L;
 	public static final String GET_ALL = "Customer.getCustomers";
 	public static final String FIND_BY_FIRST_NAME = "Customer.findByfName";
 	public static final String FIND_BY_LAST_NAME = "Customer.findBylName";

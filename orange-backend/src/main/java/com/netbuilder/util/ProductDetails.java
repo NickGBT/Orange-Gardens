@@ -13,8 +13,6 @@ import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.LoginDetailsManager;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
 import com.netbuilder.entity_managers.interfaces.OrderManager;
-import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
-import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.enums.ProductCategory;
 
@@ -28,6 +26,7 @@ import com.netbuilder.enums.ProductCategory;
 @SessionScoped
 public class ProductDetails implements Serializable {
 
+	private static final long serialVersionUID = -2979338155389699177L;
 	private PaymentDetails paymentD;
 	private int quantity;
 	private int productId;
@@ -36,8 +35,6 @@ public class ProductDetails implements Serializable {
 	private String productName;
 	private ProductCategory category;
 	private OrderStatus status;
-	private ProductManager productMan;
-	private PaymentDetailsManager paymentMan;
 	private OrderManager orderMan;
 	private OrderLineManager orderLineMan;
 	private Product product;
