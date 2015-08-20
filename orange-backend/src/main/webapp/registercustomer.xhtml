@@ -58,7 +58,7 @@
 					<br />
 					<br />
 					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true" validatorMessage="house number">
-					<f:validateLongRange minimum="1" maximum="45"/></h:inputText><br/>
+					<f:validateLongRange minimum="1" maximum="9999"/></h:inputText><br/>
 					<br />
 					<br />
 					Street : <h:inputText value="#{registrationDetails.addressLine2}" required="true" validatorMessage="street">
@@ -92,7 +92,7 @@
 					<br />
 					<br />
 					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" required="true" validatorMessage="card number">
-					<f:validateLongRange minimum="16" maximum="16"/></h:inputText><br/>
+					<f:validateLongRange minimum="0000000000000000" maximum="9999999999999999"/></h:inputText><br/>
 					<br />
 					<br />
 					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" required="true" validatorMessage="expiry date">
