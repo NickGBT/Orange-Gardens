@@ -41,7 +41,7 @@
 					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Password : <h:inputSecret binding=#{passwordComponent} id="pwd" type="password" value="#{registrationDetails.password}" 
+					Password : <h:inputSecret binding="#{passwordComponent}" id="pwd" type="password" value="#{registrationDetails.password}" 
 					required="true" requiredMessage="Enter Password">
 					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/><br/>
 					<br />
