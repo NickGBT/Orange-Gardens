@@ -17,7 +17,6 @@ import com.netbuilder.util.ProductDetails;
  * @author ngilbert
  *
  **/
-
 @ManagedBean(name = "catalogController")
 @RequestScoped
 public class CatalogController {

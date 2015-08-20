@@ -120,9 +120,7 @@ public class OrderCheckoutController {
 	}
 
 	public Order getOrder() {
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(userId.getUsername()));
-		// order = testData.getOrder();
-		return order;
+		return orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUserId(userId.getUid()));
 	}
 	
 	/**
@@ -137,9 +135,7 @@ public class OrderCheckoutController {
 	}
 
 	public List<OrderLine> getBasket() {
-		// orderLines = testData.getOrderLines();
-		return orderLines;
-		// return basketDetails.getBasket();
+		return orderLineManager.getBasketOrderLines(orderManager.findBasketByUserId(OrderStatus.basket,	loginManager.findByUserId(userId.getUid())));
 	}
 	
 	public PaymentDetails getPaymentDetails(){

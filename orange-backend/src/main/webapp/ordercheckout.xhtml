@@ -63,7 +63,7 @@
 				<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText><br/>
 		</div>
 		
-		<br /> <br />
+		<br/><br/>
 		
 		<h3>Estimated Delivery time 1 to 3 working days</h3>
 
@@ -71,17 +71,23 @@
 		
 		<h2>Billing Address</h2>	
 		<div id="billingAddress">
-				House Number : <h:inputText value="#{orderCheckoutController.address.addressLine1}" required="true">
+				House Number : <h:inputText value="#{orderCheckoutController.address.addressLine1}" required="true"
+				validatorMessage="House number must be a digit between 1 and 9999">
 				<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
-				Street : <h:inputText value="#{orderCheckoutController.address.addressLine2}" required="true">
+				Street : <h:inputText value="#{orderCheckoutController.address.addressLine2}" required="true"
+				validatorMessage="Street must be between 2 and 45 characters, no digits or special characters">
 				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-				Town : <h:inputText value="#{orderCheckoutController.address.addressLine3}">
+				Town : <h:inputText value="#{orderCheckoutController.address.addressLine3}"
+				validatorMessage="Town must be between 0 and 45 characters, no digits or special characters">
 				<f:validateRegex pattern="([a-zA-Z]+.{0,45})"/></h:inputText><br/>
-				City : <h:inputText value="#{orderCheckoutController.address.city}" required="true">
+				City : <h:inputText value="#{orderCheckoutController.address.city}" required="true"
+				validatorMessage="City must be between 2 and 45 characters, no digits or special characters">
 				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-				County : <h:inputText value="#{orderCheckoutController.address.county}" required="true">
+				County : <h:inputText value="#{orderCheckoutController.address.county}" required="true"
+				validatorMessage="County must be between 2 and 45 characters, no digits or special characters">
 				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}" required="true">
+				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}" required="true"
+				validatorMessage="Postcode must be between 6 and 8 characters, no special characters">
 				<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
 		</div>
 		

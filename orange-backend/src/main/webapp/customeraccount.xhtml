@@ -27,27 +27,32 @@
 					<br/>
 					<br/>
 					First Name:
-					<h:inputText value=" #{accountManagementController.customer.fName}" required="true">
+					<h:inputText value=" #{accountManagementController.customer.fName}" required="true"
+					validatorMessage="First name must be between 1 and 20 characters, no digits or special characters">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText>
 					<br/>
 					<br/>
 					Last Name:
-					<h:inputText value="#{accountManagementController.customer.lName}" required="true">
+					<h:inputText value="#{accountManagementController.customer.lName}" required="true"
+					validatorMessage="Last name must be between 1 and 45 characters, no digits or special characters">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText>
 					<br/>
 					<br/>
 					Email Address:
-					<h:inputText value="#{accountManagementController.loginDetails.email}" required="true">
+					<h:inputText value="#{accountManagementController.loginDetails.email}" required="true"
+					validatorMessage="Email address must be between 6 and 254 characters, must contain @, no digits or special characters">
 					<f:validateRegex pattern="((?=.*[@])[0-9a-zA-Z]+.{6,254})"/></h:inputText>
 					<br/>
 					<br/>
 					Contact Number:
-					<h:inputText value="#{accountManagementController.customer.contactNumber}" required="true">
+					<h:inputText value="#{accountManagementController.customer.contactNumber}" required="true"
+					 validatorMessage="Contact number must be between 1 and 45 characters, digits only">
 					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText>
 					<br/>
 					<br/>
 					Username:
-					<h:inputText value="#{accountManagementController.loginDetails.username}" required="true">
+					<h:inputText value="#{accountManagementController.loginDetails.username}" required="true" 
+					validatorMessage="Username must be between 5 and 25 characters, no special characters">
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText>
 					<br/>
 					<br/>
@@ -59,17 +64,23 @@
 					
 					<p>Address:</p>
 					<div id="AddressText">
-						<h:inputText value="#{accountManagementController.address.addressLine1}" required="true">
+						<h:inputText value="#{accountManagementController.address.addressLine1}" required="true" 
+						validatorMessage="House number must be a digit between 1 and 9999">
 						<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.addressLine2}" required="true">
+						<h:inputText value="#{accountManagementController.address.addressLine2}" required="true"
+						validatorMessage="Street must be between 2 and 45 characters, no digits or special characters">
 						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.addressLine3}">
+						<h:inputText value="#{accountManagementController.address.addressLine3}"
+						validatorMessage="Town must be between 0 and 45 characters, no digits or special characters">
 						<f:validateRegex pattern="([a-zA-Z]+.{0,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.city}" required="true">
+						<h:inputText value="#{accountManagementController.address.city}" required="true"
+						validatorMessage="City must be between 2 and 45 characters, no digits or special characters">
 						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.county}" required="true">
+						<h:inputText value="#{accountManagementController.address.county}" required="true" 
+						validatorMessage="County must be between 2 and 45 characters, no digits or special characters">
 						<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-						<h:inputText value="#{accountManagementController.address.postcode}" required="true">
+						<h:inputText value="#{accountManagementController.address.postcode}" required="true"
+						validatorMessage="Postcode must be between 6 and 8 characters, no special characters">
 						<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
 					</div>
 					<h:commandButton value="Submit" action="account.xhtml"/>
