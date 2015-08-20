@@ -26,6 +26,8 @@ import com.netbuilder.util.UserId;
 @SessionScoped
 public class LoginController implements Serializable {
 
+	private static final long serialVersionUID = 721967788267499124L;
+
 	@ManagedProperty(value = "#{userDetails}")
 	private UserDetails userDetails;
 

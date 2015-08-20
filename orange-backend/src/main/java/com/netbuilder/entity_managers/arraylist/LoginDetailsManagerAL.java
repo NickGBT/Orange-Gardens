@@ -18,6 +18,7 @@ import com.netbuilder.util.LoginDetailsToolkit;
 @SessionScoped
 public class LoginDetailsManagerAL implements LoginDetailsManager, Serializable {
 
+	private static final long serialVersionUID = 8518304911585393350L;
 	private ArrayList<LoginDetails> loginDetails = new ArrayList<LoginDetails>();
 
 	public void persistLoginDetails(LoginDetails details) {

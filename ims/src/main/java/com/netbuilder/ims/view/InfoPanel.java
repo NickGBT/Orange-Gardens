@@ -11,17 +11,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/*
+/**
  * This panel shows additional information about the selected product 
  * in the stock list table.
  */
 
 public class InfoPanel extends JPanel{
 	
+	private static final long serialVersionUID = 2997483251708481806L;
 	private JLabel productQuantity, productName, productID, productThreshold, orderRequired;
 	private JTextField p_ID, p_Name, p_Quan;
 	private JLabel p_Thresh, p_OrderReq, p_Sim;
-	private JButton changeThres, orderStock, changeQuan;
+	private JButton changeThres, changeQuan;
 	
 	public InfoPanel(){
 		productQuantity = new JLabel("Quantity : ");
@@ -45,7 +46,6 @@ public class InfoPanel extends JPanel{
 		p_Quan.setDisabledTextColor(Color.BLACK);
 		
 		changeThres = new JButton("Change Threshold");
-		orderStock = new JButton("Order Stock");
 		changeQuan = new JButton("Change Quantity");
 		
 		this.setLayout(new GridBagLayout());

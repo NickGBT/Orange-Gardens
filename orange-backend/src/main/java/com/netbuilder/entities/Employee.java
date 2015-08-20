@@ -33,6 +33,7 @@ import com.netbuilder.enums.EmployeePermissions;
 	@NamedQuery(name = Employee.FIND_BY_ROLE, query = "SELECT e from Employee e WHERE e.employeeDepartment = :department AND e.employeePermission = :permission")})
 public class Employee implements Serializable {
 
+	private static final long serialVersionUID = -5938440010138054388L;
 	public static final String GET_ALL = "Employee.getAll";
 	public static final String FIND_BY_USER_ID = "Employee.findByEmployeeId";
 	public static final String FIND_BY_SURNAME = "Employee.findBySurname";

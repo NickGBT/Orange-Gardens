@@ -36,7 +36,8 @@ import com.netbuilder.enums.OrderStatus;
 		@NamedQuery(name = Order.GET_ALL, query = "SELECT o FROM Order o"),
 		@NamedQuery(name = Order.FIND_BY_STATUS, query = "SELECT o FROM Order o WHERE o.status = :status")})
 public class Order implements Serializable {
-	
+
+	private static final long serialVersionUID = -122155770821470279L;
 	public static final String FIND_BY_ORDER_ID = "Order.findByOrderId";
 	public static final String FIND_BY_STATUS_AND_ID = "Order.findByStatusAndId";
 	public static final String FIND_BY_STATUS = "Order.findByStatus";

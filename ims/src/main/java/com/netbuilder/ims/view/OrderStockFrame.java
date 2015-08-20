@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 
 public class OrderStockFrame extends JFrame{
 	
+	private static final long serialVersionUID = 4708331709105782450L;
 	private OrderStockPanel orderStock;
 	
 	public OrderStockFrame(){

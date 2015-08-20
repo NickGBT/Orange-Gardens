@@ -32,6 +32,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = Stock.GET_ALL, query = "SELECT s FROM Stock s")})
 public class Stock implements Serializable 
 {
+	private static final long serialVersionUID = 8806662693663519063L;
 	public static final String GET_ALL = "Stock.getStock";
 	public static final String FIND_BY_STOCK_LEVEL = "Stock.findByStockLevel";
 	public static final String FIND_BY_REQUIRED_STOCK = "Stock.findByRequiredStock";

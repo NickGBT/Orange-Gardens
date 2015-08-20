@@ -69,7 +69,6 @@ public class GladosGui
 	private Thread ui;
 	private Receiver receiver;
 	private DopsOrder order;
-	private Boolean gdz = false;
 	private int startxTemp, startyTemp;
 
 	/**
@@ -188,7 +187,6 @@ public class GladosGui
 					receiver = new Receiver("127.0.0.1");
 					System.out.println("After Receiver");
 				} catch (JMSException e1) {
-					// TODO Auto-generated catch block
 					System.out.println("Receiver not created");
 					logger.error("Receiver not created" , e1);
 					e1.printStackTrace();
@@ -211,11 +209,10 @@ public class GladosGui
 					logger.info("Received Order, the first item of the order is: " + order.getDopsOrder().get(0).getProductName());
 					logger.info("Received message correctly from broker");
 					System.out.println("Received message correctly from broker");
-				} catch (JMSException e2) {
-					// TODO Auto-generated catch block
-					logger.error("Cannot receive message from broker", e2);
+				} catch (JMSException e) {
+					logger.error("Cannot receive message from broker", e);
 					System.out.println("Cannot receive message from broker");
-					e2.printStackTrace();
+					e.printStackTrace();
 				} catch(Exception e) {
 					logger.error("Cannot retrieve correct information from order sent");
 					System.out.println("Message Error");

@@ -26,6 +26,7 @@ import javax.validation.constraints.NotNull;
 	@NamedQuery(name = DeliveryLine.FIND_BY_QUANTITY, query = "SELECT dl FROM DeliveryLine dl WHERE dl.quantity = :quantity")})
 public class DeliveryLine implements Serializable {
 
+	private static final long serialVersionUID = 188240609551728649L;
 	public static final String GET_ALL = "DeliveryLine.getDeliveryLine";
 	public static final String FIND_BY_PRODUCT_ID = "DeliveryLine.findByProductId";
 	public static final String FIND_BY_DELIVERY_ID  = "DeliveryLine.findByDeliveryId";

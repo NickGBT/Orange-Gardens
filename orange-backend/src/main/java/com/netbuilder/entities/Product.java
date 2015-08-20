@@ -36,6 +36,7 @@ import com.netbuilder.enums.ProductCategory;
 
 public class Product implements Serializable {
 
+	private static final long serialVersionUID = 8536477121369033419L;
 	public static final String GET_ALL = "Product.getAll";
 	public static final String FIND_BY_PRODUCT_ID = "Product.findByProductId";
 	public static final String FIND_BY_PRODUCT_NAME = "Product.findByProductName";
