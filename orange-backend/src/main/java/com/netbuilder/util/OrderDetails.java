@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import com.netbuilder.entities.Order;
 import com.netbuilder.entities.OrderLine;
 import com.netbuilder.entity_managers.interfaces.OrderLineManager;
@@ -30,6 +32,9 @@ public class OrderDetails {
 	private ProductManager productManager;
 	public List<OrderLine> associatedOrderLines = new ArrayList<OrderLine>();
 	private List<Double> subtotals;
+	
+	@Inject
+	private OrderLogWriter orderLogWriter;
 
 	private UserId userId;
 
@@ -78,6 +83,9 @@ public class OrderDetails {
 
 		order.setDatePlaced((dateFormat.format(rightNow.getTime())));
 
+		//Send logs of all purchased products in order.
+		orderLogWriter.logOrder(order);
+		
 		//order.setDatePlacedInMillis(rightNow.getTimeInMillis());
 
 		orderManager.updateOrder(order);
