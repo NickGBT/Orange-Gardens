@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,8 +36,13 @@ public class OrderLine implements Serializable {
 	public static final String FIND_BY_PRODUCT_ID = "OrderLine.findByProductId";
 	public static final String FIND_BY_QUANTITY = "OrderLine.findByQuantity";
 
-	@ManyToOne
 	@Id
+	@Column(name = "orderline_id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	private int orderLineId;
+	
+	@ManyToOne
 	@JoinColumn(name = "order_id", nullable = false)
 	@NotNull
 	private Order order;
