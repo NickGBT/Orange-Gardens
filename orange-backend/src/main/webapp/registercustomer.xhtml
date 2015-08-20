@@ -19,61 +19,61 @@
 		<div id="registerForm">
 				<h:form style="display:inline; padding-left=10%">
 					Username : 
-					<h:inputText value="#{registrationDetails.username}" required="true">
+					<h:inputText value="#{registrationDetails.username}" required="true" validatorMessage="username">
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText><br/>
 					<br />
 					<br />
 					First Name : 
-					<h:inputText value="#{registrationDetails.fName}" required="true">
+					<h:inputText value="#{registrationDetails.fName}" required="true" validatorMessage="first name">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText><br/>
 					<br />
 					<br />
 					Last Name : 
-					<h:inputText value="#{registrationDetails.lName}" required="true">
+					<h:inputText value="#{registrationDetails.lName}" required="true" validatorMessage="last name">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Email : <h:inputText value="#{registrationDetails.email}" required="true">
+					Email : <h:inputText value="#{registrationDetails.email}" required="true" validatorMessage="email">
 					<f:validateRegex pattern="((?=.*[@])[0-9a-zA-Z]+.{6,254})"/></h:inputText><br/>
 					<br />
 					<br />
-					Contact Number : <h:inputText value="#{registrationDetails.contactNumber}" required="true">
+					Contact Number : <h:inputText value="#{registrationDetails.contactNumber}" required="true" validatorMessage="contact number">
 					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
 					<br />
 					<br />
 					Password : <h:inputSecret binding="#{passwordComponent}" id="pwd" type="password" value="#{registrationDetails.password}" 
-					required="true" requiredMessage="Enter Password">
+					required="true" requiredMessage="Enter Password" validatorMessage="password">
 					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
 					<br />
 					<br />
 					Password Confirmation : <h:inputSecret id="confirm" type="password" value="#{registrationDetails.confirmPassword}" 
-					required="#{not empty passwordComponent.value}" validator="#{registrationDetails.validatePassword}">
+					required="#{not empty passwordComponent.value}" validator="#{registrationDetails.validatePassword}" validatorMessage="password confirm">
 					<f:attribute name="passwordComponent" value="#{passwordComponent}"/>
 					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
 					<br />
 					<br />
 					<h2>Address</h2>
-					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true">
+					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true" validatorMessage="address label">
 					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true">
+					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true" validatorMessage="house number">
 					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Street : <h:inputText value="#{registrationDetails.addressLine2}" required="true">
+					Street : <h:inputText value="#{registrationDetails.addressLine2}" required="true" validatorMessage="street">
 					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					City : <h:inputText value="#{registrationDetails.city}" required="true">
+					City : <h:inputText value="#{registrationDetails.city}" required="true" validatorMessage="city">
 					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					County : <h:inputText value="#{registrationDetails.county}" required="true">
+					County : <h:inputText value="#{registrationDetails.county}" required="true" validatorMessage="county">
 					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Post Code : <h:inputText value="#{registrationDetails.postcode}" required="true">
+					Post Code : <h:inputText value="#{registrationDetails.postcode}" required="true" validatorMessage="postcode">
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
 					<br />
 					<br />
@@ -87,15 +87,15 @@
 					</h:selectOneMenu>
 					<br />
 					<br />
-					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" required="true">
+					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" required="true" validatorMessage="name on card">
 					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 					<br />
 					<br />
-					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" required="true">
+					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" required="true" validatorMessage="card number">
 					<f:validateRegex pattern="([0-9]+.{16,16})"/></h:inputText><br/>
 					<br />
 					<br />
-					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" required="true">
+					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" required="true" validatorMessage="expiry date">
 					<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText><br/>
 					<br />
 					<br />
