@@ -43,13 +43,13 @@
 					<br />
 					Password : <h:inputSecret binding="#{passwordComponent}" id="pwd" type="password" value="#{registrationDetails.password}" 
 					required="true" requiredMessage="Enter Password">
-					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/><br/>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
 					<br />
 					<br />
 					Password Confirmation : <h:inputSecret id="confirm" type="password" value="#{registrationDetails.confirmPassword}" 
-					required="#{not empty passwordComponent.value}" validator="#{registrationPasswordValidator.validatePassword}">
+					required="#{not empty passwordComponent.value}" validator="#{registrationDetails.validatePassword}">
 					<f:attribute name="passwordComponent" value="#{passwordComponent}"/>
-					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret></h:inputSecret><br/>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
 					<br />
 					<br />
 					<h2>Address</h2>

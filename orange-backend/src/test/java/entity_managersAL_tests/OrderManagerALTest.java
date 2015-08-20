@@ -42,7 +42,7 @@ public class OrderManagerALTest {
 				OrderStatus.cancelled, "AR/VB/HSJA", "AR/VB/HELLO",
 				"AB/CD/HJKS", 504, false);
 		testOrder2 = new Order(testCustomer2, testEmployee2,
-				OrderStatus.awaitingDispatch, "03/04/2015",
+				OrderStatus.awaitingdispatch, "03/04/2015",
 				"AR/VB/1999", "AB/CD/4321", 2003, false);
 		testOrder.setOrderID(5);
 		testOrder2.setOrderID(10);
