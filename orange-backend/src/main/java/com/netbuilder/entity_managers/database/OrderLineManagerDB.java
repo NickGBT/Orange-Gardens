@@ -51,8 +51,8 @@ public class OrderLineManagerDB implements OrderLineManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_PRODUCT_ID, OrderLine.class);
 		tq.setParameter("product", productID);
-		pm.closeEntityManager(em);
 		try {
+			pm.closeEntityManager(em);
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
 			e.printStackTrace();

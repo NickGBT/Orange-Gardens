@@ -92,14 +92,16 @@ public class ProductController {
 		quantity = Integer.parseInt(temp);
 
 		loginDet = ldm.findByUserId(userId.getUid());
+		
+		Order foundOrder = om.findBasketByUserId(OrderStatus.basket, loginDet);
 
-		if (om.findBasketByUserId(OrderStatus.basket, loginDet) != null) {
+		if (foundOrder != null) {
 			if (olm.findByProductInBasket(foundProduct.getProductId()) != null) {
 				orderLine = olm.findByProductId(foundProduct.getProductId());
 				orderLine = new OrderLine(orderLine.getOrder(), orderLine.getProduct(), (orderLine.getQuantity() + quantity));
 				olm.updateOrderLine(orderLine);
-			} else {
-				orderLine = new OrderLine(orderBasket, foundProduct, quantity);
+			} else { 
+				orderLine = new OrderLine(foundOrder, foundProduct, quantity);
 				olm.persistOrderLine(orderLine);
 			}
 		} else {
