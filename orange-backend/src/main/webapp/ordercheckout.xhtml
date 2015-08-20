@@ -52,15 +52,15 @@
 		<h2>Payment Details</h2>
 		
 		<div id="registeredPaymentDetails">	
-				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" >
+				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" required="true">
     				<f:selectItems value="#{orderCheckoutController.enumValues}" />
 				</h:selectOneMenu><br/>
-				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}">
+				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}" required="true">
 				<f:validateRegex pattern="[0-9]+.{16,16}"/></h:inputText><br/>
-				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}">
-				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
-				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}">
-				<f:validateRegex pattern="((?=.*\d)(?=.*[-/]).{6,10})"/></h:inputText><br/>
+				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}" required="true">
+				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}" required="true">
+				<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText><br/>
 		</div>
 		
 		<br /> <br />
@@ -71,18 +71,18 @@
 		
 		<h2>Billing Address</h2>	
 		<div id="billingAddress">
-				House Number : <h:inputText value="#{orderCheckoutController.address.addressLine1}">
-				<f:validateRegex pattern="((?=.*\d).{1,45})"/></h:inputText><br/>
-				Street : <h:inputText value="#{orderCheckoutController.address.addressLine2}">
-				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
+				House Number : <h:inputText value="#{orderCheckoutController.address.addressLine1}" required="true">
+				<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
+				Street : <h:inputText value="#{orderCheckoutController.address.addressLine2}" required="true">
+				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
 				Town : <h:inputText value="#{orderCheckoutController.address.addressLine3}">
-				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{0,45})"/></h:inputText><br/>
-				City : <h:inputText value="#{orderCheckoutController.address.city}">
-				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
-				County : <h:inputText value="#{orderCheckoutController.address.county}">
-				<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{2,45})"/></h:inputText><br/>
-				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}">
-				<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,8})"/></h:inputText><br/>
+				<f:validateRegex pattern="([a-zA-Z]+.{0,45})"/></h:inputText><br/>
+				City : <h:inputText value="#{orderCheckoutController.address.city}" required="true">
+				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+				County : <h:inputText value="#{orderCheckoutController.address.county}" required="true">
+				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+				Postcode : <h:inputText value="#{orderCheckoutController.address.postcode}" required="true">
+				<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
 		</div>
 		
 	<div id="submitOrder">

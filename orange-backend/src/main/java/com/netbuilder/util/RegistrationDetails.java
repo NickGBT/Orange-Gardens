@@ -2,8 +2,13 @@ package com.netbuilder.util;
 
 import java.util.ArrayList;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import com.netbuilder.controllers.RegistrationController;
 import com.netbuilder.enums.CardType;
@@ -13,7 +18,6 @@ import com.netbuilder.enums.CardType;
  * @author JustinMabbutt
  *
  */
-
 @ManagedBean(name = "registrationDetails")
 @RequestScoped
 public class RegistrationDetails {
@@ -28,6 +32,7 @@ public class RegistrationDetails {
 	private String username;
 	private String email;
 	private String password;
+	private String confirmPassword;
 
 	// Address
 	private String addressLabel;
@@ -47,8 +52,7 @@ public class RegistrationDetails {
 
 	ArrayList<Object> data = new ArrayList<Object>();
 
-	public RegistrationDetails() {
-	}
+	public RegistrationDetails(){}
 
 	public void Register(String username, String password, String fName,
 			String lName, String contactNumber, String email,
@@ -93,8 +97,26 @@ public class RegistrationDetails {
 		this.expiryDate = expiryDate;
 		data.add(expiryDate);
 	}
+	
+	/**
+	 * 
+	 * @author JustinMabbutt
+	 *
+	 */
+	public void validatePassword(FacesContext context, UIComponent toValidate, Object value)
+	{     
+        String confirm = (String)value;     
+        UIInput passComp = (UIInput)toValidate.getAttributes().get("passwordComponent");     
+        String password = (String)passComp.getValue();     
+        if (!password.equals(confirm)) 
+        {     
+        	FacesMessage message = new FacesMessage("Password and Confirm Password Should match");     
+            throw new ValidatorException(message);     
+        }
+	} 
 
-	public boolean checkAllUserEntries() {
+	public boolean checkAllUserEntries()
+	{
 		for (Object o : data) {
 			if (o == null) {
 				return false;
@@ -103,161 +125,209 @@ public class RegistrationDetails {
 		return true;
 	}
 
-	public String getUsername() {
+	public String getUsername() 
+	{
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(String username)
+	{
 		this.username = username;
 	}
 
-	public String getfName() {
+	public String getfName()
+	{
 		return fName;
 	}
 
-	public void setfName(String fName) {
+	public void setfName(String fName)
+	{
 		this.fName = fName;
 	}
 
-	public String getlName() {
+	public String getlName() 
+	{
 		return lName;
 	}
 
-	public void setlName(String lName) {
+	public void setlName(String lName) 
+	{
 		this.lName = lName;
 	}
 
-	public String getEmail() {
+	public String getEmail()
+	{
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		this.email = email;
 	}
 
-	public String getAddressLabel() {
+	public String getAddressLabel() 
+	{
 		return addressLabel;
 	}
 
-	public void setAddressLabel(String addressLabel) {
+	public void setAddressLabel(String addressLabel)
+	{
 		this.addressLabel = addressLabel;
 	}
 
-	public String getAddressLine1() {
+	public String getAddressLine1()
+	{
 		return addressLine1;
 	}
 
-	public void setAddressLine1(String addressLine1) {
+	public void setAddressLine1(String addressLine1)
+	{
 		this.addressLine1 = addressLine1;
 	}
 
-	public String getAddressLine2() {
+	public String getAddressLine2() 
+	{
 		return addressLine2;
 	}
 
-	public void setAddressLine2(String addressLine2) {
+	public void setAddressLine2(String addressLine2) 
+	{
 		this.addressLine2 = addressLine2;
 	}
 
-	public String getAddressLine3() {
+	public String getAddressLine3() 
+	{
 		return addressLine3;
 	}
 
-	public void setAddressLine3(String addressLine3) {
+	public void setAddressLine3(String addressLine3) 
+	{
 		this.addressLine3 = addressLine3;
 	}
 
-	public String getCity() {
+	public String getCity() 
+	{
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(String city) 
+	{
 		this.city = city;
 	}
 
-	public String getCounty() {
+	public String getCounty() 
+	{
 		return county;
 	}
 
-	public void setCounty(String county) {
+	public void setCounty(String county)
+	{
 		this.county = county;
 	}
 
-	public String getPostcode() {
+	public String getPostcode()
+	{
 		return postcode;
 	}
 
-	public void setPostcode(String postcode) {
+	public void setPostcode(String postcode) 
+	{
 		this.postcode = postcode;
 	}
 
-	public boolean isBillingAddress() {
+	public boolean isBillingAddress()
+	{
 		return isBillingAddress;
 	}
 
-	public void setBillingAddress(boolean isBillingAddress) {
+	public void setBillingAddress(boolean isBillingAddress)
+	{
 		this.isBillingAddress = isBillingAddress;
 	}
 
-	public CardType getCardType() {
+	public CardType getCardType()
+	{
 		return cardType;
 	}
 
-	public void setCardType(CardType cardType) {
+	public void setCardType(CardType cardType) 
+	{
 		this.cardType = cardType;
 	}
 
-	public String getCardNumber() {
+	public String getCardNumber() 
+	{
 		return cardNumber;
 	}
 
-	public void setCardNumber(String cardNumber) {
+	public void setCardNumber(String cardNumber)
+	{
 		this.cardNumber = cardNumber;
 	}
 
-	public String getNameOnCard() {
+	public String getNameOnCard()
+	{
 		return nameOnCard;
 	}
 
-	public void setNameOnCard(String nameOnCard) {
+	public void setNameOnCard(String nameOnCard)
+	{
 		this.nameOnCard = nameOnCard;
 	}
 
-	public String getExpiryDate() {
+	public String getExpiryDate()
+	{
 		return expiryDate;
 	}
 
-	public void setExpiryDate(String expiryDate) {
+	public void setExpiryDate(String expiryDate)
+	{
 		this.expiryDate = expiryDate;
 	}
 
-	public String getPassword() {
+	public String getPassword()
+	{
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
 
-	public boolean isBlackListed() {
+	public boolean isBlackListed() 
+	{
 		return isBlackListed;
 	}
 
-	public void setBlackListed(boolean isBlackListed) {
+	public void setBlackListed(boolean isBlackListed)
+	{
 		this.isBlackListed = isBlackListed;
 	}
 
-	public void setContactNumber(String contactNum) {
+	public void setContactNumber(String contactNum)
+	{
 		this.contactNumber = contactNum;
 	}
 
-	public String getContactNumber() {
+	public String getContactNumber() 
+	{
 		return contactNumber;
 	}
 
-	public void printString() {
+	public void printString()
+	{
 		System.out.println(fName);
 		System.out.println(lName);
 	}
 
+	public String getConfirmPassword()
+	{
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword)
+	{
+		this.confirmPassword = confirmPassword;
+	}
 }
