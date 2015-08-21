@@ -18,14 +18,14 @@
 		<div id="registerForm">
 				<h:form style="display:inline; padding-left=10%">
 					Username : 
-					<h:inputText value="#{registrationDetails.username}" required="true" 
+					<h:inputText id="username" value="#{registrationDetails.username}" required="true" 
 					validatorMessage="Username must be between 5 and 25 characters, no special characters">
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText>
 					<h:message for="username"/><br/>
 					<br/>
 					<br/>
 					First Name : 
-					<h:inputText value="#{registrationDetails.fName}" required="true" 
+					<h:inputText id="fName" value="#{registrationDetails.fName}" required="true" 
 					validatorMessage="First name must be between 1 and 20 characters, no digits or special characters">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText>
 					<h:message for="fName"/><br/>
@@ -73,7 +73,8 @@
 					<br/>
 					Home Number : <h:inputText id="line1" value="#{registrationDetails.addressLine1}" required="true" 
 					validatorMessage="House number must be a digit between 1 and 9999">
-					<f:validateLongRange minimum="1" maximum="9999"/></h:inputText>
+					<f:validateLongRange minimum="1" maximum="9999"/>
+					<f:validateLength minimum="1" maximum="4"/></h:inputText>
 					<h:message for="line1"/><br/>
 					<br/>
 					<br/>

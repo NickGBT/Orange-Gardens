@@ -55,12 +55,15 @@
 				Card Type <h:selectOneMenu value="#{orderCheckoutController.paymentDetails.cardType}" required="true">
     				<f:selectItems value="#{orderCheckoutController.enumValues}" />
 				</h:selectOneMenu><br/>
-				Card Number : <h:inputText value="#{orderCheckoutController.paymentDetails.cardNumber}" required="true">
-				<f:validateRegex pattern="[0-9]+.{16,16}"/></h:inputText><br/>
-				Name on Card : <h:inputText value="#{orderCheckoutController.paymentDetails.nameOnCard}" required="true">
-				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
-				Expiry Date : <h:inputText value="#{orderCheckoutController.paymentDetails.expiryDate}" required="true">
-				<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText><br/>
+				Card Number : <h:inputText id="name" value="#{orderCheckoutController.paymentDetails.cardNumber}" required="true">
+				<f:validateRegex pattern="[0-9]+.{16,16}"/></h:inputText>
+				<h:message for="name"/><br/>
+				Name on Card : <h:inputText id="card" value="#{orderCheckoutController.paymentDetails.nameOnCard}" required="true">
+				<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText>
+				<h:message for="card"/><br/>
+				Expiry Date : <h:inputText id="date" value="#{orderCheckoutController.paymentDetails.expiryDate}" required="true">
+				<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText>
+				<h:message for="date"/><br/>
 		</div>
 		
 		<br/><br/>
