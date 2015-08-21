@@ -44,8 +44,8 @@ public class OrderManagerALTest {
 		testOrder2 = new Order(testCustomer2, testEmployee2,
 				OrderStatus.awaitingdispatch, "03/04/2015",
 				"AR/VB/1999", "AB/CD/4321", 2003, false);
-		testOrder.setOrderID(5);
-		testOrder2.setOrderID(10);
+		testOrder.setOrderId(5);
+		testOrder2.setOrderId(10);
 	}
 
 	@Test
@@ -97,11 +97,11 @@ public class OrderManagerALTest {
 	public void testUpdateOrder() {
 		orderManager.persistOrder(testOrder);
 
-		testOrder2.setOrderID(1);
+		testOrder2.setOrderId(1);
 
 		orderManager.updateOrder(testOrder2);
 
 		assertNotEquals(testOrder2,
-				orderManager.findByOrderID(testOrder.getOrderID()));
+				orderManager.findByOrderID(testOrder.getOrderId()));
 	}
 }

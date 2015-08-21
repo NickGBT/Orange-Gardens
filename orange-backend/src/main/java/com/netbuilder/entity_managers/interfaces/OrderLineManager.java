@@ -38,7 +38,7 @@ public interface OrderLineManager {
 
 	public List<OrderLine> getBasketOrderLines(Order order);
 	
-	public List<OrderLine> getWishlistOrderLines(String username);
+	public List<OrderLine> getWishlistOrderLines(Order order);
 
 	// UPDATE
 	public void updateOrderLine(OrderLine orderLine);

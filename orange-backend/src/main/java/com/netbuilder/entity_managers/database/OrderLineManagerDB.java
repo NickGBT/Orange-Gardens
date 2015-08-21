@@ -125,19 +125,19 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	@Override
 	public OrderLine findByProductInBasket(int productID) {
-		/*OrderLine orderLine;
+		OrderLine orderLine;
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.GET_PRODUCT_IN_BASKET, OrderLine.class);
 		tq.setParameter("quantity", productID);
-		pm.closeEntityManager(em);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			return null;
-		}*/
-		
-		return null;
+		}
+		finally{
+			pm.closeEntityManager(em);
+		}
 	}
 
 	@Override
@@ -165,9 +165,20 @@ public class OrderLineManagerDB implements OrderLineManager {
 	}
 
 	@Override
-	public List<OrderLine> getWishlistOrderLines(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderLine> getWishlistOrderLines(Order order) {
+		List<OrderLine> orderLine = new ArrayList<OrderLine>();
+		EntityManager em = pm.createEntityManager();
+		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.FIND_BY_ORDER_ID, OrderLine.class);
+		tq.setParameter("order", order);
+		try {
+			orderLine = (ArrayList<OrderLine>) tq.getResultList();
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		pm.closeEntityManager(em);
+		return orderLine;
 	}
 
 	@Override
