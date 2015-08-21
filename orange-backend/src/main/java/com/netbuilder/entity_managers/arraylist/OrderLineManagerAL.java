@@ -194,4 +194,10 @@ public class OrderLineManagerAL implements OrderLineManager {
 		return userOrderLines;
 	}
 
+	@Override
+	public List<OrderLine> getWishlistOrderLines(Order order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

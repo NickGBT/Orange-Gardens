@@ -53,6 +53,7 @@ public class OrderCheckoutController {
 
 	@Inject
 	private PaymentDetailsManager paymentDetails;
+	
 	@Inject
 	private LoginDetailsManager loginManager;
 
@@ -109,7 +110,7 @@ public class OrderCheckoutController {
 				//System.out.println("OrderCheckout::Line113:: Location: " +  gladosNode.getxPosition() + ":" + gladosNode.getyPosition());
 			}
 
-			dopsOrder = new DopsOrder(tempDopsOrders);
+			dopsOrder = new DopsOrder(0, null, tempDopsOrders);
 
 			qb.sendMessage("dops_queue", dopsOrder);
 			order.setStatus(OrderStatus.placed);
