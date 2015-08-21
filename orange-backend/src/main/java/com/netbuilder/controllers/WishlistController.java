@@ -58,13 +58,13 @@ public class WishlistController
 	public List<OrderLine> getWishlist() 
 	{
 		
-		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
+		wishlist = orderLineManager.getWishlistOrderLines(om.findBasketByUserId(
+				OrderStatus.wishlist, ldm.findByUserId(userId.getUid())));
 		
 		if (wishlist.size() < 1)
 		{
 			emptyWishlist = "There are currently no items in your wishlist.";
 		}
-		//System.out.println("WishlistController::Line69::Pulling wishlist.");
 		return wishlist;
 	}
 
@@ -143,7 +143,8 @@ public class WishlistController
 				
 		orderBasket = om.findBasketByUserId(OrderStatus.basket, loginDet);
 		
-		wishlist = orderLineManager.getWishlistOrderLines(userId.getUsername());
+		wishlist = orderLineManager.getWishlistOrderLines(om.findBasketByUserId(
+				OrderStatus.wishlist, ldm.findByUserId(userId.getUid())));
 		
 		//System.out.println("WishlistController::Line148::Method Called");
 		
