@@ -14,8 +14,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import javax.jms.JMSException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -32,7 +34,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import com.netbuilder.jms.Receiver;
+import com.netbuilder.jms.Sender;
 import com.netbuilder.jms_tools.DopsOrder;
+import com.netbuilder.jms_tools.OrderStatus;
 import com.netbuilder.pathfinding.GladosFactory;
 import com.netbuilder.pathfinding.GladosNode;
 import com.netbuilder.pathfinding.WarehouseMap;
@@ -68,6 +72,7 @@ public class GladosGui
 	private String user, pass;
 	private Thread ui;
 	private Receiver receiver;
+	private Sender sender;
 	private DopsOrder order;
 	private int startxTemp, startyTemp;
 
@@ -200,6 +205,8 @@ public class GladosGui
 					order = (DopsOrder) receiver.getMessage("dops_queue");
 					logger.info("Order: " + order.getDopsOrder().get(0).getProductName());
 					orderData = new OrderData(order);
+					order.setDopsOrderStatus(OrderStatus.processing);
+					sender.sendMessage("order_status_queue", order);
 					if (startxTemp != 0)
 					{
 						orderData.setxStart(startxTemp);
@@ -258,6 +265,11 @@ public class GladosGui
 				if(orderData.isOrdersComplete())
 				{
 					displayGetOrder();
+					/*
+					 * @author ngilbert
+					 */
+					order.setDopsOrderStatus(OrderStatus.awaitingdispatch);
+					sender.sendMessage("order_status_queue", order);					
 				}
 				else
 				{
