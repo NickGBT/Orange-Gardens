@@ -1,15 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-
-
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="templates/template.xhtml">
-
 
 	<!--  author llew mwatson-->
 
@@ -71,12 +67,8 @@
 					<h2>Address</h2>
 					Address Label : <h:inputText id="label" value="#{registrationDetails.addressLabel}" required="true" 
 					validatorMessage="Address label must be between 1 and 45 characters, no digits or special characters">
-<<<<<<< HEAD
 					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText>
 					<h:message for="label"/><br/>
-=======
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText><br/>
->>>>>>> af78f37534003b656b65f8ddba1541b73a4ed12b
 					<br/>
 					<br/>
 					Home Number : <h:inputText id="line1" value="#{registrationDetails.addressLine1}" required="true" 
@@ -105,12 +97,8 @@
 					<br />
 					Post Code : <h:inputText id="postcode" value="#{registrationDetails.postcode}" required="true" 
 					validatorMessage="Postcode must be between 6 and 8 characters, no special characters">
-<<<<<<< HEAD
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,8})"/></h:inputText>
 					<h:message for="postcode"/><br/>
-=======
-					<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
->>>>>>> af78f37534003b656b65f8ddba1541b73a4ed12b
 					<br />
 					<br />
 					Is Billing Address? : <h:selectBooleanCheckbox type="checkbox" value="#{registrationDetails.billingAddress}"/>
