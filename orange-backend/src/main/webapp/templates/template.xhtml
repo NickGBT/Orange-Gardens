@@ -10,12 +10,9 @@
 	<title><ui:insert name="pageTitle" /></title>
 	<meta name="description" content="NB Gardens OPS template" />
 	<meta name="author" content="Orange Gardens" />
-	
 	<link type="text/css" rel="stylesheet" href="resources/style.css" />
-	
-	
-	 <meta charset="utf-8"/>
- 	 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8"/>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -27,64 +24,45 @@
       	margin: auto;
   	}
   	</style>
-  
 </h:head>
 
 <h:body>
-
 	<div id = "wrap">
-		<div id="header">
-		
-	
-		
+		<div id="header">			
 			<div id="logo">
 				<a href = "webstorefront.xhtml"> 
 					<img src="resources/img/nbglogo.png" alt="NBGardens logo"
 						height="175" width="175" />
 				</a>
-			</div>
-	
+			</div>	
 			<div id = "sideButtons">
 				<div id="buyingInfo">
 					<div id="basket">
 						<a href="basket.xhtml"> <img src="resources/img/basket.png"
 							alt="basket" height="56" width="75" /> <!--<h:outputLabel value="#{basket.getBasketSize()}"/> -->
 						</a>
-					</div>
-					
-				</div>
-				
+					</div>	
+				</div>				
 				<div id = "bottomCornerButtons">
 					<h:form>
 						<a href = "wishlist.xhtml" class="cornerButton" >Wishlist</a>
 						<h:link rendered="#{loginController.loggedIn != true}"
-								outcome="customerlogin.xhtml" value="Login" class = "cornerButton" />
-						
-						
-						
+								outcome="customerlogin.xhtml" value="Login" class = "cornerButton" />	
 						<h:commandButton rendered="#{loginController.loggedIn == true}"
 								 value="Logout" class="cornerButton" 
 								 action="#{loginController.logout}"/>
 					</h:form>
-				
 				</div>
-				
 			</div>
-			
 			<div id="controls">
-	
 				<div id="mainbuttons">
-				
 					<a href="webstorefront.xhtml" class="headerButton">Home</a> <a
 						href="contact.xhtml" class="headerButton">Contact</a> <a
 						href="catalog.xhtml" class="headerButton">Catalog</a>
 						
 					<h:link rendered="#{loginController.loggedIn == true}"
 						outcome="account.xhtml" value="Account" class="headerButton" />
-					
-					
 					<br />
-	
 				</div>
 				<br />
 	
@@ -106,11 +84,7 @@
 						<h:commandButton styleClass="searchButton" action="#{searchController.headerSearch}" image="resources/img/search.png" />
 					</h:form>
 				</div>
-				
-				
 			</div>
-			
-			
 		</div>
 		
 		<div class = "background" > 

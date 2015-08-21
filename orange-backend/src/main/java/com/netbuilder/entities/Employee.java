@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -42,6 +44,7 @@ public class Employee implements Serializable {
 	public static final String FIND_BY_ROLE = "Employee.findEmployeesByRole";
 
 	@Column(name = "department", nullable = false)
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	private EmployeeDepartment employeeDepartment;
 
@@ -62,6 +65,7 @@ public class Employee implements Serializable {
 	private LoginDetails employee;
 
 	@Column(name = "permissions", nullable = false)
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	private EmployeePermissions employeePermission;
 	

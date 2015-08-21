@@ -86,7 +86,7 @@ public class OrderManagerDB implements OrderManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_DATE_PLACED, Order.class);
-		tq.setParameter("date_placed", datePlaced);
+		tq.setParameter("datePlaced", datePlaced);
 		pm.closeEntityManager(em);
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -103,7 +103,7 @@ public class OrderManagerDB implements OrderManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_DATE_DISPATCHED, Order.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("date_dispatched", dateDispatched);
+		tq.setParameter("dateDispatched", dateDispatched);
 
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -120,7 +120,7 @@ public class OrderManagerDB implements OrderManager {
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_DATE_DELIVERED, Order.class);
 		pm.closeEntityManager(em);
-		tq.setParameter("date_delivered", dateDelivered);
+		tq.setParameter("dateDelivered", dateDelivered);
 
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -136,8 +136,8 @@ public class OrderManagerDB implements OrderManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_TWO_DATES_PLACED, Order.class);
-		tq.setParameter("fdate", firstDate);
-		tq.setParameter("sdate", secondDate);
+		tq.setParameter("fDate", firstDate);
+		tq.setParameter("sDate", secondDate);
 		pm.closeEntityManager(em);
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -154,8 +154,8 @@ public class OrderManagerDB implements OrderManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_TWO_DATES_DISPATCHED, Order.class);
-		tq.setParameter("fdate", firstDate);
-		tq.setParameter("sdate", secondDate);
+		tq.setParameter("fDate", firstDate);
+		tq.setParameter("sDate", secondDate);
 		pm.closeEntityManager(em);
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -172,8 +172,8 @@ public class OrderManagerDB implements OrderManager {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_TWO_DATES_DELIVERED, Order.class);
-		tq.setParameter("fdate", firstDate);
-		tq.setParameter("sdate", secondDate);
+		tq.setParameter("fDate", firstDate);
+		tq.setParameter("sDate", secondDate);
 		pm.closeEntityManager(em);
 		try {
 			orders = (ArrayList<Order>) tq.getResultList();
@@ -233,13 +233,12 @@ public class OrderManagerDB implements OrderManager {
 		return order;
 	}
 
-	@Override
 	public Order findBasketByUserId(OrderStatus status, LoginDetails customer) {
 
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<Order> tq = em.createNamedQuery(Order.FIND_BY_STATUS_AND_ID, Order.class);
-		tq.setParameter("customerId", customer);
 		tq.setParameter("status", status);
+		tq.setParameter("customerId", customer);
 		try {
 			return tq.getSingleResult();
 		} catch (NoResultException nre) {

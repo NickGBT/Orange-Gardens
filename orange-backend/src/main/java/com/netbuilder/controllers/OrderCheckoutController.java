@@ -53,6 +53,7 @@ public class OrderCheckoutController {
 
 	@Inject
 	private PaymentDetailsManager paymentDetails;
+	@Inject
 	private LoginDetailsManager loginManager;
 
 	@Inject
@@ -72,17 +73,15 @@ public class OrderCheckoutController {
 	private PaymentDetails pd;
 	private Address ad;
 
-	private String username;
 	private ArrayList<GladosNode> path;
 	private GladosNode gladosNode;
 	private ArrayList<DopsOrderline> tempDopsOrders;
 
 	public String changeOrderStatus() {
 
-		username = userId.getUsername();
 		tempDopsOrders = new ArrayList<DopsOrderline>();
 
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(username));
+		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUserId(userId.getUid()));
 
 		if (order.getOrderStatus() == OrderStatus.basket) {
 
@@ -122,9 +121,7 @@ public class OrderCheckoutController {
 	}
 
 	public Order getOrder() {
-		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUsername(userId.getUsername()));
-		// order = testData.getOrder();
-		return order;
+		return orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUserId(userId.getUid()));
 	}
 	
 	/**
@@ -139,19 +136,16 @@ public class OrderCheckoutController {
 	}
 
 	public List<OrderLine> getBasket() {
-		// orderLines = testData.getOrderLines();
-		return orderLines;
-		// return basketDetails.getBasket();
+		return orderLineManager.getBasketOrderLines(orderManager.findBasketByUserId(OrderStatus.basket,	loginManager.findByUserId(userId.getUid())));
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		//pd = paymentDetails.findCustomerPaymentDetails(userId.getUid());
-		return pd;
+		loginDet = loginManager.findByUserId(userId.getUid());
+		return paymentDetails.findCustomerPaymentDetails(loginDet);
 	}
 	
 	public Address getAddress(){
-		//return ad = address.findByUserId(userId.getUid()); 
-		return null;
+		return address.findByUserId(loginManager.findByUserId(userId.getUid()));
 	} 
 
 	public void setTestData(OrderData testData) {
