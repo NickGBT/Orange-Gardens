@@ -28,7 +28,6 @@ import com.netbuilder.util.UserId;
  * @author JustinMabbutt
  *
  */
-
 @ManagedBean(name = "accountManagementController")
 @RequestScoped
 public class AccountManagementController {
@@ -101,9 +100,10 @@ public class AccountManagementController {
 		return paymentDetails;
 	}
 
-	/*
+	/**
 	 * 
 	 * @author jtaylor
+	 * 
 	 */
 	public String changePassword() {
 		if (loginDetails != null) {

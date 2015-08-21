@@ -38,9 +38,13 @@
 			<div id = "sideButtons">
 				<div id="buyingInfo">
 					<div id="basket">
-						<a href="basket.xhtml"> <img src="resources/img/basket.png"
-							alt="basket" height="56" width="75" /> <!--<h:outputLabel value="#{basket.getBasketSize()}"/> -->
-						</a>
+						<h:form>
+							<!-- <a href="basket.xhtml">
+							<img src="resources/img/basket.png" alt="basket" height="56" width="75"/>
+							</a> -->
+							<h:link rendered="#{loginController.loggedIn == true}" outcome="basket.xhtml"/>
+							<h:commandButton rendered="#{loginController.loggedIn == true}" image="/resources/img/basket.png"/>
+						</h:form>
 					</div>	
 				</div>				
 				<div id = "bottomCornerButtons">
@@ -58,7 +62,7 @@
 				<div id="mainbuttons">
 					<a href="webstorefront.xhtml" class="headerButton">Home</a> <a
 						href="contact.xhtml" class="headerButton">Contact</a> <a
-						href="catalog.xhtml" class="headerButton">Catalog</a>
+						href="catalog.xhtml" class="headerButton">Catalogue</a>
 						
 					<h:link rendered="#{loginController.loggedIn == true}"
 						outcome="account.xhtml" value="Account" class="headerButton" />
@@ -81,7 +85,7 @@
 							<f:selectItem itemValue="Building" itemLabel="Building" />
 						</h:selectOneMenu>
 						<h:inputText id = "searchbar" styleClass="searchText" value="#{searchDetails.searchEntry}" />
-						<h:commandButton styleClass="searchButton" action="#{searchController.headerSearch}" image="resources/img/search.png" />
+						<h:commandButton styleClass="searchButton" action="#{searchController.headerSearch}" image="/resources/img/search.png" />
 					</h:form>
 				</div>
 			</div>
