@@ -62,7 +62,7 @@
 					<h2>Address</h2>
 					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true" 
 					validatorMessage="Address label must be between 1 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
 					<br/>
 					<br/>
 					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true" 
