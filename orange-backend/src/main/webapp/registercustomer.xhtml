@@ -18,20 +18,17 @@
 		</div>
 		<div id="registerForm">
 				<h:form style="display:inline; padding-left=10%">
-					Username : 
-					<h:inputText value="#{registrationDetails.username}" required="true" 
+					Username : <h:inputText value="#{registrationDetails.username}" required="true" 
 					validatorMessage="Username must be between 5 and 25 characters, no special characters">
 					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText><br/>
 					<br/>
 					<br/>
-					First Name : 
-					<h:inputText value="#{registrationDetails.fName}" required="true" 
+					First Name : <h:inputText value="#{registrationDetails.fName}" required="true" 
 					validatorMessage="First name must be between 1 and 20 characters, no digits or special characters">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText><br/>
 					<br/>
 					<br/>
-					Last Name : 
-					<h:inputText value="#{registrationDetails.lName}" required="true" 
+					Last Name : <h:inputText value="#{registrationDetails.lName}" required="true" 
 					validatorMessage="Last name must be between 1 and 45 characters, no digits or special characters">
 					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
 					<br/>
@@ -54,7 +51,7 @@
 					<br/>
 					Password Confirmation : <h:inputSecret id="confirm" type="password" value="#{registrationDetails.confirmPassword}" 
 					required="#{not empty passwordComponent.value}" validator="#{registrationDetails.validatePassword}"
-					validatorMessage="Password must be between 5 and 160 characters, must contain at least 1 digit as well as upper and lower case characters">>
+					validatorMessage="Password must be between 5 and 160 characters, must contain at least 1 digit as well as upper and lower case characters">
 					<f:attribute name="passwordComponent" value="#{passwordComponent}"/>
 					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
 					<br/>
@@ -62,7 +59,7 @@
 					<h2>Address</h2>
 					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true" 
 					validatorMessage="Address label must be between 1 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="((?=.*[a-z])(?=.*[A-Z]).{1,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
 					<br/>
 					<br/>
 					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true" 
@@ -87,7 +84,7 @@
 					<br />
 					Post Code : <h:inputText value="#{registrationDetails.postcode}" required="true" 
 					validatorMessage="Postcode must be between 6 and 8 characters, no special characters">
-					<f:validateRegex pattern="([0-9a-zA-Z]+.{6,8})"/></h:inputText><br/>
+					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,8})"/></h:inputText><br/>
 					<br />
 					<br />
 					Is Billing Address? : <h:selectBooleanCheckbox type="checkbox" value="#{registrationDetails.billingAddress}"/>
