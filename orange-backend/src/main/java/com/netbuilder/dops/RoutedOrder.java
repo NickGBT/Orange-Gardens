@@ -25,8 +25,7 @@ public class RoutedOrder {
 
 	private Order orderFromQueue = prioritisedPlacedOrders.get(0);
 
-	private ArrayList<OrderLine> Orderlines = (ArrayList<OrderLine>) olm
-			.findByOrderId(orderFromQueue.getOrderId());
+	private ArrayList<OrderLine> Orderlines = (ArrayList<OrderLine>) olm.findByOrderId(orderFromQueue.getOrderId());
 
 	private Map<Integer, Integer> orderLineValues = new IdentityHashMap<Integer, Integer>();
 
