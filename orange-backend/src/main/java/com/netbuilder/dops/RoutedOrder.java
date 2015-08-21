@@ -25,17 +25,13 @@ public class RoutedOrder {
 
 	private Order orderFromQueue = prioritisedPlacedOrders.get(0);
 
-<<<<<<< HEAD
-	private ArrayList<OrderLine> oFQOrderlines = (ArrayList<OrderLine>) olm
+	private ArrayList<OrderLine> Orderlines = (ArrayList<OrderLine>) olm
 			.findByOrderId(orderFromQueue.getOrderId());
-=======
-	private ArrayList<OrderLine> oFQOrderlines = (ArrayList<OrderLine>) olm.findByOrderId(orderFromQueue.getOrderId());
->>>>>>> 35eefd62f8a7de58e1b00104e8f8b79eca59e5ff
 
 	private Map<Integer, Integer> orderLineValues = new IdentityHashMap<Integer, Integer>();
 
 	public Map<Integer, Integer> getOrderLineValues() {
-		for (OrderLine oL : oFQOrderlines) {
+		for (OrderLine oL : Orderlines) {
 			orderLineValues.put(new Integer(oL.getProduct().getProductId()), new Integer(oL.getQuantity()));
 		}
 		return orderLineValues;
