@@ -12,9 +12,11 @@ import java.util.Random;
  */
 
 public class Product {
-	
-	private String productID;
 	private String productName;
+	private double productPrice;
+	private String imageLocation, description, category;
+	private int length, width, height, weight;
+	private String productId;
 	private int productQuantity;
 	private int orderThreshold;
 	private Random rand;
@@ -27,15 +29,22 @@ public class Product {
 	public Product(){
 		stockHistory = new ArrayList<Number>();
 		rand = new Random();
-		productID = "GN-" + rand.nextInt(1000);
 		productName = "Gnome" + rand.nextInt(1000);
 		productQuantity = rand.nextInt(100);
 
 	}
 	
-	public Product(String productID, String productName, int productQuantity){
-		this.productID = productID;
+	public Product(String productId, String productName, double productPrice, String imageLocation, String description, int length, int width, int height, int weight, String category, int productQuantity){		
+		this.productId = productId;
 		this.productName = productName;
+		this.productPrice = productPrice;
+		this.imageLocation = imageLocation;
+		this.description = description;
+		this.length = length;
+		this.width = width;
+		this.height = height;
+		this.weight = weight;
+		this.category = category;
 		this.productQuantity = productQuantity;
 		this.orderThreshold = 20;
 		
@@ -44,10 +53,6 @@ public class Product {
 		for(int i = 0 ; i < 7 ; i++){
 			stockHistory.add(rand.nextInt(100));
 		}
-	}
-		
-	public String getProductID(){
-		return productID;
 	}
 	
 	public String getProductName(){
@@ -60,10 +65,6 @@ public class Product {
 	
 	public int getOrderThreshold(){
 		return orderThreshold;
-	}
-	
-	public void setProductID(String productID){
-		this.productID = productID;
 	}
 
 	public void setProductName(String productName){
@@ -99,5 +100,78 @@ public class Product {
 	public ArrayList<Number> getStockHistory(){
 		return stockHistory;
 	}
+
+	public String getProductID() {
+		return productId;
+	}
+
+	public void setProductID(String productId) {
+		this.productId = productId;
+	}
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	
 }

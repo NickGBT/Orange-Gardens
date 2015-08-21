@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import com.netbuilder.ims.model.DatabaseConnection;
 import com.netbuilder.ims.model.Product;
 import com.netbuilder.ims.model.StockManager;
 import com.netbuilder.ims.view.AddProductFrame;
@@ -34,6 +35,7 @@ public class StockManagerController {
 	
 	private StockManager model;
 	private StockManagerFrame view;
+	private DatabaseConnection dbc;
 	
 	private StockList stockList;
 	private MenuBarGUI menuBar;
@@ -210,7 +212,7 @@ public class StockManagerController {
 	public void getLastAndAddProduct(){ 		
 		Product product = model.getLastAddedProduct();
 		addProductToTable(product.getProductID(), product.getProductName(), product.getProductQuantity());
-		model.insertNewRow(Integer.parseInt(product.getProductID()), product.getProductName(), product.getProductQuantity());
+		model.insertNewRow(product.getProductName(), product.getProductPrice(), product.getImageLocation(), product.getDescription(), product.getLength(), product.getWidth(), product.getHeight(), product.getWeight(), product.getCategory(), product.getProductQuantity());
 	}
 	
 	//MENU BAR
@@ -298,27 +300,49 @@ public class StockManagerController {
 		public void actionPerformed(ActionEvent e) {
 			
 			int exists = 0;
+			int tempProductId = 0;
+			int parsedProductId = 0;
+			String tempProductIdString = "";
 			
 			for(Product products : model.getProducts()){
-				if(addProduct.getProductPanel().getProductId().equals(products.getProductID())){
-					exists++;
-					JOptionPane.showMessageDialog(view, "Product ID already exsists in table");
-				}
-				else{
-				}
+//				if(addProduct.getProductPanel().getProductName().equals(products.getProductName())){
+//					exists++;
+//					JOptionPane.showMessageDialog(view, "Product ID already exsists in table");
+//				}
+//				else{
+					parsedProductId = Integer.parseInt(products.getProductID());
+					if (parsedProductId > tempProductId)
+					{
+						tempProductId = parsedProductId;
+					}
+//				}
 			}
-			try{
-				  	Integer.parseInt(addProduct.getProductPanel().getProductId());
-			} catch (NumberFormatException e1) {
-					exists++;
-					JOptionPane.showMessageDialog(view, "Product ID must be a number");
-			}
+			/**
+			 * This has been removed due to the database auto-assigning productId, therefore the user no longer enters it
+			 */
+//			try{
+//				  	Integer.parseInt(addProduct.getProductPanel().getProductId());
+//			} catch (NumberFormatException e1) {
+//					exists++;
+//					JOptionPane.showMessageDialog(view, "Product ID must be a number");
+//			}
 						
 			if(exists == 0){
-				model.addProduct(addProduct.getProductPanel().getProductId(), 
+				tempProductId = tempProductId + 1;
+				tempProductIdString = Integer.toString(tempProductId);
+				model.addProduct(tempProductIdString, 
 						addProduct.getProductPanel().getProductName(), 
+						addProduct.getProductPanel().getProductPrice(),
+						addProduct.getProductPanel().getImageLocation(),
+						addProduct.getProductPanel().getDescription(),
+						addProduct.getProductPanel().getLength(),
+						addProduct.getProductPanel().getTempWidth(),
+						addProduct.getProductPanel().getTempHeight(),
+						addProduct.getProductPanel().getWeight(),
+						addProduct.getProductPanel().getSelectedCategory(),
 						addProduct.getProductPanel().getProductQuantity());
 				getLastAndAddProduct();
+				addProduct.dispose();
 			}
   
 		}

@@ -15,23 +15,16 @@ import java.util.Random;
 
 public class DatabaseConnection {
 	
-	private String[] gnomeNames =  {"Hippy Gnome", "King Gnome", "Queen Gnome", "Nuclear Gnome", "Biohazard Gnome", "Obama Gnome", "Redneck Gnome", "Business Gnome", 
-			"Chav Gnome", "Beiber Gnome", "Potter Gnome", "Wolverine Gnome", "Iron Man Gnome", "Voldemort Gnome", "Jedi Gnome", "Sith Gnome", "Picard Gnome", "Angel Gnome", "Gun Gnome", 
-			"Big Gun Gnome",  "Bazooka Gnome", "Tank Gnome", "Police Gnome",
-			"Other Gnome", "Greek Gnome", "Roman Gnome", "Chewbacca Gnome", "Time Lord Gnome"
-			,"Samurai Gnome" , "Demon Gnome", "Insane Gnome", "Australian Gnome", "French Gnome"};
-	
 	private Random rnd;
 	
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/IMS";//"jdbc:mysql://10.50.15.12/IMS";
-	static final String USER = "";//"LL";
-	static final String PASS = "";//"root";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/mydb";//"jdbc:mysql://10.50.15.12/IMS";
+	static final String USER = "root";//"root";
+	static final String PASS = "root";//"root";
 	
 	private ArrayList<Integer> productID;
 	private ArrayList<String> productName;
 	private ArrayList<Integer> productQuantity;
-	
 	private Statement stmt;
 	private Connection conn;
 	
@@ -76,36 +69,34 @@ public class DatabaseConnection {
 		
 	}
 
-	public void createEntry(){
-		System.out.println("Inserting records into table");
-		try {
-			stmt = conn.createStatement();
-			for(int i = 0; i < 33; i++){
-			String sql = "INSERT INTO Product" + " VALUES (" + (i+1) + ", '" + gnomeNames[i] +"', " + rnd.nextInt(100) +")";
-			stmt.executeUpdate(sql);
-			System.out.println("Inserted into tables");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public void readDB(){
 		System.out.println("Creating statement...");
 		try {
 			stmt = conn.createStatement();
-			String sql = "SELECT ProductID, ProductName, ProductQuantity FROM Product";
+			String sql = "SELECT product_id, product_name FROM product";
+			String sql2 = "SELECT stock_level, product_id FROM stock";
 			ResultSet rs = stmt.executeQuery(sql);
 			int i = 0;
 			while(rs.next()){
-				productID.add(rs.getInt("ProductID"));
-				productName.add(rs.getString("ProductName"));
-				productQuantity.add(rs.getInt("ProductQuantity"));
+				productID.add(rs.getInt("product_id"));
+				productName.add(rs.getString("product_name"));
+				i++;
+			}
+			rs.close();
+			rs = stmt.executeQuery(sql2);
+			i = 0;
+			while(rs.next()){
+				if (rs.getInt("product_id") == productID.get(i))
+				{
+					productQuantity.add(rs.getInt("stock_level"));
+				}
 				System.out.println(productID.get(i) + " " + 
 				productName.get(i) + " " + productQuantity.get(i));
 				i++;
 			}
 			rs.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -115,7 +106,7 @@ public class DatabaseConnection {
 		System.out.println("Updating quantity...");
 		try {
 			stmt = conn.createStatement();
-			String sql = "UPDATE Product " + "SET ProductQuantity = " + productQuantity + "  WHERE ProductID = " + productID ;
+			String sql = "UPDATE stock " + "SET stock_level = " + productQuantity + "  WHERE product_id = " + productID ;
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,12 +114,14 @@ public class DatabaseConnection {
 		
 	}
 	
-	public void insertToDb(int productID, String productName, int productQuantity){
+	public void insertToDb(String productName, double productPrice, String imageLocation, String description, int length, int width, int height, int weight, String category, int productQuantity){
 		System.out.println("Inserting tables...");
 		try {
 			stmt = conn.createStatement();
-			String sql = "INSERT INTO Product VALUES (" + productID +", '" + productName + "', " + productQuantity + ")";
+			String sql = "INSERT INTO product (product_name, product_price, image_location, description, length, width, height, weight, product_category) VALUES ('" + productName +"', " + productPrice + ", '" + imageLocation + "', '" + description + "', " + length + ", " + width + ", " + height + ", " + weight + ", '" + category + "')";
+			String sql2 = "INSERT INTO stock (stock_level, stock_available, critical_stock, required_stock, maximum_stock, location, product_id) VALUES (" + productQuantity + ", 50, 10, 50, 100, 'In the warehouse', (SELECT product_id from product WHERE product_name='" + productName + "'))";
 			stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +132,7 @@ public class DatabaseConnection {
 		System.out.println("Deleting from db...");
 		try {
 			stmt = conn.createStatement();
-			String sql = "DELETE FROM Product " + "WHERE ProductID = 30";
+			String sql = "DELETE FROM product " + "WHERE ProductID = 30";
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -16,7 +16,7 @@ public class AddProductFrame extends JFrame{
 	public AddProductFrame(){
 		this.setTitle("Add Product");
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setPreferredSize(new Dimension(400,200));
+		this.setPreferredSize(new Dimension(800,400));
 		
 		addProductPanel = new AddProductPanel();
 		this.add(addProductPanel);

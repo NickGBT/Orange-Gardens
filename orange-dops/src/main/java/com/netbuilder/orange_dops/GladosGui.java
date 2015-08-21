@@ -263,6 +263,7 @@ public class GladosGui
 			{
 				if(orderData.isOrdersComplete())
 				{
+					// code to send to IMS here
 					displayGetOrder();
 				}
 				else
