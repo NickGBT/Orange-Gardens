@@ -20,71 +20,84 @@
 				<h:form style="display:inline; padding-left=10%">
 					Username : <h:inputText id="username" value="#{registrationDetails.username}" required="true" 
 					validatorMessage="Username must be between 5 and 25 characters, no special characters">
-					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText><br/>
+					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,25})"/></h:inputText>
+					<h:message for="username"/><br/>
 					<br/>
 					<br/>
 					First Name : <h:inputText if="fName" value="#{registrationDetails.fName}" required="true" 
 					validatorMessage="First name must be between 1 and 20 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{1,20})"/></h:inputText>
+					<h:message for="fName"/><br/>
 					<br/>
 					<br/>
-					Last Name : <h:inputText value="#{registrationDetails.lName}" required="true" 
+					Last Name : <h:inputText id="lName" value="#{registrationDetails.lName}" required="true" 
 					validatorMessage="Last name must be between 1 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText>
+					<h:message for="lName"/><br/>
 					<br/>
 					<br/>
-					Email : <h:inputText value="#{registrationDetails.email}" required="true" 
+					Email : <h:inputText id="email" value="#{registrationDetails.email}" required="true" 
 					validatorMessage="Email address must be between 6 and 254 characters, must contain @, no digits or special characters">
-					<f:validateRegex pattern="((?=.*[@])[0-9a-zA-Z]+.{6,254})"/></h:inputText><br/>
+					<f:validateRegex pattern="((?=.*[@])[0-9a-zA-Z]+.{6,254})"/></h:inputText>
+					<h:message for="email"/><br/>
 					<br/>
 					<br/>
-					Contact Number : <h:inputText value="#{registrationDetails.contactNumber}" required="true" 
+					Contact Number : <h:inputText id="contact" value="#{registrationDetails.contactNumber}" required="true" 
 					validatorMessage="Contact number must be between 1 and 45 characters, digits only">
-					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([0-9]+.{1,45})"/></h:inputText>
+					<h:message for="contact"/><br/>
 					<br/>
 					<br/>
 					Password : <h:inputSecret binding="#{passwordComponent}" id="pwd" type="password" value="#{registrationDetails.password}" 
 					required="true" requiredMessage="Enter Password" 
 					validatorMessage="Password must be between 5 and 160 characters, must contain at least 1 digit as well as upper and lower case characters">
-					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret>
+					<h:message for="pwd"/><br/>
 					<br/>
 					<br/>
 					Password Confirmation : <h:inputSecret id="confirm" type="password" value="#{registrationDetails.confirmPassword}" 
 					required="#{not empty passwordComponent.value}" validator="#{registrationDetails.validatePassword}"
 					validatorMessage="Password must be between 5 and 160 characters, must contain at least 1 digit as well as upper and lower case characters">
 					<f:attribute name="passwordComponent" value="#{passwordComponent}"/>
-					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret><br/>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,160})"/></h:inputSecret>
+					<h:message for="confirm"/><br/>
 					<br/>
 					<br/>
 					<h2>Address</h2>
-					Address Label : <h:inputText value="#{registrationDetails.addressLabel}" required="true" 
+					Address Label : <h:inputText id="label" value="#{registrationDetails.addressLabel}" required="true" 
 					validatorMessage="Address label must be between 1 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{1,45})"/></h:inputText>
+					<h:message for="label"/><br/>
 					<br/>
 					<br/>
-					Home Number : <h:inputText value="#{registrationDetails.addressLine1}" required="true" 
+					Home Number : <h:inputText id="line1" value="#{registrationDetails.addressLine1}" required="true" 
 					validatorMessage="House number must be a digit between 1 and 9999">
-					<f:validateLongRange minimum="1" maximum="9999"/></h:inputText><br/>
+					<f:validateLongRange minimum="1" maximum="9999"/></h:inputText>
+					<h:message for="line1"/><br/>
 					<br/>
 					<br/>
-					Street : <h:inputText value="#{registrationDetails.addressLine2}" required="true" 
+					Street : <h:inputText id="line2" value="#{registrationDetails.addressLine2}" required="true" 
 					validatorMessage="Street must be between 2 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText>
+					<h:message for="line2"/><br/>
 					<br/>
 					<br/>
-					City : <h:inputText value="#{registrationDetails.city}" required="true" 
+					City : <h:inputText id="line3" value="#{registrationDetails.city}" required="true" 
 					validatorMessage="City must be between 2 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText>
+					<h:message for="line3"/><br/>
 					<br />
 					<br />
-					County : <h:inputText value="#{registrationDetails.county}" required="true" 
+					County : <h:inputText id="county" value="#{registrationDetails.county}" required="true" 
 					validatorMessage="County must be between 2 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText>
+					<h:message for="county"/><br/>
 					<br />
 					<br />
-					Post Code : <h:inputText value="#{registrationDetails.postcode}" required="true" 
+					Post Code : <h:inputText id="postcode" value="#{registrationDetails.postcode}" required="true" 
 					validatorMessage="Postcode must be between 6 and 8 characters, no special characters">
-					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,8})"/></h:inputText><br/>
+					<f:validateRegex pattern="([0-9a-zA-Z]+.{5,8})"/></h:inputText>
+					<h:message for="postcode"/><br/>
 					<br />
 					<br />
 					Is Billing Address? : <h:selectBooleanCheckbox type="checkbox" value="#{registrationDetails.billingAddress}"/>
@@ -97,20 +110,23 @@
 					</h:selectOneMenu>
 					<br />
 					<br />
-					Name on Card : <h:inputText value="#{registrationDetails.nameOnCard}" required="true" 
+					Name on Card : <h:inputText id="name" value="#{registrationDetails.nameOnCard}" required="true" 
 					validatorMessage="Name on card must be between 2 and 45 characters, no digits or special characters">
-					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText><br/>
+					<f:validateRegex pattern="([a-zA-Z]+.{2,45})"/></h:inputText>
+					<h:message for="name"/><br/>
 					<br />
 					<br />
-					Card Number : <h:inputText value="#{registrationDetails.cardNumber}" required="true" 
+					Card Number : <h:inputText id="card" value="#{registrationDetails.cardNumber}" required="true" 
 					validatorMessage="Card number must be 16 digits long">
 					<f:validateLongRange minimum="0" maximum="9999999999999999"/>
-					<f:validateLength minimum="16" maximum="16"/></h:inputText><br/>
+					<f:validateLength minimum="16" maximum="16"/></h:inputText>
+					<h:message for="card"/><br/>
 					<br />
 					<br />
-					Expiry Date : <h:inputText value="#{registrationDetails.expiryDate}" required="true"
+					Expiry Date : <h:inputText id="date" value="#{registrationDetails.expiryDate}" required="true"
 					validatorMessage="Expiry date must be between 6 and 10 characters and must contain /">
-					<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText><br/>
+					<f:validateRegex pattern="((?=.*\d)(?=.*[/]).{6,10})"/></h:inputText>
+					<h:message for="date"/><br/>
 					<br />
 					<br />
 					<h:commandButton value="Submit"

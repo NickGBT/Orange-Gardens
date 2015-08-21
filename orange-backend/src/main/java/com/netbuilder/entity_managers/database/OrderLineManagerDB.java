@@ -125,7 +125,6 @@ public class OrderLineManagerDB implements OrderLineManager {
 
 	@Override
 	public OrderLine findByProductInBasket(int productID) {
-		OrderLine orderLine;
 		EntityManager em = pm.createEntityManager();
 		TypedQuery<OrderLine> tq = em.createNamedQuery(OrderLine.GET_PRODUCT_IN_BASKET, OrderLine.class);
 		tq.setParameter("quantity", productID);
