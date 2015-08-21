@@ -39,11 +39,11 @@
 				<div id="buyingInfo">
 					<div id="basket">
 						<h:form>
-							<!-- <a href="basket.xhtml">
-							<img src="resources/img/basket.png" alt="basket" height="56" width="75"/>
-							</a> -->
-							<h:link rendered="#{loginController.loggedIn == true}" outcome="basket.xhtml"/>
-							<h:commandButton rendered="#{loginController.loggedIn == true}" image="/resources/img/basket.png"/>
+							<a href="basket.xhtml">
+							<!-- <img src="resources/img/basket.png" alt="basket" height="56" width="75"/> -->
+							
+							<h:graphicImage value="/resources/img/basket.png" rendered="#{loginController.loggedIn == true}"/>
+							</a>
 						</h:form>
 					</div>	
 				</div>				
