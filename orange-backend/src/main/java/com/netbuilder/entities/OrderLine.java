@@ -27,7 +27,8 @@ import javax.validation.constraints.NotNull;
 	@NamedQuery(name = OrderLine.FIND_BY_PRODUCT_ID, query = "SELECT o FROM OrderLine o WHERE o.product = :product"),
 	@NamedQuery(name = OrderLine.FIND_BY_ORDER_ID, query = "SELECT o FROM OrderLine o WHERE o.order = :order"),
 	@NamedQuery(name = OrderLine.FIND_BY_QUANTITY, query = "SELECT o FROM OrderLine o WHERE o.quantity = :quantity"),
-	@NamedQuery(name = OrderLine.GET_ALL, query = "SELECT o FROM OrderLine o")})
+	@NamedQuery(name = OrderLine.GET_ALL, query = "SELECT o FROM OrderLine o"),
+	@NamedQuery(name = OrderLine.GET_PRODUCT_IN_BASKET, query = "SELECT o FROM OrderLine o WHERE o.order = :productID")})
 public class OrderLine implements Serializable {
 	
 	private static final long serialVersionUID = 106177606691863253L;
@@ -35,6 +36,7 @@ public class OrderLine implements Serializable {
 	public static final String FIND_BY_ORDER_ID = "OrderLine.findByOrderId";
 	public static final String FIND_BY_PRODUCT_ID = "OrderLine.findByProductId";
 	public static final String FIND_BY_QUANTITY = "OrderLine.findByQuantity";
+	public static final String GET_PRODUCT_IN_BASKET = "OrderLine.findByProductInBasket";
 
 	@Id
 	@Column(name = "orderline_id", nullable = false)
