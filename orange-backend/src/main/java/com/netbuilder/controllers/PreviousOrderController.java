@@ -65,7 +65,7 @@ public class PreviousOrderController {
 		for(Order o: orderMan.getAllOrders()){
 			if(o.getOrderStatus() == OrderStatus.placed && o.getCustomer().getUsername().equals(userId.getUsername())) 
 			{
-				orderLines = orderLineMan.findByOrderId(o.getOrderID());
+				orderLines = orderLineMan.findByOrderId(o.getOrderId());
 				group.add(orderLines);
 			}
 		}
@@ -78,7 +78,7 @@ public class PreviousOrderController {
 		for(Order o: orderMan.getAllOrders()){
 			if(o.getOrderStatus() == OrderStatus.placed && 
 					o.getCustomer().getUsername().equals(userId.getUsername())) {
-					orderIds.add(o.getOrderID());
+					orderIds.add(o.getOrderId());
 			}
 		}
 		

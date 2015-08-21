@@ -31,7 +31,7 @@ public class OrderManagerAL implements OrderManager {
 	public Order findByOrderID(int orderID) {
 
 		for (Order o : orders) {
-			if (o.getOrderID() == orderID) {
+			if (o.getOrderId() == orderID) {
 				return o;
 			}
 		}
@@ -248,7 +248,7 @@ public class OrderManagerAL implements OrderManager {
 
 	public void updateWishList(Order order) {
 		for (Order o : orders) {
-			if (o.getOrderID() == order.getOrderID()) {
+			if (o.getOrderId() == order.getOrderId()) {
 				orders.set(orders.indexOf(o), order);
 				return;
 			}
@@ -257,7 +257,7 @@ public class OrderManagerAL implements OrderManager {
 
 	public void updateOrder(Order order) {
 		for (Order o : orders) {
-			if (o.getOrderID() == order.getOrderID()) {
+			if (o.getOrderId() == order.getOrderId()) {
 				orders.set(orders.indexOf(o), order);
 			}
 		}
