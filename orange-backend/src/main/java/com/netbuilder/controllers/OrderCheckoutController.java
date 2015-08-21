@@ -53,6 +53,7 @@ public class OrderCheckoutController {
 
 	@Inject
 	private PaymentDetailsManager paymentDetails;
+	@Inject
 	private LoginDetailsManager loginManager;
 
 	@Inject
@@ -143,7 +144,8 @@ public class OrderCheckoutController {
 	}
 	
 	public PaymentDetails getPaymentDetails(){
-		return paymentDetails.findCustomerPaymentDetails(loginManager.findByUserId(userId.getUid()));
+		loginDet = loginManager.findByUserId(userId.getUid());
+		return paymentDetails.findCustomerPaymentDetails(loginDet);
 	}
 	
 	public Address getAddress(){
