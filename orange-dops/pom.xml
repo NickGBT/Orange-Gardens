@@ -82,6 +82,12 @@
 			<artifactId>jms-message-object</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.ejb3</groupId>
+			<artifactId>jboss-ejb3-ext-api</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 
 	</dependencies>
 
