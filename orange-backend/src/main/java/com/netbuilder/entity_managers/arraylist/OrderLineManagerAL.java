@@ -84,7 +84,7 @@ public class OrderLineManagerAL implements OrderLineManager {
 	public List<OrderLine> findByOrderId(int orderId) {
 		List<OrderLine> orderLine = new ArrayList<OrderLine>();
 		for (OrderLine o : orderLines) {
-			if (o.getOrder().getOrderID() == orderId) {
+			if (o.getOrder().getOrderId() == orderId) {
 				orderLine.add(o);
 			}
 		}
@@ -164,7 +164,7 @@ public class OrderLineManagerAL implements OrderLineManager {
 
 	public void updateProductLine(OrderLine orderLine) {
 		for (OrderLine o : orderLines) {
-			if (o.getOrder().getOrderID() == orderLine.getOrder().getOrderID()) {
+			if (o.getOrder().getOrderId() == orderLine.getOrder().getOrderId()) {
 				orderLines.set(orderLines.indexOf(o), orderLine);
 			}
 		}

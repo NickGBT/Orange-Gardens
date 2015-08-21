@@ -21,20 +21,17 @@ public class RoutedOrder {
 
 	private OrderLineManager olm;
 
-	private ArrayList<Order> prioritisedPlacedOrders = (ArrayList<Order>) ops
-			.getPrioritisedQueue();
+	private ArrayList<Order> prioritisedPlacedOrders = (ArrayList<Order>) ops.getPrioritisedQueue();
 
 	private Order orderFromQueue = prioritisedPlacedOrders.get(0);
 
-	private ArrayList<OrderLine> oFQOrderlines = (ArrayList<OrderLine>) olm
-			.findByOrderId(orderFromQueue.getOrderID());
+	private ArrayList<OrderLine> oFQOrderlines = (ArrayList<OrderLine>) olm.findByOrderId(orderFromQueue.getOrderId());
 
 	private Map<Integer, Integer> orderLineValues = new IdentityHashMap<Integer, Integer>();
 
 	public Map<Integer, Integer> getOrderLineValues() {
 		for (OrderLine oL : oFQOrderlines) {
-			orderLineValues.put(new Integer(oL.getProduct().getProductId()),
-					new Integer(oL.getQuantity()));
+			orderLineValues.put(new Integer(oL.getProduct().getProductId()), new Integer(oL.getQuantity()));
 		}
 		return orderLineValues;
 	}
