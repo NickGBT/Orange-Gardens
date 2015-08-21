@@ -53,6 +53,7 @@ public class OrderCheckoutController {
 
 	@Inject
 	private PaymentDetailsManager paymentDetails;
+	
 	@Inject
 	private LoginDetailsManager loginManager;
 
