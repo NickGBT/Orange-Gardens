@@ -8,7 +8,6 @@ import java.util.List;
  * @author JustinMabbutt
  *
  */
-
 public class WarehouseMap<gladosNode extends Node>
 {
 	protected static boolean CANMOVEDIAGONALLY = true;
@@ -21,7 +20,6 @@ public class WarehouseMap<gladosNode extends Node>
 	private NodeFactory nodeFactory;
 
 	private WarehouseMap<GladosNode> warehouseMap;
-	private List<GladosNode> path;
 
 	@SuppressWarnings("unchecked")
 	public WarehouseMap(int width, int height, NodeFactory nodeFactory)

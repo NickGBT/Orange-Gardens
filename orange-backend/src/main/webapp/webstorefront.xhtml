@@ -6,11 +6,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	template="templates/template.xhtml">
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-
-	<!-- author: JustinMabbutt llew mwatson nickg-->
+	<!-- author: JustinMabbutt llew mwatson nickg -->
 
 	<ui:define name="pageTitle">NB Gardens - Store</ui:define>
 
@@ -58,15 +57,12 @@
 
 					<!-- Left and right controls -->
 					<a class="left carousel-control" href="#myCarousel" role="button"
-						data-slide="prev"> 
-						<span class="sr-only">Previous</span>
+						data-slide="prev"> <span class="sr-only">Previous</span>
 					</a> <a class="right carousel-control" href="#myCarousel" role="button"
-						data-slide="next" >
-						<span class="sr-only">Next</span>
+						data-slide="next"> <span class="sr-only">Next</span>
 					</a>
 				</div>
 			</div>
-
 
 			<div id="TitleBar">
 				<div id="TitleText">
@@ -74,92 +70,96 @@
 				</div>
 			</div>
 
-			<div id="StoreHeader" style=" overflow : auto;">
+			<div id="StoreHeader" style="overflow: auto;">
 				<h1>New Products</h1>
 				<ui:insert name="newProducts">
 
 					<ui:repeat var="product"
 						value="#{catalogController.prodsToDisplay}">
 
-						<div style="float: left; width: 50%; padding: 2%; ">
-							<tr>
-								<div style="min-width: 30%; max-width: 55%; float: left; overflow:auto; padding: 1px;">
-									<td>
-										<h:form>
-											<input type="hidden" name="productId" value="#{product.productId}" />										
-											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
-															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px; max-width: 100%; max-height: 100%" />
-										</h:form>
-									</td>
-								</div>
-								
-								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px; padding-left: 5px">
-									<td><h:outputText value="#{product.productName}" /><br />
-										<h:outputText value="#{product.description}" /></td>
-									<td><h:outputText
-											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
-									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
-									<br />
-									<td><h:outputText value="Category: #{product.category}" /></td>
-									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
-								</div>
+						<div style="float: left; width: 50%; padding: 2%;">
+							<div style="min-width: 30%; max-width: 55%; float: left; overflow: auto; padding: 1px;">
+								<h:form>
+									<input type="hidden" name="productId" value="#{product.productId}"/>
+									<h:commandButton image="#{product.imageLocation}"
+										value="Product Page" id="productPage"
+										action="#{catalogController.setProductPage}"
+										style=" width:300px;  height:300px; max-width: 100%; max-height: 100%"/>
+								</h:form>
+							</div>
 
-							</tr>
+							<div style="min-width: 20%; max-width: 40%; float: left; overflow: auto; padding: 1px; padding-left: 5px">
+								<h:outputText value="#{product.productName}"/>
+								<br/>
+								<h:outputText value="#{product.description}"/>
+								<br/>
+								<h:outputText value="Width: #{product.width}cm"/>
+								<br/>
+								<h:outputText value="Height: #{product.height}cm"/>
+								<br/>
+								<h:outputText value="Length: #{product.length}cm"/>
+								<br/>
+								<h:outputText value="Weight: #{product.weight}kg"/>
+								<br/>
+								<h:outputText value="Category: #{product.category}"/>
+								<br/>
+								<h:outputText value="£#{product.productPrice}"/>
+								<br/>
+							</div>
 						</div>
-
-
 					</ui:repeat>
 				</ui:insert>
 			</div>
 
-			<div style="width: 50%; padding: 1px "><h1>Special Offers</h1></div>
+			<div style="width: 50%; padding: 1px">
+				<h1>Special Offers</h1>
+			</div>
 
-			<div id="SpecialOffer" style="overflow : auto;">
-				
+			<div id="SpecialOffer" style="overflow: auto;">
+
 				<ui:insert name="specialOffers">
 					<ui:repeat var="product"
 						value="#{catalogController.prodsToDisplay}">
 
 						<div style="float: left; width: 50%; padding: 2%;">
-							<tr>
-								<div style="min-width: 30%; max-width: 55%; float: left; overflow:auto; padding: 1px;">
-									<td>
-										<h:form>
-											<input type="hidden" name="productId" value="#{product.productId}" />										
-											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage"
-															action="#{catalogController.setProductPage}" style = " width:300px;  height:300px; max-width: 100%; max-height: 100%" />
-											
-											
-										</h:form>
-									</td>
-								</div>
-								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px; padding-left: 5px">
-									<td><h:outputText value="#{product.productName}" /><br />
-										<h:outputText value="#{product.description}" /></td>
-									<td><h:outputText
-											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
-									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
-									<br />
-									<td><h:outputText value="Category: #{product.category}" /></td>
-									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
-							
-								</div>
-
-							</tr>
+							<div
+								style="min-width: 30%; max-width: 55%; float: left; overflow: auto; padding: 1px;">
+								<h:form>
+									<input type="hidden" name="productId" value="#{product.productId}"/>
+									<h:commandButton image="#{product.imageLocation}"
+										value="Product Page" id="productPage"
+										action="#{catalogController.setProductPage}"
+										style=" width:300px;  height:300px; max-width: 100%; max-height: 100%"/>
+								</h:form>
+							</div>
+							<div style="min-width: 20%; max-width: 40%; float: left; overflow: auto; padding: 1px; padding-left: 5px">
+								<h:outputText value="#{product.productName}"/>
+								<br/>
+								<h:outputText value="#{product.description}"/>
+								<br/>
+								<h:outputText value="Width: #{product.width}cm"/>
+								<br/>
+								<h:outputText value="Height: #{product.height}cm"/>
+								<br/>
+								<h:outputText value="Length: #{product.length}cm"/>
+								<br/>
+								<h:outputText value="Weight: #{product.weight}kg"/>
+								<br/>
+								<h:outputText value="Category: #{product.category}"/>
+								<br/>
+								<h:outputText value="£#{product.productPrice}"/>
+								<br/>
+							</div>
 						</div>
-
-
 					</ui:repeat>
-
 				</ui:insert>
 			</div>
-			<div style="width: 50%; padding: 1px;"> <h1>Catalogue Exclusive Items</h1></div>
-			
-			<div id="ExclusiveItems"
-				style="min-width: 50%; overflow : auto;">
-				
+			<div style="width: 50%; padding: 1px;">
+				<h1>Catalogue Exclusive Items</h1>
+			</div>
+
+			<div id="ExclusiveItems" style="min-width: 50%; overflow: auto;">
+
 				<ui:insert name="exclusiveItems">
 
 
@@ -167,35 +167,38 @@
 						value="#{catalogController.prodsToDisplay}">
 
 						<div style="float: left; width: 50%; padding: 2%;">
-							<tr>
-								<div style="min-width: 30%; max-width: 55%; float: left; overflow:auto; padding: 1px;">
-									<td>
-										<h:form>
-											<input type="hidden" name="productId" value="#{product.productId}" />										
-											<h:commandButton image = "#{product.imageLocation}" value="Product Page"  id="productPage" action="#{catalogController.setProductPage}" style = " width:300px;  height:300px; max-width: 100%; max-height: 100%" />
 
-
-											
-										</h:form>
-									</td>
-								</div>
-								<div style="min-width: 20%; max-width: 40%; float: left; overflow:auto; padding: 1px; padding-left: 5px">
-									<td><h:outputText value="#{product.productName}" /><br />
-										<h:outputText value="#{product.description}" /></td>
-									<td><h:outputText
-											value="Width: #{product.width}cm	Height: #{product.height}cm	Length: #{product.length}cm" /></td>
-									<td><h:outputText value="Weight: #{product.weight}kg" /></td>
-									<br />
-									<td><h:outputText value="Category: #{product.category}" /></td>
-									<br />
-									<td><h:outputText value="£#{product.productPrice}" /></td> <br />
-							
-								</div>
-
-							</tr>
+							<div
+								style="min-width: 30%; max-width: 55%; float: left; overflow: auto; padding: 1px;">
+								<h:form>
+									<input type="hidden" name="productId"
+										value="#{product.productId}" />
+									<h:commandButton image="#{product.imageLocation}"
+										value="Product Page" id="productPage"
+										action="#{catalogController.setProductPage}"
+										style=" width:300px;  height:300px; max-width: 100%; max-height: 100%" />
+								</h:form>
+							</div>
+							<div
+								style="min-width: 20%; max-width: 40%; float: left; overflow: auto; padding: 1px; padding-left: 5px">
+								<h:outputText value="#{product.productName}" />
+								<br />
+								<h:outputText value="#{product.description}" />
+								<br />
+								<h:outputText value="Width: #{product.width}cm"/>
+								<br/>
+								<h:outputText value="Height: #{product.height}cm"/>
+								<br/>
+								<h:outputText value="Length: #{product.length}cm"/>
+								<br/>
+								<h:outputText value="Weight: #{product.weight}kg" />
+								<br />
+								<h:outputText value="Category: #{product.category}" />
+								<br />
+								<h:outputText value="£#{product.productPrice}" />
+								<br />
+							</div>
 						</div>
-
-
 					</ui:repeat>
 				</ui:insert>
 			</div>

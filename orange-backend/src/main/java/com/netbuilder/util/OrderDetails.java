@@ -78,10 +78,7 @@ public class OrderDetails {
 
 		order.setDatePlaced((dateFormat.format(rightNow.getTime())));
 
-		//order.setDatePlacedInMillis(rightNow.getTimeInMillis());
-
 		orderManager.updateOrder(order);
-
 	}
 
 	/**
@@ -90,12 +87,11 @@ public class OrderDetails {
 	 * 
 	 *
 	 */
-
 	public double getItemSubtotal(int productId) {
+		
 		double itemSubtotal;
 
-		double productPrice = productManager.findByProductId(productId)
-				.getProductPrice();
+		double productPrice = productManager.findByProductId(productId).getProductPrice();
 
 		itemSubtotal = productPrice * itemQuantity;
 
@@ -125,6 +121,7 @@ public class OrderDetails {
 	 * 
 	 */
 	public void updateBasketQuantity(int productId) {
+		
 		int basketId = orderManager.findByStatusAndId(OrderStatus.basket, userId.getUid()).getOrderID();
 
 		associatedOrderLines = orderLineManager.findByOrderId(basketId);
