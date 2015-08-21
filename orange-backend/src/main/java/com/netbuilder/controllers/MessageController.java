@@ -11,6 +11,7 @@ import com.netbuilder.jms.QueueSenderBean;
 import com.netbuilder.jms_tools.DopsOrder;
 import com.netbuilder.jms_tools.DopsOrderline;
 import com.netbuilder.jms_tools.GladosNode;
+import com.netbuilder.jms_tools.OrderStatus;
 
 @ManagedBean(name = "messageController")
 @RequestScoped
@@ -40,6 +41,7 @@ public class MessageController
 	private String textMessage = "Hello from Message Controller!";
 	//private Serializable object = new Serializable();
 	private Product product;
+	private int orderId;
 
 
 	public void sendTextMessage()
@@ -57,7 +59,7 @@ public class MessageController
 		path.add(gladosNode);
 		dopsOrderline = new DopsOrderline("Gnome", "2", "B1", gladosNode);
 		dopsOrderTemp.add(dopsOrderline);
-		dopsOrder = new DopsOrder(dopsOrderTemp);
+		dopsOrder = new DopsOrder(orderId ,OrderStatus.placed, dopsOrderTemp);
 		
 		System.out.println("MessageController::Line27::Sending Order");
 		qb.sendMessage("dops_queue", dopsOrder);

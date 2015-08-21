@@ -5,16 +5,32 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
+		<RollingFile name="logfile" filename="logs/backup.log"
+			filePattern="logs/app-%d{MM-dd-yyyy}.log" ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+			<TimeBasedTriggeringPolicy />
+			<MarkerFilter marker="PRODUCT" onMatch="DENY" onMismatch="ACCEPT" />
+		</RollingFile>
+		<Gelf name="gelf" host="udp:localhost" port="12201"
+			maximumMessageSize="8192">
+			<Field name="timestamp" pattern="%d{dd MMM yyyy HH:mm:ss,SSS}" />
+			<Field name="usage" pattern="%marker" />
+		</Gelf>
+		<Async name="async" bufferSize="10" blocking="false"
+			ignoreExceptions="false" errorRef="backupfile">
+			<AppenderRef ref="gelf" />
+		</Async>
 	</Appenders>
 	<Loggers>
-		<Root level="error">
+		<Logger name="com.netbuilder.util.OrderlogWriter" level="info"
+			additivity="false">
+			<AppenderRef ref="async" />
+		</Logger>
+		<Root level="warn">
 			<AppenderRef ref="Console" />
 		</Root>
-		<Logger name="com.netbuilder.jms.JmsListener" level="info" additivity="false">
-			<AppenderRef ref="Console"/>
-		</Logger>
-		<Logger name="com.netbuilder.jms.Receiver" level="info" additivity="false">
-			<AppenderRef ref="Console"/>
-		</Logger>
+
 	</Loggers>
 </Configuration>

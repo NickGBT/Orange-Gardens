@@ -13,7 +13,7 @@
 
 	<ui:define name="content">
 		<div id="MainContent">
-			<h:form>
+			<h:form rendered="#{loginController.loggedIn != true}">
 				<h1>Sign In</h1>
 				<h4>What is your user name or email address?</h4>
 				<h:inputText id="logindetails" value="#{loginController.name}"
@@ -23,10 +23,14 @@
 					maxlength="45" size="20"></h:inputSecret>
 				<br />
 				<h:commandButton class="button" value="Submit"
-					action="#{loginController.login}" />
+					action="#{loginController.login}"/>
+				<a href="registercustomer.xhtml" style="color: #FFFFFF">Register Account</a>
 			</h:form>
-			<a href="registercustomer.xhtml" style="color: #FFFFFF">Register Account</a>
-			<br /> <br />
+			<h:form rendered="#{loginController.loggedIn == true}">
+			<h1>BUGGER OFF</h1>
+			</h:form>
+			<br/> 
+			<br/>
 		</div>
 	</ui:define>
 

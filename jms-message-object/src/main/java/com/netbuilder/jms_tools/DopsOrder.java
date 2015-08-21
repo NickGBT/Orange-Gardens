@@ -16,8 +16,10 @@ public class DopsOrder implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<DopsOrderline> dopsOrder = new ArrayList<DopsOrderline>();
+
+	private OrderStatus orderstatus;
 	
-	public DopsOrder (ArrayList<DopsOrderline> dopsOrder)
+	public DopsOrder (int orderId, OrderStatus orderstatus, ArrayList<DopsOrderline> dopsOrder)
 	{
 		this.dopsOrder = dopsOrder;
 	}
@@ -30,5 +32,11 @@ public class DopsOrder implements Serializable
 		this.dopsOrder = dopsOrder;
 	}
 	
-	
+	/**
+	 * @author ngilbert
+	 */
+	public void setDopsOrderStatus(OrderStatus orderstatus){
+		this.orderstatus = orderstatus;
+	}
+				
 }
