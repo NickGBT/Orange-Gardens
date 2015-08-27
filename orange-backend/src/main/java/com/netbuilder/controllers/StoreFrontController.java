@@ -9,12 +9,17 @@ import com.netbuilder.util.StoreFrontProducts;
  * @author JustinMabbutt
  *
  */
-
 public class StoreFrontController {
 	@Inject
 	private StoreFrontProducts storeFrontProducts;
 	private String pageNav;
 
+	/**
+	 * To decide which product page to navigate to
+	 * @param row
+	 * @param column
+	 * @return navigation string
+	 */
 	public String productClick(int row, int column) {
 		switch (row) {
 		case 1:

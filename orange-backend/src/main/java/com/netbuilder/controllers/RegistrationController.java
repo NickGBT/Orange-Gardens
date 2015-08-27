@@ -26,7 +26,6 @@ import com.netbuilder.util.UserDetails;
  * @author llew
  *
  */
-
 @ManagedBean(name = "registrationDetailsController")
 @RequestScoped
 public class RegistrationController {

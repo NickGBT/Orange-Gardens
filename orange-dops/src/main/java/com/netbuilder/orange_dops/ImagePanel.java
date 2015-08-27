@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
  * @author JustinMabbutt
  *
  */
-
 public class ImagePanel extends JPanel 
 {
 	private static final long serialVersionUID = -4377283619239711907L;
@@ -27,6 +26,10 @@ public class ImagePanel extends JPanel
 		this(new ImageIcon(img).getImage());
 	}
 
+	/**
+	 * draw custom panel with image background
+	 * @param img background
+	 */
 	public ImagePanel(Image img)
 	{
 		this.img = img;

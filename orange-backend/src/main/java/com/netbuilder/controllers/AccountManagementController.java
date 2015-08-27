@@ -55,6 +55,10 @@ public class AccountManagementController {
 	
 	private static final Logger logger = LogManager.getLogger();
 
+	/**
+	 * Change address to user input
+	 * @return the customer account page
+	 */
 	public String changeAddress() {
 		if (address != null) {
 			address.setAddressLabel(accountManagement.getAddressLabel());

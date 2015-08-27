@@ -85,71 +85,88 @@ public class Address implements Serializable
 	
 	public Address(){}
 
-	public LoginDetails getCustomer() {
+	public LoginDetails getCustomer()
+	{
 		return customer;
 	}
 
-	public String getAddressLabel() {
+	public String getAddressLabel() 
+	{
 		return addressLabel;
 	}
 
-	public void setAddressLabel(String addressLabel) {
+	public void setAddressLabel(String addressLabel) 
+	{
 		this.addressLabel = addressLabel;
 	}
 
-	public String getAddressLine1() {
+	public String getAddressLine1() 
+	{
 		return addressLine1;
 	}
 
-	public void setAddressLine1(String addressLine1) {
+	public void setAddressLine1(String addressLine1) 
+	{
 		this.addressLine1 = addressLine1;
 	}
 
-	public String getAddressLine2() {
+	public String getAddressLine2() 
+	{
 		return addressLine2;
 	}
 
-	public void setAddressLine2(String addressLine2) {
+	public void setAddressLine2(String addressLine2)
+	{
 		this.addressLine2 = addressLine2;
 	}
 
-	public String getAddressLine3() {
+	public String getAddressLine3() 
+	{
 		return addressLine3;
 	}
 
-	public void setAddressLine3(String addressLine3) {
+	public void setAddressLine3(String addressLine3) 
+	{
 		this.addressLine3 = addressLine3;
 	}
 
-	public String getCity() {
+	public String getCity()
+	{
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(String city)
+	{
 		this.city = city;
 	}
 
-	public String getCounty() {
+	public String getCounty() 
+	{
 		return county;
 	}
 
-	public void setCounty(String county) {
+	public void setCounty(String county) 
+	{
 		this.county = county;
 	}
 
-	public String getPostcode() {
+	public String getPostcode()
+	{
 		return postcode;
 	}
 
-	public void setPostcode(String postcode) {
+	public void setPostcode(String postcode)
+	{
 		this.postcode = postcode;
 	}
 
-	public boolean isBillingAddress() {
+	public boolean isBillingAddress()
+	{
 		return isBillingAddress;
 	}
 
-	public void setBillingAddress(boolean isBillingAddress) {
+	public void setBillingAddress(boolean isBillingAddress) 
+	{
 		this.isBillingAddress = isBillingAddress;
 	}
 }

@@ -97,6 +97,14 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 	private List<gladosNode> closedList;
 	private boolean done = false;
 
+	/**
+	 * Find path to new x and y
+	 * @param oldX
+	 * @param oldY
+	 * @param newX
+	 * @param newY
+	 * @return the list of traversal nodes
+	 */
 	public final List<gladosNode> findPath(int oldX, int oldY, int newX, int newY) 
 	{
 		openList = new LinkedList<gladosNode>();
@@ -168,6 +176,10 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		return path;
 	}
 
+	/**
+	 * Find node with cheapest direction cost
+	 * @return the cheapest node
+	 */
 	private gladosNode lowestFInOpen() 
 	{
 		gladosNode cheapest = openList.get(0);
@@ -181,6 +193,11 @@ public class WarehouseMap<gladosNode extends Node> implements Serializable
 		return cheapest;
 	}
 
+	/**
+	 * get adjacent node to parameter node
+	 * @param node
+	 * @return adjacent node
+	 */
 	private List<gladosNode> getAdjacent(gladosNode node)
 	{
 		int x = node.getxPosition();

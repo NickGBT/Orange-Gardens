@@ -172,9 +172,7 @@ public class GladosGui
 
 	/**
 	 * Assign action listeners
-	 */
-	/**
-	 * @author mwatson
+	 * @author mwatson JustinMabbutt
 	 */
 	private void assignActionListeners()
 	{
@@ -589,9 +587,7 @@ public class GladosGui
     
     /**
      * Task to draw the map
-     */
-    /**
-     * @author mwatson
+     * @author mwatson JustinMabbutt
      */
    	private void displayMap()
     {

@@ -7,7 +7,6 @@ import com.netbuilder.util.CustomerFeedback;
  * @author JustinMabbutt
  *
  */
-
 public class FeedbackController {
 	// @Inject
 	private CustomerFeedback customerFeedback;
@@ -15,7 +14,6 @@ public class FeedbackController {
 
 	/**
 	 * User cancels feedback
-	 * 
 	 * @return go to home page (store front)
 	 */
 	public String cancel() {
@@ -25,9 +23,7 @@ public class FeedbackController {
 
 	/**
 	 * User clicks send on feedback screen
-	 * 
-	 * @param the
-	 *            user entry feedback
+	 * @param the user entry feedback
 	 * @return go to home page (store front)
 	 */
 	public String sendFeedback(String feedback) {
@@ -38,7 +34,6 @@ public class FeedbackController {
 
 	/**
 	 * Get notification message string
-	 * 
 	 * @return notification message
 	 */
 	public String getNotification() {

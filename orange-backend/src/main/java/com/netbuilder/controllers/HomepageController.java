@@ -8,12 +8,11 @@ import com.netbuilder.entities.Product;
 import com.netbuilder.entity_managers.interfaces.ProductManager;
 import com.netbuilder.util.StoreFrontProducts;
 
-/*
+/**
  * 
  * @author llew
  *
  */
-
 public class HomepageController {
 
 	@Inject

@@ -23,7 +23,6 @@ import com.netbuilder.util.SearchDetails;
  * @author mwatson
  *
  */
-
 @ManagedBean(name = "searchController")
 @RequestScoped
 public class SearchController {

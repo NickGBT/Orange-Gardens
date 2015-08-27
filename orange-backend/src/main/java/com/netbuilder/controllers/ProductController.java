@@ -25,7 +25,6 @@ import com.netbuilder.util.UserId;
  * @author mwatson llew
  *
  */
-
 @ManagedBean(name = "productController")
 @RequestScoped
 public class ProductController {

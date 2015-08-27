@@ -21,7 +21,6 @@ import com.netbuilder.util.UserId;
  * @author Alexander Neil llew mwatson
  *
  */
-
 @Named("loginController")
 @SessionScoped
 public class LoginController implements Serializable {

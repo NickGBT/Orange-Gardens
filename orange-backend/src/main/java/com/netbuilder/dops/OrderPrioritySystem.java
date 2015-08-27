@@ -20,10 +20,9 @@ import com.netbuilder.enums.OrderStatus;
  * 
  * @author ngilbert
  *
- **/
-
-public class OrderPrioritySystem {
-
+ */
+public class OrderPrioritySystem
+{
 	private OrderManager orders;
 	private long milliseconds;
 	private long currentTime = System.currentTimeMillis();

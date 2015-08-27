@@ -34,7 +34,6 @@ import com.netbuilder.util.UserId;
  *
  *
  **/
-
 @ManagedBean(name = "orderCheckoutController")
 @RequestScoped
 public class OrderCheckoutController {

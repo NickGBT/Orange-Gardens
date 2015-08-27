@@ -26,7 +26,6 @@ import com.netbuilder.util.UserId;
  * @author jtaylor
  *
  */
-
 @ManagedBean(name = "wishlistController")
 @RequestScoped
 public class WishlistController 

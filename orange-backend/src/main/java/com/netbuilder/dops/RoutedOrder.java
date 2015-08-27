@@ -13,8 +13,7 @@ import com.netbuilder.enums.OrderStatus;
  * 
  * @author ngilbert
  *
- **/
-
+ */
 public class RoutedOrder {
 
 	private OrderPrioritySystem ops;

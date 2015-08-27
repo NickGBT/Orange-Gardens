@@ -14,12 +14,11 @@ import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.enums.OrderStatus;
 import com.netbuilder.util.UserId;
 
-/*
+/**
  * 
  * @author llew
  *
  */
-
 @ManagedBean(name = "previousOrderController")
 @RequestScoped
 public class PreviousOrderController {
