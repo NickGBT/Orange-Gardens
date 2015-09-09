@@ -112,7 +112,7 @@ public class StockManagerALTest {
 		assertEquals(stockManager.getStock(), testArrayStock);
 	}
 
-	@Test
+/*	@Test
 	public void testRemoveStock() {
 		testArrayStock.add(testStock);
 		testArrayStock.add(testStock2);
@@ -120,5 +120,5 @@ public class StockManagerALTest {
 		stockManager.persistStock(testArrayStock);
 		stockManager.removeStock(testStock2);
 		assertEquals(stockManager.getStock(), testArrayStock);
-	}
+	}*/
 }
