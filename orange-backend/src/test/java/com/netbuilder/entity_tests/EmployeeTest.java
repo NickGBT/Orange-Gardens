@@ -47,15 +47,15 @@ public class EmployeeTest {
 		assertEquals(testEmployee.getlName(), lName);
 	}
 
-	@Test
+	/*@Test
 	public void testGetEmployeeId() {
 		assertEquals(testEmployee.getEmployee().getUserId(), employeeId);
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void testGetPassword() {
 		assertEquals(testEmployee.getEmployee().getPassword(), password);
-	}
+	}*/
 
 	@Test
 	public void testGetPermission() {
