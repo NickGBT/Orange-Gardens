@@ -64,9 +64,9 @@ public class OrderCheckoutController {
 	private PaymentDetails pd;
 	private Address ad;
 
-	private ArrayList<GladosNode> path;
-	private GladosNode gladosNode;
-	private ArrayList<DopsOrderline> tempDopsOrders;
+	//private ArrayList<GladosNode> path;
+	//private GladosNode gladosNode;
+	//private ArrayList<DopsOrderline> tempDopsOrders;
 
 	public String changeOrderStatus() {
 
