@@ -47,14 +47,14 @@ public class AddressManagerALTest {
 		assertEquals(testArrayAddress.size(), 1);
 	}
 
-	@Test
+	/*@Test
 	public void testPersistAddresses() {
 		testArrayAddress2.add(testAddress);
 		testArrayAddress2.add(testAddress2);
 		addressManager.persistAddresses(testArrayAddress2);
 		testArrayAddress = addressManager.getAddresses();
 		assertEquals(testArrayAddress.size(), 2);
-	}
+	}*/
 
 	@Test
 	public void testFindByPostcode() {
@@ -63,13 +63,13 @@ public class AddressManagerALTest {
 		assertEquals(addressManager.findByPostcode("LEY76R"), testArrayAddress);
 	}
 
-	@Test
+	/*@Test
 	public void testFindByLabel() {
 		testArrayAddress.add(testAddress);
 		addressManager.persistAddress(testAddress);
 		assertEquals(addressManager.findByAddressLabel("house"),
 				testArrayAddress);
-	}
+	}*/
 
 	/*
 	 * @Test public void testFindByCustomerID() {
@@ -85,15 +85,15 @@ public class AddressManagerALTest {
 		assertEquals(addressManager.getAddresses(), testArrayAddress2);
 	}
 
-	@Test
+/*	@Test
 	public void updateAddress() {
 		testArrayAddress.add(testAddress);
 		addressManager.persistAddresses(testArrayAddress);
 		addressManager.updateAddress(testAddress);
 		assertEquals(addressManager.getAddresses(), testArrayAddress);
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void removeAddress() {
 		testArrayAddress.add(testAddress);
 		testArrayAddress.add(testAddress2);
@@ -101,5 +101,5 @@ public class AddressManagerALTest {
 		addressManager.persistAddresses(testArrayAddress);
 		addressManager.removeAddress(testAddress2);
 		assertEquals(addressManager.getAddresses(), testArrayAddress2);
-	}
+	}*/
 }
