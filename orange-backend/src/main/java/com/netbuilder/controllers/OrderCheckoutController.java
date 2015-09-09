@@ -20,10 +20,6 @@ import com.netbuilder.entity_managers.interfaces.OrderManager;
 import com.netbuilder.entity_managers.interfaces.PaymentDetailsManager;
 import com.netbuilder.enums.CardType;
 import com.netbuilder.enums.OrderStatus;
-import com.netbuilder.jms.QueueSenderBean;
-import com.netbuilder.jms_tools.DopsOrder;
-import com.netbuilder.jms_tools.DopsOrderline;
-import com.netbuilder.jms_tools.GladosNode;
 import com.netbuilder.util.OrderDetails;
 import com.netbuilder.util.OrderData;
 import com.netbuilder.util.UserId;
@@ -44,9 +40,6 @@ public class OrderCheckoutController {
 	private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
 	@Inject
-	private QueueSenderBean qb;
-
-	@Inject
 	private AddressManager address;
 	private LoginDetails loginDet;
 
@@ -61,8 +54,6 @@ public class OrderCheckoutController {
 
 	@Inject
 	private OrderLineManager orderLineManager;
-
-	private DopsOrder dopsOrder;
 
 	private Order order;
 	private OrderDetails basketDetails;
@@ -79,7 +70,7 @@ public class OrderCheckoutController {
 
 	public String changeOrderStatus() {
 
-		tempDopsOrders = new ArrayList<DopsOrderline>();
+		/*tempDopsOrders = new ArrayList<DopsOrderline>();
 
 		order = orderManager.findBasketByUserId(OrderStatus.basket, loginManager.findByUserId(userId.getUid()));
 
@@ -117,6 +108,8 @@ public class OrderCheckoutController {
 			// order = new Order(loginDet, OrderStatus.basket, null);
 			// orderManager.persistOrder(order);
 		} else
+			return "#";*/
+			
 			return "#";
 	}
 
