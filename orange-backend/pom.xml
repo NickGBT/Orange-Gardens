@@ -96,10 +96,10 @@
 		</dependency>
 		
 		<dependency>
--			<groupId>com.netbuilder</groupId>
--			<artifactId>jms-message-object</artifactId>
--			<version>0.0.1-SNAPSHOT</version>
--		</dependency>
+			<groupId>com.netbuilder</groupId>
+			<artifactId>jms-message-object</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 		<!-- Used for logging/JSON encoding -->
 		<dependency>
