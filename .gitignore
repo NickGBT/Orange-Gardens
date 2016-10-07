@@ -10,3 +10,6 @@ ims/bin/
 
 database_model.mwb.bak
 ~$*.docx
+
+**/.*
+!.gitignore
