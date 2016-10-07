@@ -43,9 +43,4 @@
 		  <url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-	 <servlet-name>Faces Servlet</servlet-name>
-	 <url-pattern>*.xhtml</url-pattern>
-	 <url-pattern>/javax.faces.resource/*</url-pattern>
-	</servlet-mapping>
 </web-app>
