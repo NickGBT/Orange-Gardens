@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource name="jdbc/orange_gardens" auth="Container" type="javax.sql.DataSource"
+           factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+           maxActive="60" maxIdle="30" maxWait="0"
+           username="dev" password="mysql" driverClassName="com.mysql.jdbc.Driver"
+           url="jdbc:mysql://mysql:3306/orange_gardens"/>
+</Context>
